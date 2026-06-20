@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Žuti Karton — nogomet Istre i Primorja</title>
+<style>
+  :root {
+    --tartan-green: #1f3d2e;
+    --pitch-line: #f4ede1;
+    --istra-gold: #d4a13d;
+    --pgz-blue: #2c5f7c;
+    --ink: #1a1a1a;
+    --paper: #faf7f2;
+    --hairline: #d8d0c2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Georgia', 'Iowan Old Style', serif;
+    line-height: 1.5;
+  }
+
+  .masthead {
+    border-bottom: 4px solid var(--ink);
+    padding: 28px 24px 18px;
+    background: var(--paper);
+  }
+
+  .masthead-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .wordmark {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 800;
+    font-size: 2.1rem;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  .wordmark span { color: var(--istra-gold); }
+
+  .dateline {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #555;
+  }
+
+  .ticker {
+    background: var(--ink);
+    color: var(--pitch-line);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.82rem;
+    padding: 9px 24px;
+    overflow: hidden;
+  }
+
+  .ticker-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+
+  .ticker-item { white-space: nowrap; }
+  .ticker-item b { color: var(--istra-gold); }
+
+  main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 36px 24px 80px;
+    display: grid;
+    grid-template-columns: 2.1fr 1fr;
+    gap: 40px;
+  }
+
+  @media (max-width: 760px) {
+    main { grid-template-columns: 1fr; }
+  }
+
+  .lead-story {
+    border-bottom: 1px solid var(--hairline);
+    padding-bottom: 28px;
+    margin-bottom: 28px;
+  }
+
+  .league-tag {
+    display: inline-block;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--tartan-green);
+    padding: 3px 9px;
+    margin-bottom: 10px;
+  }
+
+  .league-tag.pgz { background: var(--pgz-blue); }
+
+  .lead-story h1 {
+    font-size: 2rem;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+
+  .standfirst {
+    font-size: 1.05rem;
+    color: #444;
+    margin-bottom: 14px;
+  }
+
+  .scoreline {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 14px;
+  }
+
+  .scoreline .score {
+    color: var(--istra-gold);
+    padding: 0 8px;
+  }
+
+  .byline {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.75rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .match-card {
+    border: 1px solid var(--hairline);
+    padding: 18px;
+    margin-bottom: 18px;
+    background: #fff;
+  }
+
+  .match-card .league-tag { margin-bottom: 8px; }
+
+  .match-card h2 {
+    font-size: 1.15rem;
+    margin-bottom: 6px;
+    line-height: 1.25;
+  }
+
+  .match-card p {
+    font-size: 0.92rem;
+    color: #555;
+  }
+
+  aside h3 {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 8px;
+    margin-bottom: 14px;
+  }
+
+  .table-widget {
+    border: 1px solid var(--hairline);
+    padding: 16px;
+    margin-bottom: 28px;
+    background: #fff;
+  }
+
+  .table-widget table {
+    width: 100%;
+    font-size: 0.85rem;
+    border-collapse: collapse;
+  }
+
+  .table-widget th {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-align: left;
+    padding-bottom: 6px;
+    color: #888;
+    font-weight: 700;
+  }
+
+  .table-widget td {
+    padding: 5px 4px;
+    border-top: 1px solid var(--hairline);
+  }
+
+  .table-widget tr:first-child td {
+    font-weight: 700;
+  }
+
+  .table-widget .pos { color: #999; width: 18px; }
+  .table-widget .pts { text-align: right; font-weight: 700; }
+
+  .placeholder-note {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.8rem;
+    color: #999;
+    border: 1px dashed var(--hairline);
+    padding: 14px;
+    margin-top: 30px;
+  }
+
+  footer {
+    border-top: 4px solid var(--ink);
+    padding: 20px 24px;
+    text-align: center;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.78rem;
+    color: #888;
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="wordmark">Žuti<span>Karton</span></div>
+    <div class="dateline">Subota, 20. lipnja 2026. — Istra &amp; Primorsko-goranska županija</div>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-inner">
+    <div class="ticker-item"><b>ŽNL Istra:</b> Tehničar 1:1 Graničar</div>
+    <div class="ticker-item"><b>ŽNL PGŽ:</b> Mladost 3:0 Jadran</div>
+    <div class="ticker-item"><b>2. ŽNL Istra:</b> Plomin 2:2 Vrsar</div>
+  </div>
+</div>
+
+<main>
+  <section>
+    <article class="lead-story">
+      <span class="league-tag">Elitna ŽNL Istra</span>
+      <h1>Tehničar i Graničar bez pobjednika u susretu punom obrata</h1>
+      <p class="scoreline">NK Tehničar <span class="score">1 : 1</span> NK Graničar</p>
+      <p class="standfirst">
+        Graničar je poveo pogotkom Baričića u 18. minuti, no domaćin je
+        strpljivo čekao priliku i izjednačio preko Vagjunca u 69. minuti
+        pred stotinjak gledatelja. Bod više odgovara gostima u borbi za
+        vrh tablice.
+      </p>
+      <p class="byline">Generirano iz zapisnika HNS-a · 1. kolo</p>
+    </article>
+
+    <h3 style="font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 2px solid var(--ink); padding-bottom: 8px; margin-bottom: 14px;">
+      Najnovije utakmice
+    </h3>
+
+    <div class="match-card">
+      <span class="league-tag pgz">Elitna ŽNL PGŽ</span>
+      <h2>Mladost razbila Jadran u derbiju kola</h2>
+      <p>Mladost 3:0 Jadran — Tri pogodaka u drugom poluvremenu donijela su uvjerljivu pobjedu domaćinu.</p>
+    </div>
+
+    <div class="match-card">
+      <span class="league-tag">2. ŽNL Istra</span>
+      <h2>Plomin i Vrsar podijelili bodove u golijadi</h2>
+      <p>Plomin 2:2 Vrsar — Gosti su dva puta poveli, ali domaćin je oba puta vratio rezultat u izjednačeno.</p>
+    </div>
+
+    <div class="placeholder-note">
+      Ovo je prva, statična verzija stranice — primjer izgleda prije
+      povezivanja s pravom bazom podataka i automatskim povlačenjem
+      zapisnika s HNS Semafora.
+    </div>
+  </section>
+
+  <aside>
+    <h3>Tablica — Elitna ŽNL Istra</h3>
+    <div class="table-widget">
+      <table>
+        <thead>
+          <tr><th class="pos">#</th><th>Klub</th><th class="pts">Bod</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="pos">1</td><td>Graničar</td><td class="pts">12</td></tr>
+          <tr><td class="pos">2</td><td>Tehničar</td><td class="pts">10</td></tr>
+          <tr><td class="pos">3</td><td>Pomorac</td><td class="pts">9</td></tr>
+          <tr><td class="pos">4</td><td>Vodnjan</td><td class="pts">7</td></tr>
+          <tr><td class="pos">5</td><td>Mejas</td><td class="pts">6</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Tablica — Elitna ŽNL PGŽ</h3>
+    <div class="table-widget">
+      <table>
+        <thead>
+          <tr><th class="pos">#</th><th>Klub</th><th class="pts">Bod</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="pos">1</td><td>Mladost</td><td class="pts">13</td></tr>
+          <tr><td class="pos">2</td><td>Jadran</td><td class="pts">9</td></tr>
+          <tr><td class="pos">3</td><td>Orijent II</td><td class="pts">8</td></tr>
+          <tr><td class="pos">4</td><td>Grobničan</td><td class="pts">6</td></tr>
+          <tr><td class="pos">5</td><td>Costabella</td><td class="pts">5</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </aside>
+</main>
+
+<footer>
+  Žuti Karton — lokalni nogomet Istre i Primorsko-goranske županije · podaci s HNS Semafora
+</footer>
+
+</body>
+</html>
