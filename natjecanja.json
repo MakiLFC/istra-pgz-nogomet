@@ -1,0 +1,100 @@
+{
+  "_napomena": "Referentna datoteka za scraper. ID-ovi natjecanja vrijede za sezonu 2025/26 i MORAJU se ažurirati kad počne sezona 2026/27 (HNS generira novi ID za svako natjecanje svake sezone). Format URL-a na semaforu: https://semafor.hns.family/natjecanja/{id}/{slug}/",
+  "sezona": "2025/26",
+  "zadnje_azurirano": "2026-06-21",
+
+  "natjecanja": [
+    {
+      "naziv": "3. NL Zapad",
+      "id": "100585203",
+      "slug": "treca-nl-zapad-2526",
+      "url": "https://semafor.hns.family/natjecanja/100585203/treca-nl-zapad-2526/",
+      "napomena": "Šira regionalna liga - sadrži klubove izvan Istre/PGŽ (npr. iz Ličko-senjske županije). Scraper MORA filtrirati samo klubove s popisa 'klubovi_za_pratiti' ispod.",
+      "klubovi_za_pratiti": [
+        "NK Pomorac",
+        "NK Banjole",
+        "NK Jadran-Poreč",
+        "NK Vinodol",
+        "NK Nehaj",
+        "NK Naprijed (H)",
+        "NK Krk",
+        "NK Novalja",
+        "NK Pazinka-Pazin",
+        "NK Halubjan",
+        "NK Buje",
+        "NK Kraljevica",
+        "NK Lokomotiva (R)",
+        "NK Rudar (L)",
+        "NK Crikvenica",
+        "NK OŠK Omišalj"
+      ],
+      "klubovi_van_opsega_primjer": [
+        "moguci klubovi iz drugih regija - provjeriti punu tablicu na semaforu prije pokretanja scrapera"
+      ]
+    },
+    {
+      "naziv": "4. NL NS Rijeka",
+      "id": "100796651",
+      "slug": "4-nl-ns-rijeka-2526",
+      "url": "https://semafor.hns.family/natjecanja/100796651/4-nl-ns-rijeka-2526/",
+      "napomena": "Šira regionalna liga - sadrži i klubove izvan Istre/PGŽ (npr. NK Otočac, NK Gospić 91 su iz Ličko-senjske županije). Scraper MORA filtrirati.",
+      "klubovi_za_pratiti": [
+        "NK Cres",
+        "NK Umag-CC Umago",
+        "NK Rovinj",
+        "NK Medulin 1921",
+        "NK Klana",
+        "NK Smoljanci Sloboda"
+      ],
+      "klubovi_van_opsega_primjer": [
+        "NK Otočac",
+        "NK Gospić 91"
+      ]
+    },
+    {
+      "naziv": "1. ŽNL PGŽ",
+      "id": "101555188",
+      "slug": "1-znl-seniori-2526",
+      "url": "https://semafor.hns.family/natjecanja/101555188/1-znl-seniori-2526/",
+      "napomena": "POTVRĐENO putem klupskih profila (NK Grbci 2000, NK Rječina) - klubovi su prepoznatljivo PGŽ klubovi. UPOZORENJE: prethodni pokušaj s ID 100634532 (slug 'prva-znl-2526') bio je POGREŠAN - to je bjelovarsko-bilogorska liga, ne PGŽ. HNS koristi iste generičke nazive natjecanja ('Prva ŽNL', '1 ŽNL SENIORI') za više županija s različitim ID-ovima - UVIJEK provjeriti klubove na stranici/preko klupskih profila, ne osloniti se samo na naziv/slug.",
+      "klubovi_za_pratiti": [
+        "NK Stari grad Rijeka",
+        "NK Rječina",
+        "NK Vrbovsko",
+        "HNK Goranin",
+        "NK Rab",
+        "NK Draga",
+        "HNK Lovran",
+        "NK Lošinj",
+        "NK Mune",
+        "NK Turbina",
+        "NK Vihor (B)",
+        "NK Rikard Benčić",
+        "NK Grbci 2000",
+        "NK Omladinac Vrata"
+      ]
+    },
+    {
+      "naziv": "2. ŽNL PGŽ",
+      "id": "101556988",
+      "slug": "druga-znl-seniori-2526",
+      "url": "https://semafor.hns.family/natjecanja/101556988/druga-znl-seniori-2526/",
+      "napomena": "Naziv na semaforu je 'DRUGA ŽNL SENIORI 25/26'. Jedna liga (potvrđeno od strane korisnika - NIJE podijeljena u 3 skupine kako su neki izvori pogrešno naveli). Klubovi su uglavnom iz Gorskog kotara (dio PGŽ).",
+      "klubovi_za_pratiti": [
+        "NK Mrkopalj",
+        "NK Risnjak",
+        "NK Polet (Sk)",
+        "NK Goranka",
+        "NK Snježnik",
+        "NK Željezničar (M)",
+        "NK Gomirje"
+      ]
+    }
+  ],
+
+  "sljedeci_koraci": [
+    "1. SVI ID-ovi su pronađeni i potvrđeni - 3. NL Zapad, 4. NL NS Rijeka, 1. ŽNL PGŽ, 2. ŽNL PGŽ",
+    "2. Preostalo: potvrditi POTPUNI popis klubova za 2. ŽNL PGŽ (popis gore je djelomičan, vidjen kroz par kola) i za 3./4. NL provjeriti da je popis klubova_za_pratiti kompletan za cijelu sezonu (klubovi se ne mijenjaju tijekom sezone, pa bi trenutni popis trebao biti stabilan, ali vrijedi dvostruko provjeriti na samoj stranici natjecanja prije pokretanja scrapera)",
+    "3. Kada počne sezona 2026/27 - ponoviti ovaj proces pronalaska ID-ova (HNS generira nov ID za svako natjecanje svake sezone, slug ostaje slican ali s '-2627' umjesto '-2526'). VAŽNA LEKCIJA iz ovog procesa: isti naziv natjecanja (npr. 'Prva ŽNL', '1 ŽNL SENIORI') koristi se za VIŠE županija s različitim ID-ovima - nikad se ne smije pretpostaviti ID samo na temelju naziva/sluga, mora se provjeriti da klubovi odgovaraju Istri/PGŽ (najpouzdanije preko klupskih profila poznatih lokalnih klubova)."
+  ]
+}
