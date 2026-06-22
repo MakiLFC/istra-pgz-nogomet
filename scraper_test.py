@@ -169,9 +169,27 @@ if __name__ == "__main__":
     for link in linkovi_utakmica[:5]:
         print(" -", link)
 
-    # KORAK 2: testno dohvati detalje SAMO za prvu utakmicu (da ne opterećujemo server)
-    if linkovi_utakmica:
-        print("\nDohvaćam detalje prve utakmice kao test...")
-        time.sleep(1)  # malo pauze, fer prema HNS serveru
-        detalji = dohvati_detalje_utakmice(linkovi_utakmica[0])
-        print(json.dumps(detalji, indent=2, ensure_ascii=False))
+    # KORAK 2: dohvati detalje za SVAKU utakmicu (uz malu pauzu između poziva,
+    # fer prema HNS serveru i da ne izgledamo kao napad/bot koji bombardira stranicu)
+    sve_utakmice = []
+    ukupno = len(linkovi_utakmica)
+
+    print(f"\nDohvaćam detalje za sve {ukupno} utakmice (ovo može potrajati par minuta)...")
+
+    for i, link in enumerate(linkovi_utakmica, start=1):
+        try:
+            detalji = dohvati_detalje_utakmice(link)
+            sve_utakmice.append(detalji)
+            print(f"  [{i}/{ukupno}] {detalji['domacin']} - {detalji['gost']}: OK")
+        except Exception as greska:
+            # Ne prekidamo cijeli scraper zbog jedne neuspjele utakmice -
+            # samo zabilježimo grešku i nastavimo dalje
+            print(f"  [{i}/{ukupno}] GREŠKA na {link}: {greska}")
+        time.sleep(1)  # pauza od 1 sekunde između svakog poziva
+
+    # KORAK 3: spremi sve u JSON datoteku
+    izlazna_datoteka = "utakmice_2znl_pgz.json"
+    with open(izlazna_datoteka, "w", encoding="utf-8") as f:
+        json.dump(sve_utakmice, f, indent=2, ensure_ascii=False)
+
+    print(f"\nGotovo! Spremljeno {len(sve_utakmice)} utakmica u datoteku '{izlazna_datoteka}'.")
