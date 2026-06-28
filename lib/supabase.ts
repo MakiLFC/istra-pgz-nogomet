@@ -11,11 +11,26 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+export type DogadjajIgraca = {
+  minuta: string;
+  tip: string; // "Žuti karton" | "Crveni karton" | "Izmjena" | "Nepoznato"
+};
+
+export type IgracPostave = {
+  igrac: string;
+  broj: string | null;
+  pozicija: "Vratar" | "Igrač";
+  kapetan: boolean;
+  pricuvni: boolean;
+  dogadjaji: DogadjajIgraca[];
+};
+
 // Tip podataka koji odgovara strukturi naše Supabase tablice "utakmice"
 export type Utakmica = {
   id: number;
   hns_url: string;
   natjecanje: string;
+  kolo: number | null;
   domacin: string;
   gost: string;
   rezultat: string | null;
@@ -23,5 +38,7 @@ export type Utakmica = {
   gledatelja: string | null;
   suci: string | null;
   strijelci: { igrac: string; minuta: string }[] | null;
+  postava_domacin: IgracPostave[] | null;
+  postava_gost: IgracPostave[] | null;
   created_at: string;
 };

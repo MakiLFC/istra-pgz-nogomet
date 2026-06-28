@@ -1,15 +1,9 @@
+import Link from "next/link";
 import { supabase, Utakmica } from "@/lib/supabase";
+import { LIGE } from "@/lib/lige";
+import Navigacija from "@/components/Navigacija";
 
-// Next.js posebna postavka: ne keširaj ovu stranicu, uvijek dohvati svježe
-// podatke pri svakom posjetu - bitno jer se rezultati mijenjaju iz dana u dan
 export const revalidate = 0;
-
-const NATJECANJA_REDOSLIJED = [
-  "3. NL Zapad",
-  "4. NL NS Rijeka",
-  "1. ŽNL PGŽ",
-  "2. ŽNL PGŽ",
-];
 
 async function dohvatiUtakmice(): Promise<Utakmica[]> {
   const { data, error } = await supabase
@@ -39,17 +33,7 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen bg-[#faf7f2] text-[#1a1a1a]">
-      {/* MASTHEAD */}
-      <header className="border-b-4 border-black px-6 py-7">
-        <div className="mx-auto max-w-5xl flex flex-wrap items-baseline justify-between gap-3">
-          <h1 className="font-sans text-3xl font-extrabold uppercase tracking-tight">
-            Žuti<span className="text-[#d4a13d]">Karton</span>
-          </h1>
-          <p className="font-sans text-xs uppercase tracking-widest text-[#666]">
-            Nogomet Istre &amp; Primorsko-goranske županije
-          </p>
-        </div>
-      </header>
+      <Navigacija />
 
       <main className="mx-auto max-w-5xl px-6 py-10">
         {utakmice.length === 0 && (
@@ -58,24 +42,33 @@ export default async function Home() {
           </p>
         )}
 
-        {NATJECANJA_REDOSLIJED.map((naziv) => {
-          const utakmiceLige = grupe[naziv];
+        {LIGE.map((liga) => {
+          const utakmiceLige = grupe[liga.naziv];
           if (!utakmiceLige || utakmiceLige.length === 0) return null;
 
-          return (
-            <section key={naziv} className="mb-12">
-              <h2 className="mb-4 border-b-2 border-black pb-2 font-sans text-xs font-bold uppercase tracking-widest text-[#1a1a1a]">
-                {naziv}
-                <span className="ml-2 font-normal text-[#999]">
-                  ({utakmiceLige.length} utakmica)
-                </span>
-              </h2>
+          // Na početnoj prikazujemo SAMO najnovije rezultate (sažeto), bez
+          // strijelaca i drugih detalja - puni detalji su na stranici lige
+          const najnovije = utakmiceLige.slice(0, 6);
 
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                {utakmiceLige.map((u) => (
-                  <article
+          return (
+            <section key={liga.slug} className="mb-12">
+              <div className="mb-4 flex items-baseline justify-between border-b-2 border-black pb-2">
+                <h2 className="font-sans text-xs font-bold uppercase tracking-widest">
+                  {liga.naziv}
+                </h2>
+                <Link
+                  href={`/liga/${liga.slug}`}
+                  className="font-sans text-xs font-semibold text-[#d4a13d] hover:underline"
+                >
+                  Svi rezultati i kola →
+                </Link>
+              </div>
+
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                {najnovije.map((u) => (
+                  <div
                     key={u.id}
-                    className="border border-[#d8d0c2] bg-white p-4"
+                    className="border border-[#d8d0c2] bg-white px-4 py-3"
                   >
                     <p className="font-serif text-base leading-snug">
                       <span className="font-semibold">{u.domacin}</span>
@@ -86,22 +79,7 @@ export default async function Home() {
                       {" "}
                       <span className="font-semibold">{u.gost}</span>
                     </p>
-
-                    {u.strijelci && u.strijelci.length > 0 && (
-                      <p className="mt-2 font-sans text-xs text-[#666]">
-                        ⚽{" "}
-                        {u.strijelci
-                          .map((s) => `${s.igrac} ${s.minuta}`)
-                          .join(", ")}
-                      </p>
-                    )}
-
-                    {u.stadion_datum && (
-                      <p className="mt-2 font-sans text-[0.7rem] uppercase tracking-wide text-[#aaa]">
-                        {u.stadion_datum}
-                      </p>
-                    )}
-                  </article>
+                  </div>
                 ))}
               </div>
             </section>

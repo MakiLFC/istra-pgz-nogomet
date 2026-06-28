@@ -52,7 +52,13 @@ NATJECANJA = [
 
 
 def dohvati_popis_utakmica(natjecanje_url):
-    """Otvara stranicu natjecanja i vraća listu linkova na utakmice."""
+    """
+    Otvara stranicu natjecanja i vraća listu (link, kolo) parova.
+    Kolo se prati tako što HNS stranica prikazuje naslov "X. kolo" kao
+    poseban element PRIJE utakmica koje mu pripadaju - mi idemo kroz
+    dokument redom i pamtimo "trenutno kolo" sve dok se ne pojavi sljedeći
+    "X. kolo" naslov.
+    """
     print(f"Dohvaćam: {natjecanje_url}")
     response = requests.get(natjecanje_url, headers=HEADERS, timeout=15)
     response.raise_for_status()
@@ -69,14 +75,30 @@ def dohvati_popis_utakmica(natjecanje_url):
         return []
 
     utakmice = []
-    for link in pocetna_tocka.find_all_next("a", href=True):
-        href = link["href"]
-        if "/utakmice/" in href and href.count("/") >= 4:
-            utakmice.append(href)
+    trenutno_kolo = None
+    vidjeni_linkovi = set()
 
-    jedinstveni_linkovi = list(dict.fromkeys(utakmice))
-    print(f"Pronađeno {len(jedinstveni_linkovi)} jedinstvenih utakmica.")
-    return jedinstveni_linkovi
+    # Prolazimo kroz SVE elemente nakon "Raspored..." naslova, redom kako
+    # se pojavljuju u dokumentu (find_all_next vraća ih u pravom redoslijedu)
+    for element in pocetna_tocka.find_all_next(["li", "div", "span"]):
+        tekst = element.get_text(strip=True)
+
+        # Prepoznajemo naslov kola: kratki tekst poput "1. kolo", "12. kolo"
+        match_kolo = re.match(r"^(\d+)\.\s*kolo$", tekst)
+        if match_kolo:
+            trenutno_kolo = int(match_kolo.group(1))
+            continue
+
+        # Prepoznajemo link na utakmicu unutar ovog elementa
+        link_tag = element.find("a", href=True) if element.name != "a" else element
+        if link_tag and "href" in link_tag.attrs:
+            href = link_tag["href"]
+            if "/utakmice/" in href and href.count("/") >= 4 and href not in vidjeni_linkovi:
+                vidjeni_linkovi.add(href)
+                utakmice.append({"url": href, "kolo": trenutno_kolo})
+
+    print(f"Pronađeno {len(utakmice)} jedinstvenih utakmica.")
+    return utakmice
 
 
 def dohvati_detalje_utakmice(utakmica_url):
@@ -129,6 +151,86 @@ def dohvati_detalje_utakmice(utakmica_url):
                 strijelci.append({"igrac": ime, "minuta": minuta})
         strijelci.reverse()
 
+    # --- POSTAVE (oba kluba) ---
+    # Svaki igrač u postavi je h3 > a[href*="/igraci/"]. Roditeljski "li" blok
+    # sadrži i broj dresa (prvi broj u bloku), poziciju ("Vratar"/"Igrač"),
+    # oznaku kapetana "(C)" ako postoji, i minute događaja (kartoni/izmjene -
+    # ne razlikujemo tip pouzdano iz teksta, samo bilježimo SVE minute uz igrača).
+    # "Pričuvni igrači" tekst prije bloka igrača govori da je taj igrač na klupi,
+    # ne u početnoj postavi.
+    domacin_postava, gost_postava = [], []
+    trenutni_klub_postava = None  # "domacin" ili "gost"
+    je_pricuvni = False
+
+    for element in soup.find_all(["li"]):
+        tekst_elementa = element.get_text(strip=True)
+
+        # Naslov "NK Mrkopalj" / "NK Risnjak" odmah prije postave - prepoznajemo
+        # prijelaz s domaćina na gosta po tome da se klupsko ime PONOVNO pojavi
+        if tekst_elementa == domacin and not element.find("a", href=lambda h: h and "/igraci/" in h):
+            trenutni_klub_postava = "domacin"
+            je_pricuvni = False
+            continue
+        if tekst_elementa == gost and not element.find("a", href=lambda h: h and "/igraci/" in h):
+            trenutni_klub_postava = "gost"
+            je_pricuvni = False
+            continue
+        if tekst_elementa == "Pričuvni igrači":
+            je_pricuvni = True
+            continue
+
+        h3 = element.find("h3")
+        if not h3:
+            continue
+        link = h3.find("a", href=lambda h: h and "/igraci/" in h)
+        if not link or trenutni_klub_postava is None:
+            continue
+
+        ime_igraca = link.get_text(strip=True).replace(" (C)", "")
+        je_kapetan = "(C)" in h3.get_text()
+
+        dijelovi = [d.strip() for d in element.get_text(separator="\n").split("\n") if d.strip()]
+        broj_dresa = next((d for d in dijelovi if d.isdigit() and len(d) <= 2), None)
+        pozicija = "Vratar" if "Vratar" in dijelovi else "Igrač"
+
+        # --- Tip događaja preko ikone ---
+        # Svaka minuta (npr. "35'") ima PRIJE sebe u HTML-u jednu <div class="icon">
+        # s title atributom koji govori tip: "Žuti karton", "Crveni karton",
+        # "Izmjena", itd. Pratimo redoslijed: za svaki tekstualni čvor koji
+        # završava apostrofom, tražimo najbližu prethodnu icon-div da odredimo tip.
+        dogadjaji = []
+        ikone = element.find_all("div", class_="icon")
+        sirovi_tekst_cvorovi = element.find_all(string=lambda s: s and "'" in s)
+        minute_tagovi = []
+        for cvor in sirovi_tekst_cvorovi:
+            # Izoliramo SAMO dio koji odgovara uzorku minute (npr. "51'"),
+            # jer tekstualni čvor može sadržavati i drugu riječ spojenu uz njega
+            # (npr. "Igrač\n51'" ako nema razdvajajućeg taga u izvornom HTML-u)
+            match = re.search(r"(\d{1,3}'(?:\+\d{1,2}')?)", cvor)
+            if match:
+                minute_tagovi.append(match.group(1))
+        # Uparujemo po redoslijedu - prva ikona ide s prvom minutom, itd.
+        # (ovo pretpostavlja da je broj ikona == broj minuta, što očekujemo
+        # na temelju strukture stranice; ako se ne poklapa, minuta ostaje
+        # bez poznatog tipa kao sigurnosna mjera)
+        for idx, minuta_tekst in enumerate(minute_tagovi):
+            tip = ikone[idx].get("title", "Nepoznato") if idx < len(ikone) else "Nepoznato"
+            dogadjaji.append({"minuta": minuta_tekst, "tip": tip})
+
+        igrac_podaci = {
+            "igrac": ime_igraca,
+            "broj": broj_dresa,
+            "pozicija": pozicija,
+            "kapetan": je_kapetan,
+            "pricuvni": je_pricuvni,
+            "dogadjaji": dogadjaji,
+        }
+
+        if trenutni_klub_postava == "domacin":
+            domacin_postava.append(igrac_podaci)
+        else:
+            gost_postava.append(igrac_podaci)
+
     return {
         "hns_url": utakmica_url,
         "domacin": domacin,
@@ -138,6 +240,8 @@ def dohvati_detalje_utakmice(utakmica_url):
         "gledatelja": gledatelja,
         "suci": suci,
         "strijelci": strijelci,
+        "postava_domacin": domacin_postava,
+        "postava_gost": gost_postava,
     }
 
 
@@ -160,16 +264,19 @@ if __name__ == "__main__":
         print(f"NATJECANJE: {natjecanje['naziv']}")
         print("=" * 60)
 
-        linkovi_utakmica = dohvati_popis_utakmica(natjecanje["url"])
-        ukupno = len(linkovi_utakmica)
+        utakmice_s_kolima = dohvati_popis_utakmica(natjecanje["url"])
+        ukupno = len(utakmice_s_kolima)
 
-        for i, link in enumerate(linkovi_utakmica, start=1):
+        for i, stavka in enumerate(utakmice_s_kolima, start=1):
+            link = stavka["url"]
+            kolo = stavka["kolo"]
             try:
                 detalji = dohvati_detalje_utakmice(link)
                 detalji["natjecanje"] = natjecanje["naziv"]
+                detalji["kolo"] = kolo
                 spremi_u_supabase(detalji)
                 ukupno_spremljeno += 1
-                print(f"  [{i}/{ukupno}] {detalji['domacin']} - {detalji['gost']} ({detalji['rezultat']}): spremljeno")
+                print(f"  [{i}/{ukupno}] (kolo {kolo}) {detalji['domacin']} - {detalji['gost']} ({detalji['rezultat']}): spremljeno")
             except Exception as greska:
                 ukupno_gresaka += 1
                 print(f"  [{i}/{ukupno}] GREŠKA na {link}: {greska}")
