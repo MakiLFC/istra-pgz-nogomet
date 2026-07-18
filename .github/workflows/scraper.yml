@@ -1,0 +1,50 @@
+# Automatsko pokretanje scrapera vikendom.
+# GitHub sam pokrene scraper subotom i nedjeljom navečer - tvoje računalo
+# ne mora biti upaljeno. Rezultati idu direktno u Supabase.
+#
+# POSTAVLJANJE (jednokratno):
+# 1. Ovu datoteku stavi u repo na TOČNO ovu putanju: .github/workflows/scraper.yml
+# 2. Na GitHubu: repo -> Settings -> Secrets and variables -> Actions
+#    -> New repository secret, pa dodaj DVA secreta (imena točno ovako):
+#       SUPABASE_URL          = (vrijednost iz tvoje .env datoteke)
+#       SUPABASE_SERVICE_KEY  = (vrijednost iz tvoje .env datoteke)
+# 3. Ako scraper_supabase.py NIJE u korijenu repozitorija nego u podmapi
+#    (npr. "scraper/"), promijeni zadnju liniju u:
+#       run: python scraper/scraper_supabase.py
+#
+# RUČNO POKRETANJE: repo -> Actions -> "Scraper HNS Semafor" -> Run workflow.
+
+name: Scraper HNS Semafor
+
+on:
+  schedule:
+    # GitHub cron radi u UTC vremenu!
+    # 19:00 UTC = 20:00 zimi / 21:00 ljeti po hrvatskom vremenu.
+    - cron: "0 19 * * 6"   # subota navečer
+    - cron: "0 19 * * 0"   # nedjelja navečer
+    - cron: "0 6 * * 1"    # ponedjeljak ujutro (sigurnosna runda za kasno
+                           # unesene rezultate i nedjeljne večernje utakmice)
+  workflow_dispatch: {}     # omogućuje ručno pokretanje gumbom na GitHubu
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Preuzmi kod
+        uses: actions/checkout@v4
+
+      - name: Postavi Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instaliraj pakete
+        run: pip install -r requirements.txt
+
+      - name: Pokreni scraper
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: python scraper_supabase.py
