@@ -30,6 +30,7 @@ export type Utakmica = {
   id: number;
   hns_url: string;
   natjecanje: string;
+  sezona: string | null;
   kolo: number | null;
   domacin: string;
   gost: string;
@@ -40,5 +41,7 @@ export type Utakmica = {
   strijelci: { igrac: string; minuta: string }[] | null;
   postava_domacin: IgracPostave[] | null;
   postava_gost: IgracPostave[] | null;
+  tekst_clanka: string | null;
+  slika_url: string | null;
   created_at: string;
 };
