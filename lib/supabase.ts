@@ -44,4 +44,5 @@ export type Utakmica = {
   tekst_clanka: string | null;
   slika_url: string | null;
   created_at: string;
+  derbi: boolean | null;
 };

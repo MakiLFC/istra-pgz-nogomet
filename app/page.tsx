@@ -47,7 +47,15 @@ export default async function Home() {
           const utakmiceLige = grupe[liga.naziv];
           if (!utakmiceLige || utakmiceLige.length === 0) return null;
 
-          const najnovije = utakmiceLige.slice(0, 6);
+          // Derbi lige (ako je označen) uvijek ulazi u prikaz, i to na prvo
+          // mjesto - ostatak popunjavamo najnovijim utakmicama do ukupno 6.
+          const derbi = utakmiceLige.find((u) => u.derbi) ?? null;
+          const ostale = derbi
+            ? utakmiceLige.filter((u) => u.id !== derbi.id)
+            : utakmiceLige;
+          const najnovije = derbi
+            ? [derbi, ...ostale.slice(0, 5)]
+            : ostale.slice(0, 6);
 
           return (
             <section key={liga.slug} className="mb-10">
@@ -68,24 +76,49 @@ export default async function Home() {
               </div>
 
               <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-                {najnovije.map((u) => (
-                  <div
-                    key={u.id}
-                    className="flex items-center gap-3 bg-white px-4 py-3"
-                    style={{ border: "1px solid var(--line)" }}
-                  >
-                    <IkonaTeren />
-                    <p className="font-sans text-[15px] leading-snug">
-                      <span className="font-medium">{u.domacin}</span>
-                      {" "}
-                      <span className="font-mono font-bold" style={{ color: "var(--pitch)" }}>
-                        {u.rezultat ?? "?:?"}
-                      </span>
-                      {" "}
-                      <span className="font-medium">{u.gost}</span>
-                    </p>
-                  </div>
-                ))}
+                {najnovije.map((u) => {
+                  const sadrzaj = (
+                    <>
+                      <IkonaTeren />
+                      <p className="font-sans text-[15px] leading-snug">
+                        <span className="font-medium">{u.domacin}</span>{" "}
+                        <span className="font-mono font-bold" style={{ color: "var(--pitch)" }}>
+                          {u.rezultat ?? "?:?"}
+                        </span>{" "}
+                        <span className="font-medium">{u.gost}</span>
+                      </p>
+                      {u.derbi && (
+                        <span
+                          className="ml-auto shrink-0 px-1.5 py-0.5 font-display text-[10px] font-bold uppercase tracking-widest"
+                          style={{ background: "var(--card-yellow)", color: "var(--ink)" }}
+                        >
+                          Derbi
+                        </span>
+                      )}
+                    </>
+                  );
+
+                  // Derbi kartica je klikabilna - vodi na kolo te utakmice
+                  // na stranici lige, gdje čeka sažetak.
+                  return u.derbi ? (
+                    <Link
+                      key={u.id}
+                      href={`/liga/${liga.slug}${u.kolo ? `?kolo=${u.kolo}` : ""}`}
+                      className="flex items-center gap-3 bg-white px-4 py-3 transition-opacity hover:opacity-80"
+                      style={{ border: "2px solid var(--card-yellow)" }}
+                    >
+                      {sadrzaj}
+                    </Link>
+                  ) : (
+                    <div
+                      key={u.id}
+                      className="flex items-center gap-3 bg-white px-4 py-3"
+                      style={{ border: "1px solid var(--line)" }}
+                    >
+                      {sadrzaj}
+                    </div>
+                  );
+                })}
               </div>
             </section>
           );
