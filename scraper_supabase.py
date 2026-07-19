@@ -368,6 +368,102 @@ def spremi_u_supabase(redak):
     supabase.table("utakmice").upsert(redak, on_conflict="hns_url").execute()
 
 
+# ---------------------------------------------------------------------------
+# TABLICA LIGE + RANG-LISTE (strijelci, kartoni) — sa stranice natjecanja
+# ---------------------------------------------------------------------------
+# Struktura potvrđena na stvarnom HTML-u (srpanj 2026.):
+#  - Tablica: <div class="competition_table"> -> li po klubu, ćelije s klasama
+#    position/played/wins/draws/losses/gplus/gminus/gdiff/points.
+#    Kazneni bodovi su VEĆ uračunati (klub npr. "NK Gomirje (-4)").
+#  - Rang-liste: li.row s playerName (h3 = ime, ostatak = klub) + goals ILI
+#    cards ("7 / 2" = žuti/crveni). Na istoj stranici su i SASTAVI klubova
+#    (klub = "Vratar"/"Igrač", imaju shirtNumber) i mini-rang po klubu
+#    (prazan klub) — te preskačemo. Rang nastupa (apps_minutes) preskačemo.
+
+def parsiraj_tablicu_lige(soup):
+    blok = soup.find("div", class_="competition_table")
+    if not blok:
+        return []
+    tablica = []
+    for li in blok.find_all("li"):
+        klub_link = li.find("a", href=lambda h: h and "/klubovi/" in h)
+        if not klub_link:
+            continue
+
+        def cell(k):
+            d = li.find("div", class_=k)
+            return d.get_text(strip=True) if d else None
+
+        tablica.append({
+            "pozicija": cell("position"),
+            "klub": klub_link.get_text(strip=True),
+            "odigrano": cell("played"),
+            "pobjede": cell("wins"),
+            "remiji": cell("draws"),
+            "porazi": cell("losses"),
+            "golovi_dani": cell("gplus"),
+            "golovi_primljeni": cell("gminus"),
+            "gol_razlika": cell("gdiff"),
+            "bodovi": cell("points"),
+        })
+    return tablica
+
+
+def parsiraj_rang_liste(soup):
+    strijelci, kartoni = [], []
+    for li in soup.find_all("li", class_="row"):
+        ime_div = li.find("div", class_="playerName")
+        if not ime_div:
+            continue
+        h3 = ime_div.find("h3")
+        if not h3:
+            continue
+        ime = h3.get_text(strip=True)
+        klub = ime_div.get_text(" ", strip=True).replace(ime, "").strip()
+        if not klub or klub in ("Vratar", "Igrač"):
+            continue  # sastav kluba ili mini-rang unutar kluba
+        if li.find("div", class_="shirtNumber"):
+            continue  # sastav kluba
+        if li.find("div", class_="apps_minutes"):
+            continue  # rang nastupa - ne treba nam
+
+        pos = li.find("div", class_="position")
+        pozicija = pos.get_text(strip=True) if pos else ""
+        goals = li.find("div", class_="goals")
+        cards = li.find("div", class_="cards")
+        if goals:
+            strijelci.append({"pozicija": pozicija, "igrac": ime, "klub": klub,
+                              "golovi": goals.get_text(strip=True)})
+        elif cards:
+            m = re.match(r"(\d+)\s*/\s*(\d+)", cards.get_text(strip=True))
+            zuti, crveni = (m.group(1), m.group(2)) if m else ("0", "0")
+            kartoni.append({"pozicija": pozicija, "igrac": ime, "klub": klub,
+                            "zuti": zuti, "crveni": crveni})
+    return strijelci, kartoni
+
+
+def dohvati_i_spremi_statistike(natjecanje_naziv, natjecanje_url):
+    """Dohvaća tablicu + rang-liste sa stranice natjecanja i sprema u
+    Supabase tablicu 'statistike' (jedan redak po ligi i tipu, upsert)."""
+    response = requests.get(natjecanje_url, headers=HEADERS, timeout=15)
+    response.raise_for_status()
+    soup = BeautifulSoup(response.text, "html.parser")
+
+    tablica = parsiraj_tablicu_lige(soup)
+    strijelci, kartoni = parsiraj_rang_liste(soup)
+
+    for tip, podaci in (("tablica", tablica),
+                        ("strijelci", strijelci),
+                        ("kartoni", kartoni)):
+        supabase.table("statistike").upsert(
+            {"sezona": SEZONA, "natjecanje": natjecanje_naziv,
+             "tip": tip, "podaci": podaci},
+            on_conflict="sezona,natjecanje,tip",
+        ).execute()
+    print(f"  STATISTIKE: tablica={len(tablica)} klubova, "
+          f"strijelci={len(strijelci)}, kartoni={len(kartoni)} - spremljeno")
+
+
 if __name__ == "__main__":
     ukupno_spremljeno = 0
     ukupno_gresaka = 0
@@ -379,6 +475,12 @@ if __name__ == "__main__":
 
         utakmice_s_kolima = dohvati_popis_utakmica(natjecanje["url"])
         ukupno = len(utakmice_s_kolima)
+
+        # Tablica lige + strijelci + kartoni (za sidebar na stranici)
+        try:
+            dohvati_i_spremi_statistike(natjecanje["naziv"], natjecanje["url"])
+        except Exception as greska:
+            print(f"  GREŠKA kod statistika: {greska}")
 
         for i, stavka in enumerate(utakmice_s_kolima, start=1):
             link = stavka["url"]
