@@ -4,6 +4,7 @@ import { supabase, Utakmica } from "@/lib/supabase";
 import { ligaPoSlugu, LIGE } from "@/lib/lige";
 import Navigacija from "@/components/Navigacija";
 import Postava from "@/components/Postava";
+import SidebarLiga from "@/components/SidebarLiga";
 import { IkonaLopta, IkonaTeren } from "@/components/Ikone";
 
 export const revalidate = 0;
@@ -85,7 +86,7 @@ export default async function StranicaLige({
     <div className="min-h-screen" style={{ background: "var(--chalk)" }}>
       <Navigacija />
 
-      <main className="mx-auto max-w-5xl px-6 py-10">
+      <main className="mx-auto max-w-6xl px-6 py-10">
         <div className="mb-1 flex flex-wrap items-baseline justify-between gap-3">
           <h1 className="font-display text-2xl font-semibold uppercase tracking-wide">
             {liga.naziv}
@@ -118,148 +119,160 @@ export default async function StranicaLige({
           {sveUtakmice.length} utakmica ukupno · sezona {odabranaSezona}
         </p>
 
-        {svaKola.length === 0 ? (
-          <p className="font-sans text-sm" style={{ color: "var(--ink-muted)" }}>
-            Nema podataka za sezonu {odabranaSezona}. Čim počne nova sezona, scraper će ovdje
-            automatski prikazati rasporede i rezultate.
-          </p>
-        ) : (
-          <>
-            <div className="mb-8 flex flex-wrap gap-1.5 pb-6" style={{ borderBottom: "1px solid var(--line)" }}>
-              {svaKola.map((k) => {
-                const aktivno = k === odabranoKolo;
-                return (
-                  <Link
-                    key={k}
-                    href={`/liga/${slug}?kolo=${k}&sezona=${encodeURIComponent(odabranaSezona)}`}
-                    className="font-mono px-3 py-1.5 text-sm font-medium"
-                    style={
-                      aktivno
-                        ? { background: "var(--pitch)", color: "var(--chalk)" }
-                        : { border: "1px solid var(--line)", background: "white", color: "var(--ink)" }
-                    }
-                  >
-                    {k}.
-                  </Link>
-                );
-              })}
-            </div>
-
-            {utakmiceKola.length === 0 ? (
+        {/* Dva stupca: sadržaj lige lijevo, sidebar (tablica/strijelci/kartoni)
+            desno na velikim ekranima, ispod sadržaja na mobitelu. */}
+        <div className="flex flex-col gap-8 lg:flex-row">
+          <div className="min-w-0 flex-1">
+            {svaKola.length === 0 ? (
               <p className="font-sans text-sm" style={{ color: "var(--ink-muted)" }}>
-                Nema podataka za odabrano kolo.
+                Nema podataka za sezonu {odabranaSezona}. Čim počne nova sezona, scraper će ovdje
+                automatski prikazati rasporede i rezultate.
               </p>
             ) : (
-              <div className="space-y-4">
-                <h2 className="font-display text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--ink-muted)" }}>
-                  {odabranoKolo}. kolo
-                </h2>
+              <>
+                <div className="mb-8 flex flex-wrap gap-1.5 pb-6" style={{ borderBottom: "1px solid var(--line)" }}>
+                  {svaKola.map((k) => {
+                    const aktivno = k === odabranoKolo;
+                    return (
+                      <Link
+                        key={k}
+                        href={`/liga/${slug}?kolo=${k}&sezona=${encodeURIComponent(odabranaSezona)}`}
+                        className="font-mono px-3 py-1.5 text-sm font-medium"
+                        style={
+                          aktivno
+                            ? { background: "var(--pitch)", color: "var(--chalk)" }
+                            : { border: "1px solid var(--line)", background: "white", color: "var(--ink)" }
+                        }
+                      >
+                        {k}.
+                      </Link>
+                    );
+                  })}
+                </div>
 
-                {utakmiceKola.map((u) => {
-                  const imaDetalje =
-                    (u.strijelci && u.strijelci.length > 0) ||
-                    (u.postava_domacin && u.postava_domacin.length > 0) ||
-                    (u.postava_gost && u.postava_gost.length > 0);
+                {utakmiceKola.length === 0 ? (
+                  <p className="font-sans text-sm" style={{ color: "var(--ink-muted)" }}>
+                    Nema podataka za odabrano kolo.
+                  </p>
+                ) : (
+                  <div className="space-y-4">
+                    <h2 className="font-display text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--ink-muted)" }}>
+                      {odabranoKolo}. kolo
+                    </h2>
 
-                  const { domacin, gost, nepoznato } = razdvojiStrijelceePoKlubu(u);
+                    {utakmiceKola.map((u) => {
+                      const imaDetalje =
+                        (u.strijelci && u.strijelci.length > 0) ||
+                        (u.postava_domacin && u.postava_domacin.length > 0) ||
+                        (u.postava_gost && u.postava_gost.length > 0);
 
-                  return (
-                    <article key={u.id} className="bg-white p-5" style={{ border: "1px solid var(--line)" }}>
-                      <div className="flex items-center gap-3">
-                        <IkonaTeren />
-                        <p className="font-sans text-lg leading-snug">
-                          <span className="font-medium">{u.domacin}</span>
-                          {" "}
-                          <span className="font-mono font-bold" style={{ color: "var(--pitch)" }}>
-                            {u.rezultat ?? "?:?"}
-                          </span>
-                          {" "}
-                          <span className="font-medium">{u.gost}</span>
-                        </p>
-                      </div>
+                      const { domacin, gost, nepoznato } = razdvojiStrijelceePoKlubu(u);
 
-                      <div className="mt-3 grid grid-cols-1 gap-y-1 font-sans text-sm sm:grid-cols-2" style={{ color: "var(--ink-muted)" }}>
-                        {u.stadion_datum && <p>{u.stadion_datum}</p>}
-                        {u.gledatelja && u.gledatelja !== "Nepoznato" && (
-                          <p>Gledatelja: {u.gledatelja}</p>
-                        )}
-                        {u.suci && u.suci !== "Nepoznato" && <p>Suci: {u.suci}</p>}
-                      </div>
-
-                      {!imaDetalje && (
-                        <p className="mt-3 font-sans text-sm italic" style={{ color: "var(--ink-muted)" }}>
-                          Utakmica predana bez borbe — zapisnik nije dostupan.
-                        </p>
-                      )}
-
-                      {u.strijelci && u.strijelci.length > 0 && (
-                        <div className="mt-3 grid grid-cols-1 gap-1 font-sans text-sm sm:grid-cols-2">
-                          {domacin && domacin.length > 0 && (
-                            <p className="flex items-baseline gap-1.5">
-                              <IkonaLopta />
-                              {domacin.map((s) => `${s.igrac} ${s.minuta}`).join(", ")}
+                      return (
+                        <article key={u.id} className="bg-white p-5" style={{ border: "1px solid var(--line)" }}>
+                          <div className="flex items-center gap-3">
+                            <IkonaTeren />
+                            <p className="font-sans text-lg leading-snug">
+                              <span className="font-medium">{u.domacin}</span>
+                              {" "}
+                              <span className="font-mono font-bold" style={{ color: "var(--pitch)" }}>
+                                {u.rezultat ?? "?:?"}
+                              </span>
+                              {" "}
+                              <span className="font-medium">{u.gost}</span>
                             </p>
-                          )}
-                          {gost && gost.length > 0 && (
-                            <p className="flex items-baseline gap-1.5">
-                              <IkonaLopta />
-                              {gost.map((s) => `${s.igrac} ${s.minuta}`).join(", ")}
-                            </p>
-                          )}
-                          {nepoznato && nepoznato.length > 0 && (
-                            <p className="flex items-baseline gap-1.5 sm:col-span-2" style={{ color: "var(--ink-muted)" }}>
-                              <IkonaLopta />
-                              {nepoznato.map((s) => `${s.igrac} ${s.minuta}`).join(", ")}
-                            </p>
-                          )}
-                        </div>
-                      )}
-
-                      {(u.postava_domacin?.length || u.postava_gost?.length) ? (
-                        <details className="mt-3 group">
-                          <summary
-                            className="cursor-pointer font-sans text-sm font-medium hover:underline"
-                            style={{ color: "var(--pitch)" }}
-                          >
-                            Postave i izmjene
-                          </summary>
-                          <div
-                            className="mt-3 grid grid-cols-1 gap-6 pt-3 sm:grid-cols-2"
-                            style={{ borderTop: "1px solid var(--line)" }}
-                          >
-                            {u.postava_domacin && u.postava_domacin.length > 0 && (
-                              <Postava nazivKluba={u.domacin} igraci={u.postava_domacin} strijelci={u.strijelci ?? []} />
-                            )}
-                            {u.postava_gost && u.postava_gost.length > 0 && (
-                              <Postava nazivKluba={u.gost} igraci={u.postava_gost} strijelci={u.strijelci ?? []} />
-                            )}
                           </div>
-                        </details>
-                      ) : null}
 
-                      {/* Prostor za AI-generirani ili rucno napisani clanak o utakmici - */}
-                      {/* prikazuje se samo kad postoji tekst, inace ostaje skriveno */}
-                      {u.tekst_clanka && (
-                        <div className="mt-4 pt-4" style={{ borderTop: "1px solid var(--line)" }}>
-                          {u.slika_url && (
-                            // eslint-disable-next-line @next/next/no-img-element
-                            <img
-                              src={u.slika_url}
-                              alt={`${u.domacin} - ${u.gost}`}
-                              className="mb-3 w-full object-cover"
-                              style={{ maxHeight: 320 }}
-                            />
+                          <div className="mt-3 grid grid-cols-1 gap-y-1 font-sans text-sm sm:grid-cols-2" style={{ color: "var(--ink-muted)" }}>
+                            {u.stadion_datum && <p>{u.stadion_datum}</p>}
+                            {u.gledatelja && u.gledatelja !== "Nepoznato" && (
+                              <p>Gledatelja: {u.gledatelja}</p>
+                            )}
+                            {u.suci && u.suci !== "Nepoznato" && <p>Suci: {u.suci}</p>}
+                          </div>
+
+                          {!imaDetalje && (
+                            <p className="mt-3 font-sans text-sm italic" style={{ color: "var(--ink-muted)" }}>
+                              Utakmica predana bez borbe — zapisnik nije dostupan.
+                            </p>
                           )}
-                          <p className="font-sans text-sm leading-relaxed">{u.tekst_clanka}</p>
-                        </div>
-                      )}
-                    </article>
-                  );
-                })}
-              </div>
+
+                          {u.strijelci && u.strijelci.length > 0 && (
+                            <div className="mt-3 grid grid-cols-1 gap-1 font-sans text-sm sm:grid-cols-2">
+                              {domacin && domacin.length > 0 && (
+                                <p className="flex items-baseline gap-1.5">
+                                  <IkonaLopta />
+                                  {domacin.map((s) => `${s.igrac} ${s.minuta}`).join(", ")}
+                                </p>
+                              )}
+                              {gost && gost.length > 0 && (
+                                <p className="flex items-baseline gap-1.5">
+                                  <IkonaLopta />
+                                  {gost.map((s) => `${s.igrac} ${s.minuta}`).join(", ")}
+                                </p>
+                              )}
+                              {nepoznato && nepoznato.length > 0 && (
+                                <p className="flex items-baseline gap-1.5 sm:col-span-2" style={{ color: "var(--ink-muted)" }}>
+                                  <IkonaLopta />
+                                  {nepoznato.map((s) => `${s.igrac} ${s.minuta}`).join(", ")}
+                                </p>
+                              )}
+                            </div>
+                          )}
+
+                          {(u.postava_domacin?.length || u.postava_gost?.length) ? (
+                            <details className="mt-3 group">
+                              <summary
+                                className="cursor-pointer font-sans text-sm font-medium hover:underline"
+                                style={{ color: "var(--pitch)" }}
+                              >
+                                Postave i izmjene
+                              </summary>
+                              <div
+                                className="mt-3 grid grid-cols-1 gap-6 pt-3 sm:grid-cols-2"
+                                style={{ borderTop: "1px solid var(--line)" }}
+                              >
+                                {u.postava_domacin && u.postava_domacin.length > 0 && (
+                                  <Postava nazivKluba={u.domacin} igraci={u.postava_domacin} strijelci={u.strijelci ?? []} />
+                                )}
+                                {u.postava_gost && u.postava_gost.length > 0 && (
+                                  <Postava nazivKluba={u.gost} igraci={u.postava_gost} strijelci={u.strijelci ?? []} />
+                                )}
+                              </div>
+                            </details>
+                          ) : null}
+
+                          {/* Prostor za AI-generirani ili rucno napisani clanak o utakmici - */}
+                          {/* prikazuje se samo kad postoji tekst, inace ostaje skriveno */}
+                          {u.tekst_clanka && (
+                            <div className="mt-4 pt-4" style={{ borderTop: "1px solid var(--line)" }}>
+                              {u.slika_url && (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img
+                                  src={u.slika_url}
+                                  alt={`${u.domacin} - ${u.gost}`}
+                                  className="mb-3 w-full object-cover"
+                                  style={{ maxHeight: 320 }}
+                                />
+                              )}
+                              <p className="font-sans text-sm leading-relaxed">{u.tekst_clanka}</p>
+                            </div>
+                          )}
+                        </article>
+                      );
+                    })}
+                  </div>
+                )}
+              </>
             )}
-          </>
-        )}
+          </div>
+
+          <aside className="w-full shrink-0 lg:w-80">
+            <div className="lg:sticky lg:top-6">
+              <SidebarLiga natjecanje={liga.naziv} sezona={odabranaSezona} />
+            </div>
+          </aside>
+        </div>
       </main>
 
       <footer
