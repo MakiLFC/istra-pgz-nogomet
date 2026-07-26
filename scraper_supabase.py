@@ -442,15 +442,101 @@ def parsiraj_rang_liste(soup):
     return strijelci, kartoni
 
 
+def _broj(tekst):
+    try:
+        return int(re.sub(r"[^\d]", "", tekst or "") or 0)
+    except ValueError:
+        return 0
+
+
+def parsiraj_sve_igrace(soup):
+    """
+    Svi igrači iz SASTAVA klubova na stranici lige (ne samo top 5).
+    Redak sastava prepoznajemo po div.shirtNumber.
+
+    VAŽNO: kod VRATARA stupac 'goals' NIJE broj zabijenih nego PRIMLJENIH
+    golova (provjereno: vratar Turbine ima 50, a Turbina je po tablici
+    primila točno 50). Zato vratare izbacujemo iz liste strijelaca,
+    ali ih zadržavamo u kartonima.
+    """
+    igraci = []
+    for li in soup.find_all("li", class_="row"):
+        if not li.find("div", class_="shirtNumber"):
+            continue
+        ime_div = li.find("div", class_="playerName")
+        if not ime_div:
+            continue
+        h3 = ime_div.find("h3")
+        if not h3:
+            continue
+        ime = h3.get_text(strip=True)
+        uloga = ime_div.get_text(" ", strip=True).replace(ime, "").strip()
+
+        # Klub = najbliži PRETHODNI link kluba koji nije u tablici poretka
+        klub = None
+        for a in li.find_all_previous("a", href=lambda h: h and "/klubovi/" in h):
+            if a.find_parent("div", class_="competition_table"):
+                continue
+            klub = a.get_text(strip=True)
+            break
+
+        golovi_div = li.find("div", class_="goals")
+        cards_div = li.find("div", class_="cards")
+        zuti = crveni = 0
+        if cards_div:
+            m = re.match(r"(\d+)\s*/\s*(\d+)", cards_div.get_text(strip=True))
+            if m:
+                zuti, crveni = int(m.group(1)), int(m.group(2))
+
+        igraci.append({
+            "igrac": ime,
+            "klub": klub,
+            "vratar": uloga == "Vratar",
+            "golovi": _broj(golovi_div.get_text(strip=True)) if golovi_div else 0,
+            "zuti": zuti,
+            "crveni": crveni,
+        })
+    return igraci
+
+
+def slozi_pune_rang_liste(igraci, koliko=40):
+    """Iz sastava složi punu listu strijelaca i kartona (do 'koliko' igrača)."""
+    s = [i for i in igraci if not i["vratar"] and i["golovi"] > 0]
+    s.sort(key=lambda i: (-i["golovi"], i["igrac"]))
+    strijelci = [{"pozicija": str(n + 1), "igrac": i["igrac"], "klub": i["klub"],
+                  "golovi": str(i["golovi"])} for n, i in enumerate(s[:koliko])]
+
+    k = [i for i in igraci if i["zuti"] or i["crveni"]]
+    k.sort(key=lambda i: (-i["crveni"], -i["zuti"], i["igrac"]))
+    kartoni = [{"pozicija": str(n + 1), "igrac": i["igrac"], "klub": i["klub"],
+                "zuti": str(i["zuti"]), "crveni": str(i["crveni"])}
+               for n, i in enumerate(k[:koliko])]
+    return strijelci, kartoni
+
+
 def dohvati_i_spremi_statistike(natjecanje_naziv, natjecanje_url):
-    """Dohvaća tablicu + rang-liste sa stranice natjecanja i sprema u
+    """Dohvaća tablicu + PUNE rang-liste sa stranice natjecanja i sprema u
     Supabase tablicu 'statistike' (jedan redak po ligi i tipu, upsert)."""
     response = requests.get(natjecanje_url, headers=HEADERS, timeout=15)
     response.raise_for_status()
     soup = BeautifulSoup(response.text, "html.parser")
 
     tablica = parsiraj_tablicu_lige(soup)
-    strijelci, kartoni = parsiraj_rang_liste(soup)
+
+    # Pune liste iz sastava klubova (desetci igrača, ne samo top 5)
+    svi_igraci = parsiraj_sve_igrace(soup)
+    strijelci, kartoni = slozi_pune_rang_liste(svi_igraci)
+
+    # SAMOPROVJERA: usporedi naš izračun sa službenom HNS top 5 listom.
+    # Ako se vrh poklapa, agregacija iz sastava je pouzdana.
+    sluzbeni, _ = parsiraj_rang_liste(soup)
+    if sluzbeni and strijelci:
+        nas = [(s["igrac"], s["golovi"]) for s in strijelci[:3]]
+        njihov = [(s["igrac"], s["golovi"]) for s in sluzbeni[:3]]
+        provjera = ("poklapa se sa službenom listom ✓" if nas == njihov
+                    else f"NE POKLAPA SE! naše={nas} službeno={njihov}")
+    else:
+        provjera = "nije bilo s čim usporediti"
 
     for tip, podaci in (("tablica", tablica),
                         ("strijelci", strijelci),
@@ -462,6 +548,7 @@ def dohvati_i_spremi_statistike(natjecanje_naziv, natjecanje_url):
         ).execute()
     print(f"  STATISTIKE: tablica={len(tablica)} klubova, "
           f"strijelci={len(strijelci)}, kartoni={len(kartoni)} - spremljeno")
+    print(f"  PROVJERA strijelaca: {provjera}")
 
 
 if __name__ == "__main__":

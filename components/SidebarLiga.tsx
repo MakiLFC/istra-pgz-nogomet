@@ -2,26 +2,12 @@
 
 // SidebarLiga.tsx
 //
-// Sidebar s tri kartice po ligi: Tablica / Strijelci / Kartoni.
-// Podatke čita iz Supabase tablice 'statistike' (puni je scraper).
+// Tri odvojena bloka po ligi: Tablica / Strijelci / Kartoni.
+// - Tablica: puna imena klubova (ne režu se)
+// - Strijelci i kartoni: prvih 10, gumb "Prikaži sve" otvara ostatak
 //
-// UGRADNJA na stranicu lige (npr. app/liga/[naziv]/page.tsx):
-//
-//   import SidebarLiga from "@/components/SidebarLiga";
-//   ...
-//   <div className="flex flex-col gap-6 lg:flex-row">
-//     <main className="min-w-0 flex-1">
-//       {/* postojeći sadržaj lige (kola, rezultati...) */}
-//     </main>
-//     <aside className="w-full shrink-0 lg:w-80">
-//       <SidebarLiga natjecanje={nazivLige} sezona="2025/26" />
-//     </aside>
-//   </div>
-//
-// Na velikim ekranima sidebar stoji desno, na mobitelu ispod sadržaja.
-// NAPOMENA: 'supabase' klijent se uvozi iz "@/lib/supabase" - isti onaj
-// koji već koristiš za utakmice. Ako se tvoj export zove drugačije,
-// prilagodi liniju uvoza ispod.
+// NAPOMENA: bitni stilovi su ugrađeni izravno u komponentu, pa raspored
+// ispravno radi i ako globals.css nije osvježen.
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
@@ -32,9 +18,11 @@ type RedTablice = {
   golovi_primljeni: string; gol_razlika: string; bodovi: string;
 };
 type RedStrijelca = { pozicija: string; igrac: string; klub: string; golovi: string };
-type RedKartona = { pozicija: string; igrac: string; klub: string; zuti: string; crveni: string };
+type RedKartona = {
+  pozicija: string; igrac: string; klub: string; zuti: string; crveni: string;
+};
 
-type Kartica = "tablica" | "strijelci" | "kartoni";
+const PRIKAZI_ODMAH = 5;
 
 export default function SidebarLiga({
   natjecanje,
@@ -43,11 +31,12 @@ export default function SidebarLiga({
   natjecanje: string;
   sezona: string;
 }) {
-  const [kartica, setKartica] = useState<Kartica>("tablica");
   const [tablica, setTablica] = useState<RedTablice[]>([]);
   const [strijelci, setStrijelci] = useState<RedStrijelca[]>([]);
   const [kartoni, setKartoni] = useState<RedKartona[]>([]);
   const [ucitava, setUcitava] = useState(true);
+  const [sviStrijelci, setSviStrijelci] = useState(false);
+  const [sviKartoni, setSviKartoni] = useState(false);
 
   useEffect(() => {
     let aktivno = true;
@@ -68,120 +57,236 @@ export default function SidebarLiga({
       }
       setUcitava(false);
     })();
-    return () => { aktivno = false; };
+    return () => {
+      aktivno = false;
+    };
   }, [natjecanje, sezona]);
 
-  const gumb = (k: Kartica, naslov: string) => (
-    <button
-      key={k}
-      onClick={() => setKartica(k)}
-      className={`flex-1 px-2 py-1.5 font-sans text-xs font-semibold uppercase tracking-wide transition-colors ${
-        kartica === k ? "" : "opacity-50 hover:opacity-80"
-      }`}
-      style={{
-        color: kartica === k ? "var(--ink)" : "var(--ink-muted)",
-        borderBottom: kartica === k
-          ? "2px solid var(--card-yellow)"
-          : "2px solid transparent",
-      }}
-    >
-      {naslov}
-    </button>
-  );
+  if (ucitava) {
+    return (
+      <Blok naslov="Statistika">
+        <p className="px-3 py-6 text-center font-sans text-xs" style={{ color: "var(--ink-muted)" }}>
+          Učitavam…
+        </p>
+      </Blok>
+    );
+  }
+
+  const vidljiviStrijelci = sviStrijelci ? strijelci : strijelci.slice(0, PRIKAZI_ODMAH);
+  const vidljiviKartoni = sviKartoni ? kartoni : kartoni.slice(0, PRIKAZI_ODMAH);
 
   return (
-    <div className="rounded-lg border p-3" style={{ borderColor: "var(--ink-muted)" }}>
-      <div className="mb-2 flex" role="tablist">
-        {gumb("tablica", "Tablica")}
-        {gumb("strijelci", "Strijelci")}
-        {gumb("kartoni", "Kartoni")}
-      </div>
-
-      {ucitava ? (
-        <p className="py-4 text-center font-sans text-xs" style={{ color: "var(--ink-muted)" }}>
-          Učitavanje…
-        </p>
-      ) : kartica === "tablica" ? (
-        tablica.length === 0 ? (
-          <Prazno />
+    <div className="space-y-4">
+      {/* ---------------- TABLICA ---------------- */}
+      <Blok naslov="Tablica" ukupno={tablica.length}>
+        {tablica.length === 0 ? (
+          <Prazno poruka="Tablica još nije učitana." />
         ) : (
           <table className="w-full font-sans text-xs">
             <thead>
-              <tr style={{ color: "var(--ink-muted)" }}>
-                <th className="py-1 pr-1 text-left font-normal">#</th>
-                <th className="py-1 pr-1 text-left font-normal">Klub</th>
-                <th className="py-1 pr-1 text-right font-normal">U</th>
-                <th className="py-1 pr-1 text-right font-normal">+/-</th>
-                <th className="py-1 text-right font-normal">Bod</th>
+              <tr style={{ borderBottom: "1px solid var(--line)", color: "var(--ink-muted)" }}>
+                <th className="py-1.5 pl-2 pr-1 text-left font-normal">#</th>
+                <th className="py-1.5 pr-1 text-left font-normal">Klub</th>
+                <th className="py-1.5 pr-1 text-right font-normal">O</th>
+                <th className="py-1.5 pr-1 text-right font-normal">+/−</th>
+                <th className="py-1.5 pr-2 text-right font-normal">B</th>
               </tr>
             </thead>
             <tbody>
               {tablica.map((r) => (
-                <tr key={r.klub}>
-                  <td className="py-0.5 pr-1 font-mono" style={{ color: "var(--ink-muted)" }}>
+                <tr key={r.klub} style={{ borderBottom: "1px solid var(--line)" }}>
+                  <td
+                    className="py-1.5 pl-2 pr-1 font-mono"
+                    style={{ color: "var(--ink-muted)", width: "1%" }}
+                  >
                     {r.pozicija}
                   </td>
-                  <td className="max-w-0 truncate py-0.5 pr-1" title={r.klub}>{r.klub}</td>
-                  <td className="py-0.5 pr-1 text-right font-mono">{r.odigrano}</td>
-                  <td className="py-0.5 pr-1 text-right font-mono">{r.gol_razlika}</td>
-                  <td className="py-0.5 text-right font-mono font-semibold">{r.bodovi}</td>
+                  {/* ime kluba dobiva svu preostalu širinu i ne reže se */}
+                  <td className="py-1.5 pr-2 leading-tight">{r.klub}</td>
+                  <td
+                    className="py-1.5 pr-1 text-right font-mono"
+                    style={{ width: "1%", whiteSpace: "nowrap" }}
+                  >
+                    {r.odigrano}
+                  </td>
+                  <td
+                    className="py-1.5 pr-1 text-right font-mono"
+                    style={{ width: "1%", whiteSpace: "nowrap" }}
+                  >
+                    {r.gol_razlika}
+                  </td>
+                  <td
+                    className="py-1.5 pr-2 text-right font-mono font-bold"
+                    style={{ width: "1%", whiteSpace: "nowrap" }}
+                  >
+                    {r.bodovi}
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
-        )
-      ) : kartica === "strijelci" ? (
-        strijelci.length === 0 ? (
-          <Prazno />
+        )}
+      </Blok>
+
+      {/* ---------------- STRIJELCI ---------------- */}
+      <Blok naslov="Strijelci" ukupno={strijelci.length}>
+        {strijelci.length === 0 ? (
+          <Prazno poruka="Lista strijelaca još nije učitana." />
         ) : (
-          <ul className="font-sans text-xs">
-            {strijelci.map((s, i) => (
-              <li key={i} className="flex items-baseline gap-2 py-1">
-                <span className="w-4 shrink-0 text-right font-mono" style={{ color: "var(--ink-muted)" }}>
-                  {s.pozicija}
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="block truncate">{s.igrac}</span>
-                  <span className="block truncate" style={{ color: "var(--ink-muted)" }}>
-                    {s.klub}
-                  </span>
-                </span>
-                <span className="font-mono font-semibold">{s.golovi}</span>
-              </li>
-            ))}
-          </ul>
-        )
-      ) : kartoni.length === 0 ? (
-        <Prazno />
-      ) : (
-        <ul className="font-sans text-xs">
-          {kartoni.map((k, i) => (
-            <li key={i} className="flex items-baseline gap-2 py-1">
-              <span className="w-4 shrink-0 text-right font-mono" style={{ color: "var(--ink-muted)" }}>
-                {k.pozicija}
-              </span>
-              <span className="min-w-0 flex-1">
-                <span className="block truncate">{k.igrac}</span>
-                <span className="block truncate" style={{ color: "var(--ink-muted)" }}>
-                  {k.klub}
-                </span>
-              </span>
-              <span className="inline-flex items-baseline gap-1 font-mono">
-                <span style={{ color: "var(--card-yellow)" }}>▮</span>{k.zuti}
-                <span className="ml-1" style={{ color: "var(--card-red)" }}>▮</span>{k.crveni}
-              </span>
-            </li>
-          ))}
-        </ul>
-      )}
+          <>
+            <ul className="font-sans text-xs">
+              {vidljiviStrijelci.map((s, i) => (
+                <RedIgraca
+                  key={i}
+                  pozicija={s.pozicija}
+                  igrac={s.igrac}
+                  klub={s.klub}
+                  desno={<span className="font-mono text-sm font-bold">{s.golovi}</span>}
+                />
+              ))}
+            </ul>
+            <GumbProsiri
+              otvoreno={sviStrijelci}
+              ukupno={strijelci.length}
+              prikazano={PRIKAZI_ODMAH}
+              naKlik={() => setSviStrijelci((v) => !v)}
+            />
+          </>
+        )}
+      </Blok>
+
+      {/* ---------------- KARTONI ---------------- */}
+      <Blok naslov="Kartoni" ukupno={kartoni.length}>
+        {kartoni.length === 0 ? (
+          <Prazno poruka="Lista kartona još nije učitana." />
+        ) : (
+          <>
+            <ul className="font-sans text-xs">
+              {vidljiviKartoni.map((k, i) => (
+                <RedIgraca
+                  key={i}
+                  pozicija={k.pozicija}
+                  igrac={k.igrac}
+                  klub={k.klub}
+                  desno={
+                    <span className="inline-flex items-center gap-1 font-mono">
+                      <span className="card-tick" aria-hidden="true" />
+                      {k.zuti}
+                      {Number(k.crveni) > 0 && (
+                        <>
+                          <span className="card-tick card-tick-red ml-1" aria-hidden="true" />
+                          {k.crveni}
+                        </>
+                      )}
+                    </span>
+                  }
+                />
+              ))}
+            </ul>
+            <GumbProsiri
+              otvoreno={sviKartoni}
+              ukupno={kartoni.length}
+              prikazano={PRIKAZI_ODMAH}
+              naKlik={() => setSviKartoni((v) => !v)}
+            />
+          </>
+        )}
+      </Blok>
     </div>
   );
 }
 
-function Prazno() {
+/* ---------------- pomoćne komponente ---------------- */
+
+function Blok({
+  naslov,
+  ukupno,
+  children,
+}: {
+  naslov: string;
+  ukupno?: number;
+  children: React.ReactNode;
+}) {
   return (
-    <p className="py-4 text-center font-sans text-xs" style={{ color: "var(--ink-muted)" }}>
-      Nema podataka.
+    <section style={{ background: "var(--paper)", border: "1px solid var(--line)" }}>
+      <div
+        className="flex items-baseline justify-between gap-3 px-3 py-2"
+        style={{ background: "var(--pitch)", color: "var(--chalk)" }}
+      >
+        <h3 className="font-display text-sm uppercase tracking-wide">{naslov}</h3>
+        {typeof ukupno === "number" && ukupno > 0 && (
+          <span className="font-mono text-[10px] tracking-widest opacity-70">
+            {ukupno}
+          </span>
+        )}
+      </div>
+      {children}
+    </section>
+  );
+}
+
+function RedIgraca({
+  pozicija,
+  igrac,
+  klub,
+  desno,
+}: {
+  pozicija: string;
+  igrac: string;
+  klub: string | null;
+  desno: React.ReactNode;
+}) {
+  return (
+    <li
+      className="flex items-center gap-2 px-2 py-1.5"
+      style={{ borderBottom: "1px solid var(--line)" }}
+    >
+      <span
+        className="w-5 shrink-0 text-right font-mono"
+        style={{ color: "var(--ink-muted)" }}
+      >
+        {pozicija}
+      </span>
+      <span className="min-w-0 flex-1 leading-tight">
+        <span className="block">{igrac}</span>
+        {klub && (
+          <span className="block text-[11px]" style={{ color: "var(--ink-muted)" }}>
+            {klub}
+          </span>
+        )}
+      </span>
+      <span className="shrink-0">{desno}</span>
+    </li>
+  );
+}
+
+function GumbProsiri({
+  otvoreno,
+  ukupno,
+  prikazano,
+  naKlik,
+}: {
+  otvoreno: boolean;
+  ukupno: number;
+  prikazano: number;
+  naKlik: () => void;
+}) {
+  if (ukupno <= prikazano) return null;
+  return (
+    <button
+      onClick={naKlik}
+      className="w-full px-3 py-2 text-center font-sans text-xs font-medium hover:underline"
+      style={{ color: "var(--pitch)" }}
+    >
+      {otvoreno ? "Prikaži manje" : `Prikaži sve (${ukupno})`}
+    </button>
+  );
+}
+
+function Prazno({ poruka }: { poruka: string }) {
+  return (
+    <p className="px-3 py-6 text-center font-sans text-xs" style={{ color: "var(--ink-muted)" }}>
+      {poruka}
     </p>
   );
 }

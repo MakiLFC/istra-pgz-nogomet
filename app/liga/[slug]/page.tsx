@@ -80,7 +80,10 @@ export default async function StranicaLige({
 
   const odabranoKolo = koloIzUrl ? parseInt(koloIzUrl, 10) : svaKola[svaKola.length - 1];
 
-  const utakmiceKola = sveUtakmice.filter((u) => u.kolo === odabranoKolo);
+  // Derbi kola ide na vrh popisa
+  const utakmiceKola = sveUtakmice
+    .filter((u) => u.kolo === odabranoKolo)
+    .sort((a, b) => (b.derbi ? 1 : 0) - (a.derbi ? 1 : 0));
 
   return (
     <div className="min-h-screen" style={{ background: "var(--chalk)" }}>
@@ -169,15 +172,29 @@ export default async function StranicaLige({
                       const { domacin, gost, nepoznato } = razdvojiStrijelceePoKlubu(u);
 
                       return (
-                        <article key={u.id} className="bg-white p-5" style={{ border: "1px solid var(--line)" }}>
+                        <article
+                          key={u.id}
+                          className="bg-white p-5"
+                          style={{
+                            border: u.derbi
+                              ? "2px solid var(--card-yellow)"
+                              : "1px solid var(--line)",
+                          }}
+                        >
+                          {u.derbi && (
+                            <p
+                              className="mb-2 inline-block px-2 py-0.5 font-display text-[10px] font-bold uppercase tracking-widest"
+                              style={{ background: "var(--card-yellow)", color: "var(--ink)" }}
+                            >
+                              Derbi kola
+                            </p>
+                          )}
                           <div className="flex items-center gap-3">
                             <IkonaTeren />
                             <p className="font-sans text-lg leading-snug">
                               <span className="font-medium">{u.domacin}</span>
                               {" "}
-                              <span className="font-mono font-bold" style={{ color: "var(--pitch)" }}>
-                                {u.rezultat ?? "?:?"}
-                              </span>
+                              <span className="semafor text-base">{u.rezultat ?? "?:?"}</span>
                               {" "}
                               <span className="font-medium">{u.gost}</span>
                             </p>

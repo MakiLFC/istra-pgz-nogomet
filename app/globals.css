@@ -1,40 +1,139 @@
+/* VAŽNO: font-import MORA biti prije "tailwindcss" importa.
+   Tailwind se pri obradi razmota u stotine redaka, pa bi svaki @import
+   iza njega završio usred pravila - a CSS to ne dopušta (datoteka pukne). */
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
 @import "tailwindcss";
 
+/* =====================================================================
+   PALETA — "Lučka" (Kvarner: brodogradilište + Gorski kotar)
+   Imena varijabli su NAMJERNO ista kao prije, pa se cijela stranica
+   presvlači samo zamjenom ove datoteke, bez diranja komponenti.
+   ===================================================================== */
 :root {
-  --pitch: #0f4d2e;
-  --pitch-dark: #0a3a22;
-  --pitch-light: #4caf7d;
-  --chalk: #f5f1e6;
-  --card-yellow: #e8b923;
-  --card-red: #c23b2e;
-  --arena-blue: #1d5a96;
-  --ink: #1a1a1a;
-  --ink-muted: #6b6a63;
-  --line: #ddd8c8;
+  --pitch: #0d3b40;        /* duboka lučka petrolej-tirkizna (glavna) */
+  --pitch-dark: #07272b;   /* još tamnija, za trake i naglaske */
+  --pitch-light: #2f9e8f;  /* svijetla tirkizna - "pozitivno" (ulazak igrača) */
+  --chalk: #e9eae5;        /* kamena podloga (ne kremasta) */
+  --paper: #e7eee7;        /* kartice - bijelo-zelena, tamnija od podloge */
+  --oxide: #b5502a;        /* HRĐA - jedini topli naglasak, koristi se štedljivo */
+  --oxide-light: #e08a55;  /* svjetlija hrđa - za tamne podloge (zaglavlje) */
+  --card-yellow: #e0aa1f;
+  --card-red: #bb3a2c;
+  --arena-blue: #1a4f66;
+  --ink: #10171a;
+  --ink-muted: #5d686d;
+  --line: #c8cec9;
 }
 
 @theme inline {
   --color-background: var(--chalk);
   --color-foreground: var(--ink);
-  --font-display: "Oswald", "Arial Narrow", sans-serif;
+  --font-display: "Archivo Black", "Arial Black", Impact, sans-serif;
   --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "JetBrains Mono", "Courier New", monospace;
 }
 
 body {
-  background: var(--chalk);
+  background-color: var(--chalk);
+  /* Vodeni žig: nacrt terena (linije, središnji krug) + tihe trake
+     kao pokošen travnjak. Oboje jedva vidljivo - podloga, ne ukras. */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Cg fill='none' stroke='%230d3b40' stroke-opacity='0.07' stroke-width='1.4'%3E%3Crect x='24' y='39' width='102' height='72'/%3E%3Cline x1='75' y1='39' x2='75' y2='111'/%3E%3Ccircle cx='75' cy='75' r='15'/%3E%3Cpath d='M24 63 h14 v24 h-14'/%3E%3Cpath d='M126 63 h-14 v24 h14'/%3E%3C/g%3E%3C/svg%3E"),
+    repeating-linear-gradient(
+      90deg,
+      rgba(13, 59, 64, 0.022) 0px,
+      rgba(13, 59, 64, 0.022) 60px,
+      transparent 60px,
+      transparent 120px
+    );
+  background-repeat: repeat, repeat;
+  background-size: 150px 150px, auto;
   color: var(--ink);
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
 
+/* Kartice: bijelo-zelena ploha s dubinom - svjetlo pada odozgo, jedva
+   vidljiva dijagonalna tekstura i blagi odmak od podloge.
+   Presvlači Tailwindov bg-white koji se koristi na karticama utakmica. */
+.bg-white {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.62) 0%,
+      rgba(255, 255, 255, 0.12) 45%,
+      rgba(13, 59, 64, 0.03) 100%
+    ),
+    repeating-linear-gradient(
+      135deg,
+      rgba(13, 59, 64, 0.018) 0px,
+      rgba(13, 59, 64, 0.018) 1px,
+      transparent 1px,
+      transparent 7px
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    0 1px 2px rgba(13, 59, 64, 0.09);
+}
+
+/* Naslovi: teški grotesk, stisnut razmak slova - dojam natpisa na hangaru */
 .font-display {
   font-family: var(--font-display);
+  letter-spacing: -0.01em;
+  font-weight: 400; /* Archivo Black ionako ima samo jednu (tešku) težinu */
 }
 
 .font-mono {
   font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;  /* brojke se poravnavaju u stupce */
 }
 
+/* =====================================================================
+   POTPIS STRANICE — "semafor" pločica za rezultat
+   Rezultat se čita kao brojka na semaforu, a ne kao obični tekst.
+   Koristi se klasom .semafor na elementu s rezultatom.
+   ===================================================================== */
+.semafor {
+  display: inline-block;
+  background: var(--pitch-dark);
+  color: #f2f5f2;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.15em 0.5em;
+  border-radius: 2px;
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.35);
+}
+
+/* Naslovna traka sekcije (npr. naziv lige) kao natpisna ploča */
+.traka {
+  background: var(--pitch);
+  color: var(--chalk);
+  padding: 0.4rem 0.75rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+/* Nadnaslov / oznaka (npr. "30. KOLO") */
+.oznaka {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+/* Naglasak hrđom - tanka okomita crta ispred naslova */
+.crta-oxide {
+  border-left: 3px solid var(--oxide);
+  padding-left: 0.6rem;
+}
+
+/* Kartoni (zadržano iz prije) */
 .card-tick {
   display: inline-block;
   width: 9px;
@@ -46,4 +145,165 @@ body {
 
 .card-tick-red {
   background: var(--card-red);
+}
+
+/* =====================================================================
+   Klizne liste (strijelci / kartoni) — diskretan klizač u boji stranice
+   ===================================================================== */
+.lista-klizna {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+  overscroll-behavior: contain;
+}
+.lista-klizna::-webkit-scrollbar {
+  width: 8px;
+}
+.lista-klizna::-webkit-scrollbar-track {
+  background: transparent;
+}
+.lista-klizna::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 4px;
+}
+.lista-klizna::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-muted);
+}
+
+/* Zaglavlje tablice ostaje vidljivo pri klizanju */
+.ljepljivo-zaglavlje th {
+  position: sticky;
+  top: 0;
+  background: var(--paper);
+  z-index: 1;
+}
+
+/* =====================================================================
+   NASLOV — "LOKAL" dolazi slijeva, "ARENA" zdesna i spoje se
+   Odigra se jednom, pri otvaranju stranice.
+   ===================================================================== */
+.logo-arena {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3em;
+  white-space: nowrap;
+}
+
+.logo-rijec {
+  display: inline-block;
+  animation-duration: 0.75s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); /* mekan doskok */
+  animation-fill-mode: both;
+}
+
+.logo-lijevo {
+  animation-name: dolazi-slijeva;
+}
+
+.logo-desno {
+  animation-name: dolazi-zdesna;
+}
+
+/* Spojnica se pojavi tek kad se riječi sretnu.
+   Koristi svjetliju hrđu jer stoji na tamnom zaglavlju. */
+.logo-spona {
+  display: inline-block;
+  color: var(--oxide-light);
+  animation: spona-se-pali 0.35s ease-out 0.6s both;
+}
+
+@keyframes dolazi-slijeva {
+  from {
+    opacity: 0;
+    transform: translateX(-1.6em);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes dolazi-zdesna {
+  from {
+    opacity: 0;
+    transform: translateX(1.6em);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes spona-se-pali {
+  from {
+    opacity: 0;
+    transform: scaleX(0.2);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+/* =====================================================================
+   LOPTA PADA NA TEREN (u znaku)
+   Krene ~1,8 s nakon otvaranja stranice, padne i dvaput odskoči.
+   Vrijednosti pomaka su u koordinatama SVG-a, ne u pikselima.
+   ===================================================================== */
+.lopta-pada {
+  animation: lopta-pada 1.25s cubic-bezier(0.45, 0, 0.7, 1) 1.8s both;
+}
+
+@keyframes lopta-pada {
+  0% {
+    transform: translateY(-48px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  45% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.2, 0, 0.2, 1);
+  }
+  62% {
+    transform: translateY(-9px);
+  }
+  78% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.2, 0, 0.2, 1);
+  }
+  89% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* =====================================================================
+   Detalji kvalitete
+   ===================================================================== */
+::selection {
+  background: var(--pitch-light);
+  color: var(--pitch-dark);
+}
+
+:focus-visible {
+  outline: 2px solid var(--oxide);
+  outline-offset: 2px;
+}
+
+a {
+  text-underline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -3,6 +3,7 @@ import { supabase, Utakmica } from "@/lib/supabase";
 import { LIGE } from "@/lib/lige";
 import Navigacija from "@/components/Navigacija";
 import { IkonaTeren } from "@/components/Ikone";
+import PregledKola from "@/components/PregledKola";
 
 export const revalidate = 0;
 
@@ -36,13 +37,21 @@ export default async function Home() {
     <div className="min-h-screen" style={{ background: "var(--chalk)" }}>
       <Navigacija />
 
-      <main className="mx-auto max-w-5xl px-6 py-10">
+      <main className="mx-auto max-w-6xl px-6 py-10">
         {utakmice.length === 0 && (
           <p className="font-sans text-sm" style={{ color: "var(--ink-muted)" }}>
             Trenutno nema učitanih utakmica. Pokreni scraper da napuniš bazu podataka.
           </p>
         )}
 
+        {/* Dva stupca: lijevo pregled kola po ligama, desno rezultati.
+            Na mobitelu pregled ide ispod rezultata (flex-col-reverse). */}
+        <div className="flex flex-col-reverse gap-8 lg:flex-row">
+          <aside className="w-full shrink-0 lg:w-72">
+            <PregledKola utakmice={utakmice} />
+          </aside>
+
+          <div className="min-w-0 flex-1">
         {LIGE.map((liga) => {
           const utakmiceLige = grupe[liga.naziv];
           if (!utakmiceLige || utakmiceLige.length === 0) return null;
@@ -82,9 +91,7 @@ export default async function Home() {
                       <IkonaTeren />
                       <p className="font-sans text-[15px] leading-snug">
                         <span className="font-medium">{u.domacin}</span>{" "}
-                        <span className="font-mono font-bold" style={{ color: "var(--pitch)" }}>
-                          {u.rezultat ?? "?:?"}
-                        </span>{" "}
+                        <span className="semafor text-sm">{u.rezultat ?? "?:?"}</span>{" "}
                         <span className="font-medium">{u.gost}</span>
                       </p>
                       {u.derbi && (
@@ -123,6 +130,8 @@ export default async function Home() {
             </section>
           );
         })}
+          </div>
+        </div>
       </main>
 
       <footer
