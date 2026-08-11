@@ -5,6 +5,8 @@ import { ligaPoSlugu, LIGE } from "@/lib/lige";
 import Navigacija from "@/components/Navigacija";
 import Postava from "@/components/Postava";
 import SidebarLiga from "@/components/SidebarLiga";
+import KarticaClanka from "@/components/KarticaClanka";
+import { dohvatiClanke } from "@/lib/clanci";
 import { IkonaLopta, IkonaTeren } from "@/components/Ikone";
 
 export const revalidate = 0;
@@ -73,6 +75,7 @@ export default async function StranicaLige({
   const odabranaSezona = sezonaIzUrl ?? sveSezone[0] ?? "2025/26";
 
   const sveUtakmice = await dohvatiUtakmiceLige(liga.naziv, odabranaSezona);
+  const clanciLige = await dohvatiClanke({ liga: liga.naziv, koliko: 4 });
 
   const svaKola = Array.from(
     new Set(sveUtakmice.map((u) => u.kolo).filter((k): k is number => k !== null))
@@ -285,8 +288,21 @@ export default async function StranicaLige({
           </div>
 
           <aside className="w-full shrink-0 lg:w-80">
-            <div className="lg:sticky lg:top-6">
+            <div className="space-y-4 lg:sticky lg:top-6">
               <SidebarLiga natjecanje={liga.naziv} sezona={odabranaSezona} />
+              {clanciLige.length > 0 && (
+                <section style={{ background: "var(--paper)", border: "1px solid var(--line)" }}>
+                  <div className="flex items-baseline justify-between gap-2 px-3 py-2" style={{ background: "var(--pitch)", color: "var(--chalk)" }}>
+                    <h3 className="font-display text-sm uppercase tracking-wide">Novosti lige</h3>
+                    <Link href={`/novosti?liga=${encodeURIComponent(liga.naziv)}`} className="font-sans text-[11px] hover:underline">sve →</Link>
+                  </div>
+                  <div className="space-y-2 p-2">
+                    {clanciLige.map((c) => (
+                      <KarticaClanka key={c.id} clanak={c} kompaktno />
+                    ))}
+                  </div>
+                </section>
+              )}
             </div>
           </aside>
         </div>

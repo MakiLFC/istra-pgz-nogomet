@@ -64,6 +64,12 @@ export default function Navigacija() {
               {liga.naziv}
             </Link>
           ))}
+          <Link
+            href="/novosti"
+            className="font-sans px-3 py-1.5 text-sm font-medium uppercase tracking-wide text-[var(--chalk)] opacity-75 transition-opacity hover:bg-white/10 hover:opacity-100"
+          >
+            Novosti
+          </Link>
         </nav>
       </div>
     </header>

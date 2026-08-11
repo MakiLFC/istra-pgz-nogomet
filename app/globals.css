@@ -1,7 +1,6 @@
-/* VAŽNO: font-import MORA biti prije "tailwindcss" importa.
-   Tailwind se pri obradi razmota u stotine redaka, pa bi svaki @import
-   iza njega završio usred pravila - a CSS to ne dopušta (datoteka pukne). */
-@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
+/* Fontovi se učitavaju u app/layout.tsx (brže je), ne ovdje.
+   NAPOMENA: ako ikad dodaješ @import fonta u ovu datoteku, MORA stajati
+   PRIJE "tailwindcss" - inače cijeli CSS pukne pri obradi. */
 @import "tailwindcss";
 
 /* =====================================================================

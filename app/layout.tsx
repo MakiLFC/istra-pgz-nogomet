@@ -2,9 +2,18 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Lokal-Arena — nogomet Istre i PGŽ-a",
+  title: "Lokal-Arena — niže nogometne lige Primorsko-goranske županije",
   description:
-    "Rezultati, zapisnici i tablice lokalnog nogometa Istre i Primorsko-goranske županije.",
+    "Rezultati, zapisnici, tablice i strijelci nižih nogometnih liga klubova na prostoru Primorsko-goranske županije. Podaci: HNS Semafor.",
+  // Kad stranica dobije vlastitu domenu, ovdje dodaj:
+  // metadataBase: new URL("https://tvoja-domena.hr"),
+  openGraph: {
+    title: "Lokal-Arena",
+    description:
+      "Rezultati, tablice i strijelci nižih nogometnih liga Primorsko-goranske županije.",
+    type: "website",
+    locale: "hr_HR",
+  },
 };
 
 export default function RootLayout({
@@ -21,8 +30,10 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+        {/* Archivo Black (naslovi) + Inter (tekst) + JetBrains Mono (brojke).
+            Oswald je izbačen - više se ne koristi nakon promjene dizajna. */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap"
           rel="stylesheet"
         />
       </head>

@@ -4,6 +4,8 @@ import { LIGE } from "@/lib/lige";
 import Navigacija from "@/components/Navigacija";
 import { IkonaTeren } from "@/components/Ikone";
 import PregledKola from "@/components/PregledKola";
+import KarticaClanka from "@/components/KarticaClanka";
+import { dohvatiClanke } from "@/lib/clanci";
 
 export const revalidate = 0;
 
@@ -31,6 +33,7 @@ function grupirajPoNatjecanju(utakmice: Utakmica[]) {
 
 export default async function Home() {
   const utakmice = await dohvatiUtakmice();
+  const clanci = await dohvatiClanke({ koliko: 3 });
   const grupe = grupirajPoNatjecanju(utakmice);
 
   return (
@@ -47,7 +50,20 @@ export default async function Home() {
         {/* Dva stupca: lijevo pregled kola po ligama, desno rezultati.
             Na mobitelu pregled ide ispod rezultata (flex-col-reverse). */}
         <div className="flex flex-col-reverse gap-8 lg:flex-row">
-          <aside className="w-full shrink-0 lg:w-72">
+          <aside className="w-full shrink-0 space-y-4 lg:w-72">
+            {clanci.length > 0 && (
+              <section style={{ background: "var(--paper)", border: "1px solid var(--line)" }}>
+                <div className="flex items-baseline justify-between gap-2 px-3 py-2" style={{ background: "var(--pitch)", color: "var(--chalk)" }}>
+                  <h3 className="font-display text-sm uppercase tracking-wide">Novosti</h3>
+                  <Link href="/novosti" className="font-sans text-[11px] hover:underline">sve →</Link>
+                </div>
+                <div className="space-y-2 p-2">
+                  {clanci.map((c) => (
+                    <KarticaClanka key={c.id} clanak={c} kompaktno />
+                  ))}
+                </div>
+              </section>
+            )}
             <PregledKola utakmice={utakmice} />
           </aside>
 
