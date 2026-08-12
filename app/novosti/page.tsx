@@ -6,6 +6,7 @@ import Navigacija from "@/components/Navigacija";
 import KarticaClanka from "@/components/KarticaClanka";
 import { dohvatiClanke } from "@/lib/clanci";
 import { LIGE } from "@/lib/lige";
+import Otkrivanje from "@/components/Otkrivanje";
 
 export const revalidate = 0;
 
@@ -27,9 +28,10 @@ export default async function StranicaNovosti({
     <div className="min-h-screen" style={{ background: "var(--chalk)" }}>
       <Navigacija />
 
-      <main className="mx-auto max-w-4xl px-6 py-10">
-        <h1 className="font-display text-2xl uppercase tracking-wide">Novosti</h1>
-        <p className="mt-1 font-mono text-xs" style={{ color: "var(--ink-muted)" }}>
+      <main className="mx-auto max-w-4xl px-6 py-14">
+        <p className="oznaka-sekcije">Uredništvo</p>
+        <h1 className="font-display mt-1.5 text-3xl uppercase">Novosti</h1>
+        <p className="mt-2 font-sans text-sm" style={{ color: "var(--ink-muted)" }}>
           Transferi, najave i osvrti
         </p>
 
@@ -69,9 +71,11 @@ export default async function StranicaNovosti({
               : "Još nema objavljenih članaka."}
           </p>
         ) : (
-          <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {clanci.map((c) => (
-              <KarticaClanka key={c.id} clanak={c} />
+          <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {clanci.map((c, idx) => (
+              <Otkrivanje key={c.id} kasnjenje={Math.min(idx, 6) * 45}>
+                <KarticaClanka clanak={c} />
+              </Otkrivanje>
             ))}
           </div>
         )}

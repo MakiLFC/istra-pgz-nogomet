@@ -49,8 +49,11 @@ export default function Navigacija() {
             </span>
           </Link>
 
-          <p className="max-w-[22rem] text-right font-mono text-[10px] uppercase leading-snug tracking-wide text-[var(--chalk)] opacity-60">
-            Niže nogometne lige klubova na prostoru Primorsko-goranske županije
+          {/* Podnaslov: obični tekst, bez verzala i monospacea.
+              Sitna razmaknuta velika slova čitala su se kao ispis terminala. */}
+          <p className="max-w-[20rem] text-right font-sans text-[13px] leading-relaxed text-[var(--chalk)] opacity-70">
+            Niže nogometne lige klubova na prostoru
+            <br className="hidden sm:block" /> Primorsko-goranske županije
           </p>
         </div>
 

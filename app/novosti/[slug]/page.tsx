@@ -44,7 +44,7 @@ export default async function StranicaClanka({
     <div className="min-h-screen" style={{ background: "var(--chalk)" }}>
       <Navigacija />
 
-      <main className="mx-auto max-w-2xl px-6 py-10">
+      <main className="mx-auto max-w-2xl px-6 py-14">
         <Link
           href="/novosti"
           className="font-sans text-xs font-medium hover:underline"
@@ -66,7 +66,7 @@ export default async function StranicaClanka({
               ))}
           </p>
 
-          <h1 className="font-display mt-2 text-3xl uppercase leading-tight">
+          <h1 className="font-display mt-2 text-4xl uppercase">
             {clanak.naslov}
           </h1>
 

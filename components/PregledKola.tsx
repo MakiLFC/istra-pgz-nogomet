@@ -3,6 +3,8 @@
 // pa nema dodatnih upita ni novog scrapanja.
 
 import Link from "next/link";
+import Brojka from "@/components/Brojka";
+import Otkrivanje from "@/components/Otkrivanje";
 import { LIGE } from "@/lib/lige";
 import {
   sazetakKola,
@@ -16,9 +18,15 @@ import {
 export default function PregledKola({ utakmice }: { utakmice: UtakmicaMin[] }) {
   return (
     <div className="space-y-4">
-      <BlokKoloUBrojkama utakmice={utakmice} />
-      <BlokNajposjecenije utakmice={utakmice} />
-      <BlokDerbiji utakmice={utakmice} />
+      <Otkrivanje>
+        <BlokKoloUBrojkama utakmice={utakmice} />
+      </Otkrivanje>
+      <Otkrivanje kasnjenje={80}>
+        <BlokNajposjecenije utakmice={utakmice} />
+      </Otkrivanje>
+      <Otkrivanje kasnjenje={160}>
+        <BlokDerbiji utakmice={utakmice} />
+      </Otkrivanje>
     </div>
   );
 }
@@ -37,8 +45,8 @@ function BlokKoloUBrojkama({ utakmice }: { utakmice: UtakmicaMin[] }) {
         <div key={liga.slug} className="px-3 py-2.5" style={{ borderBottom: "1px solid var(--line)" }}>
           <ZaglavljeLige liga={liga} dodatak={`${s!.kolo}. kolo`} />
           <p className="mt-1 font-mono text-xs" style={{ color: "var(--ink-muted)" }}>
-            {s!.brojUtakmica} utakmica · {s!.ukupnoGolova} golova
-            {s!.crveni > 0 && ` · ${s!.crveni} crvenih`}
+            <Brojka vrijednost={s!.brojUtakmica} /> utakmica ·{" "}
+            <Brojka vrijednost={s!.ukupnoGolova} /> golova
           </p>
           {s!.najviseGolova && (
             <p className="mt-1 font-sans text-[11px] leading-snug">
@@ -77,7 +85,7 @@ function BlokNajposjecenije({ utakmice }: { utakmice: UtakmicaMin[] }) {
             {n!.u.domacin} {n!.u.rezultat} {n!.u.gost}
           </p>
           <p className="font-mono text-xs font-bold" style={{ color: "var(--oxide)" }}>
-            {n!.gledatelja.toLocaleString("hr-HR")} gledatelja
+            <Brojka vrijednost={n!.gledatelja} /> gledatelja
           </p>
         </div>
       ))}

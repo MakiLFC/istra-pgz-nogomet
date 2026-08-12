@@ -9,68 +9,21 @@
 // NAPOMENA: bitni stilovi su ugrađeni izravno u komponentu, pa raspored
 // ispravno radi i ako globals.css nije osvježen.
 
-import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
+import { useState } from "react";
+import type {
+  RedTablice,
+  RedStrijelca,
+  RedKartona,
+  StatistikeLige,
+} from "@/lib/statistike";
 
-type RedTablice = {
-  pozicija: string; klub: string; odigrano: string; pobjede: string;
-  remiji: string; porazi: string; golovi_dani: string;
-  golovi_primljeni: string; gol_razlika: string; bodovi: string;
-};
-type RedStrijelca = { pozicija: string; igrac: string; klub: string; golovi: string };
-type RedKartona = {
-  pozicija: string; igrac: string; klub: string; zuti: string; crveni: string;
-};
 
 const PRIKAZI_ODMAH = 5;
 
-export default function SidebarLiga({
-  natjecanje,
-  sezona,
-}: {
-  natjecanje: string;
-  sezona: string;
-}) {
-  const [tablica, setTablica] = useState<RedTablice[]>([]);
-  const [strijelci, setStrijelci] = useState<RedStrijelca[]>([]);
-  const [kartoni, setKartoni] = useState<RedKartona[]>([]);
-  const [ucitava, setUcitava] = useState(true);
+export default function SidebarLiga({ statistike }: { statistike: StatistikeLige }) {
+  const { tablica, strijelci, kartoni } = statistike;
   const [sviStrijelci, setSviStrijelci] = useState(false);
   const [sviKartoni, setSviKartoni] = useState(false);
-
-  useEffect(() => {
-    let aktivno = true;
-    (async () => {
-      setUcitava(true);
-      const { data, error } = await supabase
-        .from("statistike")
-        .select("tip, podaci")
-        .eq("natjecanje", natjecanje)
-        .eq("sezona", sezona);
-      if (!aktivno) return;
-      if (!error && data) {
-        for (const red of data) {
-          if (red.tip === "tablica") setTablica(red.podaci as RedTablice[]);
-          if (red.tip === "strijelci") setStrijelci(red.podaci as RedStrijelca[]);
-          if (red.tip === "kartoni") setKartoni(red.podaci as RedKartona[]);
-        }
-      }
-      setUcitava(false);
-    })();
-    return () => {
-      aktivno = false;
-    };
-  }, [natjecanje, sezona]);
-
-  if (ucitava) {
-    return (
-      <Blok naslov="Statistika">
-        <p className="px-3 py-6 text-center font-sans text-xs" style={{ color: "var(--ink-muted)" }}>
-          Učitavam…
-        </p>
-      </Blok>
-    );
-  }
 
   const vidljiviStrijelci = sviStrijelci ? strijelci : strijelci.slice(0, PRIKAZI_ODMAH);
   const vidljiviKartoni = sviKartoni ? kartoni : kartoni.slice(0, PRIKAZI_ODMAH);

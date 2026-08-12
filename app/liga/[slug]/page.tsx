@@ -1,15 +1,20 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { supabase, Utakmica } from "@/lib/supabase";
+import { dohvatiStatistike } from "@/lib/statistike";
 import { ligaPoSlugu, LIGE } from "@/lib/lige";
 import Navigacija from "@/components/Navigacija";
 import Postava from "@/components/Postava";
 import SidebarLiga from "@/components/SidebarLiga";
 import KarticaClanka from "@/components/KarticaClanka";
 import { dohvatiClanke } from "@/lib/clanci";
+import Otkrivanje from "@/components/Otkrivanje";
+import Brojka from "@/components/Brojka";
 import { IkonaLopta, IkonaTeren } from "@/components/Ikone";
 
-export const revalidate = 0;
+// Podaci se osvježavaju tri puta tjedno, pa je kratko keširanje sigurno
+// i čini kretanje po stranici trenutnim.
+export const revalidate = 300;
 
 // Strijelci u bazi nisu eksplicitno označeni kojem klubu pripadaju, ali
 // znamo postave oba kluba - pa svakog strijelca pripisujemo klubu čija
@@ -43,13 +48,30 @@ async function dohvatiSezone(nazivLige: string): Promise<string[]> {
   return jedinstvene.sort().reverse();
 }
 
-async function dohvatiUtakmiceLige(nazivLige: string, sezona: string): Promise<Utakmica[]> {
+/** Jeftin upit: samo brojevi kola (bez postava) - za popis kola i ukupan broj. */
+async function dohvatiKola(nazivLige: string, sezona: string): Promise<number[]> {
+  const { data, error } = await supabase
+    .from("utakmice")
+    .select("kolo")
+    .eq("natjecanje", nazivLige)
+    .eq("sezona", sezona);
+
+  if (error || !data) return [];
+  return data.map((d) => d.kolo).filter((k): k is number => k !== null);
+}
+
+/** Pune podatke (uključujući postave) dohvaćamo SAMO za prikazano kolo. */
+async function dohvatiUtakmiceKola(
+  nazivLige: string,
+  sezona: string,
+  kolo: number
+): Promise<Utakmica[]> {
   const { data, error } = await supabase
     .from("utakmice")
     .select("*")
     .eq("natjecanje", nazivLige)
     .eq("sezona", sezona)
-    .order("kolo", { ascending: true });
+    .eq("kolo", kolo);
 
   if (error) {
     console.error("Greška kod dohvaćanja utakmica:", error);
@@ -74,29 +96,37 @@ export default async function StranicaLige({
   const sveSezone = await dohvatiSezone(liga.naziv);
   const odabranaSezona = sezonaIzUrl ?? sveSezone[0] ?? "2025/26";
 
-  const sveUtakmice = await dohvatiUtakmiceLige(liga.naziv, odabranaSezona);
-  const clanciLige = await dohvatiClanke({ liga: liga.naziv, koliko: 4 });
-
-  const svaKola = Array.from(
-    new Set(sveUtakmice.map((u) => u.kolo).filter((k): k is number => k !== null))
-  ).sort((a, b) => a - b);
+  const svaKolaSve = await dohvatiKola(liga.naziv, odabranaSezona);
+  const svaKola = Array.from(new Set(svaKolaSve)).sort((a, b) => a - b);
+  const ukupnoUtakmica = svaKolaSve.length;
 
   const odabranoKolo = koloIzUrl ? parseInt(koloIzUrl, 10) : svaKola[svaKola.length - 1];
 
+  // Sve što stranica treba dohvaćamo USPOREDNO, a pune podatke samo za
+  // prikazano kolo - ne za cijelu sezonu.
+  const [utakmiceSirovo, clanciLige, statistike] = await Promise.all([
+    odabranoKolo ? dohvatiUtakmiceKola(liga.naziv, odabranaSezona, odabranoKolo) : Promise.resolve([]),
+    dohvatiClanke({ liga: liga.naziv, koliko: 4 }),
+    dohvatiStatistike(liga.naziv, odabranaSezona),
+  ]);
+
   // Derbi kola ide na vrh popisa
-  const utakmiceKola = sveUtakmice
-    .filter((u) => u.kolo === odabranoKolo)
-    .sort((a, b) => (b.derbi ? 1 : 0) - (a.derbi ? 1 : 0));
+  const utakmiceKola = [...utakmiceSirovo].sort(
+    (a, b) => (b.derbi ? 1 : 0) - (a.derbi ? 1 : 0)
+  );
 
   return (
     <div className="min-h-screen" style={{ background: "var(--chalk)" }}>
       <Navigacija />
 
-      <main className="mx-auto max-w-6xl px-6 py-10">
-        <div className="mb-1 flex flex-wrap items-baseline justify-between gap-3">
-          <h1 className="font-display text-2xl font-semibold uppercase tracking-wide">
-            {liga.naziv}
-          </h1>
+      <main className="mx-auto max-w-6xl px-6 py-14">
+        <div className="mb-1 flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+          <div>
+            <p className="oznaka-sekcije">Natjecanje</p>
+            <h1 className="font-display mt-1.5 text-3xl uppercase">
+              {liga.naziv}
+            </h1>
+          </div>
 
           {sveSezone.length > 0 && (
             <div className="flex gap-1">
@@ -121,8 +151,9 @@ export default async function StranicaLige({
           )}
         </div>
 
-        <p className="mb-6 font-mono text-xs" style={{ color: "var(--ink-muted)" }}>
-          {sveUtakmice.length} utakmica ukupno · sezona {odabranaSezona}
+        <p className="mb-8 font-mono text-xs" style={{ color: "var(--ink-muted)" }}>
+          <Brojka vrijednost={ukupnoUtakmica} /> utakmica ukupno · sezona{" "}
+          {odabranaSezona}
         </p>
 
         {/* Dva stupca: sadržaj lige lijevo, sidebar (tablica/strijelci/kartoni)
@@ -136,7 +167,8 @@ export default async function StranicaLige({
               </p>
             ) : (
               <>
-                <div className="mb-8 flex flex-wrap gap-1.5 pb-6" style={{ borderBottom: "1px solid var(--line)" }}>
+                <p className="oznaka-sekcije mb-3">Kola</p>
+                <div className="mb-10 flex flex-wrap gap-1.5 pb-6" style={{ borderBottom: "1px solid var(--line)" }}>
                   {svaKola.map((k) => {
                     const aktivno = k === odabranoKolo;
                     return (
@@ -161,12 +193,17 @@ export default async function StranicaLige({
                     Nema podataka za odabrano kolo.
                   </p>
                 ) : (
-                  <div className="space-y-4">
-                    <h2 className="font-display text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--ink-muted)" }}>
-                      {odabranoKolo}. kolo
-                    </h2>
+                  <div className="space-y-3">
+                    <Otkrivanje>
+                      <div className="pb-1">
+                        <p className="oznaka-sekcije">Rezultati</p>
+                        <h2 className="font-display mt-1.5 text-2xl uppercase">
+                          {odabranoKolo}. kolo
+                        </h2>
+                      </div>
+                    </Otkrivanje>
 
-                    {utakmiceKola.map((u) => {
+                    {utakmiceKola.map((u, idx) => {
                       const imaDetalje =
                         (u.strijelci && u.strijelci.length > 0) ||
                         (u.postava_domacin && u.postava_domacin.length > 0) ||
@@ -175,8 +212,8 @@ export default async function StranicaLige({
                       const { domacin, gost, nepoznato } = razdvojiStrijelceePoKlubu(u);
 
                       return (
+                        <Otkrivanje key={u.id} kasnjenje={Math.min(idx, 6) * 45}>
                         <article
-                          key={u.id}
                           className="bg-white p-5"
                           style={{
                             border: u.derbi
@@ -279,6 +316,7 @@ export default async function StranicaLige({
                             </div>
                           )}
                         </article>
+                        </Otkrivanje>
                       );
                     })}
                   </div>
@@ -289,8 +327,11 @@ export default async function StranicaLige({
 
           <aside className="w-full shrink-0 lg:w-80">
             <div className="space-y-4 lg:sticky lg:top-6">
-              <SidebarLiga natjecanje={liga.naziv} sezona={odabranaSezona} />
+              <Otkrivanje>
+                <SidebarLiga statistike={statistike} />
+              </Otkrivanje>
               {clanciLige.length > 0 && (
+                <Otkrivanje kasnjenje={80}>
                 <section style={{ background: "var(--paper)", border: "1px solid var(--line)" }}>
                   <div className="flex items-baseline justify-between gap-2 px-3 py-2" style={{ background: "var(--pitch)", color: "var(--chalk)" }}>
                     <h3 className="font-display text-sm uppercase tracking-wide">Novosti lige</h3>
@@ -302,6 +343,7 @@ export default async function StranicaLige({
                     ))}
                   </div>
                 </section>
+                </Otkrivanje>
               )}
             </div>
           </aside>

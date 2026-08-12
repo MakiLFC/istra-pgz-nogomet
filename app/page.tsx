@@ -6,13 +6,20 @@ import { IkonaTeren } from "@/components/Ikone";
 import PregledKola from "@/components/PregledKola";
 import KarticaClanka from "@/components/KarticaClanka";
 import { dohvatiClanke } from "@/lib/clanci";
+import Otkrivanje from "@/components/Otkrivanje";
+import Hero from "@/components/Hero";
+import { zadnjeKolo, golovi } from "@/lib/kolo";
 
-export const revalidate = 0;
+export const revalidate = 300;
 
 async function dohvatiUtakmice(): Promise<Utakmica[]> {
+  // Samo stupci koje naslovnica stvarno prikazuje. Prije se dohvaćalo
+  // select("*"), što je povlačilo i postave svih utakmica (~4 MB).
   const { data, error } = await supabase
     .from("utakmice")
-    .select("*")
+    .select(
+      "id, natjecanje, sezona, kolo, domacin, gost, rezultat, gledatelja, derbi, tekst_clanka"
+    )
     .order("created_at", { ascending: false });
 
   if (error) {
@@ -32,16 +39,53 @@ function grupirajPoNatjecanju(utakmice: Utakmica[]) {
 }
 
 export default async function Home() {
-  const utakmice = await dohvatiUtakmice();
-  const clanci = await dohvatiClanke({ koliko: 3 });
-  const grupe = grupirajPoNatjecanju(utakmice);
+  const [utakmice, clanci] = await Promise.all([
+    dohvatiUtakmice(),
+    dohvatiClanke({ koliko: 3 }),
+  ]);
+  // Naslovnica uvijek prikazuje NAJNOVIJU sezonu. Stare ostaju u bazi,
+  // ali se ne miješaju s tekućom (inače bi se brojke zbrajale kroz godine).
+  const sezone = utakmice
+    .map((u) => u.sezona)
+    .filter((s): s is string => Boolean(s));
+  const tekucaSezona = sezone.length ? sezone.sort().reverse()[0] : null;
+
+  const utakmiceSezone = tekucaSezona
+    ? utakmice.filter((u) => u.sezona === tekucaSezona)
+    : utakmice;
+
+  const grupe = grupirajPoNatjecanju(utakmiceSezone);
+
+  // Brojke za uvodnu traku. Utakmice i golovi broje se SAMO za odigrane
+  // susrete, pa brojka raste iz kola u kolo umjesto da od prvog dana
+  // stoji na punom rasporedu.
+  const odigrane = utakmiceSezone.filter((u) => golovi(u.rezultat));
+  const ukupnoGolova = odigrane.reduce((zbroj, u) => {
+    const g = golovi(u.rezultat)!;
+    return zbroj + g[0] + g[1];
+  }, 0);
+
+  // Klubovi se broje iz cijelog rasporeda - poznati su i prije prvog kola.
+  const klubovi = new Set<string>();
+  for (const u of utakmiceSezone) {
+    if (u.domacin) klubovi.add(u.domacin);
+    if (u.gost) klubovi.add(u.gost);
+  }
 
   return (
     <div className="min-h-screen" style={{ background: "var(--chalk)" }}>
       <Navigacija />
 
-      <main className="mx-auto max-w-6xl px-6 py-10">
-        {utakmice.length === 0 && (
+      <Hero
+        brojLiga={LIGE.length}
+        brojKlubova={klubovi.size}
+        brojUtakmica={odigrane.length}
+        brojGolova={ukupnoGolova}
+        sezona={tekucaSezona}
+      />
+
+      <main className="mx-auto max-w-6xl px-6 py-14">
+        {utakmiceSezone.length === 0 && (
           <p className="font-sans text-sm" style={{ color: "var(--ink-muted)" }}>
             Trenutno nema učitanih utakmica. Pokreni scraper da napuniš bazu podataka.
           </p>
@@ -64,7 +108,7 @@ export default async function Home() {
                 </div>
               </section>
             )}
-            <PregledKola utakmice={utakmice} />
+            <PregledKola utakmice={utakmiceSezone} />
           </aside>
 
           <div className="min-w-0 flex-1">
@@ -74,6 +118,7 @@ export default async function Home() {
 
           // Derbi lige (ako je označen) uvijek ulazi u prikaz, i to na prvo
           // mjesto - ostatak popunjavamo najnovijim utakmicama do ukupno 6.
+          const kolo = zadnjeKolo(utakmiceSezone, liga.naziv);
           const derbi = utakmiceLige.find((u) => u.derbi) ?? null;
           const ostale = derbi
             ? utakmiceLige.filter((u) => u.id !== derbi.id)
@@ -83,25 +128,32 @@ export default async function Home() {
             : ostale.slice(0, 6);
 
           return (
-            <section key={liga.slug} className="mb-10">
-              <div
-                className="mb-3 flex items-baseline justify-between pb-2"
-                style={{ borderBottom: "3px solid var(--pitch)" }}
-              >
-                <h2 className="font-display text-lg font-semibold uppercase tracking-wide">
-                  {liga.naziv}
-                </h2>
-                <Link
-                  href={`/liga/${liga.slug}`}
-                  className="font-sans text-xs font-medium hover:underline"
-                  style={{ color: "var(--pitch)" }}
+            <section key={liga.slug} className="mb-16">
+              <Otkrivanje>
+                <div
+                  className="mb-5 flex flex-wrap items-end justify-between gap-x-6 gap-y-2 pb-3"
+                  style={{ borderBottom: "1px solid var(--line)" }}
                 >
-                  Svi rezultati i kola →
-                </Link>
-              </div>
+                  <div>
+                    <p className="oznaka-sekcije">
+                      Rezultati{kolo ? ` · ${kolo}. kolo` : ""}
+                    </p>
+                    <h2 className="font-display mt-1.5 text-2xl uppercase">
+                      {liga.naziv}
+                    </h2>
+                  </div>
+                  <Link
+                    href={`/liga/${liga.slug}`}
+                    className="font-sans text-sm font-medium hover:opacity-70"
+                    style={{ color: "var(--pitch)" }}
+                  >
+                    Svi rezultati i kola →
+                  </Link>
+                </div>
+              </Otkrivanje>
 
-              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-                {najnovije.map((u) => {
+              <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                {najnovije.map((u, idx) => {
                   const sadrzaj = (
                     <>
                       <IkonaTeren />
@@ -124,22 +176,24 @@ export default async function Home() {
                   // Derbi kartica je klikabilna - vodi na kolo te utakmice
                   // na stranici lige, gdje čeka sažetak.
                   return u.derbi ? (
+                    <Otkrivanje key={u.id} kasnjenje={idx * 45}>
                     <Link
-                      key={u.id}
                       href={`/liga/${liga.slug}${u.kolo ? `?kolo=${u.kolo}` : ""}`}
                       className="flex items-center gap-3 bg-white px-4 py-3 transition-opacity hover:opacity-80"
                       style={{ border: "2px solid var(--card-yellow)" }}
                     >
                       {sadrzaj}
                     </Link>
+                    </Otkrivanje>
                   ) : (
+                    <Otkrivanje key={u.id} kasnjenje={idx * 45}>
                     <div
-                      key={u.id}
                       className="flex items-center gap-3 bg-white px-4 py-3"
                       style={{ border: "1px solid var(--line)" }}
                     >
                       {sadrzaj}
                     </div>
+                    </Otkrivanje>
                   );
                 })}
               </div>

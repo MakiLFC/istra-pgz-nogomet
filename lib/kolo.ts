@@ -11,8 +11,6 @@ export type UtakmicaMin = {
   gledatelja?: string | null;
   derbi?: boolean | null;
   tekst_clanka?: string | null;
-  postava_domacin?: { dogadjaji?: { tip: string }[] }[] | null;
-  postava_gost?: { dogadjaji?: { tip: string }[] }[] | null;
 };
 
 /** "3:4" -> [3,4]; "?:?" i sve neispravno -> null */
@@ -46,20 +44,10 @@ export function utakmiceKola(
   return utakmice.filter((u) => u.natjecanje === liga && u.kolo === kolo);
 }
 
-function crveniUUtakmici(u: UtakmicaMin): number {
-  const svi = [...(u.postava_domacin ?? []), ...(u.postava_gost ?? [])];
-  let n = 0;
-  for (const igrac of svi)
-    for (const d of igrac.dogadjaji ?? [])
-      if (d.tip === "karton_crveni" || d.tip === "karton_zutocrveni") n++;
-  return n;
-}
-
 export type SazetakKola = {
   kolo: number;
   brojUtakmica: number;
   ukupnoGolova: number;
-  crveni: number;
   najviseGolova: { u: UtakmicaMin; zbroj: number } | null;
   najuvjerljivija: { u: UtakmicaMin; razlika: number } | null;
 };
@@ -73,7 +61,7 @@ export function sazetakKola(
   const lista = utakmiceKola(utakmice, liga, kolo).filter((u) => golovi(u.rezultat));
   if (!lista.length) return null;
 
-  let ukupno = 0, crveni = 0;
+  let ukupno = 0;
   let najvise: { u: UtakmicaMin; zbroj: number } | null = null;
   let najuvj: { u: UtakmicaMin; razlika: number } | null = null;
 
@@ -82,7 +70,6 @@ export function sazetakKola(
     const zbroj = g[0] + g[1];
     const razlika = Math.abs(g[0] - g[1]);
     ukupno += zbroj;
-    crveni += crveniUUtakmici(u);
     if (!najvise || zbroj > najvise.zbroj) najvise = { u, zbroj };
     if (razlika > 0 && (!najuvj || razlika > najuvj.razlika)) najuvj = { u, razlika };
   }
@@ -91,7 +78,6 @@ export function sazetakKola(
     kolo,
     brojUtakmica: lista.length,
     ukupnoGolova: ukupno,
-    crveni,
     najviseGolova: najvise,
     najuvjerljivija: najuvj,
   };

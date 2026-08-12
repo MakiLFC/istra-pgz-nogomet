@@ -12,8 +12,8 @@
   --pitch: #0d3b40;        /* duboka lučka petrolej-tirkizna (glavna) */
   --pitch-dark: #07272b;   /* još tamnija, za trake i naglaske */
   --pitch-light: #2f9e8f;  /* svijetla tirkizna - "pozitivno" (ulazak igrača) */
-  --chalk: #e9eae5;        /* kamena podloga (ne kremasta) */
-  --paper: #e7eee7;        /* kartice - bijelo-zelena, tamnija od podloge */
+  --chalk: #dde2db;        /* dublja kamena podloga - da kartice "plutaju" iznad nje */
+  --paper: #f7faf6;        /* kartice - gotovo bijele, jasno odvojene od podloge */
   --oxide: #b5502a;        /* HRĐA - jedini topli naglasak, koristi se štedljivo */
   --oxide-light: #e08a55;  /* svjetlija hrđa - za tamne podloge (zaglavlje) */
   --card-yellow: #e0aa1f;
@@ -21,15 +21,16 @@
   --arena-blue: #1a4f66;
   --ink: #10171a;
   --ink-muted: #5d686d;
-  --line: #c8cec9;
+  --line: #bcc4bb;   /* vidljiviji obrub */
 }
 
 @theme inline {
   --color-background: var(--chalk);
   --color-foreground: var(--ink);
-  --font-display: "Archivo Black", "Arial Black", Impact, sans-serif;
-  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
-  --font-mono: "JetBrains Mono", "Courier New", monospace;
+  /* varijable dolaze iz next/font u app/layout.tsx */
+  --font-display: var(--f-display), "Arial Black", sans-serif;
+  --font-sans: var(--f-sans), "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--f-mono), "Courier New", monospace;
 }
 
 body {
@@ -76,11 +77,34 @@ body {
     0 1px 2px rgba(13, 59, 64, 0.09);
 }
 
-/* Naslovi: teški grotesk, stisnut razmak slova - dojam natpisa na hangaru */
+/* Naslovi: Archivo u punoj težini, ali s optički stisnutim razmakom.
+   Veliki naslovi dobivaju jače stiskanje - tako izgledaju namjerno
+   postavljeni, a ne samo "podebljani". */
 .font-display {
   font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.018em;
+  line-height: 1.05;
+}
+
+.font-display.text-2xl,
+.font-display.text-3xl {
+  letter-spacing: -0.032em;
+}
+
+/* Mirniji tekst: nešto veći redak i topliji razmak nego zadani */
+body {
+  line-height: 1.55;
+}
+
+/* Akcentna riječ u naslovu: serifni kurziv. Jedan takav naglasak po
+   naslovu daje uredski, "skup" dojam - više od toga postaje kič. */
+.naglasak {
+  font-family: var(--f-akcent), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
   letter-spacing: -0.01em;
-  font-weight: 400; /* Archivo Black ionako ima samo jednu (tešku) težinu */
+  text-transform: none;
 }
 
 .font-mono {
@@ -280,6 +304,74 @@ body {
   }
 }
 
+
+/* =====================================================================
+   OTKRIVANJE PRI SKROLANJU
+   Sadržaj se blago podigne i pojavi kad uđe u vidno polje.
+   ===================================================================== */
+.otkrij {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.otkrij-vidljivo {
+  opacity: 1;
+  transform: none;
+}
+
+/* =====================================================================
+   NADNASLOV SEKCIJE
+   Sitna oznaka iznad krupnog naslova - jak kontrast veličina.
+   ===================================================================== */
+.oznaka-sekcije {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.oznaka-sekcije::before {
+  content: "";
+  width: 1.4rem;
+  height: 2px;
+  background: var(--oxide);
+  flex-shrink: 0;
+}
+
+/* Mekši prijelazi na svemu što se može kliknuti */
+a,
+button {
+  transition:
+    opacity 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Kartice se pri prelasku mišem jedva primjetno podignu */
+.bg-white {
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+@media (hover: hover) {
+  a.bg-white:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.75),
+      0 6px 16px rgba(13, 59, 64, 0.13);
+  }
+}
+
 /* =====================================================================
    Detalji kvalitete
    ===================================================================== */
@@ -298,6 +390,11 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .otkrij {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
   *,
   *::before,
   *::after {
