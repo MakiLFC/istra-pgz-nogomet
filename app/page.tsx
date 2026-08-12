@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { supabase, Utakmica } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase";
 import { LIGE } from "@/lib/lige";
 import Navigacija from "@/components/Navigacija";
 import { IkonaTeren } from "@/components/Ikone";
@@ -12,7 +12,22 @@ import { zadnjeKolo, golovi } from "@/lib/kolo";
 
 export const revalidate = 300;
 
-async function dohvatiUtakmice(): Promise<Utakmica[]> {
+// Naslovnica dohvaća samo stupce koje prikazuje, pa ima i svoj uži tip.
+// (Puni tip Utakmica uključuje i postave, koje ovdje namjerno ne vučemo.)
+type UtakmicaNaslovnica = {
+  id: number;
+  natjecanje: string;
+  sezona: string | null;
+  kolo: number | null;
+  domacin: string;
+  gost: string;
+  rezultat: string | null;
+  gledatelja: string | null;
+  derbi: boolean | null;
+  tekst_clanka: string | null;
+};
+
+async function dohvatiUtakmice(): Promise<UtakmicaNaslovnica[]> {
   // Samo stupci koje naslovnica stvarno prikazuje. Prije se dohvaćalo
   // select("*"), što je povlačilo i postave svih utakmica (~4 MB).
   const { data, error } = await supabase
@@ -26,11 +41,11 @@ async function dohvatiUtakmice(): Promise<Utakmica[]> {
     console.error("Greška kod dohvaćanja utakmica:", error);
     return [];
   }
-  return data ?? [];
+  return (data ?? []) as UtakmicaNaslovnica[];
 }
 
-function grupirajPoNatjecanju(utakmice: Utakmica[]) {
-  const grupe: Record<string, Utakmica[]> = {};
+function grupirajPoNatjecanju(utakmice: UtakmicaNaslovnica[]) {
+  const grupe: Record<string, UtakmicaNaslovnica[]> = {};
   for (const u of utakmice) {
     if (!grupe[u.natjecanje]) grupe[u.natjecanje] = [];
     grupe[u.natjecanje].push(u);
