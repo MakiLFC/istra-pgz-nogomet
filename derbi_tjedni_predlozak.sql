@@ -10,7 +10,8 @@
 --      imena klubova ne odgovaraju bazi (provjeri točan zapis, npr.
 --      "NK Lokomotiva (R)" ima razmak i zagrade)
 --
--- Sezonu promijeni na jednom mjestu dolje kad krene 2026/27.
+-- Sezona je postavljena na 2026/27. Kad krene 2027/28, zamijeni sve
+-- pojave '2026/27' (u Notepadu: Ctrl+H, Zamijeni sve).
 -- Ne moraš koristiti sve četiri lige svaki tjedan - samo one koje želiš.
 -- =====================================================================
 
@@ -19,13 +20,13 @@
 -- KORAK 1: ugasi prošlotjedni derbi ove lige
 update public.utakmice
 set derbi = false
-where derbi = true and natjecanje = '3. NL Zapad' and sezona = '2025/26';
+where derbi = true and natjecanje = '3. NL Zapad' and sezona = '2026/27';
 
 -- KORAK 2: označi novi derbi + upiši sažetak
 update public.utakmice
 set derbi = true,
     tekst_clanka = 'OVDJE UPIŠI SVOJ SAŽETAK UTAKMICE.'
-where natjecanje = '3. NL Zapad' and sezona = '2025/26'
+where natjecanje = '3. NL Zapad' and sezona = '2026/27'
   and domacin = 'IME DOMAĆINA'
   and gost = 'IME GOSTA'
   and kolo = 0;   -- <- upiši broj kola (sigurnosna mreža ako su klubovi
@@ -33,28 +34,30 @@ where natjecanje = '3. NL Zapad' and sezona = '2025/26'
 
 
 -- ================== 1. ŽNL PGŽ ==================
+-- (liga još nije objavljena za 26/27 - preskoči dok se ne pojavi)
 update public.utakmice
 set derbi = false
-where derbi = true and natjecanje = '1. ŽNL PGŽ' and sezona = '2025/26';
+where derbi = true and natjecanje = '1. ŽNL PGŽ' and sezona = '2026/27';
 
 update public.utakmice
 set derbi = true,
     tekst_clanka = 'OVDJE UPIŠI SVOJ SAŽETAK UTAKMICE.'
-where natjecanje = '1. ŽNL PGŽ' and sezona = '2025/26'
+where natjecanje = '1. ŽNL PGŽ' and sezona = '2026/27'
   and domacin = 'IME DOMAĆINA'
   and gost = 'IME GOSTA'
   and kolo = 0;
 
 
 -- ================== 2. ŽNL PGŽ ==================
+-- (liga još nije objavljena za 26/27 - preskoči dok se ne pojavi)
 update public.utakmice
 set derbi = false
-where derbi = true and natjecanje = '2. ŽNL PGŽ' and sezona = '2025/26';
+where derbi = true and natjecanje = '2. ŽNL PGŽ' and sezona = '2026/27';
 
 update public.utakmice
 set derbi = true,
     tekst_clanka = 'OVDJE UPIŠI SVOJ SAŽETAK UTAKMICE.'
-where natjecanje = '2. ŽNL PGŽ' and sezona = '2025/26'
+where natjecanje = '2. ŽNL PGŽ' and sezona = '2026/27'
   and domacin = 'IME DOMAĆINA'
   and gost = 'IME GOSTA'
   and kolo = 0;
@@ -63,12 +66,12 @@ where natjecanje = '2. ŽNL PGŽ' and sezona = '2025/26'
 -- ================== 4. NL NS RIJEKA ==================
 update public.utakmice
 set derbi = false
-where derbi = true and natjecanje = '4. NL NS Rijeka' and sezona = '2025/26';
+where derbi = true and natjecanje = '4. NL NS Rijeka' and sezona = '2026/27';
 
 update public.utakmice
 set derbi = true,
     tekst_clanka = 'OVDJE UPIŠI SVOJ SAŽETAK UTAKMICE.'
-where natjecanje = '4. NL NS Rijeka' and sezona = '2025/26'
+where natjecanje = '4. NL NS Rijeka' and sezona = '2026/27'
   and domacin = 'IME DOMAĆINA'
   and gost = 'IME GOSTA'
   and kolo = 0;
