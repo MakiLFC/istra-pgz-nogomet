@@ -57,13 +57,17 @@ lib/
 scraper_supabase.py     glavni scraper
 natjecanja.json         referenca ID-jeva natjecanja po sezonama
 derbi_tjedni_predlozak.sql  SQL predložak za tjedno označavanje derbija
+raspored_migracija.sql  jednokratna migracija (već pokrenuta 08/2026)
 ```
 
 ## Tablice u Supabaseu
 
-- **`utakmice`** — jedan redak po utakmici. Ključ za upsert: `hns_url`.
+- **`utakmice`** — jedan redak po utakmici, odigranoj i neodigranoj.
+  Ključ za upsert: (`natjecanje`, `sezona`, `kolo`, `domacin`, `gost`).
   Polja koja scraper NE dira: `derbi`, `tekst_clanka`, `slika_url`
   (to su korisnikovi unosi i moraju preživjeti svako osvježavanje).
+  `datum` / `vrijeme` / `stadion` dolaze s retka rasporeda i postoje i
+  prije odigravanja; `stadion_datum` se puni tek iz zapisnika.
 - **`statistike`** — tablica/strijelci/kartoni po ligi i sezoni (`jsonb`).
   Jedinstveno po (`sezona`, `natjecanje`, `tip`).
 - **`clanci`** — novosti. Vidljivi su samo oni s `objavljen = true` (RLS).
@@ -92,7 +96,22 @@ stati na naslovu "Ljestvica" / "Statistika" / "Klubovi u natjecanju", inače
 nastaju duplikati s krivim kolom.
 
 **Neodigrane utakmice nemaju poveznicu na zapisnik** — na mjestu rezultata
-stoji samo `- : -`. Raspord se zato čita s retka na stranici lige.
+stoji samo `- : -`. Raspored se zato čita s retka na stranici lige.
+
+**Utakmica se prepoznaje po ligi + sezoni + kolu + klubovima, ne po
+`hns_url`.** Neodigrane utakmice nemaju adresu zapisnika, pa bi upsert po
+`hns_url` napravio duplikat čim utakmica dobije zapisnik. Zato se domaćin
+i gost UVIJEK uzimaju s retka rasporeda, i onda kad zapisnik postoji —
+naziv kluba u naslovu zapisnika zna se sitno razlikovati, a to bi razbilo
+ključ i redak bi se udvostručio umjesto nadopunio.
+
+**Poruka "predana bez borbe" smije se prikazati samo kad utakmica IMA
+rezultat, a nema zapisnik.** Prije se prikazivala za sve bez detalja, pa bi
+je od uvođenja rasporeda dobila svaka buduća utakmica.
+
+**Na stranici lige zadano kolo je zadnje ODIGRANO, ne zadnje u nizu.**
+Otkad raspored ide do kraja polusezone, "zadnje kolo" je ono iz studenoga
+i stranica bi se otvarala prazna.
 
 **Performanse dolaze od sužavanja upita, ne od keširanja.**
 Naslovnica je nekad dohvaćala `select("*")` bez limita (~4,4 MB po otvaranju,
@@ -151,15 +170,18 @@ Prijelaz na novu sezonu:
 Stara sezona ostaje u bazi. Naslovnica sama prepoznaje najnoviju sezonu i
 broji samo odigrane utakmice, a stranica lige nudi birač sezona.
 
-**Stanje 12.08.2026.:** 3. NL Zapad (`114647051`) i 4. NL NS Rijeka
-(`114651788`) objavljene za 26/27. Županijske (1. i 2. ŽNL PGŽ) još nisu —
-NS PGŽ ih unosi kasnije. U scraperu stoje zakomentirane.
+**Stanje 13.08.2026.:** 3. NL Zapad (`114647051`, 15 kola) i 4. NL NS Rijeka
+(`114651788`, 13 kola) objavljene za 26/27 i cijeli raspored je u bazi —
+211 utakmica, prvo kolo 29.08.2026. Županijske (1. i 2. ŽNL PGŽ) još nisu
+objavljene; NS PGŽ ih unosi kasnije, u scraperu stoje zakomentirane.
+
+Kad se pojave, uz korake gore pokreni scraper — migracija baze
+(`raspored_migracija.sql`) vrijedi za cijelu tablicu i ne ponavlja se.
 
 ---
 
 ## U planu
 
-- Dohvat rasporeda neodigranih utakmica i prikaz po kolima za novu sezonu
 - Trofej Terzić-Strukan (ljestvica strijelaca svih liga) — čeka dopuštenje
   osobe koja je vodi
 - Proširenje na druge lokalne sportove
