@@ -94,25 +94,39 @@ def odredi_tip_dogadjaja(klase, title):
 # promijeni ovu vrijednost PRIJE pokretanja scrapera. Stari podaci ostaju
 # u bazi pod starom sezonom - ništa se ne briše, samo dodaje novi sloj
 # podataka koji se na stranici odabire preko selektora sezone.
-SEZONA = "2025/26"
+SEZONA = "2026/27"
 
 NATJECANJA = [
     {
-        "naziv": "2. ŽNL PGŽ",
-        "url": "https://semafor.hns.family/natjecanja/101556988/druga-znl-seniori-2526/",
-    },
-    {
-        "naziv": "1. ŽNL PGŽ",
-        "url": "https://semafor.hns.family/natjecanja/101555188/1-znl-seniori-2526/",
-    },
-    {
         "naziv": "3. NL Zapad",
-        "url": "https://semafor.hns.family/natjecanja/100585203/treca-nl-zapad-2526/",
+        "url": "https://semafor.hns.family/natjecanja/114647051/treca-nl-zapad-2627/",
     },
     {
         "naziv": "4. NL NS Rijeka",
-        "url": "https://semafor.hns.family/natjecanja/100796651/4-nl-ns-rijeka-2526/",
+        "url": "https://semafor.hns.family/natjecanja/114651788/4-nl-ns-rijeka-2627/",
     },
+
+    # ------------------------------------------------------------------
+    # ŽUPANIJSKE LIGE ZA 2026/27 - JOŠ NISU OBJAVLJENE (stanje: kolovoz 2026)
+    #
+    # NS PGŽ ih obično unese kasnije od regionalnih liga. Kad se pojave:
+    #   1. semafor.hns.family -> Sezona: 2026/27 -> Razina: ŽNS primorsko-goranski
+    #   2. odaberi ligu, klikni Traži, kopiraj adresu (mora sadržavati -2627)
+    #   3. odkomentiraj blokove ispod i zalijepi adrese
+    #
+    # OPREZ: nazivi "1. ŽNL" i "2. ŽNL" koriste se u SVIM županijama.
+    # Prije upisa provjeri da su na stranici NAŠI klubovi (Risnjak, Goranka,
+    # Mrkopalj, Rječina, Stari grad Rijeka...). Jednom je po nazivu greškom
+    # upisana bjelovarsko-bilogorska liga.
+    # ------------------------------------------------------------------
+    # {
+    #     "naziv": "1. ŽNL PGŽ",
+    #     "url": "OVDJE ZALIJEPI ADRESU ZA 26/27",
+    # },
+    # {
+    #     "naziv": "2. ŽNL PGŽ",
+    #     "url": "OVDJE ZALIJEPI ADRESU ZA 26/27",
+    # },
 ]
 
 
