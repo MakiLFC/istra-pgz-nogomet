@@ -36,6 +36,11 @@ export type Utakmica = {
   gost: string;
   rezultat: string | null;
   stadion_datum: string | null;
+  // Sirovi podaci s retka rasporeda - popunjeni i za utakmice koje se tek
+  // trebaju odigrati (dok stadion_datum ostaje prazan sve do zapisnika).
+  datum: string | null;
+  vrijeme: string | null;
+  stadion: string | null;
   gledatelja: string | null;
   suci: string | null;
   strijelci: { igrac: string; minuta: string }[] | null;

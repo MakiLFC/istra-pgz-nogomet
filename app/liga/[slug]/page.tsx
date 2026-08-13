@@ -11,6 +11,7 @@ import { dohvatiClanke } from "@/lib/clanci";
 import Otkrivanje from "@/components/Otkrivanje";
 import Brojka from "@/components/Brojka";
 import { IkonaLopta, IkonaTeren } from "@/components/Ikone";
+import { golovi } from "@/lib/kolo";
 
 // Podaci se osvježavaju tri puta tjedno, pa je kratko keširanje sigurno
 // i čini kretanje po stranici trenutnim.
@@ -48,16 +49,21 @@ async function dohvatiSezone(nazivLige: string): Promise<string[]> {
   return jedinstvene.sort().reverse();
 }
 
-/** Jeftin upit: samo brojevi kola (bez postava) - za popis kola i ukupan broj. */
-async function dohvatiKola(nazivLige: string, sezona: string): Promise<number[]> {
+/** Jeftin upit: samo brojevi kola i rezultat (bez postava) - za popis kola,
+ * ukupan broj i odabir zadnjeg ODIGRANOG kola (raspored sadrži i buduće
+ * utakmice bez rezultata, koje ne smiju postati zadano kolo). */
+async function dohvatiKola(
+  nazivLige: string,
+  sezona: string
+): Promise<{ kolo: number; rezultat: string | null }[]> {
   const { data, error } = await supabase
     .from("utakmice")
-    .select("kolo")
+    .select("kolo, rezultat")
     .eq("natjecanje", nazivLige)
     .eq("sezona", sezona);
 
   if (error || !data) return [];
-  return data.map((d) => d.kolo).filter((k): k is number => k !== null);
+  return data.filter((d): d is { kolo: number; rezultat: string | null } => d.kolo !== null);
 }
 
 /** Pune podatke (uključujući postave) dohvaćamo SAMO za prikazano kolo. */
@@ -97,10 +103,17 @@ export default async function StranicaLige({
   const odabranaSezona = sezonaIzUrl ?? sveSezone[0] ?? "2025/26";
 
   const svaKolaSve = await dohvatiKola(liga.naziv, odabranaSezona);
-  const svaKola = Array.from(new Set(svaKolaSve)).sort((a, b) => a - b);
+  const svaKola = Array.from(new Set(svaKolaSve.map((d) => d.kolo))).sort((a, b) => a - b);
   const ukupnoUtakmica = svaKolaSve.length;
 
-  const odabranoKolo = koloIzUrl ? parseInt(koloIzUrl, 10) : svaKola[svaKola.length - 1];
+  // Zadano kolo je zadnje ODIGRANO (raspored uključuje i buduće utakmice
+  // bez rezultata, koje ne smiju postati zadani prikaz). Ako sezona još
+  // nije počela, pokaži prvo kolo (najavu).
+  const odigranaKola = svaKolaSve.filter((d) => golovi(d.rezultat)).map((d) => d.kolo);
+  const zadnjeOdigranoKolo = odigranaKola.length ? Math.max(...odigranaKola) : null;
+  const odabranoKolo = koloIzUrl
+    ? parseInt(koloIzUrl, 10)
+    : zadnjeOdigranoKolo ?? svaKola[0];
 
   // Sve što stranica treba dohvaćamo USPOREDNO, a pune podatke samo za
   // prikazano kolo - ne za cijelu sezonu.
@@ -241,14 +254,25 @@ export default async function StranicaLige({
                           </div>
 
                           <div className="mt-3 grid grid-cols-1 gap-y-1 font-sans text-sm sm:grid-cols-2" style={{ color: "var(--ink-muted)" }}>
-                            {u.stadion_datum && <p>{u.stadion_datum}</p>}
+                            {u.stadion_datum ? (
+                              <p>{u.stadion_datum}</p>
+                            ) : (
+                              (u.datum || u.stadion) && (
+                                <p>
+                                  {u.stadion}
+                                  {u.stadion && (u.datum || u.vrijeme) ? ", " : ""}
+                                  {u.datum}
+                                  {u.vrijeme ? ` u ${u.vrijeme}` : ""}
+                                </p>
+                              )
+                            )}
                             {u.gledatelja && u.gledatelja !== "Nepoznato" && (
                               <p>Gledatelja: {u.gledatelja}</p>
                             )}
                             {u.suci && u.suci !== "Nepoznato" && <p>Suci: {u.suci}</p>}
                           </div>
 
-                          {!imaDetalje && (
+                          {!imaDetalje && u.rezultat && (
                             <p className="mt-3 font-sans text-sm italic" style={{ color: "var(--ink-muted)" }}>
                               Utakmica predana bez borbe — zapisnik nije dostupan.
                             </p>
