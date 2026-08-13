@@ -135,12 +135,19 @@ export default async function Home() {
           // mjesto - ostatak popunjavamo najnovijim utakmicama do ukupno 6.
           const kolo = zadnjeKolo(utakmiceSezone, liga.naziv);
           const derbi = utakmiceLige.find((u) => u.derbi) ?? null;
+          // "Rezultati" prikazuje samo ODIGRANE utakmice - raspored sad sadrži
+          // i buduće (bez rezultata), koje bi inače ovdje istisnule prave
+          // rezultate jer su najnovije upisane u bazu (created_at).
+          const odigraneLige = utakmiceLige.filter((u) => golovi(u.rezultat));
           const ostale = derbi
-            ? utakmiceLige.filter((u) => u.id !== derbi.id)
-            : utakmiceLige;
+            ? odigraneLige.filter((u) => u.id !== derbi.id)
+            : odigraneLige;
           const najnovije = derbi
             ? [derbi, ...ostale.slice(0, 5)]
             : ostale.slice(0, 6);
+          // Prije početka sezone raspored postoji, ali nijedna utakmica
+          // još nije odigrana (ni derbi označen) - ništa za prikazati ovdje.
+          if (najnovije.length === 0) return null;
 
           return (
             <section key={liga.slug} className="mb-16">

@@ -130,13 +130,25 @@ NATJECANJA = [
 ]
 
 
+RE_KOLO = re.compile(r"^(\d+)\.\s*kolo$")
+RE_DATUM = re.compile(r"(\d{2}\.\d{2}\.\d{4}\.)\s*(\d{1,2}:\d{2})?")
+
+
 def dohvati_popis_utakmica(natjecanje_url):
     """
-    Otvara stranicu natjecanja i vraća listu (link, kolo) parova.
-    Kolo se prati tako što HNS stranica prikazuje naslov "X. kolo" kao
-    poseban element PRIJE utakmica koje mu pripadaju - mi idemo kroz
-    dokument redom i pamtimo "trenutno kolo" sve dok se ne pojavi sljedeći
-    "X. kolo" naslov.
+    Otvara stranicu natjecanja i vraća listu utakmica CIJELOG rasporeda -
+    odigranih i neodigranih. Kolo se prati tako što HNS stranica prikazuje
+    naslov "X. kolo" kao poseban element PRIJE utakmica koje mu pripadaju -
+    mi idemo kroz dokument redom i pamtimo "trenutno kolo" sve dok se ne
+    pojavi sljedeći "X. kolo" naslov.
+
+    Neodigrane utakmice NEMAJU poveznicu na zapisnik (na mjestu rezultata
+    stoji "- : -"), pa se za njih čitaju samo domaćin/gost/datum/vrijeme/
+    stadion s retka rasporeda - vidi CLAUDE.md.
+
+    Vraća listu rječnika: kolo, domacin, gost, datum, vrijeme, stadion,
+    hns_url (None ako zapisnik još ne postoji), rezultat (None ako se
+    utakmica još nije odigrala).
     """
     print(f"Dohvaćam: {natjecanje_url}")
     response = requests.get(natjecanje_url, headers=HEADERS, timeout=15)
@@ -155,7 +167,7 @@ def dohvati_popis_utakmica(natjecanje_url):
 
     utakmice = []
     trenutno_kolo = None
-    vidjeni_linkovi = set()
+    vidjeni_kljucevi = set()
 
     # Prolazimo kroz SVE elemente nakon "Raspored..." naslova, redom kako
     # se pojavljuju u dokumentu (find_all_next vraća ih u pravom redoslijedu)
@@ -163,20 +175,66 @@ def dohvati_popis_utakmica(natjecanje_url):
         tekst = element.get_text(strip=True)
 
         # Prepoznajemo naslov kola: kratki tekst poput "1. kolo", "12. kolo"
-        match_kolo = re.match(r"^(\d+)\.\s*kolo$", tekst)
+        match_kolo = RE_KOLO.match(tekst)
         if match_kolo:
             trenutno_kolo = int(match_kolo.group(1))
             continue
 
-        # Prepoznajemo link na utakmicu unutar ovog elementa
-        link_tag = element.find("a", href=True) if element.name != "a" else element
-        if link_tag and "href" in link_tag.attrs:
-            href = link_tag["href"]
-            if "/utakmice/" in href and href.count("/") >= 4 and href not in vidjeni_linkovi:
-                vidjeni_linkovi.add(href)
-                utakmice.append({"url": href, "kolo": trenutno_kolo})
+        klub_linkovi = element.find_all("a", href=lambda h: h and "/klubovi/" in h)
+        if len(klub_linkovi) != 2:
+            continue
+        # uzmi NAJUŽI element koji sadrži točno dva kluba (izbjegni dvostruko
+        # brojanje istog para kroz ugniježđene div/li omotače)
+        if element.find(lambda t: t.name in ("li", "div")
+                         and t is not element
+                         and len(t.find_all("a", href=lambda h: h and "/klubovi/" in h)) == 2):
+            continue
 
-    print(f"Pronađeno {len(utakmice)} jedinstvenih utakmica.")
+        domacin = klub_linkovi[0].get_text(strip=True)
+        gost = klub_linkovi[1].get_text(strip=True)
+        if not domacin or not gost or domacin == gost:
+            continue
+
+        link_utakmice = element.find("a", href=lambda h: h and "/utakmice/" in h)
+        hns_url = link_utakmice["href"] if link_utakmice else None
+        rezultat = None
+        if link_utakmice:
+            rt = link_utakmice.get_text(strip=True)
+            if re.match(r"^\d{1,2}\s*:\s*\d{1,2}$", rt):
+                rezultat = rt.replace(" ", "")
+
+        cijeli_tekst = element.get_text(" ", strip=True)
+        md = RE_DATUM.search(cijeli_tekst)
+        datum = md.group(1) if md else None
+        vrijeme = md.group(2) if md and md.group(2) else None
+
+        # stadion: zadnji tekstualni redak koji nije ime kluba/datum/rezultat
+        stadion = None
+        for dio in reversed([d.strip() for d in element.get_text("\n").split("\n") if d.strip()]):
+            if dio in (domacin, gost):
+                continue
+            if RE_DATUM.search(dio) or re.match(r"^[\d\s:-]+$", dio):
+                continue
+            if dio.startswith("http"):
+                continue
+            stadion = dio
+            break
+
+        # izbjegni duplikate (ista utakmica se zna pojaviti u više blokova
+        # na stranici, npr. i u "Klubovi u natjecanju")
+        kljuc = (trenutno_kolo, domacin, gost)
+        if kljuc in vidjeni_kljucevi:
+            continue
+        vidjeni_kljucevi.add(kljuc)
+
+        utakmice.append({
+            "kolo": trenutno_kolo, "domacin": domacin, "gost": gost,
+            "datum": datum, "vrijeme": vrijeme, "stadion": stadion,
+            "hns_url": hns_url, "rezultat": rezultat,
+        })
+
+    print(f"Pronađeno {len(utakmice)} jedinstvenih utakmica "
+          f"({sum(1 for u in utakmice if u['hns_url'])} s zapisnikom).")
     return utakmice
 
 
@@ -375,11 +433,21 @@ def dohvati_detalje_utakmice(utakmica_url):
 def spremi_u_supabase(redak):
     """
     Sprema jedan redak u tablicu 'utakmice'. Koristi upsert - ako utakmica
-    s istim hns_url već postoji, AŽURIRA postojeći redak umjesto da stvori
+    s istim ključem već postoji, AŽURIRA postojeći redak umjesto da stvori
     duplikat. Ovo je važno jer ćemo scraper pokretati VIŠE PUTA (npr. svaki
     dan) i ne želimo da se ista utakmica spremi 10 puta.
+
+    Ključ je (natjecanje, sezona, kolo, domaćin, gost), NE hns_url - jer
+    neodigrane utakmice nemaju hns_url (nema zapisnika dok se ne odigraju).
+    Kad utakmica dobije zapisnik, isti redak (prepoznat po istom ključu)
+    se samo nadopuni rezultatom, postavama i strijelcima - ne dupla se.
+    Zato se domaćin/gost UVIJEK uzimaju s retka rasporeda (vidi
+    dohvati_popis_utakmica), ne s naslova stranice zapisnika - da ključ
+    ostane isti prije i poslije odigravanja utakmice.
     """
-    supabase.table("utakmice").upsert(redak, on_conflict="hns_url").execute()
+    supabase.table("utakmice").upsert(
+        redak, on_conflict="natjecanje,sezona,kolo,domacin,gost"
+    ).execute()
 
 
 # ---------------------------------------------------------------------------
@@ -584,20 +652,40 @@ if __name__ == "__main__":
             print(f"  GREŠKA kod statistika: {greska}")
 
         for i, stavka in enumerate(utakmice_s_kolima, start=1):
-            link = stavka["url"]
-            kolo = stavka["kolo"]
             try:
-                detalji = dohvati_detalje_utakmice(link)
+                if stavka["hns_url"]:
+                    detalji = dohvati_detalje_utakmice(stavka["hns_url"])
+                    # domaćin/gost sa stranice zapisnika mogu se sitno
+                    # razlikovati od rasporeda - raspored je izvor istine
+                    # za ključ (vidi napomenu u spremi_u_supabase)
+                    detalji["domacin"] = stavka["domacin"]
+                    detalji["gost"] = stavka["gost"]
+                    poruka = f"{detalji['rezultat']}"
+                else:
+                    # neodigrana utakmica - nema zapisnika, spremamo samo
+                    # ono što piše na retku rasporeda
+                    detalji = {
+                        "hns_url": None,
+                        "domacin": stavka["domacin"],
+                        "gost": stavka["gost"],
+                        "rezultat": None,
+                    }
+                    poruka = f"{stavka['datum']} {stavka['vrijeme'] or ''}".strip()
+
                 detalji["natjecanje"] = natjecanje["naziv"]
-                detalji["kolo"] = kolo
+                detalji["kolo"] = stavka["kolo"]
                 detalji["sezona"] = SEZONA
+                detalji["datum"] = stavka["datum"]
+                detalji["vrijeme"] = stavka["vrijeme"]
+                detalji["stadion"] = stavka["stadion"]
                 spremi_u_supabase(detalji)
                 ukupno_spremljeno += 1
-                print(f"  [{i}/{ukupno}] (kolo {kolo}) {detalji['domacin']} - {detalji['gost']} ({detalji['rezultat']}): spremljeno")
+                print(f"  [{i}/{ukupno}] (kolo {stavka['kolo']}) {stavka['domacin']} - {stavka['gost']} ({poruka}): spremljeno")
             except Exception as greska:
                 ukupno_gresaka += 1
-                print(f"  [{i}/{ukupno}] GREŠKA na {link}: {greska}")
-            time.sleep(1)
+                print(f"  [{i}/{ukupno}] GREŠKA na {stavka.get('hns_url') or stavka['domacin']}: {greska}")
+            if stavka["hns_url"]:
+                time.sleep(1)
 
     print(f"\n{'=' * 60}")
     print(f"GOTOVO! Spremljeno/ažurirano {ukupno_spremljeno} utakmica. Grešaka: {ukupno_gresaka}.")
