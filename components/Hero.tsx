@@ -62,10 +62,15 @@ export default function Hero({
                 {sezona ? ` · ${sezona}` : ""}
               </p>
 
-              <h1 className="font-display mt-3 text-3xl uppercase sm:text-5xl">
-                Svaki gol.
+              {/* "gol." nosi tamnu plohu lopte, "Svaki karton." prelazi iz
+                  žute u crvenu, a "Svako kolo." ostaje serifni kurziv.
+                  Stilovi su u globals.css (naslov-hero, ploha-lopte,
+                  prijelaz-kartona) - vidi tamo za oprez oko čitljivosti. */}
+              <h1 className="naslov-hero mt-3 text-4xl sm:text-6xl">
+                Svaki <span className="ploha-lopte">gol.</span>
                 <br />
-                Svaki karton. <span className="naglasak">Svako kolo.</span>
+                <span className="prijelaz-kartona">Svaki karton.</span>{" "}
+                <span className="naglasak">Svako kolo.</span>
               </h1>
 
               <p className="mt-4 max-w-xl font-sans text-sm leading-relaxed opacity-75 sm:text-base">
