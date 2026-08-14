@@ -18,6 +18,10 @@
   --oxide-light: #e08a55;  /* svjetlija hrđa - za tamne podloge (zaglavlje) */
   --card-yellow: #e0aa1f;
   --card-red: #bb3a2c;
+  /* Crvena za TAMNE podloge. --card-red na uvodnoj traci daje kontrast
+     2,2:1 (nečitljivo); ova je na 4,0:1. Isti razlog zbog kojeg uz
+     --oxide postoji --oxide-light. */
+  --card-red-light: #ef6a5a;
   --arena-blue: #1a4f66;
   --ink: #10171a;
   --ink-muted: #5d686d;
@@ -29,6 +33,7 @@
   --color-foreground: var(--ink);
   /* varijable dolaze iz next/font u app/layout.tsx */
   --font-display: var(--f-display), "Arial Black", sans-serif;
+  --font-hero: var(--f-hero), "Impact", "Arial Narrow", sans-serif;
   --font-sans: var(--f-sans), "Helvetica Neue", Arial, sans-serif;
   --font-mono: var(--f-mono), "Courier New", monospace;
 }
@@ -95,6 +100,64 @@ body {
 /* Mirniji tekst: nešto veći redak i topliji razmak nego zadani */
 body {
   line-height: 1.55;
+}
+
+/* =====================================================================
+   NASLOV UVODNE TRAKE (samo naslovnica, components/Hero.tsx)
+   Zbijeni plakatni font + dvije obojene igre: "gol." je tamna ploha
+   lopte, "Svaki karton." prelazi iz žute u crvenu.
+   ===================================================================== */
+.naslov-hero {
+  font-family: var(--font-hero);
+  font-weight: 400;
+  letter-spacing: 0.015em;
+  line-height: 1.02;
+  text-transform: uppercase;
+}
+
+/* Playfair je optički veći od Bebasa pri istoj veličini - spuštamo ga
+   da tri rečenice djeluju kao jedna linija, a ne kao dvije veličine. */
+.naslov-hero .naglasak {
+  font-size: 0.84em;
+}
+
+/* "gol." = tamna ploha na lopti. Tamno slovo na tamnoj podlozi vidi se
+   ISKLJUČIVO zahvaljujući svijetlom rubu, pa tamnu boju uključujemo tek
+   unutar @supports. Preglednik koji ne zna za text-stroke tako dobije
+   obično svijetlo slovo umjesto nevidljivog. */
+.ploha-lopte {
+  color: var(--chalk);
+}
+
+@supports (-webkit-text-stroke: 2px currentColor) {
+  .ploha-lopte {
+    color: var(--ink);
+    /* Debljina u "em", ne u px - inače je isti rub na mobitelu (36px)
+       razmjerno puno deblji nego na stolnom računalu (60px) i slovo
+       ispadne šuplje. */
+    -webkit-text-stroke: 0.04em var(--chalk);
+    paint-order: stroke fill;  /* rub ide IZVAN slova, da ne stanji potez */
+  }
+}
+
+/* "Svaki karton." = žuti karton prelazi u crveni. Isti oprez: bez
+   background-clip tekst bi bio proziran, pa je puna boja zadana. */
+.prijelaz-kartona {
+  color: var(--card-yellow);
+}
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .prijelaz-kartona {
+    background-image: linear-gradient(
+      95deg,
+      var(--card-yellow) 0%,
+      var(--card-yellow) 38%,
+      var(--card-red-light) 72%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 }
 
 /* Akcentna riječ u naslovu: serifni kurziv. Jedan takav naglasak po

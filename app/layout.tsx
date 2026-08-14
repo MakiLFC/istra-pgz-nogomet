@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, Inter, JetBrains_Mono, Playfair_Display } from "next/font/google";
+import { Archivo, Bebas_Neue, Inter, JetBrains_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 // Fontovi se učitavaju preko next/font: Next ih poslužuje s vlastite domene,
@@ -8,6 +8,16 @@ import "./globals.css";
 const archivo = Archivo({
   subsets: ["latin-ext"],
   variable: "--f-display",
+  display: "swap",
+});
+
+// Zbijeni "plakatni" font - koristi se SAMO za veliki naslov u uvodnoj
+// traci naslovnice. Ostali naslovi po stranici i dalje su Archivo.
+// Ima samo jednu težinu (400), pa se ne navode ostale.
+const heroNaslov = Bebas_Neue({
+  subsets: ["latin", "latin-ext"],
+  weight: "400",
+  variable: "--f-hero",
   display: "swap",
 });
 
@@ -53,7 +63,7 @@ export default function RootLayout({
   return (
     <html
       lang="hr"
-      className={`h-full antialiased ${archivo.variable} ${inter.variable} ${mono.variable} ${akcent.variable}`}
+      className={`h-full antialiased ${archivo.variable} ${heroNaslov.variable} ${inter.variable} ${mono.variable} ${akcent.variable}`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
