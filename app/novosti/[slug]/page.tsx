@@ -86,9 +86,16 @@ export default async function StranicaClanka({
             />
           )}
 
+          {/* Tekst je obostrano poravnat. "hyphens-auto" ne radi u svim
+              preglednicima za hrvatski (Chromium nema naša pravila
+              rastavljanja, Safari i Firefox imaju), ali ondje gdje radi
+              smanjuje razmake među riječima na uskim ekranima. */}
           <div className="mt-5 space-y-4">
             {odlomci(clanak.tekst).map((o, i) => (
-              <p key={i} className="font-sans text-[15px] leading-relaxed">
+              <p
+                key={i}
+                className="font-sans text-[15px] leading-relaxed text-justify hyphens-auto"
+              >
                 {o}
               </p>
             ))}
