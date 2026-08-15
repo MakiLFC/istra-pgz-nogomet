@@ -254,7 +254,12 @@ export default async function StranicaLige({
                           </div>
 
                           <div className="mt-3 grid grid-cols-1 gap-y-1 font-sans text-sm sm:grid-cols-2" style={{ color: "var(--ink-muted)" }}>
-                            {u.stadion_datum ? (
+                            {/* "Nepoznato" preskačemo isto kao kod gledatelja i
+                                sudaca - inače bi ta riječ osvanula korisniku
+                                umjesto termina. Stariji zapisi u bazi je još
+                                mogu imati, pa provjera ostaje i nakon popravka
+                                u scraperu. */}
+                            {u.stadion_datum && u.stadion_datum !== "Nepoznato" ? (
                               <p>{u.stadion_datum}</p>
                             ) : (
                               (u.datum || u.stadion) && (

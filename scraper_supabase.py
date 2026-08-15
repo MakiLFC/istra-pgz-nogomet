@@ -259,9 +259,15 @@ def dohvati_detalje_utakmice(utakmica_url):
             gost = match.group(1).strip()
             rezultat = match.group(2).replace(" ", "")
 
-    stadion_datum = "Nepoznato"
+    # Redak zapisnika izgleda npr. "Gradski stadion, Crikvenica, 29.08.2026. 17:30".
+    # Ranije se tražila DOSLOVNA godina (".2025." ili ".2026."), pa bi prva
+    # utakmica odigrana 2027. ostala bez stadiona i datuma - sad se prepoznaje
+    # bilo koja godina i ništa se ne mora dirati na prijelazu sezone.
+    # Kad retka nema, upisuje se None (prazno), NE "Nepoznato" - stranica tad
+    # sama pokaže termin s rasporeda umjesto te riječi.
+    stadion_datum = None
     for linija in linije:
-        if any(g in linija for g in [".2025.", ".2026."]) and "," in linija:
+        if RE_DATUM.search(linija) and "," in linija:
             stadion_datum = linija
             break
 
