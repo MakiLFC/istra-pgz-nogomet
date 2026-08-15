@@ -56,7 +56,7 @@ function grupirajPoNatjecanju(utakmice: UtakmicaNaslovnica[]) {
 export default async function Home() {
   const [utakmice, clanci] = await Promise.all([
     dohvatiUtakmice(),
-    dohvatiClanke({ koliko: 3 }),
+    dohvatiClanke({ koliko: 4 }),
   ]);
   // Naslovnica uvijek prikazuje NAJNOVIJU sezonu. Stare ostaju u bazi,
   // ali se ne miješaju s tekućom (inače bi se brojke zbrajale kroz godine).
@@ -106,23 +106,45 @@ export default async function Home() {
           </p>
         )}
 
+        {/* Novosti idu u puni redak iznad rezultata: do četiri kartice
+            jedna do druge, najnovija lijevo (upit ih već vraća posloženo
+            po datumu, najnovija prva). Na užim ekranima red se lomi na
+            dvije pa na jednu karticu. */}
+        {clanci.length > 0 && (
+          <section className="mb-14">
+            <Otkrivanje>
+              <div
+                className="mb-5 flex flex-wrap items-end justify-between gap-x-6 gap-y-2 pb-3"
+                style={{ borderBottom: "1px solid var(--line)" }}
+              >
+                <div>
+                  <p className="oznaka-sekcije">Novosti</p>
+                  <h2 className="font-display mt-1.5 text-2xl uppercase">Najnovije</h2>
+                </div>
+                <Link
+                  href="/novosti"
+                  className="font-sans text-sm font-medium hover:opacity-70"
+                  style={{ color: "var(--pitch)" }}
+                >
+                  Sve novosti →
+                </Link>
+              </div>
+            </Otkrivanje>
+
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {clanci.map((c, idx) => (
+                <Otkrivanje key={c.id} kasnjenje={idx * 60} className="h-full">
+                  <KarticaClanka clanak={c} className="h-full" />
+                </Otkrivanje>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* Dva stupca: lijevo pregled kola po ligama, desno rezultati.
             Na mobitelu pregled ide ispod rezultata (flex-col-reverse). */}
         <div className="flex flex-col-reverse gap-8 lg:flex-row">
           <aside className="w-full shrink-0 space-y-4 lg:w-72">
-            {clanci.length > 0 && (
-              <section style={{ background: "var(--paper)", border: "1px solid var(--line)" }}>
-                <div className="flex items-baseline justify-between gap-2 px-3 py-2" style={{ background: "var(--pitch)", color: "var(--chalk)" }}>
-                  <h3 className="font-display text-sm uppercase tracking-wide">Novosti</h3>
-                  <Link href="/novosti" className="font-sans text-[11px] hover:underline">sve →</Link>
-                </div>
-                <div className="space-y-2 p-2">
-                  {clanci.map((c) => (
-                    <KarticaClanka key={c.id} clanak={c} kompaktno />
-                  ))}
-                </div>
-              </section>
-            )}
             <PregledKola utakmice={utakmiceSezone} />
           </aside>
 
