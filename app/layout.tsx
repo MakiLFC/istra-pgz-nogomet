@@ -42,7 +42,19 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
+// Osnovna adresa stranice. Treba je zbog slika u člancima: one se u bazi
+// upisuju kao "/slike/...", a kad netko podijeli članak na društvenoj
+// mreži, ta se putanja mora razriješiti u punu adresu. Vercel sam
+// postavlja VERCEL_URL. Ako jednom uzmeš vlastitu domenu, upiši je u
+// Vercelu kao NEXT_PUBLIC_SITE_URL i ovo je nastavlja koristiti.
+const osnovnaAdresa =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "http://localhost:3000");
+
 export const metadata: Metadata = {
+  metadataBase: new URL(osnovnaAdresa),
   title: "Lokal-Arena — niže nogometne lige Primorsko-goranske županije",
   description:
     "Rezultati, zapisnici, tablice i strijelci nižih nogometnih liga klubova na prostoru Primorsko-goranske županije. Podaci: HNS Semafor.",
