@@ -22,6 +22,11 @@
      2,2:1 (nečitljivo); ova je na 4,0:1. Isti razlog zbog kojeg uz
      --oxide postoji --oxide-light. */
   --card-red-light: #ef6a5a;
+  /* Još svjetlija crvena, samo za uske ekrane. Na mobitelu je naslov
+     fizički malen, a Bebas tanak rez, pa --card-red-light (4,0:1) ondje
+     djeluje ugaslo iako je na računalu sasvim čitljiv. Ova je na 5,3:1,
+     praktički izjednačena sa žutom (5,8:1). */
+  --card-red-bright: #ff8a7a;
   --arena-blue: #1a4f66;
   --ink: #10171a;
   --ink-muted: #5d686d;
@@ -146,13 +151,35 @@ body {
   color: var(--card-yellow);
 }
 
+/* Kraj prijelaza i položaj lomova drže se u varijablama, pa se na uskim
+   ekranima mijenjaju bez diranja samog pravila. Tako izbjegavamo @media
+   ugniježđen u @supports - Tailwindov obrađivač takav blok ispusti, a
+   varijabla je i sigurnija: ako preglednik ne podržava background-clip,
+   gradijent se nigdje ne koristi pa promjena nema nikakav učinak. */
+:root {
+  --karton-kraj: var(--card-red-light);
+  --karton-lom: 38%;
+  --karton-kraj-lom: 72%;
+}
+
+/* Granica 640px je ista ona na kojoj naslov prelazi s 36px na 60px
+   (Tailwindov "sm"). Na mobitelu ide svjetlija crvena i kasniji prijelaz,
+   pa veći dio natpisa ostane žut i dvije se boje jasno razaznaju. */
+@media (max-width: 639px) {
+  :root {
+    --karton-kraj: var(--card-red-bright);
+    --karton-lom: 46%;
+    --karton-kraj-lom: 82%;
+  }
+}
+
 @supports ((-webkit-background-clip: text) or (background-clip: text)) {
   .prijelaz-kartona {
     background-image: linear-gradient(
       95deg,
       var(--card-yellow) 0%,
-      var(--card-yellow) 38%,
-      var(--card-red-light) 72%
+      var(--card-yellow) var(--karton-lom),
+      var(--karton-kraj) var(--karton-kraj-lom)
     );
     -webkit-background-clip: text;
     background-clip: text;
