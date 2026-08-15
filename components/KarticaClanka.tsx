@@ -6,14 +6,18 @@ import { type Clanak, datumHr } from "@/lib/clanci";
 export default function KarticaClanka({
   clanak,
   kompaktno = false,
+  className = "",
 }: {
   clanak: Clanak;
   kompaktno?: boolean;
+  /** Dodatne klase - npr. "h-full" kad kartice stoje u retku jedna do
+   *  druge, da im se visine izjednače bez obzira na duljinu sažetka. */
+  className?: string;
 }) {
   return (
     <Link
       href={`/novosti/${clanak.slug}`}
-      className="block bg-white p-4 transition-opacity hover:opacity-80"
+      className={`block bg-white p-4 transition-opacity hover:opacity-80 ${className}`}
       style={{ border: "1px solid var(--line)" }}
     >
       {clanak.slika_url && !kompaktno && (
