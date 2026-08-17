@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import Navigacija from "@/components/Navigacija";
 import { dohvatiClanak, dohvatiClanke, datumHr, odlomci } from "@/lib/clanci";
 import { LIGE } from "@/lib/lige";
+import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
 
 export const revalidate = 0;
 
@@ -20,14 +21,18 @@ export async function generateMetadata({
   return {
     title: `${clanak.naslov} — Lokal-Arena`,
     description: clanak.sazetak ?? undefined,
+    alternates: { canonical: `/novosti/${clanak.slug}` },
     openGraph: {
       title: clanak.naslov,
       description: clanak.sazetak ?? undefined,
+      url: `/novosti/${clanak.slug}`,
+      locale: "hr_HR",
+      publishedTime: clanak.objavljeno_u,
       type: "article",
       // Kad članak nema vlastitu sliku, uzima se zajednička. Bez ovoga
       // bi takav članak ostao posve bez slike pri dijeljenju: metadata
       // članka zamjenjuje onu iz layouta, ne nadopunjuje je.
-      images: [clanak.slika_url ?? "/slike/dijeljenje.png"],
+      images: [clanak.slika_url ?? SLIKA_DIJELJENJE.url],
     },
   };
 }

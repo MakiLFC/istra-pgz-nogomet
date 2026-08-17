@@ -8,6 +8,7 @@ import { dohvatiClanke } from "@/lib/clanci";
 import { LIGE } from "@/lib/lige";
 import Otkrivanje from "@/components/Otkrivanje";
 import ZaglavljeStranice from "@/components/ZaglavljeStranice";
+import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
 
 export const revalidate = 0;
 
@@ -15,6 +16,16 @@ export const metadata: Metadata = {
   title: "Novosti — Lokal-Arena",
   description:
     "Transferi, najave i osvrti iz nižih nogometnih liga Primorsko-goranske županije.",
+  alternates: { canonical: "/novosti" },
+  openGraph: {
+    title: "Novosti",
+    description:
+      "Transferi, najave i osvrti iz nižih nogometnih liga Primorsko-goranske županije.",
+    url: "/novosti",
+    type: "website",
+    locale: "hr_HR",
+    images: [SLIKA_DIJELJENJE],
+  },
 };
 
 export default async function StranicaNovosti({

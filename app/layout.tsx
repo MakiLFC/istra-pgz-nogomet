@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo, Bebas_Neue, Inter, JetBrains_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
 
 // Fontovi se učitavaju preko next/font: Next ih poslužuje s vlastite domene,
 // unaprijed ih učita i spriječi treptaj teksta pri otvaranju stranice.
@@ -73,24 +74,20 @@ export const metadata: Metadata = {
   title: "Lokal-Arena — niže nogometne lige Primorsko-goranske županije",
   description:
     "Rezultati, zapisnici, tablice i strijelci nižih nogometnih liga klubova na prostoru Primorsko-goranske županije. Podaci: HNS Semafor.",
+  alternates: { canonical: "/" },
   openGraph: {
     title: "Lokal-Arena",
     description:
       "Rezultati, tablice i strijelci nižih nogometnih liga Primorsko-goranske županije.",
+    url: "/",
+    siteName: "Lokal-Arena",
     type: "website",
     locale: "hr_HR",
     // Zajednička slika za dijeljenje, ista za naslovnicu i sve lige.
     // Namjerno je u omjeru 1200x630 (traži ga Facebook), a ne u omjeru
     // zaglavlja stranica - ona su široka 3,57:1 pa bi ih obrezao.
     // Članci koji imaju vlastitu sliku nadjačavaju ovu.
-    images: [
-      {
-        url: "/slike/dijeljenje.png",
-        width: 1200,
-        height: 630,
-        alt: "Lokal-Arena — niže nogometne lige Primorsko-goranske županije",
-      },
-    ],
+    images: [SLIKA_DIJELJENJE],
   },
 };
 
