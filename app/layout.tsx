@@ -42,16 +42,31 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
-// Osnovna adresa stranice. Treba je zbog slika u člancima: one se u bazi
+// Osnovna adresa stranice. Treba je zbog slika u člancima: u bazi se
 // upisuju kao "/slike/...", a kad netko podijeli članak na društvenoj
-// mreži, ta se putanja mora razriješiti u punu adresu. Vercel sam
-// postavlja VERCEL_URL. Ako jednom uzmeš vlastitu domenu, upiši je u
-// Vercelu kao NEXT_PUBLIC_SITE_URL i ovo je nastavlja koristiti.
-const osnovnaAdresa =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : "http://localhost:3000");
+// mreži ta se putanja mora razriješiti u punu adresu.
+//
+// NAMJERNO SE NE KORISTI "VERCEL_URL". To je adresa POJEDINOG
+// deploymenta (npr. ...-f2erh3b6c-...vercel.app): mijenja se pri svakoj
+// objavi, pa bi već podijeljene poveznice ostajale bez slike, a ako je
+// uključena Vercel Deployment Protection, Facebookov crawler na njoj
+// dobije 401 i slika se ne prikaže.
+//
+// Redoslijed: prvo NEXT_PUBLIC_SITE_URL (ondje upiši svoju domenu, npr.
+// lokal-arena.hr), pa stalna produkcijska adresa projekta koju Vercel
+// nudi kao VERCEL_PROJECT_PRODUCTION_URL, i na kraju lokalni poslužitelj.
+function sShemom(adresa: string): string {
+  return /^https?:\/\//i.test(adresa) ? adresa : `https://${adresa}`;
+}
+
+const vlastitaAdresa = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+const produkcijskaAdresa = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
+
+const osnovnaAdresa = vlastitaAdresa
+  ? sShemom(vlastitaAdresa)
+  : produkcijskaAdresa
+    ? sShemom(produkcijskaAdresa)
+    : "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(osnovnaAdresa),
