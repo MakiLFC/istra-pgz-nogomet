@@ -24,7 +24,10 @@ export async function generateMetadata({
       title: clanak.naslov,
       description: clanak.sazetak ?? undefined,
       type: "article",
-      images: clanak.slika_url ? [clanak.slika_url] : undefined,
+      // Kad članak nema vlastitu sliku, uzima se zajednička. Bez ovoga
+      // bi takav članak ostao posve bez slike pri dijeljenju: metadata
+      // članka zamjenjuje onu iz layouta, ne nadopunjuje je.
+      images: [clanak.slika_url ?? "/slike/dijeljenje.png"],
     },
   };
 }
