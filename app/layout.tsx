@@ -79,6 +79,18 @@ export const metadata: Metadata = {
       "Rezultati, tablice i strijelci nižih nogometnih liga Primorsko-goranske županije.",
     type: "website",
     locale: "hr_HR",
+    // Zajednička slika za dijeljenje, ista za naslovnicu i sve lige.
+    // Namjerno je u omjeru 1200x630 (traži ga Facebook), a ne u omjeru
+    // zaglavlja stranica - ona su široka 3,57:1 pa bi ih obrezao.
+    // Članci koji imaju vlastitu sliku nadjačavaju ovu.
+    images: [
+      {
+        url: "/slike/dijeljenje.png",
+        width: 1200,
+        height: 630,
+        alt: "Lokal-Arena — niže nogometne lige Primorsko-goranske županije",
+      },
+    ],
   },
 };
 

@@ -12,6 +12,7 @@ import Otkrivanje from "@/components/Otkrivanje";
 import Brojka from "@/components/Brojka";
 import { IkonaLopta, IkonaTeren } from "@/components/Ikone";
 import { golovi } from "@/lib/kolo";
+import ZaglavljeStranice from "@/components/ZaglavljeStranice";
 
 // Podaci se osvježavaju tri puta tjedno, pa je kratko keširanje sigurno
 // i čini kretanje po stranici trenutnim.
@@ -133,14 +134,11 @@ export default async function StranicaLige({
       <Navigacija />
 
       <main className="mx-auto max-w-6xl px-6 py-14">
-        <div className="mb-1 flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
-          <div>
-            <p className="oznaka-sekcije">Natjecanje</p>
-            <h1 className="font-display mt-1.5 text-3xl uppercase">
-              {liga.naziv}
-            </h1>
-          </div>
+        <ZaglavljeStranice slika={slug} naslov={liga.naziv} />
 
+        {/* Naziv lige stoji u zaglavlju iznad, pa ovdje ostaje samo
+            birač sezona (poravnat desno) i brojka ispod. */}
+        <div className="mb-1 flex flex-wrap items-end justify-end gap-x-6 gap-y-3">
           {sveSezone.length > 0 && (
             <div className="flex gap-1">
               {sveSezone.map((s) => {

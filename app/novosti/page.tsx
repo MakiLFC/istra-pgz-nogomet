@@ -7,6 +7,7 @@ import KarticaClanka from "@/components/KarticaClanka";
 import { dohvatiClanke } from "@/lib/clanci";
 import { LIGE } from "@/lib/lige";
 import Otkrivanje from "@/components/Otkrivanje";
+import ZaglavljeStranice from "@/components/ZaglavljeStranice";
 
 export const revalidate = 0;
 
@@ -29,14 +30,10 @@ export default async function StranicaNovosti({
       <Navigacija />
 
       <main className="mx-auto max-w-4xl px-6 py-14">
-        <p className="oznaka-sekcije">Uredništvo</p>
-        <h1 className="font-display mt-1.5 text-3xl uppercase">Novosti</h1>
-        <p className="mt-2 font-sans text-sm" style={{ color: "var(--ink-muted)" }}>
-          Transferi, najave i osvrti
-        </p>
+        <ZaglavljeStranice slika="novosti" naslov="Novosti" />
 
         {/* filtar po ligama */}
-        <div className="mt-5 flex flex-wrap gap-1.5 pb-5" style={{ borderBottom: "1px solid var(--line)" }}>
+        <div className="flex flex-wrap gap-1.5 pb-5" style={{ borderBottom: "1px solid var(--line)" }}>
           <Link
             href="/novosti"
             className="font-sans px-3 py-1.5 text-xs font-medium"
