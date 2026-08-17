@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="hr"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:PD;font-weight:400;font-style:normal;src:url("fonts/playfair-display-latin-400-normal.woff2") format("woff2");unicode-range:U+0000-00FF}
+@font-face{font-family:PD;font-weight:400;font-style:normal;src:url("fonts/playfair-display-latin-ext-400-normal.woff2") format("woff2");unicode-range:U+0100-024F}
+@font-face{font-family:PD;font-weight:400;font-style:italic;src:url("fonts/playfair-display-latin-400-italic.woff2") format("woff2");unicode-range:U+0000-00FF}
+@font-face{font-family:PD;font-weight:400;font-style:italic;src:url("fonts/playfair-display-latin-ext-400-italic.woff2") format("woff2");unicode-range:U+0100-024F}
+@font-face{font-family:IN;font-weight:400;src:url("fonts/inter-latin-400-normal.woff2") format("woff2");unicode-range:U+0000-00FF}
+@font-face{font-family:IN;font-weight:400;src:url("fonts/inter-latin-ext-400-normal.woff2") format("woff2");unicode-range:U+0100-024F}
+@font-face{font-family:IN;font-weight:700;src:url("fonts/inter-latin-700-normal.woff2") format("woff2");unicode-range:U+0000-00FF}
+@font-face{font-family:IN;font-weight:700;src:url("fonts/inter-latin-ext-700-normal.woff2") format("woff2");unicode-range:U+0100-024F}
+:root{--w:1200px;--h:336px;--tx:78px;--ty:74px;--fs-naslov:47px;--fs-oznaka:11.5px;
+ --fs-pod:12.5px;--fs-rimski:228px;--rim-y:34px;--more-y:240px;--odraz-y:253px}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:var(--w);height:var(--h);overflow:hidden}
+.z{position:relative;width:var(--w);height:var(--h);overflow:hidden;
+   background:linear-gradient(180deg,#184b50 0%,#124046 38%,#0b3035 62%,#072429 78%,#04191d 100%)}
+/* topli odsjaj oko sunca */
+.zar{position:absolute;inset:0;background:radial-gradient(circle at 85% 46%,rgba(200,98,44,.28) 0%,rgba(200,98,44,.10) 22%,transparent 46%)}
+/* tanka dijagonalna tekstura u nebu */
+.tekstura{position:absolute;left:0;right:0;top:0;height:74%;opacity:.055;
+  background-image:repeating-linear-gradient(38deg,#cfe0dd 0 1px,transparent 1px 26px),
+                   repeating-linear-gradient(-38deg,#cfe0dd 0 1px,transparent 1px 26px)}
+/* rimska brojka kao duh iza planina */
+.rimski{position:absolute;left:44%;top:var(--rim-y);font-family:PD,serif;font-size:var(--fs-rimski);line-height:1;
+  color:transparent;-webkit-text-stroke:1.5px rgba(214,231,228,.085);white-space:nowrap}
+svg.scena{position:absolute;inset:0;width:100%;height:100%}
+/* more ispod horizonta */
+.more{position:absolute;left:0;right:0;top:var(--more-y);bottom:0;
+  background:linear-gradient(180deg,#062226 0%,#04191d 55%,#031215 100%)}
+.crtice{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
+/* tekst */
+.tekst{position:absolute;left:var(--tx);top:var(--ty);width:calc(var(--w) - var(--tx) - 20px)}
+.crta{width:42px;height:3px;background:#b5502a;margin-bottom:16px}
+.oznaka{font-family:IN,sans-serif;font-weight:700;font-size:var(--fs-oznaka);letter-spacing:.24em;
+  text-transform:uppercase;color:#8ea2a3;margin-bottom:12px}
+.naslov{font-family:PD,serif;font-size:var(--fs-naslov);line-height:1.06;color:#f4f7f4;white-space:nowrap;
+  text-shadow:0 3px 14px rgba(2,14,16,.85),0 1px 3px rgba(2,14,16,.9)}
+.naslov i{font-style:italic}
+.podnaslov{font-family:IN,sans-serif;font-size:var(--fs-pod);color:#a9bab8;margin-top:11px;
+  text-shadow:0 1px 6px rgba(2,14,16,.8)}
+/* odraz naslova u moru */
+.odraz{position:absolute;left:var(--tx);top:var(--odraz-y);font-family:PD,serif;font-size:var(--fs-naslov);line-height:1.06;
+  color:#cfe3e0;white-space:nowrap;transform:scaleY(-1);opacity:.07;filter:blur(1.8px);
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.9) 62%,#000 100%);
+          mask-image:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.9) 62%,#000 100%)}
+.odraz i{font-style:italic}
+.rub{position:absolute;left:0;top:0;bottom:0;width:6px;background:#b5502a}
+</style></head><body>
+<div class="z">
+  <div class="zar"></div>
+  <div class="tekstura"></div>
+  <div class="rimski" id="rimski">III</div>
+  <svg class="scena" id="scena" viewBox="0 0 1200 336" preserveAspectRatio="none">
+    <ellipse id="sunce" cx="1020" cy="150" rx="66" ry="66" fill="#c8622c"/>
+    <polygon id="p1" points="" fill="#17494e"/>
+    <polygon id="p2" points="" fill="#123c42"/>
+    <polygon id="p3" points="" fill="#0d3035"/>
+    <polygon id="p4" points="" fill="#0a262b"/>
+  </svg>
+  <div class="more"><svg class="crtice" viewBox="0 0 1200 96"><g id="valovi" stroke="#2b4f52" stroke-width="1.4" stroke-linecap="round"></g></svg></div>
+  <div class="odraz" id="odraz"></div>
+  <div class="tekst">
+    <div class="crta"></div>
+    <div class="oznaka" id="oznaka"></div>
+    <div class="naslov" id="naslov"></div>
+    <div class="podnaslov" id="podnaslov"></div>
+  </div>
+  <div class="rub"></div>
+</div>
+<script>
+// Geometrija se računa u OMJERIMA visine platna, pa isti predložak radi
+// i za široko stolno zaglavlje i za približeno mobilno.
+function greben(H, bazaU, visinaU, korak){
+  const baza = H * bazaU, visina = H * visinaU, t = [];
+  for (let x = -60, i = 0; x <= 1260; x += korak, i++){
+    const v = baza - (i % 2 ? visina : visina * 0.42) - ((i % 3) * H * 0.018);
+    t.push(x + ',' + v.toFixed(1));
+  }
+  return `-60,${H} ` + t.join(' ') + ` 1260,${H}`;
+}
+window.slozi = (k) => {
+  const H = k.visina || 336;
+  document.getElementById('scena').setAttribute('viewBox', `0 0 1200 ${H}`);
+  document.getElementById('rimski').textContent = k.rimski || '';
+  document.getElementById('oznaka').textContent = k.oznaka;
+  document.getElementById('naslov').innerHTML = k.naslov;
+  document.getElementById('odraz').innerHTML = k.naslov;
+  document.getElementById('podnaslov').textContent = k.podnaslov;
+  // Scena se crta s preserveAspectRatio="none", pa se os x steže kad
+  // platno nije u omjeru viewBoxa. Zato sunce dobiva veći rx (da opet
+  // ispadne krug), a grebeni širi korak (da ne postanu češalj).
+  const xs = (k.sirina || 1200) / 1200;
+  const s = document.getElementById('sunce');
+  s.setAttribute('cy', (H * k.sunceU).toFixed(1));
+  s.setAttribute('ry', (H * 0.196).toFixed(1));
+  s.setAttribute('rx', (H * 0.196 / xs).toFixed(1));
+  const korak = 1 / xs;
+  document.getElementById('p1').setAttribute('points', greben(H, 0.619, 0.161, 104*korak));
+  document.getElementById('p2').setAttribute('points', greben(H, 0.676, 0.137, 86*korak));
+  document.getElementById('p3').setAttribute('points', greben(H, 0.729, 0.107, 70*korak));
+  document.getElementById('p4').setAttribute('points', greben(H, 0.774, 0.077, 56*korak));
+  const g = document.getElementById('valovi');
+  let t = '';
+  for (let i = 0; i < 90; i++){
+    const y = 8 + (i * 37) % 88, x = (i * 137) % 1160, w = 18 + (i * 29) % 74;
+    t += `<line x1="${x}" y1="${y}" x2="${x + w}" y2="${y}" opacity="${(0.10 + (i % 5) * 0.045).toFixed(2)}"/>`;
+  }
+  g.innerHTML = t;
+};
+</script>
+</body></html>
