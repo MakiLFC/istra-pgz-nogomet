@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { supabase, Utakmica } from "@/lib/supabase";
 import { dohvatiStatistike } from "@/lib/statistike";
@@ -13,6 +14,7 @@ import Brojka from "@/components/Brojka";
 import { IkonaLopta, IkonaTeren } from "@/components/Ikone";
 import { golovi } from "@/lib/kolo";
 import ZaglavljeStranice from "@/components/ZaglavljeStranice";
+import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
 
 // Podaci se osvježavaju tri puta tjedno, pa je kratko keširanje sigurno
 // i čini kretanje po stranici trenutnim.
@@ -85,6 +87,37 @@ async function dohvatiUtakmiceKola(
     return [];
   }
   return data ?? [];
+}
+
+// Bez ovoga je svaka stranica lige nosila generički naslov "Lokal-Arena"
+// i opis cijele stranice. Sad svaka ima svoj naslov, opis i adresu
+// (og:url), što traži i Facebookov provjeravač.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const liga = ligaPoSlugu(slug);
+  if (!liga) return { title: "Natjecanje nije pronađeno — Lokal-Arena" };
+
+  const naslov = `${liga.naziv} — rezultati, tablica i strijelci`;
+  const opis = `Rezultati, raspored, tablica i strijelci natjecanja ${liga.naziv}. Podaci s HNS Semafora, osvježeni svakog vikenda.`;
+  const adresa = `/liga/${liga.slug}`;
+
+  return {
+    title: `${naslov} — Lokal-Arena`,
+    description: opis,
+    alternates: { canonical: adresa },
+    openGraph: {
+      title: naslov,
+      description: opis,
+      url: adresa,
+      type: "website",
+      locale: "hr_HR",
+      images: [SLIKA_DIJELJENJE],
+    },
+  };
 }
 
 export default async function StranicaLige({
