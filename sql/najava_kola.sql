@@ -62,6 +62,7 @@ declare
   v_sezona      text;
   v_kolo        int;
   v_prvo_kolo   boolean;
+  v_kolo_odigrano boolean := false;
   v_odstupa     boolean;
   v_rezultat    jsonb;
 begin
@@ -107,21 +108,16 @@ begin
         v_kolo, v_liga, v_sezona;
     end if;
 
-    -- sve utakmice traženog kola već odigrane -> iznimka s prijedlogom
-    if not exists (
+    -- Kolo je izričito traženo, pa se vraća i ako je već odigrano.
+    -- To je namjerno: za osvrt unatrag ili za pogled na završenu sezonu
+    -- drukčije ne bi bilo moguće doći ni do jednog kola, jer su ondje
+    -- sva odigrana. Da se ne bi zabunom pisala najava za nešto što je
+    -- prošlo, u meta ide oznaka "kolo_odigrano".
+    select not exists (
       select 1 from public.utakmice u
       where u.natjecanje = v_liga and u.sezona = v_sezona and u.kolo = v_kolo
         and coalesce(u.rezultat, '') !~ '^\s*\d+\s*:\s*\d+\s*$'
-    ) then
-      raise exception
-        'Sve utakmice %. kola (%, %) su odigrane. Prvo neodigrano kolo je %.',
-        v_kolo, v_liga, v_sezona,
-        coalesce((
-          select min(u.kolo)::text from public.utakmice u
-          where u.natjecanje = v_liga and u.sezona = v_sezona
-            and coalesce(u.rezultat,'') !~ '^\s*\d+\s*:\s*\d+\s*$'
-        ), 'nijedno, sezona je gotova');
-    end if;
+    ) into v_kolo_odigrano;
   end if;
 
   ------------------------------------------------------------------
@@ -268,8 +264,11 @@ begin
       'prvi_termin',  (select min(termin) from kolo_utakmice),
       'zadnji_termin',(select max(termin) from kolo_utakmice),
       'prvo_kolo_sezone', v_prvo_kolo,
+      'kolo_odigrano', v_kolo_odigrano,
       'prag_zutih', p_prag_zutih,
-      'napomena', case when v_prvo_kolo
+      'napomena', case when v_kolo_odigrano
+                       then 'Ovo kolo je već odigrano; podaci su za osvrt, ne za najavu.'
+                       when v_prvo_kolo
                        then 'Prvo kolo sezone: forma, tablica i strijelci još ne postoje.'
                        else 'Tablica je IZRAČUNATA iz odigranih utakmica i ne uključuje kaznene bodove.'
                   end
@@ -323,7 +322,15 @@ begin
                        'rezultat',h.rezultat
                      ) order by h.sezona desc, h.kolo desc)
               from (
-                select u2.sezona, u2.datum, u2.domacin, u2.gost, u2.rezultat, u2.kolo
+                -- Utakmice iz starijih sezona nemaju popunjen "datum"
+                -- (taj je stupac dodan kasnije), ali imaju "stadion_datum"
+                -- iz kojeg se datum može izvući.
+                select u2.sezona,
+                       coalesce(
+                         u2.datum,
+                         substring(u2.stadion_datum from '\d{2}\.\d{2}\.\d{4}\.')
+                       ) as datum,
+                       u2.domacin, u2.gost, u2.rezultat, u2.kolo
                 from public.utakmice u2
                 where u2.rezultat ~ '^\s*\d+\s*:\s*\d+\s*$'
                   and (   (u2.domacin ilike k.domacin and u2.gost ilike k.gost)
