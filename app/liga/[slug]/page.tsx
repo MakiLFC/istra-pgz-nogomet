@@ -99,14 +99,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const liga = ligaPoSlugu(slug);
-  if (!liga) return { title: "Natjecanje nije pronađeno — Lokal-Arena" };
+  if (!liga) return { title: "Natjecanje nije pronađeno" };
 
   const naslov = `${liga.naziv} — rezultati, tablica i strijelci`;
   const opis = `Rezultati, raspored, tablica i strijelci natjecanja ${liga.naziv}. Podaci s HNS Semafora, osvježeni svakog vikenda.`;
   const adresa = `/liga/${liga.slug}`;
 
   return {
-    title: `${naslov} — Lokal-Arena`,
+    title: naslov,
     description: opis,
     alternates: { canonical: adresa },
     openGraph: {

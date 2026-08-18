@@ -71,7 +71,13 @@ const osnovnaAdresa = vlastitaAdresa
 
 export const metadata: Metadata = {
   metadataBase: new URL(osnovnaAdresa),
-  title: "Lokal-Arena — niže nogometne lige Primorsko-goranske županije",
+  // "template" znači da svaka podstranica navodi samo svoj naslov, a
+  // "— Lokal-Arena" se dodaje samo. Prije je svaka stranica taj nastavak
+  // pisala ručno, pa se lako zaboravio ili udvostručio.
+  title: {
+    default: "Lokal-Arena — niže nogometne lige Primorsko-goranske županije",
+    template: "%s — Lokal-Arena",
+  },
   description:
     "Rezultati, zapisnici, tablice i strijelci nižih nogometnih liga klubova na prostoru Primorsko-goranske županije. Podaci: HNS Semafor.",
   alternates: { canonical: "/" },
@@ -89,6 +95,9 @@ export const metadata: Metadata = {
     // Članci koji imaju vlastitu sliku nadjačavaju ovu.
     images: [SLIKA_DIJELJENJE],
   },
+  // Bez ovoga X/Twitter prikazuje sitnu kvadratnu sličicu uz naslov
+  // umjesto široke slike preko cijele kartice.
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({

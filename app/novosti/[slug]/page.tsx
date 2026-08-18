@@ -17,9 +17,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const clanak = await dohvatiClanak(slug);
-  if (!clanak) return { title: "Članak nije pronađen — Lokal-Arena" };
+  if (!clanak) return { title: "Članak nije pronađen" };
   return {
-    title: `${clanak.naslov} — Lokal-Arena`,
+    title: clanak.naslov,
     description: clanak.sazetak ?? undefined,
     alternates: { canonical: `/novosti/${clanak.slug}` },
     openGraph: {
