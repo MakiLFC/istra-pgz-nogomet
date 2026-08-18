@@ -8,6 +8,7 @@ import KarticaClanka from "@/components/KarticaClanka";
 import { dohvatiClanke } from "@/lib/clanci";
 import Otkrivanje from "@/components/Otkrivanje";
 import Hero from "@/components/Hero";
+import OvajVikend from "@/components/OvajVikend";
 import { zadnjeKolo, golovi } from "@/lib/kolo";
 
 export const revalidate = 300;
@@ -105,6 +106,10 @@ export default async function Home() {
             Trenutno nema učitanih utakmica. Pokreni scraper da napuniš bazu podataka.
           </p>
         )}
+
+        {/* Traka "Ovaj vikend" stoji iznad novosti. Sama se skriva kad
+            nema nadolazećih utakmica, pa ovdje nema uvjeta. */}
+        <OvajVikend />
 
         {/* Novosti idu u puni redak iznad rezultata: do četiri kartice
             jedna do druge, najnovija lijevo (upit ih već vraća posloženo
