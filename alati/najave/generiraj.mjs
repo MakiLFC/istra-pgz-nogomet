@@ -5,7 +5,8 @@ import { chromium } from 'playwright';
 import { readFileSync, mkdirSync } from 'node:fs';
 
 const { kola } = JSON.parse(readFileSync(new URL('./kola.json', import.meta.url), 'utf8'));
-const stilovi = ['ploca', 'horizont'];
+// 'horizont' je druga, atmosferska varijanta; ostaje u predlosku ako zatreba.
+const stilovi = ['ploca'];
 
 mkdirSync('izlaz', { recursive: true });
 const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });

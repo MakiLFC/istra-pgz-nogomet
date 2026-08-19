@@ -4,19 +4,19 @@ Predložak kojim se rade naslovne slike za članke "NAJAVA n. KOLA".
 Gotove slike stoje u `public/slike/najave/`, a u članak se stavljaju
 upisom putanje u polje `slika_url` tablice `clanci`.
 
-Dva stila, isti podaci:
+U upotrebi je stil **ploca**: tamna ploča s rasporedom cijelog kola u
+dva stupca, imena klubova u Playfair kurzivu, derbi kola označen žutom.
 
-- **ploca** — tamna ploča s rasporedom cijelog kola, svi parovi u mreži,
-  derbi kola označen žutom. Informativna, čita se kao semafor.
-- **horizont** — kvarnerski obzor (isti krajolik kao zaglavlja liga),
-  a uz donji rub niz pločica sa svim klubovima kola. Atmosferska.
+U predlošku stoji i drugi stil, **horizont** (kvarnerski obzor kao na
+zaglavljima liga). Ne koristi se, ali je ostavljen ako zatreba: dopuni
+popis `stilovi` u `generiraj.mjs`.
 
 ## Grbovi klubova
 
 Pravi klupski grbovi se NE koriste. Nisu dio dopuštenja koje je HNS dao
-za prikaz podataka, a i sami su tuđi znakovi. Umjesto njih se crtaju
-pločice s troslovnom kraticom kluba, u bojama stranice. Ako klub sam
-pošalje svoj grb i dopusti korištenje, to se rješava zasebno.
+za prikaz podataka, a i sami su tuđi znakovi. Ako klub sam pošalje svoj
+grb i dopusti korištenje, to se rješava zasebno. Do tada u slici stoje
+samo imena klubova.
 
 ## Kako pokrenuti
 

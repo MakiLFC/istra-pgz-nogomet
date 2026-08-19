@@ -44,23 +44,25 @@ html,body{width:1200px;height:630px;overflow:hidden;background:#04191d}
 .termin .sat{font-family:IN;font-weight:700;font-size:10.5px;letter-spacing:.2em;color:#8ea2a3;margin-top:9px}
 .crtaH{position:absolute;left:64px;right:64px;top:208px;height:1px;background:rgba(221,226,219,.14);z-index:5}
 
-.mreza{position:absolute;left:64px;right:64px;top:242px;display:grid;grid-template-columns:1fr 1fr;
-  gap:12px 16px;z-index:5}
-.par{position:relative;display:flex;align-items:center;gap:10px;padding:11px 13px;
-  background:rgba(221,226,219,.045);border:1px solid rgba(221,226,219,.10);
-  border-left:3px solid rgba(221,226,219,.16)}
-.par.derbi{border-left-color:var(--zut);background:rgba(232,197,71,.07)}
-.grb{flex:0 0 auto;width:34px;height:34px;display:flex;align-items:center;justify-content:center;
-  font-family:AR;font-weight:800;font-size:11.5px;color:#eaf1ea;
-  background:#0b3338;border:1px solid rgba(181,80,42,.55);box-shadow:inset 0 0 0 1px rgba(221,226,219,.07)}
-.par.derbi .grb{border-color:rgba(232,197,71,.6)}
-.ime{font-family:IN;font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;
-  color:#e7eee7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ime.d{flex:1;text-align:left}
-.ime.g{flex:1;text-align:right}
-.vs{font-family:JB;font-weight:700;font-size:10px;color:var(--oxide-l);flex:0 0 auto}
-.znak{position:absolute;right:-1px;top:-11px;font-family:IN;font-weight:700;font-size:8.5px;
-  letter-spacing:.18em;padding:2px 6px;background:var(--zut);color:#0b3338}
+.popis{position:absolute;left:64px;right:64px;top:230px;height:336px;display:grid;
+  grid-template-rows:repeat(4,1fr);grid-auto-flow:column;grid-auto-columns:1fr;z-index:5}
+.par{position:relative;display:flex;align-items:center;padding:0 14px;
+  border-bottom:1px solid rgba(221,226,219,.09)}
+.par:nth-child(4){border-bottom:0}
+.par:last-child{border-bottom:0}
+.par:nth-child(-n+4){border-right:1px solid rgba(221,226,219,.09)}
+.par.derbi{background:linear-gradient(90deg,rgba(232,197,71,.10) 0%,rgba(232,197,71,.03) 60%,transparent 100%);
+  box-shadow:inset 3px 0 0 var(--zut)}
+.ime{font-family:PD;font-weight:400;font-style:italic;font-size:23px;line-height:1;
+  color:#eef3ec;white-space:nowrap}
+.ime.d{flex:1;text-align:right;padding-right:18px}
+.ime.g{flex:1;text-align:left;padding-left:18px}
+.par.derbi .ime{color:#f7e5b4}
+.vs{flex:0 0 34px;text-align:center;font-family:JB;font-weight:700;font-size:10px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--oxide-l)}
+.par.derbi .vs{color:var(--zut)}
+.znak{position:absolute;left:50%;transform:translateX(-50%);top:12px;font-family:IN;font-weight:700;
+  font-size:8px;letter-spacing:.2em;padding:2px 7px;background:var(--zut);color:#0b3338}
 
 /* ============================ B. HORIZONT KOLA ============================ */
 .horizont{background:linear-gradient(180deg,#184b50 0%,#124046 34%,#0b3035 58%,#072429 76%,#04191d 100%)}
@@ -115,12 +117,10 @@ const esc = (s) => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
 function ploca(k){
   const parovi = k.utakmice.map(u => `
     <div class="par${u.derbi ? ' derbi' : ''}">
-      ${u.derbi ? '<span class="znak">DERBI</span>' : ''}
-      <span class="grb">${esc(u.dk)}</span>
       <span class="ime d">${esc(u.d)}</span>
       <span class="vs">vs</span>
       <span class="ime g">${esc(u.g)}</span>
-      <span class="grb">${esc(u.gk)}</span>
+      ${u.derbi ? '<span class="znak">DERBI KOLA</span>' : ''}
     </div>`).join('');
   return `
   <div class="ploca" style="position:absolute;inset:0">
@@ -137,7 +137,7 @@ function ploca(k){
       </div>
     </div>
     <div class="crtaH"></div>
-    <div class="mreza">${parovi}</div>
+    <div class="popis">${parovi}</div>
     <div class="potpis">LOKAL-ARENA</div>
     <div class="brojka">${k.utakmice.length} utakmica &middot; ${k.utakmice.length * 2} klubova</div>
     <div class="rub"></div>
