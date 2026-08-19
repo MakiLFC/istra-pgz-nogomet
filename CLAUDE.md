@@ -28,6 +28,19 @@ Nazivi "1. ŽNL" i "2. ŽNL" koriste se u svim županijama. Jednom je po nazivu
 greškom upisana bjelovarsko-bilogorska liga. Provjera ide isključivo preko
 popisa klubova na stranici natjecanja.
 
+**5. NIKAD se ne izmišljaju podaci.**
+U najavama, osvrtima i člancima piše se samo ono što stoji u bazi ili što je
+Andrej izričito rekao. Bez izjava trenera, ozljeda, atmosfere, vremenskih
+uvjeta, forme s priprema i očekivanja. Ako podatka nema, susret se opiše
+kraće ili se pita Andreja. Izuzetak postoji samo uz njegovu izričitu uputu
+(npr. "napiši da je Otočac znatno pojačan").
+
+**6. NIKAD se ne koriste crtice u tekstu.**
+Ni duga (em) ni srednja (en). Vrijedi za sve tekstove za stranicu i za
+odgovore Andreju. Parovi klubova pišu se s običnim spojnicom i razmacima:
+"Naprijed (H) - Kraljevica". Gdje bi crtica dijelila rečenicu, rečenica se
+prepiše ili se stavi zarez, dvotočka ili točka.
+
 ---
 
 ## Tehnologija
