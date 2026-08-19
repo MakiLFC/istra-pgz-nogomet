@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Navigacija from "@/components/Navigacija";
+import Podnozje from "@/components/Podnozje";
 import { dohvatiClanak, dohvatiClanke, datumHr, odlomci } from "@/lib/clanci";
 import { LIGE } from "@/lib/lige";
 import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
@@ -62,21 +63,38 @@ export default async function StranicaClanka({
         </Link>
 
         <article className="mt-4">
-          <p className="flex flex-wrap items-baseline gap-x-2 font-mono text-[10px] uppercase tracking-widest" style={{ color: "var(--ink-muted)" }}>
-            <time dateTime={clanak.objavljeno_u}>{datumHr(clanak.objavljeno_u)}</time>
-            {clanak.natjecanje &&
-              (ligaSlug ? (
+          {/* Datum je preseljen u potpis ispod naslova, pa ovdje ostaje
+              samo liga. Kad je članak bez lige, redak se ne iscrtava. */}
+          {clanak.natjecanje && (
+            <p className="font-mono text-[10px] uppercase tracking-widest" style={{ color: "var(--ink-muted)" }}>
+              {ligaSlug ? (
                 <Link href={`/liga/${ligaSlug}`} className="hover:underline" style={{ color: "var(--oxide)" }}>
                   {clanak.natjecanje}
                 </Link>
               ) : (
                 <span style={{ color: "var(--oxide)" }}>{clanak.natjecanje}</span>
-              ))}
-          </p>
+              )}
+            </p>
+          )}
 
           <h1 className="font-display mt-2 text-4xl uppercase">
             {clanak.naslov}
           </h1>
+
+          {/* Potpis: autor i datum u istom retku. Kad autora nema (stariji
+              članci), ostaje samo datum, bez znaka razdvajanja. */}
+          <p
+            className="mt-3 flex flex-wrap items-baseline gap-x-2 font-mono text-[10px] uppercase tracking-widest"
+            style={{ color: "var(--ink-muted)" }}
+          >
+            {clanak.autor && (
+              <>
+                <span>{clanak.autor}</span>
+                <span aria-hidden="true">·</span>
+              </>
+            )}
+            <time dateTime={clanak.objavljeno_u}>{datumHr(clanak.objavljeno_u)}</time>
+          </p>
 
           {clanak.sazetak && (
             <p className="mt-3 font-sans text-lg leading-snug" style={{ color: "var(--ink-muted)" }}>
@@ -114,12 +132,7 @@ export default async function StranicaClanka({
         </article>
       </main>
 
-      <footer
-        className="px-6 py-5 text-center font-sans text-xs"
-        style={{ borderTop: "3px solid var(--pitch)", color: "var(--ink-muted)" }}
-      >
-        Lokal-Arena — niže nogometne lige Primorsko-goranske županije
-      </footer>
+      <Podnozje />
     </div>
   );
 }

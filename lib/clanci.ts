@@ -9,6 +9,8 @@ export type Clanak = {
   sazetak: string | null;
   tekst: string;
   natjecanje: string | null;
+  /** Potpis autora ispod naslova. Stariji članci ga mogu nemati. */
+  autor: string | null;
   slika_url: string | null;
   objavljen: boolean;
   objavljeno_u: string;

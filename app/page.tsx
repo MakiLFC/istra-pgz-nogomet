@@ -4,6 +4,7 @@ import { LIGE } from "@/lib/lige";
 import Navigacija from "@/components/Navigacija";
 import { IkonaTeren } from "@/components/Ikone";
 import PregledKola from "@/components/PregledKola";
+import Podnozje from "@/components/Podnozje";
 import KarticaClanka from "@/components/KarticaClanka";
 import { dohvatiClanke } from "@/lib/clanci";
 import Otkrivanje from "@/components/Otkrivanje";
@@ -253,12 +254,7 @@ export default async function Home() {
         </div>
       </main>
 
-      <footer
-        className="px-6 py-5 text-center font-sans text-xs"
-        style={{ borderTop: "3px solid var(--pitch)", color: "var(--ink-muted)" }}
-      >
-        Lokal-Arena — lokalni nogomet Istre i Primorsko-goranske županije · podaci s HNS Semafora
-      </footer>
+      <Podnozje />
     </div>
   );
 }
