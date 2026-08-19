@@ -1,0 +1,40 @@
+{
+  "_napomena": "Podaci za slike najava kola. Kratice su troslovne oznake klubova (nema pravih grbova, vidi PROCITAJ.md).",
+  "kola": [
+    {
+      "dat": "3-nl-zapad-kolo-1",
+      "kolo": "1",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "podnaslov": "Osam utakmica otvara novu sezonu trećeg ranga",
+      "datum": "SUB 29.08.2026.",
+      "sat": "Sve utakmice u 17:30",
+      "utakmice": [
+        { "d": "Pazinka-Pazin", "dk": "PAZ", "g": "Pomorac",      "gk": "POM" },
+        { "d": "Buje",          "dk": "BUJ", "g": "Lokomotiva",   "gk": "LOK" },
+        { "d": "Naprijed",      "dk": "NAP", "g": "Kraljevica",   "gk": "KRA", "derbi": true },
+        { "d": "Rovinj",        "dk": "ROV", "g": "Vinodol",      "gk": "VIN" },
+        { "d": "Jadran-Poreč",  "dk": "JAD", "g": "Nehaj",        "gk": "NEH" },
+        { "d": "Crikvenica",    "dk": "CRI", "g": "Krk",          "gk": "KRK" },
+        { "d": "OŠK Omišalj",   "dk": "OMI", "g": "Rudar",        "gk": "RUD" },
+        { "d": "Halubjan",      "dk": "HAL", "g": "Banjole",      "gk": "BAN" }
+      ]
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-1",
+      "kolo": "1",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "podnaslov": "Sedam utakmica otvara novu sezonu četvrtog ranga",
+      "datum": "SUB 05.09.2026.",
+      "sat": "Sve utakmice u 17:30",
+      "utakmice": [
+        { "d": "Žminj",         "dk": "ŽMI", "g": "Ližnjan",      "gk": "LIŽ" },
+        { "d": "Borac",         "dk": "BOR", "g": "Klana",        "gk": "KLA" },
+        { "d": "Umag-CC Umago", "dk": "UMA", "g": "Štinjan",      "gk": "ŠTI" },
+        { "d": "Otočac",        "dk": "OTO", "g": "Novalja",      "gk": "NOV" },
+        { "d": "Cres",          "dk": "CRE", "g": "Rječina",      "gk": "RJE" },
+        { "d": "Mladost Fažana","dk": "FAŽ", "g": "Funtana",      "gk": "FUN" },
+        { "d": "Medulin 1921",  "dk": "MED", "g": "Smoljanci",    "gk": "SMO" }
+      ]
+    }
+  ]
+}
