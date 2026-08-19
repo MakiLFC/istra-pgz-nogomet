@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import Navigacija from "@/components/Navigacija";
 import KarticaClanka from "@/components/KarticaClanka";
+import Podnozje from "@/components/Podnozje";
 import { dohvatiClanke } from "@/lib/clanci";
 import { LIGE } from "@/lib/lige";
 import Otkrivanje from "@/components/Otkrivanje";
@@ -89,12 +90,7 @@ export default async function StranicaNovosti({
         )}
       </main>
 
-      <footer
-        className="px-6 py-5 text-center font-sans text-xs"
-        style={{ borderTop: "3px solid var(--pitch)", color: "var(--ink-muted)" }}
-      >
-        Lokal-Arena — niže nogometne lige Primorsko-goranske županije
-      </footer>
+      <Podnozje />
     </div>
   );
 }

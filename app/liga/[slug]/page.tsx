@@ -5,6 +5,7 @@ import { supabase, Utakmica } from "@/lib/supabase";
 import { dohvatiStatistike } from "@/lib/statistike";
 import { ligaPoSlugu, LIGE } from "@/lib/lige";
 import Navigacija from "@/components/Navigacija";
+import Podnozje from "@/components/Podnozje";
 import Postava from "@/components/Postava";
 import SidebarLiga from "@/components/SidebarLiga";
 import KarticaClanka from "@/components/KarticaClanka";
@@ -410,12 +411,7 @@ export default async function StranicaLige({
         </div>
       </main>
 
-      <footer
-        className="px-6 py-5 text-center font-sans text-xs"
-        style={{ borderTop: "3px solid var(--pitch)", color: "var(--ink-muted)" }}
-      >
-        Lokal-Arena — lokalni nogomet Istre i Primorsko-goranske županije · podaci s HNS Semafora
-      </footer>
+      <Podnozje />
     </div>
   );
 }
