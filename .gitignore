@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# alati (fontovi i međurezultati se ne spremaju)
+alati/*/fonts/
+alati/*/izlaz/
