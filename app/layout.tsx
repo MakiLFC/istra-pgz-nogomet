@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Archivo, Bebas_Neue, Inter, JetBrains_Mono, Playfair_Display } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
 
@@ -110,7 +111,12 @@ export default function RootLayout({
       lang="hr"
       className={`h-full antialiased ${archivo.variable} ${heroNaslov.variable} ${inter.variable} ${mono.variable} ${akcent.variable}`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        {/* Vercel Web Analytics: broji posjete i pregled stranica.
+            Stoji zadnje u <body> da ne odgađa iscrtavanje sadržaja. */}
+        <Analytics />
+      </body>
     </html>
   );
 }
