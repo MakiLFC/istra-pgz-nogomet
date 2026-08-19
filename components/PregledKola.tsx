@@ -123,8 +123,10 @@ function BlokDerbiji({ utakmice }: { utakmice: UtakmicaMin[] }) {
               {skrati(d!.tekst_clanka, 110)}
             </p>
           )}
+          {/* Derbi se označi PRIJE utakmice, a sažetak stiže poslije nje.
+              Dok teksta nema, poveznica ne smije obećavati osvrt. */}
           <span className="mt-1 inline-block font-sans text-[11px] font-medium" style={{ color: "var(--pitch)" }}>
-            Cijeli osvrt →
+            {d!.tekst_clanka ? "Cijeli osvrt →" : "Vidi kolo →"}
           </span>
         </Link>
       ))}
