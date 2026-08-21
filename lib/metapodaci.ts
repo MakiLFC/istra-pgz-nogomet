@@ -12,5 +12,5 @@ export const SLIKA_DIJELJENJE = {
   url: "/slike/dijeljenje.png",
   width: 1200,
   height: 630,
-  alt: "Lokal-Arena — niže nogometne lige Primorsko-goranske županije",
+  alt: "Lokal-Arena — lokalni nogomet Istre i Primorsko-goranske županije",
 };

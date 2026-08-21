@@ -16,12 +16,12 @@ export const revalidate = 0;
 export const metadata: Metadata = {
   title: "Novosti",
   description:
-    "Transferi, najave i osvrti iz nižih nogometnih liga Primorsko-goranske županije.",
+    "Transferi, najave i osvrti iz nižih nogometnih liga Istre i Primorsko-goranske županije.",
   alternates: { canonical: "/novosti" },
   openGraph: {
     title: "Novosti",
     description:
-      "Transferi, najave i osvrti iz nižih nogometnih liga Primorsko-goranske županije.",
+      "Transferi, najave i osvrti iz nižih nogometnih liga Istre i Primorsko-goranske županije.",
     url: "/novosti",
     type: "website",
     locale: "hr_HR",

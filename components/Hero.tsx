@@ -58,7 +58,7 @@ export default function Hero({
                 className="font-mono text-[11px] uppercase tracking-[0.22em]"
                 style={{ color: "var(--oxide-light)" }}
               >
-                Primorsko-goranska županija
+                Istra i Primorje
                 {sezona ? ` · ${sezona}` : ""}
               </p>
 

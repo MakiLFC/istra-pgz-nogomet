@@ -76,16 +76,16 @@ export const metadata: Metadata = {
   // "— Lokal-Arena" se dodaje samo. Prije je svaka stranica taj nastavak
   // pisala ručno, pa se lako zaboravio ili udvostručio.
   title: {
-    default: "Lokal-Arena — niže nogometne lige Primorsko-goranske županije",
+    default: "Lokal-Arena — lokalni nogomet Istre i Primorsko-goranske županije",
     template: "%s — Lokal-Arena",
   },
   description:
-    "Rezultati, zapisnici, tablice i strijelci nižih nogometnih liga klubova na prostoru Primorsko-goranske županije. Podaci: HNS Semafor.",
+    "Rezultati, zapisnici, tablice i strijelci nižih nogometnih liga Istre i Primorsko-goranske županije. Podaci: HNS Semafor.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Lokal-Arena",
     description:
-      "Rezultati, tablice i strijelci nižih nogometnih liga Primorsko-goranske županije.",
+      "Rezultati, tablice i strijelci nižih nogometnih liga Istre i Primorsko-goranske županije.",
     url: "/",
     siteName: "Lokal-Arena",
     type: "website",
