@@ -108,6 +108,17 @@ klub ima svoj popis utakmica BEZ naslova kola. Parsiranje rasporeda mora
 stati na naslovu "Ljestvica" / "Statistika" / "Klubovi u natjecanju", inače
 nastaju duplikati s krivim kolom.
 
+Ovo se jednom već dogodilo, u kolovozu 2026.: prekida nije bilo, pa je 15.
+kolo 3. NL imalo 120 redaka umjesto 8 (dvojnicima se pripisivalo zadnje
+viđeno kolo, a datum je ostajao točan). Otkriveno je tek preko trake
+"Sljedeće kolo" na naslovnici, koja grupira po datumu i pokazivala je 16
+utakmica umjesto 8. Prekid sada čuva `test_kraj_rasporeda.py`; pokreni ga
+kad god dirneš parsiranje rasporeda.
+
+Zaštita od duplikata u scraperu ide po ključu (kolo, domaćin, gost), i to
+namjerno ne po samo (domaćin, gost): male županijske lige znaju se igrati
+trokružno, pa isti par ondje dvaput ima istog domaćina.
+
 **Neodigrane utakmice nemaju poveznicu na zapisnik** — na mjestu rezultata
 stoji samo `- : -`. Raspored se zato čita s retka na stranici lige.
 
