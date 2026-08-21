@@ -133,6 +133,18 @@ NATJECANJA = [
 RE_KOLO = re.compile(r"^(\d+)\.\s*kolo$")
 RE_DATUM = re.compile(r"(\d{2}\.\d{2}\.\d{4}\.)\s*(\d{1,2}:\d{2})?")
 
+# Naslovi sekcija koje na stranici natjecanja DOLAZE POSLIJE rasporeda.
+# Na njima parsiranje rasporeda mora stati. Vidi CLAUDE.md: u sekciji
+# "Klubovi u natjecanju" svaka se utakmica pojavljuje po drugi put, ali
+# ondje nema naslova "X. kolo", pa bi joj se pripisalo zadnje viđeno kolo
+# i upisala bi se kao nova utakmica s krivim kolom.
+KRAJ_RASPOREDA = ("ljestvica", "statistika", "klubovi u natjecanju")
+
+
+def _je_kraj_rasporeda(tekst):
+    """Je li tekst elementa točno naslov sekcije koja slijedi nakon rasporeda."""
+    return " ".join(tekst.split()).casefold() in KRAJ_RASPOREDA
+
 
 def dohvati_popis_utakmica(natjecanje_url):
     """
@@ -170,9 +182,24 @@ def dohvati_popis_utakmica(natjecanje_url):
     vidjeni_kljucevi = set()
 
     # Prolazimo kroz SVE elemente nakon "Raspored..." naslova, redom kako
-    # se pojavljuju u dokumentu (find_all_next vraća ih u pravom redoslijedu)
-    for element in pocetna_tocka.find_all_next(["li", "div", "span"]):
+    # se pojavljuju u dokumentu (find_all_next vraća ih u pravom redoslijedu).
+    #
+    # Namjerno BEZ filtra po imenu oznake: naslov na kojem raspored
+    # završava zna biti <h2>, a utakmice su u <li>/<div>/<span>. Da smo
+    # tražili samo te tri oznake, naslov bismo preskočili i nastavili
+    # čitati sekcije ispod rasporeda.
+    for element in pocetna_tocka.find_all_next(True):
         tekst = element.get_text(strip=True)
+
+        # Kraj rasporeda: dalje slijede ljestvica, statistika i popis
+        # klubova, u kojima se iste utakmice pojavljuju po drugi put.
+        # Uvjet gađa SAM naslov: omotač cijele sekcije ima puno više
+        # teksta od jedne riječi, pa se na njemu ne okida.
+        if _je_kraj_rasporeda(tekst):
+            break
+
+        if element.name not in ("li", "div", "span"):
+            continue
 
         # Prepoznajemo naslov kola: kratki tekst poput "1. kolo", "12. kolo"
         match_kolo = RE_KOLO.match(tekst)

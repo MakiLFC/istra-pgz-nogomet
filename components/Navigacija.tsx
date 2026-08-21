@@ -52,7 +52,7 @@ export default function Navigacija() {
           {/* Podnaslov: obični tekst, bez verzala i monospacea.
               Sitna razmaknuta velika slova čitala su se kao ispis terminala. */}
           <p className="max-w-[20rem] text-right font-sans text-[13px] leading-relaxed text-[var(--chalk)] opacity-70">
-            Niže nogometne lige klubova na prostoru
+            Niže nogometne lige Istre i
             <br className="hidden sm:block" /> Primorsko-goranske županije
           </p>
         </div>

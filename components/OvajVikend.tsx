@@ -10,6 +10,7 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { LIGE } from "@/lib/lige";
 import { golovi } from "@/lib/kolo";
+import { sBrojem } from "@/lib/hrvatski";
 
 /** Redak utakmice - samo stupci koje traka stvarno treba. */
 type RedUtakmice = {
@@ -173,10 +174,16 @@ export default async function OvajVikend() {
               {String(r.datum.getUTCDate()).padStart(2, "0")}.
               {String(r.datum.getUTCMonth() + 1).padStart(2, "0")}.
               {r.odigrano
-                ? ` · ${r.brojUtakmica} ${r.brojUtakmica === 1 ? "odigrana utakmica" : "odigranih utakmica"}`
-                : `${r.vrijeme ? ` u ${r.vrijeme}` : ""} · ${r.brojUtakmica} ${
-                    r.brojUtakmica === 1 ? "utakmica" : "utakmica"
-                  }`}
+                ? ` · ${sBrojem(r.brojUtakmica, [
+                    "odigrana utakmica",
+                    "odigrane utakmice",
+                    "odigranih utakmica",
+                  ])}`
+                : `${r.vrijeme ? ` u ${r.vrijeme}` : ""} · ${sBrojem(r.brojUtakmica, [
+                    "utakmica",
+                    "utakmice",
+                    "utakmica",
+                  ])}`}
             </span>
 
             {r.slugNajave && (
