@@ -17,6 +17,19 @@ Skripta traži fontove u mapi `fonts/` pokraj sebe (kopiraj `.woff2`
 datoteke iz `node_modules/@fontsource/...`) i lokalni poslužitelj na
 portu 8098 (`python3 -m http.server 8098`).
 
+## Slika za dijeljenje
+
+`public/slike/dijeljenje.png` (ona koja se vidi kad netko podijeli
+poveznicu) radi se iz ISTOG predloška, samo u omjeru 1200x630:
+
+```
+node generiraj-dijeljenje.mjs
+```
+
+Zato se ne crta zasebno: promjena krajolika ili palete u `zaglavlje.html`
+mijenja i nju. Izlazi u `izlaz/dijeljenje.png`; sažmi ga i prebaci u
+`public/slike/`.
+
 ## Što se gdje mijenja
 
 - tekst i položaj sunca po ligama: popis `set` na vrhu `generiraj.mjs`
