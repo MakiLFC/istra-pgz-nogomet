@@ -26,6 +26,7 @@ import {
 } from "@/lib/klubovi";
 import { dohvatiStatistike } from "@/lib/statistike";
 import { golovi } from "@/lib/kolo";
+import { slugUtakmice } from "@/lib/slug";
 import { LIGE } from "@/lib/lige";
 import { sBrojem } from "@/lib/hrvatski";
 import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
@@ -82,13 +83,11 @@ export async function generateMetadata({
  * Jedan redak utakmice.
  *
  * Redak namjerno NIJE jedna velika poveznica: unutar poveznice ne smije
- * stajati druga poveznica, a ovdje ih treba dvije. Broj kola vodi na to
- * kolo na stranici lige, gdje su zapisnik, strijelci i postave, a ime
- * protivnika na njegovu stranicu.
+ * stajati druga poveznica, a ovdje ih treba dvije. Broj kola vodi na
+ * zapisnik te utakmice, a ime protivnika na njegovu stranicu.
  */
 function Redak({ u, klub }: { u: UtakmicaKluba; klub: string }) {
   const rezultat = golovi(u.rezultat);
-  const ligaSlug = LIGE.find((l) => l.naziv === u.natjecanje)?.slug;
   const termin = [datumKratko(u.datum), u.vrijeme].filter(Boolean).join(" u ");
 
   const ime = (naziv: string) =>
@@ -105,22 +104,13 @@ function Redak({ u, klub }: { u: UtakmicaKluba; klub: string }) {
     >
       <IkonaTeren />
 
-      {u.kolo && ligaSlug ? (
-        <Link
-          href={`/liga/${ligaSlug}?kolo=${u.kolo}`}
-          className="w-16 shrink-0 font-mono text-[11px] hover:underline"
-          style={{ color: "var(--ink-muted)" }}
-        >
-          {u.kolo}. kolo
-        </Link>
-      ) : (
-        <span
-          className="w-16 shrink-0 font-mono text-[11px]"
-          style={{ color: "var(--ink-muted)" }}
-        >
-          {u.kolo ? `${u.kolo}. kolo` : ""}
-        </span>
-      )}
+      <Link
+        href={`/utakmica/${slugUtakmice(u)}`}
+        className="w-16 shrink-0 font-mono text-[11px] hover:underline"
+        style={{ color: "var(--ink-muted)" }}
+      >
+        {u.kolo ? `${u.kolo}. kolo` : "utakmica"}
+      </Link>
 
       <p className="min-w-0 flex-1 font-sans text-[15px] leading-snug">
         {ime(u.domacin)}{" "}

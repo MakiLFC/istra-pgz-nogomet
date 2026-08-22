@@ -37,3 +37,27 @@ export function slugKluba(naziv: string): string {
 export function kljucKluba(naziv: string): string {
   return slugKluba(naziv.replace(/\s*\([+-]\s*\d+\)\s*$/, ""));
 }
+
+/**
+ * Adresa utakmice: imena oba kluba i identifikator, npr.
+ * "nk-naprijed-h-nk-kraljevica-1234".
+ *
+ * Identifikator je na kraju namjerno: imena su ondje zbog čitljivosti i
+ * tražilica, ali jedini pouzdan ključ je id retka. Isti par klubova
+ * igra dvaput po sezoni, a u trokružnim ligama i triput.
+ */
+export function slugUtakmice(u: {
+  id: number;
+  domacin: string;
+  gost: string;
+}): string {
+  return `${slugKluba(u.domacin)}-${slugKluba(u.gost)}-${u.id}`;
+}
+
+/** Iz "nk-naprijed-h-nk-kraljevica-1234" vadi 1234, inače null. */
+export function idIzSluga(slug: string): number | null {
+  const m = slug.match(/-(\d+)$/);
+  if (!m) return null;
+  const n = parseInt(m[1], 10);
+  return isNaN(n) ? null : n;
+}

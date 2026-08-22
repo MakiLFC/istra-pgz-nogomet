@@ -14,6 +14,8 @@ import Otkrivanje from "@/components/Otkrivanje";
 import Brojka from "@/components/Brojka";
 import { IkonaLopta, IkonaTeren } from "@/components/Ikone";
 import { golovi } from "@/lib/kolo";
+import { strijelciPoKlubu } from "@/lib/utakmice";
+import { slugUtakmice } from "@/lib/slug";
 import ZaglavljeStranice from "@/components/ZaglavljeStranice";
 import PoveznicaKluba from "@/components/PoveznicaKluba";
 import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
@@ -21,27 +23,6 @@ import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
 // Podaci se osvježavaju tri puta tjedno, pa je kratko keširanje sigurno
 // i čini kretanje po stranici trenutnim.
 export const revalidate = 300;
-
-// Strijelci u bazi nisu eksplicitno označeni kojem klubu pripadaju, ali
-// znamo postave oba kluba - pa svakog strijelca pripisujemo klubu čija
-// postava sadrži njegovo ime. Ako postava nije dostupna (rijetko), strijelac
-// ostaje u "nepoznato" skupu kao siguran fallback.
-function razdvojiStrijelceePoKlubu(u: Utakmica) {
-  const domacinImena = new Set((u.postava_domacin ?? []).map((i) => i.igrac));
-  const gostImena = new Set((u.postava_gost ?? []).map((i) => i.igrac));
-
-  const domacin: typeof u.strijelci = [];
-  const gost: typeof u.strijelci = [];
-  const nepoznato: typeof u.strijelci = [];
-
-  for (const s of u.strijelci ?? []) {
-    if (domacinImena.has(s.igrac)) domacin!.push(s);
-    else if (gostImena.has(s.igrac)) gost!.push(s);
-    else nepoznato!.push(s);
-  }
-
-  return { domacin, gost, nepoznato };
-}
 
 async function dohvatiSezone(nazivLige: string): Promise<string[]> {
   const { data, error } = await supabase
@@ -255,7 +236,7 @@ export default async function StranicaLige({
                         (u.postava_domacin && u.postava_domacin.length > 0) ||
                         (u.postava_gost && u.postava_gost.length > 0);
 
-                      const { domacin, gost, nepoznato } = razdvojiStrijelceePoKlubu(u);
+                      const { domacin, gost, nepoznato } = strijelciPoKlubu(u);
 
                       return (
                         <Otkrivanje key={u.id} kasnjenje={Math.min(idx, 6) * 45}>
@@ -338,6 +319,18 @@ export default async function StranicaLige({
                               )}
                             </div>
                           )}
+
+                          {/* Vlastita adresa utakmice, da se zapisnik može
+                              podijeliti poveznicom. */}
+                          <p className="mt-3">
+                            <Link
+                              href={`/utakmica/${slugUtakmice(u)}`}
+                              className="font-sans text-sm font-medium hover:underline"
+                              style={{ color: "var(--oxide)" }}
+                            >
+                              {imaDetalje ? "Zapisnik" : "Podaci o utakmici"} →
+                            </Link>
+                          </p>
 
                           {(u.postava_domacin?.length || u.postava_gost?.length) ? (
                             <details className="mt-3 group">
