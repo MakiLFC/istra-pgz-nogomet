@@ -8,6 +8,7 @@ import type { MetadataRoute } from "next";
 import { supabase } from "@/lib/supabase";
 import { dohvatiKlubove } from "@/lib/klubovi";
 import { dohvatiOdigraneZaAdrese } from "@/lib/utakmice";
+import { dohvatiIgrace } from "@/lib/igraci";
 import { slugUtakmice } from "@/lib/slug";
 
 // Sitemap se osvježava svakih sat vremena, da novi članak ne mora čekati
@@ -99,11 +100,27 @@ async function utakmice(): Promise<MetadataRoute.Sitemap> {
   }
 }
 
+/** Igrači iz rang-lista strijelaca i kartona. */
+async function igraci(): Promise<MetadataRoute.Sitemap> {
+  try {
+    const popis = await dohvatiIgrace();
+    return popis.map((i) => ({
+      url: adresa(`/igrac/${i.slug}`),
+      priority: 0.5,
+      changeFrequency: "weekly" as const,
+    }));
+  } catch (e) {
+    console.error("Sitemap: dohvat igrača nije uspio:", e);
+    return [];
+  }
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [odClanaka, odKlubova, odUtakmica] = await Promise.all([
+  const [odClanaka, odKlubova, odUtakmica, odIgraca] = await Promise.all([
     clanci(),
     klubovi(),
     utakmice(),
+    igraci(),
   ]);
-  return [...STATICNE, ...odKlubova, ...odClanaka, ...odUtakmica];
+  return [...STATICNE, ...odKlubova, ...odIgraca, ...odClanaka, ...odUtakmica];
 }
