@@ -11,6 +11,7 @@
 
 import { useState } from "react";
 import PoveznicaKluba from "@/components/PoveznicaKluba";
+import PoveznicaIgraca from "@/components/PoveznicaIgraca";
 import type {
   RedTablice,
   RedStrijelca,
@@ -204,7 +205,9 @@ function RedIgraca({
         {pozicija}
       </span>
       <span className="min-w-0 flex-1 leading-tight">
-        <span className="block">{igrac}</span>
+        <span className="block">
+          <PoveznicaIgraca ime={igrac} />
+        </span>
         {klub && (
           <span className="block text-[11px]" style={{ color: "var(--ink-muted)" }}>
             <PoveznicaKluba naziv={klub} />
