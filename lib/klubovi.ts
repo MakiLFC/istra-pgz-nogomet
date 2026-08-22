@@ -41,6 +41,19 @@ export function slugKluba(naziv: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
+/**
+ * Ključ za usporedbu imena kluba između tablica.
+ *
+ * U službenoj tablici poretka klub s kaznenim bodovima piše se s
+ * dodatkom, npr. "NK Crikvenica (-3)", dok u utakmicama stoji bez njega.
+ * Dodatak se zato miče prije usporedbe. Oznake poput "(H)" ili "(R)",
+ * koje su dio imena, ostaju netaknute, jer se miče samo zagrada s
+ * predznakom i brojem.
+ */
+export function kljucKluba(naziv: string): string {
+  return slugKluba(naziv.replace(/\s*\([+-]\s*\d+\)\s*$/, ""));
+}
+
 type RedUtakmice = {
   natjecanje: string | null;
   sezona: string | null;
@@ -226,4 +239,36 @@ export function datumKratko(tekst: string | null): string | null {
   const dd = String(d.getUTCDate()).padStart(2, "0");
   const mm = String(d.getUTCMonth() + 1).padStart(2, "0");
   return `${dan} ${dd}.${mm}.`;
+}
+
+// ---------------------------------------------------------------------
+// Forma
+// ---------------------------------------------------------------------
+
+/** P = pobjeda, N = neriješeno, I = izgubljeno. */
+export type Ishod = "P" | "N" | "I";
+
+/**
+ * Zadnjih nekoliko ishoda kluba, najnoviji prvi.
+ *
+ * Računa se iz utakmica, ne iz tablice: tablica u bazi drži samo zadnje
+ * stanje sezone, pa se iz nje niz rezultata ne može izvesti.
+ */
+export function formaKluba(
+  utakmice: UtakmicaKluba[],
+  naziv: string,
+  koliko = 5
+): Ishod[] {
+  return utakmice
+    .filter((u) => /^\s*\d{1,2}\s*:\s*\d{1,2}\s*$/.test(u.rezultat ?? ""))
+    .sort((a, b) => (b.kolo ?? 0) - (a.kolo ?? 0))
+    .slice(0, koliko)
+    .map((u) => {
+      const [dom, gos] = (u.rezultat as string).split(":").map((x) => parseInt(x, 10));
+      const nasi = u.domacin === naziv ? dom : gos;
+      const njihovi = u.domacin === naziv ? gos : dom;
+      if (nasi > njihovi) return "P";
+      if (nasi === njihovi) return "N";
+      return "I";
+    });
 }

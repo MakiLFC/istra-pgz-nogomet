@@ -1,7 +1,7 @@
 // app/klub/[slug]/page.tsx — stranica pojedinog kluba.
 //
-// Drugi korak: uz ime i natjecanje, popis svih utakmica kluba u sezoni,
-// razdvojen na nadolazeće i odigrane. Statistika dolazi u sljedećem koraku.
+// Ime i natjecanje, poredak i forma, strijelci i kartoni, pa popis svih
+// utakmica u sezoni, razdvojen na nadolazeće i odigrane.
 //
 // Klubovi nemaju svoju tablicu u bazi, izvode se iz imena u utakmicama;
 // vidi lib/klubovi.ts.
@@ -13,14 +13,17 @@ import Navigacija from "@/components/Navigacija";
 import Podnozje from "@/components/Podnozje";
 import Otkrivanje from "@/components/Otkrivanje";
 import { IkonaTeren } from "@/components/Ikone";
+import StatistikaKluba from "@/components/StatistikaKluba";
 import {
   dohvatiKlub,
   dohvatiKlubove,
   dohvatiUtakmiceKluba,
   datumKratko,
+  formaKluba,
   uDatum,
   type UtakmicaKluba,
 } from "@/lib/klubovi";
+import { dohvatiStatistike } from "@/lib/statistike";
 import { golovi } from "@/lib/kolo";
 import { LIGE } from "@/lib/lige";
 import { sBrojem } from "@/lib/hrvatski";
@@ -44,7 +47,7 @@ export async function generateStaticParams() {
 
 function opisKluba(naziv: string, lige: string[]): string {
   const uLigama = lige.length ? ` u natjecanju ${lige.join(", ")}` : "";
-  return `Rezultati i raspored kluba ${naziv}${uLigama}. Podaci s HNS Semafora, osvježeni svakog vikenda.`;
+  return `Rezultati, raspored, poredak i strijelci kluba ${naziv}${uLigama}. Podaci s HNS Semafora, osvježeni svakog vikenda.`;
 }
 
 export async function generateMetadata({
@@ -194,6 +197,17 @@ export default async function StranicaKluba({
 
   const utakmice = sezona ? await dohvatiUtakmiceKluba(klub.naziv, sezona) : [];
 
+  // Statistika se vodi po natjecanju. Klub je u sezoni u pravilu u jednoj
+  // ligi; ako ih je više, uzima se ona u kojoj te sezone ima utakmice.
+  const ligaSezone =
+    utakmice[0]?.natjecanje ?? klub.lige[0] ?? null;
+  const statistike =
+    ligaSezone && sezona
+      ? await dohvatiStatistike(ligaSezone, sezona)
+      : { tablica: [], strijelci: [], kartoni: [] };
+
+  const forma = formaKluba(utakmice, klub.naziv);
+
   const odigrane = utakmice
     .filter((u) => golovi(u.rezultat))
     .sort((a, b) => (b.kolo ?? 0) - (a.kolo ?? 0));
@@ -266,6 +280,8 @@ export default async function StranicaKluba({
             </div>
           </Otkrivanje>
         )}
+
+        <StatistikaKluba naziv={klub.naziv} statistike={statistike} forma={forma} />
 
         <Blok
           naslov="Raspored"
