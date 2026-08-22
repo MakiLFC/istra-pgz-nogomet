@@ -74,8 +74,8 @@ export default function Hero({
               </h1>
 
               <p className="mt-4 max-w-xl font-sans text-sm leading-relaxed opacity-75 sm:text-base">
-                Rezultati, zapisnici, tablice i strijelci nižih nogometnih liga
-                — na jednom mjestu, osvježeni svakog vikenda.
+                Rezultati, zapisnici, tablice i strijelci nižih nogometnih liga,
+                sve na jednom mjestu i osvježeno svakog vikenda.
               </p>
             </div>
           </div>
