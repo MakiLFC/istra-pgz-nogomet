@@ -4,7 +4,7 @@ Stranica s rezultatima nižih nogometnih liga na prostoru Primorsko-goranske
 županije. Radi je jedna osoba (Andrej), nije komercijalni projekt.
 
 Javno: lokalarena.com (hosting Vercel). Stara adresa
-istra-pgz-nogomet.vercel.app trajno se preusmjerava preko `middleware.ts`.
+istra-pgz-nogomet.vercel.app trajno se preusmjerava preko `proxy.ts`.
 Podaci: HNS Semafor (semafor.hns.family), scrapeani u Supabase.
 
 ---

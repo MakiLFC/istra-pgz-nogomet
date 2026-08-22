@@ -1,4 +1,7 @@
-// middleware.ts — trajno preusmjeravanje stare Vercel adrese na domenu.
+// proxy.ts, trajno preusmjeravanje stare Vercel adrese na domenu.
+//
+// Datoteka se do Nexta 16 zvala middleware.ts. Nova konvencija je proxy,
+// a stari naziv izaziva upozorenje pri gradnji. Sadržaj je isti.
 //
 // Stranica je prešla na lokalarena.com, a stara adresa
 // istra-pgz-nogomet.vercel.app i dalje odgovara. Ovdje se svaki zahtjev
@@ -13,7 +16,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const host = request.headers.get("host") ?? "";
 
   if (host === "istra-pgz-nogomet.vercel.app") {
