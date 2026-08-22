@@ -6,8 +6,104 @@ import { createClient } from "@supabase/supabase-js";
 // VAŽNO: ovdje koristimo "anon" javni ključ, NIKAD "service_role" ključ -
 // service_role ključ ima ovlasti pisanja i mora ostati samo u scraperu
 // na tvom računalu, nikad u kodu koji se šalje pregledniku korisnika.
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+// ---------------------------------------------------------------------
+// PROVJERA POSTAVKI - namjerno ruši build kad su krive
+// ---------------------------------------------------------------------
+// U kolovozu 2026. je NEXT_PUBLIC_SUPABASE_URL u Vercelu greškom
+// prepisan adresom same stranice (postavljala se domena). Build je
+// prošao, objava je uspjela, a stranica je ostala prazna: svaki upit
+// išao je na lokalarena.com/rest/v1/... i vraćao njezinu 404 stranicu.
+// Kod je grešku uhvatio, vratio prazan popis i ispisao poruku "Trenutno
+// nema učitanih utakmica", pa je izgledalo kao da su podaci nestali.
+//
+// Zato se postavke sada provjeravaju pri gradnji. Kriva vrijednost ruši
+// build, a Vercel u tom slučaju ostavlja zadnju ispravnu verziju na
+// zraku. Bolje neuspjela objava nego uspješna objava prazne stranice.
+//
+// Poruke namjerno NE ispisuju ključ, jer build zapisi nisu tajni.
+
+function greska(sto: string): never {
+  throw new Error(
+    `[Lokal-Arena] ${sto}\n` +
+      "Provjeri Environment Variables u Vercelu (Settings -> Environment " +
+      "Variables), odnosno .env.local na računalu. Nakon izmjene treba " +
+      "pokrenuti novi deployment, jer se NEXT_PUBLIC_ vrijednosti upisuju " +
+      "u stranicu u trenutku gradnje."
+  );
+}
+
+function provjeriAdresu(adresa: string | undefined): string {
+  if (!adresa) greska("NEXT_PUBLIC_SUPABASE_URL nije postavljen.");
+
+  let url: URL;
+  try {
+    url = new URL(adresa);
+  } catch {
+    greska("NEXT_PUBLIC_SUPABASE_URL nije ispravna adresa.");
+  }
+
+  // Adresa Supabase projekta izgleda ovako: https://xxxx.supabase.co
+  // Ako u imenu domaćina nema "supabase", upisano je nešto drugo, u
+  // pravilu adresa same stranice. Ako Supabase ikad bude na vlastitoj
+  // domeni, ovaj uvjet treba popustiti.
+  if (!url.hostname.includes("supabase")) {
+    greska(
+      `NEXT_PUBLIC_SUPABASE_URL pokazuje na "${url.hostname}", a to nije ` +
+        "adresa Supabase projekta. Očekuje se nešto poput " +
+        "https://xxxxxxxx.supabase.co (Supabase -> Project Settings -> API " +
+        "-> Project URL). Ovdje NE ide adresa stranice; za nju postoji " +
+        "zasebna varijabla NEXT_PUBLIC_SITE_URL."
+    );
+  }
+
+  return adresa;
+}
+
+/** Uloga zapisana u JWT ključu, ili null ako se ne može pročitati. */
+function ulogaIzKljuca(kljuc: string): string | null {
+  try {
+    const sredina = kljuc.split(".")[1];
+    if (!sredina) return null;
+    const json = atob(sredina.replace(/-/g, "+").replace(/_/g, "/"));
+    return (JSON.parse(json) as { role?: string }).role ?? null;
+  } catch {
+    return null;
+  }
+}
+
+function provjeriKljuc(kljuc: string | undefined): string {
+  if (!kljuc) greska("NEXT_PUBLIC_SUPABASE_ANON_KEY nije postavljen.");
+
+  if (kljuc.startsWith("http")) {
+    greska(
+      "NEXT_PUBLIC_SUPABASE_ANON_KEY sadrži adresu, a treba sadržavati ključ."
+    );
+  }
+
+  // Stariji ključevi su JWT i počinju s "eyJ", noviji s "sb_publishable_".
+  if (!kljuc.startsWith("eyJ") && !kljuc.startsWith("sb_publishable_")) {
+    greska(
+      "NEXT_PUBLIC_SUPABASE_ANON_KEY ne izgleda kao Supabase ključ " +
+        "(očekuje se početak \"eyJ\" ili \"sb_publishable_\")."
+    );
+  }
+
+  // Ovaj ključ završava u pregledniku svakog posjetitelja, pa ovdje
+  // service_role ključ ne smije doći ni slučajno: on ima pravo pisanja
+  // i brisanja po cijeloj bazi.
+  if (ulogaIzKljuca(kljuc) === "service_role") {
+    greska(
+      "NEXT_PUBLIC_SUPABASE_ANON_KEY sadrži service_role ključ. Taj ključ " +
+        "ima pravo pisanja po cijeloj bazi i nikad ne smije biti javan. " +
+        "Ovdje ide anon ključ; service_role ostaje samo u scraperu."
+    );
+  }
+
+  return kljuc;
+}
+
+const supabaseUrl = provjeriAdresu(process.env.NEXT_PUBLIC_SUPABASE_URL);
+const supabaseAnonKey = provjeriKljuc(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 

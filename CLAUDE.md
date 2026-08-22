@@ -3,7 +3,9 @@
 Stranica s rezultatima nižih nogometnih liga na prostoru Primorsko-goranske
 županije. Radi je jedna osoba (Andrej), nije komercijalni projekt.
 
-Javno: Vercel. Podaci: HNS Semafor (semafor.hns.family), scrapeani u Supabase.
+Javno: lokalarena.com (hosting Vercel). Stara adresa
+istra-pgz-nogomet.vercel.app trajno se preusmjerava preko `middleware.ts`.
+Podaci: HNS Semafor (semafor.hns.family), scrapeani u Supabase.
 
 ---
 
@@ -144,6 +146,19 @@ uključujući postave koje ne prikazuje). Sad dohvaća samo potrebne stupce
 
 **Bočni stupac se renderira na poslužitelju.** Prije se dohvaćao u pregledniku
 preko `useEffect` i vidno je "uskakao" nakon učitavanja.
+
+**Postavke veze na bazu provjeravaju se pri gradnji, u `lib/supabase.ts`.**
+U kolovozu 2026., dok se postavljala domena, `NEXT_PUBLIC_SUPABASE_URL` u
+Vercelu je greškom prepisan adresom same stranice. Build je prošao, objava
+je uspjela, a stranica je ostala prazna: upiti su išli na
+lokalarena.com/rest/v1/... i vraćali njezinu 404 stranicu, koju kod uhvati
+kao grešku i vrati prazan popis. Izgledalo je kao da su podaci nestali, a
+bili su netaknuti.
+
+Zato kriva adresa, ključ koji ne izgleda kao ključ i service_role ključ u
+javnoj varijabli sada ruše build. Vercel u tom slučaju ostavlja zadnju
+ispravnu verziju na zraku. Adresa stranice ide u `NEXT_PUBLIC_SITE_URL`,
+nikad u `NEXT_PUBLIC_SUPABASE_URL`.
 
 **U CSS-u svi `@import` moraju biti prije `@import "tailwindcss"`.**
 Tailwind se razmota u stotine redaka i svaki `@import` iza njega ruši build.
