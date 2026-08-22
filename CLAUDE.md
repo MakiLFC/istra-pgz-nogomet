@@ -225,6 +225,26 @@ Kad se pojave, uz korake gore pokreni scraper — migracija baze
   osobe koja je vodi
 - Proširenje na druge lokalne sportove
 
+## Otvoreno, podsjeti Andreja
+
+**Od ponedjeljka 24.08.2026.: provjeriti da dvojnici u rasporedu više ne
+nastaju.** Vikend 22. i 23.08. prvo je pokretanje scrapera s popravljenim
+prekidom parsiranja. Kola se tad ne igraju, pa novih rezultata neće biti,
+ali će scraper svejedno proći raspored. Kad Andrej sljedeći put radi na
+projektu, podsjeti ga da u Supabaseu pokrene:
+
+```sql
+select natjecanje, kolo, count(*) as redaka
+from public.utakmice
+where sezona = '2026/27'
+group by natjecanje, kolo
+order by natjecanje, kolo;
+```
+
+Mora biti 8 redaka po kolu za 3. NL Zapad i 7 za 4. NL NS Rijeka. Ako
+negdje bude više, popravak nije uhvatio sve i vraćamo se na parsiranje.
+Kad se potvrdi da je uredu, obriši ovaj odjeljak.
+
 ## Stil rada s korisnikom
 
 Andrej nije programer. Objašnjavaj bez žargona i uvijek reci **u koju točno
