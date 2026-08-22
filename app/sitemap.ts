@@ -6,6 +6,7 @@
 
 import type { MetadataRoute } from "next";
 import { supabase } from "@/lib/supabase";
+import { dohvatiKlubove } from "@/lib/klubovi";
 
 // Sitemap se osvježava svakih sat vremena, da novi članak ne mora čekati
 // sljedeću objavu da bi se u njemu pojavio.
@@ -62,6 +63,22 @@ async function clanci(): Promise<MetadataRoute.Sitemap> {
   }
 }
 
+/** Stranice klubova. Kad dohvat ne uspije, vraća prazan popis. */
+async function klubovi(): Promise<MetadataRoute.Sitemap> {
+  try {
+    const popis = await dohvatiKlubove();
+    return popis.map((k) => ({
+      url: adresa(`/klub/${k.slug}`),
+      priority: 0.6,
+      changeFrequency: "weekly" as const,
+    }));
+  } catch (e) {
+    console.error("Sitemap: dohvat klubova nije uspio:", e);
+    return [];
+  }
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  return [...STATICNE, ...(await clanci())];
+  const [odClanaka, odKlubova] = await Promise.all([clanci(), klubovi()]);
+  return [...STATICNE, ...odKlubova, ...odClanaka];
 }
