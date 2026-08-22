@@ -14,6 +14,7 @@ import Podnozje from "@/components/Podnozje";
 import Otkrivanje from "@/components/Otkrivanje";
 import { IkonaTeren } from "@/components/Ikone";
 import StatistikaKluba from "@/components/StatistikaKluba";
+import PoveznicaKluba from "@/components/PoveznicaKluba";
 import {
   dohvatiKlub,
   dohvatiKlubove,
@@ -77,25 +78,49 @@ export async function generateMetadata({
   };
 }
 
-/** Jedan redak utakmice. Klub čija je ovo stranica ispisan je podebljano. */
+/**
+ * Jedan redak utakmice.
+ *
+ * Redak namjerno NIJE jedna velika poveznica: unutar poveznice ne smije
+ * stajati druga poveznica, a ovdje ih treba dvije. Broj kola vodi na to
+ * kolo na stranici lige, gdje su zapisnik, strijelci i postave, a ime
+ * protivnika na njegovu stranicu.
+ */
 function Redak({ u, klub }: { u: UtakmicaKluba; klub: string }) {
   const rezultat = golovi(u.rezultat);
   const ligaSlug = LIGE.find((l) => l.naziv === u.natjecanje)?.slug;
   const termin = [datumKratko(u.datum), u.vrijeme].filter(Boolean).join(" u ");
 
-  const ime = (naziv: string) => (
-    <span className={naziv === klub ? "font-bold" : "font-medium"}>{naziv}</span>
-  );
+  const ime = (naziv: string) =>
+    naziv === klub ? (
+      <span className="font-bold">{naziv}</span>
+    ) : (
+      <PoveznicaKluba naziv={naziv} className="font-medium" />
+    );
 
-  const sadrzaj = (
-    <>
+  return (
+    <div
+      className="flex items-center gap-3 bg-white px-4 py-3"
+      style={{ border: "1px solid var(--line)" }}
+    >
       <IkonaTeren />
-      <span
-        className="w-16 shrink-0 font-mono text-[11px]"
-        style={{ color: "var(--ink-muted)" }}
-      >
-        {u.kolo ? `${u.kolo}. kolo` : ""}
-      </span>
+
+      {u.kolo && ligaSlug ? (
+        <Link
+          href={`/liga/${ligaSlug}?kolo=${u.kolo}`}
+          className="w-16 shrink-0 font-mono text-[11px] hover:underline"
+          style={{ color: "var(--ink-muted)" }}
+        >
+          {u.kolo}. kolo
+        </Link>
+      ) : (
+        <span
+          className="w-16 shrink-0 font-mono text-[11px]"
+          style={{ color: "var(--ink-muted)" }}
+        >
+          {u.kolo ? `${u.kolo}. kolo` : ""}
+        </span>
+      )}
 
       <p className="min-w-0 flex-1 font-sans text-[15px] leading-snug">
         {ime(u.domacin)}{" "}
@@ -117,25 +142,6 @@ function Redak({ u, klub }: { u: UtakmicaKluba; klub: string }) {
           {termin}
         </span>
       )}
-    </>
-  );
-
-  const razred = "flex items-center gap-3 bg-white px-4 py-3";
-  const obrub = { border: "1px solid var(--line)" };
-
-  // Poveznica vodi na kolo te utakmice na stranici lige, gdje stoje
-  // zapisnik, strijelci i postave.
-  return ligaSlug ? (
-    <Link
-      href={`/liga/${ligaSlug}${u.kolo ? `?kolo=${u.kolo}` : ""}`}
-      className={`${razred} transition-opacity hover:opacity-80`}
-      style={obrub}
-    >
-      {sadrzaj}
-    </Link>
-  ) : (
-    <div className={razred} style={obrub}>
-      {sadrzaj}
     </div>
   );
 }

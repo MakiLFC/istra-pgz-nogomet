@@ -10,6 +10,7 @@
 // ispravno radi i ako globals.css nije osvježen.
 
 import { useState } from "react";
+import PoveznicaKluba from "@/components/PoveznicaKluba";
 import type {
   RedTablice,
   RedStrijelca,
@@ -55,7 +56,9 @@ export default function SidebarLiga({ statistike }: { statistike: StatistikeLige
                     {r.pozicija}
                   </td>
                   {/* ime kluba dobiva svu preostalu širinu i ne reže se */}
-                  <td className="py-1.5 pr-2 leading-tight">{r.klub}</td>
+                  <td className="py-1.5 pr-2 leading-tight">
+                    <PoveznicaKluba naziv={r.klub} />
+                  </td>
                   <td
                     className="py-1.5 pr-1 text-right font-mono"
                     style={{ width: "1%", whiteSpace: "nowrap" }}
@@ -204,7 +207,7 @@ function RedIgraca({
         <span className="block">{igrac}</span>
         {klub && (
           <span className="block text-[11px]" style={{ color: "var(--ink-muted)" }}>
-            {klub}
+            <PoveznicaKluba naziv={klub} />
           </span>
         )}
       </span>

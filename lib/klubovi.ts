@@ -6,6 +6,10 @@
 
 import { cache } from "react";
 import { supabase } from "@/lib/supabase";
+import { slugKluba, kljucKluba } from "@/lib/slug";
+
+// Zadržane i ovdje, da se stranice klubova mogu služiti jednim uvozom.
+export { slugKluba, kljucKluba };
 
 export type Klub = {
   /** Dio adrese: /klub/<slug> */
@@ -19,40 +23,6 @@ export type Klub = {
   /** Koliko utakmica kluba stoji u bazi (odigranih i neodigranih). */
   brojUtakmica: number;
 };
-
-// Slova koja se ne razlažu u osnovno slovo i znak (đ je jedan znak, ne
-// d s crticom), pa ih zamjenjujemo ručno.
-const POSEBNA: Record<string, string> = { đ: "d", Đ: "d" };
-
-/**
- * "NK Jadran-Poreč" -> "nk-jadran-porec"
- * "OŠK Omišalj"     -> "osk-omisalj"
- * "NK Naprijed (H)" -> "nk-naprijed-h"
- */
-export function slugKluba(naziv: string): string {
-  return naziv
-    .replace(/[đĐ]/g, (z) => POSEBNA[z])
-    // NFD razlaže č, ć, ž, š na osnovno slovo i dijakritički znak, koji
-    // se onda ukloni.
-    .normalize("NFD")
-    .replace(/[̀-ͯ]/g, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
-
-/**
- * Ključ za usporedbu imena kluba između tablica.
- *
- * U službenoj tablici poretka klub s kaznenim bodovima piše se s
- * dodatkom, npr. "NK Crikvenica (-3)", dok u utakmicama stoji bez njega.
- * Dodatak se zato miče prije usporedbe. Oznake poput "(H)" ili "(R)",
- * koje su dio imena, ostaju netaknute, jer se miče samo zagrada s
- * predznakom i brojem.
- */
-export function kljucKluba(naziv: string): string {
-  return slugKluba(naziv.replace(/\s*\([+-]\s*\d+\)\s*$/, ""));
-}
 
 type RedUtakmice = {
   natjecanje: string | null;

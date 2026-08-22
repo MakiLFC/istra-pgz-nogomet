@@ -15,6 +15,7 @@ import Brojka from "@/components/Brojka";
 import { IkonaLopta, IkonaTeren } from "@/components/Ikone";
 import { golovi } from "@/lib/kolo";
 import ZaglavljeStranice from "@/components/ZaglavljeStranice";
+import PoveznicaKluba from "@/components/PoveznicaKluba";
 import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
 
 // Podaci se osvježavaju tri puta tjedno, pa je kratko keširanje sigurno
@@ -277,11 +278,11 @@ export default async function StranicaLige({
                           <div className="flex items-center gap-3">
                             <IkonaTeren />
                             <p className="font-sans text-lg leading-snug">
-                              <span className="font-medium">{u.domacin}</span>
+                              <PoveznicaKluba naziv={u.domacin} className="font-medium" />
                               {" "}
                               <span className="semafor text-base">{u.rezultat ?? "?:?"}</span>
                               {" "}
-                              <span className="font-medium">{u.gost}</span>
+                              <PoveznicaKluba naziv={u.gost} className="font-medium" />
                             </p>
                           </div>
 
