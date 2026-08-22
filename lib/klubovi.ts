@@ -4,6 +4,7 @@
 // "domacin" i "gost". Ovdje se iz njih slaže popis, sa slugom za adresu
 // i podatkom u kojim se ligama i sezonama klub pojavljuje.
 
+import { cache } from "react";
 import { supabase } from "@/lib/supabase";
 
 export type Klub = {
@@ -80,8 +81,14 @@ async function sviRedci(): Promise<RedUtakmice[]> {
   return redci;
 }
 
-/** Svi klubovi koji se pojavljuju u bazi, poredani po imenu. */
-export async function dohvatiKlubove(): Promise<Klub[]> {
+/**
+ * Svi klubovi koji se pojavljuju u bazi, poredani po imenu.
+ *
+ * Omotano u cache() jer se pri iscrtavanju jedne stranice zove dvaput,
+ * iz generateMetadata i iz same stranice. Bez toga bi se cijeli popis
+ * utakmica dohvaćao dvaput po stranici.
+ */
+export const dohvatiKlubove = cache(async function dohvatiKlubove(): Promise<Klub[]> {
   let redci: RedUtakmice[];
   try {
     redci = await sviRedci();
@@ -126,10 +133,97 @@ export async function dohvatiKlubove(): Promise<Klub[]> {
       brojUtakmica: k.broj,
     }))
     .sort((a, b) => a.naziv.localeCompare(b.naziv, "hr"));
-}
+});
 
 /** Jedan klub po slugu, ili null ako ga nema. */
 export async function dohvatiKlub(slug: string): Promise<Klub | null> {
   const klubovi = await dohvatiKlubove();
   return klubovi.find((k) => k.slug === slug) ?? null;
+}
+
+// ---------------------------------------------------------------------
+// Utakmice kluba
+// ---------------------------------------------------------------------
+
+export type UtakmicaKluba = {
+  id: number;
+  natjecanje: string;
+  sezona: string | null;
+  kolo: number | null;
+  domacin: string;
+  gost: string;
+  rezultat: string | null;
+  datum: string | null;
+  vrijeme: string | null;
+  stadion: string | null;
+};
+
+const STUPCI =
+  "id, natjecanje, sezona, kolo, domacin, gost, rezultat, datum, vrijeme, stadion";
+
+/**
+ * Sve utakmice kluba u zadanoj sezoni, odigrane i nadolazeće.
+ *
+ * Namjerno dva odvojena upita umjesto jednog s "ili": imena klubova
+ * sadrže zagrade ("NK Naprijed (H)"), a one u PostgRESTovu "or" filtru
+ * imaju posebno značenje i razbile bi upit.
+ */
+export async function dohvatiUtakmiceKluba(
+  naziv: string,
+  sezona: string
+): Promise<UtakmicaKluba[]> {
+  try {
+    const upit = (stupac: "domacin" | "gost") =>
+      supabase
+        .from("utakmice")
+        .select(STUPCI)
+        .eq(stupac, naziv)
+        .eq("sezona", sezona);
+
+    const [doma, vani] = await Promise.all([upit("domacin"), upit("gost")]);
+
+    if (doma.error || vani.error) {
+      console.error(
+        "Klub: greška kod dohvaćanja utakmica:",
+        doma.error?.message ?? vani.error?.message
+      );
+      return [];
+    }
+
+    const svi = [
+      ...((doma.data ?? []) as UtakmicaKluba[]),
+      ...((vani.data ?? []) as UtakmicaKluba[]),
+    ];
+
+    // Klub protiv samoga sebe ne postoji, ali ako se ista utakmica ikad
+    // nađe u oba popisa, neka uđe jednom.
+    const poId = new Map<number, UtakmicaKluba>();
+    for (const u of svi) poId.set(u.id, u);
+    return Array.from(poId.values());
+  } catch (e) {
+    console.error("Klub: dohvat utakmica nije uspio:", e);
+    return [];
+  }
+}
+
+/** "29.08.2026." -> Date, ili null. Stupac datum je tekst, ne datum. */
+export function uDatum(tekst: string | null): Date | null {
+  if (!tekst) return null;
+  const m = tekst.match(/^(\d{2})\.(\d{2})\.(\d{4})\./);
+  if (!m) return null;
+  return new Date(Date.UTC(+m[3], +m[2] - 1, +m[1]));
+}
+
+const DANI = [
+  "ned", "pon", "uto", "sri", "čet", "pet", "sub",
+];
+
+/** "29.08.2026." -> "sub 29.08." */
+export function datumKratko(tekst: string | null): string | null {
+  const d = uDatum(tekst);
+  if (!d) return null;
+  const dan = DANI[d.getUTCDay()];
+  const dd = String(d.getUTCDate()).padStart(2, "0");
+  const mm = String(d.getUTCMonth() + 1).padStart(2, "0");
+  return `${dan} ${dd}.${mm}.`;
 }
