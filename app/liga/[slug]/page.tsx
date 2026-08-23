@@ -8,6 +8,7 @@ import Navigacija from "@/components/Navigacija";
 import Podnozje from "@/components/Podnozje";
 import Postava from "@/components/Postava";
 import SidebarLiga from "@/components/SidebarLiga";
+import TablicaLige from "@/components/TablicaLige";
 import KarticaClanka from "@/components/KarticaClanka";
 import { dohvatiClanke } from "@/lib/clanci";
 import Otkrivanje from "@/components/Otkrivanje";
@@ -15,6 +16,7 @@ import Brojka from "@/components/Brojka";
 import { IkonaLopta, IkonaTeren } from "@/components/Ikone";
 import { golovi } from "@/lib/kolo";
 import { strijelciPoKlubu } from "@/lib/utakmice";
+import { formaPoKlubu } from "@/lib/tablica";
 import { slugUtakmice } from "@/lib/slug";
 import ZaglavljeStranice from "@/components/ZaglavljeStranice";
 import PoveznicaKluba from "@/components/PoveznicaKluba";
@@ -38,18 +40,24 @@ async function dohvatiSezone(nazivLige: string): Promise<string[]> {
 /** Jeftin upit: samo brojevi kola i rezultat (bez postava) - za popis kola,
  * ukupan broj i odabir zadnjeg ODIGRANOG kola (raspored sadrži i buduće
  * utakmice bez rezultata, koje ne smiju postati zadano kolo). */
-async function dohvatiKola(
-  nazivLige: string,
-  sezona: string
-): Promise<{ kolo: number; rezultat: string | null }[]> {
+type RedKola = {
+  kolo: number;
+  rezultat: string | null;
+  domacin: string;
+  gost: string;
+};
+
+async function dohvatiKola(nazivLige: string, sezona: string): Promise<RedKola[]> {
+  // Uz kolo i rezultat idu i klubovi, jer se iz njih računa forma za
+  // tablicu. Postave se i dalje NE dohvaćaju, one su najteži dio retka.
   const { data, error } = await supabase
     .from("utakmice")
-    .select("kolo, rezultat")
+    .select("kolo, rezultat, domacin, gost")
     .eq("natjecanje", nazivLige)
     .eq("sezona", sezona);
 
   if (error || !data) return [];
-  return data.filter((d): d is { kolo: number; rezultat: string | null } => d.kolo !== null);
+  return (data as RedKola[]).filter((d) => d.kolo !== null);
 }
 
 /** Pune podatke (uključujući postave) dohvaćamo SAMO za prikazano kolo. */
@@ -126,6 +134,8 @@ export default async function StranicaLige({
   // Zadano kolo je zadnje ODIGRANO (raspored uključuje i buduće utakmice
   // bez rezultata, koje ne smiju postati zadani prikaz). Ako sezona još
   // nije počela, pokaži prvo kolo (najavu).
+  const forma = formaPoKlubu(svaKolaSve);
+
   const odigranaKola = svaKolaSve.filter((d) => golovi(d.rezultat)).map((d) => d.kolo);
   const zadnjeOdigranoKolo = odigranaKola.length ? Math.max(...odigranaKola) : null;
   const odabranoKolo = koloIzUrl
@@ -185,6 +195,13 @@ export default async function StranicaLige({
 
         {/* Dva stupca: sadržaj lige lijevo, sidebar (tablica/strijelci/kartoni)
             desno na velikim ekranima, ispod sadržaja na mobitelu. */}
+        <TablicaLige
+          tablica={statistike.tablica}
+          forma={forma}
+          prvak={liga.prvak}
+          ispadanje={liga.ispadanje}
+        />
+
         <div className="flex flex-col gap-8 lg:flex-row">
           <div className="min-w-0 flex-1">
             {svaKola.length === 0 ? (

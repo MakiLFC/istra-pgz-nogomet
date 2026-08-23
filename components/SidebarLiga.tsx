@@ -2,28 +2,25 @@
 
 // SidebarLiga.tsx
 //
-// Tri odvojena bloka po ligi: Tablica / Strijelci / Kartoni.
-// - Tablica: puna imena klubova (ne režu se)
-// - Strijelci i kartoni: prvih 10, gumb "Prikaži sve" otvara ostatak
+// Dva bloka po ligi: Strijelci / Kartoni. Prvih pet, gumb "Prikaži sve"
+// otvara ostatak.
+//
+// Tablica poretka je preseljena u glavni stupac (components/TablicaLige):
+// ovdje je bilo mjesta samo za tri stupca, a treba ih jedanaest.
 //
 // NAPOMENA: bitni stilovi su ugrađeni izravno u komponentu, pa raspored
 // ispravno radi i ako globals.css nije osvježen.
 
 import { useState } from "react";
-import PoveznicaKluba from "@/components/PoveznicaKluba";
 import PoveznicaIgraca from "@/components/PoveznicaIgraca";
-import type {
-  RedTablice,
-  RedStrijelca,
-  RedKartona,
-  StatistikeLige,
-} from "@/lib/statistike";
+import PoveznicaKluba from "@/components/PoveznicaKluba";
+import type { StatistikeLige } from "@/lib/statistike";
 
 
 const PRIKAZI_ODMAH = 5;
 
 export default function SidebarLiga({ statistike }: { statistike: StatistikeLige }) {
-  const { tablica, strijelci, kartoni } = statistike;
+  const { strijelci, kartoni } = statistike;
   const [sviStrijelci, setSviStrijelci] = useState(false);
   const [sviKartoni, setSviKartoni] = useState(false);
 
@@ -32,59 +29,6 @@ export default function SidebarLiga({ statistike }: { statistike: StatistikeLige
 
   return (
     <div className="space-y-4">
-      {/* ---------------- TABLICA ---------------- */}
-      <Blok naslov="Tablica" ukupno={tablica.length}>
-        {tablica.length === 0 ? (
-          <Prazno poruka="Tablica još nije učitana." />
-        ) : (
-          <table className="w-full font-sans text-xs">
-            <thead>
-              <tr style={{ borderBottom: "1px solid var(--line)", color: "var(--ink-muted)" }}>
-                <th className="py-1.5 pl-2 pr-1 text-left font-normal">#</th>
-                <th className="py-1.5 pr-1 text-left font-normal">Klub</th>
-                <th className="py-1.5 pr-1 text-right font-normal">O</th>
-                <th className="py-1.5 pr-1 text-right font-normal">+/−</th>
-                <th className="py-1.5 pr-2 text-right font-normal">B</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tablica.map((r) => (
-                <tr key={r.klub} style={{ borderBottom: "1px solid var(--line)" }}>
-                  <td
-                    className="py-1.5 pl-2 pr-1 font-mono"
-                    style={{ color: "var(--ink-muted)", width: "1%" }}
-                  >
-                    {r.pozicija}
-                  </td>
-                  {/* ime kluba dobiva svu preostalu širinu i ne reže se */}
-                  <td className="py-1.5 pr-2 leading-tight">
-                    <PoveznicaKluba naziv={r.klub} />
-                  </td>
-                  <td
-                    className="py-1.5 pr-1 text-right font-mono"
-                    style={{ width: "1%", whiteSpace: "nowrap" }}
-                  >
-                    {r.odigrano}
-                  </td>
-                  <td
-                    className="py-1.5 pr-1 text-right font-mono"
-                    style={{ width: "1%", whiteSpace: "nowrap" }}
-                  >
-                    {r.gol_razlika}
-                  </td>
-                  <td
-                    className="py-1.5 pr-2 text-right font-mono font-bold"
-                    style={{ width: "1%", whiteSpace: "nowrap" }}
-                  >
-                    {r.bodovi}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </Blok>
-
       {/* ---------------- STRIJELCI ---------------- */}
       <Blok naslov="Strijelci" ukupno={strijelci.length}>
         {strijelci.length === 0 ? (
