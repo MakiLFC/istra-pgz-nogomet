@@ -6,11 +6,11 @@ export type Liga = {
    * Koliko mjesta s vrha vodi u viši rang (zeleno u tablici).
    * Koliko mjesta s dna vodi u niži rang (crveno u tablici).
    *
-   * PROVJERITI U PROPOZICIJAMA. Ovdje stoji ono što se vidjelo iz
-   * prošle sezone: iz 3. NL Zapad ispala je Novalja i ušao je prvak
-   * 4. NL. Broj mjesta zna se mijenjati iz sezone u sezonu, ovisno o
-   * ispadanjima iz viših rangova, pa ako propozicije kažu drukčije,
-   * promijeni brojke ovdje i tablica se sama preboji.
+   * Crveno je NAMJERNO samo jedno mjesto, i to ostaje tako.
+   * Tko stvarno ispada rijetko se zna do kraja: ovisi o ispadanjima iz
+   * viših rangova, o odustajanjima i o administrativnim odlukama, a ne
+   * samo o poretku. Označiti dva ili tri mjesta značilo bi tvrditi
+   * nešto što se ne zna, pa se označava samo posljednji, kao naznaka.
    */
   prvak: number;
   ispadanje: number;
