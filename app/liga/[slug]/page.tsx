@@ -17,6 +17,7 @@ import { IkonaLopta, IkonaTeren } from "@/components/Ikone";
 import { golovi } from "@/lib/kolo";
 import { strijelciPoKlubu } from "@/lib/utakmice";
 import { formaPoKlubu } from "@/lib/tablica";
+import { posjecenostKlubova } from "@/lib/posjecenost";
 import { slugUtakmice } from "@/lib/slug";
 import ZaglavljeStranice from "@/components/ZaglavljeStranice";
 import PoveznicaKluba from "@/components/PoveznicaKluba";
@@ -45,14 +46,16 @@ type RedKola = {
   rezultat: string | null;
   domacin: string;
   gost: string;
+  gledatelja: string | null;
 };
 
 async function dohvatiKola(nazivLige: string, sezona: string): Promise<RedKola[]> {
-  // Uz kolo i rezultat idu i klubovi, jer se iz njih računa forma za
-  // tablicu. Postave se i dalje NE dohvaćaju, one su najteži dio retka.
+  // Uz kolo i rezultat idu klubovi, radi forme za tablicu, te broj
+  // gledatelja, radi ljestvice posjećenosti. Postave se i dalje NE
+  // dohvaćaju, one su najteži dio retka.
   const { data, error } = await supabase
     .from("utakmice")
-    .select("kolo, rezultat, domacin, gost")
+    .select("kolo, rezultat, domacin, gost, gledatelja")
     .eq("natjecanje", nazivLige)
     .eq("sezona", sezona);
 
@@ -135,6 +138,7 @@ export default async function StranicaLige({
   // bez rezultata, koje ne smiju postati zadani prikaz). Ako sezona još
   // nije počela, pokaži prvo kolo (najavu).
   const forma = formaPoKlubu(svaKolaSve);
+  const posjecenost = posjecenostKlubova(svaKolaSve);
 
   const odigranaKola = svaKolaSve.filter((d) => golovi(d.rezultat)).map((d) => d.kolo);
   const zadnjeOdigranoKolo = odigranaKola.length ? Math.max(...odigranaKola) : null;
@@ -310,7 +314,7 @@ export default async function StranicaLige({
 
                           {!imaDetalje && u.rezultat && (
                             <p className="mt-3 font-sans text-sm italic" style={{ color: "var(--ink-muted)" }}>
-                              Utakmica predana bez borbe — zapisnik nije dostupan.
+                              Utakmica predana bez borbe, zapisnik nije dostupan.
                             </p>
                           )}
 
@@ -400,7 +404,7 @@ export default async function StranicaLige({
           <aside className="w-full shrink-0 lg:w-80">
             <div className="space-y-4 lg:sticky lg:top-6">
               <Otkrivanje>
-                <SidebarLiga statistike={statistike} />
+                <SidebarLiga statistike={statistike} posjecenost={posjecenost} />
               </Otkrivanje>
               {clanciLige.length > 0 && (
                 <Otkrivanje kasnjenje={80}>
