@@ -436,6 +436,30 @@ body {
   flex-shrink: 0;
 }
 
+/* Gumbi za dijeljenje: diskretni, u boji teksta, hrđa tek na prijelazu
+   miša. Isti izgled za poveznicu (Facebook, WhatsApp) i za gumb
+   (Kopiraj), da red djeluje kao cjelina. */
+.gumb-dijeljenje {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink-muted);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .gumb-dijeljenje:hover {
+    border-color: var(--oxide);
+    color: var(--oxide);
+  }
+}
+
 /* Mekši prijelazi na svemu što se može kliknuti */
 a,
 button {
