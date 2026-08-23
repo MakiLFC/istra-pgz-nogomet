@@ -2,11 +2,12 @@
 
 // SidebarLiga.tsx
 //
-// Dva bloka po ligi: Strijelci / Kartoni. Prvih pet, gumb "Prikaži sve"
-// otvara ostatak.
+// Tri bloka po ligi: Posjećenost / Strijelci / Kartoni. Kod strijelaca i
+// kartona prikazuje se prvih pet, gumb "Prikaži sve" otvara ostatak.
 //
 // Tablica poretka je preseljena u glavni stupac (components/TablicaLige):
-// ovdje je bilo mjesta samo za tri stupca, a treba ih jedanaest.
+// ovdje je bilo mjesta samo za tri stupca, a treba ih jedanaest. Na
+// njezino mjesto došla je posjećenost.
 //
 // NAPOMENA: bitni stilovi su ugrađeni izravno u komponentu, pa raspored
 // ispravno radi i ako globals.css nije osvježen.
@@ -15,12 +16,25 @@ import { useState } from "react";
 import PoveznicaIgraca from "@/components/PoveznicaIgraca";
 import PoveznicaKluba from "@/components/PoveznicaKluba";
 import type { StatistikeLige } from "@/lib/statistike";
+import { brojHr, type Posjecenost } from "@/lib/posjecenost";
 
 
 const PRIKAZI_ODMAH = 5;
 
-export default function SidebarLiga({ statistike }: { statistike: StatistikeLige }) {
+export default function SidebarLiga({
+  statistike,
+  posjecenost,
+}: {
+  statistike: StatistikeLige;
+  posjecenost?: Posjecenost;
+}) {
   const { strijelci, kartoni } = statistike;
+  const [svaPosjecenost, setSvaPosjecenost] = useState(false);
+
+  const redciPosjecenosti = posjecenost?.redci ?? [];
+  const vidljivaPosjecenost = svaPosjecenost
+    ? redciPosjecenosti
+    : redciPosjecenosti.slice(0, PRIKAZI_ODMAH);
   const [sviStrijelci, setSviStrijelci] = useState(false);
   const [sviKartoni, setSviKartoni] = useState(false);
 
@@ -29,6 +43,73 @@ export default function SidebarLiga({ statistike }: { statistike: StatistikeLige
 
   return (
     <div className="space-y-4">
+      {/* ---------------- POSJEĆENOST ---------------- */}
+      {/* Broj gledatelja stoji u zapisniku svake odigrane utakmice.
+          Broji se samo na domaćem terenu, pa se gostu ne pripisuje. */}
+      {redciPosjecenosti.length > 0 && posjecenost && (
+        <Blok naslov="Posjećenost" ukupno={redciPosjecenosti.length}>
+          <p
+            className="px-2 py-1.5 font-sans text-[11px]"
+            style={{ borderBottom: "1px solid var(--line)", color: "var(--ink-muted)" }}
+          >
+            Prosjek lige{" "}
+            <span className="font-mono font-bold" style={{ color: "var(--ink)" }}>
+              {brojHr(posjecenost.prosjekLige)}
+            </span>{" "}
+            po utakmici
+          </p>
+
+          <ul className="font-sans text-xs">
+            {vidljivaPosjecenost.map((r, i) => (
+              <li
+                key={r.klub}
+                className="flex items-center gap-2 px-2 py-1.5"
+                style={{ borderBottom: "1px solid var(--line)" }}
+              >
+                <span
+                  className="w-5 shrink-0 text-right font-mono"
+                  style={{ color: "var(--ink-muted)" }}
+                >
+                  {i + 1}
+                </span>
+                <span className="min-w-0 flex-1 leading-tight">
+                  <span className="block">
+                    <PoveznicaKluba naziv={r.klub} />
+                  </span>
+                  <span className="block text-[11px]" style={{ color: "var(--ink-muted)" }}>
+                    {r.utakmica} kod kuće · ukupno {brojHr(r.ukupno)}
+                  </span>
+                </span>
+                <span className="shrink-0 font-mono text-sm font-bold">
+                  {brojHr(r.prosjek)}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          <GumbProsiri
+            otvoreno={svaPosjecenost}
+            ukupno={redciPosjecenosti.length}
+            prikazano={PRIKAZI_ODMAH}
+            naKlik={() => setSvaPosjecenost((v) => !v)}
+          />
+
+          {posjecenost.vrhunac && (
+            <p
+              className="px-2 py-2 font-sans text-[11px] leading-snug"
+              style={{ borderTop: "1px solid var(--line)", color: "var(--ink-muted)" }}
+            >
+              Najposjećenija:{" "}
+              <span style={{ color: "var(--ink)" }}>
+                {posjecenost.vrhunac.domacin} - {posjecenost.vrhunac.gost}
+              </span>
+              , <span className="font-mono font-bold">{brojHr(posjecenost.vrhunac.gledatelja)}</span>
+              {posjecenost.vrhunac.kolo ? `, ${posjecenost.vrhunac.kolo}. kolo` : ""}
+            </p>
+          )}
+        </Blok>
+      )}
+
       {/* ---------------- STRIJELCI ---------------- */}
       <Blok naslov="Strijelci" ukupno={strijelci.length}>
         {strijelci.length === 0 ? (

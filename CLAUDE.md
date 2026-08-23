@@ -61,14 +61,20 @@ app/
   globals.css           paleta, animacije, tipografija
   icon.svg              favicon
   page.tsx              naslovnica (hero + rezultati + lijevi stupac)
-  liga/[slug]/page.tsx  stranica lige (kola, utakmice, bočni stupac)
+  liga/[slug]/page.tsx  stranica lige (tablica, kola, utakmice, bočni stupac)
+  klub/[slug]/page.tsx  stranica kluba (raspored, rezultati, statistika)
+  utakmica/[slug]/page.tsx  stranica utakmice (zapisnik s postavama)
+  igrac/[slug]/page.tsx  stranica igrača (golovi, kartoni, minute)
   novosti/page.tsx      popis članaka
   novosti/[slug]/page.tsx  pojedini članak
+  impresum/page.tsx  kontakt/page.tsx  sitemap.ts  robots.ts
 components/
-  Navigacija, Grb, Hero, PregledKola, SidebarLiga, Postava,
-  KarticaClanka, Ikone, Brojka, Otkrivanje, IzvorPodataka
+  Navigacija, Podnozje, Grb, Hero, PregledKola, TablicaLige, SidebarLiga,
+  Postava, KarticaClanka, PoveznicaKluba, PoveznicaIgraca, Ikone, Brojka,
+  Otkrivanje, ZaglavljeStranice, IzvorPodataka
 lib/
-  supabase.ts  lige.ts  kolo.ts  statistike.ts  clanci.ts
+  supabase.ts  lige.ts  kolo.ts  statistike.ts  clanci.ts  slug.ts
+  klubovi.ts  igraci.ts  utakmice.ts  tablica.ts  posjecenost.ts  metapodaci.ts
 scraper_supabase.py     glavni scraper
 natjecanja.json         referenca ID-jeva natjecanja po sezonama
 derbi_tjedni_predlozak.sql  SQL predložak za tjedno označavanje derbija
@@ -112,6 +118,13 @@ Obično čitanje brojeva iz tog zapisa daje 2 i 700, pa je ispalo da su
 najbolji igrači lige odigrali dvije minute. Provjera: 30 kola po 90
 minuta je točno 2700, pa taj broj mora izlaziti kod igrača koji su
 odigrali sve.
+
+**Broj gledatelja je tekst, ne broj.**
+U zapisniku stoji "Nepoznato", prazno ili broj s točkom kao razdjelnikom
+tisućica ("1.250"). Ljestvica posjećenosti (`lib/posjecenost.ts`) zato
+čita brojeve preko `brojGledatelja` iz `lib/kolo.ts` i preskače sve što
+nije veće od nule. Nula znači "nema podatka", ne prazan stadion.
+Gledatelji se pripisuju samo domaćinu, jer su došli na njegov stadion.
 
 **Tablica poretka se scrapa, ne računa.**
 Službena tablica već uključuje kaznene bodove (npr. "NK Crikvenica (-3)").
