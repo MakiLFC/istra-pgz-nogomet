@@ -3,10 +3,12 @@ test_nastupi.py
 
 Provjerava čitanje NASTUPA i MINUTA iz retka stranice natjecanja.
 
-Zapis tog podatka na HNS stranici nije bio poznat kad je parsiranje
-pisano, pa se čitaju svi brojevi iz bloka "apps_minutes", redom: prvi je
-broj nastupa, drugi minute. Ovdje se provjeravaju oba viđena oblika, u
-jednom i u dva elementa, te ponašanje kad podatka nema.
+Oblici potvrđeni na stranici 3. NL Zapad 2025/26:
+  - u sastavu kluba dva odvojena bloka, "apps" i "minutes"
+  - u kratkoj rang-listi jedan blok "apps_minutes" sa zapisom "30 / 2.700"
+
+PAZI NA TOČKU: minute se pišu s razdjelnikom tisućica, "2.700" znači
+2700. Bez micanja točke ispalo bi da je igrač odigrao dvije minute.
 
 POKRETANJE:  python test_nastupi.py
 Ništa ne dohvaća s interneta i ništa ne piše u bazu.
@@ -64,33 +66,33 @@ def provjeri(naslov, uvjet, dodatno=""):
 def main():
     uspjeh = True
 
-    # 1. Nastupi i minute u jednom elementu: "26 / 2340"
-    soup = BeautifulSoup(
-        stranica([_sastav("Marko Marić", '<div class="apps_minutes">26 / 2340</div>')]),
-        "html.parser",
-    )
-    igraci = parsiraj_sve_igrace(soup)
-    print("1. zapis u jednom elementu")
-    uspjeh &= provjeri("nastupi = 26", igraci[0]["nastupi"] == 26,
-                       f"  (dobiveno {igraci[0]['nastupi']})")
-    uspjeh &= provjeri("minute = 2340", igraci[0]["minute"] == 2340,
-                       f"  (dobiveno {igraci[0]['minute']})")
-
-    # 2. Nastupi i minute u dva elementa
+    # 1. Sastav kluba: odvojeni blokovi "apps" i "minutes", s točkom
     soup = BeautifulSoup(
         stranica([
             _sastav(
-                "Ivan Ivić",
-                '<div class="apps_minutes"><div>18</div><div>1450</div></div>',
+                "Marko Marić",
+                '<div class="apps">30</div><div class="minutes">2.700</div>',
             )
         ]),
         "html.parser",
     )
     igraci = parsiraj_sve_igrace(soup)
-    print("2. zapis u dva elementa")
-    uspjeh &= provjeri("nastupi = 18", igraci[0]["nastupi"] == 18,
+    print("1. sastav kluba, odvojeni blokovi, minute s točkom")
+    uspjeh &= provjeri("nastupi = 30", igraci[0]["nastupi"] == 30,
                        f"  (dobiveno {igraci[0]['nastupi']})")
-    uspjeh &= provjeri("minute = 1450", igraci[0]["minute"] == 1450,
+    uspjeh &= provjeri("minute = 2700, ne 2", igraci[0]["minute"] == 2700,
+                       f"  (dobiveno {igraci[0]['minute']})")
+
+    # 2. Jedan blok "apps_minutes", zapis "26 / 2.340"
+    soup = BeautifulSoup(
+        stranica([_sastav("Ivan Ivić", '<div class="apps_minutes">26 / 2.340</div>')]),
+        "html.parser",
+    )
+    igraci = parsiraj_sve_igrace(soup)
+    print("2. jedan blok, zapis \"26 / 2.340\"")
+    uspjeh &= provjeri("nastupi = 26", igraci[0]["nastupi"] == 26,
+                       f"  (dobiveno {igraci[0]['nastupi']})")
+    uspjeh &= provjeri("minute = 2340", igraci[0]["minute"] == 2340,
                        f"  (dobiveno {igraci[0]['minute']})")
 
     # 3. Podatka nema: ostaje None, ne nula
@@ -107,7 +109,7 @@ def main():
     <li class="row">
       <div class="position">1</div>
       <div class="playerName"><h3>Luka Lukić</h3> NK Buje</div>
-      <div class="apps_minutes">30 / 2700</div>
+      <div class="apps_minutes">30 / 2.700</div>
     </li>"""
     soup = BeautifulSoup(stranica([_sastav("Pero Perić", "")], rang), "html.parser")
     rezerva = parsiraj_rang_nastupa(soup)
@@ -121,8 +123,10 @@ def main():
     # 5. Redoslijed: najviše minuta prvo
     soup = BeautifulSoup(
         stranica([
-            _sastav("Manje Minuta", '<div class="apps_minutes">5 / 300</div>'),
-            _sastav("Više Minuta", '<div class="apps_minutes">30 / 2700</div>'),
+            _sastav("Manje Minuta",
+                    '<div class="apps">5</div><div class="minutes">300</div>'),
+            _sastav("Više Minuta",
+                    '<div class="apps">30</div><div class="minutes">2.700</div>'),
         ]),
         "html.parser",
     )

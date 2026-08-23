@@ -28,10 +28,19 @@ import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
 
 export const revalidate = 300;
 
+/**
+ * Unaprijed se pripremaju samo stranice igrača koji su zabili gol ili
+ * dobili karton. Otkad se čitaju i nastupi, igrača u bazi ima nekoliko
+ * stotina po ligi i sezoni, pa bi priprema svih znatno produljila
+ * gradnju. Ostali se grade pri prvom otvaranju i dalje se poslužuju iz
+ * međuspremnika, tako da nijedna stranica ne nedostaje.
+ */
 export async function generateStaticParams() {
   try {
     const igraci = await dohvatiIgrace();
-    return igraci.map((i) => ({ slug: i.slug }));
+    return igraci
+      .filter((i) => i.golovi > 0 || i.zuti > 0 || i.crveni > 0)
+      .map((i) => ({ slug: i.slug }));
   } catch {
     return [];
   }

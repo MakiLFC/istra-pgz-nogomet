@@ -595,25 +595,43 @@ def _broj(tekst):
         return 0
 
 
+def _brojevi(tekst):
+    """
+    Cijeli brojevi iz teksta, uz razdjelnik tisućica.
+
+    HNS piše minute s točkom: "2.700" znači 2700, a ne 2 i 700. Bez
+    micanja točke ispalo bi da je igrač odigrao dvije minute (provjereno
+    na stranici 3. NL Zapad 2025/26).
+    """
+    return [int(b) for b in re.findall(r"\d+", (tekst or "").replace(".", ""))]
+
+
 def _nastupi_i_minute(li):
     """
     Nastupi i odigrane minute iz retka, ako ih stranica nudi.
 
-    Podatak stoji u <div class="apps_minutes">. Točan zapis nije zajamčen
-    (viđeno je "26 / 2340", ali može doći i kao dva odvojena elementa),
-    pa se čitaju SVI cijeli brojevi iz tog bloka, redom kojim se javljaju:
-    prvi je broj nastupa, drugi odigrane minute.
+    Dva su oblika, oba viđena na stranici natjecanja:
+      - u sastavu kluba, dva odvojena bloka: <div class="apps">30</div>
+        i <div class="minutes">2.700</div>
+      - u kratkoj rang-listi nastupa, jedan blok:
+        <div class="apps_minutes">30 / 2.700</div>
 
-    Vraća (nastupi, minute); svaki može biti None ako ga nema. Ništa se ne
-    pogađa: kad brojeva nema, vraća se None, a ne nula, da se prazno ne bi
-    prikazalo kao "0 minuta".
+    Vraća (nastupi, minute); svaki može biti None. Kad podatka nema,
+    vraća se None, a ne nula, da se prazno ne bi prikazalo kao "0 minuta".
     """
+    apps = li.find("div", class_="apps")
+    minutes = li.find("div", class_="minutes")
+    if apps or minutes:
+        n = _brojevi(apps.get_text(strip=True)) if apps else []
+        m = _brojevi(minutes.get_text(strip=True)) if minutes else []
+        return (n[0] if n else None), (m[0] if m else None)
+
     blok = li.find("div", class_="apps_minutes")
     if not blok:
         return None, None
-    brojevi = re.findall(r"\d+", blok.get_text(" ", strip=True))
-    nastupi = int(brojevi[0]) if len(brojevi) >= 1 else None
-    minute = int(brojevi[1]) if len(brojevi) >= 2 else None
+    brojevi = _brojevi(blok.get_text(" ", strip=True))
+    nastupi = brojevi[0] if len(brojevi) >= 1 else None
+    minute = brojevi[1] if len(brojevi) >= 2 else None
     return nastupi, minute
 
 
@@ -686,12 +704,17 @@ def slozi_pune_rang_liste(igraci, koliko=40):
     return strijelci, kartoni
 
 
-def slozi_listu_nastupa(igraci, rezerva, koliko=60):
+def slozi_listu_nastupa(igraci, rezerva, koliko=2000):
     """
     Lista nastupa i minuta, poredana po minutama.
 
-    Prvi izvor su sastavi klubova, jer pokrivaju sve igrače. Ako ondje
-    podatka nema, uzima se službena rang-lista, koja je kraća.
+    Prvi izvor su sastavi klubova, jer pokrivaju SVE igrače lige (u
+    3. NL Zapad njih oko 500). Ako ondje podatka nema, uzima se službena
+    rang-lista, koja donosi samo prvih nekoliko.
+
+    Za razliku od strijelaca i kartona, ova se lista ne skraćuje: ne
+    prikazuje se u bočnom stupcu, nego služi kao popis igrača za njihove
+    stranice, pa svako skraćivanje znači igrača bez stranice.
     """
     iz_sastava = [i for i in igraci
                   if i.get("nastupi") is not None or i.get("minute") is not None]
