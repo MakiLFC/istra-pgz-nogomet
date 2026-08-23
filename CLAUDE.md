@@ -101,6 +101,18 @@ Playwright — ne treba.
 Provjereno: vratar Turbine ima 50, a Turbina je po tablici primila 50.
 Vratari se zato izbacuju iz liste strijelaca (u kartonima ostaju).
 
+**Nastupi i minute stoje u `apps` i `minutes`, ne u `apps_minutes`.**
+U sastavima klubova, gdje su SVI igrači lige (oko 500 po ligi), podatak
+je u dva odvojena bloka. Blok `apps_minutes` postoji, ali samo u kratkoj
+rang-listi od pet igrača. Prva verzija čitala je samo njega i iz 503
+igrača izvukla nula, bez ijedne poruke o grešci.
+
+**Minute se pišu s točkom kao razdjelnikom tisućica: "2.700" znači 2700.**
+Obično čitanje brojeva iz tog zapisa daje 2 i 700, pa je ispalo da su
+najbolji igrači lige odigrali dvije minute. Provjera: 30 kola po 90
+minuta je točno 2700, pa taj broj mora izlaziti kod igrača koji su
+odigrali sve.
+
 **Tablica poretka se scrapa, ne računa.**
 Službena tablica već uključuje kaznene bodove (npr. "NK Crikvenica (-3)").
 Vlastiti izračun bi bio kriv.

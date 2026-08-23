@@ -20,7 +20,6 @@ Adresu prošle sezone najlakše je uzeti iz preglednika: semafor.hns.family
 Bez adrese uzimaju se natjecanja upisana u scraper_supabase.py.
 """
 
-import re
 import sys
 from collections import Counter
 
@@ -30,6 +29,7 @@ from bs4 import BeautifulSoup
 from scraper_supabase import (
     HEADERS,
     NATJECANJA,
+    _brojevi,
     parsiraj_rang_nastupa,
     parsiraj_sve_igrace,
     slozi_listu_nastupa,
@@ -90,11 +90,14 @@ def pregled(naziv, url):
 
     struktura_retka(soup)
 
-    blokovi = soup.find_all("div", class_="apps_minutes")
-    print(f"\nBlokova 'apps_minutes': {len(blokovi)}")
-    for b in blokovi[:5]:
-        tekst = b.get_text(" ", strip=True)
-        print(f"   \"{tekst}\"   ->  brojevi: {re.findall(r'[0-9]+', tekst)}")
+    for naziv in ("apps", "minutes", "apps_minutes"):
+        blokovi = soup.find_all("div", class_=naziv)
+        print(f"\nBlokova '{naziv}': {len(blokovi)}")
+        for b in blokovi[:3]:
+            tekst = b.get_text(" ", strip=True)
+            # Isto čitanje kao u scraperu: točka je razdjelnik tisućica,
+            # pa "2.700" daje 2700, a ne 2 i 700.
+            print(f"   \"{tekst}\"   ->  pročitano: {_brojevi(tekst)}")
 
     igraci = parsiraj_sve_igrace(soup)
     s_podatkom = [i for i in igraci
