@@ -72,6 +72,10 @@
 --    postoji". Zato je tablica prije prvog odigranog kola null, a ne
 --    prazan niz, i pomaci su tada null.
 --
+-- 10. NAJUVJERLJIVIJA POBJEDA: prvo najveća razlika u golovima, a kod
+--     iste razlike prednost ima utakmica s više postignutih golova
+--     (6:1 ispred 5:0). Tako je Andrej odlučio, ne mijenjati.
+--
 -- OZNAKE: promjena na ljestvici je pozitivna kad je klub napredovao
 -- (bio 7., sad je 4. -> promjena 3).
 -- =====================================================================
