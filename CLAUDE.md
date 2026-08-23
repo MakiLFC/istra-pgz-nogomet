@@ -75,6 +75,10 @@ components/
 lib/
   supabase.ts  lige.ts  kolo.ts  statistike.ts  clanci.ts  slug.ts
   klubovi.ts  igraci.ts  utakmice.ts  tablica.ts  posjecenost.ts  metapodaci.ts
+sql/
+  najava_kola.sql   funkcija public.najava_kola() za najavu kola
+  pregled_kola.sql  funkcija public.pregled_kola() za osvrt nakon kola
+  (ostale .sql datoteke su jednokratni zahvati nad podacima)
 scraper_supabase.py     glavni scraper
 natjecanja.json         referenca ID-jeva natjecanja po sezonama
 derbi_tjedni_predlozak.sql  SQL predložak za tjedno označavanje derbija
