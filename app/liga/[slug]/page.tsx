@@ -95,7 +95,7 @@ export async function generateMetadata({
   const liga = ligaPoSlugu(slug);
   if (!liga) return { title: "Natjecanje nije pronađeno" };
 
-  const naslov = `${liga.naziv} — rezultati, tablica i strijelci`;
+  const naslov = `${liga.naziv}: rezultati, tablica i strijelci`;
   const opis = `Rezultati, raspored, tablica i strijelci natjecanja ${liga.naziv}. Podaci s HNS Semafora, osvježeni svakog vikenda.`;
   const adresa = `/liga/${liga.slug}`;
 

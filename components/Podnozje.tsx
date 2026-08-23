@@ -16,7 +16,7 @@ export default function Podnozje() {
       className="px-6 py-5 text-center font-sans text-xs"
       style={{ borderTop: "3px solid var(--pitch)", color: "var(--ink-muted)" }}
     >
-      Lokal-Arena — lokalni nogomet Istre i Primorsko-goranske županije ·{" "}
+      Lokal-Arena, lokalni nogomet Istre i Primorsko-goranske županije ·{" "}
       podaci s HNS Semafora ·{" "}
       <Link href="/impresum" className="hover:underline">
         Impresum

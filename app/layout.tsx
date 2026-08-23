@@ -73,11 +73,11 @@ const osnovnaAdresa = vlastitaAdresa
 export const metadata: Metadata = {
   metadataBase: new URL(osnovnaAdresa),
   // "template" znači da svaka podstranica navodi samo svoj naslov, a
-  // "— Lokal-Arena" se dodaje samo. Prije je svaka stranica taj nastavak
+  // "· Lokal-Arena" se dodaje samo. Prije je svaka stranica taj nastavak
   // pisala ručno, pa se lako zaboravio ili udvostručio.
   title: {
-    default: "Lokal-Arena — lokalni nogomet Istre i Primorsko-goranske županije",
-    template: "%s — Lokal-Arena",
+    default: "Lokal-Arena, lokalni nogomet Istre i Primorsko-goranske županije",
+    template: "%s · Lokal-Arena",
   },
   description:
     "Rezultati, zapisnici, tablice i strijelci nižih nogometnih liga Istre i Primorsko-goranske županije. Podaci: HNS Semafor.",
