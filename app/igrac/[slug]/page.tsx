@@ -3,8 +3,9 @@
 // Sastavljen je od dvaju izvora: rang-lista strijelaca i kartona (ukupni
 // učinak po sezoni) te postava pojedinih utakmica (nastupi i događaji).
 //
-// Minuta odigranih NEMA, jer se ne skupljaju. U zapisniku stoje minute
-// golova, kartona i izmjena, ali ne i vrijeme provedeno na terenu.
+// Nastupi i minute dolaze iz službene rang-liste natjecanja, kad je
+// stranica nudi. Kad ih nema, nastupi se broje iz zapisnika, a minute se
+// ne prikazuju; ne procjenjuju se iz izmjena.
 
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -150,7 +151,9 @@ export default async function StranicaIgraca({
   if (!igrac) notFound();
 
   const nastupi = await dohvatiNastupe(igrac.ime);
-  const odigrao = nastupi.filter(jeIgrao).length;
+  // Službeni broj nastupa ima prednost; kad ga nema, broje se zapisnici.
+  const izZapisnika = nastupi.filter(jeIgrao).length;
+  const brojNastupa = igrac.nastupi ?? (izZapisnika || null);
 
   return (
     <div className="min-h-screen" style={{ background: "var(--chalk)" }}>
@@ -178,7 +181,12 @@ export default async function StranicaIgraca({
             className="mt-8 flex flex-wrap gap-x-10 gap-y-5 p-5"
             style={{ background: "var(--paper)", border: "1px solid var(--line)" }}
           >
-            {odigrao > 0 && <Brojka oznaka="Nastupi" vrijednost={odigrao} />}
+            {brojNastupa != null && (
+              <Brojka oznaka="Nastupi" vrijednost={brojNastupa} />
+            )}
+            {igrac.minute != null && (
+              <Brojka oznaka="Minute" vrijednost={igrac.minute} />
+            )}
             <Brojka oznaka="Golovi" vrijednost={igrac.golovi} />
             <Brojka oznaka="Žuti" vrijednost={igrac.zuti} />
             <Brojka oznaka="Crveni" vrijednost={igrac.crveni} />
@@ -197,6 +205,8 @@ export default async function StranicaIgraca({
                   <tr style={{ borderBottom: "1px solid var(--line)", color: "var(--ink-muted)" }}>
                     <th className="px-3 py-2 text-left font-normal">Sezona</th>
                     <th className="px-3 py-2 text-left font-normal">Klub</th>
+                    <th className="px-3 py-2 text-right font-normal">Nast.</th>
+                    <th className="px-3 py-2 text-right font-normal">Min.</th>
                     <th className="px-3 py-2 text-right font-normal">Golovi</th>
                     <th className="px-3 py-2 text-right font-normal">Žuti</th>
                     <th className="px-3 py-2 text-right font-normal">Crveni</th>
@@ -208,6 +218,12 @@ export default async function StranicaIgraca({
                       <td className="px-3 py-2 font-mono text-xs">{u.sezona}</td>
                       <td className="px-3 py-2">
                         <PoveznicaKluba naziv={u.klub} />
+                      </td>
+                      <td className="px-3 py-2 text-right font-mono">
+                        {u.nastupi ?? "-"}
+                      </td>
+                      <td className="px-3 py-2 text-right font-mono">
+                        {u.minute ?? "-"}
                       </td>
                       <td className="px-3 py-2 text-right font-mono">{u.golovi}</td>
                       <td className="px-3 py-2 text-right font-mono">{u.zuti}</td>
@@ -241,10 +257,10 @@ export default async function StranicaIgraca({
         )}
 
         <p className="mt-10 font-sans text-xs" style={{ color: "var(--ink-muted)" }}>
-          Golovi i kartoni preuzimaju se iz službenih rang-lista natjecanja.
-          Nastupi se broje iz zapisnika, pa ih ima samo za utakmice kojima je
-          zapisnik objavljen. Minute odigrane ne prikazujemo jer se ne
-          prikupljaju.
+          Golovi, kartoni, nastupi i minute preuzimaju se iz službenih
+          rang-lista natjecanja. Gdje minuta nema, stranica natjecanja ih ne
+          objavljuje; ne procjenjujemo ih. Popis utakmica slaže se iz
+          zapisnika, pa sadrži samo one kojima je zapisnik objavljen.
         </p>
       </main>
 

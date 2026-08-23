@@ -524,6 +524,37 @@ def parsiraj_tablicu_lige(soup):
     return tablica
 
 
+def parsiraj_rang_nastupa(soup):
+    """
+    Službena rang-lista nastupa i minuta, ona koju parsiraj_rang_liste
+    preskače. Koristi se samo ako u sastavima klubova tog podatka nema.
+    Vraća listu rječnika: igrac, klub, nastupi, minute.
+    """
+    lista = []
+    for li in soup.find_all("li", class_="row"):
+        if not li.find("div", class_="apps_minutes"):
+            continue
+        if li.find("div", class_="shirtNumber"):
+            continue  # to je sastav kluba, njega čita parsiraj_sve_igrace
+        ime_div = li.find("div", class_="playerName")
+        if not ime_div:
+            continue
+        h3 = ime_div.find("h3")
+        if not h3:
+            continue
+        ime = h3.get_text(strip=True)
+        klub = ime_div.get_text(" ", strip=True).replace(ime, "").strip()
+        if not klub or klub in ("Vratar", "Igrač"):
+            continue
+
+        nastupi, minute = _nastupi_i_minute(li)
+        if nastupi is None and minute is None:
+            continue
+        lista.append({"igrac": ime, "klub": klub,
+                      "nastupi": nastupi, "minute": minute})
+    return lista
+
+
 def parsiraj_rang_liste(soup):
     strijelci, kartoni = [], []
     for li in soup.find_all("li", class_="row"):
@@ -562,6 +593,28 @@ def _broj(tekst):
         return int(re.sub(r"[^\d]", "", tekst or "") or 0)
     except ValueError:
         return 0
+
+
+def _nastupi_i_minute(li):
+    """
+    Nastupi i odigrane minute iz retka, ako ih stranica nudi.
+
+    Podatak stoji u <div class="apps_minutes">. Točan zapis nije zajamčen
+    (viđeno je "26 / 2340", ali može doći i kao dva odvojena elementa),
+    pa se čitaju SVI cijeli brojevi iz tog bloka, redom kojim se javljaju:
+    prvi je broj nastupa, drugi odigrane minute.
+
+    Vraća (nastupi, minute); svaki može biti None ako ga nema. Ništa se ne
+    pogađa: kad brojeva nema, vraća se None, a ne nula, da se prazno ne bi
+    prikazalo kao "0 minuta".
+    """
+    blok = li.find("div", class_="apps_minutes")
+    if not blok:
+        return None, None
+    brojevi = re.findall(r"\d+", blok.get_text(" ", strip=True))
+    nastupi = int(brojevi[0]) if len(brojevi) >= 1 else None
+    minute = int(brojevi[1]) if len(brojevi) >= 2 else None
+    return nastupi, minute
 
 
 def parsiraj_sve_igrace(soup):
@@ -603,6 +656,8 @@ def parsiraj_sve_igrace(soup):
             if m:
                 zuti, crveni = int(m.group(1)), int(m.group(2))
 
+        nastupi, minute = _nastupi_i_minute(li)
+
         igraci.append({
             "igrac": ime,
             "klub": klub,
@@ -610,6 +665,8 @@ def parsiraj_sve_igrace(soup):
             "golovi": _broj(golovi_div.get_text(strip=True)) if golovi_div else 0,
             "zuti": zuti,
             "crveni": crveni,
+            "nastupi": nastupi,
+            "minute": minute,
         })
     return igraci
 
@@ -627,6 +684,26 @@ def slozi_pune_rang_liste(igraci, koliko=40):
                 "zuti": str(i["zuti"]), "crveni": str(i["crveni"])}
                for n, i in enumerate(k[:koliko])]
     return strijelci, kartoni
+
+
+def slozi_listu_nastupa(igraci, rezerva, koliko=60):
+    """
+    Lista nastupa i minuta, poredana po minutama.
+
+    Prvi izvor su sastavi klubova, jer pokrivaju sve igrače. Ako ondje
+    podatka nema, uzima se službena rang-lista, koja je kraća.
+    """
+    iz_sastava = [i for i in igraci
+                  if i.get("nastupi") is not None or i.get("minute") is not None]
+    izvor = iz_sastava if iz_sastava else rezerva
+
+    n = [i for i in izvor if i.get("klub")]
+    n.sort(key=lambda i: (-(i.get("minute") or 0), -(i.get("nastupi") or 0),
+                          i["igrac"]))
+    return [{"pozicija": str(r + 1), "igrac": i["igrac"], "klub": i["klub"],
+             "nastupi": "" if i.get("nastupi") is None else str(i["nastupi"]),
+             "minute": "" if i.get("minute") is None else str(i["minute"])}
+            for r, i in enumerate(n[:koliko])]
 
 
 def dohvati_i_spremi_statistike(natjecanje_naziv, natjecanje_url):
@@ -653,16 +730,21 @@ def dohvati_i_spremi_statistike(natjecanje_naziv, natjecanje_url):
     else:
         provjera = "nije bilo s čim usporediti"
 
+    nastupi = slozi_listu_nastupa(svi_igraci, parsiraj_rang_nastupa(soup))
+
     for tip, podaci in (("tablica", tablica),
                         ("strijelci", strijelci),
-                        ("kartoni", kartoni)):
+                        ("kartoni", kartoni),
+                        ("nastupi", nastupi)):
         supabase.table("statistike").upsert(
             {"sezona": SEZONA, "natjecanje": natjecanje_naziv,
              "tip": tip, "podaci": podaci},
             on_conflict="sezona,natjecanje,tip",
         ).execute()
+    s_minuta = sum(1 for i in nastupi if i["minute"])
     print(f"  STATISTIKE: tablica={len(tablica)} klubova, "
-          f"strijelci={len(strijelci)}, kartoni={len(kartoni)} - spremljeno")
+          f"strijelci={len(strijelci)}, kartoni={len(kartoni)}, "
+          f"nastupi={len(nastupi)} (s minutama: {s_minuta}) - spremljeno")
     print(f"  PROVJERA strijelaca: {provjera}")
 
 

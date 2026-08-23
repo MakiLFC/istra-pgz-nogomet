@@ -22,6 +22,10 @@ export type UcinakSezone = {
   golovi: number;
   zuti: number;
   crveni: number;
+  /** Službeni broj nastupa; null kad stranica natjecanja to ne nudi. */
+  nastupi: number | null;
+  /** Odigrane minute; null kad ih nema. */
+  minute: number | null;
 };
 
 export type Igrac = {
@@ -33,8 +37,18 @@ export type Igrac = {
   golovi: number;
   zuti: number;
   crveni: number;
+  /** Zbroj službenih nastupa, null ako ih nema ni za jednu sezonu. */
+  nastupi: number | null;
+  /** Zbroj odigranih minuta, null ako ih nema. */
+  minute: number | null;
   poSezoni: UcinakSezone[];
 };
+
+/** Zbroj vrijednosti; null kad nijedna nije poznata, da se ne prikaže 0. */
+function zbroj(vrijednosti: (number | null)[]): number | null {
+  const poznate = vrijednosti.filter((v): v is number => v != null);
+  return poznate.length ? poznate.reduce((z, v) => z + v, 0) : null;
+}
 
 function broj(v: unknown): number {
   const c = String(v ?? "").replace(/[^\d-]/g, "");
@@ -47,7 +61,15 @@ type RedStatistike = {
   natjecanje: string;
   sezona: string;
   tip: string;
-  podaci: { igrac?: string; klub?: string; golovi?: string; zuti?: string; crveni?: string }[];
+  podaci: {
+    igrac?: string;
+    klub?: string;
+    golovi?: string;
+    zuti?: string;
+    crveni?: string;
+    nastupi?: string;
+    minute?: string;
+  }[];
 };
 
 /**
@@ -63,7 +85,7 @@ export const dohvatiIgrace = cache(async function dohvatiIgrace(): Promise<Igrac
     const { data, error } = await supabase
       .from("statistike")
       .select("natjecanje, sezona, tip, podaci")
-      .in("tip", ["strijelci", "kartoni"]);
+      .in("tip", ["strijelci", "kartoni", "nastupi"]);
 
     if (error) {
       console.error("Igrači: greška kod dohvaćanja rang-lista:", error.message);
@@ -100,6 +122,8 @@ export const dohvatiIgrace = cache(async function dohvatiIgrace(): Promise<Igrac
             golovi: 0,
             zuti: 0,
             crveni: 0,
+            nastupi: null,
+            minute: null,
           };
           igrac.ucinci.set(kljuc, u);
         }
@@ -108,6 +132,11 @@ export const dohvatiIgrace = cache(async function dohvatiIgrace(): Promise<Igrac
         if (red.tip === "kartoni") {
           u.zuti = broj(stavka.zuti);
           u.crveni = broj(stavka.crveni);
+        }
+        if (red.tip === "nastupi") {
+          // Prazan zapis znači "nema podatka", pa ostaje null umjesto nule.
+          if (stavka.nastupi) u.nastupi = broj(stavka.nastupi);
+          if (stavka.minute) u.minute = broj(stavka.minute);
         }
       }
     }
@@ -125,6 +154,8 @@ export const dohvatiIgrace = cache(async function dohvatiIgrace(): Promise<Igrac
           golovi: poSezoni.reduce((z, u) => z + u.golovi, 0),
           zuti: poSezoni.reduce((z, u) => z + u.zuti, 0),
           crveni: poSezoni.reduce((z, u) => z + u.crveni, 0),
+          nastupi: zbroj(poSezoni.map((u) => u.nastupi)),
+          minute: zbroj(poSezoni.map((u) => u.minute)),
           poSezoni,
         };
       })

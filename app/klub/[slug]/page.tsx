@@ -200,7 +200,7 @@ export default async function StranicaKluba({
   const statistike =
     ligaSezone && sezona
       ? await dohvatiStatistike(ligaSezone, sezona)
-      : { tablica: [], strijelci: [], kartoni: [] };
+      : { tablica: [], strijelci: [], kartoni: [], nastupi: [] };
 
   const forma = formaKluba(utakmice, klub.naziv);
 
