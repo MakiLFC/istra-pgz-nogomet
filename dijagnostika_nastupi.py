@@ -1,19 +1,28 @@
 """
 dijagnostika_nastupi.py
 
-Provjerava čita li se s HNS stranice podatak o NASTUPIMA i MINUTAMA.
-NIŠTA ne sprema u bazu, samo ispisuje što je pronašao.
-
-Zašto postoji: točan zapis tog podatka na stranici nije bio poznat kad je
-parsiranje pisano, pa se prvo gleda očima. Pokreni ovo prije nego pustiš
-scraper, i usporedi ispis sa stranicom natjecanja u pregledniku.
+Gleda kako stranica natjecanja zapisuje NASTUPE i MINUTE, i čita li ih
+naš scraper ispravno. NIŠTA ne sprema u bazu, samo ispisuje.
 
 POKRETANJE:
-    python dijagnostika_nastupi.py
+
+    python dijagnostika_nastupi.py <adresa stranice natjecanja>
+
+Primjer:
+
+    python dijagnostika_nastupi.py https://semafor.hns.family/natjecanja/100585203/treca-nl-zapad-2526/
+
+VAŽNO: uperi ga na PROŠLU sezonu. U sezoni koja tek počinje na stranici
+još nema ni sastava klubova ni rang-lista, pa se nema što provjeriti.
+Adresu prošle sezone najlakše je uzeti iz preglednika: semafor.hns.family
+-> Sezona 2025/26 -> Razina -> Natjecanje -> Traži, pa kopiraj adresu.
+
+Bez adrese uzimaju se natjecanja upisana u scraper_supabase.py.
 """
 
 import re
 import sys
+from collections import Counter
 
 import requests
 from bs4 import BeautifulSoup
@@ -27,54 +36,91 @@ from scraper_supabase import (
 )
 
 
-def pregled(natjecanje):
+def _klase(oznaka):
+    return " ".join(oznaka.get("class") or []) or "(bez klase)"
+
+
+def struktura_retka(soup):
+    """
+    Ispisuje kako izgleda redak igrača: koje blokove sadrži i što u njima
+    piše. Ovo je najvažniji dio kad podatak ne nalazimo pod očekivanim
+    imenom, jer pokazuje kako se stvarno zove.
+    """
+    redci = soup.find_all("li", class_="row")
+    print(f"\nRedaka <li class=\"row\"> na stranici: {len(redci)}")
+
+    s_imenom = [li for li in redci if li.find("div", class_="playerName")]
+    print(f"Od toga s imenom igrača: {len(s_imenom)}")
+
+    if not s_imenom:
+        print("   Nema redaka s igračima. Ako je ovo sezona koja tek")
+        print("   počinje, to je normalno: sastavi i rang-liste pojave se")
+        print("   tek kad se odigra prvo kolo. Probaj s prošlom sezonom.")
+        return
+
+    imena_blokova = Counter()
+    for li in s_imenom:
+        for div in li.find_all("div", recursive=True):
+            imena_blokova[_klase(div)] += 1
+
+    print("\nBlokovi koji se javljaju u retcima s igračima:")
+    for naziv, koliko in imena_blokova.most_common(15):
+        print(f"   {koliko:>5} x  {naziv}")
+
+    print("\nPrva tri retka s igračem, blok po blok:")
+    for li in s_imenom[:3]:
+        ime = li.find("div", class_="playerName").get_text(" ", strip=True)
+        print(f"\n   --- {ime} ---")
+        for div in li.find_all("div", recursive=True):
+            tekst = div.get_text(" ", strip=True)
+            if not tekst or len(tekst) > 60:
+                continue
+            print(f"       {_klase(div):<24} \"{tekst}\"")
+
+
+def pregled(naziv, url):
     print("=" * 70)
-    print(natjecanje["naziv"])
+    print(naziv)
+    print(url)
     print("=" * 70)
 
-    odgovor = requests.get(natjecanje["url"], headers=HEADERS, timeout=15)
+    odgovor = requests.get(url, headers=HEADERS, timeout=20)
     odgovor.raise_for_status()
     soup = BeautifulSoup(odgovor.text, "html.parser")
 
-    # 1. Postoji li uopće blok s nastupima i minutama
-    blokovi = soup.find_all("div", class_="apps_minutes")
-    print(f"\nBlokova 'apps_minutes' na stranici: {len(blokovi)}")
-    if blokovi:
-        print("Sirovi zapis prvih pet, ovako stoji na stranici:")
-        for b in blokovi[:5]:
-            tekst = b.get_text(" ", strip=True)
-            print(f"   \"{tekst}\"   ->  brojevi: {re.findall(r'[0-9]+', tekst)}")
-    else:
-        print("   NEMA IH. Ili stranica taj podatak ne prikazuje, ili se")
-        print("   blok zove drukčije. U tom slučaju javi i pogledat ćemo.")
+    struktura_retka(soup)
 
-    # 2. Što je izašlo iz sastava klubova
+    blokovi = soup.find_all("div", class_="apps_minutes")
+    print(f"\nBlokova 'apps_minutes': {len(blokovi)}")
+    for b in blokovi[:5]:
+        tekst = b.get_text(" ", strip=True)
+        print(f"   \"{tekst}\"   ->  brojevi: {re.findall(r'[0-9]+', tekst)}")
+
     igraci = parsiraj_sve_igrace(soup)
     s_podatkom = [i for i in igraci
                   if i.get("nastupi") is not None or i.get("minute") is not None]
     print(f"\nIgrača iz sastava klubova: {len(igraci)}")
     print(f"Od toga s nastupima ili minutama: {len(s_podatkom)}")
 
-    # 3. Rezervni izvor
     rezerva = parsiraj_rang_nastupa(soup)
     print(f"Redaka u službenoj rang-listi nastupa: {len(rezerva)}")
 
-    # 4. Konačna lista, onakva kakva bi se spremila
     lista = slozi_listu_nastupa(igraci, rezerva)
     print(f"\nSpremilo bi se {len(lista)} redaka. Prvih deset:")
     if not lista:
         print("   (prazno)")
     for r in lista[:10]:
-        print(f"   {r['pozicija']:>3}. {r['igrac']:<28} {r['klub']:<22} "
+        print(f"   {r['pozicija']:>3}. {r['igrac']:<28} {r['klub'] or '?':<22} "
               f"nastupi={r['nastupi'] or '?':>4}  minute={r['minute'] or '?':>6}")
-
-    print("\nPROVJERI OČIMA: otvori stranicu natjecanja u pregledniku i")
-    print("usporedi ova imena i brojke s onim što ondje piše.\n")
+    print()
 
 
 if __name__ == "__main__":
-    if not NATJECANJA:
+    if len(sys.argv) > 1:
+        pregled("Zadana adresa", sys.argv[1])
+    elif NATJECANJA:
+        for n in NATJECANJA:
+            pregled(n["naziv"], n["url"])
+    else:
         print("U scraper_supabase.py nema uključenih natjecanja.")
         sys.exit(1)
-    for natjecanje in NATJECANJA:
-        pregled(natjecanje)
