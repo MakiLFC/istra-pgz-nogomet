@@ -13,6 +13,7 @@ import Navigacija from "@/components/Navigacija";
 import Podnozje from "@/components/Podnozje";
 import Otkrivanje from "@/components/Otkrivanje";
 import Postava from "@/components/Postava";
+import Dijeljenje from "@/components/Dijeljenje";
 import PoveznicaKluba from "@/components/PoveznicaKluba";
 import { IkonaLopta } from "@/components/Ikone";
 import { dohvatiUtakmicu, strijelciPoKlubu, imaZapisnik } from "@/lib/utakmice";
@@ -232,6 +233,11 @@ export default async function StranicaUtakmice({
                 <p className="font-sans text-[15px] leading-relaxed">{u.tekst_clanka}</p>
               </section>
             )}
+
+            {/* Dijeljenje ide odmah ispod zapisnika: postave su ono što
+                kruži po klupskim grupama, pa gumbi stoje uz njih, prije
+                poveznica na klubove i kolo. */}
+            <Dijeljenje putanja={`/utakmica/${slugUtakmice(u)}`} naslov={naslovUtakmice(u)} />
 
             <nav
               className="mt-10 flex flex-wrap gap-x-5 gap-y-2 pt-5 font-sans text-sm"

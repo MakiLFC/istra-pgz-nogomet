@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Navigacija from "@/components/Navigacija";
 import Podnozje from "@/components/Podnozje";
+import Dijeljenje from "@/components/Dijeljenje";
 import { dohvatiClanak, dohvatiClanke, datumHr, odlomci } from "@/lib/clanci";
 import { LIGE } from "@/lib/lige";
 import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
@@ -129,6 +130,9 @@ export default async function StranicaClanka({
               </p>
             ))}
           </div>
+
+          {/* Gumbi za dijeljenje idu na dno članka, kad je pročitan. */}
+          <Dijeljenje putanja={`/novosti/${clanak.slug}`} naslov={clanak.naslov} />
         </article>
       </main>
 
