@@ -10,6 +10,8 @@ KAKO POKRENUTI:
     python scraper_supabase.py
 """
 
+import argparse
+import json
 import requests
 from bs4 import BeautifulSoup
 import time
@@ -20,10 +22,52 @@ from supabase import create_client
 
 load_dotenv()  # učitava SUPABASE_URL i SUPABASE_SERVICE_KEY iz .env datoteke
 
-supabase = create_client(
-    os.environ["SUPABASE_URL"],
-    os.environ["SUPABASE_SERVICE_KEY"],
-)
+# ---------------------------------------------------------------------------
+# POSTAVKE POKRETANJA
+# ---------------------------------------------------------------------------
+# Zadano ponašanje je nepromijenjeno: bez ijedne zastavice scraper radi
+# točno ono što je radio i prije, pa GitHub Actions ne treba dirati.
+#
+#   --dry-run              ništa se ne upisuje u bazu, samo se ispisuje
+#                          što BI se upisalo (ili DRY_RUN=1 u okolini)
+#   --json datoteka.json   uz dry-run spremi pune retke u datoteku, radi
+#                          usporedbe s onim što je već u bazi
+#   --natjecanje "3. NL"   obradi samo natjecanja čiji naziv sadrži taj tekst
+#   --url ADRESA           obradi JEDNU zadanu adresu natjecanja (za probu
+#                          nad prošlom sezonom); ide uz --natjecanje i --sezona
+#   --sezona "2025/26"     upiši drugu sezonu od zadane u SEZONA
+#   --kolo 15              obradi samo to kolo (brže i blaže prema HNS-u)
+#
+# PRIMJER regresijske provjere nad završenim kolom prošle sezone:
+#   python scraper_supabase.py --dry-run --kolo 15 \
+#       --sezona "2025/26" --natjecanje "3. NL Zapad" \
+#       --url "https://semafor.hns.family/natjecanja/.../treca-nl-zapad-2526/"
+POSTAVKE = {
+    "dry_run": os.environ.get("DRY_RUN") == "1",
+    "json": None,
+}
+
+# Klijent se stvara TEK kad zatreba. Tako dry-run radi i na računalu bez
+# ključeva u .env datoteci, a i sam propust ključa se vidi kao jasna
+# poruka umjesto kao rušenje pri učitavanju datoteke.
+_supabase = None
+
+
+def klijent():
+    global _supabase
+    if _supabase is None:
+        nedostaje = [k for k in ("SUPABASE_URL", "SUPABASE_SERVICE_KEY")
+                     if not os.environ.get(k)]
+        if nedostaje:
+            raise RuntimeError(
+                "Nedostaju postavke: " + ", ".join(nedostaje) +
+                ". Upiši ih u .env datoteku ili pokreni s --dry-run."
+            )
+        _supabase = create_client(
+            os.environ["SUPABASE_URL"],
+            os.environ["SUPABASE_SERVICE_KEY"],
+        )
+    return _supabase
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
@@ -478,9 +522,59 @@ def spremi_u_supabase(redak):
     dohvati_popis_utakmica), ne s naslova stranice zapisnika - da ključ
     ostane isti prije i poslije odigravanja utakmice.
     """
-    supabase.table("utakmice").upsert(
+    if POSTAVKE["dry_run"]:
+        _zabiljezi_probni_redak(redak)
+        return
+
+    klijent().table("utakmice").upsert(
         redak, on_conflict="natjecanje,sezona,kolo,domacin,gost"
     ).execute()
+
+
+# Redci skupljeni tijekom dry-run pokretanja, za ispis u datoteku na kraju.
+PROBNI_REDCI = []
+PROBNE_STATISTIKE = []
+
+
+def _zabiljezi_probni_redak(redak):
+    """U dry-run načinu redak se ne šalje u bazu nego se sažme na zaslon,
+    a puni sadržaj ostaje sa strane za usporedbu s bazom.
+
+    Sažetak se ispisuje samo za utakmice sa zapisnikom. Kod neodigranih
+    nema se što provjeriti, a ispis od dvjesto praznih redaka samo bi
+    zatrpao ono što treba pogledati."""
+    PROBNI_REDCI.append(redak)
+    if redak.get("rezultat") or redak.get("strijelci") or redak.get("postava_domacin"):
+        print("        " + _sazetak_retka(redak))
+
+
+def _sazetak_retka(redak):
+    """Jedan redak ispisa: ono po čemu se vidi je li parsiranje ispravno."""
+    strijelci = redak.get("strijelci") or []
+    postave = (redak.get("postava_domacin") or []) + (redak.get("postava_gost") or [])
+    broj = {"gol": 0, "karton_zuti": 0, "karton_crveni": 0,
+            "karton_zutocrveni": 0, "izmjena_ulazak": 0, "izmjena_izlazak": 0,
+            "nepoznato": 0}
+    for igrac in postave:
+        for dogadjaj in igrac.get("dogadjaji") or []:
+            tip = dogadjaj.get("tip", "nepoznato")
+            broj[tip] = broj.get(tip, 0) + 1
+    dijelovi = [
+        f"rezultat={redak.get('rezultat')}",
+        f"strijelaca={len(strijelci)}",
+        f"golova_u_postavi={broj['gol']}",
+        f"žuti={broj['karton_zuti']}",
+        f"crveni={broj['karton_crveni']}",
+        f"žuto-crveni={broj['karton_zutocrveni']}",
+        f"izmjene={broj['izmjena_ulazak']}/{broj['izmjena_izlazak']}",
+        f"postave={len(redak.get('postava_domacin') or [])}"
+        f"/{len(redak.get('postava_gost') or [])}",
+        f"gledatelja={redak.get('gledatelja')}",
+        f"suci={redak.get('suci')}",
+    ]
+    if broj["nepoznato"]:
+        dijelovi.append(f"NEPREPOZNATIH DOGAĐAJA={broj['nepoznato']}")
+    return "  ".join(dijelovi)
 
 
 # ---------------------------------------------------------------------------
@@ -759,28 +853,100 @@ def dohvati_i_spremi_statistike(natjecanje_naziv, natjecanje_url):
                         ("strijelci", strijelci),
                         ("kartoni", kartoni),
                         ("nastupi", nastupi)):
-        supabase.table("statistike").upsert(
-            {"sezona": SEZONA, "natjecanje": natjecanje_naziv,
-             "tip": tip, "podaci": podaci},
-            on_conflict="sezona,natjecanje,tip",
+        redak = {"sezona": SEZONA, "natjecanje": natjecanje_naziv,
+                 "tip": tip, "podaci": podaci}
+        if POSTAVKE["dry_run"]:
+            PROBNE_STATISTIKE.append(redak)
+            continue
+        klijent().table("statistike").upsert(
+            redak, on_conflict="sezona,natjecanje,tip",
         ).execute()
     s_minuta = sum(1 for i in nastupi if i["minute"])
     print(f"  STATISTIKE: tablica={len(tablica)} klubova, "
           f"strijelci={len(strijelci)}, kartoni={len(kartoni)}, "
-          f"nastupi={len(nastupi)} (s minutama: {s_minuta}) - spremljeno")
+          f"nastupi={len(nastupi)} (s minutama: {s_minuta})"
+          f" - {'BEZ UPISA' if POSTAVKE['dry_run'] else 'spremljeno'}")
     print(f"  PROVJERA strijelaca: {provjera}")
 
 
+def _postavke_iz_naredbe():
+    """Čita zastavice s naredbenog retka. Bez ijedne, ponašanje je isto
+    kao prije: pune dvije lige, sezona iz konstante, upis u bazu."""
+    p = argparse.ArgumentParser(
+        description="Scraper HNS Semafora za Lokal-Arenu."
+    )
+    p.add_argument("--dry-run", action="store_true",
+                   help="ništa ne upisuj, samo ispiši što bi se upisalo")
+    p.add_argument("--json", metavar="DATOTEKA",
+                   help="uz --dry-run spremi pune retke u JSON datoteku")
+    p.add_argument("--natjecanje", metavar="TEKST",
+                   help="obradi samo natjecanja čiji naziv sadrži taj tekst")
+    p.add_argument("--url", metavar="ADRESA",
+                   help="adresa natjecanja umjesto one iz popisa "
+                        "(za probu nad prošlom sezonom)")
+    p.add_argument("--sezona", metavar="SEZONA",
+                   help=f"sezona koja se upisuje (zadano: {SEZONA})")
+    p.add_argument("--kolo", type=int, metavar="BROJ",
+                   help="obradi samo to kolo")
+    return p.parse_args()
+
+
+def _odabrana_natjecanja(args):
+    """Popis natjecanja za ovo pokretanje, nakon --natjecanje i --url."""
+    odabrana = NATJECANJA
+    if args.natjecanje:
+        trazeno = args.natjecanje.casefold()
+        odabrana = [n for n in NATJECANJA if trazeno in n["naziv"].casefold()]
+        if not odabrana:
+            raise SystemExit(
+                f"Nijedno natjecanje ne odgovara nazivu {args.natjecanje!r}. "
+                f"Dostupna: {', '.join(n['naziv'] for n in NATJECANJA)}"
+            )
+
+    if args.url:
+        # Vlastita adresa ima smisla samo za jedno natjecanje, inače se ne
+        # bi znalo kojem pripada.
+        if len(odabrana) != 1:
+            raise SystemExit(
+                "--url ide samo uz --natjecanje koji pogađa točno jedno "
+                "natjecanje (sada ih je " + str(len(odabrana)) + ")."
+            )
+        odabrana = [{"naziv": odabrana[0]["naziv"], "url": args.url}]
+
+    return odabrana
+
+
 if __name__ == "__main__":
+    args = _postavke_iz_naredbe()
+    POSTAVKE["dry_run"] = POSTAVKE["dry_run"] or args.dry_run
+    POSTAVKE["json"] = args.json
+    if args.sezona:
+        SEZONA = args.sezona
+    if args.json and not POSTAVKE["dry_run"]:
+        raise SystemExit("--json ima smisla samo uz --dry-run.")
+
+    natjecanja_za_obradu = _odabrana_natjecanja(args)
+
+    if POSTAVKE["dry_run"]:
+        print("=" * 60)
+        print("SUHI TEST: ništa se ne upisuje u bazu.")
+        print(f"  sezona: {SEZONA}")
+        print(f"  natjecanja: {', '.join(n['naziv'] for n in natjecanja_za_obradu)}")
+        print(f"  kolo: {args.kolo if args.kolo else 'sva'}")
+        print("=" * 60)
+
     ukupno_spremljeno = 0
     ukupno_gresaka = 0
 
-    for natjecanje in NATJECANJA:
+    for natjecanje in natjecanja_za_obradu:
         print(f"\n{'=' * 60}")
         print(f"NATJECANJE: {natjecanje['naziv']}")
         print("=" * 60)
 
         utakmice_s_kolima = dohvati_popis_utakmica(natjecanje["url"])
+        if args.kolo is not None:
+            utakmice_s_kolima = [u for u in utakmice_s_kolima if u["kolo"] == args.kolo]
+            print(f"Nakon odabira {args.kolo}. kola ostalo: {len(utakmice_s_kolima)} utakmica.")
         ukupno = len(utakmice_s_kolima)
 
         # Tablica lige + strijelci + kartoni (za sidebar na stranici)
@@ -800,13 +966,19 @@ if __name__ == "__main__":
                     detalji["gost"] = stavka["gost"]
                     poruka = f"{detalji['rezultat']}"
                 else:
-                    # neodigrana utakmica - nema zapisnika, spremamo samo
-                    # ono što piše na retku rasporeda
+                    # Neodigrana utakmica: nema zapisnika, spremamo samo ono
+                    # što piše na retku rasporeda.
+                    #
+                    # "rezultat" i "hns_url" se NAMJERNO ne šalju. Kad se
+                    # stupac ne pošalje, upsert ga ne dira, pa već upisan
+                    # rezultat preživi i onda ako HNS jednom ne prikaže
+                    # poveznicu na zapisnik. Da su slani kao prazni, takav
+                    # bi prolaz obrisao rezultat odigrane utakmice, a
+                    # postave bi ostale, pa bi utakmica izgledala kao da
+                    # se tek treba odigrati.
                     detalji = {
-                        "hns_url": None,
                         "domacin": stavka["domacin"],
                         "gost": stavka["gost"],
-                        "rezultat": None,
                     }
                     poruka = f"{stavka['datum']} {stavka['vrijeme'] or ''}".strip()
 
@@ -816,9 +988,10 @@ if __name__ == "__main__":
                 detalji["datum"] = stavka["datum"]
                 detalji["vrijeme"] = stavka["vrijeme"]
                 detalji["stadion"] = stavka["stadion"]
+                ishod = "BEZ UPISA (suhi test)" if POSTAVKE["dry_run"] else "spremljeno"
+                print(f"  [{i}/{ukupno}] (kolo {stavka['kolo']}) {stavka['domacin']} - {stavka['gost']} ({poruka}): {ishod}")
                 spremi_u_supabase(detalji)
                 ukupno_spremljeno += 1
-                print(f"  [{i}/{ukupno}] (kolo {stavka['kolo']}) {stavka['domacin']} - {stavka['gost']} ({poruka}): spremljeno")
             except Exception as greska:
                 ukupno_gresaka += 1
                 print(f"  [{i}/{ukupno}] GREŠKA na {stavka.get('hns_url') or stavka['domacin']}: {greska}")
@@ -826,5 +999,17 @@ if __name__ == "__main__":
                 time.sleep(1)
 
     print(f"\n{'=' * 60}")
-    print(f"GOTOVO! Spremljeno/ažurirano {ukupno_spremljeno} utakmica. Grešaka: {ukupno_gresaka}.")
+    if POSTAVKE["dry_run"]:
+        print(f"SUHI TEST GOTOV. Bilo bi upisano {ukupno_spremljeno} utakmica "
+              f"i {len(PROBNE_STATISTIKE)} redaka statistike. Grešaka: {ukupno_gresaka}.")
+        print("U bazu nije upisano ništa.")
+        if POSTAVKE["json"]:
+            with open(POSTAVKE["json"], "w", encoding="utf-8") as f:
+                json.dump({"sezona": SEZONA,
+                           "utakmice": PROBNI_REDCI,
+                           "statistike": PROBNE_STATISTIKE},
+                          f, ensure_ascii=False, indent=2)
+            print(f"Puni sadržaj spremljen u datoteku: {POSTAVKE['json']}")
+    else:
+        print(f"GOTOVO! Spremljeno/ažurirano {ukupno_spremljeno} utakmica. Grešaka: {ukupno_gresaka}.")
     print("=" * 60)
