@@ -146,6 +146,29 @@ class Zamka:
         )
 
 
+def pokreni_s_greskom(argumenti):
+    """Pokreće scraper uz zapisnik koji ne odgovara i vraća izlazni kod."""
+    def puca(url, **_):
+        if "/utakmice/" in url:
+            raise RuntimeError("HNS ne odgovara")
+        return Odgovor(stranica_natjecanja())
+
+    stari_get, requests.get = requests.get, puca
+    stari_argv, stari_izlaz = sys.argv, sys.stdout
+    sys.argv = ["scraper_supabase.py"] + argumenti
+    sys.stdout = io.StringIO()
+    kod = 0
+    try:
+        runpy.run_path("scraper_supabase.py", run_name="__main__")
+    except SystemExit as izlaz:
+        kod = izlaz.code or 0
+    finally:
+        ispis = sys.stdout.getvalue()
+        sys.argv, sys.stdout = stari_argv, stari_izlaz
+        requests.get = stari_get
+    return kod, ispis
+
+
 def pokreni(argumenti):
     """Pokreće scraper kao da je pozvan iz naredbenog retka i vraća
     (ispis, moduo)."""
@@ -234,6 +257,14 @@ def main():
     sve_prolazi &= provjeri(len(spremljeno["utakmice"]) == 3,
                             "JSON sadrži sve utakmice")
     sve_prolazi &= provjeri("statistike" in spremljeno, "JSON sadrži i statistike")
+
+    print("6. greška ruši pokretanje")
+    kod, ispis3 = pokreni_s_greskom([
+        "--dry-run", "--natjecanje", "3. NL", "--url", ADRESA_NATJECANJA, "--kolo", "1",
+    ])
+    sve_prolazi &= provjeri(kod == 1, "izlazni kod je 1, GitHub to vidi kao neuspjeh")
+    sve_prolazi &= provjeri("ŠTO JE PALO:" in ispis3, "ispisan je popis onoga što je palo")
+    sve_prolazi &= provjeri("HNS ne odgovara" in ispis3, "u popisu stoji sama greška")
 
     print()
     print("PROLAZI" if sve_prolazi else "NE PROLAZI")

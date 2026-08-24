@@ -12,6 +12,7 @@ KAKO POKRENUTI:
 
 import argparse
 import json
+import sys
 import requests
 from bs4 import BeautifulSoup
 import time
@@ -937,6 +938,7 @@ if __name__ == "__main__":
 
     ukupno_spremljeno = 0
     ukupno_gresaka = 0
+    greske = []
 
     for natjecanje in natjecanja_za_obradu:
         print(f"\n{'=' * 60}")
@@ -950,9 +952,17 @@ if __name__ == "__main__":
         ukupno = len(utakmice_s_kolima)
 
         # Tablica lige + strijelci + kartoni (za sidebar na stranici)
+        #
+        # Greška se OVDJE hvata da jedna liga ne sruši ostale, ali se
+        # broji i na kraju ruši cijelo pokretanje. Prije se samo
+        # ispisala, pa je GitHub pokretanje ostajalo zeleno: tako je
+        # tjednima prolazilo neopaženo da baza odbija tip "nastupi" i
+        # da minute uopće ne ulaze.
         try:
             dohvati_i_spremi_statistike(natjecanje["naziv"], natjecanje["url"])
         except Exception as greska:
+            ukupno_gresaka += 1
+            greske.append(f"statistike, {natjecanje['naziv']}: {greska}")
             print(f"  GREŠKA kod statistika: {greska}")
 
         for i, stavka in enumerate(utakmice_s_kolima, start=1):
@@ -994,6 +1004,10 @@ if __name__ == "__main__":
                 ukupno_spremljeno += 1
             except Exception as greska:
                 ukupno_gresaka += 1
+                greske.append(
+                    f"utakmica, {natjecanje['naziv']}, "
+                    f"{stavka['domacin']} - {stavka['gost']}: {greska}"
+                )
                 print(f"  [{i}/{ukupno}] GREŠKA na {stavka.get('hns_url') or stavka['domacin']}: {greska}")
             if stavka["hns_url"]:
                 time.sleep(1)
@@ -1013,3 +1027,13 @@ if __name__ == "__main__":
     else:
         print(f"GOTOVO! Spremljeno/ažurirano {ukupno_spremljeno} utakmica. Grešaka: {ukupno_gresaka}.")
     print("=" * 60)
+
+    # Kad je išta palo, pokretanje završava neuspjehom. GitHub ga tada
+    # označi crveno i pošalje poruku, umjesto da greška ostane samo u
+    # zapisniku koji nitko ne otvara.
+    if greske:
+        print("\nŠTO JE PALO:")
+        for opis in greske:
+            print(f"  - {opis}")
+        print("\nPokretanje je označeno kao neuspjelo zbog gornjih grešaka.")
+        sys.exit(1)

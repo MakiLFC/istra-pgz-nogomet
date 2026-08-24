@@ -7,7 +7,7 @@
 import type { MetadataRoute } from "next";
 import { supabase } from "@/lib/supabase";
 import { dohvatiKlubove } from "@/lib/klubovi";
-import { dohvatiOdigraneZaAdrese } from "@/lib/utakmice";
+import { dohvatiUtakmiceZaAdrese } from "@/lib/utakmice";
 import { dohvatiIgrace } from "@/lib/igraci";
 import { slugUtakmice } from "@/lib/slug";
 
@@ -82,17 +82,21 @@ async function klubovi(): Promise<MetadataRoute.Sitemap> {
 }
 
 /**
- * Odigrane utakmice. Neodigrane se ne šalju: na njima još nema ni
- * rezultata ni postava, pa tražilici nemaju što ponuditi. Ući će same
- * kad se odigraju.
+ * Utakmice, odigrane i nadolazeće.
+ *
+ * Nadolazeće su prije bile izostavljene. Ulaze zato što ih ljudi traže
+ * prije kola ("tko igra u subotu"), a stranica već ima termin, stadion
+ * i oba kluba. Dobivaju manju važnost i dnevno osvježavanje, jer im se
+ * sadržaj mijenja čim utakmica bude odigrana; odigrana se poslije toga
+ * više ne mijenja.
  */
 async function utakmice(): Promise<MetadataRoute.Sitemap> {
   try {
-    const popis = await dohvatiOdigraneZaAdrese();
+    const popis = await dohvatiUtakmiceZaAdrese();
     return popis.map((u) => ({
       url: adresa(`/utakmica/${slugUtakmice(u)}`),
-      priority: 0.5,
-      changeFrequency: "yearly" as const,
+      priority: u.odigrana ? 0.5 : 0.4,
+      changeFrequency: u.odigrana ? ("yearly" as const) : ("daily" as const),
     }));
   } catch (e) {
     console.error("Sitemap: dohvat utakmica nije uspio:", e);

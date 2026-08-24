@@ -57,16 +57,23 @@ export function imaZapisnik(u: Utakmica): boolean {
 }
 
 /**
- * Odigrane utakmice, samo polja potrebna za adrese. Za sitemap.
+ * Utakmice s vlastitom adresom, samo polja potrebna za sitemap.
+ *
+ * Vraća i ODIGRANE i one koje se tek igraju. Nadolazeće su prije bile
+ * izostavljene, uz obrazloženje da na njima nema što indeksirati, ali
+ * one imaju termin, stadion i oba kluba, a upravo se to i traži prije
+ * kola. Oznaka "odigrana" ide van da im sitemap može dati manju
+ * važnost i češće osvježavanje.
+ *
  * Dohvat ide u komadima, jer Supabase po zadanom vraća najviše tisuću
- * redaka, a odigranih utakmica kroz sve sezone ima i više.
+ * redaka, a utakmica kroz sve sezone ima i više.
  */
-export async function dohvatiOdigraneZaAdrese(): Promise<
-  { id: number; domacin: string; gost: string }[]
+export async function dohvatiUtakmiceZaAdrese(): Promise<
+  { id: number; domacin: string; gost: string; odigrana: boolean }[]
 > {
   const KOMAD = 1000;
   const NAJVISE_KOMADA = 50;
-  const svi: { id: number; domacin: string; gost: string }[] = [];
+  const svi: { id: number; domacin: string; gost: string; odigrana: boolean }[] = [];
 
   try {
     for (let i = 0; i < NAJVISE_KOMADA; i++) {
@@ -84,9 +91,14 @@ export async function dohvatiOdigraneZaAdrese(): Promise<
       if (!data?.length) break;
 
       for (const r of data as { id: number; domacin: string; gost: string; rezultat: string | null }[]) {
-        if (/^\s*\d{1,2}\s*:\s*\d{1,2}\s*$/.test(r.rezultat ?? "")) {
-          svi.push({ id: r.id, domacin: r.domacin, gost: r.gost });
-        }
+        // Utakmica bez oba kluba nema smislenu adresu, pa se preskače.
+        if (!r.domacin || !r.gost) continue;
+        svi.push({
+          id: r.id,
+          domacin: r.domacin,
+          gost: r.gost,
+          odigrana: /^\s*\d{1,2}\s*:\s*\d{1,2}\s*$/.test(r.rezultat ?? ""),
+        });
       }
       if (data.length < KOMAD) break;
     }
