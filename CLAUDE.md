@@ -254,9 +254,10 @@ Kad se pojave, uz korake gore pokreni scraper — migracija baze
 
 ## U planu
 
-- Trofej Terzić-Strukan (ljestvica strijelaca svih liga) — čeka dopuštenje
-  osobe koja je vodi
 - Proširenje na druge lokalne sportove
+
+Trofej Terzić-Strukan (ljestvica strijelaca svih liga) više nije u planu;
+Andrej ga je 24.08.2026. skinuo s popisa. Ne predlagati ga ponovno.
 
 ## Stil rada s korisnikom
 
