@@ -258,7 +258,19 @@ def main():
                             "JSON sadrži sve utakmice")
     sve_prolazi &= provjeri("statistike" in spremljeno, "JSON sadrži i statistike")
 
-    print("6. greška ruši pokretanje")
+    print("6. samo statistike, bez rasporeda")
+    ispis4, prostor4 = pokreni([
+        "--dry-run", "--natjecanje", "3. NL", "--url", ADRESA_NATJECANJA,
+        "--samo-statistike",
+    ])
+    sve_prolazi &= provjeri(len(prostor4["PROBNI_REDCI"]) == 0,
+                            "nijedna utakmica nije ni dohvaćena")
+    sve_prolazi &= provjeri(len(prostor4["PROBNE_STATISTIKE"]) == 4,
+                            "sva četiri tipa rang-lista su složena")
+    sve_prolazi &= provjeri("raspored i zapisnici se preskaču" in ispis4,
+                            "ispis to i kaže")
+
+    print("7. greška ruši pokretanje")
     kod, ispis3 = pokreni_s_greskom([
         "--dry-run", "--natjecanje", "3. NL", "--url", ADRESA_NATJECANJA, "--kolo", "1",
     ])

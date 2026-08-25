@@ -38,6 +38,8 @@ load_dotenv()  # učitava SUPABASE_URL i SUPABASE_SERVICE_KEY iz .env datoteke
 #                          nad prošlom sezonom); ide uz --natjecanje i --sezona
 #   --sezona "2025/26"     upiši drugu sezonu od zadane u SEZONA
 #   --kolo 15              obradi samo to kolo (brže i blaže prema HNS-u)
+#   --samo-statistike      osvježi samo rang-liste (tablica, strijelci,
+#                          kartoni, nastupi), bez rasporeda i zapisnika
 #
 # PRIMJER regresijske provjere nad završenim kolom prošle sezone:
 #   python scraper_supabase.py --dry-run --kolo 15 \
@@ -889,6 +891,9 @@ def _postavke_iz_naredbe():
                    help=f"sezona koja se upisuje (zadano: {SEZONA})")
     p.add_argument("--kolo", type=int, metavar="BROJ",
                    help="obradi samo to kolo")
+    p.add_argument("--samo-statistike", action="store_true",
+                   help="osvježi samo tablicu, strijelce, kartone i nastupe, "
+                        "bez prolaska kroz raspored i zapisnike")
     return p.parse_args()
 
 
@@ -925,6 +930,11 @@ if __name__ == "__main__":
         SEZONA = args.sezona
     if args.json and not POSTAVKE["dry_run"]:
         raise SystemExit("--json ima smisla samo uz --dry-run.")
+    if args.samo_statistike and args.kolo is not None:
+        raise SystemExit(
+            "--samo-statistike i --kolo ne idu zajedno: rang-liste su za "
+            "cijelu sezonu, ne po kolu."
+        )
 
     natjecanja_za_obradu = _odabrana_natjecanja(args)
 
@@ -934,6 +944,8 @@ if __name__ == "__main__":
         print(f"  sezona: {SEZONA}")
         print(f"  natjecanja: {', '.join(n['naziv'] for n in natjecanja_za_obradu)}")
         print(f"  kolo: {args.kolo if args.kolo else 'sva'}")
+        if args.samo_statistike:
+            print("  samo rang-liste, bez rasporeda i zapisnika")
         print("=" * 60)
 
     ukupno_spremljeno = 0
@@ -945,10 +957,17 @@ if __name__ == "__main__":
         print(f"NATJECANJE: {natjecanje['naziv']}")
         print("=" * 60)
 
-        utakmice_s_kolima = dohvati_popis_utakmica(natjecanje["url"])
-        if args.kolo is not None:
-            utakmice_s_kolima = [u for u in utakmice_s_kolima if u["kolo"] == args.kolo]
-            print(f"Nakon odabira {args.kolo}. kola ostalo: {len(utakmice_s_kolima)} utakmica.")
+        # Uz --samo-statistike raspored se uopće ne otvara. Rang-liste
+        # stoje na stranici natjecanja, pa se za njih ne mora proći kroz
+        # svaki zapisnik, što inače traje dvadesetak minuta po ligi.
+        if args.samo_statistike:
+            utakmice_s_kolima = []
+            print("Samo statistike: raspored i zapisnici se preskaču.")
+        else:
+            utakmice_s_kolima = dohvati_popis_utakmica(natjecanje["url"])
+            if args.kolo is not None:
+                utakmice_s_kolima = [u for u in utakmice_s_kolima if u["kolo"] == args.kolo]
+                print(f"Nakon odabira {args.kolo}. kola ostalo: {len(utakmice_s_kolima)} utakmica.")
         ukupno = len(utakmice_s_kolima)
 
         # Tablica lige + strijelci + kartoni (za sidebar na stranici)
