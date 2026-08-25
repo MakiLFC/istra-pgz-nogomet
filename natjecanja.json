@@ -72,7 +72,7 @@
     "_napomena": "Adrese starijih sezona. Trebaju kad se rang-liste (nastupi i minute) naknadno popunjavaju: python scraper_supabase.py --samo-statistike --sezona \"2025/26\" --natjecanje \"3. NL Zapad\" --url \"ADRESA\". Utakmice se time ne diraju.",
     "2025/26": {
       "3. NL Zapad": "https://semafor.hns.family/natjecanja/100585203/treca-nl-zapad-2526/",
-      "4. NL NS Rijeka": null,
+      "4. NL NS Rijeka": "https://semafor.hns.family/natjecanja/100796651/4-nl-ns-rijeka-2526/",
       "1. ŽNL PGŽ": "id je bio 101555188, adresu potražiti na Semaforu",
       "2. ŽNL PGŽ": null
     }
