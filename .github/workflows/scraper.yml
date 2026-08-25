@@ -29,7 +29,11 @@ on:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    # Gornja granica trajanja. Krajem prošle sezone, s četiri lige i punim
+    # zapisnicima, prolaz je trajao 19 do 22 minute (svaki zapisnik je jedan
+    # dohvat plus sekunda pauze prema HNS-u). Uz 30 minuta razlika je bila
+    # premala: jedan spor dan i GitHub bi prekinuo posao usred zadnje lige.
+    timeout-minutes: 45
 
     steps:
       - name: Preuzmi kod
