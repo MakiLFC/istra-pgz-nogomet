@@ -130,6 +130,20 @@ tisućica ("1.250"). Ljestvica posjećenosti (`lib/posjecenost.ts`) zato
 nije veće od nule. Nula znači "nema podatka", ne prazan stadion.
 Gledatelji se pripisuju samo domaćinu, jer su došli na njegov stadion.
 
+**Tablica `statistike` ima ograničenje na stupcu `tip`.**
+Dopušteni su `tablica`, `strijelci`, `kartoni` i `nastupi`. Kad je scraper
+u kolovozu 2026. dobio i nastupe s minutama, `nastupi` nije bio na tom
+popisu, pa je baza svaki takav upis odbijala. Nitko to nije primijetio
+mjesec dana, jer je greška bila uhvaćena u `try/except`, samo ispisana, a
+pokretanje je svejedno završavalo zeleno s porukom "Grešaka: 0". Minute
+zato nisu ušle ni za 2025/26.
+
+Popravljeno 25.08.2026. proširenjem ograničenja, a scraper od tada broji
+i greške u statistikama te završava neuspjehom kad išta padne, da GitHub
+takvo pokretanje označi crveno. Pouka je općenitija od ovog slučaja: ako
+se greška hvata da ne sruši ostatak posla, mora se barem prebrojati i
+prijaviti na kraju.
+
 **Tablica poretka se scrapa, ne računa.**
 Službena tablica već uključuje kaznene bodove (npr. "NK Crikvenica (-3)").
 Vlastiti izračun bi bio kriv.
