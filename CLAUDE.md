@@ -140,7 +140,15 @@ zato nisu ušle ni za 2025/26.
 
 Popravljeno 25.08.2026. proširenjem ograničenja, a scraper od tada broji
 i greške u statistikama te završava neuspjehom kad išta padne, da GitHub
-takvo pokretanje označi crveno. Pouka je općenitija od ovog slučaja: ako
+takvo pokretanje označi crveno.
+
+Rupa u prošloj sezoni popunjava se naknadno, zastavicom `--samo-statistike`
+uz `--sezona` i `--url` prošlosezonske lige (adrese su u `natjecanja.json`,
+odjeljak `prethodne_sezone`). Time se dohvaćaju samo rang-liste, u nekoliko
+sekundi, bez diranja utakmica. Za 2025/26 napravljeno je 25.08.2026.:
+3. NL Zapad 503 igrača (vrh 2700 minuta, 30 kola po 90) i 4. NL NS Rijeka
+431 igrač (vrh oko 2340, 26 kola po 90). Županijske lige nisu popunjene,
+jer su u scraperu zakomentirane pa ih `--natjecanje` ne vidi. Pouka je općenitija od ovog slučaja: ako
 se greška hvata da ne sruši ostatak posla, mora se barem prebrojati i
 prijaviti na kraju.
 
