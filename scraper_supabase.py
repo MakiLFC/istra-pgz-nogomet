@@ -154,26 +154,28 @@ NATJECANJA = [
     },
 
     # ------------------------------------------------------------------
-    # ŽUPANIJSKE LIGE ZA 2026/27 - JOŠ NISU OBJAVLJENE (stanje: kolovoz 2026)
+    # ŽUPANIJSKE LIGE, objavljene 27.08.2026.
     #
-    # NS PGŽ ih obično unese kasnije od regionalnih liga. Kad se pojave:
-    #   1. semafor.hns.family -> Sezona: 2026/27 -> Razina: ŽNS primorsko-goranski
-    #   2. odaberi ligu, klikni Traži, kopiraj adresu (mora sadržavati -2627)
-    #   3. odkomentiraj blokove ispod i zalijepi adrese
+    # OPREZ: nazivi "1. ŽNL" i "2. ŽNL" koriste se u SVIM županijama, pa se
+    # natjecanje potvrđuje popisom klubova, nikad nazivom. Jednom je po
+    # nazivu greškom upisana bjelovarsko-bilogorska liga.
     #
-    # OPREZ: nazivi "1. ŽNL" i "2. ŽNL" koriste se u SVIM županijama.
-    # Prije upisa provjeri da su na stranici NAŠI klubovi (Risnjak, Goranka,
-    # Mrkopalj, Rječina, Stari grad Rijeka...). Jednom je po nazivu greškom
-    # upisana bjelovarsko-bilogorska liga.
+    # PAZI NA ADRESU 1. ŽNL: HNS je toj stranici u naslovu i u adresi
+    # ostavio "2526", iako je natjecanje za 2026/27 (u podnaslovu piše
+    # 2026/2027, a klubovi i raspored su novosezonski). Da to nije omaška
+    # nego stvarno prošla sezona, ID bi bio oko 101 milijun, kao kod ostalih
+    # prošlosezonskih natjecanja; ovaj je 115499925, dakle iz istog niza kao
+    # 3. i 4. NL za 26/27. Prošlosezonska 1. ŽNL ima ID 101555188.
+    # NE "ispravljati" ovu adresu po slugu.
     # ------------------------------------------------------------------
-    # {
-    #     "naziv": "1. ŽNL PGŽ",
-    #     "url": "OVDJE ZALIJEPI ADRESU ZA 26/27",
-    # },
-    # {
-    #     "naziv": "2. ŽNL PGŽ",
-    #     "url": "OVDJE ZALIJEPI ADRESU ZA 26/27",
-    # },
+    {
+        "naziv": "1. ŽNL PGŽ",
+        "url": "https://semafor.hns.family/natjecanja/115499925/1-znl-seniori-2526/",
+    },
+    {
+        "naziv": "2. ŽNL PGŽ",
+        "url": "https://semafor.hns.family/natjecanja/115502657/2-znl-seniori-2627/",
+    },
 ]
 
 

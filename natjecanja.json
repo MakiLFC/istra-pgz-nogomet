@@ -1,7 +1,7 @@
 {
   "_napomena": "Referentna datoteka za scraper. ID-ovi natjecanja MORAJU se ažurirati svake sezone (HNS generira novi ID za svako natjecanje). Format: https://semafor.hns.family/natjecanja/{id}/{slug}/",
   "sezona": "2026/27",
-  "zadnje_azurirano": "2026-08-12",
+  "zadnje_azurirano": "2026-08-27",
   "kako_pronaci_nove_id_jeve": [
     "1. Otvori semafor.hns.family",
     "2. Sezona -> 2026/27 (OVO PRVO, inače izbornik nudi staru sezonu)",
@@ -49,17 +49,45 @@
     },
     {
       "naziv": "1. ŽNL PGŽ",
-      "id": null,
-      "url": null,
-      "status": "ceka - nije objavljeno za 26/27",
-      "napomena": "NS PGŽ objavljuje županijske lige kasnije od regionalnih. ID za 25/26 bio je 101555188."
+      "id": "115499925",
+      "slug": "1-znl-seniori-2526",
+      "url": "https://semafor.hns.family/natjecanja/115499925/1-znl-seniori-2526/",
+      "status": "aktivno",
+      "provjereno": "27.08.2026. - potvrđeno po popisu klubova",
+      "napomena": "HNS je u naslovu i u adresi ostavio '25/26', iako je natjecanje za 2026/27 (podnaslov na stranici kaže 2026/2027). ID 115499925 je iz istog niza kao ostala natjecanja za 26/27 (114-115 milijuna), dok prošlosezonska 1. ŽNL ima 101555188. Ne ispravljati adresu po slugu.",
+      "klubovi": [
+        "HNK Goranin",
+        "HNK Lovran",
+        "NK Draga",
+        "NK Lošinj",
+        "NK Mune",
+        "NK Omladinac Vrata",
+        "NK Rab",
+        "NK Rikard Benčić",
+        "NK Risnjak",
+        "NK Stari grad Rijeka",
+        "NK Turbina",
+        "NK Vihor (B)",
+        "NK Vrbovsko",
+        "NK Zamet"
+      ]
     },
     {
       "naziv": "2. ŽNL PGŽ",
-      "id": null,
-      "url": null,
-      "status": "ceka - nije objavljeno za 26/27",
-      "napomena": "ID za 25/26 bio je 101556988."
+      "id": "115502657",
+      "slug": "2-znl-seniori-2627",
+      "url": "https://semafor.hns.family/natjecanja/115502657/2-znl-seniori-2627/",
+      "status": "aktivno",
+      "provjereno": "27.08.2026. - potvrđeno po popisu klubova",
+      "napomena": "Šest klubova, pa je i broj kola manji nego u ostalim ligama.",
+      "klubovi": [
+        "NK Gomirje",
+        "NK Goranka",
+        "NK Mrkopalj",
+        "NK Polet (Sk)",
+        "NK Snježnik",
+        "NK Željezničar (M)"
+      ]
     }
   ],
   "arhiva_2025_26": {
@@ -73,8 +101,8 @@
     "2025/26": {
       "3. NL Zapad": "https://semafor.hns.family/natjecanja/100585203/treca-nl-zapad-2526/",
       "4. NL NS Rijeka": "https://semafor.hns.family/natjecanja/100796651/4-nl-ns-rijeka-2526/",
-      "1. ŽNL PGŽ": "id je bio 101555188, adresu potražiti na Semaforu",
-      "2. ŽNL PGŽ": null
+      "1. ŽNL PGŽ": "https://semafor.hns.family/natjecanja/101555188/1-znl-seniori-2526/",
+      "2. ŽNL PGŽ": "https://semafor.hns.family/natjecanja/101556988/druga-znl-seniori-2526/"
     }
   }
 }
