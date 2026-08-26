@@ -1,6 +1,7 @@
 // app/novosti/[slug]/page.tsx — pojedinačni članak
 
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Navigacija from "@/components/Navigacija";
@@ -34,7 +35,9 @@ export async function generateMetadata({
       // Kad članak nema vlastitu sliku, uzima se zajednička. Bez ovoga
       // bi takav članak ostao posve bez slike pri dijeljenju: metadata
       // članka zamjenjuje onu iz layouta, ne nadopunjuje je.
-      images: [clanak.slika_url ?? SLIKA_DIJELJENJE.url],
+      images: clanak.slika_url
+        ? [{ url: clanak.slika_url, alt: clanak.slika_opis ?? clanak.naslov }]
+        : [SLIKA_DIJELJENJE.url],
     },
   };
 }
@@ -103,14 +106,37 @@ export default async function StranicaClanka({
             </p>
           )}
 
+          {/* Fotografija uz članak. Zadržava omjer u kojem je snimljena, pa
+              uspravna slika s tribine ne gubi vrh i dno. Zadane mjere 1600
+              x 900 služe samo da preglednik unaprijed rezervira prostor;
+              stvarni omjer preuzima "h-auto" kad se slika učita.
+
+              "sizes" odgovara stupcu teksta: on je max-w-2xl, dakle 672 px
+              na širokom zaslonu, a na uskom zauzima punu širinu. Bez toga
+              bi next/image slao veću sliku nego što treba.
+
+              "priority" jer je slika odmah ispod naslova, pa ne smije
+              čekati odgodu učitavanja. */}
           {clanak.slika_url && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={clanak.slika_url}
-              alt=""
-              className="mt-5 w-full object-cover"
-              style={{ maxHeight: 420 }}
-            />
+            <figure className="mt-5">
+              <Image
+                src={clanak.slika_url}
+                alt={clanak.slika_opis ?? ""}
+                width={1600}
+                height={900}
+                sizes="(max-width: 768px) 100vw, 672px"
+                className="h-auto w-full"
+                priority
+              />
+              {clanak.slika_potpis && (
+                <figcaption
+                  className="mt-2 font-sans text-xs"
+                  style={{ color: "var(--ink-muted)" }}
+                >
+                  {clanak.slika_potpis}
+                </figcaption>
+              )}
+            </figure>
           )}
 
           {/* Tekst je obostrano poravnat, ali riječi se NE rastavljaju

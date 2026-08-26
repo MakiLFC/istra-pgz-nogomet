@@ -12,6 +12,10 @@ export type Clanak = {
   /** Potpis autora ispod naslova. Stariji članci ga mogu nemati. */
   autor: string | null;
   slika_url: string | null;
+  /** Opis fotografije za čitače ekrana i za slučaj da se ne učita. */
+  slika_opis: string | null;
+  /** Potpis ispod fotografije, npr. "Foto: Lokal-Arena". */
+  slika_potpis: string | null;
   objavljen: boolean;
   objavljeno_u: string;
 };
