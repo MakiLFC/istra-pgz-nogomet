@@ -79,6 +79,7 @@ lib/
 sql/
   najava_kola.sql   funkcija public.najava_kola() za najavu kola
   pregled_kola.sql  funkcija public.pregled_kola() za osvrt nakon kola
+  slike_clanaka.sql jednokratno: stupci za fotografiju i spremnik
   (ostale .sql datoteke su jednokratni zahvati nad podacima)
 scraper_supabase.py     glavni scraper
 natjecanja.json         referenca ID-jeva natjecanja po sezonama
@@ -97,6 +98,13 @@ raspored_migracija.sql  jednokratna migracija (već pokrenuta 08/2026)
 - **`statistike`** — tablica/strijelci/kartoni po ligi i sezoni (`jsonb`).
   Jedinstveno po (`sezona`, `natjecanje`, `tip`).
 - **`clanci`** — novosti. Vidljivi su samo oni s `objavljen = true` (RLS).
+  Fotografija ide u tri stupca: `slika_url` (adresa), `slika_opis` (opis za
+  čitače ekrana i za dijeljenje) i `slika_potpis` (npr. "Foto: Lokal-Arena").
+  Slike stoje u Supabase Storageu, spremnik `clanci`, javan za čitanje i
+  bez ijedne politike za pisanje, pa upload ide samo kroz dashboard.
+  Preporuka za upload: JPEG, širina 1600, do 300 KB. Na stranici ih
+  prikazuje `next/image`, pa vanjska adresa mora odgovarati uzorku iz
+  `next.config.ts`.
 
 ---
 
