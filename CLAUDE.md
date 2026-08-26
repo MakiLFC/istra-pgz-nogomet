@@ -51,7 +51,8 @@ prepiše ili se stavi zarez, dvotočka ili točka.
 - **Baza:** Supabase (PostgreSQL)
 - **Scraper:** Python (`requests` + `BeautifulSoup`), bez Playwrighta
 - **Automatizacija:** GitHub Actions (`.github/workflows/scraper.yml`),
-  pokreće se subotom i nedjeljom navečer te ponedjeljkom ujutro
+  pokreće se subotom i nedjeljom navečer, ponedjeljkom ujutro i srijedom
+  navečer (zbog utakmica zakazanih sredinom tjedna)
 
 ## Struktura
 
