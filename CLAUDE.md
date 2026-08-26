@@ -147,10 +147,24 @@ uz `--sezona` i `--url` prošlosezonske lige (adrese su u `natjecanja.json`,
 odjeljak `prethodne_sezone`). Time se dohvaćaju samo rang-liste, u nekoliko
 sekundi, bez diranja utakmica. Za 2025/26 napravljeno je 25.08.2026.:
 3. NL Zapad 503 igrača (vrh 2700 minuta, 30 kola po 90) i 4. NL NS Rijeka
-431 igrač (vrh oko 2340, 26 kola po 90). Županijske lige nisu popunjene,
-jer su u scraperu zakomentirane pa ih `--natjecanje` ne vidi. Pouka je općenitija od ovog slučaja: ako
+431 igrač (vrh oko 2340, 26 kola po 90). Županijske lige tada nisu bile
+popunjene, jer ih scraper još nije poznavao; od 27.08.2026. ih poznaje, pa
+se isti zahvat može napraviti i za njih. Pouka je općenitija od ovog slučaja: ako
 se greška hvata da ne sruši ostatak posla, mora se barem prebrojati i
 prijaviti na kraju.
+
+**Naziv i adresa natjecanja na Semaforu znaju biti krivi; ID nije.**
+1. ŽNL PGŽ za 2026/27 objavljena je 27.08.2026. pod naslovom "1. ŽNL
+SENIORI 25/26" i s adresom koja završava na `-2526`, iako je u podnaslovu
+stajalo 2026/2027, a klubovi i raspored bili novosezonski. Provjera koja
+to razrješava je ID: sva natjecanja za 25/26 imaju ID oko 100 do 101
+milijun, a za 26/27 oko 114 do 115 milijuna. Sporno natjecanje ima
+115499925, prošlosezonsko 101555188.
+
+Pouka je ista kao kod pravila o ID-jevima: natjecanje se potvrđuje popisom
+klubova i redom veličine ID-ja, nikad nazivom ili slugom. Adresa iz
+`natjecanja.json` ne smije se "ispravljati" zato što slug ne odgovara
+sezoni.
 
 **Tablica poretka se scrapa, ne računa.**
 Službena tablica već uključuje kaznene bodove (npr. "NK Crikvenica (-3)").
@@ -264,13 +278,15 @@ Prijelaz na novu sezonu:
 Stara sezona ostaje u bazi. Naslovnica sama prepoznaje najnoviju sezonu i
 broji samo odigrane utakmice, a stranica lige nudi birač sezona.
 
-**Stanje 13.08.2026.:** 3. NL Zapad (`114647051`, 15 kola) i 4. NL NS Rijeka
-(`114651788`, 13 kola) objavljene za 26/27 i cijeli raspored je u bazi —
-211 utakmica, prvo kolo 29.08.2026. Županijske (1. i 2. ŽNL PGŽ) još nisu
-objavljene; NS PGŽ ih unosi kasnije, u scraperu stoje zakomentirane.
+**Stanje 27.08.2026.:** sve četiri lige upisane su u scraper za 26/27.
+3. NL Zapad (`114647051`, 15 kola) i 4. NL NS Rijeka (`114651788`, 13 kola)
+imaju cijeli raspored u bazi, 211 utakmica, prvo kolo 29.08.2026.
+Županijske su objavljene 27.08.2026.: 1. ŽNL PGŽ (`115499925`, 14 klubova)
+i 2. ŽNL PGŽ (`115502657`, 6 klubova). Popisi klubova stoje u
+`natjecanja.json` i po njima se natjecanje potvrđuje.
 
-Kad se pojave, uz korake gore pokreni scraper — migracija baze
-(`raspored_migracija.sql`) vrijedi za cijelu tablicu i ne ponavlja se.
+Migracija baze (`raspored_migracija.sql`) vrijedi za cijelu tablicu i ne
+ponavlja se.
 
 ---
 
