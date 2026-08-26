@@ -24,6 +24,10 @@ on:
     - cron: "0 19 * * 0"   # nedjelja navečer
     - cron: "0 6 * * 1"    # ponedjeljak ujutro (sigurnosna runda za kasno
                            # unesene rezultate i nedjeljne večernje utakmice)
+    - cron: "0 19 * * 3"   # srijeda navečer (odgođene i sredinom tjedna
+                           # zakazane utakmice; npr. 1. ŽNL PGŽ ima
+                           # Omladinac Vrata - Vrbovsko u srijedu 09.09.2026.
+                           # Bez ove runde takav bi rezultat čekao subotu.)
   workflow_dispatch: {}     # omogućuje ručno pokretanje gumbom na GitHubu
 
 jobs:
