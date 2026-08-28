@@ -26,10 +26,18 @@ npm install --no-save playwright sharp @fontsource/archivo @fontsource/inter \
 ```
 
 Fontove kopiraj u mapu `fonts/` pokraj ove datoteke (`.woff2` iz
-`node_modules/@fontsource/...`), zatim u ovoj mapi:
+`node_modules/@fontsource/...`). Poslužitelj se diže u mapi `alati`,
+jedan katalog više, jer odande fontove uzima i alat za transfere:
 
 ```
+cd alati
 python3 -m http.server 8099
+```
+
+Pa u drugom prozoru:
+
+```
+cd alati/najave
 node generiraj.mjs
 ```
 
