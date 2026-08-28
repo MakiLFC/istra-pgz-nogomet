@@ -163,6 +163,34 @@
           "gk": "VRB"
         }
       ]
+    },
+    {
+      "dat": "2-znl-pgz-kolo-1",
+      "kolo": "1",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "podnaslov": "Tri utakmice otvaraju sezonu u ligi sa šest klubova",
+      "datum": "NED 06.09.2026.",
+      "sat": "Sve utakmice u 17:00",
+      "utakmice": [
+        {
+          "d": "Gomirje",
+          "dk": "GOM",
+          "g": "Polet (Sk)",
+          "gk": "POL"
+        },
+        {
+          "d": "Željezničar (M)",
+          "dk": "ŽEL",
+          "g": "Goranka",
+          "gk": "GOR"
+        },
+        {
+          "d": "Snježnik",
+          "dk": "SNJ",
+          "g": "Mrkopalj",
+          "gk": "MRK"
+        }
+      ]
     }
   ]
 }
