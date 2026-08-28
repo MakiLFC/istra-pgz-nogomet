@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="hr"><head><meta charset="utf-8">
+<style>
+/* Fontovi stoje uz alat za najave, pa se ne dupliraju. Poslužitelj se
+   diže u mapi "alati", vidi generiraj.mjs. */
+@font-face{font-family:AR;font-weight:800;src:url("../najave/fonts/archivo-latin-800-normal.woff2") format("woff2");unicode-range:U+0000-00FF}
+@font-face{font-family:AR;font-weight:800;src:url("../najave/fonts/archivo-latin-ext-800-normal.woff2") format("woff2");unicode-range:U+0100-024F}
+@font-face{font-family:IN;font-weight:400;src:url("../najave/fonts/inter-latin-400-normal.woff2") format("woff2");unicode-range:U+0000-00FF}
+@font-face{font-family:IN;font-weight:400;src:url("../najave/fonts/inter-latin-ext-400-normal.woff2") format("woff2");unicode-range:U+0100-024F}
+@font-face{font-family:IN;font-weight:700;src:url("../najave/fonts/inter-latin-700-normal.woff2") format("woff2");unicode-range:U+0000-00FF}
+@font-face{font-family:IN;font-weight:700;src:url("../najave/fonts/inter-latin-ext-700-normal.woff2") format("woff2");unicode-range:U+0100-024F}
+
+:root{--pitch:#0d3b40;--chalk:#dde2db;--oxide:#b5502a;--zelena:#34d399;--crvena:#ef4444}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1200px;height:630px;overflow:hidden;background:#04191d}
+
+.z{position:relative;width:1200px;height:630px;overflow:hidden;
+   background:linear-gradient(165deg,#104247 0%,#0d3b40 45%,#0a3236 100%)}
+
+/* Oznake terena: središnji krug, uzdužna crta i kazneni prostor lijevo. */
+.crta-sredina{position:absolute;left:599px;top:0;bottom:0;width:2px;background:rgba(221,226,219,.10)}
+.krug{position:absolute;left:370px;top:85px;width:460px;height:460px;border-radius:50%;
+      border:2px solid rgba(221,226,219,.10)}
+.kazneni{position:absolute;left:-44px;top:145px;width:164px;height:340px;
+         border:2px solid rgba(221,226,219,.10)}
+.rub-gore{position:absolute;left:0;right:0;top:0;height:8px;background:var(--oxide);z-index:6}
+
+.oznaka{position:absolute;left:80px;top:92px;font-family:IN;font-weight:700;font-size:12px;
+        letter-spacing:.26em;text-transform:uppercase;color:#8ea2a3;z-index:5}
+
+.tekst{position:absolute;left:80px;top:0;bottom:0;display:flex;flex-direction:column;
+       justify-content:center;z-index:5}
+.naslov{font-family:AR;font-weight:800;line-height:1.02;letter-spacing:-.02em;
+        text-transform:uppercase;color:#f4f7f4}
+.naslov.jedan{font-size:62px}
+.naslov.dva{font-size:46px}
+.podvlaka{width:68px;height:4px;background:var(--oxide);margin:26px 0 22px}
+.podnaslov{font-family:IN;font-weight:400;font-size:21px;color:#cfdcd8}
+
+.potpis{position:absolute;left:80px;bottom:56px;font-family:IN;font-weight:700;font-size:11px;
+        letter-spacing:.34em;color:#6f8688;z-index:6}
+
+/* Dvije kartice desno: dolasci i odlasci. */
+.kartice{position:absolute;right:62px;top:145px;display:flex;gap:28px;z-index:5}
+.kartica{width:160px;height:340px;border-radius:14px;display:flex;flex-direction:column;
+         align-items:center;justify-content:center;gap:34px}
+.kartica.dolasci{background:rgba(28,120,84,.30);border:2px solid #1f7a52}
+.kartica.odlasci{background:rgba(70,26,26,.30);border:2px solid #c0392b}
+.natpis{font-family:IN;font-weight:700;font-size:14px;letter-spacing:.18em}
+.dolasci .natpis{color:var(--zelena)}
+.odlasci .natpis{color:var(--crvena)}
+</style></head>
+<body>
+<div class="z" id="z"></div>
+<script>
+function esc(s){return String(s).replace(/[&<>"]/g, c => (
+  {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+function strelica(smjer, boja){
+  const gore = smjer === 'gore';
+  return `<svg width="78" height="150" viewBox="0 0 78 150">
+    <path d="${gore
+      ? 'M39 6 L74 62 L52 62 L52 144 L26 144 L26 62 L4 62 Z'
+      : 'M39 144 L74 88 L52 88 L52 6 L26 6 L26 88 L4 88 Z'}" fill="${boja}"/>
+  </svg>`;
+}
+
+// Poziva se iz generiraj.mjs. Naslov je niz redaka, pa ista slika radi
+// i za jednu ligu i za dvije.
+window.slozi = function (k) {
+  const redaka = k.naslov.length;
+  document.getElementById('z').innerHTML = `
+    <div class="rub-gore"></div>
+    <div class="crta-sredina"></div>
+    <div class="krug"></div>
+    <div class="kazneni"></div>
+
+    <div class="oznaka">${esc(k.oznaka)}</div>
+
+    <div class="tekst">
+      <div class="naslov ${redaka > 1 ? 'dva' : 'jedan'}">
+        ${k.naslov.map(r => `<div>${esc(r)}</div>`).join('')}
+      </div>
+      <div class="podvlaka"></div>
+      <div class="podnaslov">${esc(k.podnaslov)}</div>
+    </div>
+
+    <div class="potpis">LOKAL-ARENA</div>
+
+    <div class="kartice">
+      <div class="kartica dolasci">
+        ${strelica('gore', '#34d399')}
+        <div class="natpis">DOLASCI</div>
+      </div>
+      <div class="kartica odlasci">
+        ${strelica('dolje', '#ef4444')}
+        <div class="natpis">ODLASCI</div>
+      </div>
+    </div>`;
+};
+</script>
+</body></html>
