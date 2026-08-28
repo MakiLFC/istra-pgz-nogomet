@@ -1,0 +1,11 @@
+{
+  "_napomena": "Podaci za naslovne slike članaka o transferima. 'naslov' je niz redaka, pa jedna slika može pokriti i dvije lige.",
+  "slike": [
+    {
+      "dat": "transferi-3-nl-4-nl",
+      "oznaka": "Prijelazni rok 2026/27.",
+      "naslov": ["3. NL Zapad", "4. NL NS Rijeka"],
+      "podnaslov": "Najznačajniji transferi"
+    }
+  ]
+}
