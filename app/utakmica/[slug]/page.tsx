@@ -21,6 +21,7 @@ import { idIzSluga, slugUtakmice, kljucKluba } from "@/lib/slug";
 import { golovi } from "@/lib/kolo";
 import { LIGE } from "@/lib/lige";
 import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
+import { odlomci } from "@/lib/clanci";
 import type { Utakmica } from "@/lib/supabase";
 
 export const revalidate = 300;
@@ -230,7 +231,13 @@ export default async function StranicaUtakmice({
                     style={{ maxHeight: 360 }}
                   />
                 )}
-                <p className="font-sans text-[15px] leading-relaxed">{u.tekst_clanka}</p>
+                <div className="space-y-4">
+                  {odlomci(u.tekst_clanka).map((o, i) => (
+                    <p key={i} className="font-sans text-[15px] leading-relaxed">
+                      {o}
+                    </p>
+                  ))}
+                </div>
               </section>
             )}
 

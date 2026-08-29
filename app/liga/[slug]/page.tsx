@@ -10,7 +10,7 @@ import Postava from "@/components/Postava";
 import SidebarLiga from "@/components/SidebarLiga";
 import TablicaLige from "@/components/TablicaLige";
 import KarticaClanka from "@/components/KarticaClanka";
-import { dohvatiClanke } from "@/lib/clanci";
+import { dohvatiClanke, odlomci } from "@/lib/clanci";
 import Otkrivanje from "@/components/Otkrivanje";
 import Brojka from "@/components/Brojka";
 import { IkonaLopta, IkonaTeren } from "@/components/Ikone";
@@ -388,7 +388,13 @@ export default async function StranicaLige({
                                   style={{ maxHeight: 320 }}
                                 />
                               )}
-                              <p className="font-sans text-sm leading-relaxed">{u.tekst_clanka}</p>
+                              <div className="space-y-3">
+                                {odlomci(u.tekst_clanka).map((o, i) => (
+                                  <p key={i} className="font-sans text-sm leading-relaxed">
+                                    {o}
+                                  </p>
+                                ))}
+                              </div>
                             </div>
                           )}
                         </article>
