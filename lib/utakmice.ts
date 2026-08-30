@@ -53,12 +53,16 @@ export function strijelciPoKlubu(u: Utakmica) {
   const autogoli = autogoliKljucevi(u);
 
   type Strijelac = { igrac: string; minuta: string; autogol?: boolean };
+
   const domacin: Strijelac[] = [];
   const gost: Strijelac[] = [];
   const nepoznato: Strijelac[] = [];
 
   for (const s of u.strijelci ?? []) {
-    const autogol = autogoli.has(kljucPogotka(s.igrac, s.minuta));
+    // Scraper označi autogol sam; ručni popis ostaje za starije utakmice
+    // i za slučaj da ga HNS nije označio.
+    const autogol =
+      s.autogol === true || autogoli.has(kljucPogotka(s.igrac, s.minuta));
     const zapis: Strijelac = autogol ? { ...s, autogol: true } : s;
 
     // Kod autogola strane se zamjenjuju: pogodak ide protivniku strijelca.

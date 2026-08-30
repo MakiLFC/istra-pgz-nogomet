@@ -109,7 +109,10 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export type DogadjajIgraca = {
   minuta: string;
-  tip: string; // "Žuti karton" | "Crveni karton" | "Izmjena" | "Nepoznato"
+  // Vrijednosti koje piše scraper: "gol", "autogol", "karton_zuti",
+  // "karton_crveni", "karton_zutocrveni", "izmjena_ulazak",
+  // "izmjena_izlazak", "nepoznato".
+  tip: string;
 };
 
 export type IgracPostave = {
@@ -139,14 +142,20 @@ export type Utakmica = {
   stadion: string | null;
   gledatelja: string | null;
   suci: string | null;
-  strijelci: { igrac: string; minuta: string }[] | null;
   /**
-   * Autogolovi, ručni unos, scraper ih NE dira.
+   * Strijelci iz zapisnika. Oznaka "autogol" dolazi od scrapera, koji je
+   * čita iz klase "own_goal" u zapisniku. Stariji redci je nemaju, pa za
+   * njih vrijedi ručni popis u polju "autogolovi".
+   */
+  strijelci: { igrac: string; minuta: string; autogol?: boolean }[] | null;
+  /**
+   * Autogolovi, RUČNI popravak, scraper ih ne dira.
    *
-   * HNS u zapisniku ne razlikuje autogol od običnog pogotka na način koji
-   * scraper zna pročitati, pa bi takav gol završio na krivoj strani: pripisuje
-   * se klubu u čijoj je postavi strijelac. Ovdje se navode igrač i minuta
-   * takvog pogotka, a prikaz ga onda pripiše protivniku.
+   * Scraper autogol prepoznaje sam, iz klase "own_goal" u zapisniku, i
+   * označava ga u polju "strijelci". Ovaj popis ostaje za dva slučaja:
+   * utakmice odigrane prije nego je prepoznavanje dodano, i one gdje HNS
+   * pogodak nije označio kao autogol iako jest. Djeluje isto: pogodak se
+   * pripisuje protivniku strijelca.
    */
   autogolovi: { igrac: string; minuta: string }[] | null;
   postava_domacin: IgracPostave[] | null;

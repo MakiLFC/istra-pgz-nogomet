@@ -42,6 +42,7 @@ function KartonZutoCrveni() {
 function IkonaDogadjaja({ tip }: { tip: string }) {
   switch (tip) {
     case "gol":
+    case "autogol":
       return <IkonaLopta size={11} />;
     case "izmjena_izlazak":
       return <StrelicaIzlazak />;
@@ -70,7 +71,11 @@ function redakIgraca(
   // uz strijelca nikad ne izostane.
   const dogadjaji: DogadjajIgraca[] = [...(igrac.dogadjaji ?? [])];
   goloviIgraca.forEach((minuta) => {
-    const vecImaGol = dogadjaji.some((d) => d.minuta === minuta && d.tip === "gol");
+    // I autogol je gol: bez ovoga bi mreža dopisala drugi, običan pogodak
+    // u istoj minuti, pa bi igrač imao dvije lopte.
+    const vecImaGol = dogadjaji.some(
+      (d) => d.minuta === minuta && (d.tip === "gol" || d.tip === "autogol")
+    );
     if (!vecImaGol) {
       dogadjaji.push({ minuta, tip: "gol" } as DogadjajIgraca);
     }
@@ -101,10 +106,12 @@ function redakIgraca(
           </span>
         )}
         {dogadjaji.map((d: DogadjajIgraca, idx: number) => {
-          // Autogol se u zapisniku ne razlikuje od običnog pogotka, pa se
-          // označava iz ručnog popisa (stupac "autogolovi").
+          // Scraper autogol prepozna sam i zapiše tip "autogol". Ručni
+          // popis (stupac "autogolovi") ostaje za starije utakmice i za
+          // slučaj da ga HNS nije označio.
           const autogol =
-            d.tip === "gol" && autogoli.has(kljucPogotka(igrac.igrac, d.minuta));
+            d.tip === "autogol" ||
+            (d.tip === "gol" && autogoli.has(kljucPogotka(igrac.igrac, d.minuta)));
           return (
             <span key={idx} className="ml-1 inline-flex items-baseline gap-0.5">
               <IkonaDogadjaja tip={d.tip} />
