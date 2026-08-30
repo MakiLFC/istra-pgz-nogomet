@@ -82,6 +82,12 @@ sql/
   slike_clanaka.sql jednokratno: stupci za fotografiju i spremnik
   autogolovi.sql    jednokratno: stupac utakmice.autogolovi
   (ostale .sql datoteke su jednokratni zahvati nad podacima)
+alati/
+  najave/     predložak i generator naslovnih slika za najave kola
+  transferi/  isto, za članke o prijelaznom roku
+  zaglavlja/  slike zaglavlja liga
+  zapisnik_html.py  ispis HTML-a događaja iz jednog zapisnika, kad
+                    treba vidjeti kako HNS nešto označava
 scraper_supabase.py     glavni scraper
 natjecanja.json         referenca ID-jeva natjecanja po sezonama
 derbi_tjedni_predlozak.sql  SQL predložak za tjedno označavanje derbija
