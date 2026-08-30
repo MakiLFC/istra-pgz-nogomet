@@ -91,6 +91,28 @@
 
 
 -- ---------------------------------------------------------------------
+-- BRISANJE STARIH VERZIJA, prije nego ih ponovno stvorimo.
+--
+-- "create or replace" ne može promijeniti ono što funkcija VRAĆA. Kad se
+-- popis izlaznih stupaca proširi, kao kad je funkciji golova dodan stupac
+-- "autogol", Postgres odbija zamjenu porukom:
+--   ERROR: cannot change return type of existing function
+--
+-- Zato se stare verzije prvo obrišu. "if exists" znači da ovo prolazi i
+-- pri prvom pokretanju, kad funkcija još ne postoji. Nikakvi podaci se ne
+-- diraju, funkcije samo čitaju iz tablica.
+--
+-- Ne treba "cascade": Postgres ne pamti da jedna funkcija poziva drugu,
+-- pa brisanje pomoćne ne ruši glavnu.
+-- ---------------------------------------------------------------------
+drop function if exists public.pregled_kola(text, text, int, int);
+drop function if exists public.pregled_kola_tablica(text, text, int);
+drop function if exists public.pregled_kola_golovi(text, text, int);
+drop function if exists public.pregled_kola_iskljucenja(text, text, int);
+drop function if exists public.pregled_kola_serije(text, text, int);
+
+
+-- ---------------------------------------------------------------------
 -- Pomoćna funkcija: tablica poretka izračunata do uključivo zadanog kola.
 -- Postoji da glavni upit može istu stvar zatražiti dvaput, za stanje
 -- prije i poslije kola, bez prepisivanja izračuna.
