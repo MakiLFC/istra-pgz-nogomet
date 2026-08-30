@@ -582,6 +582,57 @@ def _sazetak_retka(redak):
     return "  ".join(dijelovi)
 
 
+def provjeri_zbroj_golova(redak):
+    """Slaže li se rezultat sa strijelcima raspoređenima po postavama.
+
+    Strijelci u zapisniku nemaju klub, pa se pripisuju momčadi u čijoj su
+    postavi. AUTOGOL time završi na krivoj strani, jer ga je zabio igrač
+    jedne momčadi, a pogodak pripada drugoj. To se vidi upravo ovdje:
+    zbroj po stranama ne odgovara rezultatu.
+
+    Prvi ulovljeni slučaj: Jadran-Poreč - Nehaj 1:3 (1. kolo 2026/27),
+    gdje su strijelci davali 2:2. Ispravlja se ručno, upisom u stupac
+    utakmice.autogolovi (vidi sql/autogolovi.sql).
+
+    Vraća opis neslaganja ili None kad je sve u redu. Namjerno NE ruši
+    pokretanje: podatak s HNS-a je takav kakav je, ovo je upozorenje da
+    utakmicu treba pogledati.
+    """
+    rezultat = (redak.get("rezultat") or "").strip()
+    m = re.match(r"^\s*(\d+)\s*:\s*(\d+)\s*$", rezultat)
+    strijelci = redak.get("strijelci") or []
+    postava_d = redak.get("postava_domacin") or []
+    postava_g = redak.get("postava_gost") or []
+
+    # Bez rezultata, bez strijelaca ili bez obje postave nema se što usporediti.
+    if not m or not strijelci or not postava_d or not postava_g:
+        return None
+
+    doma = {i.get("igrac", "").casefold() for i in postava_d}
+    vani = {i.get("igrac", "").casefold() for i in postava_g}
+
+    golova_d = golova_g = nepoznatih = 0
+    for s in strijelci:
+        ime = (s.get("igrac") or "").casefold()
+        if ime in doma:
+            golova_d += 1
+        elif ime in vani:
+            golova_g += 1
+        else:
+            nepoznatih += 1
+
+    # Strijelac kojeg nema ni u jednoj postavi je zasebna nejasnoća, ne
+    # nužno autogol, pa se tada ne tvrdi ništa o zbroju.
+    if nepoznatih:
+        return (f"{nepoznatih} strijelac/strijelaca nije ni u jednoj postavi "
+                f"(rezultat {rezultat})")
+
+    if (golova_d, golova_g) != (int(m.group(1)), int(m.group(2))):
+        return (f"rezultat {rezultat}, a strijelci daju "
+                f"{golova_d}:{golova_g} (moguć autogol)")
+    return None
+
+
 # ---------------------------------------------------------------------------
 # TABLICA LIGE + RANG-LISTE (strijelci, kartoni) — sa stranice natjecanja
 # ---------------------------------------------------------------------------
@@ -953,6 +1004,7 @@ if __name__ == "__main__":
     ukupno_spremljeno = 0
     ukupno_gresaka = 0
     greske = []
+    upozorenja = []
 
     for natjecanje in natjecanja_za_obradu:
         print(f"\n{'=' * 60}")
@@ -1021,6 +1073,13 @@ if __name__ == "__main__":
                 detalji["stadion"] = stavka["stadion"]
                 ishod = "BEZ UPISA (suhi test)" if POSTAVKE["dry_run"] else "spremljeno"
                 print(f"  [{i}/{ukupno}] (kolo {stavka['kolo']}) {stavka['domacin']} - {stavka['gost']} ({poruka}): {ishod}")
+                neslaganje = provjeri_zbroj_golova(detalji)
+                if neslaganje:
+                    upozorenja.append(
+                        f"{natjecanje['naziv']}, kolo {stavka['kolo']}, "
+                        f"{stavka['domacin']} - {stavka['gost']}: {neslaganje}"
+                    )
+                    print(f"      UPOZORENJE: {neslaganje}")
                 spremi_u_supabase(detalji)
                 ukupno_spremljeno += 1
             except Exception as greska:
@@ -1048,6 +1107,16 @@ if __name__ == "__main__":
     else:
         print(f"GOTOVO! Spremljeno/ažurirano {ukupno_spremljeno} utakmica. Grešaka: {ukupno_gresaka}.")
     print("=" * 60)
+
+    # Upozorenja nisu greške: podatak je uredno spremljen, ali nešto u
+    # njemu ne štima i treba ga pogledati. Ipak se broje i ispisuju, jer
+    # tiho progutano upozorenje nitko nikad ne vidi (vidi CLAUDE.md,
+    # slučaj s ograničenjem na stupcu "tip" u tablici statistike).
+    if upozorenja:
+        print(f"\nZA PROVJERU ({len(upozorenja)}):")
+        for opis in upozorenja:
+            print(f"  - {opis}")
+        print("\nOvo nisu greške i ne ruše pokretanje.")
 
     # Kad je išta palo, pokretanje završava neuspjehom. GitHub ga tada
     # označi crveno i pošalje poruku, umjesto da greška ostane samo u

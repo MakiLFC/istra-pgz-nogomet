@@ -80,6 +80,7 @@ sql/
   najava_kola.sql   funkcija public.najava_kola() za najavu kola
   pregled_kola.sql  funkcija public.pregled_kola() za osvrt nakon kola
   slike_clanaka.sql jednokratno: stupci za fotografiju i spremnik
+  autogolovi.sql    jednokratno: stupac utakmice.autogolovi
   (ostale .sql datoteke su jednokratni zahvati nad podacima)
 scraper_supabase.py     glavni scraper
 natjecanja.json         referenca ID-jeva natjecanja po sezonama
@@ -91,7 +92,8 @@ raspored_migracija.sql  jednokratna migracija (već pokrenuta 08/2026)
 
 - **`utakmice`** — jedan redak po utakmici, odigranoj i neodigranoj.
   Ključ za upsert: (`natjecanje`, `sezona`, `kolo`, `domacin`, `gost`).
-  Polja koja scraper NE dira: `derbi`, `tekst_clanka`, `slika_url`
+  Polja koja scraper NE dira: `derbi`, `tekst_clanka`, `slika_url`,
+  `autogolovi`
   (to su korisnikovi unosi i moraju preživjeti svako osvježavanje).
   `datum` / `vrijeme` / `stadion` dolaze s retka rasporeda i postoje i
   prije odigravanja; `stadion_datum` se puni tek iz zapisnika.
@@ -174,6 +176,28 @@ Pouka je ista kao kod pravila o ID-jevima: natjecanje se potvrđuje popisom
 klubova i redom veličine ID-ja, nikad nazivom ili slugom. Adresa iz
 `natjecanja.json` ne smije se "ispravljati" zato što slug ne odgovara
 sezoni.
+
+**Autogol se u zapisniku ne razlikuje od običnog pogotka.**
+Strijelci u zapisniku nemaju klub, pa se pripisuju momčadi u čijoj su
+postavi. Autogol time završi na krivoj strani. Otkriveno 30.08.2026. na
+Jadran-Poreč - Nehaj 1:3 (1. kolo 2026/27), gdje su strijelci davali 2:2,
+a autogol je bio pogodak Vedrana Radmana u 16. minuti.
+
+Rješenje je ručni stupac `utakmice.autogolovi`, oblika
+`[{"igrac": "...", "minuta": "16'"}]`, koji scraper ne dira, kao ni
+`derbi`, `tekst_clanka` i `slika_url`. Prikaz takav pogodak pripiše
+protivniku strijelca i označi ga s (ag), a `pregled_kola()` ga izbaci iz
+ljestvica strijelaca, jer autogol nije zasluga strijelca. Upute i primjeri
+stoje u `sql/autogolovi.sql`.
+
+Scraper od tada uspoređuje zbroj golova po stranama s rezultatom i
+ispisuje upozorenje kad se ne slažu (`provjeri_zbroj_golova`). Upozorenja
+se broje i ispisuju na kraju, ali NE ruše pokretanje: podatak s HNS-a je
+takav kakav je, ovo je samo znak da utakmicu treba pogledati.
+
+Ostaje otvoreno pravo prepoznavanje iz HTML-a. Za to treba vidjeti kako
+HNS označava autogol u `div.events_main`, a to se ne pogađa, nego se
+gleda u stvarni HTML.
 
 **Tablica poretka se scrapa, ne računa.**
 Službena tablica već uključuje kaznene bodove (npr. "NK Crikvenica (-3)").

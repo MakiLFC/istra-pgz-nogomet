@@ -140,6 +140,15 @@ export type Utakmica = {
   gledatelja: string | null;
   suci: string | null;
   strijelci: { igrac: string; minuta: string }[] | null;
+  /**
+   * Autogolovi, ručni unos, scraper ih NE dira.
+   *
+   * HNS u zapisniku ne razlikuje autogol od običnog pogotka na način koji
+   * scraper zna pročitati, pa bi takav gol završio na krivoj strani: pripisuje
+   * se klubu u čijoj je postavi strijelac. Ovdje se navode igrač i minuta
+   * takvog pogotka, a prikaz ga onda pripiše protivniku.
+   */
+  autogolovi: { igrac: string; minuta: string }[] | null;
   postava_domacin: IgracPostave[] | null;
   postava_gost: IgracPostave[] | null;
   tekst_clanka: string | null;

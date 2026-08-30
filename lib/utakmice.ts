@@ -23,6 +23,18 @@ export async function dohvatiUtakmicu(id: number): Promise<Utakmica | null> {
   return (data as Utakmica) ?? null;
 }
 
+/** Ključ igrač + minuta, za usporedbu s popisom autogolova. */
+export function kljucPogotka(igrac: string, minuta: string): string {
+  return `${igrac.trim().toLowerCase()}|${minuta.trim()}`;
+}
+
+/** Skup ključeva autogolova jedne utakmice. */
+export function autogoliKljucevi(u: {
+  autogolovi?: { igrac: string; minuta: string }[] | null;
+}): Set<string> {
+  return new Set((u.autogolovi ?? []).map((a) => kljucPogotka(a.igrac, a.minuta)));
+}
+
 /**
  * Strijelci razvrstani po klubu.
  *
@@ -30,23 +42,41 @@ export async function dohvatiUtakmicu(id: number): Promise<Utakmica | null> {
  * obiju momčadi, pa se svaki strijelac pripisuje klubu u čijoj se postavi
  * nalazi. Kad postave nema, strijelac ostaje u skupini "nepoznato", da se
  * ne pripiše krivom klubu.
+ *
+ * Autogol je iznimka: strijelac je u postavi jedne momčadi, a pogodak
+ * pripada drugoj. Takvi pogoci navode se u stupcu "autogolovi" i ovdje se
+ * prebacuju na suparničku stranu, uz oznaku koju prikaz ispiše kao (ag).
  */
 export function strijelciPoKlubu(u: Utakmica) {
   const doma = new Set((u.postava_domacin ?? []).map((i) => i.igrac));
   const vani = new Set((u.postava_gost ?? []).map((i) => i.igrac));
+  const autogoli = autogoliKljucevi(u);
 
-  type Strijelac = { igrac: string; minuta: string };
+  type Strijelac = { igrac: string; minuta: string; autogol?: boolean };
   const domacin: Strijelac[] = [];
   const gost: Strijelac[] = [];
   const nepoznato: Strijelac[] = [];
 
   for (const s of u.strijelci ?? []) {
-    if (doma.has(s.igrac)) domacin.push(s);
-    else if (vani.has(s.igrac)) gost.push(s);
-    else nepoznato.push(s);
+    const autogol = autogoli.has(kljucPogotka(s.igrac, s.minuta));
+    const zapis: Strijelac = autogol ? { ...s, autogol: true } : s;
+
+    // Kod autogola strane se zamjenjuju: pogodak ide protivniku strijelca.
+    if (doma.has(s.igrac)) (autogol ? gost : domacin).push(zapis);
+    else if (vani.has(s.igrac)) (autogol ? domacin : gost).push(zapis);
+    else nepoznato.push(zapis);
   }
 
   return { domacin, gost, nepoznato };
+}
+
+/** Ispis jednog strijelca: "Ime 16'" ili "Ime 16' (ag)". */
+export function zapisStrijelca(s: {
+  igrac: string;
+  minuta: string;
+  autogol?: boolean;
+}): string {
+  return `${s.igrac} ${s.minuta}${s.autogol ? " (ag)" : ""}`;
 }
 
 /** Ima li utakmica zapisnik, dakle strijelce ili postave. */
