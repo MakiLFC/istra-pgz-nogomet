@@ -61,9 +61,9 @@
 --    strijelac traži u postavama obiju momčadi, isto kao na stranici
 --    utakmice. Kad postave nema, klub ostaje null umjesto da se pogodi.
 --
--- 7. VRSTA GOLA je uvijek "gol". Zapisnik ne razlikuje jedanaesterac i
---    autogol, pa se to ne izmišlja. Polje postoji da oblik JSON-a ostane
---    stabilan ako HNS jednom počne bilježiti i to.
+-- 7. VRSTA GOLA je "gol" ili "autogol". Zapisnik ne razlikuje jedanaesterac
+--    od igre, pa se to ne izmišlja. Autogol se prepoznaje iz ručnog stupca
+--    utakmice.autogolovi, vidi napomenu 11.
 --
 -- 8. MINUTA je broj (23), a uz nju stoji i "minuta_zapis" s izvornim
 --    zapisom ("45+1'"), da se produžetak poluvremena ne izgubi.
@@ -75,6 +75,15 @@
 -- 10. NAJUVJERLJIVIJA POBJEDA: prvo najveća razlika u golovima, a kod
 --     iste razlike prednost ima utakmica s više postignutih golova
 --     (6:1 ispred 5:0). Tako je Andrej odlučio, ne mijenjati.
+--
+-- 11. AUTOGOL se u zapisniku ne razlikuje od običnog pogotka: stoji pod
+--     imenom igrača koji ga je zabio, pa bi ga pravilo iz napomene 6
+--     pripisalo njegovom klubu, dakle krivoj strani. Takvi se pogoci
+--     ručno upisuju u stupac utakmice.autogolovi (vidi sql/autogolovi.sql),
+--     a ova funkcija ih onda pripisuje PROTIVNIKU strijelca i izbacuje iz
+--     svih ljestvica strijelaca, jer autogol nije zasluga strijelca.
+--     Prvi slučaj: Jadran-Poreč - Nehaj 1:3, 1. kolo 2026/27, gdje je
+--     zbroj strijelaca bez ove ispravke davao 2:2.
 --
 -- OZNAKE: promjena na ljestvici je pozitivna kad je klub napredovao
 -- (bio 7., sad je 4. -> promjena 3).
@@ -159,14 +168,15 @@ returns table (
   klub         text,
   vratar       boolean,
   minuta       int,
-  minuta_zapis text
+  minuta_zapis text,
+  autogol      boolean
 )
 language sql
 stable
 as $$
   with odigrane as (
     select u.id, u.kolo, u.domacin, u.gost,
-           u.strijelci, u.postava_domacin, u.postava_gost
+           u.strijelci, u.postava_domacin, u.postava_gost, u.autogolovi
     from public.utakmice u
     where u.natjecanje = p_liga
       and u.sezona = p_sezona
@@ -189,9 +199,19 @@ as $$
     from odigrane o,
          lateral jsonb_array_elements(coalesce(o.postava_gost, '[]'::jsonb)) p
   ),
+  -- ručno označeni autogoli te utakmice (vidi napomenu 11 na vrhu)
+  autogoli as (
+    select o.id,
+           lower(trim(a ->> 'igrac')) as ime,
+           trim(a ->> 'minuta')       as minuta_zapis
+    from odigrane o,
+         lateral jsonb_array_elements(coalesce(o.autogolovi, '[]'::jsonb)) a
+  ),
   pogoci as (
     select o.id,
            o.kolo,
+           o.domacin,
+           o.gost,
            s ->> 'igrac'  as ime,
            s ->> 'minuta' as minuta_zapis
     from odigrane o,
@@ -200,10 +220,17 @@ as $$
   select g.id,
          g.kolo,
          g.ime,
-         k.klub,
+         -- Autogol pripada PROTIVNIKU strijelca, pa se klub zamjenjuje.
+         case
+           when ag.id is null then k.klub
+           when k.klub = g.domacin then g.gost
+           when k.klub = g.gost then g.domacin
+           else k.klub
+         end,
          coalesce(k.vratar, false),
          nullif(substring(g.minuta_zapis from '\d+'), '')::int,
-         g.minuta_zapis
+         g.minuta_zapis,
+         ag.id is not null
   from pogoci g
   left join lateral (
     select p.klub, p.vratar
@@ -211,7 +238,15 @@ as $$
     where p.id = g.id
       and lower(p.ime) = lower(g.ime)
     limit 1
-  ) k on true;
+  ) k on true
+  left join lateral (
+    select a.id
+    from autogoli a
+    where a.id = g.id
+      and a.ime = lower(trim(g.ime))
+      and a.minuta_zapis = trim(g.minuta_zapis)
+    limit 1
+  ) ag on true;
 $$;
 
 
@@ -528,13 +563,13 @@ begin
            count(*)::int as golova,
            (array_agg(g.klub order by g.kolo desc) filter (where g.klub is not null))[1] as klub
     from golovi_do g
-    where not g.vratar
+    where not g.vratar and not g.autogol
     group by g.ime
   ),
   strijelci_prije as (
     select g.ime, count(*)::int as golova
     from golovi_do g
-    where not g.vratar and g.kolo < v_kolo
+    where not g.vratar and not g.autogol and g.kolo < v_kolo
     group by g.ime
   ),
   vodeci_poslije as (
@@ -557,13 +592,13 @@ begin
   zabili_u_kolu as (
     select g.ime, count(*)::int as golova_u_kolu
     from golovi_kolo g
-    where not g.vratar
+    where not g.vratar and not g.autogol
     group by g.ime
   ),
   hat_trickovi as (
     select g.ime, g.klub, g.utakmica_id, count(*)::int as golova
     from golovi_kolo g
-    where not g.vratar
+    where not g.vratar and not g.autogol
     group by g.ime, g.klub, g.utakmica_id
     having count(*) >= 3
   ),
@@ -657,7 +692,8 @@ begin
                        'klub',         g.klub,
                        'minuta',       g.minuta,
                        'minuta_zapis', g.minuta_zapis,
-                       'vrsta',        'gol'
+                       'vrsta',        case when g.autogol then 'autogol'
+                                                  else 'gol' end
                      ) order by g.minuta nulls last, g.ime)
               from golovi_kolo g
               where g.utakmica_id = k.id

@@ -1,4 +1,5 @@
 import { IgracPostave, DogadjajIgraca } from "@/lib/supabase";
+import { kljucPogotka } from "@/lib/utakmice";
 import { IkonaLopta } from "./Ikone";
 
 function StrelicaIzlazak() {
@@ -59,7 +60,11 @@ function IkonaDogadjaja({ tip }: { tip: string }) {
 
 const minutaUBroj = (m: string) => parseInt(m, 10) || 0;
 
-function redakIgraca(igrac: IgracPostave, goloviIgraca: Set<string>) {
+function redakIgraca(
+  igrac: IgracPostave,
+  goloviIgraca: Set<string>,
+  autogoli: Set<string>
+) {
   // Događaji iz scrapera (imaju tip). Kao sigurnosnu mrežu dodajemo golove iz
   // liste strijelaca ako ih matchEvents slučajno ne bi sadržavao - da lopta
   // uz strijelca nikad ne izostane.
@@ -95,14 +100,21 @@ function redakIgraca(igrac: IgracPostave, goloviIgraca: Set<string>) {
             (GK)
           </span>
         )}
-        {dogadjaji.map((d: DogadjajIgraca, idx: number) => (
-          <span key={idx} className="ml-1 inline-flex items-baseline gap-0.5">
-            <IkonaDogadjaja tip={d.tip} />
-            <span className="font-mono text-xs" style={{ color: "var(--ink-muted)" }}>
-              {d.minuta}
+        {dogadjaji.map((d: DogadjajIgraca, idx: number) => {
+          // Autogol se u zapisniku ne razlikuje od običnog pogotka, pa se
+          // označava iz ručnog popisa (stupac "autogolovi").
+          const autogol =
+            d.tip === "gol" && autogoli.has(kljucPogotka(igrac.igrac, d.minuta));
+          return (
+            <span key={idx} className="ml-1 inline-flex items-baseline gap-0.5">
+              <IkonaDogadjaja tip={d.tip} />
+              <span className="font-mono text-xs" style={{ color: "var(--ink-muted)" }}>
+                {d.minuta}
+                {autogol && " (ag)"}
+              </span>
             </span>
-          </span>
-        ))}
+          );
+        })}
       </span>
     </li>
   );
@@ -112,12 +124,17 @@ export default function Postava({
   nazivKluba,
   igraci,
   strijelci,
+  autogolovi,
 }: {
   nazivKluba: string;
   igraci: IgracPostave[];
   strijelci?: { igrac: string; minuta: string }[];
+  autogolovi?: { igrac: string; minuta: string }[];
 }) {
   const prvih11 = igraci.filter((i) => !i.pricuvni);
+  const autogoli = new Set(
+    (autogolovi ?? []).map((a) => kljucPogotka(a.igrac, a.minuta))
+  );
   const pricuvni = igraci.filter((i) => i.pricuvni);
 
   // Golovi po igraču iz liste strijelaca - koristi se samo kao sigurnosna
@@ -138,7 +155,7 @@ export default function Postava({
         {nazivKluba}
       </p>
       <ul className="font-sans text-sm">
-        {prvih11.map((i) => redakIgraca(i, goloviPoIgracu(i.igrac)))}
+        {prvih11.map((i) => redakIgraca(i, goloviPoIgracu(i.igrac), autogoli))}
       </ul>
       {pricuvni.length > 0 && (
         <>
@@ -146,7 +163,7 @@ export default function Postava({
             Pričuvni:
           </p>
           <ul className="font-sans text-sm" style={{ color: "var(--ink-muted)" }}>
-            {pricuvni.map((i) => redakIgraca(i, goloviPoIgracu(i.igrac)))}
+            {pricuvni.map((i) => redakIgraca(i, goloviPoIgracu(i.igrac), autogoli))}
           </ul>
         </>
       )}

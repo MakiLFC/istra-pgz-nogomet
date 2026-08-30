@@ -16,7 +16,12 @@ import Postava from "@/components/Postava";
 import Dijeljenje from "@/components/Dijeljenje";
 import PoveznicaKluba from "@/components/PoveznicaKluba";
 import { IkonaLopta } from "@/components/Ikone";
-import { dohvatiUtakmicu, strijelciPoKlubu, imaZapisnik } from "@/lib/utakmice";
+import {
+  dohvatiUtakmicu,
+  strijelciPoKlubu,
+  imaZapisnik,
+  zapisStrijelca,
+} from "@/lib/utakmice";
 import { idIzSluga, slugUtakmice, kljucKluba } from "@/lib/slug";
 import { golovi } from "@/lib/kolo";
 import { LIGE } from "@/lib/lige";
@@ -174,13 +179,13 @@ export default async function StranicaUtakmice({
                   {domacin.length > 0 && (
                     <p className="flex items-baseline gap-1.5">
                       <IkonaLopta />
-                      {domacin.map((s) => `${s.igrac} ${s.minuta}`).join(", ")}
+                      {domacin.map(zapisStrijelca).join(", ")}
                     </p>
                   )}
                   {gost.length > 0 && (
                     <p className="flex items-baseline gap-1.5">
                       <IkonaLopta />
-                      {gost.map((s) => `${s.igrac} ${s.minuta}`).join(", ")}
+                      {gost.map(zapisStrijelca).join(", ")}
                     </p>
                   )}
                   {nepoznato.length > 0 && (
@@ -189,7 +194,7 @@ export default async function StranicaUtakmice({
                       style={{ color: "var(--ink-muted)" }}
                     >
                       <IkonaLopta />
-                      {nepoznato.map((s) => `${s.igrac} ${s.minuta}`).join(", ")}
+                      {nepoznato.map(zapisStrijelca).join(", ")}
                     </p>
                   )}
                 </div>
@@ -207,6 +212,7 @@ export default async function StranicaUtakmice({
                       nazivKluba={u.domacin}
                       igraci={u.postava_domacin}
                       strijelci={u.strijelci ?? []}
+                      autogolovi={u.autogolovi ?? []}
                     />
                   )}
                   {u.postava_gost && u.postava_gost.length > 0 && (
@@ -214,6 +220,7 @@ export default async function StranicaUtakmice({
                       nazivKluba={u.gost}
                       igraci={u.postava_gost}
                       strijelci={u.strijelci ?? []}
+                      autogolovi={u.autogolovi ?? []}
                     />
                   )}
                 </div>

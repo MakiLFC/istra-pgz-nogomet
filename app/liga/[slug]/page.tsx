@@ -15,7 +15,7 @@ import Otkrivanje from "@/components/Otkrivanje";
 import Brojka from "@/components/Brojka";
 import { IkonaLopta, IkonaTeren } from "@/components/Ikone";
 import { golovi } from "@/lib/kolo";
-import { strijelciPoKlubu } from "@/lib/utakmice";
+import { strijelciPoKlubu, zapisStrijelca } from "@/lib/utakmice";
 import { formaPoKlubu } from "@/lib/tablica";
 import { posjecenostKlubova } from "@/lib/posjecenost";
 import { slugUtakmice } from "@/lib/slug";
@@ -323,19 +323,19 @@ export default async function StranicaLige({
                               {domacin && domacin.length > 0 && (
                                 <p className="flex items-baseline gap-1.5">
                                   <IkonaLopta />
-                                  {domacin.map((s) => `${s.igrac} ${s.minuta}`).join(", ")}
+                                  {domacin.map(zapisStrijelca).join(", ")}
                                 </p>
                               )}
                               {gost && gost.length > 0 && (
                                 <p className="flex items-baseline gap-1.5">
                                   <IkonaLopta />
-                                  {gost.map((s) => `${s.igrac} ${s.minuta}`).join(", ")}
+                                  {gost.map(zapisStrijelca).join(", ")}
                                 </p>
                               )}
                               {nepoznato && nepoznato.length > 0 && (
                                 <p className="flex items-baseline gap-1.5 sm:col-span-2" style={{ color: "var(--ink-muted)" }}>
                                   <IkonaLopta />
-                                  {nepoznato.map((s) => `${s.igrac} ${s.minuta}`).join(", ")}
+                                  {nepoznato.map(zapisStrijelca).join(", ")}
                                 </p>
                               )}
                             </div>
@@ -366,10 +366,10 @@ export default async function StranicaLige({
                                 style={{ borderTop: "1px solid var(--line)" }}
                               >
                                 {u.postava_domacin && u.postava_domacin.length > 0 && (
-                                  <Postava nazivKluba={u.domacin} igraci={u.postava_domacin} strijelci={u.strijelci ?? []} />
+                                  <Postava nazivKluba={u.domacin} igraci={u.postava_domacin} strijelci={u.strijelci ?? []} autogolovi={u.autogolovi ?? []} />
                                 )}
                                 {u.postava_gost && u.postava_gost.length > 0 && (
-                                  <Postava nazivKluba={u.gost} igraci={u.postava_gost} strijelci={u.strijelci ?? []} />
+                                  <Postava nazivKluba={u.gost} igraci={u.postava_gost} strijelci={u.strijelci ?? []} autogolovi={u.autogolovi ?? []} />
                                 )}
                               </div>
                             </details>
