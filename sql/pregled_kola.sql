@@ -76,12 +76,18 @@
 --     iste razlike prednost ima utakmica s više postignutih golova
 --     (6:1 ispred 5:0). Tako je Andrej odlučio, ne mijenjati.
 --
--- 11. AUTOGOL se u zapisniku ne razlikuje od običnog pogotka: stoji pod
---     imenom igrača koji ga je zabio, pa bi ga pravilo iz napomene 6
---     pripisalo njegovom klubu, dakle krivoj strani. Takvi se pogoci
---     ručno upisuju u stupac utakmice.autogolovi (vidi sql/autogolovi.sql),
---     a ova funkcija ih onda pripisuje PROTIVNIKU strijelca i izbacuje iz
---     svih ljestvica strijelaca, jer autogol nije zasluga strijelca.
+-- 11. AUTOGOL stoji pod imenom igrača koji ga je zabio, pa bi ga pravilo
+--     iz napomene 6 pripisalo njegovom klubu, dakle krivoj strani. Zato se
+--     ovdje pripisuje PROTIVNIKU strijelca i izbacuje iz svih ljestvica
+--     strijelaca, jer autogol nije zasluga strijelca.
+--
+--     Prepoznaje se na dva načina, i dovoljan je bilo koji:
+--       a) zastavica "autogol" u polju strijelci, koju upisuje scraper
+--          čitajući klasu "own_goal" iz zapisnika
+--       b) ručni popis u stupcu utakmice.autogolovi (sql/autogolovi.sql),
+--          za utakmice odigrane prije nego je prepoznavanje dodano i za
+--          slučaj da HNS pogodak nije označio
+--
 --     Prvi slučaj: Jadran-Poreč - Nehaj 1:3, 1. kolo 2026/27, gdje je
 --     zbroj strijelaca bez ove ispravke davao 2:2.
 --
@@ -221,7 +227,9 @@ as $$
     from odigrane o,
          lateral jsonb_array_elements(coalesce(o.postava_gost, '[]'::jsonb)) p
   ),
-  -- ručno označeni autogoli te utakmice (vidi napomenu 11 na vrhu)
+  -- Ručno označeni autogoli te utakmice (vidi napomenu 11 na vrhu).
+  -- Ostaje za utakmice odigrane prije nego je scraper naučio prepoznavati
+  -- autogol, i za slučaj da ga HNS nije označio.
   autogoli as (
     select o.id,
            lower(trim(a ->> 'igrac')) as ime,
@@ -235,7 +243,9 @@ as $$
            o.domacin,
            o.gost,
            s ->> 'igrac'  as ime,
-           s ->> 'minuta' as minuta_zapis
+           s ->> 'minuta' as minuta_zapis,
+           -- oznaka koju upisuje scraper, iz klase "own_goal" u zapisniku
+           coalesce((s ->> 'autogol')::boolean, false) as autogol_iz_zapisnika
     from odigrane o,
          lateral jsonb_array_elements(coalesce(o.strijelci, '[]'::jsonb)) s
   )
@@ -244,7 +254,7 @@ as $$
          g.ime,
          -- Autogol pripada PROTIVNIKU strijelca, pa se klub zamjenjuje.
          case
-           when ag.id is null then k.klub
+           when not (g.autogol_iz_zapisnika or ag.id is not null) then k.klub
            when k.klub = g.domacin then g.gost
            when k.klub = g.gost then g.domacin
            else k.klub
@@ -252,7 +262,7 @@ as $$
          coalesce(k.vratar, false),
          nullif(substring(g.minuta_zapis from '\d+'), '')::int,
          g.minuta_zapis,
-         ag.id is not null
+         g.autogol_iz_zapisnika or ag.id is not null
   from pogoci g
   left join lateral (
     select p.klub, p.vratar

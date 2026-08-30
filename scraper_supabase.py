@@ -111,12 +111,18 @@ def odredi_tip_dogadjaja(klase, title):
     """
     Vraća tip događaja iz klase <li> i title-a ikone.
     Mogući tipovi:
-      "gol" | "karton_zuti" | "karton_crveni" | "karton_zutocrveni"
-      | "izmjena_izlazak" | "izmjena_ulazak" | "nepoznato"
+      "gol" | "autogol" | "karton_zuti" | "karton_crveni"
+      | "karton_zutocrveni" | "izmjena_izlazak" | "izmjena_ulazak"
+      | "nepoznato"
     """
     k = " ".join(klase).lower()
     t = (title or "").lower()
 
+    # Autogol se PROVJERAVA PRVI, jer je "goal" podniz od "own_goal", pa bi
+    # ga provjera gola progutala. Potvrđeno na zapisniku Jadran-Poreč - Nehaj
+    # (1. kolo 2026/27): <li class="own_goal"><div class="icon" title="Autogol">
+    if "own_goal" in k or "owngoal" in k or "autogol" in t:
+        return "autogol"
     if "goal" in k or "gol" in t:
         return "gol"
     if "substitutionout" in k:
@@ -366,13 +372,30 @@ def dohvati_detalje_utakmice(utakmica_url):
     #   - minutu kao tekstualni čvor (npr. "45+1'")
     # Ovo je POTPUNO ODVOJENA struktura od postave (<div class="block matchLineup">)
     # pa nema opasnosti od miješanja.
+    #
+    # AUTOGOL: nosi klasu "own_goal" umjesto "goal" i ikonu s naslovom
+    # "Autogol". Ranije je provjera tražila točno klasu "goal", pa je autogol
+    # ispadao iz popisa strijelaca. Sada se uzima i označava zastavicom
+    # "autogol", a prikaz ga pripisuje PROTIVNIKU strijelca.
+    #
+    # Zapaženo, ali NAMJERNO NEISKORIŠTENO: u ovoj traci domaći gol ima
+    # div.playerName PRIJE div.event, a gostujući obrnuto, pa bi se strana
+    # mogla čitati iz redoslijeda. To je viđeno na samo jednom zapisniku i
+    # presentacijskog je karaktera, pa se klub i dalje određuje po postavi.
     strijelci = []
     events_main = soup.find("div", class_="events_main")
     if events_main:
         for li in events_main.find_all("li"):
             # Provjeri da je ovo gol (ne izmjena, karton i sl.)
             event_div = li.find("div", class_="event")
-            if not event_div or "goal" not in (event_div.get("class") or []):
+            if not event_div:
+                continue
+            klase_dogadjaja = event_div.get("class") or []
+            ikona = event_div.find("div", class_="icon")
+            tip_gola = odredi_tip_dogadjaja(
+                klase_dogadjaja, ikona.get("title", "") if ikona else ""
+            )
+            if tip_gola not in ("gol", "autogol"):
                 continue
 
             # Izvuci ime strijelca iz div.playerName
@@ -390,7 +413,10 @@ def dohvati_detalje_utakmice(utakmica_url):
                 continue
             minuta = match.group(1)
 
-            strijelci.append({"igrac": ime, "minuta": minuta})
+            zapis = {"igrac": ime, "minuta": minuta}
+            if tip_gola == "autogol":
+                zapis["autogol"] = True
+            strijelci.append(zapis)
 
     # --- POSTAVE (oba kluba) ---
     # Svaki igrač u postavi je h3 > a[href*="/igraci/"]. Roditeljski "li" blok
@@ -454,12 +480,14 @@ def dohvati_detalje_utakmice(utakmica_url):
 
                 tip = odredi_tip_dogadjaja(klase, title)
                 # sigurnosna mreža: ako tip nije prepoznat, a igrač+minuta su
-                # u listi strijelaca -> to je gol
+                # u listi strijelaca -> to je gol, i to iste vrste kao ondje
                 if tip == "nepoznato":
                     mk = _norm_min(minuta)
-                    if any(_ista_osoba(ime_igraca, s["igrac"])
-                           for s in strijelci if _norm_min(s["minuta"]) == mk):
-                        tip = "gol"
+                    isti = [s for s in strijelci
+                            if _norm_min(s["minuta"]) == mk
+                            and _ista_osoba(ime_igraca, s["igrac"])]
+                    if isti:
+                        tip = "autogol" if isti[0].get("autogol") else "gol"
 
                 dogadjaji.append({"minuta": minuta, "tip": tip})
 
@@ -557,7 +585,7 @@ def _sazetak_retka(redak):
     """Jedan redak ispisa: ono po čemu se vidi je li parsiranje ispravno."""
     strijelci = redak.get("strijelci") or []
     postave = (redak.get("postava_domacin") or []) + (redak.get("postava_gost") or [])
-    broj = {"gol": 0, "karton_zuti": 0, "karton_crveni": 0,
+    broj = {"gol": 0, "autogol": 0, "karton_zuti": 0, "karton_crveni": 0,
             "karton_zutocrveni": 0, "izmjena_ulazak": 0, "izmjena_izlazak": 0,
             "nepoznato": 0}
     for igrac in postave:
@@ -568,6 +596,7 @@ def _sazetak_retka(redak):
         f"rezultat={redak.get('rezultat')}",
         f"strijelaca={len(strijelci)}",
         f"golova_u_postavi={broj['gol']}",
+        f"autogolova={broj['autogol']}",
         f"žuti={broj['karton_zuti']}",
         f"crveni={broj['karton_crveni']}",
         f"žuto-crveni={broj['karton_zutocrveni']}",
@@ -586,13 +615,14 @@ def provjeri_zbroj_golova(redak):
     """Slaže li se rezultat sa strijelcima raspoređenima po postavama.
 
     Strijelci u zapisniku nemaju klub, pa se pripisuju momčadi u čijoj su
-    postavi. AUTOGOL time završi na krivoj strani, jer ga je zabio igrač
-    jedne momčadi, a pogodak pripada drugoj. To se vidi upravo ovdje:
-    zbroj po stranama ne odgovara rezultatu.
+    postavi. AUTOGOL pritom pripada PROTIVNIKU strijelca, pa se ovdje broji
+    na drugu stranu; autogoli su prepoznati iz klase "own_goal", a mogu biti
+    i ručno dopisani u stupac utakmice.autogolovi (vidi sql/autogolovi.sql).
 
-    Prvi ulovljeni slučaj: Jadran-Poreč - Nehaj 1:3 (1. kolo 2026/27),
-    gdje su strijelci davali 2:2. Ispravlja se ručno, upisom u stupac
-    utakmice.autogolovi (vidi sql/autogolovi.sql).
+    Kad zbroj po stranama i dalje ne odgovara rezultatu, znači da u zapisniku
+    ima nešto što ne razumijemo, i to je vrijedno pogledati. Upravo je tako
+    otkriven prvi autogol: Jadran-Poreč - Nehaj 1:3 (1. kolo 2026/27), gdje
+    su strijelci davali 2:2.
 
     Vraća opis neslaganja ili None kad je sve u redu. Namjerno NE ruši
     pokretanje: podatak s HNS-a je takav kakav je, ovo je upozorenje da
@@ -611,13 +641,26 @@ def provjeri_zbroj_golova(redak):
     doma = {i.get("igrac", "").casefold() for i in postava_d}
     vani = {i.get("igrac", "").casefold() for i in postava_g}
 
+    rucni_autogoli = {
+        ((a.get("igrac") or "").casefold(), (a.get("minuta") or "").strip())
+        for a in (redak.get("autogolovi") or [])
+    }
+
     golova_d = golova_g = nepoznatih = 0
     for s in strijelci:
         ime = (s.get("igrac") or "").casefold()
+        autogol = bool(s.get("autogol")) or (ime, (s.get("minuta") or "").strip()) in rucni_autogoli
         if ime in doma:
-            golova_d += 1
+            # autogol domaćeg igrača je pogodak gosta, i obrnuto
+            if autogol:
+                golova_g += 1
+            else:
+                golova_d += 1
         elif ime in vani:
-            golova_g += 1
+            if autogol:
+                golova_d += 1
+            else:
+                golova_g += 1
         else:
             nepoznatih += 1
 

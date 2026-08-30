@@ -183,27 +183,49 @@ klubova i redom veličine ID-ja, nikad nazivom ili slugom. Adresa iz
 `natjecanja.json` ne smije se "ispravljati" zato što slug ne odgovara
 sezoni.
 
-**Autogol se u zapisniku ne razlikuje od običnog pogotka.**
+**Autogol nosi klasu `own_goal`, a "goal" je njezin podniz.**
 Strijelci u zapisniku nemaju klub, pa se pripisuju momčadi u čijoj su
-postavi. Autogol time završi na krivoj strani. Otkriveno 30.08.2026. na
+postavi; autogol time završi na krivoj strani. Otkriveno 30.08.2026. na
 Jadran-Poreč - Nehaj 1:3 (1. kolo 2026/27), gdje su strijelci davali 2:2,
 a autogol je bio pogodak Vedrana Radmana u 16. minuti.
 
-Rješenje je ručni stupac `utakmice.autogolovi`, oblika
-`[{"igrac": "...", "minuta": "16'"}]`, koji scraper ne dira, kao ni
-`derbi`, `tekst_clanka` i `slika_url`. Prikaz takav pogodak pripiše
-protivniku strijelca i označi ga s (ag), a `pregled_kola()` ga izbaci iz
-ljestvica strijelaca, jer autogol nije zasluga strijelca. Upute i primjeri
-stoje u `sql/autogolovi.sql`.
+Kako HNS to označava, provjereno u stvarnom HTML-u (alat
+`alati/zapisnik_html.py`):
 
-Scraper od tada uspoređuje zbroj golova po stranama s rezultatom i
-ispisuje upozorenje kad se ne slažu (`provjeri_zbroj_golova`). Upozorenja
-se broje i ispisuju na kraju, ali NE ruše pokretanje: podatak s HNS-a je
-takav kakav je, ovo je samo znak da utakmicu treba pogledati.
+```
+traka strijelaca:  <div class="event own_goal"><div class="icon" title="Autogol">
+uz igrača u postavi:  <li class="own_goal"><div class="icon" title="Autogol">
+```
 
-Ostaje otvoreno pravo prepoznavanje iz HTML-a. Za to treba vidjeti kako
-HNS označava autogol u `div.events_main`, a to se ne pogađa, nego se
-gleda u stvarni HTML.
+Iz toga slijede dvije zamke, obje su bile aktivne:
+
+- U traci strijelaca provjera je tražila TOČNO klasu `goal`, pa je autogol
+  ispadao iz popisa strijelaca.
+- U postavi je provjera tražila podniz, a `goal` JEST podniz od `own_goal`,
+  pa je autogol ondje prolazio kao običan gol. Zato u
+  `odredi_tip_dogadjaja` autogol mora ići PRIJE gola.
+
+Scraper sada autogol prepoznaje sam i zapisuje ga kao `"autogol": true` uz
+tog strijelca, te kao tip `autogol` uz igrača u postavi. Prikaz i
+`pregled_kola()` takav pogodak pripišu PROTIVNIKU strijelca, označe ga s
+(ag) i izbace ga iz ljestvica strijelaca, jer autogol nije zasluga
+strijelca. Čuva `test_autogol.py`, pisan po stvarnom HTML-u.
+
+Ručni stupac `utakmice.autogolovi` ostaje kao popravak, ravnopravan
+automatskoj oznaci: za utakmice odigrane prije nego je prepoznavanje
+dodano, i za slučaj da HNS pogodak nije označio. Scraper ga ne dira, kao
+ni `derbi`, `tekst_clanka` i `slika_url`. Upute su u `sql/autogolovi.sql`.
+
+Scraper uspoređuje i zbroj golova po stranama s rezultatom, uzimajući
+autogole u obzir, pa ispisuje upozorenje kad se ne slažu
+(`provjeri_zbroj_golova`). Upozorenja se broje i ispisuju na kraju, ali NE
+ruše pokretanje: podatak s HNS-a je takav kakav je, ovo je znak da
+utakmicu treba pogledati. Upravo je ta provjera i otkrila ovaj slučaj.
+
+Zapaženo, ali namjerno neiskorišteno: u traci strijelaca domaći pogodak ima
+`div.playerName` PRIJE `div.event`, a gostujući obrnuto. Viđeno na jednom
+zapisniku i presentacijske je naravi, pa se klub i dalje određuje po
+postavi.
 
 **Tablica poretka se scrapa, ne računa.**
 Službena tablica već uključuje kaznene bodove (npr. "NK Crikvenica (-3)").
