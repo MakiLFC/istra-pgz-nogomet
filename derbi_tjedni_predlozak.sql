@@ -65,7 +65,6 @@ where natjecanje = '4. NL NS Rijeka' and sezona = '2026/27'
   and kolo = 0;
 
 -- ---------- 1. ŽNL PGŽ ----------
--- (liga još nije objavljena za 26/27 - preskoči dok se ne pojavi)
 update public.utakmice
 set derbi = false
 where derbi = true and natjecanje = '1. ŽNL PGŽ' and sezona = '2026/27';
@@ -78,7 +77,6 @@ where natjecanje = '1. ŽNL PGŽ' and sezona = '2026/27'
   and kolo = 0;
 
 -- ---------- 2. ŽNL PGŽ ----------
--- (liga još nije objavljena za 26/27 - preskoči dok se ne pojavi)
 update public.utakmice
 set derbi = false
 where derbi = true and natjecanje = '2. ŽNL PGŽ' and sezona = '2026/27';
