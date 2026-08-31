@@ -3,11 +3,10 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import Navigacija from "@/components/Navigacija";
-import KarticaClanka from "@/components/KarticaClanka";
+import PopisNovosti from "@/components/PopisNovosti";
 import Podnozje from "@/components/Podnozje";
 import { dohvatiClanke } from "@/lib/clanci";
 import { LIGE } from "@/lib/lige";
-import Otkrivanje from "@/components/Otkrivanje";
 import ZaglavljeStranice from "@/components/ZaglavljeStranice";
 import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
 
@@ -80,13 +79,10 @@ export default async function StranicaNovosti({
               : "Još nema objavljenih članaka."}
           </p>
         ) : (
-          <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {clanci.map((c, idx) => (
-              <Otkrivanje key={c.id} kasnjenje={Math.min(idx, 6) * 45}>
-                <KarticaClanka clanak={c} />
-              </Otkrivanje>
-            ))}
-          </div>
+          // key veže popis uz odabranu ligu: bez njega bi se, pri
+          // prebacivanju s kartice na karticu, zadržalo koliko je kartica
+          // bilo otkriveno na prethodnoj.
+          <PopisNovosti key={liga ?? "sve"} clanci={clanci} />
         )}
       </main>
 
