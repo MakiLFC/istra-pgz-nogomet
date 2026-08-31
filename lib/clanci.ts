@@ -75,3 +75,27 @@ export function odlomci(tekst: string): string[] {
     .map((o) => o.trim())
     .filter(Boolean);
 }
+
+/**
+ * Koje kolo članak najavljuje, iz sluga ili iz naslova.
+ *
+ * Najave se rade po ustaljenom obrascu, pa broj kola stoji na dva mjesta:
+ *   slug:   "najava-2-kola-3-nl-zapad-2627"
+ *   naslov: "NAJAVA 2. KOLA: 3. NL ZAPAD"
+ *
+ * Vraća null kad se broj ne može pročitati, a to je namjerno sigurna
+ * strana: bez broja kola poveznica na najavu se ne prikazuje, umjesto da
+ * vodi na najavu nekog drugog kola.
+ *
+ * Pregledi kola ("pregled-1-kola-...") ovdje NE prolaze, jer traže riječ
+ * "najava" na početku.
+ */
+export function koloNajave(clanak: { slug?: string | null; naslov?: string | null }): number | null {
+  const izSluga = (clanak.slug ?? "").match(/^najava-(\d+)-kola\b/);
+  if (izSluga) return Number(izSluga[1]);
+
+  const izNaslova = (clanak.naslov ?? "").match(/najava\s+(\d+)\.\s*kola/i);
+  if (izNaslova) return Number(izNaslova[1]);
+
+  return null;
+}
