@@ -2,6 +2,21 @@
 
 import Link from "next/link";
 import { type Clanak, datumHr } from "@/lib/clanci";
+import { LIGE } from "@/lib/lige";
+
+/**
+ * Slika kartice. Kad članak nema svoju fotografiju, uzima se zaglavlje
+ * njegove lige, a za članke bez lige zaglavlje novosti.
+ *
+ * Razlog: kartice bez slike su u mreži izgledale kao rupa pokraj onih
+ * sa slikom. Ovako svaka kartica ima sliku, a zamjenska barem kaže o
+ * kojoj je ligi riječ.
+ */
+function slikaKartice(clanak: Clanak): string {
+  if (clanak.slika_url) return clanak.slika_url;
+  const liga = LIGE.find((l) => l.naziv === clanak.natjecanje);
+  return `/slike/zaglavlja/${liga ? liga.slug : "novosti"}.png`;
+}
 
 export default function KarticaClanka({
   clanak,
@@ -20,10 +35,10 @@ export default function KarticaClanka({
       className={`block bg-white p-4 transition-opacity hover:opacity-80 ${className}`}
       style={{ border: "1px solid var(--line)" }}
     >
-      {clanak.slika_url && !kompaktno && (
+      {!kompaktno && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={clanak.slika_url}
+          src={slikaKartice(clanak)}
           alt=""
           className="mb-3 w-full object-cover"
           style={{ maxHeight: 200 }}
