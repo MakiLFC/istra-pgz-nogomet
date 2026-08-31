@@ -11,6 +11,7 @@ import { supabase } from "@/lib/supabase";
 import { LIGE } from "@/lib/lige";
 import { golovi } from "@/lib/kolo";
 import { sBrojem } from "@/lib/hrvatski";
+import { koloNajave } from "@/lib/clanci";
 
 /** Redak utakmice - samo stupci koje traka stvarno treba. */
 type RedUtakmice = {
@@ -133,19 +134,27 @@ export default async function OvajVikend() {
     );
   }
 
-  // 5. Poveznica na najavu: najnoviji objavljeni članak te lige kojemu
-  //    naslov sadrži "najav". Ako takvog nema, gumb se ne prikazuje.
+  // 5. Poveznica na najavu: objavljeni članak koji najavljuje TOČNO ono
+  //    kolo koje stoji u ovom retku, i to iz iste lige.
+  //
+  //    Prije se uzimala samo najnovija najava te lige, bez obzira na kolo,
+  //    pa je traka za 2. kolo vodila na najavu 1. kola. Sada poveznice
+  //    nema sve dok najava tog kola ne bude objavljena, što je i bila
+  //    zamisao: gumb koji vodi na krivo kolo gori je od nikakvog gumba.
   const { data: najave } = await supabase
     .from("clanci")
-    .select("slug, natjecanje, objavljeno_u")
+    .select("slug, naslov, natjecanje, objavljeno_u")
     .eq("objavljen", true)
     .ilike("naslov", "%najav%")
     .order("objavljeno_u", { ascending: false })
     .limit(20);
 
   for (const red of redovi) {
+    if (red.kolo === null) continue;
     red.slugNajave =
-      najave?.find((c) => c.natjecanje === red.liga.naziv)?.slug ?? null;
+      najave?.find(
+        (c) => c.natjecanje === red.liga.naziv && koloNajave(c) === red.kolo
+      )?.slug ?? null;
   }
 
   redovi.sort((a, b) => a.datum.getTime() - b.datum.getTime());
