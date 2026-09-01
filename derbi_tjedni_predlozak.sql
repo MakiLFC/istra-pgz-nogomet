@@ -8,8 +8,13 @@
 --   POSLIJE KOLA -> KORAK C (upiši svoj sažetak, po želji i fotografiju)
 --
 -- Sve se pokreće u Supabaseu: SQL Editor -> zalijepi -> Run.
--- Svaka naredba mora javiti "1 row". Ako javi 0, imena klubova ne
--- odgovaraju bazi - zato prvo ide KORAK A, koji ispiše točne nazive.
+--
+-- VAŽNO O ISPISU: Supabase na naredbu "update" uvijek javi
+-- "Success. No rows returned", bez obzira na to koliko je redaka
+-- promijenila. Zato svaka naredba ovdje završava s "returning", pa
+-- ispiše utakmicu koju je dirnula. Prazan ispis znači da nije pogodila
+-- nijednu utakmicu, najčešće zato što se ime kluba ne poklapa s bazom.
+-- Zato prvo ide KORAK A, koji ispiše točne nazive.
 --
 -- Sezona je postavljena na 2026/27. Kad krene 2027/28, zamijeni sve
 -- pojave '2026/27' (u Notepadu: Ctrl+H, Zamijeni sve).
@@ -41,7 +46,8 @@ order by datum, vrijeme;
 -- B1: ugasi prošlotjedni derbi ove lige
 update public.utakmice
 set derbi = false
-where derbi = true and natjecanje = '3. NL Zapad' and sezona = '2026/27';
+where derbi = true and natjecanje = '3. NL Zapad' and sezona = '2026/27'
+returning kolo, domacin, gost;
 
 -- B2: označi novi derbi
 update public.utakmice
@@ -49,44 +55,51 @@ set derbi = true
 where natjecanje = '3. NL Zapad' and sezona = '2026/27'
   and domacin = 'IME DOMAĆINA'
   and gost    = 'IME GOSTA'
-  and kolo = 0;   -- <- upiši broj kola (sigurnosna mreža ako su klubovi
+  and kolo = 0    -- <- upiši broj kola (sigurnosna mreža ako su klubovi
                   --    igrali više puta u sezoni)
+returning kolo, domacin, gost;
 
 -- ---------- 4. NL NS RIJEKA ----------
 update public.utakmice
 set derbi = false
-where derbi = true and natjecanje = '4. NL NS Rijeka' and sezona = '2026/27';
+where derbi = true and natjecanje = '4. NL NS Rijeka' and sezona = '2026/27'
+returning kolo, domacin, gost;
 
 update public.utakmice
 set derbi = true
 where natjecanje = '4. NL NS Rijeka' and sezona = '2026/27'
   and domacin = 'IME DOMAĆINA'
   and gost    = 'IME GOSTA'
-  and kolo = 0;
+  and kolo = 0
+returning kolo, domacin, gost;
 
 -- ---------- 1. ŽNL PGŽ ----------
 update public.utakmice
 set derbi = false
-where derbi = true and natjecanje = '1. ŽNL PGŽ' and sezona = '2026/27';
+where derbi = true and natjecanje = '1. ŽNL PGŽ' and sezona = '2026/27'
+returning kolo, domacin, gost;
 
 update public.utakmice
 set derbi = true
 where natjecanje = '1. ŽNL PGŽ' and sezona = '2026/27'
   and domacin = 'IME DOMAĆINA'
   and gost    = 'IME GOSTA'
-  and kolo = 0;
+  and kolo = 0
+returning kolo, domacin, gost;
 
 -- ---------- 2. ŽNL PGŽ ----------
 update public.utakmice
 set derbi = false
-where derbi = true and natjecanje = '2. ŽNL PGŽ' and sezona = '2026/27';
+where derbi = true and natjecanje = '2. ŽNL PGŽ' and sezona = '2026/27'
+returning kolo, domacin, gost;
 
 update public.utakmice
 set derbi = true
 where natjecanje = '2. ŽNL PGŽ' and sezona = '2026/27'
   and domacin = 'IME DOMAĆINA'
   and gost    = 'IME GOSTA'
-  and kolo = 0;
+  and kolo = 0
+returning kolo, domacin, gost;
 
 
 -- =====================================================================
