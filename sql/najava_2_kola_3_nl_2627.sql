@@ -13,14 +13,12 @@
 --   jedinstvenog sluga, sto znaci da je prvo proslo.
 --
 -- ŠTO JOŠ TREBA:
---   a) termini i stadioni, upitom iz odjeljka PODACI ZA TEKST dolje;
---      jedna je utakmica prebačena na petak, pa se datumi ne prepisuju
---      napamet
---   b) koja je utakmica derbi kola (oznaka se stavlja zasebno, kroz
---      derbi_tjedni_predlozak.sql)
---   c) Andrejeve bilješke o klubovima
---   d) naslovna slika: ploča za 2. kolo još nije napravljena, radi se
---      alatom alati/najave (dopuni kola.json i pokreni generiraj.mjs)
+--   a) Andrejeve bilješke o klubovima, na mjestima [DOPUNI]
+--   b) naslovna slika: ploča za 2. kolo (alat alati/najave)
+--   c) oznake derbija, dolje u odjeljku DERBIJI
+--
+-- Termini i stadioni su upisani iz baze 31.08.2026.: petak 04.09. samo
+-- Lokomotiva - Crikvenica, ostalih sedam u subotu 05.09., sve u 17:30.
 --
 -- PODACI IZ 1. KOLA, provjereni (koriste se u tekstu):
 --   Rovinj 1:0 Vinodol            Pazinka-Pazin 0:2 Pomorac
@@ -49,48 +47,29 @@ insert into public.clanci
 values (
   'najava-2-kola-3-nl-zapad-2627',
   'NAJAVA 2. KOLA: 3. NL ZAPAD',
-  '[SAŽETAK, jedna do dvije rečenice. Prijedlog: Kraljevica i Omišalj,
-jedine dvije momčadi s maksimalnim učinkom, sastaju se već u drugom kolu.]',
-'Drugo kolo 3. NL Zapad igra se [DATUM I TERMINI, iz upita gore].
+  'Kolo je razvučeno na petak i subotu, a nose ga dva derbija: Lokomotiva dočekuje Crikvenicu na Kantridi, Pomorac Jadran-Poreč u Kostreni.',
+'Drugo kolo 3. NL Zapad razvučeno je na dva dana. U petak 4. rujna igra se jedna utakmica, a preostalih sedam u subotu 5. rujna, sve u 17:30.
 
-[UVOD: što je ostalo iz prvog kola. Prijedlog: šest pobjeda i dva
-remija, četiri gostujuće pobjede, 24 pogotka.]
+Iz prvog kola ostalo je šest pobjeda i dva remija, uz 24 postignuta pogotka. Gosti su bili uspješniji od domaćina, s četiri pobjede na strani.
 
-Kraljevica - OŠK Omišalj [(STADION)]. Susret jedinih dviju momčadi koje
-su prvo kolo otvorile pobjedom i bez primljenog gola. Kraljevica je
-slavila 0:2 u Hreljinu, Omišalj je Rudar svladao 5:0, što je bila i
-najuvjerljivija pobjeda kola. [DOPUNI]
+Lokomotiva (R) - Crikvenica (Stadion Kantrida, Rijeka). Petak, 17:30. Kolo otvara jedan od dva derbija ovog kola. Lokomotiva je u Bujama slavila 0:2 golovima Ivora Weitzera i Matea Monjca. Crikvenica je s Krkom remizirala 2:2, i to igrajući od 34. minute s igračem manje, a u ovo kolo ulazi bez isključenog Damjana Mendrile. Uz tri kaznena boda s početka sezone, i s tim osvojenim bodom je i dalje u minusu. [DOPUNI]
 
-Rovinj - Pazinka-Pazin [(STADION)]. Novak u ligi dočekuje prošlogodišnjeg
-prvaka. Rovinj je prvi nastup u trećem rangu dobio 1:0, a Pazinka je
-sezonu otvorila domaćim porazom od Pomorca. [DOPUNI]
+Pomorac - Jadran-Poreč (Žuknica, Kostrena). Drugi derbi kola. Pomorac je u Pazinu dobio 0:2, Jadran-Poreč je kod kuće izgubio 1:3 od Nehaja. [DOPUNI]
 
-Nehaj - Naprijed (H) [(STADION)]. Nehaj je u Poreču slavio 1:3, Naprijed
-je kod kuće izgubio od Kraljevice. [DOPUNI]
+Kraljevica - OŠK Omišalj (Milan Ružić Minta, Kraljevica). Susret jedinih dviju momčadi koje su prvo kolo prošle s pobjedom i bez primljenog gola. Kraljevica je slavila 0:2 u Hreljinu, Omišalj je Rudar svladao 5:0, što je bila najuvjerljivija pobjeda kola. [DOPUNI]
 
-Pomorac - Jadran-Poreč [(STADION)]. Pomorac je u Pazinu dobio 0:2,
-Jadran-Poreč je kod kuće izgubio 1:3. [DOPUNI]
+Rovinj - Pazinka-Pazin (Valbruna umjetna trava, Rovinj). Novak u ligi dočekuje prošlogodišnjeg prvaka. Rovinj je prvi nastup u trećem rangu dobio 1:0 protiv Vinodola, a Pazinka je sezonu otvorila domaćim porazom. [DOPUNI]
 
-Lokomotiva (R) - Crikvenica [(STADION)]. Lokomotiva je u Bujama slavila
-0:2. Crikvenica je s Krkom remizirala 2:2, i to igrajući od 34. minute s
-igračem manje, a u drugo kolo ulazi bez isključenog Damjana Mendrile.
-Uz tri kaznena boda s početka sezone, i s osvojenim bodom je i dalje u
-minusu. [DOPUNI]
+Nehaj - Naprijed (H) (Nehaj, Senj). Nehaj je u Poreču slavio 1:3, Naprijed je kod kuće izgubio od Kraljevice. [DOPUNI]
 
-Vinodol - Krk [(STADION)]. Vinodol je u Rovinju izgubio 1:0. Krk je u
-Crikvenici s dva gola u sudačkoj nadoknadi spasio bod, ali u ovo kolo
-ulazi bez Dorijana Jurešića, isključenog u 75. minuti. [DOPUNI]
+Vinodol - Krk (Bahalin, Novi Vinodolski). Vinodol je u Rovinju izgubio 1:0. Krk je u Crikvenici s dva gola u sudačkoj nadoknadi spasio bod, ali u ovo kolo ulazi bez Dorijana Jurešića, isključenog u 75. minuti. [DOPUNI]
 
-Rudar (L) - Halubjan [(STADION)]. Rudar je u Omišlju primio pet golova,
-Halubjan je kod kuće ispustio dvostruko vodstvo Banjola i uzeo bod
-pogotkom u 87. minuti. [DOPUNI]
+Rudar (L) - Halubjan (Gradski stadion Labin, Labin). Rudar je u Omišlju primio pet golova, a Halubjan je kod kuće ispustio dvostruko vodstvo Banjola i uzeo bod pogotkom u 87. minuti. [DOPUNI]
 
-Banjole - Buje [(STADION)]. Banjole su u Viškovu dvaput vodile i
-osvojile bod, a oba gola dao je Ahmed Durmo, jedan od dvojice vodećih
-strijelaca lige. Buje su kod kuće izgubile 0:2. [DOPUNI]',
+Banjole - Buje (Prematinka, Banjole). Banjole su u Viškovu dvaput vodile i osvojile bod, a oba gola dao je Ahmed Durmo, jedan od dvojice vodećih strijelaca lige. Buje su kod kuće izgubile 0:2. [DOPUNI]',
   '3. NL Zapad',
   false,
-  '[DATUM OBJAVE, npr. 2026-09-03T10:00:00+02:00]'
+  '2026-09-03T10:00:00+02:00'
 );
 
 
@@ -100,6 +79,26 @@ strijelaca lige. Buje su kod kuće izgubile 0:2. [DOPUNI]',
 select slug, naslov, natjecanje, objavljen, objavljeno_u
 from public.clanci
 where slug = 'najava-2-kola-3-nl-zapad-2627';
+
+
+-- =====================================================================
+-- DERBIJI (dva u ovom kolu)
+-- =====================================================================
+-- Prvo se gasi prošlokolski derbi te lige, pa se označavaju nova dva.
+-- Naslovnica od sada prikazuje sve označene derbije lige, ne samo prvi.
+--
+-- update public.utakmice set derbi = false
+-- where derbi = true and natjecanje = '3. NL Zapad' and sezona = '2026/27';
+--
+-- update public.utakmice set derbi = true
+-- where natjecanje = '3. NL Zapad' and sezona = '2026/27' and kolo = 2
+--   and domacin = 'NK Lokomotiva (R)' and gost = 'NK Crikvenica';
+--
+-- update public.utakmice set derbi = true
+-- where natjecanje = '3. NL Zapad' and sezona = '2026/27' and kolo = 2
+--   and domacin = 'NK Pomorac' and gost = 'NK Jadran-Poreč';
+--
+-- Svaka od dvije zadnje naredbe mora javiti "1 row".
 
 
 -- =====================================================================

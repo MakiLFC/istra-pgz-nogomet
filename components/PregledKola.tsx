@@ -9,7 +9,7 @@ import { LIGE } from "@/lib/lige";
 import {
   sazetakKola,
   najposjecenija,
-  derbiLige,
+  derbijiLige,
   golovi,
   skrati,
   type UtakmicaMin,
@@ -96,8 +96,10 @@ function BlokNajposjecenije({ utakmice }: { utakmice: UtakmicaMin[] }) {
 /* ---------------- 3. Derbiji vikenda ---------------- */
 
 function BlokDerbiji({ utakmice }: { utakmice: UtakmicaMin[] }) {
-  const redovi = LIGE.map((l) => ({ liga: l, d: derbiLige(utakmice, l.naziv) })).filter(
-    (r) => r.d
+  // Jedna liga smije imati i više od jednog derbija u kolu, npr. kad se
+  // kolo igra kroz dva dana. Zato se ovdje nabrajaju svi, a ne samo prvi.
+  const redovi = LIGE.flatMap((liga) =>
+    derbijiLige(utakmice, liga.naziv).map((d) => ({ liga, d }))
   );
   if (!redovi.length) return null;
 
@@ -105,7 +107,7 @@ function BlokDerbiji({ utakmice }: { utakmice: UtakmicaMin[] }) {
     <Blok naslov="Derbiji vikenda">
       {redovi.map(({ liga, d }) => (
         <Link
-          key={liga.slug}
+          key={d.id}
           href={`/liga/${liga.slug}${d!.kolo ? `?kolo=${d!.kolo}` : ""}`}
           className="block px-3 py-2.5 transition-opacity hover:opacity-75"
           style={{ borderBottom: "1px solid var(--line)" }}
