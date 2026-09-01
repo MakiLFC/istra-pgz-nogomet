@@ -191,6 +191,66 @@
           "gk": "MRK"
         }
       ]
+    },
+    {
+      "dat": "3-nl-zapad-kolo-2",
+      "kolo": "2",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "podnaslov": "Kolo kroz dva dana, s dva derbija",
+      "datum": "PET 04.09. i SUB 05.09.2026.",
+      "sat": "Sve utakmice u 17:30",
+      "utakmice": [
+        {
+          "d": "Lokomotiva",
+          "dk": "LOK",
+          "g": "Crikvenica",
+          "gk": "CRI",
+          "derbi": true
+        },
+        {
+          "d": "Pomorac",
+          "dk": "POM",
+          "g": "Jadran-Poreč",
+          "gk": "JAD",
+          "derbi": true
+        },
+        {
+          "d": "Kraljevica",
+          "dk": "KRA",
+          "g": "OŠK Omišalj",
+          "gk": "OMI"
+        },
+        {
+          "d": "Rovinj",
+          "dk": "ROV",
+          "g": "Pazinka-Pazin",
+          "gk": "PAZ"
+        },
+        {
+          "d": "Nehaj",
+          "dk": "NEH",
+          "g": "Naprijed",
+          "gk": "NAP"
+        },
+        {
+          "d": "Vinodol",
+          "dk": "VIN",
+          "g": "Krk",
+          "gk": "KRK"
+        },
+        {
+          "d": "Rudar",
+          "dk": "RUD",
+          "g": "Halubjan",
+          "gk": "HAL"
+        },
+        {
+          "d": "Banjole",
+          "dk": "BAN",
+          "g": "Buje",
+          "gk": "BUJ"
+        }
+      ]
     }
   ]
 }
