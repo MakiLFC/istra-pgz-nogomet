@@ -98,9 +98,9 @@ export function najposjecenija(
   return naj;
 }
 
-/** Označeni derbi te lige (ako ih je greškom više, uzima prvi) */
-export function derbiLige(utakmice: UtakmicaMin[], liga: string): UtakmicaMin | null {
-  return utakmice.find((u) => u.natjecanje === liga && u.derbi) ?? null;
+/** Sve utakmice te lige označene kao derbi, redom kako su stigle */
+export function derbijiLige(utakmice: UtakmicaMin[], liga: string): UtakmicaMin[] {
+  return utakmice.filter((u) => u.natjecanje === liga && u.derbi);
 }
 
 /** Skrati tekst na cca `granica` znakova, na granici riječi */
