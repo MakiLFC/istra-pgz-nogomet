@@ -52,7 +52,7 @@ values (
 
 Iz prvog kola ostalo je šest pobjeda i dva remija, uz 24 postignuta pogotka. Gosti su bili uspješniji od domaćina, s četiri pobjede na strani.
 
-Lokomotiva (R) - Crikvenica (Stadion Kantrida, Rijeka). Petak, 17:30. Kolo otvara jedan od dva derbija ovog kola. Lokomotiva je u Bujama slavila 0:2 golovima Ivora Weitzera i Matea Monjca. Crikvenica je s Krkom remizirala 2:2, i to igrajući od 34. minute s igračem manje, a u ovo kolo ulazi bez isključenog Damjana Mendrile. Uz tri kaznena boda s početka sezone, i s tim osvojenim bodom je i dalje u minusu. [DOPUNI]
+Lokomotiva (R) - Crikvenica (Stadion Kantrida, Rijeka). Petak, 17:30. Kolo otvara jedan od dva derbija ovog kola. Lokomotiva je u Bujama slavila 0:2 golovima Ivora Weitzera i Matea Monjca. Crikvenica je s Krkom remizirala 2:2, i to igrajući od 34. minute s igračem manje, a u ovo kolo ulazi bez isključenog Damjana Mendrile. Uz tri kaznena boda s početka sezone, i s tim osvojenim bodom je i dalje u minusu. S te utakmice stiže i osvrt na Lokal-Areni. [DOPUNI]
 
 Pomorac - Jadran-Poreč (Žuknica, Kostrena). Drugi derbi kola. Pomorac je u Pazinu dobio 0:2, Jadran-Poreč je kod kuće izgubio 1:3 od Nehaja. [DOPUNI]
 
