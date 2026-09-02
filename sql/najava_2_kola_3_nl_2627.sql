@@ -90,17 +90,21 @@ where slug = 'najava-2-kola-3-nl-zapad-2627';
 -- Naslovnica od sada prikazuje sve označene derbije lige, ne samo prvi.
 --
 -- update public.utakmice set derbi = false
--- where derbi = true and natjecanje = '3. NL Zapad' and sezona = '2026/27';
+-- where derbi = true and natjecanje = '3. NL Zapad' and sezona = '2026/27'
+-- returning kolo, domacin, gost;
 --
 -- update public.utakmice set derbi = true
 -- where natjecanje = '3. NL Zapad' and sezona = '2026/27' and kolo = 2
---   and domacin = 'NK Lokomotiva (R)' and gost = 'NK Crikvenica';
+--   and domacin = 'NK Lokomotiva (R)' and gost = 'NK Crikvenica'
+-- returning kolo, domacin, gost;
 --
 -- update public.utakmice set derbi = true
 -- where natjecanje = '3. NL Zapad' and sezona = '2026/27' and kolo = 2
---   and domacin = 'NK Pomorac' and gost = 'NK Jadran-Poreč';
+--   and domacin = 'NK Pomorac' and gost = 'NK Jadran-Poreč'
+-- returning kolo, domacin, gost;
 --
--- Svaka od dvije zadnje naredbe mora javiti "1 row".
+-- Zbog "returning" svaka naredba ispiše utakmicu koju je dirnula.
+-- Prazan ispis znači da nije pogodila nijednu.
 
 
 -- =====================================================================
