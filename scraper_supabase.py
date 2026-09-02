@@ -192,6 +192,44 @@ NATJECANJA = [
 ]
 
 
+# ---------------------------------------------------------------------------
+# KLUBOVI KOJI SU NAPUSTILI NATJECANJE
+# ---------------------------------------------------------------------------
+# HNS zna danima, i tjednima, ostaviti odustali klub u rasporedu. Dok je
+# ondje, scraper bi njegove utakmice uredno spremao, a stranica bi najavljivala
+# susrete koji se neće odigrati.
+#
+# Klub upisan ovdje scraper preskače pri čitanju rasporeda i BRIŠE mu retke
+# koji su već u bazi, ali samo one BEZ rezultata: odigrana utakmica i njezin
+# zapisnik ostaju, jer su se stvarno dogodili.
+#
+# Upisuje se tek kad je odluka sigurna. Ako se pokaže da nije, dovoljno je
+# maknuti stavku odavde i pokrenuti scraper: sve dok HNS te utakmice pokazuje,
+# vratit će se same.
+#
+# Kad HNS objavi novi raspored bez tog kluba, stavka ovdje više ništa ne mijenja,
+# ali ne smeta, pa neka stoji do kraja sezone kao trag zašto liga ima manje
+# klubova.
+KLUBOVI_IZVAN_NATJECANJA = [
+    {
+        "natjecanje": "4. NL NS Rijeka",
+        "sezona": "2026/27",
+        "klub": "NK Novalja",
+        "od": "02.09.2026.",
+        "napomena": "Klub je napustio natjecanje prije 1. kola. Andrej javio "
+                    "02.09.2026. da je vijest službena. Na Semaforu tog dana "
+                    "još je stajao cijeli raspored s Novaljom, uključujući "
+                    "NK Otočac - NK Novalja u 1. kolu.",
+    },
+]
+
+
+def klubovi_izvan_natjecanja(naziv_natjecanja, sezona):
+    """Nazivi klubova koji su napustili to natjecanje u toj sezoni."""
+    return {s["klub"] for s in KLUBOVI_IZVAN_NATJECANJA
+            if s["natjecanje"] == naziv_natjecanja and s["sezona"] == sezona}
+
+
 RE_KOLO = re.compile(r"^(\d+)\.\s*kolo$")
 RE_DATUM = re.compile(r"(\d{2}\.\d{2}\.\d{4}\.)\s*(\d{1,2}:\d{2})?")
 
@@ -573,13 +611,77 @@ def dohvati_postojece_termine(naziv_natjecanja, sezona):
         )
 
     try:
-        odgovor = upit("kolo,domacin,gost,datum,vrijeme,datum_rucno,vrijeme_rucno")
+        odgovor = upit("kolo,domacin,gost,datum,vrijeme,rezultat,"
+                       "datum_rucno,vrijeme_rucno")
     except Exception:
-        odgovor = upit("kolo,domacin,gost,datum,vrijeme")
+        odgovor = upit("kolo,domacin,gost,datum,vrijeme,rezultat")
         print("  Napomena: ručni termini se ne čitaju jer stupci još ne "
               "postoje (pokreni sql/termin_rucno.sql).")
 
     return {(r["kolo"], r["domacin"], r["gost"]): r for r in (odgovor.data or [])}
+
+
+def bez_klubova_izvan(utakmice, izvan):
+    """Raspored bez utakmica klubova koji su napustili natjecanje.
+
+    Gađa obje strane: odustali klub ispada i kao domaćin i kao gost.
+    """
+    if not izvan:
+        return utakmice
+    return [u for u in utakmice
+            if u["domacin"] not in izvan and u["gost"] not in izvan]
+
+
+def obrisi_utakmice_izvan_natjecanja(naziv_natjecanja, sezona, klubovi):
+    """Briše iz baze utakmice klubova koji su napustili natjecanje.
+
+    Briše SAMO retke bez rezultata. Odigrana utakmica se dogodila i njezin
+    zapisnik ostaje, kako god natjecanje kasnije završilo.
+
+    Vraća popis opisa obrisanih utakmica, za ispis na kraju pokretanja.
+    Prvo pokretanje nakon upisa kluba u KLUBOVI_IZVAN_NATJECANJA obriše
+    sve njegove buduće utakmice, svako sljedeće nema što raditi.
+    """
+    if POSTAVKE["dry_run"] or not klubovi:
+        return []
+
+    obrisano = []
+    for klub in sorted(klubovi):
+        for stupac in ("domacin", "gost"):
+            odgovor = (
+                klijent().table("utakmice").delete()
+                .eq("natjecanje", naziv_natjecanja).eq("sezona", sezona)
+                .eq(stupac, klub).is_("rezultat", "null")
+                .execute()
+            )
+            for r in odgovor.data or []:
+                obrisano.append(
+                    f"{r.get('kolo')}. kolo, {r.get('domacin')} - {r.get('gost')}"
+                )
+    return obrisano
+
+
+def nestale_s_rasporeda(procitane, u_bazi):
+    """Utakmice koje su u bazi, a HNS ih na rasporedu više ne pokazuje.
+
+    Upsert samo dodaje i mijenja, nikad ne briše, pa bi utakmica koja je
+    nestala s rasporeda ostala na stranici zauvijek. To se dogodi kad klub
+    napusti natjecanje ili kad HNS presloži parove po kolima.
+
+    NE briše se ništa, samo se prijavljuje: jedno loše pročitano čitanje
+    stranice inače bi obrisalo cijelu ligu. Uspoređuju se isključivo kola
+    koja su u ovom prolazu stvarno pročitana, pa uz --kolo ostala kola ne
+    ispadnu "nestala".
+    """
+    kljucevi = {(u["kolo"], u["domacin"], u["gost"]) for u in procitane}
+    kola = {u["kolo"] for u in procitane}
+    nestale = []
+    for kljuc, redak in u_bazi.items():
+        kolo, domacin, gost = kljuc
+        if kolo in kola and kljuc not in kljucevi:
+            oznaka = " (ima rezultat, ne dirati bez provjere)" if redak.get("rezultat") else ""
+            nestale.append(f"{kolo}. kolo, {domacin} - {gost}{oznaka}")
+    return sorted(nestale)
 
 
 def _ispis_termina(datum, vrijeme):
@@ -1167,6 +1269,8 @@ if __name__ == "__main__":
     greske = []
     upozorenja = []
     promjene_termina = []
+    nestale_utakmice = []
+    obrisane_utakmice = []
 
     for natjecanje in natjecanja_za_obradu:
         print(f"\n{'=' * 60}")
@@ -1186,6 +1290,24 @@ if __name__ == "__main__":
             if args.kolo is not None:
                 utakmice_s_kolima = [u for u in utakmice_s_kolima if u["kolo"] == args.kolo]
                 print(f"Nakon odabira {args.kolo}. kola ostalo: {len(utakmice_s_kolima)} utakmica.")
+        # Klubovi koji su napustili natjecanje: njihove utakmice se ne
+        # spremaju, a one koje su već u bazi se brišu. Mora ići PRIJE
+        # čitanja termina iz baze, da obrisani redci ne ispadnu kao
+        # utakmice nestale s rasporeda.
+        izvan = klubovi_izvan_natjecanja(natjecanje["naziv"], SEZONA)
+        if izvan and utakmice_s_kolima:
+            prije = len(utakmice_s_kolima)
+            utakmice_s_kolima = bez_klubova_izvan(utakmice_s_kolima, izvan)
+            preskoceno = prije - len(utakmice_s_kolima)
+            print(f"Izvan natjecanja: {', '.join(sorted(izvan))} "
+                  f"- preskočeno {preskoceno} utakmica s rasporeda.")
+        if izvan:
+            for opis in obrisi_utakmice_izvan_natjecanja(
+                natjecanje["naziv"], SEZONA, izvan
+            ):
+                obrisane_utakmice.append(f"{natjecanje['naziv']}, {opis}")
+                print(f"  OBRISANO iz baze: {opis}")
+
         ukupno = len(utakmice_s_kolima)
 
         # Što je o terminima već u bazi. Jedan upit po ligi, prije petlje:
@@ -1289,6 +1411,11 @@ if __name__ == "__main__":
             if stavka["hns_url"] and not args.samo_raspored:
                 time.sleep(1)
 
+        # Utakmice koje su u bazi, a na rasporedu ih više nema.
+        if utakmice_s_kolima:
+            for opis in nestale_s_rasporeda(utakmice_s_kolima, postojeci_termini):
+                nestale_utakmice.append(f"{natjecanje['naziv']}, {opis}")
+
     print(f"\n{'=' * 60}")
     if POSTAVKE["dry_run"]:
         print(f"SUHI TEST GOTOV. Bilo bi upisano {ukupno_spremljeno} utakmica "
@@ -1312,14 +1439,45 @@ if __name__ == "__main__":
         print(f"\nPROMIJENJENI TERMINI ({len(promjene_termina)}):")
         for opis in promjene_termina:
             print(f"  - {opis}")
-        if args.izvjestaj_promjena and not POSTAVKE["dry_run"]:
-            with open(args.izvjestaj_promjena, "w", encoding="utf-8") as f:
+
+    if obrisane_utakmice:
+        print(f"\nOBRISANE UTAKMICE KLUBOVA IZVAN NATJECANJA "
+              f"({len(obrisane_utakmice)}):")
+        for opis in obrisane_utakmice:
+            print(f"  - {opis}")
+
+    # Ovo se NE briše samo od sebe. Može biti odustali klub kojeg HNS je
+    # maknuo, presloženi parovi po kolima, ali i loše pročitana stranica.
+    if nestale_utakmice:
+        print(f"\nNA RASPOREDU IH VIŠE NEMA ({len(nestale_utakmice)}):")
+        for opis in nestale_utakmice:
+            print(f"  - {opis}")
+        print("\nOve utakmice su u bazi, a HNS ih na rasporedu ne pokazuje. "
+              "Ništa nije obrisano; treba ih pogledati.")
+
+    if args.izvjestaj_promjena and not POSTAVKE["dry_run"] and (
+        promjene_termina or nestale_utakmice or obrisane_utakmice
+    ):
+        with open(args.izvjestaj_promjena, "w", encoding="utf-8") as f:
+            if promjene_termina:
                 f.write("HNS je premjestio ove utakmice:\n\n")
                 for opis in promjene_termina:
                     f.write(f"- {opis}\n")
                 f.write("\nStranica je već ažurirana. Provjeri jesu li "
-                        "najave i osvrti u skladu s novim terminom.\n")
-            print(f"Popis je spremljen u {args.izvjestaj_promjena}.")
+                        "najave i osvrti u skladu s novim terminom.\n\n")
+            if obrisane_utakmice:
+                f.write("Obrisane utakmice klubova izvan natjecanja:\n\n")
+                for opis in obrisane_utakmice:
+                    f.write(f"- {opis}\n")
+                f.write("\n")
+            if nestale_utakmice:
+                f.write("Ovih utakmica na rasporedu više nema, a u bazi su:\n\n")
+                for opis in nestale_utakmice:
+                    f.write(f"- {opis}\n")
+                f.write("\nNije obrisano ništa. Uzrok može biti odustali klub, "
+                        "presloženi parovi po kolima ili loše pročitana "
+                        "stranica, pa to treba pogledati.\n")
+        print(f"Popis je spremljen u {args.izvjestaj_promjena}.")
 
     # Upozorenja nisu greške: podatak je uredno spremljen, ali nešto u
     # njemu ne štima i treba ga pogledati. Ipak se broje i ispisuju, jer

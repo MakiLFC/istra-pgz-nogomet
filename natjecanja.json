@@ -45,7 +45,27 @@
       "slug": "4-nl-ns-rijeka-2627",
       "url": "https://semafor.hns.family/natjecanja/114651788/4-nl-ns-rijeka-2627/",
       "status": "aktivno",
-      "provjereno": "12.08.2026. - slug sadrži 'ns-rijeka' pa je jednoznačan; popis klubova provjeriti pri prvom pokretanju scrapera"
+      "provjereno": "12.08.2026. - slug sadrži 'ns-rijeka' pa je jednoznačan; popis klubova potvrđen 03.09.2026. iz rasporeda koji je scraper pročitao",
+      "pocetak_sezone": "04.09.2026.",
+      "napomena": "NK Novalja je 02.09.2026., dan prije 1. kola, napustila natjecanje, pa liga ima 13 klubova. HNS ju je tada još držao na rasporedu. Klub je upisan u KLUBOVI_IZVAN_NATJECANJA u scraper_supabase.py, pa scraper njegove utakmice preskače i briše iz baze one bez rezultata.",
+      "klubovi": [
+        "NK Borac (Ba)",
+        "NK Cres",
+        "NK Funtana",
+        "NK Klana",
+        "NK Ližnjan",
+        "NK Medulin 1921",
+        "NK Mladost Fažana",
+        "NK Otočac",
+        "NK Rječina",
+        "NK Smoljanci Sloboda",
+        "NK Štinjan",
+        "NK Umag-CC Umago",
+        "NK Žminj"
+      ],
+      "klubovi_izvan_natjecanja": [
+        "NK Novalja (napustila natjecanje 02.09.2026.)"
+      ]
     },
     {
       "naziv": "1. ŽNL PGŽ",

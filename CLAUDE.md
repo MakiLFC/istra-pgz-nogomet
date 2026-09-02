@@ -267,6 +267,38 @@ Dva pravila uz to, oba čuva `test_termini.py`:
   termin kasnije zaustavio pravu promjenu s HNS-a, bez ijedne poruke.
   Briše se samo kad je jednak onome što HNS pokazuje, pa se ništa ne gubi.
 
+**Klub zna napustiti natjecanje, a scraper zna samo dodavati.**
+NK Novalja je 02.09.2026., dan prije 1. kola, napustila 4. NL NS Rijeka.
+HNS je i dalje pokazivao cijeli raspored s njom, uključujući NK Otočac -
+NK Novalja u 1. kolu, pa bi stranica najavljivala susret koji se neće
+odigrati.
+
+Dublji problem je što upsert samo dodaje i mijenja. Kad HNS te utakmice
+makne, u bazi bi ostale zauvijek, a kad presloži parove za ligu s jednim
+klubom manje, uz nove bi se prikazivali i svi stari.
+
+Odatle dvije stvari u `scraper_supabase.py`:
+
+- `KLUBOVI_IZVAN_NATJECANJA`: popis odustalih klubova po natjecanju i
+  sezoni. Scraper njihove utakmice preskače pri čitanju rasporeda i briše
+  im retke iz baze, ali SAMO one bez rezultata. Odigrana utakmica se
+  dogodila i njezin zapisnik ostaje. Ako se odluka o odustajanju pokaže
+  netočnom, dovoljno je maknuti stavku s popisa: dok HNS te utakmice
+  pokazuje, vratit će se same.
+- `nestale_s_rasporeda`: utakmice koje su u bazi, a HNS ih na rasporedu
+  više ne pokazuje, ispisuju se na kraju (`NA RASPOREDU IH VIŠE NEMA`) i
+  ulaze u dnevnu obavijest. NIŠTA se ne briše samo od sebe, jer bi jedno
+  loše pročitano čitanje stranice obrisalo cijelu ligu. Uspoređuju se samo
+  kola koja su u tom prolazu stvarno pročitana, pa uz `--kolo` ostala kola
+  ne ispadnu nestala.
+
+Popis klubova stoji i u `natjecanja.json`, u polju
+`klubovi_izvan_natjecanja`. Čuva `test_odustali_klub.py`.
+
+Ljestvica se ne dira: ona se scrapa s HNS-a i pokazivat će odustali klub
+dok ga HNS ne makne. To je službena tablica, njezin sadržaj nije naša
+procjena.
+
 **Tablica poretka se scrapa, ne računa.**
 Službena tablica već uključuje kaznene bodove (npr. "NK Crikvenica (-3)").
 Vlastiti izračun bi bio kriv.
@@ -381,7 +413,9 @@ broji samo odigrane utakmice, a stranica lige nudi birač sezona.
 
 **Stanje 27.08.2026.:** sve četiri lige upisane su u scraper za 26/27.
 3. NL Zapad (`114647051`, 15 kola) i 4. NL NS Rijeka (`114651788`, 13 kola)
-imaju cijeli raspored u bazi, 211 utakmica, prvo kolo 29.08.2026.
+imaju cijeli raspored u bazi, prvo kolo 3. NL 29.08.2026., a 4. NL
+04.09.2026. Bilo je 211 utakmica; od 03.09.2026. ih je 198, jer je NK
+Novalja napustila 4. NL NS Rijeka i njezinih 13 utakmica je obrisano.
 Županijske su objavljene 27.08.2026.: 1. ŽNL PGŽ (`115499925`, 14 klubova)
 i 2. ŽNL PGŽ (`115502657`, 6 klubova). Popisi klubova stoje u
 `natjecanja.json` i po njima se natjecanje potvrđuje.
