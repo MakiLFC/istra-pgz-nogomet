@@ -590,15 +590,22 @@ def odredi_termin(stavka, postojeci):
     """Koji datum i vrijeme idu u bazu za jednu utakmicu.
 
     Ulaz je redak rasporeda s HNS-a (stavka) i redak koji je već u bazi
-    (postojeci, prazan rječnik ako utakmice još nema). Vraća četvorku:
-    (datum, vrijeme, promjena, napomena) - promjena i napomena su tekst
-    ili None, i skupljaju se za ispis na kraju pokretanja.
+    (postojeci, prazan rječnik ako utakmice još nema). Vraća petorku:
+    (datum, vrijeme, promjena, napomena, ocisti_rucno) - promjena i
+    napomena su tekst ili None i skupljaju se za ispis na kraju
+    pokretanja, a ocisti_rucno kaže da ručni termin više ne treba.
 
     Tri pravila, tim redom:
 
       1. RUČNI TERMIN ima prednost. HNS zna kasniti s premještanjem
-         utakmice, a stranica mora pokazivati kad se stvarno igra. Ručni
-         unos scraper nikad ne prepisuje, kao ni derbi ili autogolove.
+         utakmice, a stranica mora pokazivati kad se stvarno igra. Dok se
+         razlikuje od Semafora, scraper ga ne dira, kao ni derbi ili
+         autogolove.
+         Čim HNS upiše isti termin, ručni unos se briše. Ne zato da bi
+         baza bila uredna, nego zato što bi zaboravljen ručni termin
+         kasnije zaustavio pravu promjenu s HNS-a, i to bez ijedne
+         poruke. Briše se samo kad je jednak onome što HNS pokazuje, pa
+         se time ne gubi nijedan podatak.
       2. PRAZAN TERMIN S HNS-a NE BRIŠE onaj u bazi. Ako se redak
          rasporeda jednom ne pročita kako treba, bolje je zadržati zadnji
          poznati termin nego stranicu ostaviti bez njega. Prijavljuje se
@@ -616,26 +623,26 @@ def odredi_termin(stavka, postojeci):
         poklapa_se = ((rucni_datum is None or rucni_datum == datum)
                       and (rucno_vrijeme is None or rucno_vrijeme == vrijeme))
         if poklapa_se:
-            napomena = (f"ručni termin {_ispis_termina(rucni_datum, rucno_vrijeme)} "
-                        f"sada je isti kao na HNS-u, može se obrisati "
-                        f"(vidi sql/termin_rucno.sql)")
-        else:
-            napomena = (f"vrijedi ručni termin "
-                        f"{_ispis_termina(rucni_datum or datum, rucno_vrijeme or vrijeme)}, "
-                        f"HNS pokazuje {_ispis_termina(datum, vrijeme)}")
-        return rucni_datum or datum, rucno_vrijeme or vrijeme, None, napomena
+            return datum, vrijeme, None, (
+                f"HNS je upisao isti termin "
+                f"{_ispis_termina(datum, vrijeme)}, ručni unos je obrisan"
+            ), True
+        napomena = (f"vrijedi ručni termin "
+                    f"{_ispis_termina(rucni_datum or datum, rucno_vrijeme or vrijeme)}, "
+                    f"HNS pokazuje {_ispis_termina(datum, vrijeme)}")
+        return rucni_datum or datum, rucno_vrijeme or vrijeme, None, napomena, False
 
     if not datum and stari_datum:
         return stari_datum, staro_vrijeme, None, (
             f"HNS ovaj put nije pokazao termin, ostaje zadnji poznati "
-            f"{_ispis_termina(stari_datum, staro_vrijeme)}")
+            f"{_ispis_termina(stari_datum, staro_vrijeme)}"), False
 
     if stari_datum and (datum, vrijeme) != (stari_datum, staro_vrijeme):
         return datum, vrijeme, (
             f"{_ispis_termina(stari_datum, staro_vrijeme)} -> "
-            f"{_ispis_termina(datum, vrijeme)}"), None
+            f"{_ispis_termina(datum, vrijeme)}"), None, False
 
-    return datum, vrijeme, None, None
+    return datum, vrijeme, None, None, False
 
 
 def spremi_u_supabase(redak):
@@ -1237,7 +1244,7 @@ if __name__ == "__main__":
                 detalji["kolo"] = stavka["kolo"]
                 detalji["sezona"] = SEZONA
                 kljuc = (stavka["kolo"], stavka["domacin"], stavka["gost"])
-                datum, vrijeme, promjena, napomena = odredi_termin(
+                datum, vrijeme, promjena, napomena, ocisti_rucno = odredi_termin(
                     stavka, postojeci_termini.get(kljuc, {})
                 )
                 opis_utakmice = (f"{natjecanje['naziv']}, {stavka['kolo']}. kolo, "
@@ -1251,6 +1258,11 @@ if __name__ == "__main__":
                 detalji["datum"] = datum
                 detalji["vrijeme"] = vrijeme
                 detalji["stadion"] = stavka["stadion"]
+                if ocisti_rucno:
+                    # Stupci sigurno postoje: da ih nema, ručni termin se
+                    # ne bi ni pročitao, pa se ovdje ne bi ni došlo.
+                    detalji["datum_rucno"] = None
+                    detalji["vrijeme_rucno"] = None
                 if not detalji.get("rezultat"):
                     # Bez rezultata u ispisu je zanimljiv termin, i to onaj
                     # koji je stvarno upisan (ručni zna biti drugačiji od

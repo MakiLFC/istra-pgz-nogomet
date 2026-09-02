@@ -12,10 +12,10 @@
 --   ručni ispravak u stupcu datum ne bi preživio: prvo sljedeće
 --   pokretanje vratilo bi stari termin.
 --
---   Zato postoje datum_rucno i vrijeme_rucno. Scraper ih NIKAD ne dira,
---   kao ni derbi, tekst_clanka, slika_url i autogolovi, a dok su
---   ispunjeni, u stupce datum i vrijeme upisuje njihovu vrijednost. Na
---   stranici se zato ništa ne mijenja - ona i dalje čita datum i vrijeme.
+--   Zato postoje datum_rucno i vrijeme_rucno. Dok se razlikuju od onoga
+--   što piše na Semaforu, scraper ih ne dira, nego njihovu vrijednost
+--   upisuje u stupce datum i vrijeme. Na stranici se zato ništa ne
+--   mijenja - ona i dalje čita datum i vrijeme.
 --
 -- OBLIK ZAPISA
 --   Točno kao u stupcima datum i vrijeme, jer ih zamjenjuju:
@@ -23,10 +23,10 @@
 --     vrijeme_rucno '17:30'         (ili NULL ako se mijenja samo datum)
 --
 -- KAD SE BRIŠE
---   Čim HNS pokaže isti termin, scraper na kraju pokretanja ispiše da se
---   ručni termin poklapa i da se može obrisati. Tada se postavi na NULL
---   (zadnja naredba na dnu datoteke), da opet vrijedi ono što piše na
---   Semaforu.
+--   Sam od sebe, čim HNS upiše isti termin: scraper ga tada postavi na
+--   NULL i to ispiše. Tako zaboravljen ručni termin ne može kasnije
+--   zaustaviti pravu promjenu s HNS-a. Ručno brisanje (naredba na dnu
+--   datoteke) treba samo ako se predomisliš prije nego HNS ispravi svoje.
 -- =====================================================================
 
 alter table public.utakmice
@@ -37,11 +37,11 @@ alter table public.utakmice
 
 comment on column public.utakmice.datum_rucno is
   'Ručni termin, npr. ''04.09.2026.''. Ima prednost pred datumom s HNS-a. '
-  'Scraper ga ne dira. Obrisati kad HNS upiše isti termin.';
+  'Scraper ga briše čim HNS upiše isti termin.';
 
 comment on column public.utakmice.vrijeme_rucno is
   'Ručno vrijeme, npr. ''17:30''. Ima prednost pred vremenom s HNS-a. '
-  'Scraper ga ne dira. Obrisati kad HNS upiše isti termin.';
+  'Scraper ga briše čim HNS upiše isti termin.';
 
 
 -- ---------------------------------------------------------------------
@@ -73,7 +73,7 @@ comment on column public.utakmice.vrijeme_rucno is
 --   where ...;
 --
 -- ---------------------------------------------------------------------
--- BRISANJE (kad HNS upiše isti termin)
+-- RUČNO BRISANJE (samo ako se predomisliš prije nego HNS ispravi svoje)
 -- ---------------------------------------------------------------------
 --   update public.utakmice
 --   set datum_rucno = null, vrijeme_rucno = null

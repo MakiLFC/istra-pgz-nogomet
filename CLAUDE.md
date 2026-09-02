@@ -104,7 +104,8 @@ raspored_migracija.sql  jednokratna migracija (već pokrenuta 08/2026)
 - **`utakmice`** — jedan redak po utakmici, odigranoj i neodigranoj.
   Ključ za upsert: (`natjecanje`, `sezona`, `kolo`, `domacin`, `gost`).
   Polja koja scraper NE dira: `derbi`, `tekst_clanka`, `slika_url`,
-  `autogolovi`, `datum_rucno`, `vrijeme_rucno`
+  `autogolovi`. Ručni termin (`datum_rucno`, `vrijeme_rucno`) također je
+  korisnikov unos, ali ga scraper obriše kad HNS upiše isti termin
   (to su korisnikovi unosi i moraju preživjeti svako osvježavanje).
   `datum` / `vrijeme` / `stadion` dolaze s retka rasporeda i postoje i
   prije odigravanja; `stadion_datum` se puni tek iz zapisnika.
@@ -258,10 +259,13 @@ Dva pravila uz to, oba čuva `test_termini.py`:
   jednom ne pročita kako treba, bolje je zadržati zadnji poznati termin
   nego stranicu ostaviti bez njega. Ispiše se kao napomena.
 - Ručni termin (`datum_rucno`, `vrijeme_rucno`, vidi `sql/termin_rucno.sql`)
-  ima prednost pred HNS-om, za slučaj da Semafor zaostaje. Scraper ga ne
-  dira, kao ni `derbi` ili `autogolovi`, nego njegovu vrijednost upisuje u
-  `datum` i `vrijeme`, pa stranica ostaje nepromijenjena. Čim HNS pokaže
-  isti termin, scraper javi da se ručni unos može obrisati.
+  ima prednost pred HNS-om, za slučaj da Semafor zaostaje. Dok se od
+  Semafora razlikuje, scraper ga ne dira, nego njegovu vrijednost upisuje
+  u `datum` i `vrijeme`, pa stranica ostaje nepromijenjena. Čim HNS upiše
+  isti termin, scraper sam obriše ručni unos. To je jedina iznimka od
+  pravila da ručne stupce ne dira, i postoji zato što bi zaboravljen ručni
+  termin kasnije zaustavio pravu promjenu s HNS-a, bez ijedne poruke.
+  Briše se samo kad je jednak onome što HNS pokazuje, pa se ništa ne gubi.
 
 **Tablica poretka se scrapa, ne računa.**
 Službena tablica već uključuje kaznene bodove (npr. "NK Crikvenica (-3)").

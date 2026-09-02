@@ -41,58 +41,59 @@ def _stavka(datum, vrijeme="17:30"):
 
 
 # (opis, stavka s HNS-a, redak u bazi, očekivani datum, očekivano vrijeme,
-#  očekuje li se prijava promjene, očekuje li se napomena)
+#  očekuje li se prijava promjene, očekuje li se napomena, briše li se
+#  ručni termin)
 SLUCAJEVI = [
     (
         "premještena utakmica: novi termin ulazi i prijavljuje se",
         _stavka("04.09.2026."),
         {"datum": "05.09.2026.", "vrijeme": "17:30"},
-        "04.09.2026.", "17:30", True, False,
+        "04.09.2026.", "17:30", True, False, False,
     ),
     (
         "isti termin: nema ni promjene ni napomene",
         _stavka("05.09.2026."),
         {"datum": "05.09.2026.", "vrijeme": "17:30"},
-        "05.09.2026.", "17:30", False, False,
+        "05.09.2026.", "17:30", False, False, False,
     ),
     (
         "pomaknuto samo vrijeme: i to je promjena",
         _stavka("05.09.2026.", "19:00"),
         {"datum": "05.09.2026.", "vrijeme": "17:30"},
-        "05.09.2026.", "19:00", True, False,
+        "05.09.2026.", "19:00", True, False, False,
     ),
     (
         "prva utakmica u bazi: prvo punjenje nije promjena",
         _stavka("05.09.2026."),
         {},
-        "05.09.2026.", "17:30", False, False,
+        "05.09.2026.", "17:30", False, False, False,
     ),
     (
         "HNS nije pokazao termin: zadnji poznati ostaje, uz napomenu",
         _stavka(None, None),
         {"datum": "05.09.2026.", "vrijeme": "17:30"},
-        "05.09.2026.", "17:30", False, True,
+        "05.09.2026.", "17:30", False, True, False,
     ),
     (
         "ručni termin ima prednost pred HNS-om",
         _stavka("05.09.2026."),
         {"datum": "05.09.2026.", "vrijeme": "17:30",
          "datum_rucno": "04.09.2026.", "vrijeme_rucno": None},
-        "04.09.2026.", "17:30", False, True,
+        "04.09.2026.", "17:30", False, True, False,
     ),
     (
         "ručno samo vrijeme: datum i dalje dolazi s HNS-a",
         _stavka("05.09.2026."),
         {"datum": "05.09.2026.", "vrijeme": "17:30",
          "datum_rucno": None, "vrijeme_rucno": "19:00"},
-        "05.09.2026.", "19:00", False, True,
+        "05.09.2026.", "19:00", False, True, False,
     ),
     (
-        "HNS je sustigao ručni termin: javi da se ručni može obrisati",
+        "HNS je sustigao ručni termin: ručni unos se briše sam",
         _stavka("04.09.2026."),
         {"datum": "04.09.2026.", "vrijeme": "17:30",
          "datum_rucno": "04.09.2026.", "vrijeme_rucno": None},
-        "04.09.2026.", "17:30", False, True,
+        "04.09.2026.", "17:30", False, True, True,
     ),
 ]
 
@@ -100,12 +101,13 @@ SLUCAJEVI = [
 def main():
     palo = 0
 
-    for opis, stavka, postojeci, d_ocek, v_ocek, promjena_ocek, napomena_ocek in SLUCAJEVI:
-        datum, vrijeme, promjena, napomena = scraper_supabase.odredi_termin(
+    for (opis, stavka, postojeci, d_ocek, v_ocek,
+         promjena_ocek, napomena_ocek, ciscenje_ocek) in SLUCAJEVI:
+        datum, vrijeme, promjena, napomena, ocisti = scraper_supabase.odredi_termin(
             stavka, postojeci
         )
-        dobiveno = (datum, vrijeme, bool(promjena), bool(napomena))
-        ocekivano = (d_ocek, v_ocek, promjena_ocek, napomena_ocek)
+        dobiveno = (datum, vrijeme, bool(promjena), bool(napomena), ocisti)
+        ocekivano = (d_ocek, v_ocek, promjena_ocek, napomena_ocek, ciscenje_ocek)
 
         if dobiveno == ocekivano:
             print(f"  OK   {opis}")
