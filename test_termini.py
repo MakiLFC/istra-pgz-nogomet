@@ -7,7 +7,7 @@ ima prednost i kad se termin iz baze NE smije prebrisati praznim.
 
 Zašto ovo postoji: termin dolazi s retka rasporeda na HNS Semaforu i
 scraper ga prepisuje pri svakom pokretanju. NK Žminj - NK Ližnjan u
-2. kolu 4. NL NS Rijeka premješten je s 05.09. na 04.09.2026., a takva
+1. kolu 4. NL NS Rijeka premješten je s 05.09. na 04.09.2026., a takva
 promjena nigdje se ne najavljuje - HNS samo tiho prepiše redak. Odatle
 tri pravila koja se ovdje čuvaju.
 
