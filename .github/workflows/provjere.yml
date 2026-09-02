@@ -1,0 +1,72 @@
+# Provjera koda prije nego dođe na stranicu.
+#
+# ČEMU SLUŽI
+# Scraper se vrti sam, noću i ujutro, pa se greška u njemu vidi tek kad
+# pokretanje pocrveni ili, gore, kad podaci tiho izostanu. Ovaj posao se
+# pokreće na svaki push i na svaki pull request, prije spajanja, i traje
+# manje od minute.
+#
+# ŠTO PROVJERAVA
+# 1. pyflakes nad svim Python datotekama. Hvata nedefinirana imena,
+#    nekorištene uvoze i, što je ovdje već zatrebalo, ime koje je dvaput
+#    upotrijebljeno za dvije stvari. Točno takva greška srušila je
+#    "Provjeru termina" 02.09.2026.: lokalna varijabla opis_utakmice
+#    zasjenila je funkciju istog imena, pa je poziv pukao s
+#    "'str' object is not callable". Testovi to nisu mogli uhvatiti,
+#    pyflakes je javljao "redefinition of unused 'opis_utakmice'".
+# 2. Testove koji ne diraju internet ni bazu.
+#
+# ŠTO NE PROVJERAVA
+# test_raspored.py, test_tablica.py, scraper_test.py i dijagnostika_*.py
+# dohvaćaju stranice s HNS Semafora. Oni se pokreću rukom, kad treba
+# vidjeti što Semafor trenutno vraća, i namjerno nisu ovdje: pali bi kad
+# god HNS ne odgovori, a to nije greška u našem kodu.
+#
+# AKO POSAO POCRVENI
+# Otvori pokretanje i pogledaj koji je korak pao. Kod pyflakesa u ispisu
+# piše datoteka, redak i što ne valja. Ništa se ne objavljuje samo od
+# sebe, pa crveni posao znači samo da popravak još nije gotov.
+
+name: Provjere koda
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  provjere:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Preuzmi kod
+        uses: actions/checkout@v7
+
+      - name: Postavi Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Instaliraj pakete
+        # Verzija pyflakesa je namjerno zakovana: novo izdanje zna dodati
+        # nove vrste upozorenja, pa bi posao pocrvenio sam od sebe, bez
+        # ijedne naše promjene. Kad ga poželiš podići, promijeni broj ovdje
+        # i provjeri da je ispis i dalje prazan.
+        run: pip install -r requirements.txt pyflakes==3.4.0
+
+      - name: Pyflakes nad svim Python datotekama
+        run: python -m pyflakes $(git ls-files '*.py')
+
+      - name: Testovi koji ne diraju internet ni bazu
+        run: |
+          for test in test_kraj_rasporeda test_suhi_test test_termini \
+                      test_odustali_klub test_nastupi test_autogol; do
+            echo "=============================================="
+            echo "$test.py"
+            echo "=============================================="
+            python "$test.py"
+          done

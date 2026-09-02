@@ -42,7 +42,6 @@ def dohvati_popis_utakmica(natjecanje_url):
 
     # Pronađimo gdje počinje stvaran raspored: tražimo H2/H3 ili tekst koji
     # sadrži "Raspored, rezultati, strijelci" pa parsiramo samo ono ŠTO DOLAZI POSLIJE.
-    cijeli_tekst_prije = ""
     pocetna_tocka = None
 
     for element in soup.find_all(["h1", "h2", "h3"]):
