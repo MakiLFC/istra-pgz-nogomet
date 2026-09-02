@@ -40,6 +40,13 @@ load_dotenv()  # učitava SUPABASE_URL i SUPABASE_SERVICE_KEY iz .env datoteke
 #   --kolo 15              obradi samo to kolo (brže i blaže prema HNS-u)
 #   --samo-statistike      osvježi samo rang-liste (tablica, strijelci,
 #                          kartoni, nastupi), bez rasporeda i zapisnika
+#   --samo-raspored        osvježi samo termine (datum, vrijeme, stadion)
+#                          s retka rasporeda, bez otvaranja zapisnika i
+#                          bez rang-lista; traje sekundu po ligi
+#   --izvjestaj-promjena DATOTEKA
+#                          ako se ijedan termin promijenio, ispiši promjene
+#                          u tu datoteku (GitHub od nje radi obavijest);
+#                          bez promjena datoteka se ne stvara
 #
 # PRIMJER regresijske provjere nad završenim kolom prošle sezone:
 #   python scraper_supabase.py --dry-run --kolo 15 \
@@ -540,6 +547,104 @@ def dohvati_detalje_utakmice(utakmica_url):
     }
 
 
+def dohvati_postojece_termine(naziv_natjecanja, sezona):
+    """Termini koji su TRENUTNO u bazi, za jedno natjecanje i sezonu.
+
+    Vraća rječnik s ključem (kolo, domaćin, gost) - istim onim po kojem
+    ide upsert - a u njemu datum i vrijeme iz baze te ručni termin ako
+    postoji. Služi za dvije stvari:
+
+      1. da se vidi KOJI se termin promijenio (HNS to nigdje ne najavljuje,
+         samo tiho prepiše redak rasporeda),
+      2. da ručno upisan termin preživi osvježavanje.
+
+    Stupci datum_rucno i vrijeme_rucno postoje tek nakon što se pokrene
+    sql/termin_rucno.sql. Dok ih nema, upit s njima puca, pa se ponavlja
+    bez njih - scraper zbog toga ne smije stati.
+    """
+    if POSTAVKE["dry_run"]:
+        return {}
+
+    def upit(stupci):
+        return (
+            klijent().table("utakmice").select(stupci)
+            .eq("natjecanje", naziv_natjecanja).eq("sezona", sezona)
+            .execute()
+        )
+
+    try:
+        odgovor = upit("kolo,domacin,gost,datum,vrijeme,datum_rucno,vrijeme_rucno")
+    except Exception:
+        odgovor = upit("kolo,domacin,gost,datum,vrijeme")
+        print("  Napomena: ručni termini se ne čitaju jer stupci još ne "
+              "postoje (pokreni sql/termin_rucno.sql).")
+
+    return {(r["kolo"], r["domacin"], r["gost"]): r for r in (odgovor.data or [])}
+
+
+def _ispis_termina(datum, vrijeme):
+    return f"{datum or 'bez datuma'} {vrijeme or ''}".strip()
+
+
+def odredi_termin(stavka, postojeci):
+    """Koji datum i vrijeme idu u bazu za jednu utakmicu.
+
+    Ulaz je redak rasporeda s HNS-a (stavka) i redak koji je već u bazi
+    (postojeci, prazan rječnik ako utakmice još nema). Vraća petorku:
+    (datum, vrijeme, promjena, napomena, ocisti_rucno) - promjena i
+    napomena su tekst ili None i skupljaju se za ispis na kraju
+    pokretanja, a ocisti_rucno kaže da ručni termin više ne treba.
+
+    Tri pravila, tim redom:
+
+      1. RUČNI TERMIN ima prednost. HNS zna kasniti s premještanjem
+         utakmice, a stranica mora pokazivati kad se stvarno igra. Dok se
+         razlikuje od Semafora, scraper ga ne dira, kao ni derbi ili
+         autogolove.
+         Čim HNS upiše isti termin, ručni unos se briše. Ne zato da bi
+         baza bila uredna, nego zato što bi zaboravljen ručni termin
+         kasnije zaustavio pravu promjenu s HNS-a, i to bez ijedne
+         poruke. Briše se samo kad je jednak onome što HNS pokazuje, pa
+         se time ne gubi nijedan podatak.
+      2. PRAZAN TERMIN S HNS-a NE BRIŠE onaj u bazi. Ako se redak
+         rasporeda jednom ne pročita kako treba, bolje je zadržati zadnji
+         poznati termin nego stranicu ostaviti bez njega. Prijavljuje se
+         kao napomena da se ne proguta tiho.
+      3. Inače vrijedi ono što HNS sada pokazuje, a razlika u odnosu na
+         bazu prijavljuje se kao promjena termina.
+    """
+    datum, vrijeme = stavka["datum"], stavka["vrijeme"]
+    stari_datum = postojeci.get("datum")
+    staro_vrijeme = postojeci.get("vrijeme")
+    rucni_datum = (postojeci.get("datum_rucno") or "").strip() or None
+    rucno_vrijeme = (postojeci.get("vrijeme_rucno") or "").strip() or None
+
+    if rucni_datum or rucno_vrijeme:
+        poklapa_se = ((rucni_datum is None or rucni_datum == datum)
+                      and (rucno_vrijeme is None or rucno_vrijeme == vrijeme))
+        if poklapa_se:
+            return datum, vrijeme, None, (
+                f"HNS je upisao isti termin "
+                f"{_ispis_termina(datum, vrijeme)}, ručni unos je obrisan"
+            ), True
+        napomena = (f"vrijedi ručni termin "
+                    f"{_ispis_termina(rucni_datum or datum, rucno_vrijeme or vrijeme)}, "
+                    f"HNS pokazuje {_ispis_termina(datum, vrijeme)}")
+        return rucni_datum or datum, rucno_vrijeme or vrijeme, None, napomena, False
+
+    if not datum and stari_datum:
+        return stari_datum, staro_vrijeme, None, (
+            f"HNS ovaj put nije pokazao termin, ostaje zadnji poznati "
+            f"{_ispis_termina(stari_datum, staro_vrijeme)}"), False
+
+    if stari_datum and (datum, vrijeme) != (stari_datum, staro_vrijeme):
+        return datum, vrijeme, (
+            f"{_ispis_termina(stari_datum, staro_vrijeme)} -> "
+            f"{_ispis_termina(datum, vrijeme)}"), None, False
+
+    return datum, vrijeme, None, None, False
+
+
 def spremi_u_supabase(redak):
     """
     Sprema jedan redak u tablicu 'utakmice'. Koristi upsert - ako utakmica
@@ -990,6 +1095,12 @@ def _postavke_iz_naredbe():
     p.add_argument("--samo-statistike", action="store_true",
                    help="osvježi samo tablicu, strijelce, kartone i nastupe, "
                         "bez prolaska kroz raspored i zapisnike")
+    p.add_argument("--samo-raspored", action="store_true",
+                   help="osvježi samo termine s rasporeda (datum, vrijeme, "
+                        "stadion), bez zapisnika i rang-lista")
+    p.add_argument("--izvjestaj-promjena", metavar="DATOTEKA",
+                   help="promijenjene termine ispiši i u tu datoteku "
+                        "(stvara se samo ako promjena ima)")
     return p.parse_args()
 
 
@@ -1031,6 +1142,11 @@ if __name__ == "__main__":
             "--samo-statistike i --kolo ne idu zajedno: rang-liste su za "
             "cijelu sezonu, ne po kolu."
         )
+    if args.samo_statistike and args.samo_raspored:
+        raise SystemExit(
+            "--samo-statistike i --samo-raspored su dva različita posla; "
+            "pokreni ih odvojeno."
+        )
 
     natjecanja_za_obradu = _odabrana_natjecanja(args)
 
@@ -1042,12 +1158,15 @@ if __name__ == "__main__":
         print(f"  kolo: {args.kolo if args.kolo else 'sva'}")
         if args.samo_statistike:
             print("  samo rang-liste, bez rasporeda i zapisnika")
+        if args.samo_raspored:
+            print("  samo termini s rasporeda, bez zapisnika i rang-lista")
         print("=" * 60)
 
     ukupno_spremljeno = 0
     ukupno_gresaka = 0
     greske = []
     upozorenja = []
+    promjene_termina = []
 
     for natjecanje in natjecanja_za_obradu:
         print(f"\n{'=' * 60}")
@@ -1062,10 +1181,20 @@ if __name__ == "__main__":
             print("Samo statistike: raspored i zapisnici se preskaču.")
         else:
             utakmice_s_kolima = dohvati_popis_utakmica(natjecanje["url"])
+            if args.samo_raspored:
+                print("Samo raspored: zapisnici se ne otvaraju.")
             if args.kolo is not None:
                 utakmice_s_kolima = [u for u in utakmice_s_kolima if u["kolo"] == args.kolo]
                 print(f"Nakon odabira {args.kolo}. kola ostalo: {len(utakmice_s_kolima)} utakmica.")
         ukupno = len(utakmice_s_kolima)
+
+        # Što je o terminima već u bazi. Jedan upit po ligi, prije petlje:
+        # bez toga se ne bi znalo je li se termin promijenio ni je li za
+        # utakmicu upisan ručni termin.
+        postojeci_termini = (
+            dohvati_postojece_termine(natjecanje["naziv"], SEZONA)
+            if utakmice_s_kolima else {}
+        )
 
         # Tablica lige + strijelci + kartoni (za sidebar na stranici)
         #
@@ -1075,7 +1204,10 @@ if __name__ == "__main__":
         # tjednima prolazilo neopaženo da baza odbija tip "nastupi" i
         # da minute uopće ne ulaze.
         try:
-            dohvati_i_spremi_statistike(natjecanje["naziv"], natjecanje["url"])
+            if args.samo_raspored:
+                print("Samo raspored: rang-liste se preskaču.")
+            else:
+                dohvati_i_spremi_statistike(natjecanje["naziv"], natjecanje["url"])
         except Exception as greska:
             ukupno_gresaka += 1
             greske.append(f"statistike, {natjecanje['naziv']}: {greska}")
@@ -1083,7 +1215,7 @@ if __name__ == "__main__":
 
         for i, stavka in enumerate(utakmice_s_kolima, start=1):
             try:
-                if stavka["hns_url"]:
+                if stavka["hns_url"] and not args.samo_raspored:
                     detalji = dohvati_detalje_utakmice(stavka["hns_url"])
                     # domaćin/gost sa stranice zapisnika mogu se sitno
                     # razlikovati od rasporeda - raspored je izvor istine
@@ -1092,8 +1224,8 @@ if __name__ == "__main__":
                     detalji["gost"] = stavka["gost"]
                     poruka = f"{detalji['rezultat']}"
                 else:
-                    # Neodigrana utakmica: nema zapisnika, spremamo samo ono
-                    # što piše na retku rasporeda.
+                    # Neodigrana utakmica (ili način --samo-raspored):
+                    # spremamo samo ono što piše na retku rasporeda.
                     #
                     # "rezultat" i "hns_url" se NAMJERNO ne šalju. Kad se
                     # stupac ne pošalje, upsert ga ne dira, pa već upisan
@@ -1111,9 +1243,31 @@ if __name__ == "__main__":
                 detalji["natjecanje"] = natjecanje["naziv"]
                 detalji["kolo"] = stavka["kolo"]
                 detalji["sezona"] = SEZONA
-                detalji["datum"] = stavka["datum"]
-                detalji["vrijeme"] = stavka["vrijeme"]
+                kljuc = (stavka["kolo"], stavka["domacin"], stavka["gost"])
+                datum, vrijeme, promjena, napomena, ocisti_rucno = odredi_termin(
+                    stavka, postojeci_termini.get(kljuc, {})
+                )
+                opis_utakmice = (f"{natjecanje['naziv']}, {stavka['kolo']}. kolo, "
+                                 f"{stavka['domacin']} - {stavka['gost']}")
+                if promjena:
+                    promjene_termina.append(f"{opis_utakmice}: {promjena}")
+                    print(f"      PROMJENA TERMINA: {promjena}")
+                if napomena:
+                    upozorenja.append(f"{opis_utakmice}: {napomena}")
+                    print(f"      NAPOMENA: {napomena}")
+                detalji["datum"] = datum
+                detalji["vrijeme"] = vrijeme
                 detalji["stadion"] = stavka["stadion"]
+                if ocisti_rucno:
+                    # Stupci sigurno postoje: da ih nema, ručni termin se
+                    # ne bi ni pročitao, pa se ovdje ne bi ni došlo.
+                    detalji["datum_rucno"] = None
+                    detalji["vrijeme_rucno"] = None
+                if not detalji.get("rezultat"):
+                    # Bez rezultata u ispisu je zanimljiv termin, i to onaj
+                    # koji je stvarno upisan (ručni zna biti drugačiji od
+                    # onoga s retka rasporeda).
+                    poruka = _ispis_termina(datum, vrijeme)
                 ishod = "BEZ UPISA (suhi test)" if POSTAVKE["dry_run"] else "spremljeno"
                 print(f"  [{i}/{ukupno}] (kolo {stavka['kolo']}) {stavka['domacin']} - {stavka['gost']} ({poruka}): {ishod}")
                 neslaganje = provjeri_zbroj_golova(detalji)
@@ -1132,7 +1286,7 @@ if __name__ == "__main__":
                     f"{stavka['domacin']} - {stavka['gost']}: {greska}"
                 )
                 print(f"  [{i}/{ukupno}] GREŠKA na {stavka.get('hns_url') or stavka['domacin']}: {greska}")
-            if stavka["hns_url"]:
+            if stavka["hns_url"] and not args.samo_raspored:
                 time.sleep(1)
 
     print(f"\n{'=' * 60}")
@@ -1150,6 +1304,22 @@ if __name__ == "__main__":
     else:
         print(f"GOTOVO! Spremljeno/ažurirano {ukupno_spremljeno} utakmica. Grešaka: {ukupno_gresaka}.")
     print("=" * 60)
+
+    # Promjene termina nisu ni greška ni upozorenje: HNS je premjestio
+    # utakmicu, baza je to uredno preuzela. Ispisuju se zato da se zna
+    # koja se najava mora ispraviti, i zato da GitHub o njima javi.
+    if promjene_termina:
+        print(f"\nPROMIJENJENI TERMINI ({len(promjene_termina)}):")
+        for opis in promjene_termina:
+            print(f"  - {opis}")
+        if args.izvjestaj_promjena and not POSTAVKE["dry_run"]:
+            with open(args.izvjestaj_promjena, "w", encoding="utf-8") as f:
+                f.write("HNS je premjestio ove utakmice:\n\n")
+                for opis in promjene_termina:
+                    f.write(f"- {opis}\n")
+                f.write("\nStranica je već ažurirana. Provjeri jesu li "
+                        "najave i osvrti u skladu s novim terminom.\n")
+            print(f"Popis je spremljen u {args.izvjestaj_promjena}.")
 
     # Upozorenja nisu greške: podatak je uredno spremljen, ali nešto u
     # njemu ne štima i treba ga pogledati. Ipak se broje i ispisuju, jer

@@ -270,7 +270,23 @@ def main():
     sve_prolazi &= provjeri("raspored i zapisnici se preskaču" in ispis4,
                             "ispis to i kaže")
 
-    print("7. greška ruši pokretanje")
+    print("7. samo raspored, bez zapisnika i rang-lista")
+    ispis5, prostor5 = pokreni([
+        "--dry-run", "--natjecanje", "3. NL", "--url", ADRESA_NATJECANJA,
+        "--samo-raspored",
+    ])
+    sve_prolazi &= provjeri(len(prostor5["PROBNI_REDCI"]) == 3,
+                            "sve tri utakmice s rasporeda su obrađene")
+    sve_prolazi &= provjeri(all("rezultat" not in r for r in prostor5["PROBNI_REDCI"]),
+                            "nijedan rezultat se ne šalje, ni za odigranu utakmicu")
+    sve_prolazi &= provjeri(all(r.get("datum") for r in prostor5["PROBNI_REDCI"]),
+                            "termin s rasporeda je upisan za svaku utakmicu")
+    sve_prolazi &= provjeri(len(prostor5["PROBNE_STATISTIKE"]) == 0,
+                            "rang-liste se ne diraju")
+    sve_prolazi &= provjeri("zapisnici se ne otvaraju" in ispis5,
+                            "ispis to i kaže")
+
+    print("8. greška ruši pokretanje")
     kod, ispis3 = pokreni_s_greskom([
         "--dry-run", "--natjecanje", "3. NL", "--url", ADRESA_NATJECANJA, "--kolo", "1",
     ])

@@ -50,9 +50,13 @@ prepiše ili se stavi zarez, dvotočka ili točka.
 - **Frontend:** Next.js (App Router) + TypeScript + Tailwind v4, hosting Vercel
 - **Baza:** Supabase (PostgreSQL)
 - **Scraper:** Python (`requests` + `BeautifulSoup`), bez Playwrighta
-- **Automatizacija:** GitHub Actions (`.github/workflows/scraper.yml`),
-  pokreće se subotom i nedjeljom navečer, ponedjeljkom ujutro i srijedom
-  navečer (zbog utakmica zakazanih sredinom tjedna)
+- **Automatizacija:** GitHub Actions
+  - `.github/workflows/scraper.yml` (puni prolaz: raspored, zapisnici,
+    rang-liste) subotom i nedjeljom navečer, ponedjeljkom ujutro i
+    srijedom navečer (zbog utakmica zakazanih sredinom tjedna)
+  - `.github/workflows/termini.yml` (samo termini s rasporeda) svaki dan
+    ujutro i poslijepodne; kad je koja utakmica premještena, otvori issue
+    na GitHubu, pa o tome stigne e-pošta
 
 ## Struktura
 
@@ -81,6 +85,7 @@ sql/
   pregled_kola.sql  funkcija public.pregled_kola() za osvrt nakon kola
   slike_clanaka.sql jednokratno: stupci za fotografiju i spremnik
   autogolovi.sql    jednokratno: stupac utakmice.autogolovi
+  termin_rucno.sql  jednokratno: stupci datum_rucno i vrijeme_rucno
   (ostale .sql datoteke su jednokratni zahvati nad podacima)
 alati/
   najave/     predložak i generator naslovnih slika za najave kola
@@ -99,7 +104,8 @@ raspored_migracija.sql  jednokratna migracija (već pokrenuta 08/2026)
 - **`utakmice`** — jedan redak po utakmici, odigranoj i neodigranoj.
   Ključ za upsert: (`natjecanje`, `sezona`, `kolo`, `domacin`, `gost`).
   Polja koja scraper NE dira: `derbi`, `tekst_clanka`, `slika_url`,
-  `autogolovi`
+  `autogolovi`. Ručni termin (`datum_rucno`, `vrijeme_rucno`) također je
+  korisnikov unos, ali ga scraper obriše kad HNS upiše isti termin
   (to su korisnikovi unosi i moraju preživjeti svako osvježavanje).
   `datum` / `vrijeme` / `stadion` dolaze s retka rasporeda i postoje i
   prije odigravanja; `stadion_datum` se puni tek iz zapisnika.
@@ -226,6 +232,40 @@ Zapaženo, ali namjerno neiskorišteno: u traci strijelaca domaći pogodak ima
 `div.playerName` PRIJE `div.event`, a gostujući obrnuto. Viđeno na jednom
 zapisniku i presentacijske je naravi, pa se klub i dalje određuje po
 postavi.
+
+**Termin se zna promijeniti bilo kojeg dana, i to bez najave.**
+HNS premještanje utakmice ne objavljuje nigdje; samo tiho prepiše redak
+rasporeda. NK Žminj - NK Ližnjan (2. kolo 4. NL NS Rijeka) tako je s
+05.09. prebačen na 04.09.2026., a stranica je i dalje pokazivala stari
+datum, jer je puni scraper zadnji put išao u ponedjeljak ujutro.
+
+Puni prolaz otvara svaki zapisnik i traje dvadesetak minuta po ligi, pa se
+ne može vrtjeti svaki dan. Zato postoji `--samo-raspored`: čita SAMO retke
+rasporeda (jedna stranica po ligi, nekoliko sekundi) i osvježava datum,
+vrijeme i stadion. Rezultati, postave i rang-liste se ne diraju.
+`.github/workflows/termini.yml` to pokreće svaki dan ujutro i
+poslijepodne, pa se premještaj uhvati isti dan, bez ručne provjere na
+Semaforu.
+
+Promjena termina nije ni greška ni upozorenje, ali se ne smije progutati:
+scraper uspoređuje termin s onim u bazi, promjene ispisuje na kraju
+(`PROMIJENJENI TERMINI`), a uz `--izvjestaj-promjena` ih zapiše u datoteku
+od koje GitHub napravi issue. Time se vidi treba li ispraviti već napisanu
+najavu kola.
+
+Dva pravila uz to, oba čuva `test_termini.py`:
+
+- Prazan termin s HNS-a NE briše onaj u bazi. Ako se redak rasporeda
+  jednom ne pročita kako treba, bolje je zadržati zadnji poznati termin
+  nego stranicu ostaviti bez njega. Ispiše se kao napomena.
+- Ručni termin (`datum_rucno`, `vrijeme_rucno`, vidi `sql/termin_rucno.sql`)
+  ima prednost pred HNS-om, za slučaj da Semafor zaostaje. Dok se od
+  Semafora razlikuje, scraper ga ne dira, nego njegovu vrijednost upisuje
+  u `datum` i `vrijeme`, pa stranica ostaje nepromijenjena. Čim HNS upiše
+  isti termin, scraper sam obriše ručni unos. To je jedina iznimka od
+  pravila da ručne stupce ne dira, i postoji zato što bi zaboravljen ručni
+  termin kasnije zaustavio pravu promjenu s HNS-a, bez ijedne poruke.
+  Briše se samo kad je jednak onome što HNS pokazuje, pa se ništa ne gubi.
 
 **Tablica poretka se scrapa, ne računa.**
 Službena tablica već uključuje kaznene bodove (npr. "NK Crikvenica (-3)").
