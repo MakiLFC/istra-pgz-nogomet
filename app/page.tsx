@@ -10,7 +10,7 @@ import { dohvatiClanke } from "@/lib/clanci";
 import Otkrivanje from "@/components/Otkrivanje";
 import Hero from "@/components/Hero";
 import OvajVikend from "@/components/OvajVikend";
-import { zadnjeKolo, golovi } from "@/lib/kolo";
+import { zadnjeKolo, utakmiceKola, golovi } from "@/lib/kolo";
 
 export const revalidate = 300;
 
@@ -159,22 +159,32 @@ export default async function Home() {
           const utakmiceLige = grupe[liga.naziv];
           if (!utakmiceLige || utakmiceLige.length === 0) return null;
 
-          // Derbi lige (ako je označen) uvijek ulazi u prikaz, i to na prvo
-          // mjesto - ostatak popunjavamo najnovijim utakmicama do ukupno 6.
+          // Sekcija se zove "Rezultati · N. kolo", pa i pokazuje utakmice
+          // TOG kola, i to samo odigrane.
+          //
+          // Prije se uzimalo šest najnovijih odigranih utakmica lige, uz
+          // označeni derbi na prvom mjestu. To je imalo dvije rupe:
+          //
+          //   1. derbi se uzimao iz SVIH utakmica lige, bez provjere je li
+          //      odigran, pa je neodigrana utakmica označena kao derbi
+          //      upadala među rezultate, s "?:?" umjesto rezultata, i još
+          //      istiskivala jedan pravi rezultat. Tako se 02.09.2026.
+          //      Pomorac - Jadran-Poreč iz 2. kola našao među rezultatima
+          //      prvog.
+          //   2. šest najnovijih zna pomiješati dva kola čim se odigra prva
+          //      utakmica novog, a naslov bi i dalje govorio samo o jednom.
+          //
+          // Sada je popis vezan uz kolo iz naslova, pa oba slučaja otpadaju.
           const kolo = zadnjeKolo(utakmiceSezone, liga.naziv);
-          const derbi = utakmiceLige.find((u) => u.derbi) ?? null;
-          // "Rezultati" prikazuje samo ODIGRANE utakmice - raspored sad sadrži
-          // i buduće (bez rezultata), koje bi inače ovdje istisnule prave
-          // rezultate jer su najnovije upisane u bazu (created_at).
-          const odigraneLige = utakmiceLige.filter((u) => golovi(u.rezultat));
-          const ostale = derbi
-            ? odigraneLige.filter((u) => u.id !== derbi.id)
-            : odigraneLige;
+          const odigraneKola = utakmiceKola(utakmiceSezone, liga.naziv, kolo)
+            .filter((u) => golovi(u.rezultat));
+          // Označeni derbi ide na prvo mjesto, ako je iz ovog kola i odigran.
+          const derbi = odigraneKola.find((u) => u.derbi) ?? null;
           const najnovije = derbi
-            ? [derbi, ...ostale.slice(0, 5)]
-            : ostale.slice(0, 6);
+            ? [derbi, ...odigraneKola.filter((u) => u.id !== derbi.id)]
+            : odigraneKola;
           // Prije početka sezone raspored postoji, ali nijedna utakmica
-          // još nije odigrana (ni derbi označen) - ništa za prikazati ovdje.
+          // još nije odigrana - ništa za prikazati ovdje.
           if (najnovije.length === 0) return null;
 
           return (
