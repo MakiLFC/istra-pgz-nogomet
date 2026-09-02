@@ -57,6 +57,8 @@ prepiše ili se stavi zarez, dvotočka ili točka.
   - `.github/workflows/termini.yml` (samo termini s rasporeda) svaki dan
     ujutro i poslijepodne; kad je koja utakmica premještena, otvori issue
     na GitHubu, pa o tome stigne e-pošta
+  - `.github/workflows/provjere.yml` (pyflakes i testovi koji ne diraju
+    internet ni bazu) na svaki push i pull request
 
 ## Struktura
 
@@ -266,6 +268,24 @@ Dva pravila uz to, oba čuva `test_termini.py`:
   pravila da ručne stupce ne dira, i postoji zato što bi zaboravljen ručni
   termin kasnije zaustavio pravu promjenu s HNS-a, bez ijedne poruke.
   Briše se samo kad je jednak onome što HNS pokazuje, pa se ništa ne gubi.
+
+**Ime upotrijebljeno dvaput za dvije stvari ruši scraper tek u pogonu.**
+02.09.2026. pao je posao "Provjera termina" s porukom
+`TypeError: 'str' object is not callable`. U petlji po utakmicama stajala
+je varijabla `opis_utakmice`, isto kao funkcija dodana iznad, pa je od tog
+retka to ime značilo tekst.
+
+Testovi to nisu mogli uhvatiti: pozivaju funkciju izravno, a u suhom testu
+nema veze prema bazi, pa se do spornog retka ni ne dođe. Pyflakes je to
+javljao kao `redefinition of unused 'opis_utakmice' from line 690`.
+
+Zato postoji `.github/workflows/provjere.yml`: na svaki push i pull request
+pokrene pyflakes nad svim Python datotekama i one testove koji ne diraju
+internet ni bazu. Verzija pyflakesa je zakovana, da novo izdanje ne
+pocrveni posao samo od sebe. Testovi koji dohvaćaju Semafor
+(`test_raspored.py`, `test_tablica.py`, `scraper_test.py`,
+`dijagnostika_*.py`) namjerno nisu ondje: padali bi kad god HNS ne
+odgovori, a to nije greška u našem kodu.
 
 **Klub zna napustiti natjecanje, a scraper zna samo dodavati.**
 NK Novalja je 02.09.2026., dan prije 1. kola, napustila 4. NL NS Rijeka.
