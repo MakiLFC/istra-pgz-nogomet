@@ -92,21 +92,31 @@ def main():
         (9, "NK Cres", "NK Klana"): {"rezultat": None},
     }
     nestale = scraper_supabase.nestale_s_rasporeda(ostalo, u_bazi)
+    opisi = [scraper_supabase.opis_utakmice(u) for u in nestale]
     sve &= provjeri(len(nestale) == 2, "prijavljene su dvije utakmice")
     sve &= provjeri(
-        any("NK Klana - NK Funtana" in o for o in nestale),
+        any("NK Klana - NK Funtana" in o for o in opisi),
         "par kojeg nema na rasporedu je prijavljen",
     )
     sve &= provjeri(
-        any("ima rezultat" in o for o in nestale),
+        any("ima rezultat" in o for o in opisi),
         "odigrana utakmica je posebno označena",
     )
     sve &= provjeri(
-        not any("9. kolo" in o for o in nestale),
+        not any("9. kolo" in o for o in opisi),
         "kolo koje nije čitano ne ispada kao nestalo",
     )
-    for opis in nestale:
+    for opis in opisi:
         print(f"         {opis}")
+
+    print("4. brisanje nestalih ide samo uz zastavicu i samo bez rezultata")
+    odigrana = next(u for u in nestale if u["rezultat"])
+    sve &= provjeri(
+        scraper_supabase.obrisi_nestalu_utakmicu(
+            "4. NL NS Rijeka", "2026/27", odigrana
+        ) is False,
+        "utakmica s rezultatom se ne briše ni kad se brisanje traži",
+    )
 
     print()
     print("PROLAZI" if sve else "NE PROLAZI")
