@@ -43,6 +43,9 @@ load_dotenv()  # učitava SUPABASE_URL i SUPABASE_SERVICE_KEY iz .env datoteke
 #   --samo-raspored        osvježi samo termine (datum, vrijeme, stadion)
 #                          s retka rasporeda, bez otvaranja zapisnika i
 #                          bez rang-lista; traje sekundu po ligi
+#   --obrisi-nestale       obriši utakmice kojih na rasporedu više nema
+#                          (samo one bez rezultata); bez toga se samo
+#                          prijavljuju, jer je brisanje nepovratno
 #   --izvjestaj-promjena DATOTEKA
 #                          ako se ijedan termin promijenio, ispiši promjene
 #                          u tu datoteku (GitHub od nje radi obavijest);
@@ -679,9 +682,33 @@ def nestale_s_rasporeda(procitane, u_bazi):
     for kljuc, redak in u_bazi.items():
         kolo, domacin, gost = kljuc
         if kolo in kola and kljuc not in kljucevi:
-            oznaka = " (ima rezultat, ne dirati bez provjere)" if redak.get("rezultat") else ""
-            nestale.append(f"{kolo}. kolo, {domacin} - {gost}{oznaka}")
-    return sorted(nestale)
+            nestale.append({"kolo": kolo, "domacin": domacin, "gost": gost,
+                            "rezultat": redak.get("rezultat")})
+    return sorted(nestale, key=lambda u: (u["kolo"], u["domacin"], u["gost"]))
+
+
+def opis_utakmice(utakmica):
+    """Jedan redak ispisa: kolo, par i oznaka ako utakmica ima rezultat."""
+    oznaka = " (ima rezultat, ne dirati bez provjere)" if utakmica.get("rezultat") else ""
+    return f"{utakmica['kolo']}. kolo, {utakmica['domacin']} - {utakmica['gost']}{oznaka}"
+
+
+def obrisi_nestalu_utakmicu(naziv_natjecanja, sezona, utakmica):
+    """Briše jednu utakmicu koje na rasporedu više nema.
+
+    Ide samo uz izričitu zastavicu --obrisi-nestale, nikad sam od sebe, i
+    nikad utakmicu s rezultatom. Vraća je li redak stvarno obrisan.
+    """
+    if POSTAVKE["dry_run"] or utakmica.get("rezultat"):
+        return False
+    odgovor = (
+        klijent().table("utakmice").delete()
+        .eq("natjecanje", naziv_natjecanja).eq("sezona", sezona)
+        .eq("kolo", utakmica["kolo"]).eq("domacin", utakmica["domacin"])
+        .eq("gost", utakmica["gost"]).is_("rezultat", "null")
+        .execute()
+    )
+    return bool(odgovor.data)
 
 
 def _ispis_termina(datum, vrijeme):
@@ -1200,6 +1227,10 @@ def _postavke_iz_naredbe():
     p.add_argument("--samo-raspored", action="store_true",
                    help="osvježi samo termine s rasporeda (datum, vrijeme, "
                         "stadion), bez zapisnika i rang-lista")
+    p.add_argument("--obrisi-nestale", action="store_true",
+                   help="obriši i utakmice kojih na rasporedu više nema "
+                        "(samo one bez rezultata); bez ove zastavice se "
+                        "samo prijavljuju")
     p.add_argument("--izvjestaj-promjena", metavar="DATOTEKA",
                    help="promijenjene termine ispiši i u tu datoteku "
                         "(stvara se samo ako promjena ima)")
@@ -1413,8 +1444,15 @@ if __name__ == "__main__":
 
         # Utakmice koje su u bazi, a na rasporedu ih više nema.
         if utakmice_s_kolima:
-            for opis in nestale_s_rasporeda(utakmice_s_kolima, postojeci_termini):
-                nestale_utakmice.append(f"{natjecanje['naziv']}, {opis}")
+            for utakmica in nestale_s_rasporeda(utakmice_s_kolima, postojeci_termini):
+                opis = f"{natjecanje['naziv']}, {opis_utakmice(utakmica)}"
+                if args.obrisi_nestale and obrisi_nestalu_utakmicu(
+                    natjecanje["naziv"], SEZONA, utakmica
+                ):
+                    obrisane_utakmice.append(opis)
+                    print(f"  OBRISANO iz baze: {opis}")
+                else:
+                    nestale_utakmice.append(opis)
 
     print(f"\n{'=' * 60}")
     if POSTAVKE["dry_run"]:
@@ -1441,8 +1479,7 @@ if __name__ == "__main__":
             print(f"  - {opis}")
 
     if obrisane_utakmice:
-        print(f"\nOBRISANE UTAKMICE KLUBOVA IZVAN NATJECANJA "
-              f"({len(obrisane_utakmice)}):")
+        print(f"\nOBRISANE UTAKMICE ({len(obrisane_utakmice)}):")
         for opis in obrisane_utakmice:
             print(f"  - {opis}")
 
@@ -1453,7 +1490,8 @@ if __name__ == "__main__":
         for opis in nestale_utakmice:
             print(f"  - {opis}")
         print("\nOve utakmice su u bazi, a HNS ih na rasporedu ne pokazuje. "
-              "Ništa nije obrisano; treba ih pogledati.")
+              "Ništa nije obrisano; treba ih pogledati. Kad se pokaže da im "
+              "ondje nije mjesto, pokreni s --obrisi-nestale.")
 
     if args.izvjestaj_promjena and not POSTAVKE["dry_run"] and (
         promjene_termina or nestale_utakmice or obrisane_utakmice
@@ -1466,7 +1504,7 @@ if __name__ == "__main__":
                 f.write("\nStranica je već ažurirana. Provjeri jesu li "
                         "najave i osvrti u skladu s novim terminom.\n\n")
             if obrisane_utakmice:
-                f.write("Obrisane utakmice klubova izvan natjecanja:\n\n")
+                f.write("Obrisane utakmice:\n\n")
                 for opis in obrisane_utakmice:
                     f.write(f"- {opis}\n")
                 f.write("\n")
@@ -1476,7 +1514,9 @@ if __name__ == "__main__":
                     f.write(f"- {opis}\n")
                 f.write("\nNije obrisano ništa. Uzrok može biti odustali klub, "
                         "presloženi parovi po kolima ili loše pročitana "
-                        "stranica, pa to treba pogledati.\n")
+                        "stranica, pa to treba pogledati. Kad se pokaže da im "
+                        "u bazi nije mjesto, pokreni Provjeru termina s "
+                        "uključenim brisanjem.\n")
         print(f"Popis je spremljen u {args.izvjestaj_promjena}.")
 
     # Upozorenja nisu greške: podatak je uredno spremljen, ali nešto u

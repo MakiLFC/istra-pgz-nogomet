@@ -19,6 +19,14 @@
 # RUČNO POKRETANJE: repo -> Actions -> "Provjera termina" -> Run workflow.
 # Korisno kad se sazna da je utakmica premještena, a ne čeka se sljedeći
 # redoviti prolaz.
+#
+# KVAČICA "Obriši i utakmice kojih na rasporedu više nema"
+# Utakmice koje su u bazi, a HNS ih na rasporedu ne pokazuje, redovito se
+# samo prijavljuju, jer bi jedno loše pročitano čitanje stranice inače
+# obrisalo cijelu ligu. Kad se u prijavi vidi da im u bazi doista nije
+# mjesto (npr. HNS je presložio parove, pa je stari zapis ostao kao duh),
+# pokrene se ovaj posao s uključenom kvačicom i oni se obrišu. Nikad se ne
+# briše utakmica koja ima rezultat. Dnevna pokretanja ovo NIKAD ne rade.
 
 name: Provjera termina
 
@@ -27,7 +35,12 @@ on:
     # GitHub cron radi u UTC vremenu (ljeti +2 sata za hrvatsko vrijeme).
     - cron: "0 5 * * *"    # svaki dan ujutro
     - cron: "0 15 * * *"   # svaki dan poslijepodne
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      obrisi_nestale:
+        description: "Obriši i utakmice kojih na rasporedu više nema (samo one bez rezultata)"
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -56,6 +69,7 @@ jobs:
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: |
           python scraper_supabase.py --samo-raspored \
+            ${{ inputs.obrisi_nestale && '--obrisi-nestale' || '' }} \
             --izvjestaj-promjena promjene_termina.txt
 
       - name: Javi ako je koja utakmica premještena

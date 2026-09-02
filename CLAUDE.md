@@ -290,7 +290,17 @@ Odatle dvije stvari u `scraper_supabase.py`:
   ulaze u dnevnu obavijest. NIŠTA se ne briše samo od sebe, jer bi jedno
   loše pročitano čitanje stranice obrisalo cijelu ligu. Uspoređuju se samo
   kola koja su u tom prolazu stvarno pročitana, pa uz `--kolo` ostala kola
-  ne ispadnu nestala.
+  ne ispadnu nestala. Kad se u prijavi vidi da im u bazi doista nije
+  mjesto, briše ih `--obrisi-nestale`, i to samo one bez rezultata. U
+  poslu "Provjera termina" to je kvačica pri ručnom pokretanju; dnevna
+  pokretanja nikad ne brišu.
+
+Prva takva prijava, 02.09.2026., pokazala je i staru zamku: HNS je u
+1. kolu 4. NL NS Rijeka jednom pokazivao NK Medulin 1921 - NK Smoljanci
+Sloboda, pa par okrenuo. Kako domaćin i gost ulaze u ključ za upsert,
+okrenuti par se upisao kao NOVA utakmica, a stara je ostala kao duh. Zato
+je važno da se nestale utakmice uopće prijavljuju: bez toga se to vidi tek
+kao kolo s previše utakmica.
 
 Popis klubova stoji i u `natjecanja.json`, u polju
 `klubovi_izvan_natjecanja`. Čuva `test_odustali_klub.py`.
