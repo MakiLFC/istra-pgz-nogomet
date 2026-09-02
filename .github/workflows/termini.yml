@@ -1,0 +1,68 @@
+# Dnevna provjera termina (samo raspored, bez zapisnika).
+#
+# ČEMU SLUŽI
+# Glavni scraper (scraper.yml) ide vikendom, ponedjeljkom i srijedom, i
+# svaki put prođe kroz sve zapisnike, što traje dvadesetak minuta. Termini
+# se, međutim, mijenjaju bilo kojeg dana: NK Žminj - NK Ližnjan premješten
+# je s 05.09. na 04.09.2026., a takvu bi promjenu glavni scraper vidio tek
+# u subotu navečer, dakle nakon utakmice.
+#
+# Ovaj posao zato svaki dan, ujutro i popodne, pročita SAMO retke rasporeda
+# (četiri stranice, nekoliko sekundi) i osvježi datum, vrijeme i stadion.
+# Rezultati, postave i rang-liste se ne diraju.
+#
+# ŠTO SE DOGODI KAD SE TERMIN PROMIJENI
+# Stranica se ažurira sama. Uz to se otvara issue na GitHubu s popisom
+# premještenih utakmica, pa o promjeni stigne poruka e-poštom i vidi se
+# treba li ispraviti najavu kola. Ako promjena nema, ne događa se ništa.
+#
+# RUČNO POKRETANJE: repo -> Actions -> "Provjera termina" -> Run workflow.
+# Korisno kad se sazna da je utakmica premještena, a ne čeka se sljedeći
+# redoviti prolaz.
+
+name: Provjera termina
+
+on:
+  schedule:
+    # GitHub cron radi u UTC vremenu (ljeti +2 sata za hrvatsko vrijeme).
+    - cron: "0 5 * * *"    # svaki dan ujutro
+    - cron: "0 15 * * *"   # svaki dan poslijepodne
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  issues: write            # potrebno za obavijest o promjeni termina
+
+jobs:
+  termini:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Preuzmi kod
+        uses: actions/checkout@v4
+
+      - name: Postavi Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instaliraj pakete
+        run: pip install -r requirements.txt
+
+      - name: Osvježi termine
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: |
+          python scraper_supabase.py --samo-raspored \
+            --izvjestaj-promjena promjene_termina.txt
+
+      - name: Javi ako je koja utakmica premještena
+        if: hashFiles('promjene_termina.txt') != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "Promjena termina ($(date +%d.%m.%Y.))" \
+            --body-file promjene_termina.txt

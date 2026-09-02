@@ -13,6 +13,12 @@
 #       run: python scraper/scraper_supabase.py
 #
 # RUČNO POKRETANJE: repo -> Actions -> "Scraper HNS Semafor" -> Run workflow.
+#
+# SAMO TERMINI: ovaj posao svaki put prođe i kroz sve zapisnike, pa traje
+# dvadesetak minuta po ligi. Kad treba samo osvježiti datume i vremena
+# (npr. čim se sazna da je utakmica premještena), brži je posao
+# "Provjera termina" (.github/workflows/termini.yml), koji čita samo
+# retke rasporeda i gotov je za nekoliko sekundi.
 
 name: Scraper HNS Semafor
 
