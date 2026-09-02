@@ -1400,13 +1400,13 @@ if __name__ == "__main__":
                 datum, vrijeme, promjena, napomena, ocisti_rucno = odredi_termin(
                     stavka, postojeci_termini.get(kljuc, {})
                 )
-                opis_utakmice = (f"{natjecanje['naziv']}, {stavka['kolo']}. kolo, "
-                                 f"{stavka['domacin']} - {stavka['gost']}")
+                opis_susreta = (f"{natjecanje['naziv']}, {stavka['kolo']}. kolo, "
+                                f"{stavka['domacin']} - {stavka['gost']}")
                 if promjena:
-                    promjene_termina.append(f"{opis_utakmice}: {promjena}")
+                    promjene_termina.append(f"{opis_susreta}: {promjena}")
                     print(f"      PROMJENA TERMINA: {promjena}")
                 if napomena:
-                    upozorenja.append(f"{opis_utakmice}: {napomena}")
+                    upozorenja.append(f"{opis_susreta}: {napomena}")
                     print(f"      NAPOMENA: {napomena}")
                 detalji["datum"] = datum
                 detalji["vrijeme"] = vrijeme
