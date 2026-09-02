@@ -235,7 +235,7 @@ postavi.
 
 **Termin se zna promijeniti bilo kojeg dana, i to bez najave.**
 HNS premještanje utakmice ne objavljuje nigdje; samo tiho prepiše redak
-rasporeda. NK Žminj - NK Ližnjan (2. kolo 4. NL NS Rijeka) tako je s
+rasporeda. NK Žminj - NK Ližnjan (1. kolo 4. NL NS Rijeka) tako je s
 05.09. prebačen na 04.09.2026., a stranica je i dalje pokazivala stari
 datum, jer je puni scraper zadnji put išao u ponedjeljak ujutro.
 
