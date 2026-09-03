@@ -249,6 +249,39 @@ def _je_kraj_rasporeda(tekst):
     return " ".join(tekst.split()).casefold() in KRAJ_RASPOREDA
 
 
+def dohvati_stranicu(url):
+    """Dohvaća stranicu s HNS-a, uz ponavljanje kad Semafor ne odgovori.
+
+    Semafor zna povremeno ne odgovoriti. 03.09.2026. je zbog toga pala
+    dnevna "Provjera termina": prvi dohvat stranice lige istekao je nakon
+    15 sekundi i srušio cijelo pokretanje, iako u našem kodu nije bilo
+    ničega neispravnog.
+
+    Jedan neuspjeli pokušaj zato više ne znači ništa. Čeka se duže (30
+    sekundi) i pokušava tri puta, s pauzom koja raste. Ako ni treći put ne
+    uspije, greška ide dalje: tada Semafor stvarno ne radi i to se mora
+    vidjeti.
+    """
+    najvise_pokusaja = 3
+    zadnja_greska = None
+
+    for pokusaj in range(1, najvise_pokusaja + 1):
+        try:
+            odgovor = requests.get(url, headers=HEADERS, timeout=30)
+            odgovor.raise_for_status()
+            return odgovor
+        except requests.RequestException as greska:
+            zadnja_greska = greska
+            if pokusaj < najvise_pokusaja:
+                pauza = 5 * pokusaj
+                print(f"  HNS nije odgovorio ({greska.__class__.__name__}), "
+                      f"pokušaj {pokusaj} od {najvise_pokusaja}. "
+                      f"Ponavljam za {pauza} s.")
+                time.sleep(pauza)
+
+    raise zadnja_greska
+
+
 def dohvati_popis_utakmica(natjecanje_url):
     """
     Otvara stranicu natjecanja i vraća listu utakmica CIJELOG rasporeda -
@@ -266,8 +299,7 @@ def dohvati_popis_utakmica(natjecanje_url):
     utakmica još nije odigrala).
     """
     print(f"Dohvaćam: {natjecanje_url}")
-    response = requests.get(natjecanje_url, headers=HEADERS, timeout=15)
-    response.raise_for_status()
+    response = dohvati_stranicu(natjecanje_url)
     soup = BeautifulSoup(response.text, "html.parser")
 
     pocetna_tocka = None
@@ -370,8 +402,7 @@ def dohvati_popis_utakmica(natjecanje_url):
 
 def dohvati_detalje_utakmice(utakmica_url):
     """Otvara stranicu jedne utakmice i vraća sve podatke za bazu."""
-    response = requests.get(utakmica_url, headers=HEADERS, timeout=15)
-    response.raise_for_status()
+    response = dohvati_stranicu(utakmica_url)
     soup = BeautifulSoup(response.text, "html.parser")
 
     tekst_stranice = soup.get_text(separator="\n")
@@ -1159,8 +1190,7 @@ def slozi_listu_nastupa(igraci, rezerva, koliko=2000):
 def dohvati_i_spremi_statistike(natjecanje_naziv, natjecanje_url):
     """Dohvaća tablicu + PUNE rang-liste sa stranice natjecanja i sprema u
     Supabase tablicu 'statistike' (jedan redak po ligi i tipu, upsert)."""
-    response = requests.get(natjecanje_url, headers=HEADERS, timeout=15)
-    response.raise_for_status()
+    response = dohvati_stranicu(natjecanje_url)
     soup = BeautifulSoup(response.text, "html.parser")
 
     tablica = parsiraj_tablicu_lige(soup)
@@ -1315,7 +1345,19 @@ if __name__ == "__main__":
             utakmice_s_kolima = []
             print("Samo statistike: raspored i zapisnici se preskaču.")
         else:
-            utakmice_s_kolima = dohvati_popis_utakmica(natjecanje["url"])
+            # Ako se stranica lige ne može pročitati, ta liga ispada iz
+            # ovog prolaza, ali ostale se svejedno obrade. Prije je takav
+            # neuspjeh rušio cijelo pokretanje, pa bi zbog jedne lige
+            # ostale tri ostale neosvježene. Greška se broji, pa pokretanje
+            # na kraju svejedno završava crveno.
+            try:
+                utakmice_s_kolima = dohvati_popis_utakmica(natjecanje["url"])
+            except Exception as greska:
+                ukupno_gresaka += 1
+                greske.append(f"raspored, {natjecanje['naziv']}: {greska}")
+                print(f"  GREŠKA kod rasporeda: {greska}")
+                print("  Ta liga se preskače, ostale idu dalje.")
+                continue
             if args.samo_raspored:
                 print("Samo raspored: zapisnici se ne otvaraju.")
             if args.kolo is not None:

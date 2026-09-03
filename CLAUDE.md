@@ -269,6 +269,25 @@ Dva pravila uz to, oba čuva `test_termini.py`:
   termin kasnije zaustavio pravu promjenu s HNS-a, bez ijedne poruke.
   Briše se samo kad je jednak onome što HNS pokazuje, pa se ništa ne gubi.
 
+**HNS ne odgovori uvijek iz prve, i to nije naša greška.**
+03.09.2026. pala je dnevna "Provjera termina" s porukom
+`ReadTimeout: Read timed out (read timeout=15)`, već na prvom dohvatu
+stranice lige. Jedan neuspjeli dohvat srušio je cijelo pokretanje, pa su
+i ostale tri lige ostale neosvježene, a na e-poštu je stigla obavijest o
+grešci koje u našem kodu nije bilo.
+
+Otud dvije stvari:
+
+- `dohvati_stranicu` je jedini put prema Semaforu: čeka 30 sekundi i
+  pokušava tri puta, s pauzom 5 pa 10 sekundi. Tek ako ni treći put ne
+  uspije, greška ide dalje. Čuva `test_ponavljanje.py`.
+- Liga čija se stranica ne može pročitati ispada iz tog prolaza, ali
+  ostale se svejedno obrade. Greška se broji i pokretanje na kraju
+  svejedno završava crveno, jer podatak stvarno nedostaje.
+
+Lažno crveno je skupo: obavijest koju se nauči preskakati ne vrijedi
+ništa. Zato se ponavlja prije nego se prijavi, ali se i dalje prijavljuje.
+
 **Ime upotrijebljeno dvaput za dvije stvari ruši scraper tek u pogonu.**
 02.09.2026. pao je posao "Provjera termina" s porukom
 `TypeError: 'str' object is not callable`. U petlji po utakmicama stajala

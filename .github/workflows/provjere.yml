@@ -64,7 +64,8 @@ jobs:
       - name: Testovi koji ne diraju internet ni bazu
         run: |
           for test in test_kraj_rasporeda test_suhi_test test_termini \
-                      test_odustali_klub test_nastupi test_autogol; do
+                      test_odustali_klub test_nastupi test_autogol \
+                      test_ponavljanje; do
             echo "=============================================="
             echo "$test.py"
             echo "=============================================="
