@@ -61,11 +61,12 @@
       ]
     },
     {
+      "_napomena": "NK Novalja je 02.09.2026. napustila natjecanje, pa je njezina utakmica s Otočcem maknuta, a liga ima 13 klubova. Smoljanci Sloboda su domaćini Medulinu, kako stoji na rasporedu.",
       "dat": "4-nl-ns-rijeka-kolo-1",
       "kolo": "1",
       "oznaka": "4. NL NS Rijeka · sezona 2026/27",
-      "podnaslov": "Sedam utakmica otvara novu sezonu četvrtog ranga",
-      "datum": "SUB 05.09.2026.",
+      "podnaslov": "Šest utakmica otvara novu sezonu četvrtog ranga",
+      "datum": "PET 04.09. i SUB 05.09.2026.",
       "sat": "Sve utakmice u 17:30",
       "utakmice": [
         {
@@ -87,12 +88,6 @@
           "gk": "ŠTI"
         },
         {
-          "d": "Otočac",
-          "dk": "OTO",
-          "g": "Novalja",
-          "gk": "NOV"
-        },
-        {
           "d": "Cres",
           "dk": "CRE",
           "g": "Rječina",
@@ -105,10 +100,10 @@
           "gk": "FUN"
         },
         {
-          "d": "Medulin 1921",
-          "dk": "MED",
-          "g": "Smoljanci",
-          "gk": "SMO"
+          "d": "Smoljanci",
+          "dk": "SMO",
+          "g": "Medulin 1921",
+          "gk": "MED"
         }
       ]
     },
