@@ -412,6 +412,32 @@ javnoj varijabli sada ruše build. Vercel u tom slučaju ostavlja zadnju
 ispravnu verziju na zraku. Adresa stranice ide u `NEXT_PUBLIC_SITE_URL`,
 nikad u `NEXT_PUBLIC_SUPABASE_URL`.
 
+**Za objavu na Facebooku s opisom i označavanjem ne koristi se naš gumb.**
+03.09.2026. najava 1. kola 4. NL nije se dala objaviti: Facebookov
+prozorčić ostao je na vrtećem krugu desetak minuta. Članak se pritom
+uredno otvarao u anonimnom prozoru, a Facebookov alat za provjeru
+(`developers.facebook.com/tools/debug/`) javljao je samo da nedostaje
+`fb:app_id`. Ta oznaka služi aplikacijama koje koriste Facebook prijavu i
+statistiku, za dijeljenje ne treba i nije bila uzrok.
+
+Gumb u `components/Dijeljenje.tsx` šalje najjednostavniji mogući oblik,
+samo adresu (`sharer.php?u=...`), i s naše strane nema se što zaglaviti.
+Zaglavio se Facebookov skraćeni uređivač: u njemu je pisan opis i označen
+klub, a označavanje ondje zna ostati na vrtećem krugu. Objava izravno s
+Facebooka prošla je iz prve.
+
+Pravilo je otud: naš gumb služi za brzo dijeljenje bez opisa. Kad objava
+ima tekst ili označene klubove, ide se u pravi uređivač na Facebooku:
+zalijepi se adresa, pričeka pregled sa slikom, obriše zalijepljeni tekst
+adrese, pa se piše opis i označava.
+
+Druga zamka je Facebookovo pamćenje. Neobjavljen članak stranica ne
+prikazuje (RLS pušta samo `objavljen = true`), pa adresa vraća "nije
+pronađeno". Ako Facebook stranicu pročita u tom trenutku, to zapamti i
+kasnija objava ne pomaže sama od sebe. Rješenje je gumb "Scrape Again" u
+gornjem alatu, koji ga natjera da pročita iznova. Isto vrijedi kad se
+zamijeni slika, a ime datoteke ostane isto.
+
 **U CSS-u svi `@import` moraju biti prije `@import "tailwindcss"`.**
 Tailwind se razmota u stotine redaka i svaki `@import` iza njega ruši build.
 
