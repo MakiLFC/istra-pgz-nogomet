@@ -30,6 +30,13 @@ on:
     - cron: "0 19 * * 0"   # nedjelja navečer
     - cron: "0 6 * * 1"    # ponedjeljak ujutro (sigurnosna runda za kasno
                            # unesene rezultate i nedjeljne večernje utakmice)
+    - cron: "0 20 * * 5"   # petak navečer (od ove sezone se dio kola igra
+                           # u petak: 3. NL Zapad ima petkom po jednu
+                           # utakmicu, a 04.09.2026. i 4. NL otvara kolo
+                           # susretom Žminj - Ližnjan. Bez ove runde takav
+                           # bi rezultat čekao subotu navečer. 20:00 UTC je
+                           # 22:00 po hrvatskom, dakle oko dva i pol sata
+                           # nakon kraja utakmice u 17:30.)
     - cron: "0 19 * * 3"   # srijeda navečer (odgođene i sredinom tjedna
                            # zakazane utakmice; npr. 1. ŽNL PGŽ ima
                            # Omladinac Vrata - Vrbovsko u srijedu 09.09.2026.
