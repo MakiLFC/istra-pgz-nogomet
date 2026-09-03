@@ -52,8 +52,9 @@ prepiše ili se stavi zarez, dvotočka ili točka.
 - **Scraper:** Python (`requests` + `BeautifulSoup`), bez Playwrighta
 - **Automatizacija:** GitHub Actions
   - `.github/workflows/scraper.yml` (puni prolaz: raspored, zapisnici,
-    rang-liste) subotom i nedjeljom navečer, ponedjeljkom ujutro i
-    srijedom navečer (zbog utakmica zakazanih sredinom tjedna)
+    rang-liste) petkom, subotom i nedjeljom navečer, ponedjeljkom ujutro
+    i srijedom navečer (petkom jer se dio kola igra u petak, srijedom
+    zbog utakmica zakazanih sredinom tjedna)
   - `.github/workflows/termini.yml` (samo termini s rasporeda) svaki dan
     ujutro i poslijepodne; kad je koja utakmica premještena, otvori issue
     na GitHubu, pa o tome stigne e-pošta
