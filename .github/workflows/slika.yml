@@ -1,0 +1,86 @@
+# Rezanje fotografije za članak.
+#
+# ČEMU SLUŽI
+# Fotografije uz članke stižu s mobitela, uspravne i velike. U članku se
+# slika prikazuje cijela, u svom omjeru, pa uspravna zauzme gotovo cijeli
+# ekran, a na kartici u popisu novosti bude odrezana na 16:9 iz sredine.
+# Ovaj posao skine sliku s njezine adrese, izreže je na zadani omjer i
+# spremi u repozitorij, u mapu public/slike/clanci.
+#
+# ZAŠTO POSAO, A NE RUČNO
+# Radni prostor u kojem Claude radi nema pristup internetu, pa ne može
+# sam skinuti sliku sa Storagea. GitHub može.
+#
+# KAKO SE POKREĆE
+# Actions -> "Izreži sliku" -> Run workflow, pa se popune polja:
+#   adresa  javna adresa slike (Supabase Storage ili bilo koja druga)
+#   ime     ime izlazne datoteke, npr. lokomotiva-crikvenica-2026-09-04.jpg
+#   omjer   3:2 (zadano), 16:9, 4:3
+#   pomak   gdje unutar visoke slike leži izrezani pojas:
+#           0 vrh, 50 sredina, 100 dno
+#
+# Rezultat se sprema na granu koja se ovdje odabere, u
+# public/slike/clanci/<ime>, pa se odande može poslati ili odmah
+# upotrijebiti kao slika_url oblika /slike/clanci/<ime>.
+
+name: Izreži sliku
+
+on:
+  workflow_dispatch:
+    inputs:
+      adresa:
+        description: "Adresa slike (javna poveznica)"
+        required: true
+        type: string
+      ime:
+        description: "Ime izlazne datoteke, npr. utakmica-2026-09-04.jpg"
+        required: true
+        type: string
+      omjer:
+        description: "Omjer izreza"
+        required: true
+        default: "3:2"
+        type: choice
+        options: ["3:2", "16:9", "4:3", "1:1"]
+      pomak:
+        description: "Okomiti pomak izreza: 0 vrh, 50 sredina, 100 dno"
+        required: true
+        default: "50"
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  izrezi:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Preuzmi kod
+        uses: actions/checkout@v7
+
+      - name: Postavi Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Instaliraj pakete
+        run: pip install requests pillow==11.3.0
+
+      - name: Izreži sliku
+        run: |
+          mkdir -p public/slike/clanci
+          python alati/izrezi_sliku.py \
+            --adresa "${{ inputs.adresa }}" \
+            --izlaz "public/slike/clanci/${{ inputs.ime }}" \
+            --omjer "${{ inputs.omjer }}" \
+            --pomak "${{ inputs.pomak }}"
+
+      - name: Spremi u repozitorij
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "public/slike/clanci/${{ inputs.ime }}"
+          git commit -m "Izrezana fotografija ${{ inputs.ime }} (${{ inputs.omjer }})"
+          git push
