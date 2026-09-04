@@ -29,7 +29,7 @@ values (
   'osvrt-lokomotiva-crikvenica-2-kolo-2627',
   'OSVRT S KANTRIDE: LOKOMOTIVA - CRIKVENICA 4:0',
   'Lokomotiva je vodila od 13. minute, a u nastavku je s tri pogotka u dvadesetak minuta riješila pitanje pobjednika. Crikvenica je ostala na stativi Rhaillama Souse Arauja i udarcu glavom Jakova Mendrile.',
-'Lokomotiva je na Kantridi svladala Crikvenicu 4:0 i drugo kolo otvorila uvjerljivom pobjedom. Prije početka Mateu Monjcu uručen je trofej za najboljeg asistenta prošle sezone.
+'Lokomotiva je na Kantridi svladala Crikvenicu 4:0 i drugo kolo otvorila uvjerljivom pobjedom. Prije početka Mateu Monjcu uručen je trofej za najboljeg strijelca prošle sezone.
 
 Prvih deset minuta prošlo je bez ijedne konkretne prilike. Crikvenica se dobro branila, a Lokomotiva je držala loptu, ali bez opasnosti prema golu.
 
