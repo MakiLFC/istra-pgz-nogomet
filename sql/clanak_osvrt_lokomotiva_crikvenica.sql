@@ -5,8 +5,8 @@
 -- KAKO SE KORISTI:
 --   Supabase -> SQL Editor -> zalijepi cijelu datoteku -> Run.
 --   Clanak se upisuje s objavljen = false, dakle NIJE vidljiv na
---   stranici. Prvo dodaj fotografiju (odjeljak FOTOGRAFIJA), pogledaj
---   clanak, pa ga objavi naredbom iz odjeljka OBJAVA na dnu.
+--   stranici. Pogledaj ga u Supabaseu (Table editor -> clanci), pa ga
+--   objavi naredbom iz odjeljka OBJAVA na dnu.
 --
 --   Pokrece se SAMO JEDNOM. Drugo pokretanje javlja gresku zbog
 --   jedinstvenog sluga, sto znaci da je prvo proslo.
@@ -16,17 +16,19 @@
 -- Stoji na dva mjesta, u utakmice.tekst_clanka i ovdje u clanci.tekst,
 -- pa ako se kasnije mijenja, mijenja se na oba.
 --
--- SAZETAK je predlozak, napisan po onome sto je u tekstu. Ako ga mijenjas,
--- promijeni ga i ovdje prije pokretanja.
+-- SAZETAK je onaj koji je Andrej odabrao 04.09.2026. (treci prijedlog).
+-- FOTOGRAFIJA je vec upisana, adresa je iz Supabase Storagea. Opis slike
+-- je opcenit i treba ga zamijeniti, vidi odjeljak OPIS FOTOGRAFIJE.
 -- =====================================================================
 
 
 insert into public.clanci
-  (slug, naslov, sazetak, tekst, natjecanje, objavljen, objavljeno_u)
+  (slug, naslov, sazetak, tekst, natjecanje, slika_url, slika_opis,
+   slika_potpis, objavljen, objavljeno_u)
 values (
   'osvrt-lokomotiva-crikvenica-2-kolo-2627',
   'OSVRT S KANTRIDE: LOKOMOTIVA - CRIKVENICA 4:0',
-  'Karlo Josipović zabio je dva puta, Edin Junuzović upisao gol i asistenciju, a Marin Grujević pogodio za svoj prvijenac u dresu Lokomotive. Crikvenica je najbliže pogotku bila u 20. minuti, kada je Rhaillam Sousa Araujo pogodio stativu.',
+  'Lokomotiva je vodila od 13. minute, a u nastavku je s tri pogotka u dvadesetak minuta riješila pitanje pobjednika. Crikvenica je ostala na stativi Rhaillama Souse Arauja i udarcu glavom Jakova Mendrile.',
 'Lokomotiva je na Kantridi svladala Crikvenicu 4:0 i drugo kolo otvorila uvjerljivom pobjedom. Prije početka Mateu Monjcu uručen je trofej za najboljeg asistenta prošle sezone.
 
 Prvih deset minuta prošlo je bez ijedne konkretne prilike. Crikvenica se dobro branila, a Lokomotiva je držala loptu, ali bez opasnosti prema golu.
@@ -49,6 +51,9 @@ Domaći su nastavili. U 65. minuti Grujević je nečuvan pucao glavom s desetak 
 
 Konačnih 4:0 postavio je Junuzović u 72. minuti, glavom iz kornera u drugi kut, i time stavio točku na i, kako ishodu utakmice, tako i svojoj vrhunskoj izvedbi. U 82. minuti Weitzer je pucao iz slobodnog udarca po sredini gola, a do kraja se rezultat nije mijenjao.',
   '3. NL Zapad',
+  'https://wpvussvstbqhyovrojja.supabase.co/storage/v1/object/public/clanci/WhatsApp%20Image%202026-09-04%20at%2021.06.36.jpeg',
+  'Fotografija s utakmice Lokomotiva - Crikvenica na Kantridi',
+  'Foto: Lokal-Arena',
   false,
   '2026-09-04T22:00:00+02:00'
 );
@@ -63,15 +68,16 @@ where slug = 'osvrt-lokomotiva-crikvenica-2-kolo-2627';
 
 
 -- =====================================================================
--- FOTOGRAFIJA
+-- OPIS FOTOGRAFIJE
 -- =====================================================================
--- Sliku prvo ucitaj u Supabase Storage, spremnik "clanci", kroz
--- dashboard (JPEG, sirina 1600, do 300 KB). Kopiraj javnu adresu i
--- upisi je umjesto ADRESA_SLIKE, pa pokreni:
+-- Adresa slike vec je upisana, Andrej ju je ucitao u Storage 04.09.2026.
+--
+-- Opis (slika_opis) je zasad opcenit, jer se slika iz ovog okruzenja ne
+-- moze otvoriti. Sluzi citacima ekrana i dijeljenju na drustvenim
+-- mrezama, pa ga zamijeni onim sto se na slici stvarno vidi:
 --
 -- update public.clanci
--- set slika_url    = 'ADRESA_SLIKE',
---     slika_opis   = 'OPIS ZA CITACE EKRANA, npr. Junuzovic zabija glavom iz kornera',
+-- set slika_opis   = 'OPIS ONOGA STO JE NA SLICI',
 --     slika_potpis = 'Foto: Lokal-Arena'
 -- where slug = 'osvrt-lokomotiva-crikvenica-2-kolo-2627';
 
