@@ -28,7 +28,7 @@
 -- =====================================================================
 
 update public.utakmice
-   set tekst_clanka = 'Lokomotiva je na Kantridi svladala Crikvenicu 4:0 i drugo kolo otvorila uvjerljivom pobjedom. Prije početka Mateu Monjcu uručen je trofej za najboljeg asistenta prošle sezone.
+   set tekst_clanka = 'Lokomotiva je na Kantridi svladala Crikvenicu 4:0 i drugo kolo otvorila uvjerljivom pobjedom. Prije početka Mateu Monjcu uručen je trofej za najboljeg strijelca prošle sezone.
 
 Prvih deset minuta prošlo je bez ijedne konkretne prilike. Crikvenica se dobro branila, a Lokomotiva je držala loptu, ali bez opasnosti prema golu.
 
