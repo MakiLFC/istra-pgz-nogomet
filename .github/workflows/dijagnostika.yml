@@ -1,0 +1,71 @@
+# Dijagnostika stranica HNS Semafora.
+#
+# ČEMU SLUŽI
+# Radni prostor u kojem Claude radi nema pristup internetu, pa ne može
+# otvoriti stranicu Semafora i vidjeti kako je nešto zapisano u HTML-u.
+# Bez toga se greške u čitanju podataka mogu samo nagađati, a pravilo je
+# da se prvo dijagnosticira pa tek onda mijenja.
+#
+# Ovaj posao pokreće jedan od dijagnostičkih alata iz repozitorija i sve
+# ispisuje u zapisnik pokretanja, koji Claude može pročitati.
+#
+# NIŠTA NE MIJENJA: alati samo čitaju stranice i ispisuju. U bazu ne pišu
+# i nemaju pristup ključevima.
+#
+# KAKO SE POKREĆE
+# Actions -> "Dijagnostika HNS" -> Run workflow, pa se odabere alat i
+# upiše adresa stranice (lige ili utakmice), po potrebi i prezime igrača.
+
+name: Dijagnostika HNS
+
+on:
+  workflow_dispatch:
+    inputs:
+      alat:
+        description: "Koji dijagnostički alat pokrenuti"
+        required: true
+        default: "dijagnostika_klub_igraca.py"
+        type: choice
+        options:
+          - "dijagnostika_klub_igraca.py"
+          - "dijagnostika_nastupi.py"
+          - "dijagnostika_tablica.py"
+          - "dijagnostika_karton.py"
+      url:
+        description: "Adresa stranice (samo za alat klub_igraca)"
+        required: false
+        type: string
+      igrac:
+        description: "Prezime igrača za detaljni ispis (samo za alat klub_igraca)"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  dijagnostika:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Preuzmi kod
+        uses: actions/checkout@v7
+
+      - name: Postavi Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Instaliraj pakete
+        run: pip install requests beautifulsoup4
+
+      - name: Pokreni alat
+        run: |
+          if [ "${{ inputs.alat }}" = "dijagnostika_klub_igraca.py" ]; then
+            python dijagnostika_klub_igraca.py \
+              --url "${{ inputs.url }}" \
+              --igrac "${{ inputs.igrac }}"
+          else
+            python "${{ inputs.alat }}"
+          fi
