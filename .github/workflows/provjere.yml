@@ -65,7 +65,7 @@ jobs:
         run: |
           for test in test_kraj_rasporeda test_suhi_test test_termini \
                       test_odustali_klub test_nastupi test_autogol \
-                      test_ponavljanje; do
+                      test_ponavljanje test_klub_igraca; do
             echo "=============================================="
             echo "$test.py"
             echo "=============================================="

@@ -1093,16 +1093,86 @@ def _nastupi_i_minute(li):
     return nastupi, minute
 
 
+def imena_klubova_po_idu(soup):
+    """Ime kluba po njegovom data-id, iz sekcije "Klubovi u natjecanju".
+
+    Sekcija je složena kao kartice i blokovi: iznad stoji popis klubova
+    (<li data-id="1507">NK Banjole</li>), a ispod za svaki klub blok
+    <div class="club_competition_details" data-id="1507"> s njegovim
+    utakmicama i sastavom. Isti data-id povezuje karticu i blok, pa se
+    iz njega pouzdano čita kojem klubu sastav pripada.
+    """
+    imena = {}
+    sekcija = soup.find("div", class_="clubs_in_competition")
+    if sekcija is None:
+        return imena
+
+    for li in sekcija.find_all("li", attrs={"data-id": True}):
+        # Retci utakmica unutar blokova takođe nose podatke o klubovima,
+        # pa se gleda samo popis kartica IZNAD blokova.
+        if li.find_parent("div", class_="club_competition_details"):
+            continue
+        ime = li.get_text(strip=True)
+        if ime:
+            imena.setdefault(li["data-id"], ime)
+    return imena
+
+
+def _klub_iz_bloka(blok):
+    """Rezervni put: ime kluba iz retka utakmice unutar njegova bloka.
+
+    Svaki redak utakmice ima <div class="club1" data-id="..."> i "club2".
+    Onaj čiji se data-id poklapa s data-idom bloka je klub kojemu blok
+    pripada, bez obzira igra li doma ili u gostima. Služi ako HNS jednom
+    makne popis kartica.
+    """
+    id_bloka = blok.get("data-id")
+    if not id_bloka:
+        return None
+    for strana in blok.find_all("div", class_=("club1", "club2")):
+        if strana.get("data-id") != id_bloka:
+            continue
+        veza = strana.find("a")
+        ime = (veza.get_text(strip=True) if veza else strana.get_text(strip=True))
+        if ime:
+            return ime
+    return None
+
+
+def klub_igraca(li, imena_po_idu):
+    """Klub kojemu redak sastava pripada, ili None ako se ne može utvrditi.
+
+    NE traži se najbliža prethodna poveznica kluba u dokumentu. Tako je
+    bilo do 05.09.2026. i bilo je krivo: unutar bloka kluba prvo stoji
+    popis NJEGOVIH utakmica, pa je najbliža poveznica zapravo protivnik
+    iz posljednje utakmice. Karlu Josipoviću je tako pisalo da igra za
+    Halubjan, jer je Lokomotivi posljednja Lokomotiva - Halubjan.
+
+    Radije nijedan klub nego krivi: kad se ne može utvrditi, vraća se
+    None, a pokretanje to prijavi.
+    """
+    blok = li.find_parent("div", class_="club_competition_details")
+    if blok is None:
+        return None
+    id_bloka = blok.get("data-id")
+    if id_bloka and id_bloka in imena_po_idu:
+        return imena_po_idu[id_bloka]
+    return _klub_iz_bloka(blok)
+
+
 def parsiraj_sve_igrace(soup):
     """
     Svi igrači iz SASTAVA klubova na stranici lige (ne samo top 5).
-    Redak sastava prepoznajemo po div.shirtNumber.
+    Redak sastava prepoznajemo po div.shirtNumber, a klub po bloku u
+    kojem redak stoji (vidi klub_igraca).
 
     VAŽNO: kod VRATARA stupac 'goals' NIJE broj zabijenih nego PRIMLJENIH
     golova (provjereno: vratar Turbine ima 50, a Turbina je po tablici
     primila točno 50). Zato vratare izbacujemo iz liste strijelaca,
     ali ih zadržavamo u kartonima.
     """
+    imena_po_idu = imena_klubova_po_idu(soup)
+
     igraci = []
     for li in soup.find_all("li", class_="row"):
         if not li.find("div", class_="shirtNumber"):
@@ -1116,13 +1186,7 @@ def parsiraj_sve_igrace(soup):
         ime = h3.get_text(strip=True)
         uloga = ime_div.get_text(" ", strip=True).replace(ime, "").strip()
 
-        # Klub = najbliži PRETHODNI link kluba koji nije u tablici poretka
-        klub = None
-        for a in li.find_all_previous("a", href=lambda h: h and "/klubovi/" in h):
-            if a.find_parent("div", class_="competition_table"):
-                continue
-            klub = a.get_text(strip=True)
-            break
+        klub = klub_igraca(li, imena_po_idu)
 
         golovi_div = li.find("div", class_="goals")
         cards_div = li.find("div", class_="cards")
@@ -1224,6 +1288,15 @@ def dohvati_i_spremi_statistike(natjecanje_naziv, natjecanje_url):
         klijent().table("statistike").upsert(
             redak, on_conflict="sezona,natjecanje,tip",
         ).execute()
+    # Igrač bez kluba znači da se sekcija "Klubovi u natjecanju" promijenila.
+    # Radije prazno nego krivo, ali se mora vidjeti, jer bi inače na
+    # stranici tiho nestali klubovi ispod imena igrača.
+    bez_kluba = sum(1 for i in svi_igraci if not i["klub"])
+    if bez_kluba:
+        print(f"  UPOZORENJE: {bez_kluba} od {len(svi_igraci)} igrača bez "
+              f"kluba. Provjeri sekciju 'Klubovi u natjecanju' na stranici "
+              f"lige (alat dijagnostika_klub_igraca.py).")
+
     s_minuta = sum(1 for i in nastupi if i["minute"])
     print(f"  STATISTIKE: tablica={len(tablica)} klubova, "
           f"strijelci={len(strijelci)}, kartoni={len(kartoni)}, "
