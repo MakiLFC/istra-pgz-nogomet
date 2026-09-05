@@ -107,9 +107,37 @@ def main():
 
     print()
     print("=" * 70)
-    print("3) NASLOVI SEKCIJA NA STRANICI, REDOM")
+    print("3) SEKCIJA \"KLUBOVI U NATJECANJU\": KARTICE I BLOKOVI SASTAVA")
     print("=" * 70)
-    for h in soup.find_all(["h1", "h2", "h3"]):
+    sekcija = soup.find("div", class_="clubs_in_competition")
+    if sekcija is None:
+        print("  Nema div.clubs_in_competition, struktura se promijenila.")
+    else:
+        blokovi = sekcija.find_all("div", class_="club_competition_details")
+        print(f"  Blokova sastava (div.club_competition_details): {len(blokovi)}")
+        for i, blok in enumerate(blokovi[:3], start=1):
+            print(f"\n  --- blok {i}, svi atributi: {dict(blok.attrs)}")
+            print("      prvih 700 znakova HTML-a:")
+            print("      " + str(blok)[:700].replace("\n", " "))
+
+        print("\n  --- elementi koji nose imena klubova, izvan blokova sastava:")
+        n = 0
+        for element in sekcija.find_all(["a", "li", "span", "h2", "h3", "button"]):
+            if element.find_parent("div", class_="club_competition_details"):
+                continue
+            tekst = " ".join(element.get_text(strip=True).split())
+            if not tekst or len(tekst) > 40:
+                continue
+            print(f"    <{element.name} {dict(element.attrs)}> {tekst}")
+            n += 1
+            if n == 20:
+                break
+
+    print()
+    print("=" * 70)
+    print("4) NASLOVI SEKCIJA NA STRANICI, REDOM")
+    print("=" * 70)
+    for h in soup.find_all(["h1", "h2"]):
         tekst = " ".join(h.get_text(strip=True).split())
         if tekst:
             print(f"  <{h.name}> {tekst[:70]}")
