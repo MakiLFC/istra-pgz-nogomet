@@ -60,6 +60,8 @@ prepiše ili se stavi zarez, dvotočka ili točka.
     na GitHubu, pa o tome stigne e-pošta
   - `.github/workflows/provjere.yml` (pyflakes i testovi koji ne diraju
     internet ni bazu) na svaki push i pull request
+  - `.github/workflows/slika.yml` ("Izreži sliku") samo ručno, kad
+    fotografiju treba izrezati i sažeti prije nego ode na stranicu
 
 ## Struktura
 
@@ -83,12 +85,14 @@ components/
 lib/
   supabase.ts  lige.ts  kolo.ts  statistike.ts  clanci.ts  slug.ts
   klubovi.ts  igraci.ts  utakmice.ts  tablica.ts  posjecenost.ts  metapodaci.ts
+  slike.ts     kadriranje fotografija uz članke (stupac slika_kadar)
 sql/
   najava_kola.sql   funkcija public.najava_kola() za najavu kola
   pregled_kola.sql  funkcija public.pregled_kola() za osvrt nakon kola
   slike_clanaka.sql jednokratno: stupci za fotografiju i spremnik
   autogolovi.sql    jednokratno: stupac utakmice.autogolovi
   termin_rucno.sql  jednokratno: stupci datum_rucno i vrijeme_rucno
+  slika_kadar.sql   jednokratno: stupac clanci.slika_kadar
   (ostale .sql datoteke su jednokratni zahvati nad podacima)
 alati/
   najave/     predložak i generator naslovnih slika za najave kola
@@ -96,6 +100,8 @@ alati/
   zaglavlja/  slike zaglavlja liga
   zapisnik_html.py  ispis HTML-a događaja iz jednog zapisnika, kad
                     treba vidjeti kako HNS nešto označava
+  izrezi_sliku.py   rezanje fotografije na zadani omjer i sažimanje;
+                    pokreće ga posao "Izreži sliku" na GitHubu
 scraper_supabase.py     glavni scraper
 natjecanja.json         referenca ID-jeva natjecanja po sezonama
 derbi_tjedni_predlozak.sql  SQL predložak za tjedno označavanje derbija
@@ -115,8 +121,9 @@ raspored_migracija.sql  jednokratna migracija (već pokrenuta 08/2026)
 - **`statistike`** — tablica/strijelci/kartoni po ligi i sezoni (`jsonb`).
   Jedinstveno po (`sezona`, `natjecanje`, `tip`).
 - **`clanci`** — novosti. Vidljivi su samo oni s `objavljen = true` (RLS).
-  Fotografija ide u tri stupca: `slika_url` (adresa), `slika_opis` (opis za
-  čitače ekrana i za dijeljenje) i `slika_potpis` (npr. "Foto: Lokal-Arena").
+  Fotografija ide u četiri stupca: `slika_url` (adresa), `slika_opis` (opis
+  za čitače ekrana i za dijeljenje), `slika_potpis` (npr. "Foto: Lokal-Arena")
+  i `slika_kadar` (okomiti kadar pri rezanju, prazno je sredina).
   Slike stoje u Supabase Storageu, spremnik `clanci`, javan za čitanje i
   bez ijedne politike za pisanje, pa upload ide samo kroz dashboard.
   Preporuka za upload: JPEG, širina 1600, do 300 KB. Na stranici ih
@@ -411,6 +418,27 @@ Zato kriva adresa, ključ koji ne izgleda kao ključ i service_role ključ u
 javnoj varijabli sada ruše build. Vercel u tom slučaju ostavlja zadnju
 ispravnu verziju na zraku. Adresa stranice ide u `NEXT_PUBLIC_SITE_URL`,
 nikad u `NEXT_PUBLIC_SUPABASE_URL`.
+
+**Fotografija se ne prilagođava stranici, stranica se prilagođava njoj.**
+Fotografije uz članke stižu s mobitela, u svakom omjeru, najčešće
+uspravne. Prije 05.09.2026. slika se u članku prikazivala cijela, u svom
+omjeru, pa je uspravna zauzimala gotovo cijeli ekran, a na kartici je bila
+odrezana na 16:9 iz sredine, često baš preko onoga što je važno. Andrej je
+zbog toga svaku fotografiju morao rezati prije učitavanja.
+
+Od tada slika u članku ide u okvir stalnog omjera 3:2, s rezanjem viška
+(`object-cover`), kao što je na kartici već bilo 16:9. Znači svejedno je u
+kojem se formatu fotografija učita: stranica je sama uklopi i nijedna ne
+može zauzeti pola ekrana ni razbiti red kartica.
+
+Reže se iz sredine, a kad je važno ono gore ili dolje, okomiti kadar se
+pomiče stupcem `clanci.slika_kadar` ("vrh", "sredina", "dno" ili broj 0 do
+100). Isti kadar vrijedi i u članku i na kartici, pa se namjesti jednom.
+Računa ga `lib/slike.ts`, upute su u `sql/slika_kadar.sql`.
+
+Alat `alati/izrezi_sliku.py` i posao "Izreži sliku" time postaju
+neobavezni. Korisni su i dalje, kad se želi točno odabrani kadar ili
+manja datoteka, ali stranica bez njih izgleda uredno.
 
 **Za objavu na Facebooku s opisom i označavanjem ne koristi se naš gumb.**
 03.09.2026. najava 1. kola 4. NL nije se dala objaviti: Facebookov

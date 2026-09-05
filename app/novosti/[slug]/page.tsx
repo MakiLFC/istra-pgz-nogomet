@@ -8,6 +8,7 @@ import Navigacija from "@/components/Navigacija";
 import Podnozje from "@/components/Podnozje";
 import Dijeljenje from "@/components/Dijeljenje";
 import { dohvatiClanak, dohvatiClanke, datumHr, odlomci } from "@/lib/clanci";
+import { kadarSlike } from "@/lib/slike";
 import { LIGE } from "@/lib/lige";
 import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
 
@@ -119,15 +120,25 @@ export default async function StranicaClanka({
               čekati odgodu učitavanja. */}
           {clanak.slika_url && (
             <figure className="mt-5">
-              <Image
-                src={clanak.slika_url}
-                alt={clanak.slika_opis ?? ""}
-                width={1600}
-                height={900}
-                sizes="(max-width: 768px) 100vw, 672px"
-                className="h-auto w-full"
-                priority
-              />
+              {/* Okvir stalnog omjera 3:2, a slika se u njega uklapa
+                  rezanjem viška. Fotografije stižu s mobitela u svakom
+                  omjeru, najčešće uspravne, pa bi bez okvira jedna slika
+                  zauzela pola ekrana, a druga bila tanka traka.
+
+                  Reže se iz sredine. Kad je važno ono gore ili dolje,
+                  okomiti kadar se pomiče stupcem slika_kadar, bez
+                  diranja same datoteke (vidi lib/slike.ts). */}
+              <div className="relative aspect-[3/2] w-full overflow-hidden">
+                <Image
+                  src={clanak.slika_url}
+                  alt={clanak.slika_opis ?? ""}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 672px"
+                  className="object-cover"
+                  style={{ objectPosition: kadarSlike(clanak.slika_kadar) }}
+                  priority
+                />
+              </div>
               {clanak.slika_potpis && (
                 <figcaption
                   className="mt-2 font-sans text-xs"
