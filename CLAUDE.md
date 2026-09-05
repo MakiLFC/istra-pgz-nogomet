@@ -391,6 +391,15 @@ Podaci se ispravljaju sami: rang-liste se pri svakom prolazu prepisuju
 (upsert po sezoni, natjecanju i tipu), pa je dovoljno jedno pokretanje
 scrapera, i to `--samo-statistike`, bez diranja utakmica.
 
+Uz taj popravak dotjerana je i samoprovjera strijelaca. Uspoređivala je
+prva tri mjesta u NIZU, pa je javljala "NE POKLAPA SE" i kad su imena i
+brojke bili isti, samo drugim redom (Durmo, Josipović, Mijić prema Durmo,
+Mijić, Josipović, sva trojica s po dva gola). Sada se gleda broj golova PO
+IGRAČU, za svakog sa službene liste, pa poredak i duljina naše liste ne
+okidaju uzbunu, a krivo zbrojen gol ili igrač koji je ispao i dalje se
+prijavljuju. Vrijedi isto pravilo kao kod ponavljanja prema HNS-u: lažna
+uzbuna je skupa jednako kao propuštena. Čuva `test_provjera_strijelaca.py`.
+
 **Tablica poretka se scrapa, ne računa.**
 Službena tablica već uključuje kaznene bodove (npr. "NK Crikvenica (-3)").
 Vlastiti izračun bi bio kriv.
