@@ -16,6 +16,12 @@ export type Clanak = {
   slika_opis: string | null;
   /** Potpis ispod fotografije, npr. "Foto: Lokal-Arena". */
   slika_potpis: string | null;
+  /**
+   * Okomiti položaj kadra kad se fotografija reže na omjer okvira:
+   * "vrh", "sredina", "dno" ili broj od 0 do 100. Prazno je sredina.
+   * Vidi lib/slike.ts i sql/slika_kadar.sql.
+   */
+  slika_kadar: string | null;
   objavljen: boolean;
   objavljeno_u: string;
 };

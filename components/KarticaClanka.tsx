@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { type Clanak, datumHr } from "@/lib/clanci";
+import { kadarSlike } from "@/lib/slike";
 import { LIGE } from "@/lib/lige";
 
 /**
@@ -48,10 +49,15 @@ export default function KarticaClanka({
             // Svaka kartica ima isti omjer, pa je red poravnat bez obzira
             // na to kakva je slika. Zamjenska slika je široko zaglavlje
             // lige s naslovom na lijevoj strani, pa se reže s desna, da
-            // naslov ostane u kadru; fotografije se režu po sredini.
+            // naslov ostane u kadru. Fotografije se režu po sredini, osim
+            // kad je člancima zadan drugi kadar stupcem slika_kadar; isti
+            // kadar tada vrijedi i na stranici članka.
             className={`mb-3 aspect-[16/9] w-full object-cover ${
-              zamjenska ? "object-left" : "object-center"
+              zamjenska ? "object-left" : ""
             }`}
+            style={
+              zamjenska ? undefined : { objectPosition: kadarSlike(clanak.slika_kadar) }
+            }
           />
         );
       })()}
