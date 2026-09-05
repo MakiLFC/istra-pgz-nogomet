@@ -51,9 +51,23 @@ def _sastav(ime, apps_html):
 
 
 def stranica(sastavi, rang=""):
+    """Stranica lige, složena kao prava.
+
+    Sastavi stoje unutar bloka svog kluba, u sekciji "Klubovi u
+    natjecanju". Klub se od 05.09.2026. čita upravo iz tog bloka, preko
+    data-ida, a ne kao najbliža prethodna poveznica (vidi
+    test_klub_igraca.py). Bez tog okvira igrači bi ostali bez kluba, a
+    lista nastupa uzima samo igrače koji ga imaju.
+    """
     return f"""<html><body>
-      <a href="/klubovi/1">NK Naprijed (H)</a>
-      {"".join(sastavi)}
+      <div class="block w1280 clubs_in_competition">
+        <div class="tabs"><ul>
+          <li class="active" data-id="1578">NK Naprijed (H)</li>
+        </ul></div>
+        <div class="block w1280 club_competition_details" data-id="1578">
+          <ul>{"".join(sastavi)}</ul>
+        </div>
+      </div>
       {rang}
     </body></html>"""
 

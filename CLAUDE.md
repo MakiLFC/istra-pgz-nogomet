@@ -356,6 +356,41 @@ Ljestvica se ne dira: ona se scrapa s HNS-a i pokazivat će odustali klub
 dok ga HNS ne makne. To je službena tablica, njezin sadržaj nije naša
 procjena.
 
+**Klub igrača se čita iz bloka kluba, ne iz najbliže poveznice.**
+05.09.2026. Andrej je javio da na listama strijelaca i kartona ispod
+igrača stoje krivi klubovi: Karlu Josipoviću je pisalo da igra za
+Halubjan, a igra za Lokomotivu, dok su strijelci Ližnjana bili upisani kao
+igrači Otočca. Usporedba sa Semaforom potvrdila je da je greška naša.
+
+Uzrok je pravilo kojim se klub uzimao kao najbliža PRETHODNA poveznica
+kluba u dokumentu. U sekciji "Klubovi u natjecanju" svaki klub ima svoj
+blok u kojem prvo stoji popis NJEGOVIH utakmica, pa tek onda sastav, tako
+da je najbliža poveznica zapravo protivnik iz posljednje utakmice tog
+kluba. Lokomotivi je posljednja Lokomotiva - Halubjan, Ližnjanu
+Ližnjan - Otočac. Zato je pogađalo otprilike svaki drugi klub: kad je
+klub u posljednjoj utakmici gost, ime je slučajno ispalo točno.
+
+Prava struktura, provjerena alatom `dijagnostika_klub_igraca.py`:
+
+```
+<div class="block w1280 clubs_in_competition">
+  <li class="active" data-id="1507">NK Banjole</li>   kartice klubova
+  <li data-id="2334">NK Buje</li>
+  <div class="club_competition_details" data-id="1507">  blok jednog kluba
+      popis njegovih utakmica, pa sastav
+```
+
+Klub se zato od sada čita iz bloka u kojem redak sastava stoji: `data-id`
+bloka se preko kartica preslika u ime kluba (`klub_igraca`). Ako kartice
+jednom nestanu, rezerva je redak utakmice unutar istog bloka, onaj čiji se
+`data-id` poklapa s blokovim. Kad se klub ne može utvrditi, upisuje se
+prazno, nikad pogađanje, a pokretanje to prijavi kao upozorenje. Čuva
+`test_klub_igraca.py`, pisan po stvarnom HTML-u.
+
+Podaci se ispravljaju sami: rang-liste se pri svakom prolazu prepisuju
+(upsert po sezoni, natjecanju i tipu), pa je dovoljno jedno pokretanje
+scrapera, i to `--samo-statistike`, bez diranja utakmica.
+
 **Tablica poretka se scrapa, ne računa.**
 Službena tablica već uključuje kaznene bodove (npr. "NK Crikvenica (-3)").
 Vlastiti izračun bi bio kriv.
