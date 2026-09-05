@@ -1251,6 +1251,42 @@ def slozi_listu_nastupa(igraci, rezerva, koliko=2000):
             for r, i in enumerate(n[:koliko])]
 
 
+def usporedi_sa_sluzbenom(strijelci, sluzbeni):
+    """Poruka samoprovjere: slaže li se naša lista strijelaca sa službenom.
+
+    Naša lista nastaje zbrajanjem golova iz sastava klubova, a HNS uz nju
+    objavljuje i svoju kratku rang-listu. Usporedbom se vidi je li
+    zbrajanje pouzdano.
+
+    Uspoređuje se PO IGRAČU, ne po redoslijedu. Kad više igrača ima isti
+    broj golova, njihov poredak je proizvoljan: mi sortiramo abecedno, HNS
+    drukčije. Prva verzija provjere gledala je prva tri mjesta u nizu, pa
+    je javljala neslaganje i onda kad su imena i brojke bili isti, samo
+    drugim redom. Takva poruka plaši bez razloga, a lažna uzbuna je skupa
+    jednako kao propuštena.
+
+    Provjerava se da svaki igrač sa službene liste kod nas ima isti broj
+    golova. To hvata pravi kvar (krivo zbrojeno ili igrač ispao), a ne
+    okida na poredak ni na to što je naša lista duža.
+    """
+    if not sluzbeni or not strijelci:
+        return "nije bilo s čim usporediti"
+
+    nasi = {s["igrac"]: s["golovi"] for s in strijelci}
+    razlike = [(s["igrac"], s["golovi"], nasi.get(s["igrac"]))
+               for s in sluzbeni
+               if nasi.get(s["igrac"]) != s["golovi"]]
+
+    if not razlike:
+        return f"poklapa se sa službenom listom ({len(sluzbeni)} igrača) ✓"
+
+    opisi = ", ".join(
+        f"{ime}: službeno {sluzbeno}, naše {nase if nase is not None else 'nema'}"
+        for ime, sluzbeno, nase in razlike
+    )
+    return f"NE POKLAPA SE! {opisi}"
+
+
 def dohvati_i_spremi_statistike(natjecanje_naziv, natjecanje_url):
     """Dohvaća tablicu + PUNE rang-liste sa stranice natjecanja i sprema u
     Supabase tablicu 'statistike' (jedan redak po ligi i tipu, upsert)."""
@@ -1263,16 +1299,11 @@ def dohvati_i_spremi_statistike(natjecanje_naziv, natjecanje_url):
     svi_igraci = parsiraj_sve_igrace(soup)
     strijelci, kartoni = slozi_pune_rang_liste(svi_igraci)
 
-    # SAMOPROVJERA: usporedi naš izračun sa službenom HNS top 5 listom.
-    # Ako se vrh poklapa, agregacija iz sastava je pouzdana.
+    # SAMOPROVJERA: usporedi naš izračun sa službenom HNS rang-listom.
+    # Ako se broj golova po igraču poklapa, agregacija iz sastava je
+    # pouzdana. Poredak se namjerno ne gleda, vidi usporedi_sa_sluzbenom.
     sluzbeni, _ = parsiraj_rang_liste(soup)
-    if sluzbeni and strijelci:
-        nas = [(s["igrac"], s["golovi"]) for s in strijelci[:3]]
-        njihov = [(s["igrac"], s["golovi"]) for s in sluzbeni[:3]]
-        provjera = ("poklapa se sa službenom listom ✓" if nas == njihov
-                    else f"NE POKLAPA SE! naše={nas} službeno={njihov}")
-    else:
-        provjera = "nije bilo s čim usporediti"
+    provjera = usporedi_sa_sluzbenom(strijelci, sluzbeni)
 
     nastupi = slozi_listu_nastupa(svi_igraci, parsiraj_rang_nastupa(soup))
 
