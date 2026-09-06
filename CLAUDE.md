@@ -437,6 +437,44 @@ Podaci se ispravljaju sami: rang-liste se pri svakom prolazu prepisuju
 (upsert po sezoni, natjecanju i tipu), pa je dovoljno jedno pokretanje
 scrapera, i to `--samo-statistike`, bez diranja utakmica.
 
+**Funkcija u bazi ne prati datoteku u repozitoriju sama od sebe.**
+06.09.2026. ispis `public.pregled_kola()` pokazao je da su na Rab -
+Vihor (B) 4:2 strijelci dali 3:3, uz Radićev pogodak upisan kao običan
+gol Vihora. Iz toga je zaključeno da je posrijedi neoznačen autogol, kao
+kod Radmana i Vrhovca, i napisan je ručni unos u stupac `autogolovi`.
+
+Provjera stvarnog retka u bazi pokazala je da je zaključak bio kriv:
+pogodak je već nosio oznaku `"autogol": true`, koju je scraper sam
+prepoznao iz klase `own_goal`. Zato ni `provjeri_zbroj_golova` nije ništa
+javio, i to s pravom: uz tu oznaku zbroj je bio točno 4:2. Scraper i
+stranica bili su ispravni cijelo vrijeme.
+
+Krivo je bilo posredovanje: `sql/pregled_kola.sql` je od kolovoza 2026.
+naučen čitati i tu automatsku oznaku, ali datoteka nakon te izmjene nije
+ponovno pokrenuta u Supabaseu, pa je ondje i dalje živjela starija
+verzija koja poznaje samo ručni stupac. Isto vrijedi i za `najava_kola()`
+i sve druge funkcije: izmjena u repozitoriju NIJE izmjena u bazi dok se
+datoteka ne pokrene.
+
+Otud dva pravila:
+
+- Kad se `sql/*.sql` s definicijom funkcije promijeni, u istoj poruci
+  Andreju piše da je treba ponovno pokrenuti. Inače ispis izgleda
+  vjerodostojno, a zaostaje.
+- Kad ispis funkcije i ponašanje scrapera govore različito, prvo se
+  pogleda REDAK U BAZI, pa tek onda mijenja kod. Da je to napravljeno
+  odmah, ne bi nastao suvišan ručni unos autogola.
+
+Zbog istog povoda je `provjeri_zbroj_golova` dobila drugu razinu: kad
+zapisnik nema postave, ne zna se kojoj strani koji pogodak pripada, ali
+se zna koliko ih ukupno mora biti, pa se uspoređuje broj strijelaca sa
+zbrojem golova iz rezultata. Tako se hvata gol koji u zapisniku fali ili
+je upisan dvaput. Krivu podjelu po momčadima ta razina ne može uhvatiti,
+i to je namjerno rečeno naglas, da se ne stekne dojam veće zaštite nego
+što postoji. Prazan popis strijelaca i dalje ne okida uzbunu, jer
+utakmica predana bez borbe ima rezultat, a nema strijelaca. Čuva
+`test_zbroj_bez_postava.py`.
+
 Uz taj popravak dotjerana je i samoprovjera strijelaca. Uspoređivala je
 prva tri mjesta u NIZU, pa je javljala "NE POKLAPA SE" i kad su imena i
 brojke bili isti, samo drugim redom (Durmo, Josipović, Mijić prema Durmo,
