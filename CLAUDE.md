@@ -296,6 +296,52 @@ Otud dvije stvari:
 Lažno crveno je skupo: obavijest koju se nauči preskakati ne vrijedi
 ništa. Zato se ponavlja prije nego se prijavi, ali se i dalje prijavljuje.
 
+**Zakazani poslovi na GitHubu kasne, redovito jedan do tri sata.**
+GitHub cron nije obećanje nego red čekanja: zakazano vrijeme je NAJRANIJE
+kad posao može krenuti, a na besplatnim izvođačima se stvarno pokretanje
+čeka dok se ne oslobodi mjesto. Nikad ne krene ranije, a zna zakasniti i
+puno više od sata.
+
+Izmjereno na našim poslovima, kraj kolovoza i početak rujna 2026.:
+
+```
+Scraper HNS Semafor (cron 19:00 UTC)
+  29.08. subota    +2 h 28
+  30.08. nedjelja  +2 h 46
+  02.09. srijeda   +2 h 27
+  05.09. subota    +1 h 54
+Scraper, ponedjeljak ujutro (cron 06:00 UTC)
+  24.08.           +55 min
+  31.08.           +6 h 46
+Scraper, petak navečer (cron 20:00 UTC)
+  04.09.           +2 h 16
+Provjera termina (cron 05:00 i 15:00 UTC)
+  03.09. do 05.09. +1 h 59 do +4 h 17, na svih šest pokretanja
+```
+
+Dakle poslovi se izvršavaju, svi do jednoga, samo kasnije nego što u
+datoteci piše. Praktična posljedica: večernji prolaz zakazan u 19:00 UTC
+(21:00 po našem) stvarno završi negdje između 22 i 24 sata, pa rezultati
+subotnjeg kola nisu na stranici u deset navečer.
+
+Iz toga slijede dva pravila:
+
+- Kad rezultat treba ranije, posao se pokrene ručno (Actions -> "Scraper
+  HNS Semafor" -> Run workflow, ili preko API-ja). Ručna pokretanja kreću
+  odmah, u sekundi, jer ne idu kroz isti red čekanja. Dva prolaza ne
+  smetaju: sve ide preko istog retka u bazi, pa drugi prolaz samo pokupi
+  ono što je HNS u međuvremenu dopunio.
+- Prazan popis pokretanja NIJE dokaz da posao nije krenuo, nego da još
+  nije. Prije nego se traži greška, pogleda se povijest zakazanih
+  pokretanja (`event: schedule`) za taj workflow. 05.09.2026. je zaključeno
+  da subotnji cron "uopće nije krenuo", a krenuo je 114 minuta kasnije.
+
+Pomicanje crona ranije (npr. 17:00 UTC umjesto 19:00) djelomično bi
+nadoknadilo kašnjenje, ali kako ono nije stalno, time se riskira prolaz
+prije nego HNS uopće upiše zapisnike. Zato je zasad ostavljeno kako jest,
+uz ručno pokretanje kad se žuri.
+
+
 **Ime upotrijebljeno dvaput za dvije stvari ruši scraper tek u pogonu.**
 02.09.2026. pao je posao "Provjera termina" s porukom
 `TypeError: 'str' object is not callable`. U petlji po utakmicama stajala
