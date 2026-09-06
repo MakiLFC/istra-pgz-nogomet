@@ -11,9 +11,14 @@
 --   jedinstvenog sluga, sto znaci da je prvo proslo.
 --
 -- ODAKLE STO
---   Sve je iz public.pregled_kola('2026/27','2. ŽNL PGŽ',1), dakle iz
---   zapisnika u bazi. U ovom clanku nema nicega izvan baze: nema ocjena
---   igre ni opisa tijeka utakmica, jer Andrej na tim susretima nije bio.
+--   Rezultati, strijelci, minute, gledatelji i ljestvica dolaze iz
+--   public.pregled_kola('2026/27','2. ŽNL PGŽ',1), dakle iz zapisnika.
+--
+--   Sto NIJE iz baze, nego od Andreja (dopuna 06.09.2026.): malonogometna
+--   proslost Ivana Petrovica u HMNK Rijeci i njegov inozemni transfer, te
+--   saljiva opaska o snjeznim uvjetima uz odgodjeni susret Snjeznika i
+--   Mrkoplja. Opisa tijeka utakmica nema, jer Andrej na tim susretima
+--   nije bio.
 --
 -- KOLO NIJE ZAVRSENO
 --   Dvije od tri utakmice su odigrane. Snjeznik - Mrkopalj je odgodjen,
@@ -36,9 +41,9 @@ values (
   'pregled-1-kola-2-znl-pgz-2627',
   'GOMIRJE JEDINI POBJEDNIK U UVODNOM KOLU',
   'Od tri utakmice prvog kola odigrane su dvije, a Snježnik i Mrkopalj svoj su susret odgodili.',
-'Prvo kolo 2. ŽNL PGŽ otvorilo je sezonu s dvije odigrane utakmice. Susret Snježnika i Mrkoplja je odgođen, a novi termin još nije objavljen.
+'Prvo kolo 2. ŽNL PGŽ otvorilo je sezonu s dvije odigrane utakmice. Susret Snježnika i Mrkoplja je odgođen (a što će tek biti kad počnu snježni uvjeti u Gorskom kotaru), a novi termin još nije objavljen.
 
-Gomirje - Polet (Sk) 2:0. Jedina pobjeda kola i jedina utakmica s pogocima. Ivan Petrović doveo je domaće u vodstvo u 16. minuti, a Milan Lončar potvrdio je pobjedu u 61. Uz 50 gledatelja bila je to i najposjećenija utakmica kola.
+Gomirje - Polet (Sk) 2:0. Jedina pobjeda kola i jedina utakmica s pogocima. Ivan Petrović doveo je domaće u vodstvo u 16. minuti, a Milan Lončar potvrdio je pobjedu u 61. Potrebno je istaknuti kako bi Ivan Petrović mogao biti mnogo puta spominjan u pregledima kola ove sezone, s obzirom na to da je svojevremeno imao zapaženu ulogu na malonogometnim terenima igrajući za HMNK Rijeku, ostvarivši čak i inozemni transfer. Uz 50 gledatelja bila je to i najposjećenija utakmica kola.
 
 Željezničar (M) - Goranka 0:0. Podjela bodova u Moravicama, bez pogodaka.
 
