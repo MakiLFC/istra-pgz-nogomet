@@ -889,7 +889,13 @@ def _sazetak_retka(redak):
 
 
 def provjeri_zbroj_golova(redak):
-    """Slaže li se rezultat sa strijelcima raspoređenima po postavama.
+    """Slaže li se rezultat sa strijelcima iz zapisnika.
+
+    Provjera ima dvije razine, jer nemaju svi zapisnici postave:
+      - S OBJE POSTAVE gleda se podjela po momčadima, dakle 4:2 prema 3:3.
+      - BEZ POSTAVA gleda se samo ukupan broj pogodaka, dakle je li ih
+        koliko rezultat traži. Tako se uhvati gol koji fali ili je upisan
+        dvaput, ali ne i krivo pripisan gol.
 
     Strijelci u zapisniku nemaju klub, pa se pripisuju momčadi u čijoj su
     postavi. AUTOGOL pritom pripada PROTIVNIKU strijelca, pa se ovdje broji
@@ -911,8 +917,22 @@ def provjeri_zbroj_golova(redak):
     postava_d = redak.get("postava_domacin") or []
     postava_g = redak.get("postava_gost") or []
 
-    # Bez rezultata, bez strijelaca ili bez obje postave nema se što usporediti.
-    if not m or not strijelci or not postava_d or not postava_g:
+    # Bez rezultata ili bez ijednog strijelca nema se što usporediti.
+    # Prazan popis strijelaca namjerno ne okida uzbunu: utakmica predana
+    # bez borbe ima rezultat, a nema strijelaca, i to je uredno.
+    if not m or not strijelci:
+        return None
+
+    # Kad postava nema, ne zna se kojoj strani koji pogodak pripada, ali se
+    # zna KOLIKO ih ukupno mora biti. Ta usporedba hvata gol koji u
+    # zapisniku fali ili je upisan dvaput. Ne hvata krivu podjelu po
+    # momčadima, jer za to postave trebaju.
+    if not postava_d or not postava_g:
+        ukupno = int(m.group(1)) + int(m.group(2))
+        if len(strijelci) != ukupno:
+            return (f"rezultat {rezultat} traži {ukupno} pogodaka, a "
+                    f"strijelaca je {len(strijelci)} (postave nisu upisane, "
+                    "pa se ne zna kojoj strani koji pripada)")
         return None
 
     doma = {i.get("igrac", "").casefold() for i in postava_d}
