@@ -411,7 +411,13 @@ def dohvati_detalje_utakmice(utakmica_url):
     naslov_tag = soup.find("title")
     naslov_tekst = naslov_tag.text.strip() if naslov_tag else "Nepoznato"
 
-    domacin, gost, rezultat = "Nepoznato", "Nepoznato", "Nepoznato"
+    # Rezultat se NE postavlja na "Nepoznato" kad se ne procita.
+    # 06.09.2026. HNK Goranin - NK Stari grad Rijeka (1. kolo 1. ZNL) imao
+    # je zapisnik, ali bez rezultata u naslovu, pa je rijec "Nepoznato"
+    # zavrsila u bazi i na stranici, kao da je to rezultat. Kad rezultata
+    # nema, ostaje None i kljuc se uopce ne salje u upsert (vidi nize),
+    # pa se vec upisan rezultat ne moze prebrisati.
+    domacin, gost, rezultat = "Nepoznato", "Nepoznato", None
     if " - " in naslov_tekst:
         domacin = naslov_tekst.split(" - ")[0].strip()
         desni_dio = naslov_tekst.split(" - ")[1]
@@ -605,7 +611,7 @@ def dohvati_detalje_utakmice(utakmica_url):
     # posloži strijelce po minuti (za uredan prikaz u naslovu)
     strijelci.sort(key=lambda s: int(re.match(r"\d+", _norm_min(s["minuta"])).group()) if re.match(r"\d+", _norm_min(s["minuta"])) else 0)
 
-    return {
+    podaci = {
         "hns_url": utakmica_url,
         "domacin": domacin,
         "gost": gost,
@@ -617,6 +623,12 @@ def dohvati_detalje_utakmice(utakmica_url):
         "postava_domacin": domacin_postava,
         "postava_gost": gost_postava,
     }
+    if rezultat is None:
+        # Isti razlog kao kod neodigranih utakmica: stupac koji se ne posalje
+        # upsert ne dira, pa jedan losije procitan zapisnik ne moze obrisati
+        # rezultat koji je vec u bazi.
+        podaci.pop("rezultat")
+    return podaci
 
 
 def dohvati_postojece_termine(naziv_natjecanja, sezona):
@@ -1521,7 +1533,7 @@ if __name__ == "__main__":
                     # za ključ (vidi napomenu u spremi_u_supabase)
                     detalji["domacin"] = stavka["domacin"]
                     detalji["gost"] = stavka["gost"]
-                    poruka = f"{detalji['rezultat']}"
+                    poruka = detalji.get("rezultat") or "zapisnik bez rezultata"
                 else:
                     # Neodigrana utakmica (ili način --samo-raspored):
                     # spremamo samo ono što piše na retku rasporeda.
@@ -1548,6 +1560,14 @@ if __name__ == "__main__":
                 )
                 opis_susreta = (f"{natjecanje['naziv']}, {stavka['kolo']}. kolo, "
                                 f"{stavka['domacin']} - {stavka['gost']}")
+                if stavka["hns_url"] and not args.samo_raspored \
+                        and not detalji.get("rezultat"):
+                    # Zapisnik postoji, ali u njemu nema rezultata. To nije
+                    # nasa greska nego nedovrsen zapisnik na HNS-u, pa se
+                    # samo prijavljuje i utakmica ostaje bez rezultata.
+                    upozorenja.append(f"{opis_susreta}: zapisnik postoji, "
+                                      "ali u njemu nema rezultata")
+                    print("      NAPOMENA: zapisnik postoji, ali nema rezultata")
                 if promjena:
                     promjene_termina.append(f"{opis_susreta}: {promjena}")
                     print(f"      PROMJENA TERMINA: {promjena}")
