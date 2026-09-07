@@ -60,8 +60,13 @@ prepiše ili se stavi zarez, dvotočka ili točka.
     na GitHubu, pa o tome stigne e-pošta
   - `.github/workflows/provjere.yml` (pyflakes i testovi koji ne diraju
     internet ni bazu) na svaki push i pull request
-  - `.github/workflows/slika.yml` ("Izreži sliku") samo ručno, kad
-    fotografiju treba izrezati i sažeti prije nego ode na stranicu
+  - `.github/workflows/fotografija.yml` ("Fotografija za članak") samo
+    ručno: skine fotografiju s njezine adrese, uspravi je, smanji, učita
+    u Supabase Storage i upiše u članak. Zamjenjuje ručni put preko
+    Supabase dashboarda i radi s mobitela.
+  - `.github/workflows/slika.yml` ("Izreži sliku") samo ručno, kad se
+    želi točno odabrani izrez spremljen u repozitorij; za obične
+    fotografije uz članke više nije potreban
 
 ## Struktura
 
@@ -95,6 +100,8 @@ sql/
   slika_kadar.sql   jednokratno: stupac clanci.slika_kadar
   (ostale .sql datoteke su jednokratni zahvati nad podacima)
 alati/
+  fotografija.py    fotografija s mobitela do slike na članku, u jednom
+                    potezu; pokreće ga posao "Fotografija za članak"
   najave/     predložak i generator naslovnih slika za najave kola
   transferi/  isto, za članke o prijelaznom roku
   zaglavlja/  slike zaglavlja liga
@@ -589,6 +596,38 @@ Računa ga `lib/slike.ts`, upute su u `sql/slika_kadar.sql`.
 Alat `alati/izrezi_sliku.py` i posao "Izreži sliku" time postaju
 neobavezni. Korisni su i dalje, kad se želi točno odabrani kadar ili
 manja datoteka, ali stranica bez njih izgleda uredno.
+
+**Fotografija ide na stranicu jednim potezom, ne kroz dashboard.**
+Do 07.09.2026. je uz svaku fotografiju išlo: otvori Supabase na
+računalu, Storage, spremnik clanci, učitaj, kopiraj adresu, zalijepi u
+SQL, pokreni SQL. Andrej objavljuje petkom, subotom i nedjeljom navečer,
+često s mobitela, pa je to bilo predugo i tražilo računalo.
+
+Sada to radi posao "Fotografija za članak"
+(`.github/workflows/fotografija.yml`, alat `alati/fotografija.py`):
+skine fotografiju s adrese, uspravi je, smanji na širinu 1600 i do
+300 KB, učita u Storage pod `godina/mjesec/slug.jpg` i, ako je zadan
+slug, odmah upiše `slika_url`, `slika_opis`, `slika_potpis` i
+`slika_kadar` u članak.
+
+Adresa fotografije s mobitela dobiva se preko GitHuba: Issues, New
+issue, fotografija se povuče u polje za tekst, GitHub je odmah učita i
+ubaci poveznicu, a obrazac se zatvori bez otvaranja prijave.
+Repozitorij je javan, pa je ta poveznica javno dohvatljiva i posao je
+može skinuti.
+
+Dvije stvari koje su se pokazale bitnima:
+
+- EXIF ORIJENTACIJA. Mobitel bočno snimljenu fotografiju sprema uspravno
+  uz oznaku "zakreni pri prikazu". Alat koji tu oznaku ne poštuje dobije
+  sliku položenu na stranu, pa `pripremi` radi `ImageOps.exif_transpose`.
+- IME DATOTEKE. Nastavak se skida PRIJE čišćenja imena, inače točka iz
+  ".jpg" postane spojnica i ime završi kao "...-jpg.jpg". To je uhvatio
+  test pri prvom pokretanju, prije nego je alat ijednom upotrijebljen.
+
+Rezanje se i dalje ne radi unaprijed: stranica sama uklopi sliku, a
+`slika_kadar` govori koji se dio po visini zadrži. Čuva
+`test_fotografija.py`, koji slike stvara u memoriji, bez interneta.
 
 **Za objavu na Facebooku s opisom i označavanjem ne koristi se naš gumb.**
 03.09.2026. najava 1. kola 4. NL nije se dala objaviti: Facebookov
