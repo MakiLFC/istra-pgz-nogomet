@@ -106,7 +106,14 @@ def test_adresa_iz_markdown_retka():
 
 def test_adresa_iz_html_oznake():
     assert procisti_adresu(f'<img src="{ADRESA}" width="400" />') == ADRESA
-    print("OK: adresa iz HTML oznake")
+    print("OK: adresa iz HTML oznake s navodnicima")
+
+
+def test_adresa_iz_html_oznake_bez_navodnika():
+    """Točno ono što je GitHub ubacio 07.09.2026., bez navodnika oko vrijednosti."""
+    uneseno = (f"<img width=1500 height=2000 alt=Image src={ADRESA} />")
+    assert procisti_adresu(uneseno) == ADRESA
+    print("OK: adresa iz HTML oznake bez navodnika")
 
 
 def test_gola_adresa_prolazi():
@@ -137,6 +144,7 @@ if __name__ == "__main__":
     test_ime_bez_neuobicajenih_znakova()
     test_adresa_iz_markdown_retka()
     test_adresa_iz_html_oznake()
+    test_adresa_iz_html_oznake_bez_navodnika()
     test_gola_adresa_prolazi()
     test_bez_poveznice_jasna_poruka()
     print("\nSVE PROLAZI")
