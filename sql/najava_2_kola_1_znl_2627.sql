@@ -46,21 +46,21 @@ values (
 
 SUBOTA
 
-Lovran - Rikard Benčić. Lovran je nakon 9:2 u Lokvama prvi na ljestvici, s gol razlikom plus sedam, a Patrik Vidmar je s pet pogodaka vodeći strijelac lige. Rikard Benčić ima bod nakon 2:2 s Munama. Prošle sezone 1:1 u Rijeci i 1:3 u Lovranu.
+Lovran - Rikard Benčić. Pitanje je mogu li Lovranci nastaviti s impresivnim ulaskom u sezonu. Nakon 9:2 u Lokvama prvi su na ljestvici s gol razlikom plus sedam, a Patrik Vidmar je s pet pogodaka vodeći strijelac lige. Rikard Benčić ima bod nakon 2:2 s Munama.
 
-Rab - Turbina. Oba kluba imaju po tri boda nakon uvodnih pobjeda. Prošle sezone je Rab dobio oba susreta, 3:2 kod Turbine i 4:0 kod kuće.
+Rab - Turbina. Oba kluba imaju po tri boda nakon uvodnih pobjeda, Rab 4:2 protiv Vihora, Turbina 3:0 protiv Zameta. Ostaje za vidjeti hoće li Antonio Belobrajdić pokušati slijediti Vidmara u borbi za obranu trofeja Terzić-Strukan ili ga pušta samog na vrhu. Prošle sezone je Rab dobio oba susreta, 3:2 u Triblju i 4:0 kod kuće.
 
-Zamet - Omladinac Vrata. Zamet je bez bodova nakon 0:3 kod Turbine. Omladinac Vrata svoju utakmicu prvog kola igra u srijedu 9. rujna protiv Vrbovskog, pa u ovo kolo ulazi s odigranim susretom. Klubovi se u našoj bazi dosad nisu sastali.
+Zamet - Omladinac Vrata. Zamet je bez bodova nakon 0:3 protiv Turbine. Omladinac Vrata svoju utakmicu prvog kola igra u srijedu 9. rujna protiv Vrbovskog.
 
 NEDJELJA
 
-Mune - Lošinj. Mune imaju bod, Lošinj tri nakon 2:0 protiv Drage. Domaći igraju bez Alena Smolića, isključenog u prvom kolu. Prošle sezone na Lošinju 5:1 za domaće, a u Munama 1:1.
+Mune - Lošinj. Mune imaju bod, Lošinj tri nakon 2:0 protiv Drage. Domaći igraju bez Alena Smolića, isključenog u prvom kolu.
 
-Stari grad Rijeka - Risnjak. Domaći imaju bod, Risnjak je bez bodova i s gol razlikom minus sedam nakon 2:9 protiv Lovrana. Klubovi se u našoj bazi dosad nisu sastali.
+Stari grad Rijeka - Risnjak. Risnjaku je gostovanje izazovno, ali mora bolje od onoga u prvom kolu, kad je kod kuće primio devet pogodaka. Stari grad ima bod nakon 0:0 u Delnicama.
 
-Vihor (B) - Draga. Oba kluba su bez bodova nakon uvodnog poraza. Prošle sezone u Dragi 4:0 za domaće, a u Baški 4:1 za Vihor.
+Vihor (B) - Draga. Oba kluba su bez bodova nakon uvodnog poraza, Vihor 2:4 na Rabu, Draga 0:2 na Lošinju.
 
-Vrbovsko - Goranin. Goranin ima bod nakon 0:0 protiv Starog grada. Vrbovsko do nedjelje igra i svoju utakmicu prvog kola, u srijedu protiv Omladinca Vrata. Prošle sezone 1:1 u Delnicama i 0:0 u Vrbovskom.
+Vrbovsko - Goranin. Derbi kola. Goranin ima bod nakon 0:0 protiv Starog grada, a Vrbovsko do nedjelje igra i svoju utakmicu prvog kola, u srijedu protiv Omladinca Vrata.
 
 ZA OVO KOLO
 

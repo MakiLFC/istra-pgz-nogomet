@@ -754,6 +754,33 @@ ponavlja se.
 Trofej Terzić-Strukan (ljestvica strijelaca svih liga) više nije u planu;
 Andrej ga je 24.08.2026. skinuo s popisa. Ne predlagati ga ponovno.
 
+## Pisanje najava i pregleda
+
+**Nova sezona je zanimljivija od prošle.** Do 07.09.2026. su najave bile
+pretrpane međusobnim ogledima iz prošle sezone. Andrej je tražio obrnuto:
+težište je na dosadašnjim rezultatima momčadi u tekućoj sezoni, a
+prošlosezonski susreti se spominju samo kad stvarno nešto govore. Ne mora
+biti riječ o međusobnim ogledima.
+
+**Vodeći strijelac iz `najava_kola()` nije cijela slika.** Ta funkcija po
+klubu vraća SAMO JEDNOG igrača, onog s najviše pogodaka. Kraljevica je
+07.09.2026. imala trojicu s po dva pogotka (Znamenaček, Bosančić,
+Čabrijan), a najava je spomenula samo prvoga, pa je ispalo neprecizno.
+Puni popis strijelaca po klubu stoji u `pregled_kola()`, u polju
+`strijelci.poredak`, i odande se uzima.
+
+Iz istog razloga se ne tvrdi da je netko "jedini strijelac" kluba: najava
+o tome nema podatak.
+
+**Polje `suspendirani` u `najava_kola()` je uvijek prazno.** Funkcija
+gleda unaprijed i ne može znati isključenja. Isključeni igrači za sljedeće
+kolo dolaze iz `pregled_kola()` prošlog kola, iz
+`posljedice_za_sljedece_kolo`.
+
+**Nemoj pisati "klubovi se u našoj bazi dosad nisu sastali".** Čitatelja
+naša baza ne zanima. Kad međusobnih susreta nema, o njima se jednostavno
+ne piše, ili se, ako je klub nov u rangu, to kaže kao vijest.
+
 ## Stil rada s korisnikom
 
 Andrej nije programer. Objašnjavaj bez žargona i uvijek reci **u koju točno

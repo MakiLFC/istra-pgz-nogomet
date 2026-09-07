@@ -42,27 +42,25 @@ values (
   'Treće kolo 3. NL Zapad igra se u subotu 12. rujna u 17 sati, a vodeća Lokomotiva gostuje kod četvrtoplasiranog Krka.',
 'Treće kolo 3. NL Zapad igra se u subotu 12. rujna, sve utakmice u 17 sati.
 
-Krk - Lokomotiva (R). Utakmica kola. Vodeća Lokomotiva sa šest bodova i dvije pobjede zaredom gostuje kod četvrtoplasiranog Krka, koji ima četiri boda. Karlo Josipović ima dva pogotka, a kod domaćih je zasad jedini strijelac Ivan Golemac. Prošle sezone na Krku 0:2 za Lokomotivu, a na Kantridi 2:2.
+Krk - Lokomotiva (R). Utakmica kola. Lokomotiva je prva na ljestvici sa šest bodova i gol razlikom plus šest, nakon 2:0 u Bujama i 4:0 protiv Crikvenice. Karlo Josipović ima dva pogotka. Krk je četvrti s četiri boda, nakon 2:2 s Crikvenicom i pobjede 2:1 u Vinodolu.
 
-OŠK Omišalj - Nehaj. Drugoplasirani Nehaj, s dvije pobjede i gol razlikom plus šest, gostuje kod Omišlja koji ima tri boda. Filip Zrilić i Luka Mijić imaju po dva pogotka. Prošle sezone u Omišlju 1:2, a u Senju 4:0 za Nehaj.
+OŠK Omišalj - Nehaj. Nehaj je u sezonu ušao uvjerljivo, s dvije pobjede, 3:1 u Poreču i 4:0 protiv Naprijeda, i drugi je na ljestvici s gol razlikom plus šest. Filip Zrilić ima dva pogotka. Omišalj je peti s tri boda, nakon 5:0 protiv Rudara i 1:4 u Kraljevici.
 
-Halubjan - Kraljevica. Kraljevica je uz Lokomotivu i Nehaj jedina sa šest bodova, dok Halubjan nakon 0:4 u Labinu ima samo bod. Filip Znamenaček vodi kod gostiju s dva pogotka. Prošle sezone 1:1 u Kraljevici i 0:2 u Viškovu.
+Halubjan - Kraljevica. Težak zadatak za Halubjan. Kraljevica je uz Lokomotivu i Nehaj jedina sa šest bodova, a čak tri njezina igrača imaju po dva pogotka: Filip Znamenaček, Franko Bosančić i Matija Čabrijan. Halubjan ima bod, nakon 2:2 s Banjolama i 0:4 u Labinu.
 
-Buje - Rudar (L). Oba kluba imaju po tri boda i istu gol razliku, obojica nakon uvodnog poraza pa pobjede u drugom kolu. Prošle sezone u Bujama 4:1 za domaće, a u Labinu 1:1.
+Buje - Rudar (L). Oba kluba imaju po tri boda i istu gol razliku, obojica nakon uvodnog poraza pa pobjede u drugom kolu. Buje su slavile 2:1 u Banjolama, Rudar 4:0 protiv Halubjana.
 
-Crikvenica - Banjole. Susret dviju momčadi s po jednim bodom. Ahmed Durmo ima dva pogotka za goste. Prošle sezone u Banjolama 2:1, a u Crikvenici 1:3.
+Crikvenica - Banjole. Susret dviju momčadi s po jednim bodom, obje još bez pobjede. Ahmed Durmo ima dva pogotka za goste. Crikvenica ima kaznene bodove, pa je na službenoj ljestvici niže nego što bi bila samo po odigranome.
 
-Jadran-Poreč - Rovinj. Oba kluba imaju po tri boda, Jadran nakon preokreta na Žuknici. Dominik-Velin Mrvčić ima dva pogotka. Klubovi se u našoj bazi dosad nisu sastali.
+Jadran-Poreč - Rovinj. Jadran je prošlo kolo preokretom slavio na Žuknici, a Dominik-Velin Mrvčić i Ilija Batrićević imaju po dva pogotka. Rovinj ima tri boda, pobjedu 1:0 protiv Vinodola i poraz 0:1 od Pazinke. Uz ovakav napad domaćina, potencijalno još jedna golijada.
 
-Naprijed (H) - Pomorac. Naprijed je uz Vinodol jedini bez osvojenog boda, s dva poraza i bez postignutog pogotka. Pomorac ima tri boda, a Jakob Šprem-Veljavečki dva pogotka. Prošle sezone u Hreljinu 0:2 za Pomorac, a u Kostreni 0:0.
+Naprijed (H) - Pomorac. Hreljani se moraju probuditi: dva poraza, šest primljenih i nijedan postignut pogodak. Zadatak im nije lagan, jer Pomorac ima dvojicu s po dva pogotka, Jakoba Šprem-Veljavečkog i Marina Matkovića.
 
-Pazinka-Pazin - Vinodol. Pazinka ima tri boda, Vinodol je bez bodova i s dva poraza. Prošle sezone u Pazinu 1:2, a u Novom Vinodolskom 0:4 za Pazinku.
+Pazinka-Pazin - Vinodol. Pazinka je prošlo kolo pobijedila 1:0 u Rovinju i ima tri boda. Vinodol je bez bodova nakon dva poraza.
 
 ZA OVO KOLO
 
-U ligi nema isključenih igrača ni igrača na pragu žutih kartona.
-
-Crikvenica ima kaznene bodove, pa se službena ljestvica na stranici lige razlikuje od poretka izračunatog samo iz odigranih utakmica.',
+U ligi nema isključenih igrača ni igrača na pragu žutih kartona.',
   '3. NL Zapad',
   false,
   now()
