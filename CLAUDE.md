@@ -616,14 +616,28 @@ ubaci cijeli redak oblika `![ime](https://github.com/user-attachments/
 assets/...)`, a obrazac se zatvori bez otvaranja prijave. Repozitorij je
 javan, pa je ta poveznica javno dohvatljiva i posao je može skinuti.
 
-U posao se lijepi CIJELI taj redak, ne samo dio u zagradi. Prvo
-pokretanje, 07.09.2026., palo je upravo na tome: pri označavanju mišem
-dva znaka s kraja adrese završila su na njezinu početku, pa je posao
-dobio `7dhttps://...`. Uputa koja traži precizno označavanje je poziv na
-grešku, pa `procisti_adresu` sada prihvaća što god je zalijepljeno i iz
-toga izvuče prvu adresu, bila ona u markdown retku, u HTML oznaci ili
-sama. Kad adrese nema, poruka kaže što se očekivalo, umjesto dotadašnjeg
+PRIJAVA SE MORA OTVORITI, gumbom Create. Dok nije otvorena, fotografija
+je nacrt vidljiv samo onome tko je učitava, a poslu vraća 404. Najlakše
+je nakon otvaranja desnom tipkom kliknuti na sliku i odabrati "Kopiraj
+adresu slike"; prima se i cijeli redak `<img ... />`.
+
+Prvi dan, 07.09.2026., alat je pao četiri puta zaredom, i svaki put iz
+drugog razloga: dva znaka s kraja adrese završila su na početku pri
+označavanju mišem; GitHub ubacuje HTML oznaku bez navodnika, ne markdown
+redak; prijava nije bila otvorena pa je adresa vraćala 404; zalijepljena
+je adresa STRANICE prijave umjesto adrese slike.
+
+Zajednička pouka nije o korisniku nego o alatu: svaka uputa koja traži
+da se mišem pogodi točan komad teksta je poziv na grešku. Zato
+`procisti_adresu` prihvaća što god je zalijepljeno i iz toga izvuče prvu
+adresu, a kad je nema, poruka kaže što se očekivalo, umjesto dotadašnjeg
 `No connection adapters were found`.
+
+Druga pouka je o redoslijedu rada: alat je bio pušten u upotrebu a da
+nijednom nije pokrenut od početka do kraja. Testovi su pokrivali dijelove,
+ali nijedan nije mogao dodirnuti Storage, pa su greške izlazile jedna po
+jedna, i to preko korisnika. Kad se gradi ovakav lanac, prvo pokretanje
+radi se sa svoje grane i svojim podacima, pa tek onda predaje.
 
 Dvije stvari koje su se pokazale bitnima:
 
@@ -633,6 +647,12 @@ Dvije stvari koje su se pokazale bitnima:
 - IME DATOTEKE. Nastavak se skida PRIJE čišćenja imena, inače točka iz
   ".jpg" postane spojnica i ime završi kao "...-jpg.jpg". To je uhvatio
   test pri prvom pokretanju, prije nego je alat ijednom upotrijebljen.
+- SMANJIVANJE IDE PO DUŽOJ STRANICI, ne po širini. Uspravna fotografija
+  1500x2000 ima širinu ispod granice od 1600, pa je s pravilom po širini
+  prolazila nesmanjena i završavala na 322 KB, iznad ograničenja.
+- STORAGE TRAŽI OBA ZAGLAVLJA s ključem, `apikey` i `Authorization`. Bez
+  prvog odgovara s 403 "Invalid Compact JWS", što zvuči kao da je ključ
+  neispravan, a zapravo fali zaglavlje.
 
 Rezanje se i dalje ne radi unaprijed: stranica sama uklopi sliku, a
 `slika_kadar` govori koji se dio po visini zadrži. Čuva
@@ -733,6 +753,33 @@ ponavlja se.
 
 Trofej Terzić-Strukan (ljestvica strijelaca svih liga) više nije u planu;
 Andrej ga je 24.08.2026. skinuo s popisa. Ne predlagati ga ponovno.
+
+## Pisanje najava i pregleda
+
+**Nova sezona je zanimljivija od prošle.** Do 07.09.2026. su najave bile
+pretrpane međusobnim ogledima iz prošle sezone. Andrej je tražio obrnuto:
+težište je na dosadašnjim rezultatima momčadi u tekućoj sezoni, a
+prošlosezonski susreti se spominju samo kad stvarno nešto govore. Ne mora
+biti riječ o međusobnim ogledima.
+
+**Vodeći strijelac iz `najava_kola()` nije cijela slika.** Ta funkcija po
+klubu vraća SAMO JEDNOG igrača, onog s najviše pogodaka. Kraljevica je
+07.09.2026. imala trojicu s po dva pogotka (Znamenaček, Bosančić,
+Čabrijan), a najava je spomenula samo prvoga, pa je ispalo neprecizno.
+Puni popis strijelaca po klubu stoji u `pregled_kola()`, u polju
+`strijelci.poredak`, i odande se uzima.
+
+Iz istog razloga se ne tvrdi da je netko "jedini strijelac" kluba: najava
+o tome nema podatak.
+
+**Polje `suspendirani` u `najava_kola()` je uvijek prazno.** Funkcija
+gleda unaprijed i ne može znati isključenja. Isključeni igrači za sljedeće
+kolo dolaze iz `pregled_kola()` prošlog kola, iz
+`posljedice_za_sljedece_kolo`.
+
+**Nemoj pisati "klubovi se u našoj bazi dosad nisu sastali".** Čitatelja
+naša baza ne zanima. Kad međusobnih susreta nema, o njima se jednostavno
+ne piše, ili se, ako je klub nov u rangu, to kaže kao vijest.
 
 ## Stil rada s korisnikom
 
