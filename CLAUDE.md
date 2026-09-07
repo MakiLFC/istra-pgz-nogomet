@@ -52,9 +52,9 @@ prepiše ili se stavi zarez, dvotočka ili točka.
 - **Scraper:** Python (`requests` + `BeautifulSoup`), bez Playwrighta
 - **Automatizacija:** GitHub Actions
   - `.github/workflows/scraper.yml` (puni prolaz: raspored, zapisnici,
-    rang-liste) petkom, subotom i nedjeljom navečer, ponedjeljkom ujutro
-    i srijedom navečer (petkom jer se dio kola igra u petak, srijedom
-    zbog utakmica zakazanih sredinom tjedna)
+    rang-liste) petkom, subotom, nedjeljom i srijedom navečer, i to
+    DVAPUT, ranije i kasnije, te ponedjeljkom ujutro (petkom jer se dio
+    kola igra u petak, srijedom zbog utakmica zakazanih sredinom tjedna)
   - `.github/workflows/termini.yml` (samo termini s rasporeda) svaki dan
     ujutro i poslijepodne; kad je koja utakmica premještena, otvori issue
     na GitHubu, pa o tome stigne e-pošta
@@ -336,10 +336,32 @@ Iz toga slijede dva pravila:
   pokretanja (`event: schedule`) za taj workflow. 05.09.2026. je zaključeno
   da subotnji cron "uopće nije krenuo", a krenuo je 114 minuta kasnije.
 
-Pomicanje crona ranije (npr. 17:00 UTC umjesto 19:00) djelomično bi
-nadoknadilo kašnjenje, ali kako ono nije stalno, time se riskira prolaz
-prije nego HNS uopće upiše zapisnike. Zato je zasad ostavljeno kako jest,
-uz ručno pokretanje kad se žuri.
+Riješeno 07.09.2026. tako da se ne pomiče postojeći prolaz, nego se
+DODAJE rani. Mjerenjem se pokazalo da su zapisnici na HNS-u gotovi
+otprilike sat do sat i pol nakon zadnjeg zvižduka: 05.09. su utakmice
+završile oko 19:20, a u 20:19 su svi zapisnici 3. NL i 4. NL bili
+potpuni; 06.09. su završile oko 18:50, u 19:44 ih je bilo pet od šest, a
+šesti je stigao do 20:24.
+
+Zato sada petkom, subotom, nedjeljom i srijedom idu po dva prolaza. Rani
+je zakazan za 17:00 UTC (18:00 petkom, jer se ondje igra kasnije), pa uz
+uobičajeno kašnjenje padne između 20 i 22 sata po našem, taman kad su
+zapisnici gotovi. Kasni ostaje na 19:00, odnosno 20:00 UTC, kao mreža za
+ono što HNS naknadno dopuni.
+
+Pomicanje POSTOJEĆEG crona ranije namjerno nije napravljeno: kašnjenje
+nije stalno, pa bi se time riskiralo da jedini prolaz ode prije nego HNS
+išta upiše. Ovako najgori ishod ranog prolaza je da ne zatekne ništa
+novo, što ne šteti.
+
+Kad se satnica u kasnu jesen pomakne na 13:30, rani prolaz smije ići još
+ranije, jer su podaci tada gotovi već oko 16 sati.
+
+Cijena je da se HNS dohvaća dvaput navečer. Zasad je to nekoliko minuta,
+jer je odigrano tridesetak utakmica. Kad ih u studenome bude tristotinjak
+i prolaz potraje dvadesetak minuta, treba dodati zastavicu koja otvara
+samo zapisnike utakmica bez rezultata u bazi, pa da rani prolaz traje
+sekunde. Mi smo na Semaforu gosti i to se ne smije zaboraviti.
 
 
 **Ime upotrijebljeno dvaput za dvije stvari ruši scraper tek u pogonu.**
