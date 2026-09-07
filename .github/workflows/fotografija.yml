@@ -13,9 +13,10 @@
 # KAKO DOĆI DO ADRESE FOTOGRAFIJE S MOBITELA
 # 1. GitHub -> Issues -> New issue
 # 2. u polje za tekst povuci ili odaberi fotografiju; GitHub je odmah
-#    učita i ubaci poveznicu oblika
-#    https://github.com/user-attachments/assets/...
-# 3. kopiraj tu poveznicu i zatvori obrazac BEZ otvaranja prijave
+#    učita i ubaci CIJELI redak oblika
+#    ![ime](https://github.com/user-attachments/assets/...)
+# 3. označi i kopiraj TAJ CIJELI REDAK, ne samo dio u zagradi, pa zatvori
+#    obrazac BEZ otvaranja prijave. Posao sam izvuče adresu iz retka.
 #
 # KAKO SE POKREĆE
 # Actions -> "Fotografija za članak" -> Run workflow, pa se popune polja:
@@ -35,7 +36,7 @@ on:
   workflow_dispatch:
     inputs:
       adresa:
-        description: "Adresa fotografije (javna poveznica)"
+        description: "Zalijepi cijeli redak koji je GitHub ubacio, npr. ![slika](https://...)"
         required: true
         type: string
       slug:
@@ -78,6 +79,7 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          PYTHONUNBUFFERED: "1"   # da se zapisnik ispisuje redom
         run: |
           python alati/fotografija.py \
             --adresa "${{ inputs.adresa }}" \
