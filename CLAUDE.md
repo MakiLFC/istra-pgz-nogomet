@@ -612,9 +612,18 @@ slug, odmah upiše `slika_url`, `slika_opis`, `slika_potpis` i
 
 Adresa fotografije s mobitela dobiva se preko GitHuba: Issues, New
 issue, fotografija se povuče u polje za tekst, GitHub je odmah učita i
-ubaci poveznicu, a obrazac se zatvori bez otvaranja prijave.
-Repozitorij je javan, pa je ta poveznica javno dohvatljiva i posao je
-može skinuti.
+ubaci cijeli redak oblika `![ime](https://github.com/user-attachments/
+assets/...)`, a obrazac se zatvori bez otvaranja prijave. Repozitorij je
+javan, pa je ta poveznica javno dohvatljiva i posao je može skinuti.
+
+U posao se lijepi CIJELI taj redak, ne samo dio u zagradi. Prvo
+pokretanje, 07.09.2026., palo je upravo na tome: pri označavanju mišem
+dva znaka s kraja adrese završila su na njezinu početku, pa je posao
+dobio `7dhttps://...`. Uputa koja traži precizno označavanje je poziv na
+grešku, pa `procisti_adresu` sada prihvaća što god je zalijepljeno i iz
+toga izvuče prvu adresu, bila ona u markdown retku, u HTML oznaci ili
+sama. Kad adrese nema, poruka kaže što se očekivalo, umjesto dotadašnjeg
+`No connection adapters were found`.
 
 Dvije stvari koje su se pokazale bitnima:
 

@@ -33,6 +33,7 @@ TRAŽI dvije varijable okoline, iste kao scraper:
 """
 
 import argparse
+import functools
 import io
 import os
 import re
@@ -43,11 +44,38 @@ from datetime import date
 import requests
 from PIL import Image, ImageOps
 
+print = functools.partial(print, flush=True)  # zapisnik ide redom
+
 ZAGLAVLJA = {"User-Agent": "Lokal-Arena alat za slike"}
 
 SIRINA = 1600          # širina na koju se slika smanjuje
 NAJVISE_BAJTOVA = 300 * 1024
 SPREMNIK = "clanci"    # spremnik u Supabase Storageu
+
+
+def procisti_adresu(uneseno):
+    """Iz onoga što je zalijepljeno izvlači adresu slike.
+
+    GitHub pri učitavanju fotografije u polje za tekst ubaci cijeli redak,
+    npr.  ![ime](https://github.com/user-attachments/assets/...)
+    ili, kod nekih formata,  <img src="https://..." width="400" />
+
+    Tražiti od korisnika da mišem označi točno ono unutar zagrade je
+    poziv na grešku: 07.09.2026. je prvo pokretanje palo jer su dva znaka
+    s kraja adrese završila na njezinu početku. Zato se ovdje prihvaća
+    ŠTO GOD da je zalijepljeno i iz toga izvuče prva adresa.
+    """
+    tekst = (uneseno or "").strip()
+    nadjeno = re.search(r"https?://[^\s\)\]\"'>]+", tekst)
+    if not nadjeno:
+        raise SystemExit(
+            "U polje 'adresa' nije stigla nijedna poveznica.\n"
+            f"Zalijepljeno je: {tekst[:200]}\n"
+            "Očekuje se nešto što počinje s http, npr. cijeli redak koji "
+            "GitHub ubaci nakon što se fotografija učita:\n"
+            "  ![slika](https://github.com/user-attachments/assets/...)"
+        )
+    return nadjeno.group(0)
 
 
 def dohvati(adresa, najvise_pokusaja=3):
@@ -189,8 +217,11 @@ def main():
     if not adresa_baze or not kljuc:
         raise SystemExit("Nedostaju SUPABASE_URL i SUPABASE_SERVICE_KEY.")
 
-    print(f"Skidam: {args.adresa}")
-    bajtovi = pripremi(dohvati(args.adresa))
+    adresa = procisti_adresu(args.adresa)
+    if adresa != (args.adresa or "").strip():
+        print(f"Iz unosa je izvučena adresa: {adresa}")
+    print(f"Skidam: {adresa}")
+    bajtovi = pripremi(dohvati(adresa))
 
     putanja = ime_datoteke(args.slug, args.ime)
     adresa_slike = ucitaj_u_storage(adresa_baze, kljuc, putanja, bajtovi)

@@ -17,7 +17,13 @@ from PIL import Image
 
 sys.path.insert(0, "alati")
 
-from fotografija import NAJVISE_BAJTOVA, SIRINA, ime_datoteke, pripremi  # noqa: E402
+from fotografija import (  # noqa: E402
+    NAJVISE_BAJTOVA,
+    SIRINA,
+    ime_datoteke,
+    pripremi,
+    procisti_adresu,
+)
 
 
 def _slika(sirina, visina, exif=None):
@@ -89,6 +95,38 @@ def test_ime_bez_neuobicajenih_znakova():
     print(f"OK: ime se očisti, {ime}")
 
 
+ADRESA = "https://github.com/user-attachments/assets/58b85ab9-cd7f-49b3-b23d-b3ad539dea7d"
+
+
+def test_adresa_iz_markdown_retka():
+    """Ono što GitHub ubaci u polje za tekst kad se učita fotografija."""
+    assert procisti_adresu(f"![slika]({ADRESA})") == ADRESA
+    print("OK: adresa iz cijelog markdown retka")
+
+
+def test_adresa_iz_html_oznake():
+    assert procisti_adresu(f'<img src="{ADRESA}" width="400" />') == ADRESA
+    print("OK: adresa iz HTML oznake")
+
+
+def test_gola_adresa_prolazi():
+    assert procisti_adresu(ADRESA) == ADRESA
+    assert procisti_adresu(f"  {ADRESA}  \n") == ADRESA
+    print("OK: gola adresa i razmaci oko nje")
+
+
+def test_bez_poveznice_jasna_poruka():
+    """Prazan unos ili tekst bez adrese mora reći što nedostaje."""
+    for unos in ("", "   ", "slika s utakmice"):
+        try:
+            procisti_adresu(unos)
+        except SystemExit as greska:
+            assert "poveznica" in str(greska), str(greska)
+        else:
+            raise AssertionError(f"trebalo je stati na unosu {unos!r}")
+    print("OK: bez poveznice ide jasna poruka")
+
+
 if __name__ == "__main__":
     test_siroka_se_smanji_na_1600()
     test_mala_se_ne_povecava()
@@ -97,4 +135,8 @@ if __name__ == "__main__":
     test_ime_iz_sluga()
     test_ime_bez_sluga()
     test_ime_bez_neuobicajenih_znakova()
+    test_adresa_iz_markdown_retka()
+    test_adresa_iz_html_oznake()
+    test_gola_adresa_prolazi()
+    test_bez_poveznice_jasna_poruka()
     print("\nSVE PROLAZI")
