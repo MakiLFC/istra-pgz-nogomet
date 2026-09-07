@@ -48,7 +48,8 @@ print = functools.partial(print, flush=True)  # zapisnik ide redom
 
 ZAGLAVLJA = {"User-Agent": "Lokal-Arena alat za slike"}
 
-SIRINA = 1600          # širina na koju se slika smanjuje
+NAJDUZA_STRANICA = 1600  # na toliko se smanjuje duža stranica slike
+SIRINA = NAJDUZA_STRANICA  # stariji naziv, zadržan zbog testova
 NAJVISE_BAJTOVA = 300 * 1024
 SPREMNIK = "clanci"    # spremnik u Supabase Storageu
 
@@ -111,9 +112,15 @@ def pripremi(sadrzaj):
     if slika.mode != "RGB":
         slika = slika.convert("RGB")
 
-    if slika.width > SIRINA:
-        visina = round(slika.height * SIRINA / slika.width)
-        slika = slika.resize((SIRINA, visina), Image.LANCZOS)
+    # Gleda se DUŽA stranica, ne samo širina. Uspravna fotografija s
+    # mobitela zna biti 1500x2000: širina je ispod granice, pa se stara
+    # provjera nije okidala i slika je ostajala prevelika, 322 KB umjesto
+    # ispod 300. Sada se 1500x2000 smanji na 1200x1600.
+    najduza = max(slika.width, slika.height)
+    if najduza > NAJDUZA_STRANICA:
+        omjer = NAJDUZA_STRANICA / najduza
+        nova = (round(slika.width * omjer), round(slika.height * omjer))
+        slika = slika.resize(nova, Image.LANCZOS)
 
     # Kvaliteta se spušta dok datoteka ne stane u ograničenje. Ispod 40 se
     # ne ide, jer tada slika vidljivo propada; radije ostane malo veća.
@@ -161,6 +168,11 @@ def ucitaj_u_storage(adresa_baze, kljuc, putanja, bajtovi):
     odgovor = requests.post(
         cilj,
         headers={
+            # Storage trazi OBA zaglavlja s kljucem. Bez "apikey" odgovara
+            # s 403 "Invalid Compact JWS", sto zvuci kao da je kljuc kriv,
+            # a zapravo fali zaglavlje. Isto salje i supabase paket koji
+            # koristi scraper.
+            "apikey": kljuc,
             "Authorization": f"Bearer {kljuc}",
             "Content-Type": "image/jpeg",
             "x-upsert": "true",

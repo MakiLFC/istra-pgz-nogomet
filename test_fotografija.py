@@ -49,6 +49,18 @@ def test_siroka_se_smanji_na_1600():
     print("OK: široka fotografija se smanji na 1600")
 
 
+def test_uspravna_se_smanji_po_visini():
+    """Uspravna fotografija s mobitela, 1500x2000: širina je ispod granice,
+    pa se stara provjera nije okidala i slika je ostajala prevelika."""
+    izlaz = pripremi(_slika(1500, 2000))
+    nova = Image.open(io.BytesIO(izlaz))
+    assert max(nova.size) == SIRINA, nova.size
+    assert nova.size == (1200, 1600), nova.size
+    assert len(izlaz) <= NAJVISE_BAJTOVA, len(izlaz)
+    print(f"OK: uspravna 1500x2000 postane {nova.size}, "
+          f"{len(izlaz) // 1024} KB")
+
+
 def test_mala_se_ne_povecava():
     izlaz = pripremi(_slika(800, 600))
     nova = Image.open(io.BytesIO(izlaz))
@@ -136,6 +148,7 @@ def test_bez_poveznice_jasna_poruka():
 
 if __name__ == "__main__":
     test_siroka_se_smanji_na_1600()
+    test_uspravna_se_smanji_po_visini()
     test_mala_se_ne_povecava()
     test_stane_u_300_kb()
     test_bocna_fotografija_se_uspravi()
