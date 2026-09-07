@@ -1,0 +1,87 @@
+# Fotografija za članak, u jednom potezu.
+#
+# ČEMU SLUŽI
+# Prije ovoga je uz svaku fotografiju išlo: otvori Supabase na računalu,
+# Storage, spremnik clanci, učitaj, kopiraj adresu, zalijepi u SQL,
+# pokreni SQL. Petkom navečer, kad se žuri s objavom, to je bilo predugo.
+#
+# Ovaj posao skine fotografiju s njezine adrese, uspravi je ako je
+# snimljena bočno, smanji na širinu 1600 i do 300 KB, učita u Supabase
+# Storage i, ako je zadan slug članka, odmah upiše adresu, opis, potpis i
+# kadar. Radi i s mobitela, kroz GitHub u pregledniku.
+#
+# KAKO DOĆI DO ADRESE FOTOGRAFIJE S MOBITELA
+# 1. GitHub -> Issues -> New issue
+# 2. u polje za tekst povuci ili odaberi fotografiju; GitHub je odmah
+#    učita i ubaci poveznicu oblika
+#    https://github.com/user-attachments/assets/...
+# 3. kopiraj tu poveznicu i zatvori obrazac BEZ otvaranja prijave
+#
+# KAKO SE POKREĆE
+# Actions -> "Fotografija za članak" -> Run workflow, pa se popune polja:
+#   adresa  poveznica iz koraka gore
+#   slug    slug članka, npr. osvrt-pomorac-jadran-porec-2-kolo-2627
+#           (ostavi prazno ako se slika samo učitava, bez upisa)
+#   kadar   koji se dio slike po visini zadrži: vrh, sredina, dno ili
+#           broj 0 do 100. Prazno je sredina.
+#   opis    što se na slici vidi, za čitače ekrana i dijeljenje
+#
+# REZANJE NIJE POTREBNO. Stranica sama uklopi sliku u 3:2 u članku i 16:9
+# na kartici, a kadar govori koji se dio po visini zadrži.
+
+name: Fotografija za članak
+
+on:
+  workflow_dispatch:
+    inputs:
+      adresa:
+        description: "Adresa fotografije (javna poveznica)"
+        required: true
+        type: string
+      slug:
+        description: "Slug članka (prazno = samo učitaj sliku)"
+        required: false
+        type: string
+      kadar:
+        description: "Okomiti kadar: vrh, sredina, dno ili broj 0 do 100"
+        required: false
+        default: "sredina"
+        type: string
+      opis:
+        description: "Opis slike (za čitače ekrana i dijeljenje)"
+        required: false
+        type: string
+      potpis:
+        description: "Potpis ispod slike"
+        required: false
+        default: "Foto: Lokal-Arena"
+        type: string
+
+jobs:
+  fotografija:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Preuzmi kod
+        uses: actions/checkout@v7
+
+      - name: Postavi Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Instaliraj pakete
+        run: pip install requests pillow==11.3.0
+
+      - name: Učitaj fotografiju
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+        run: |
+          python alati/fotografija.py \
+            --adresa "${{ inputs.adresa }}" \
+            --slug "${{ inputs.slug }}" \
+            --kadar "${{ inputs.kadar }}" \
+            --opis "${{ inputs.opis }}" \
+            --potpis "${{ inputs.potpis }}"

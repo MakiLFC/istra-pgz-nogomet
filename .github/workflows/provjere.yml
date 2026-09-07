@@ -56,7 +56,9 @@ jobs:
         # nove vrste upozorenja, pa bi posao pocrvenio sam od sebe, bez
         # ijedne naše promjene. Kad ga poželiš podići, promijeni broj ovdje
         # i provjeri da je ispis i dalje prazan.
-        run: pip install -r requirements.txt pyflakes==3.4.0
+        # pillow nije u requirements.txt jer ga scraper ne treba;
+        # koristi ga samo alat za fotografije i njegov test.
+        run: pip install -r requirements.txt pyflakes==3.4.0 pillow==11.3.0
 
       - name: Pyflakes nad svim Python datotekama
         run: python -m pyflakes $(git ls-files '*.py')
@@ -67,7 +69,7 @@ jobs:
                       test_odustali_klub test_nastupi test_autogol \
                       test_ponavljanje test_klub_igraca \
                       test_provjera_strijelaca test_rezultat_bez_brojki \
-                      test_zbroj_bez_postava; do
+                      test_zbroj_bez_postava test_fotografija; do
             echo "=============================================="
             echo "$test.py"
             echo "=============================================="
