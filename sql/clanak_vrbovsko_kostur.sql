@@ -13,6 +13,7 @@
 --
 -- ODAKLE ŠTO
 --   Trener i pojačanja: Andrej, 09.09.2026.
+--   Podatak da je Diego Žic ušao s klupe: Andrej, 09.09.2026.
 --   Mjesta na ljestvici prošle sezone: Andrej, 09.09.2026.
 --   Rezultat, strijelci i minute: zapisnik s HNS-a, preko
 --   public.pregled_kola('2026/27','1. ŽNL PGŽ',1).
@@ -34,9 +35,9 @@ insert into public.clanci
 values (
   'vrbovsko-novi-trener-i-pojacanja-2627',
 
-  'DVOSTRUKI ŽIC SRUŠIO NOVO VRBOVSKO U VRATIMA',
+  'DIEGO ŽIC S KLUPE SRUŠIO NOVO VRBOVSKO U VRATIMA',
 
-  'Omladinac Vrata, prošle sezone pretposljednji, poveo je 4:1, a Vrbovsko je u prvom nastupu s novim trenerom i osam pojačanja stiglo tek do 4:2.',
+  'Dvostruki strijelac Diego Žic ušao je u igru s klupe. Omladinac Vrata, prošle sezone pretposljednji, poveo je 4:1, a Vrbovsko je u prvom nastupu s novim trenerom i osam pojačanja stiglo tek do 4:2.',
 
 'Nogometaši Vrbovskog otvorili su sezonu u 1. ŽNL PGŽ porazom. Na
 Gmajni u Vratima Omladinac je slavio 4:2.
@@ -44,12 +45,13 @@ Gmajni u Vratima Omladinac je slavio 4:2.
 Rezultat pomalo iznenađuje s obzirom na prošlu sezonu, u kojoj je
 Omladinac Vrata bio pretposljednji, a Vrbovsko treće.
 
-Do pred kraj prvog poluvremena pogodaka nije bilo. Onda je u 43. minuti
-Mateo Tomić doveo domaće u vodstvo, a Zorko Tomljenović je odmah po
-povratku s odmora, u 47., povisio na 2:0. Josip Matovina smanjio je u
-53. minuti, no Diego Žic je pogocima u 61. i 69. odveo Omladinac na
-4:1. Konačnih 4:2 postavio je u 87. minuti Živko Blagojević, jedno od
-ljetnih pojačanja Vrbovskog.
+Do pred kraj prvog poluvremena pogodaka nije bilo. Prvi je pao u 43.
+minuti, kada je Mateo Tomić doveo domaće u vodstvo, a Zorko Tomljenović
+je odmah po povratku s odmora, u 47., povisio na 2:0. Josip Matovina
+smanjio je u 53. minuti, no onda je Diego Žic, koji je u igru ušao s
+klupe, pogocima u 61. i 69. odveo Omladinac na 4:1. Konačnih 4:2
+postavio je u 87. minuti Živko Blagojević, jedno od ljetnih pojačanja
+Vrbovskog.
 
 Utakmicom u Vratima Vrbovsko je krenulo u sezonu u kojoj se u klubu
 promijenilo dosta toga. Momčad vodi novi trener Igor Cindrić, a popis
