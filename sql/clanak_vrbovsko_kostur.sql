@@ -3,10 +3,12 @@
 -- Omladinac Vrata - Vrbovsko, 1. kolo 1. ŽNL PGŽ
 -- srijeda 09.09.2026. u 17:30, Gmajna, Vrata
 -- =====================================================================
--- OVO JOŠ NIJE ZA POKRETANJE.
---   U tekstu su prazna mjesta u UGLATIM ZAGRADAMA. Dok su ona unutra,
---   članak se ne upisuje. Kad rezultat bude poznat, popuni ih (ili mi
---   javi rezultat pa ih popunim ja) i tek onda pokreni KORAK 1.
+-- STANJE 09.09.2026. NAVEČER
+--   Rezultat je poznat, 4:2 za Omladinac Vrata, i upisan je u tekst.
+--   Ostalo je JEDNO prazno mjesto u uglatim zagradama, za strijelce i
+--   minute. HNS je otvorio zapisnik, ali u njemu još nema ni rezultata
+--   ni strijelaca, pa se čeka da ga dopuni.
+--   Dok je uglata zagrada u tekstu, članak se ne upisuje.
 --
 -- ŠTO JE VEĆ GOTOVO
 --   Dio o novom treneru i pojačanjima napisan je do kraja, po
@@ -14,10 +16,8 @@
 --   rezultatu, pa je namjerno napisan unaprijed.
 --
 -- ŠTO SE DOPUNJAVA POSLIJE UTAKMICE
---   1. naslov, koji se piše prema rezultatu
---   2. sažetak, isto prema rezultatu
---   3. uvodni odlomak s rezultatom
---   4. odlomak o tijeku utakmice, strijelcima i minutama
+--   1. strijelci i minute, čim HNS dopuni zapisnik
+--   2. naslov se tada može zaoštriti, ako neki pogodak to zasluži
 --
 -- ODAKLE ŠTO
 --   Trener, pojačanja i njihovi podaci: Andrej, 09.09.2026.
@@ -40,16 +40,16 @@ insert into public.clanci
 values (
   'vrbovsko-novi-trener-i-pojacanja-2627',
 
-  -- NASLOV se piše tek kad se zna rezultat, i nosi ono što je utakmicu
-  -- odlučilo: strijelca, preokret, brojku. Pojačanja i trener idu u
-  -- tekst, ne u naslov.
-  '[NASLOV, prema rezultatu]',
+  -- Naslov se može zaoštriti kad budu poznati strijelci.
+  'HLADAN TUŠ ZA NOVO VRBOVSKO: 4:2 U VRATIMA',
 
-  '[SAŽETAK, prema rezultatu: jedna rečenica s ishodom i onim što ga je odlučilo.]',
+  'Omladinac Vrata, prošle sezone pretposljednji, svladao je Vrbovsko koje je sezonu prije završilo treće.',
 
-'[UVOD: rezultat i mjesto. Na primjer: Nogometaši Vrbovskog otvorili su
-sezonu u 1. ŽNL PGŽ gostovanjem kod Omladinca u Vratima, gdje je na
-Gmajni bilo X:Y.]
+'Nogometaši Vrbovskog otvorili su sezonu u 1. ŽNL PGŽ porazom. Na Gmajni
+u Vratima Omladinac je slavio 4:2.
+
+Rezultat pomalo iznenađuje s obzirom na prošlu sezonu, u kojoj je
+Omladinac Vrata bio pretposljednji, a Vrbovsko treće.
 
 Utakmicom u Vratima Vrbovsko je krenulo u sezonu u kojoj se u klubu
 promijenilo dosta toga. Momčad vodi novi trener Igor Cindrić, a popis
@@ -67,10 +67,8 @@ Napad su pojačala još dvojica. Patrik Poljak prekaljeni je strijelac s
 prvoligaškim iskustvom, a Živko Blagojević, 30-godišnji napadač, dolazi
 iz Slovenije.
 
-[TIJEK UTAKMICE: kako je tekla, tko je zabio i u kojoj minuti, tko je
-od novih igrača zaigrao i kako. Ovdje ide ono što stoji u zapisniku i
-što si vidio. Ako ne budeš na utakmici, dovoljni su strijelci i minute
-iz zapisnika, pa se odlomak napiše kraće.]
+[STRIJELCI I MINUTE: čim HNS dopuni zapisnik, ovdje idu strijelci obiju
+momčadi s minutama, i tko je od novih igrača zaigrao.]
 
 Vrbovsko već u nedjelju igra ponovno. U 2. kolu, 13.09. u 16:30, na
 svom terenu dočekuje Goranin, susret koji će Lokal-Arena ovaj vikend
