@@ -73,8 +73,8 @@ od novih igrača zaigrao i kako. Ovdje ide ono što stoji u zapisniku i
 iz zapisnika, pa se odlomak napiše kraće.]
 
 Vrbovsko već u nedjelju igra ponovno. U 2. kolu, 13.09. u 16:30, na
-svom terenu dočekuje Goranin, susret koji je najava kola označila kao
-derbi.',
+svom terenu dočekuje Goranin, susret koji će Lokal-Arena ovaj vikend
+označiti kao derbi kola te s njega donijeti detaljni sažetak.',
 
   '1. ŽNL PGŽ',
   null,
