@@ -14,8 +14,8 @@
 --   rezultatu, pa je namjerno napisan unaprijed.
 --
 -- ŠTO SE DOPUNJAVA POSLIJE UTAKMICE
---   1. naslov (dolje su dvije mogućnosti, ovisno o ishodu)
---   2. sažetak
+--   1. naslov, koji se piše prema rezultatu
+--   2. sažetak, isto prema rezultatu
 --   3. uvodni odlomak s rezultatom
 --   4. odlomak o tijeku utakmice, strijelcima i minutama
 --
@@ -40,14 +40,12 @@ insert into public.clanci
 values (
   'vrbovsko-novi-trener-i-pojacanja-2627',
 
-  -- NASLOV, odaberi jedan i drugi obriši:
-  --   ako Vrbovsko pobijedi ili odigra dobro:
-  --     'VRBOVSKO S NOVIM TRENEROM I OSAM POJAČANJA OTVORILO SEZONU'
-  --   neutralno, uvijek prolazi:
-  --     'NOVO VRBOVSKO: IGOR CINDRIĆ I OSAM POJAČANJA'
-  '[NASLOV]',
+  -- NASLOV se piše tek kad se zna rezultat, i nosi ono što je utakmicu
+  -- odlučilo: strijelca, preokret, brojku. Pojačanja i trener idu u
+  -- tekst, ne u naslov.
+  '[NASLOV, prema rezultatu]',
 
-  '[SAŽETAK: jedna rečenica s rezultatom i onim što ga je odlučilo.]',
+  '[SAŽETAK, prema rezultatu: jedna rečenica s ishodom i onim što ga je odlučilo.]',
 
 '[UVOD: rezultat i mjesto. Na primjer: Nogometaši Vrbovskog otvorili su
 sezonu u 1. ŽNL PGŽ gostovanjem kod Omladinca u Vratima, gdje je na
