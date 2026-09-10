@@ -1,6 +1,6 @@
 -- =====================================================================
 -- NAJAVA: 3. kolo 3. NL Zapad 2026/27
--- subota 12.09.2026. u 17:00
+-- subota 12.09.2026., 16:30 i 17:00
 -- =====================================================================
 -- KAKO SE KORISTI: pokreni po redu dva koraka na dnu datoteke.
 --   Supabase -> SQL Editor -> zalijepi cijelu datoteku -> Run.
@@ -19,6 +19,11 @@
 --   ocekivanja.
 --   Kaznene bodove Crikvenice funkcija ne zna, pa tekst na to
 --   izricito upozorava umjesto da navodi mjesta na ljestvici.
+--
+-- ISPRAVLJENI TERMINI, 10.09.2026.
+--   HNS je nakon pisanja najave pomaknuo dvije utakmice ovog kola
+--   sa 17:00 na 16:30: Krk - Lokomotiva (prijava #90) i
+--   Halubjan - Kraljevica (prijava #93). Tekst to sada navodi.
 --
 -- AKO SE TERMIN PROMIJENI prije objave, dnevna "Provjera termina" to
 -- javi na e-postu. Tada se tekst ispravi obicnim update-om nad
@@ -39,14 +44,14 @@ insert into public.clanci
 values (
   'najava-3-kola-3-nl-zapad-2627',
   'LOKOMOTIVA NA KRKU, NEHAJ U OMIŠLJU',
-  'Treće kolo 3. NL Zapad igra se u subotu 12. rujna u 17 sati, a vodeća Lokomotiva gostuje kod četvrtoplasiranog Krka.',
-'Treće kolo 3. NL Zapad igra se u subotu 12. rujna, sve utakmice u 17 sati.
+  'Treće kolo 3. NL Zapad igra se u subotu 12. rujna, a vodeća Lokomotiva u 16:30 gostuje kod četvrtoplasiranog Krka.',
+'Treće kolo 3. NL Zapad igra se u subotu 12. rujna. Krk - Lokomotiva i Halubjan - Kraljevica počinju u 16:30, ostale utakmice u 17 sati.
 
-Krk - Lokomotiva (R). Utakmica kola. Lokomotiva je prva na ljestvici sa šest bodova i gol razlikom plus šest, nakon 2:0 u Bujama i 4:0 protiv Crikvenice. Karlo Josipović ima dva pogotka. Krk je četvrti s četiri boda, nakon 2:2 s Crikvenicom i pobjede 2:1 u Vinodolu.
+Krk - Lokomotiva (R), 16:30. Utakmica kola. Lokomotiva je prva na ljestvici sa šest bodova i gol razlikom plus šest, nakon 2:0 u Bujama i 4:0 protiv Crikvenice. Karlo Josipović ima dva pogotka. Krk je četvrti s četiri boda, nakon 2:2 s Crikvenicom i pobjede 2:1 u Vinodolu.
 
 OŠK Omišalj - Nehaj. Nehaj je u sezonu ušao uvjerljivo, s dvije pobjede, 3:1 u Poreču i 4:0 protiv Naprijeda, i drugi je na ljestvici s gol razlikom plus šest. Filip Zrilić ima dva pogotka. Omišalj je peti s tri boda, nakon 5:0 protiv Rudara i 1:4 u Kraljevici.
 
-Halubjan - Kraljevica. Težak zadatak za Halubjan. Kraljevica je uz Lokomotivu i Nehaj jedina sa šest bodova, a čak tri njezina igrača imaju po dva pogotka: Filip Znamenaček, Franko Bosančić i Matija Čabrijan. Halubjan ima bod, nakon 2:2 s Banjolama i 0:4 u Labinu.
+Halubjan - Kraljevica, 16:30. Težak zadatak za Halubjan. Kraljevica je uz Lokomotivu i Nehaj jedina sa šest bodova, a čak tri njezina igrača imaju po dva pogotka: Filip Znamenaček, Franko Bosančić i Matija Čabrijan. Halubjan ima bod, nakon 2:2 s Banjolama i 0:4 u Labinu.
 
 Buje - Rudar (L). Oba kluba imaju po tri boda i istu gol razliku, obojica nakon uvodnog poraza pa pobjede u drugom kolu. Buje su slavile 2:1 u Banjolama, Rudar 4:0 protiv Halubjana.
 
