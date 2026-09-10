@@ -141,11 +141,17 @@ export default async function OvajVikend() {
   //    pa je traka za 2. kolo vodila na najavu 1. kola. Sada poveznice
   //    nema sve dok najava tog kola ne bude objavljena, što je i bila
   //    zamisao: gumb koji vodi na krivo kolo gori je od nikakvog gumba.
+  //
+  //    Najava se prepoznaje po SLUGU ili po naslovu. Slug je pouzdan, jer
+  //    sve naše najave počinju s "najava-", dok je naslov slobodan tekst:
+  //    najava 2. kola 4. NL 2026/27 zvala se "SAMOUVJERENI LIŽNJAN
+  //    DOČEKUJE MLADOST...", bez riječi "najava", pa je uz provjeru samo
+  //    po naslovu ispadala iz upita i strelice na naslovnici nije bilo.
   const { data: najave } = await supabase
     .from("clanci")
     .select("slug, naslov, natjecanje, objavljeno_u")
     .eq("objavljen", true)
-    .ilike("naslov", "%najav%")
+    .or("slug.ilike.najava-%,naslov.ilike.%najav%")
     .order("objavljeno_u", { ascending: false })
     .limit(20);
 
