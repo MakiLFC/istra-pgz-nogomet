@@ -777,6 +777,13 @@ gleda unaprijed i ne može znati isključenja. Isključeni igrači za sljedeće
 kolo dolaze iz `pregled_kola()` prošlog kola, iz
 `posljedice_za_sljedece_kolo`.
 
+**U ligi s neparnim brojem klubova reci tko je slobodan.** Otkad je NK
+Novalja napustila 4. NL NS Rijeka, ostalo je trinaest klubova, pa svako
+kolo jedan ne igra. Najava 2. kola 2026/27 to nije spomenula, iako je
+Otoččevo slobodno prvo kolo bilo tema. Slobodan klub se vidi tako da se
+iz popisa klubova lige izbaci onih dvanaest koji su na rasporedu tog
+kola. U 2. kolu je slobodan bio NK Žminj.
+
 **Nemoj pisati "klubovi se u našoj bazi dosad nisu sastali".** Čitatelja
 naša baza ne zanima. Kad međusobnih susreta nema, o njima se jednostavno
 ne piše, ili se, ako je klub nov u rangu, to kaže kao vijest.
