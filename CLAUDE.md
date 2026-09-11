@@ -684,6 +684,45 @@ kasnija objava ne pomaže sama od sebe. Rješenje je gumb "Scrape Again" u
 gornjem alatu, koji ga natjera da pročita iznova. Isto vrijedi kad se
 zamijeni slika, a ime datoteke ostane isto.
 
+**Vercelov Deployment Storage mjeri potrosnju kroz trideset dana, ne
+trenutacno stanje.** 08.09.2026. je stigla obavijest da je popunjeno 75
+posto od 10 GB, a 11.09. je brojka bila 10,48 GB, i to nakon sto su
+rucno obrisani svi deploymenti stariji od 28.08. Brisanje nije pomoglo
+jer na stranici Usage stoji raspon "Last 30 Days": ono sto je
+potroseno nekog dana ostaje u brojci dok taj dan ne ispadne iz prozora.
+Brisanjem se ne vraca unatrag.
+
+Uzrok nije velicina stranice (cijeli `public` je 2,7 MB, repozitorij s
+poviescu 6,5 MB) nego broj buildova. Isti ekran je pokazivao i Build CPU
+Minutes 13 h 44 u trideset dana. Svaki push na bilo koju granu radio je
+deployment, a vecina pusheva mijenja samo `sql/`, `alati/` i tekstove.
+
+Lijek je zato jedini moguci: praviti manje buildova. `vercel.json` ima
+`ignoreCommand` koji pokrece `vercel-preskoci-build.sh`, a ta skripta
+gradi samo kad je grana `main` I kad je izmedu proslog objavljenog i
+ovog commita dirnuto nesto od `app`, `components`, `lib`, `public`,
+`package.json`, `package-lock.json`, `next.config.ts`, `tsconfig.json`,
+`postcss.config.mjs`, `eslint.config.mjs`, `next-env.d.ts`, `proxy.ts`,
+`vercel.json` i same skripte.
+
+Skripta vraca iskljucivo 0 (preskoci) ili 1 (gradi), jer Vercel druge
+kodove ne priznaje, i svaka nejasnoca zavrsava gradnjom: preskocen build
+ostavlja zadnju objavljenu verziju na zraku, a propusten build znaci
+zastarjelu stranicu, sto je gore.
+
+Time se gubi preview build na radnoj grani, koji je bio mreza za greske
+tipova. Nadoknaduje ga pravilo 3 (prije svakog pusha `npm run build`), a
+i kad bi nesto proslo, Vercel pri padu ostavlja zadnju ispravnu verziju.
+Gasi se brisanjem `vercel.json`.
+
+Prvi pokusaj je pao jer je cijela naredba bila upisana u `vercel.json`:
+`ignoreCommand` smije imati najvise 256 znakova, a imala je oko 330.
+Poruka Vercela je to rekla doslovno. Otud i skripta.
+
+Pouka sire od ovog slucaja: kad brojka na tudjem sustavu ne reagira na
+ono sto radis, prvo pogledaj na koje se RAZDOBLJE odnosi, pa tek onda
+trazi uzrok u svom radu.
+
 **U CSS-u svi `@import` moraju biti prije `@import "tailwindcss"`.**
 Tailwind se razmota u stotine redaka i svaki `@import` iza njega ruši build.
 

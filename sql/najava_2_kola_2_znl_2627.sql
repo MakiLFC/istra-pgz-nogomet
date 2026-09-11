@@ -8,8 +8,9 @@
 --   dakle NIJE vidljiv na stranici. Objavljuje se KORAKOM 2, kad dodje
 --   vrijeme.
 --
---   Upis se pokrece SAMO JEDNOM. Drugo pokretanje javlja gresku zbog
---   jedinstvenog sluga, sto znaci da je prvo proslo.
+--   Upis se smije pokrenuti i vise puta. Ako clanak s ovim slugom vec
+--   postoji, naslov, sazetak i tekst se prepisu, a stanje objavljen se
+--   ne dira.
 --
 -- ODAKLE STO
 --   Termini, stadioni, bodovi, mjesta na ljestvici, forma, vodeci
@@ -23,6 +24,12 @@
 -- AKO SE TERMIN PROMIJENI prije objave, dnevna "Provjera termina" to
 -- javi na e-postu. Tada se tekst ispravi obicnim update-om nad
 -- clanci.tekst, prije nego se clanak objavi.
+--
+-- PROVJERENO 11.09.2026.
+--   Sva tri termina 2. kola i dalje stoje na nedjelju 13.09. u 16:30,
+--   nijedan nije pomaknut. Snjeznik - Mrkopalj iz 1. kola i dalje je
+--   bez rezultata, a HNS mu vise ne pokazuje ni termin, pa u bazi stoji
+--   zadnji poznati. Tekst je zato ostao nepromijenjen.
 --
 -- BEZ FOTOGRAFIJE
 --   Clanak nema sliku, pa se na kartici prikazuje zaglavlje lige, a pri
@@ -56,7 +63,13 @@ Ljestvica je zasad nepotpuna, jer Snježnik i Mrkopalj još nemaju odigranu utak
   '2. ŽNL PGŽ',
   false,
   now()
-);
+)
+on conflict (slug) do update
+set naslov     = excluded.naslov,
+    sazetak    = excluded.sazetak,
+    tekst      = excluded.tekst,
+    natjecanje = excluded.natjecanje
+returning slug, naslov, objavljen;
 
 
 -- =====================================================================
