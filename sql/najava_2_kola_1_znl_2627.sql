@@ -26,6 +26,11 @@
 --   Mune - Losinj na 15:45, a Zamet - Omladinac Vrata na srijedu
 --   16.09. u 18:45.
 --   Rezultat, strijelci i iskljuceni dolaze iz pregled_kola() 1. kola.
+--
+-- ANDREJEVE IZMJENE, 11.09.2026.
+--   Naslov, dopuna sazetka, "za ocekivati je tvrd susret" uz Rab,
+--   "Grdi Pasi ocekuju prvi trobod" uz Mune, te gostovanja na otocima i
+--   ocekivanje prvih bodova uz Vihor. Sve je Andrejevo, nije iz baze.
 --   Iskljucen Smolic (Mune) je iz pregleda 1. kola, ne iz najave.
 --
 -- AKO SE TERMIN PROMIJENI prije objave, dnevna "Provjera termina" to
@@ -46,23 +51,23 @@ insert into public.clanci
   (slug, naslov, sazetak, tekst, natjecanje, objavljen, objavljeno_u)
 values (
   'najava-2-kola-1-znl-pgz-2627',
-  'VIDMAR I LOVRAN PRED DOMAĆOM PUBLIKOM',
-  'Drugo kolo 1. ŽNL PGŽ igra se u subotu i nedjelju, a vodeći Lovran s Patrikom Vidmarom dočekuje Rikard Benčić.',
+  'LOVRAN NASTAVLJA IMPRESIVAN START PRED DOMAĆOM PUBLIKOM',
+  'Drugo kolo 1. ŽNL PGŽ igra se u subotu i nedjelju, a vodeći Lovran s do sada raspoloženim Patrikom Vidmarom dočekuje Rikard Benčić.',
 'Drugo kolo 1. ŽNL PGŽ igra se u subotu 12. i nedjelju 13. rujna. Mune i Lošinj počinju u 15:45, ostale utakmice u 16:30, a Zamet i Omladinac Vrata svoju igraju tek u srijedu 16. rujna.
 
 SUBOTA
 
 Lovran - Rikard Benčić. Pitanje je mogu li Lovranci nastaviti s impresivnim ulaskom u sezonu. Nakon 9:2 u Lokvama prvi su na ljestvici s gol razlikom plus sedam, a Patrik Vidmar je s pet pogodaka vodeći strijelac lige. Rikard Benčić ima bod nakon 2:2 s Munama.
 
-Rab - Turbina. Oba kluba imaju po tri boda nakon uvodnih pobjeda, Rab 4:2 protiv Vihora, Turbina 3:0 protiv Zameta. Prošle sezone je Rab dobio oba susreta, 3:2 u Triblju i 4:0 kod kuće.
+Rab - Turbina. Oba kluba imaju po tri boda nakon uvodnih pobjeda, Rab 4:2 protiv Vihora, Turbina 3:0 protiv Zameta. Za očekivati je tvrd susret. Prošle sezone je Rab dobio oba susreta, 3:2 u Triblju i 4:0 kod kuće.
 
 NEDJELJA
 
-Mune - Lošinj, 15:45. Mune imaju bod, Lošinj tri nakon 2:0 protiv Drage. Domaći igraju bez Alena Smolića, isključenog u prvom kolu.
+Mune - Lošinj, 15:45. Mune imaju bod, Lošinj tri nakon 2:0 protiv Drage. Domaći igraju bez Alena Smolića, isključenog u prvom kolu. Grdi Pasi očekuju prvi trobod.
 
 Stari grad Rijeka - Risnjak. Risnjaku je gostovanje izazovno, ali mora bolje od onoga u prvom kolu, kad je kod kuće primio devet pogodaka. Stari grad ima bod nakon 0:0 u Delnicama.
 
-Vihor (B) - Draga. Oba kluba su bez bodova nakon uvodnog poraza, Vihor 2:4 na Rabu, Draga 0:2 na Lošinju.
+Vihor (B) - Draga. Oba kluba su bez bodova nakon uvodnih poraza s gostovanja na otocima, Vihor 2:4 na Rabu, Draga 0:2 na Lošinju. Oboje očekuju prve bodove ove sezone.
 
 Vrbovsko - Goranin. Derbi kola. Vrbovsko je u srijedu odigralo svoju utakmicu prvog kola i izgubilo 4:2 u Vratima, uz pogotke Josipa Matovine i Živka Blagojevića. Goranin ima bod nakon 0:0 protiv Starog grada i još nije primio pogodak.
 
