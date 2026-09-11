@@ -30,6 +30,32 @@ PRACENE="app components lib public
          eslint.config.mjs next-env.d.ts proxy.ts
          vercel.json vercel-preskoci-build.sh"
 
+# PRVO PITANJE: koja grana?
+#   Gradi se samo ono sto je na main, jer samo to posjetitelj vidi.
+#   Buildovi s radnih grana (preview) bili su glavni trosak: 11.09.2026.
+#   je Deployment Storage presao 10 GB, a Build CPU Minutes bio 13 h 44
+#   u trideset dana, uz stranicu ciji je cijeli public 2,7 MB.
+#
+#   Mreza koju time gubimo (da se greska tipova vidi na grani prije
+#   spajanja) nadoknaduje se pravilom iz CLAUDE.md: prije svakog pusha
+#   pokrece se npm run build. I da nesto prode, Vercel pri padu ostavlja
+#   zadnju ispravnu verziju na zraku.
+#
+#   Kad ime grane nije poznato, gradi se, jer ne znati nije razlog za
+#   preskakanje.
+GRANA="${VERCEL_GIT_COMMIT_REF:-}"
+
+if [ -z "$GRANA" ]; then
+  echo "Ime grane nije poznato, gradim."
+  exit 1
+fi
+
+if [ "$GRANA" != "main" ]; then
+  echo "Grana je $GRANA, a ne main, preskacem build."
+  exit 0
+fi
+
+# DRUGO PITANJE: je li dirnuta stranica?
 # Bez podatka o proslom deploymentu nema se s cim usporediti, pa se gradi.
 if [ -z "${VERCEL_GIT_PREVIOUS_SHA:-}" ]; then
   echo "Nema VERCEL_GIT_PREVIOUS_SHA, gradim."
