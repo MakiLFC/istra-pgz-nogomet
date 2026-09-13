@@ -730,6 +730,26 @@ jer na stranici Usage stoji raspon "Last 30 Days": ono sto je
 potroseno nekog dana ostaje u brojci dok taj dan ne ispadne iz prozora.
 Brisanjem se ne vraca unatrag.
 
+IZMJERENO 13.09.2026., da se vise ne pokusava: obrisano je petnaestak
+deploymenata i brojka se NIJE pomaknula ni za megabajt. Vercel to i sam
+pise u prozoru koji trazi potvrdu brisanja: "Deployments that are not
+actively receiving any traffic do not generate any costs nor count
+towards any limits." Dakle stari deploymenti u tu brojku uopce ne ulaze
+i brisanje je cisto gubljenje vremena.
+
+Zavodi na krivi put racunica koja se lijepo poklopi: 248 buildova u
+trideset dana puta cetrdesetak megabajta po Next.js buildu daje upravo
+onih 10,5 GB. Poklapanje je slucajno i ne znaci da brojka prati ono sto
+stoji spremljeno. Ona mjeri potrosnju kroz prozor od trideset dana.
+
+Jedino sto brojku spusta je da skupi dani ispadnu iz prozora. Za 2026.
+to je znacilo da se pad ceka od 27. rujna, jer je sve skupljeno izmedu
+28. kolovoza i 9. rujna.
+
+Pri brisanju, ako se svejedno brise radi urednosti: NIKAD deployment s
+oznakom Current, jer on jedini drzi stranicu na zraku. Uz njega je
+pametno ostaviti i jedan noviji ispravan, kao rezervu za povratak.
+
 Uzrok nije velicina stranice (cijeli `public` je 2,7 MB, repozitorij s
 poviescu 6,5 MB) nego broj buildova. Isti ekran je pokazivao i Build CPU
 Minutes 13 h 44 u trideset dana. Svaki push na bilo koju granu radio je
