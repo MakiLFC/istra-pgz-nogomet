@@ -929,6 +929,26 @@ Otoččevo slobodno prvo kolo bilo tema. Slobodan klub se vidi tako da se
 iz popisa klubova lige izbaci onih dvanaest koji su na rasporedu tog
 kola. U 2. kolu je slobodan bio NK Žminj.
 
+**Ne piše se "žuto-crveni karton".** Taj izraz Andrej ne koristi; kaže
+da ne postoji. Drugi žuti karton opisuje se onako kako se i govori:
+"nakon drugog žutog kartona" ili "igrač je isključen". Funkcija
+`pregled_kola()` u polju `crveni_kartoni` vraća vrstu "žuto-crveni
+karton", ali to je oznaka u podacima, a ne tekst za stranicu, pa se pri
+pisanju prevodi.
+
+**Žuti kartoni po pojedinoj utakmici ne izlaze iz `pregled_kola()`.**
+Ona vraća samo isključenja, a žute daje kao zbroj za cijelu sezonu, u
+`statistike`. Za sažetak jedne utakmice čitaju se iz postava, upitom nad
+`postava_domacin` i `postava_gost` (primjer stoji na dnu datoteke
+`sql/sazetak_vrbovsko_goranin_2_kolo.sql`).
+
+**Sažetak uz zapisnik NIJE članak.** Kratak osvrt na pojedinu utakmicu,
+onaj koji stoji ispod zapisnika na stranici utakmice, ide u stupac
+`utakmice.tekst_clanka`, dakle u redak te utakmice. Tablica `clanci` je
+za novosti, koje imaju svoju stranicu i karticu. Ovo je 13.09.2026.
+jednom već zamijenjeno, pa je osvrt na derbi bio napisan kao zaseban
+članak umjesto kao sažetak uz utakmicu.
+
 **Nemoj pisati "klubovi se u našoj bazi dosad nisu sastali".** Čitatelja
 naša baza ne zanima. Kad međusobnih susreta nema, o njima se jednostavno
 ne piše, ili se, ako je klub nov u rangu, to kaže kao vijest.
