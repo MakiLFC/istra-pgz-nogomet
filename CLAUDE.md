@@ -761,6 +761,54 @@ Pouka sire od ovog slucaja: kad brojka na tudjem sustavu ne reagira na
 ono sto radis, prvo pogledaj na koje se RAZDOBLJE odnosi, pa tek onda
 trazi uzrok u svom radu.
 
+**Vercel ima DVA ograničenja i ne miješaju se.** Deployment Storage
+troši GRADNJA, a Fluid Active CPU troši POSLUŽIVANJE stranica
+posjetiteljima. Kad stigne obavijest, prvo se pročita koje je od ta dva,
+jer lijek nema ništa zajedničko. Skripta `vercel-preskoci-build.sh`
+pomaže samo kod prvoga.
+
+13.09.2026. je stigla obavijest o 75 posto potrošenih besplatnih četiri
+sata Fluid Active CPU, a pri sto posto Vercel zaustavlja projekt.
+Observability je za dvanaest sati pokazao 2800 zahtjeva, 1700 pokretanja
+funkcija i 2400 pokretanja middlewarea. Stotinjak tisuća renderiranja
+mjesečno, uz desetinku sekunde procesora po komadu, daje upravo ta tri
+sata.
+
+Uzroci su bila dva, oba glupa:
+
+- `revalidate = 0` na stranici članka. Nula znači "nikad ne keširaj", pa
+  se svako otvaranje renderiralo iznova. Ta je stranica jedina koja NE
+  čita parametre iz adrese, dakle nula ju je jedina držala dinamičnom, a
+  ujedno je to stranica koja se dijeli na Facebooku i dobiva tisuće
+  otvaranja u nekoliko sati. Sada je 60 sekundi. Novi članak se i dalje
+  pojavljuje odmah, jer njegov slug nije u popisu unaprijed pripremljenih
+  stranica; tih 60 sekundi tiče se samo izmjena već objavljenog članka i
+  odgovora "nije pronađeno" ako netko adresu otvori prije objave.
+- `proxy.ts`, koji je preusmjeravao staru vercel.app adresu. Pokretao se
+  na gotovo svakom zahtjevu da bi u svim slučajevima osim jednoga ne
+  napravio ništa. Isto preusmjeravanje sada stoji u `next.config.ts` među
+  `redirects`, uz uvjet `has: [{ type: "host", ... }]`, pa ga rješava
+  Vercelov usmjerivač bez ijednog pokretanja funkcije. Provjereno nakon
+  objave: stara adresa i dalje vodi na domenu.
+
+Uz to su produljeni intervali ondje gdje se podaci mijenjaju najviše
+dvaput dnevno, koliko puta ide scraper: naslovnica 15 minuta, stranica
+utakmice i stranica igrača sat vremena. Tih zadnjih je najviše
+(nekoliko stotina utakmica i nekoliko tisuća igrača), sve su u sitemapu
+i tražilice ih redom obilaze.
+
+Dvije pouke šire od ovog slučaja:
+
+- ISPIS `npm run build` KAŽE ŠTO SE RENDERIRA. Oznaka `ƒ` znači da se
+  stranica renderira pri svakom otvaranju, `○` i `●` da je gotova
+  unaprijed. To je najjeftinija provjera i radi se prije objave, ne
+  poslije računa.
+- STRANICA KOJA ČITA `searchParams` JE UVIJEK DINAMIČNA, koliko god
+  `revalidate` bio. Zato `/liga/[slug]` i `/novosti` i dalje stoje na
+  `ƒ`: čitaju `kolo`, `sezonu` i `ligu` iz adrese. Ako potrošnja ikad
+  opet naraste, ondje se traži dalje, a lijek nije brojka nego
+  preseljenje biranja kola u preglednik.
+
 **U CSS-u svi `@import` moraju biti prije `@import "tailwindcss"`.**
 Tailwind se razmota u stotine redaka i svaki `@import` iza njega ruši build.
 
