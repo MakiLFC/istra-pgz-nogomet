@@ -10,7 +10,11 @@ import { LIGE } from "@/lib/lige";
 import ZaglavljeStranice from "@/components/ZaglavljeStranice";
 import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
 
-export const revalidate = 0;
+// Popis novosti čita filtar lige iz adrese (?liga=...), pa se svejedno
+// renderira pri svakom otvaranju i ova brojka na njega zasad ne utječe.
+// Stoji ovdje umjesto dotadašnje nule da ne bude kriva uputa: nula znači
+// "nikad ne keširaj" i vrijedila bi čim filtar jednom ode s poslužitelja.
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Novosti",
