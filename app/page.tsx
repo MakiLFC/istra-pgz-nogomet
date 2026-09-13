@@ -12,7 +12,11 @@ import Hero from "@/components/Hero";
 import OvajVikend from "@/components/OvajVikend";
 import { zadnjeKolo, utakmiceKola, golovi } from "@/lib/kolo";
 
-export const revalidate = 300;
+// Naslovnica je najposjećenija stranica, pa se i najčešće obnavlja: uz
+// pet minuta to je do dvanaest renderiranja na sat, sve dok netko
+// dolazi. Petnaest minuta ih spušta na četiri, a rezultati ionako ne
+// stižu češće od toga, jer scraper ide dvaput navečer.
+export const revalidate = 900;
 
 // Naslovnica dohvaća samo stupce koje prikazuje, pa ima i svoj uži tip.
 // (Puni tip Utakmica uključuje i postave, koje ovdje namjerno ne vučemo.)

@@ -29,7 +29,13 @@ import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
 import { odlomci } from "@/lib/clanci";
 import type { Utakmica } from "@/lib/supabase";
 
-export const revalidate = 300;
+// Stranica utakmice je najbrojnija na cijeloj stranici: po sezoni ih je
+// nekoliko stotina, a u sitemapu su sve, pa ih tražilice redom obilaze.
+// Podaci se mijenjaju najviše dvaput dnevno, koliko puta ide scraper, a
+// odigrana utakmica se poslije zapisnika ne mijenja uopće. Pet minuta je
+// zato bilo prekratko: svaki ponovni posjet nakon njih pokretao je novo
+// renderiranje. Sat vremena daje isti sadržaj uz mnogo manje posla.
+export const revalidate = 3600;
 
 /** "NK A 2:1 NK B" za odigranu, "NK A - NK B" za onu koja se tek igra. */
 function naslovUtakmice(u: Utakmica): string {

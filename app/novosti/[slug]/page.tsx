@@ -12,7 +12,35 @@ import { kadarSlike } from "@/lib/slike";
 import { LIGE } from "@/lib/lige";
 import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
 
-export const revalidate = 0;
+// ---------------------------------------------------------------------
+// ZAŠTO OVDJE VIŠE NE STOJI NULA
+// ---------------------------------------------------------------------
+// Nula znači "nikad ne keširaj": svako otvaranje članka pokreće novo
+// renderiranje na Vercelu i nove upite u bazu. Ova stranica je jedina u
+// projektu koja NE čita parametre iz adrese (nema searchParams), pa je
+// nula bila jedino što ju je držalo dinamičnom.
+//
+// Cijena se vidjela na računu. Članak koji se podijeli na Facebooku
+// dobije tisuće otvaranja u nekoliko sati, a svako je bilo jedno
+// pokretanje funkcije. Uz to i Facebookov čitač otvara stranicu više
+// puta. To je 12.09.2026. gurnulo potrošnju Fluid Active CPU na 75
+// posto besplatnih četiri sata, a pri sto posto Vercel zaustavlja
+// projekt.
+//
+// Sa šezdeset sekundi ista ta tisuća otvaranja stane u najviše jedno
+// renderiranje u minuti, ostalo poslužuje Vercelova mreža bez ijedne
+// sekunde procesora.
+//
+// Zašto baš šezdeset, a ne više:
+//   - NOVI članak se pojavljuje ODMAH. Njegov slug nije u popisu
+//     unaprijed pripremljenih stranica, pa se prvi posjet svejedno
+//     renderira i tek onda sprema.
+//   - Šezdeset se tiče samo IZMJENA već objavljenog članka i onoga što
+//     se dogodi ako netko otvori adresu PRIJE objave. Tada stranica
+//     javlja da članak nije pronađen, a taj odgovor se sprema, pa bi uz
+//     veći broj i Facebook i čitatelji tu poruku vidjeli dulje.
+// ---------------------------------------------------------------------
+export const revalidate = 60;
 
 export async function generateMetadata({
   params,

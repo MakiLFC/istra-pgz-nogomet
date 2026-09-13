@@ -26,7 +26,10 @@ import { golovi } from "@/lib/kolo";
 import { sBrojem } from "@/lib/hrvatski";
 import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
 
-export const revalidate = 300;
+// Isti razlog kao kod stranice utakmice: igrača je u sitemapu na tisuće
+// (sama lista nastupa 3. NL ima oko 350 imena po sezoni), a njihovi se
+// podaci mijenjaju samo nakon kola. Sat vremena umjesto pet minuta.
+export const revalidate = 3600;
 
 /**
  * Unaprijed se pripremaju samo stranice igrača koji su zabili gol ili
