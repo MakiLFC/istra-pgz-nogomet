@@ -371,6 +371,44 @@ samo zapisnike utakmica bez rezultata u bazi, pa da rani prolaz traje
 sekunde. Mi smo na Semaforu gosti i to se ne smije zaboraviti.
 
 
+**HNS ne osvježi sve dijelove stranice odjednom, nego dio po dio.**
+12.09.2026. navečer, nakon 3. kola 3. NL Zapad, prolaz u 20:08 po našem
+zatekao je stranicu natjecanja na pola posla. Tablica poretka bila je
+svježa (Lokomotiva 9 bodova, odigrano 3), a golovi i kartoni po igraču
+nisu: Ahmed Durmo je stajao na dva gola, iako ih je po zapisnicima imao
+četiri, jer je dva zabio baš u tom kolu. Zapisnici svih osam utakmica
+bili su pritom potpuni i uredno pročitani.
+
+Ljestvica strijelaca na stranici zato je izgledala zaglavljeno, a
+zapravo je vjerno pokazivala ono što je HNS u tom trenutku imao. Potvrda
+je i samoprovjera scrapera, koja uspoređuje našu agregaciju sa službenom
+rang-listom: javila je da se poklapa, dakle oba HNS-ova mjesta govorila
+su isto.
+
+Novi prolaz sutradan ujutro sve je popravio, bez ijedne izmjene u kodu:
+Durmo je dobio svoja četiri gola, a lista nastupa narasla je s 331 na
+345 igrača. To zadnje je i ključ: nastupi su sinoć izgledali svježi
+(netko s tri nastupa i 270 minuta), pa se činilo da su golovi i nastupi
+iz istog retka nekako razdvojeni. Nisu. HNS je jednostavno još punio
+podatke, pa je dio igrača već imao treće kolo, a dio ne.
+
+Otud tri stvari:
+
+- Kad tablica i rang-liste govore različito, prvo se pogleda SAT. Puni
+  zapisnici ne znače da su rang-liste gotove; one zaostaju i sat i više.
+- Rang-liste se pri svakom prolazu prepisuju u cijelosti (upsert po
+  sezoni, natjecanju i tipu), pa je lijek uvijek isti i besplatan: novo
+  pokretanje. Ništa se ne popravlja ručno i ništa se ne mijenja u kodu.
+- Ponedjeljak ujutro (cron 06:00 UTC) upravo zato postoji. Ovaj slučaj
+  je njegova prva potvrđena korist: da nitko ništa nije dirao, ljestvica
+  bi se sama posložila u ponedjeljak.
+
+Lista kartona pritom nije bila u krivu iako je izgledala nepromijenjeno.
+Poredak ide po crvenima pa po žutima, a u 3. kolu nije bilo nijednog
+crvenog, pa je na vrhu ostao isti igrač. Promjene su bile niže na
+listi. Nepromijenjen vrh liste nije dokaz da lista nije osvježena.
+
+
 **Ime upotrijebljeno dvaput za dvije stvari ruši scraper tek u pogonu.**
 02.09.2026. pao je posao "Provjera termina" s porukom
 `TypeError: 'str' object is not callable`. U petlji po utakmicama stajala
