@@ -151,7 +151,9 @@ export default async function StranicaLige({
   const [utakmiceSirovo, clanciLige, statistike] = await Promise.all([
     odabranoKolo ? dohvatiUtakmiceKola(liga.naziv, odabranaSezona, odabranoKolo) : Promise.resolve([]),
     dohvatiClanke({ liga: liga.naziv, koliko: 4 }),
-    dohvatiStatistike(liga.naziv, odabranaSezona),
+    // Bez "nastupi": taj je popis najveći (oko 350 igrača po ligi i
+    // sezoni), a ova stranica ga ne prikazuje. Vidi lib/statistike.ts.
+    dohvatiStatistike(liga.naziv, odabranaSezona, ["tablica", "strijelci", "kartoni"]),
   ]);
 
   // Derbi kola ide na vrh popisa

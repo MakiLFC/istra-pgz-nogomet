@@ -26,9 +26,30 @@ export type StatistikeLige = {
   nastupi: RedNastupa[];
 };
 
+/** Svi tipovi koje tablica "statistike" poznaje. */
+export type TipStatistike = "tablica" | "strijelci" | "kartoni" | "nastupi";
+
+const SVI_TIPOVI: TipStatistike[] = ["tablica", "strijelci", "kartoni", "nastupi"];
+
+/**
+ * Dohvaća statistike lige. Bez trećeg argumenta vraća sve, kao i prije.
+ *
+ * ZAŠTO POSTOJI TREĆI ARGUMENT
+ * Redak s tipom "nastupi" je daleko najveći: za 3. NL Zapad ima oko 350
+ * igrača u tekućoj i preko 500 u prošloj sezoni. Stranica lige i stranica
+ * kluba taj popis NE prikazuju, a ipak su ga dohvaćale i raspakiravale pri
+ * svakom otvaranju.
+ *
+ * To se vidjelo na računu. Vercelov Observability je 14.09.2026. pokazao da
+ * su baš te dvije rute najskuplje po procesorskom vremenu, /liga/[slug] na
+ * prvom mjestu s velikom razlikom. Sada obje traže samo ono što prikazuju.
+ *
+ * Ista pouka kao kod naslovnice: performanse dolaze od sužavanja upita.
+ */
 export async function dohvatiStatistike(
   natjecanje: string,
-  sezona: string
+  sezona: string,
+  tipovi: TipStatistike[] = SVI_TIPOVI
 ): Promise<StatistikeLige> {
   const prazno: StatistikeLige = { tablica: [], strijelci: [], kartoni: [], nastupi: [] };
 
@@ -36,7 +57,8 @@ export async function dohvatiStatistike(
     .from("statistike")
     .select("tip, podaci")
     .eq("natjecanje", natjecanje)
-    .eq("sezona", sezona);
+    .eq("sezona", sezona)
+    .in("tip", tipovi);
 
   if (error || !data) return prazno;
 

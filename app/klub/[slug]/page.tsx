@@ -31,7 +31,11 @@ import { LIGE } from "@/lib/lige";
 import { sBrojem } from "@/lib/hrvatski";
 import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
 
-export const revalidate = 300;
+// Isti razlog kao kod stranice utakmice i stranice igrača: klubova je
+// pedesetak, svi su u sitemapu, a podaci im se mijenjaju najviše dvaput
+// dnevno, koliko puta ide scraper. Pet minuta je bilo prekratko i ova je
+// ruta 14.09.2026. bila druga po potrošnji procesora na Vercelu.
+export const revalidate = 3600;
 
 /**
  * Adrese se pripremaju pri gradnji, da ih tražilice zateknu gotove.
@@ -199,7 +203,9 @@ export default async function StranicaKluba({
     utakmice[0]?.natjecanje ?? klub.lige[0] ?? null;
   const statistike =
     ligaSezone && sezona
-      ? await dohvatiStatistike(ligaSezone, sezona)
+      // Bez "nastupi": stranica kluba taj popis ne prikazuje, a najveći je
+      // od sva četiri retka. Vidi lib/statistike.ts.
+      ? await dohvatiStatistike(ligaSezone, sezona, ["tablica", "strijelci", "kartoni"])
       : { tablica: [], strijelci: [], kartoni: [], nastupi: [] };
 
   const forma = formaKluba(utakmice, klub.naziv);
