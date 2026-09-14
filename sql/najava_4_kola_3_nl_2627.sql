@@ -59,6 +59,8 @@ Kraljevica - Buje. Kraljevica na Minti brani jednak učinak kao Lokomotiva, tri 
 
 Rudar (L) - Crikvenica. Rudar u Labinu s dvije pobjede zaredom dočekuje kirce, a Crikvenica dolazi s dva poraza te i dalje s minusom na kontu. Ipak, prošle sezone je Crikvenica dobila oba susreta, 1:0 kod kuće i 5:2 u Labinu, pa forma ovdje neće značiti baš sve.
 
+Kovari se priključuju akciji „Korak za Matiju“! NK Rudar Labin će prihod od prodaje ulaznica s utakmice Rudar - Crikvenica donirati za Matiju Đurčeka iz Zartinja, i to u suradnji s Udrugom žena Sv. Nedelja „Mendula“ iz Nedešćine, koja je i prva pokrenula humanitarnu akciju „Korak za Matiju“. Ovim putem poziva se sve navijače, simpatizere, ali i ljude dobre volje da se u utorak priključe ovoj hvalevrijednoj akciji.
+
 Nehaj - Halubjan. Nehaj u Senju dočekuje Halubjan nakon prvog poraza u sezoni, onog u Omišlju. Halubjan je izgubio dva kola zaredom. Senjska tvrđava neće nikako biti lagan zadatak za osvojiti dečkima s Viškova.
 
 Rovinj - Naprijed (H). Na Valbruni Rovinj dočekuje momčad koja je izgubila sve tri utakmice i još nije zabila pogodak, štoviše kao jedina takva u ligi. Rovinj je pak poražen u zadnja dva kola, a Masimo Terlević mu je s tri pogotka najbolji strijelac, no ne može sve sam. Prilika za prve bodove Hreljanima.
