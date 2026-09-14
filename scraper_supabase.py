@@ -261,8 +261,22 @@ def dohvati_stranicu(url):
     sekundi) i pokušava tri puta, s pauzom koja raste. Ako ni treći put ne
     uspije, greška ide dalje: tada Semafor stvarno ne radi i to se mora
     vidjeti.
+
+    NE HVATA SE SAMO ISTEK VREMENA. 13.09.2026. je večernje pokretanje
+    palo s "500 Server Error: Internal Server Error" na stranicama 3. NL
+    Zapad i 4. NL NS Rijeka, dakle greška je bila na HNS-ovu poslužitelju,
+    a ne u vezi. Obje vrste ovdje prolaze kroz isti put, jer
+    raise_for_status() diže HTTPError, koji je i sam RequestException.
+
+    PAUZE SU 15 I 45 SEKUNDI, ne više 5 i 10. S prijašnjima je cijelo
+    ponavljanje trajalo petnaestak sekundi, pa je zastoj na HNS-u koji
+    potraje minutu svejedno rušio pokretanje. Sada se čeka do minute, što
+    pokriva kratke ispade, a pravi ispad se i dalje prijavi. Cijena je da
+    liga koju se ne može dohvatiti oduzme minutu prolaza, i to samo kad
+    HNS doista ne radi.
     """
     najvise_pokusaja = 3
+    pauze = (15, 45)
     zadnja_greska = None
 
     for pokusaj in range(1, najvise_pokusaja + 1):
@@ -273,7 +287,7 @@ def dohvati_stranicu(url):
         except requests.RequestException as greska:
             zadnja_greska = greska
             if pokusaj < najvise_pokusaja:
-                pauza = 5 * pokusaj
+                pauza = pauze[pokusaj - 1]
                 print(f"  HNS nije odgovorio ({greska.__class__.__name__}), "
                       f"pokušaj {pokusaj} od {najvise_pokusaja}. "
                       f"Ponavljam za {pauza} s.")

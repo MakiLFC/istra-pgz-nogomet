@@ -294,7 +294,7 @@ grešci koje u našem kodu nije bilo.
 Otud dvije stvari:
 
 - `dohvati_stranicu` je jedini put prema Semaforu: čeka 30 sekundi i
-  pokušava tri puta, s pauzom 5 pa 10 sekundi. Tek ako ni treći put ne
+  pokušava tri puta, s pauzom 15 pa 45 sekundi. Tek ako ni treći put ne
   uspije, greška ide dalje. Čuva `test_ponavljanje.py`.
 - Liga čija se stranica ne može pročitati ispada iz tog prolaza, ali
   ostale se svejedno obrade. Greška se broji i pokretanje na kraju
@@ -302,6 +302,31 @@ Otud dvije stvari:
 
 Lažno crveno je skupo: obavijest koju se nauči preskakati ne vrijedi
 ništa. Zato se ponavlja prije nego se prijavi, ali se i dalje prijavljuje.
+
+**HNS ne zakaže samo istekom vremena, nego i greškom 500.**
+13.09.2026. u 23:12 palo je večernje zakazano pokretanje s porukom
+`500 Server Error: Internal Server Error`, i to na stranicama 3. NL Zapad
+i 4. NL NS Rijeka. Petsto znači da se pokvarilo kod njih, ne kod nas.
+Obje županijske lige su u istom prolazu prošle uredno, pa je jasno da je
+ispad bio kratak i vezan uz te dvije adrese.
+
+Ponavljanje je odradilo svoje: svaka stranica je pokušana tri puta, HNS
+je i treći put vratio istu grešku, te dvije lige su preskočene, ostale
+obrađene, a pokretanje je završilo crveno. Tako i treba. Ništa nije
+izgubljeno, jer je prolaz dva sata ranije prošao do kraja, kao i onaj
+sutradan ujutro.
+
+Dvije stvari otud:
+
+- Istek vremena i greška 500 idu kroz ISTI put, jer
+  `raise_for_status()` diže `HTTPError`, koji je i sam
+  `RequestException`. Ne treba im zasebno hvatanje. Čuva to i
+  `test_ponavljanje.py`, koji od 14.09.2026. ima i slučaj s 500.
+- PAUZE SU PRODULJENE s 5 i 10 na 15 i 45 sekundi. S prijašnjima je cijelo
+  ponavljanje trajalo petnaestak sekundi, pa je zastoj koji potraje minutu
+  svejedno rušio pokretanje. Sada se čeka do minute. Cijena je da liga
+  koju se ne može dohvatiti oduzme minutu prolaza, i to samo kad HNS
+  doista ne radi.
 
 **Zakazani poslovi na GitHubu kasne, redovito jedan do tri sata.**
 GitHub cron nije obećanje nego red čekanja: zakazano vrijeme je NAJRANIJE

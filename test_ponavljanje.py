@@ -74,9 +74,33 @@ def main():
     odgovor = scraper_supabase.dohvati_stranicu("http://test")
     sve &= provjeri(odgovor.text == "<html>stranica</html>", "stranica je ipak dohvaćena")
     sve &= provjeri(len(pokusaji) == 3, "pokušano je tri puta")
-    sve &= provjeri(pauze == [5, 10], "pauza između pokušaja raste")
+    sve &= provjeri(pauze == [15, 45], "pauza između pokušaja raste")
 
-    print("3. HNS ne odgovara nijednom: greška ide dalje")
+    print("3. HNS vrati 500, pa tek onda proradi")
+    # 13.09.2026. je vecernje pokretanje palo s "500 Server Error" na
+    # stranicama 3. NL i 4. NL. Greska na HNS-ovu posluzitelju mora se
+    # ponavljati jednako kao istek vremena, jer raise_for_status() dize
+    # HTTPError, koji je i sam RequestException.
+    pauze = []
+    pokusaji = []
+
+    class _OdgovorPetsto:
+        text = ""
+
+        def raise_for_status(self):
+            raise requests.exceptions.HTTPError("500 Server Error")
+
+    def petsto_pa_uspjeh(*a, **k):
+        pokusaji.append(1)
+        return _Odgovor() if len(pokusaji) >= 2 else _OdgovorPetsto()
+
+    requests.get = petsto_pa_uspjeh
+    odgovor = scraper_supabase.dohvati_stranicu("http://test")
+    sve &= provjeri(odgovor.text == "<html>stranica</html>", "stranica je dohvaćena nakon 500")
+    sve &= provjeri(len(pokusaji) == 2, "pokušano je dvaput")
+    sve &= provjeri(pauze == [15], "čekalo se prije drugog pokušaja")
+
+    print("4. HNS ne odgovara nijednom: greška ide dalje")
     pauze = []
     pokusaji = []
 
