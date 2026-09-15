@@ -11,7 +11,7 @@ import { supabase } from "@/lib/supabase";
 import { LIGE } from "@/lib/lige";
 import { golovi } from "@/lib/kolo";
 import { sBrojem } from "@/lib/hrvatski";
-import { koloNajave } from "@/lib/clanci";
+import { koloNajave, koloPregleda } from "@/lib/clanci";
 
 /** Redak utakmice - samo stupci koje traka stvarno treba. */
 type RedUtakmice = {
@@ -57,7 +57,9 @@ type RedakLige = {
   vrijeme: string | null;
   brojUtakmica: number;
   odigrano: boolean;
-  slugNajave: string | null;
+  // Poveznica na članak uz to kolo. Dok se kolo nije odigralo to je
+  // najava, a kad jest, pregled. Null znači da takvog članka nema.
+  poveznica: { slug: string; oznaka: string } | null;
 };
 
 export default async function OvajVikend() {
@@ -109,7 +111,7 @@ export default async function OvajVikend() {
       // Nedjeljom navečer utakmice tog dana već imaju rezultat: tada se
       // umjesto vremena pokazuje da je kolo odigrano.
       odigrano: togDana.some((u) => golovi(u.rezultat) !== null),
-      slugNajave: null,
+      poveznica: null,
     });
   }
 
@@ -134,33 +136,50 @@ export default async function OvajVikend() {
     );
   }
 
-  // 5. Poveznica na najavu: objavljeni članak koji najavljuje TOČNO ono
-  //    kolo koje stoji u ovom retku, i to iz iste lige.
+  // 5. Poveznica na članak uz TOČNO ono kolo koje stoji u ovom retku, i
+  //    to iz iste lige.
   //
   //    Prije se uzimala samo najnovija najava te lige, bez obzira na kolo,
   //    pa je traka za 2. kolo vodila na najavu 1. kola. Sada poveznice
-  //    nema sve dok najava tog kola ne bude objavljena, što je i bila
+  //    nema sve dok članak tog kola ne bude objavljen, što je i bila
   //    zamisao: gumb koji vodi na krivo kolo gori je od nikakvog gumba.
   //
-  //    Najava se prepoznaje po SLUGU ili po naslovu. Slug je pouzdan, jer
-  //    sve naše najave počinju s "najava-", dok je naslov slobodan tekst:
-  //    najava 2. kola 4. NL 2026/27 zvala se "SAMOUVJERENI LIŽNJAN
-  //    DOČEKUJE MLADOST...", bez riječi "najava", pa je uz provjeru samo
-  //    po naslovu ispadala iz upita i strelice na naslovnici nije bilo.
-  const { data: najave } = await supabase
+  //    ŠTO SE NUDI, OVISI O TOME JE LI SE KOLO ODIGRALO. Redak ostaje na
+  //    ekranu i na dan kola, jer datum tada još nije prošao, pa je 15.09.
+  //    uz 4. kolo 3. NL i nakon svih osam utakmica i dalje stajala
+  //    "Najava". Kad je kolo odigrano, najava je potrošena i traka nudi
+  //    pregled tog kola; dok pregled nije objavljen, nema ničega.
+  //
+  //    Članak se prepoznaje po SLUGU ili po naslovu. Slug je pouzdan, jer
+  //    naše najave počinju s "najava-", a pregledi s "pregled-", dok je
+  //    naslov slobodan tekst: najava 2. kola 4. NL 2026/27 zvala se
+  //    "SAMOUVJERENI LIŽNJAN DOČEKUJE MLADOST...", bez riječi "najava", pa
+  //    je uz provjeru samo po naslovu ispadala iz upita.
+  const { data: clanciKola } = await supabase
     .from("clanci")
     .select("slug, naslov, natjecanje, objavljeno_u")
     .eq("objavljen", true)
-    .or("slug.ilike.najava-%,naslov.ilike.%najav%")
+    .or(
+      "slug.ilike.najava-%,naslov.ilike.%najav%," +
+        "slug.ilike.pregled-%,naslov.ilike.%pregled%"
+    )
     .order("objavljeno_u", { ascending: false })
-    .limit(20);
+    .limit(40);
 
   for (const red of redovi) {
     if (red.kolo === null) continue;
-    red.slugNajave =
-      najave?.find(
-        (c) => c.natjecanje === red.liga.naziv && koloNajave(c) === red.kolo
-      )?.slug ?? null;
+
+    const zaLigu = (clanciKola ?? []).filter(
+      (c) => c.natjecanje === red.liga.naziv
+    );
+
+    const clanak = red.odigrano
+      ? zaLigu.find((c) => koloPregleda(c) === red.kolo)
+      : zaLigu.find((c) => koloNajave(c) === red.kolo);
+
+    red.poveznica = clanak
+      ? { slug: clanak.slug, oznaka: red.odigrano ? "Pregled" : "Najava" }
+      : null;
   }
 
   redovi.sort((a, b) => a.datum.getTime() - b.datum.getTime());
@@ -201,13 +220,13 @@ export default async function OvajVikend() {
                   ])}`}
             </span>
 
-            {r.slugNajave && (
+            {r.poveznica && (
               <Link
-                href={`/novosti/${r.slugNajave}`}
+                href={`/novosti/${r.poveznica.slug}`}
                 className="font-sans text-xs font-medium hover:underline"
                 style={{ color: "var(--oxide)" }}
               >
-                Najava →
+                {r.poveznica.oznaka} →
               </Link>
             )}
           </li>
