@@ -24,6 +24,7 @@ Ništa ne piše u bazu; samo čita stranice Semafora i ispisuje.
 """
 
 import os
+import re
 import sys
 import time
 
@@ -62,6 +63,41 @@ def dogadjaji_igraca(postava, ime):
         if _ista_osoba(ime, igrac.get("igrac") or ""):
             nadjeni.append(igrac)
     return nadjeni
+
+
+def sazmi(tekst, najvise=500):
+    """Jedan redak HTML-a, bez praznina i skraćen, da stane u ispis."""
+    jedan_redak = re.sub(r"\s+", " ", tekst).strip()
+    if len(jedan_redak) <= najvise:
+        return jedan_redak
+    return jedan_redak[:najvise] + " ..."
+
+
+def ispisi_sirovi_html(url, ime):
+    """Sirovi HTML redaka postave u kojima stoji to ime.
+
+    Kad se zbroj iz zapisnika ne slaže sa sastavom na stranici
+    natjecanja, ne pogađa se zašto, nego se pogleda stvarni HTML. Isto
+    pravilo po kojem je riješen autogol (vidi alati/zapisnik_html.py).
+    """
+    soup = BeautifulSoup(dohvati_stranicu(url).text, "html.parser")
+    time.sleep(1)
+
+    nadjeno = False
+    for li in soup.find_all("li"):
+        h3 = li.find("h3")
+        if not h3:
+            continue
+        poveznica = h3.find("a", href=lambda h: h and "/igraci/" in h)
+        if not poveznica:
+            continue
+        if not _ista_osoba(ime, poveznica.get_text(strip=True).replace(" (C)", "")):
+            continue
+        nadjeno = True
+        print(f"      SIROVI HTML: {sazmi(str(li))}")
+
+    if not nadjeno:
+        print("      SIROVI HTML: tog imena nema ni u jednom retku postave.")
 
 
 def ispisi_igraca(natjecanje, igrac_sastav, utakmice):
@@ -123,11 +159,23 @@ def ispisi_igraca(natjecanje, igrac_sastav, utakmice):
     print(f"  ZBROJ IZ ZAPISNIKA: žuti={zuti}, crveni={crveni}")
     razlika_zuti = igrac_sastav["zuti"] - zuti
     razlika_crveni = igrac_sastav["crveni"] - crveni
-    if razlika_zuti or razlika_crveni:
-        print(f"  RAZLIKA prema stranici natjecanja: žuti {razlika_zuti:+d}, "
-              f"crveni {razlika_crveni:+d}")
-    else:
+    if not (razlika_zuti or razlika_crveni):
         print("  Poklapa se sa stranicom natjecanja.")
+        return
+
+    print(f"  RAZLIKA prema stranici natjecanja: žuti {razlika_zuti:+d}, "
+          f"crveni {razlika_crveni:+d}")
+
+    # Uz HTML=1 se ne nagađa gdje je karton nestao, nego se ispiše stvarni
+    # redak postave. Ide samo kod razlike i samo tada, jer je to još jedan
+    # dohvat po utakmici, a mi smo na Semaforu gosti.
+    if os.environ.get("HTML") != "1":
+        print("  (za sirovi HTML tih redaka pokreni isto s HTML=1)")
+        return
+
+    for u in njegove:
+        print(f"    {u['kolo']}. kolo  {u['domacin']} - {u['gost']}")
+        ispisi_sirovi_html(u["hns_url"], ime)
 
 
 def main():

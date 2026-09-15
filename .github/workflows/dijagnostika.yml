@@ -31,6 +31,11 @@ on:
         description: "Dio naziva lige (prazno = sve četiri)"
         required: false
         type: string
+      html:
+        description: "Ispiši i sirovi HTML redaka postave (sporije)"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -58,4 +63,5 @@ jobs:
         env:
           IGRACI: ${{ inputs.igraci }}
           NATJECANJE: ${{ inputs.natjecanje }}
+          HTML: ${{ inputs.html && '1' || '' }}
         run: python dijagnostika_kartoni.py
