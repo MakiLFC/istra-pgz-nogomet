@@ -94,7 +94,14 @@ def ispisi_sirovi_html(url, ime):
         if not _ista_osoba(ime, poveznica.get_text(strip=True).replace(" (C)", "")):
             continue
         nadjeno = True
-        print(f"      SIROVI HTML: {sazmi(str(li))}")
+        # Zanima nas blok događaja, ne fotografija i broj dresa, pa se
+        # ispisuje samo on. Kad ga nema, ispiše se cijeli redak.
+        dogadjaji = li.find("div", class_="matchEvents")
+        if dogadjaji:
+            print(f"      SIROVI HTML: {sazmi(str(dogadjaji), 1200)}")
+        else:
+            print(f"      SIROVI HTML: bez bloka matchEvents u retku "
+                  f"({sazmi(str(li), 300)})")
 
     if not nadjeno:
         print("      SIROVI HTML: tog imena nema ni u jednom retku postave.")
