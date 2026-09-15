@@ -105,3 +105,26 @@ export function koloNajave(clanak: { slug?: string | null; naslov?: string | nul
 
   return null;
 }
+
+/**
+ * Koje kolo članak pregledava, iz sluga ili iz naslova.
+ *
+ * Isti obrazac kao kod najava, samo s drugom riječju:
+ *   slug:   "pregled-3-kola-3-nl-zapad-2627"
+ *   naslov: "PREGLED 3. KOLA: 3. NL ZAPAD"
+ *
+ * Naslovi pregleda u pravilu NEMAJU riječ "pregled" (zovu se npr. "PET
+ * GOSTUJUĆIH POBJEDA..."), pa se u praksi prepoznaju po slugu. Provjera
+ * po naslovu stoji kao rezerva.
+ *
+ * Kao i kod najave, null znači "ne zna se", pa se poveznica ne prikazuje.
+ */
+export function koloPregleda(clanak: { slug?: string | null; naslov?: string | null }): number | null {
+  const izSluga = (clanak.slug ?? "").match(/^pregled-(\d+)-kola\b/);
+  if (izSluga) return Number(izSluga[1]);
+
+  const izNaslova = (clanak.naslov ?? "").match(/pregled\s+(\d+)\.\s*kola/i);
+  if (izNaslova) return Number(izNaslova[1]);
+
+  return null;
+}
