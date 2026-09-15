@@ -74,13 +74,20 @@ export function strijelciPoKlubu(u: Utakmica) {
   return { domacin, gost, nepoznato };
 }
 
-/** Ispis jednog strijelca: "Ime 16'" ili "Ime 16' (ag)". */
+/**
+ * Ispis jednog strijelca: "Ime 16'" ili "Ime 16' (ag)".
+ *
+ * Minute zna nedostajati: HNS pokoji događaj upiše bez nje (potvrđeno
+ * 15.09.2026. na kartonima). Tada se ispisuje samo ime, bez praznine
+ * iza njega.
+ */
 export function zapisStrijelca(s: {
   igrac: string;
   minuta: string;
   autogol?: boolean;
 }): string {
-  return `${s.igrac} ${s.minuta}${s.autogol ? " (ag)" : ""}`;
+  const minuta = s.minuta?.trim();
+  return `${s.igrac}${minuta ? ` ${minuta}` : ""}${s.autogol ? " (ag)" : ""}`;
 }
 
 /** Ima li utakmica zapisnik, dakle strijelce ili postave. */

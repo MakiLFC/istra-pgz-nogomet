@@ -70,15 +70,21 @@ function redakIgraca(
   // liste strijelaca ako ih matchEvents slučajno ne bi sadržavao - da lopta
   // uz strijelca nikad ne izostane.
   const dogadjaji: DogadjajIgraca[] = [...(igrac.dogadjaji ?? [])];
-  goloviIgraca.forEach((minuta) => {
-    // I autogol je gol: bez ovoga bi mreža dopisala drugi, običan pogodak
-    // u istoj minuti, pa bi igrač imao dvije lopte.
-    const vecImaGol = dogadjaji.some(
-      (d) => d.minuta === minuta && (d.tip === "gol" || d.tip === "autogol")
-    );
-    if (!vecImaGol) {
-      dogadjaji.push({ minuta, tip: "gol" } as DogadjajIgraca);
-    }
+  const jeGol = (d: DogadjajIgraca) => d.tip === "gol" || d.tip === "autogol";
+  const golovaUPostavi = dogadjaji.filter(jeGol).length;
+
+  // I autogol je gol: bez ovoga bi mreža dopisala drugi, običan pogodak
+  // u istoj minuti, pa bi igrač imao dvije lopte.
+  const bezPara = [...goloviIgraca].filter(
+    (minuta) => !dogadjaji.some((d) => d.minuta === minuta && jeGol(d))
+  );
+
+  // Dopunjuje se najviše onoliko koliko ih u postavi doista fali. HNS zna
+  // isti pogodak upisati u traci s minutom, a uz igrača bez nje (potvrđeno
+  // 15.09.2026.), pa bi usporedba samo po minuti dopisala drugu loptu.
+  const koliko = Math.max(0, goloviIgraca.size - golovaUPostavi);
+  bezPara.slice(0, koliko).forEach((minuta) => {
+    dogadjaji.push({ minuta, tip: "gol" } as DogadjajIgraca);
   });
   dogadjaji.sort((a, b) => minutaUBroj(a.minuta) - minutaUBroj(b.minuta));
 

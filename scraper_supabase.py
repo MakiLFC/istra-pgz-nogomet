@@ -508,12 +508,15 @@ def dohvati_detalje_utakmice(utakmica_url):
             if not ime:
                 continue
 
-            # Izvuci minutu iz teksta li elementa (bez teksta iz divova)
+            # Minuta iz teksta li elementa (bez teksta iz divova).
+            #
+            # KAD MINUTE NEMA, POGODAK SE SVEJEDNO UPISUJE, s praznom
+            # minutom. Prije se takav redak preskakao, pa je događaj tiho
+            # nestajao. Vidi napomenu kod postava: HNS zna upisati događaj
+            # bez minute, i to nije razlog da ga se izgubi.
             li_tekst = li.get_text(separator=" ", strip=True)
             match = re.search(r"(\d{1,3}(?:\+\d{1,2})?')", li_tekst)
-            if not match:
-                continue
-            minuta = match.group(1)
+            minuta = match.group(1) if match else ""
 
             zapis = {"igrac": ime, "minuta": minuta}
             if tip_gola == "autogol":
@@ -574,16 +577,25 @@ def dohvati_detalje_utakmice(utakmica_url):
                 ikona = ev_li.find("div", class_="icon")
                 title = ikona.get("title", "") if ikona else ""
 
+                # DOGAĐAJ BEZ MINUTE SE UPISUJE, s praznom minutom.
+                #
+                # Prije se takav redak preskakao, pa je karton tiho
+                # nestajao. Potvrđeno 15.09.2026. na stvarnom HTML-u:
+                #   <li class="yellow"><div class="icon" title="Žuti karton">
+                #   </div></li>
+                # bez ijedne brojke. Tako su ispali žuti kartoni Bakira
+                # Delića (Rikard Benčić, 1. kolo) i Admira Haznadara
+                # (Otočac, 2. kolo), pa je lista kartona iz zapisnika
+                # zaostajala za onom sa stranice natjecanja.
                 ev_tekst = ev_li.get_text(separator=" ", strip=True)
                 m = re.search(r"(\d{1,3}(?:\+\d{1,2})?')", ev_tekst)
-                if not m:
-                    continue
-                minuta = m.group(1)
+                minuta = m.group(1) if m else ""
 
                 tip = odredi_tip_dogadjaja(klase, title)
                 # sigurnosna mreža: ako tip nije prepoznat, a igrač+minuta su
-                # u listi strijelaca -> to je gol, i to iste vrste kao ondje
-                if tip == "nepoznato":
+                # u listi strijelaca -> to je gol, i to iste vrste kao ondje.
+                # Bez minute se nema po čemu usporediti, pa se ne pogađa.
+                if tip == "nepoznato" and minuta:
                     mk = _norm_min(minuta)
                     isti = [s for s in strijelci
                             if _norm_min(s["minuta"]) == mk
@@ -614,14 +626,23 @@ def dohvati_detalje_utakmice(utakmica_url):
     # rezultat/strijelci u naslovu i oznake u postavi nikad ne raziđu.
     for postava in (domacin_postava, gost_postava):
         for igrac in postava:
-            for d in igrac["dogadjaji"]:
-                if d["tip"] != "gol":
-                    continue
-                vec_postoji = any(
-                    _norm_min(s["minuta"]) == _norm_min(d["minuta"])
-                    and _ista_osoba(s["igrac"], igrac["igrac"])
-                    for s in strijelci
-                )
+            golovi_u_postavi = [d for d in igrac["dogadjaji"] if d["tip"] == "gol"]
+            for d in golovi_u_postavi:
+                if _norm_min(d["minuta"]):
+                    vec_postoji = any(
+                        _norm_min(s["minuta"]) == _norm_min(d["minuta"])
+                        and _ista_osoba(s["igrac"], igrac["igrac"])
+                        for s in strijelci
+                    )
+                else:
+                    # Gol bez minute se ne može usporediti po minuti, pa se
+                    # gleda BROJ: dodaje se samo ako igrač u traci strijelaca
+                    # ima manje pogodaka nego što ih ima uz sebe u postavi.
+                    # Bez toga bi isti gol, upisan u traci s minutom a u
+                    # postavi bez nje, ušao dvaput.
+                    u_traci = sum(1 for s in strijelci
+                                  if _ista_osoba(s["igrac"], igrac["igrac"]))
+                    vec_postoji = u_traci >= len(golovi_u_postavi)
                 if not vec_postoji:
                     strijelci.append({"igrac": igrac["igrac"], "minuta": d["minuta"]})
 

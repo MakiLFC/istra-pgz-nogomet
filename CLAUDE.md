@@ -465,6 +465,48 @@ su išle prve, pa bi se sada slagale od jučerašnjeg stanja i kolo pročitano
 maloprije ušlo bi tek u sljedeći prolaz. Čuva `test_rang_liste_iz_zapisnika.py`.
 
 
+**Događaj bez minute je događaj, a scraper ga je bacao.**
+Prvo pokretanje s rang-listama iz zapisnika, 15.09.2026., pokazalo je da
+strijelci prolaze u sve četiri lige, a kartoni u tri padaju natrag na
+listu sa Semafora. Razlika je svaki put bila jedan žuti karton: Doni
+Tanković i Ivan Rojnić (Pazinka), Admir Haznadar (Otočac) i Bakir Delić
+(Rikard Benčić).
+
+Uzrok se nije pogađao nego pogledao, alatom `dijagnostika_kartoni.py`
+(ručni posao "Dijagnostika kartona" na GitHubu, uz kvačicu za sirovi
+HTML). Karton je u zapisniku bio, ali bez minute:
+
+```
+<div class="matchEvents"><ul class="events">
+  <li class="yellow"><div class="icon" title="Žuti karton"></div></li>
+</ul></div>
+```
+
+Kod Haznadara je u istom bloku izmjena imala minutu, a karton nije, pa se
+vidi da minuta fali samo pojedinom događaju, ne cijelom zapisniku.
+
+Scraper je takav redak PRESKAKAO, jer je minuta bila uvjet za upis
+(`if not m: continue`). Događaj je time tiho nestajao: nije ga bilo ni u
+postavi na stranici utakmice, ni na stranici igrača, ni u zbroju kartona.
+Sada se upisuje s praznom minutom, a prikaz tada ispiše samo ikonu.
+
+Tri stvari uz to:
+
+- Isto je vrijedilo i za traku strijelaca, pa je i ondje maknut uvjet.
+- Nadopuna strijelaca iz postave uspoređivala je po minuti. Gol koji u
+  traci ima minutu, a u postavi je bez nje, tako bi ušao dvaput. Kad
+  minute nema, uspoređuje se BROJ pogodaka igrača, ne minuta. Ista
+  zamka i isti popravak su i u `components/Postava.tsx`, gdje je
+  sigurnosna mreža dopisivala drugu loptu.
+- Kad tip događaja nije prepoznat, a minute nema, ne pogađa se ništa:
+  provjera preko liste strijelaca bez minute nema po čemu raditi.
+
+Pouka je ista kao kod autogola: kad se dva izvora ne slažu, gleda se
+stvarni HTML, ne pretpostavka. I ovdje je kočnica napravila svoje, jer se
+kriva lista nije objavila. Čuva `test_dogadjaj_bez_minute.py`, pisan po
+stvarnom HTML-u s ta dva zapisnika.
+
+
 **Ime upotrijebljeno dvaput za dvije stvari ruši scraper tek u pogonu.**
 02.09.2026. pao je posao "Provjera termina" s porukom
 `TypeError: 'str' object is not callable`. U petlji po utakmicama stajala

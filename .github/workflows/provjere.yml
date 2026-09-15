@@ -70,7 +70,7 @@ jobs:
                       test_ponavljanje test_klub_igraca \
                       test_provjera_strijelaca test_rezultat_bez_brojki \
                       test_zbroj_bez_postava test_rang_liste_iz_zapisnika \
-                      test_fotografija; do
+                      test_dogadjaj_bez_minute test_fotografija; do
             echo "=============================================="
             echo "$test.py"
             echo "=============================================="
