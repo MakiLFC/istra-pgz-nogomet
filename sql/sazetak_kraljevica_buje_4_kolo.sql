@@ -58,7 +58,10 @@ returning domacin, gost, rezultat, left(tekst_clanka, 60) as pocetak;
 -- =====================================================================
 -- PROVJERA
 -- =====================================================================
-select natjecanje, kolo, domacin, gost, rezultat, derbi, gledatelji,
+-- Stupac se zove "gledatelja", ne "gledatelji". Prvo pokretanje je zbog
+-- toga palo, a kako Supabase cijelu datoteku vrti kao jednu transakciju,
+-- pala je i izmjena iznad. Nista nije upisano dok cijela datoteka ne prodje.
+select natjecanje, kolo, domacin, gost, rezultat, derbi, gledatelja,
        length(tekst_clanka) as duljina_teksta
 from public.utakmice
 where natjecanje = '3. NL Zapad'
