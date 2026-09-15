@@ -1,42 +1,34 @@
-# Dijagnostika stranica HNS Semafora.
+# Dijagnostika kartona, samo ručno.
 #
 # ČEMU SLUŽI
-# Radni prostor u kojem Claude radi nema pristup internetu, pa ne može
-# otvoriti stranicu Semafora i vidjeti kako je nešto zapisano u HTML-u.
-# Bez toga se greške u čitanju podataka mogu samo nagađati, a pravilo je
-# da se prvo dijagnosticira pa tek onda mijenja.
-#
-# Ovaj posao pokreće jedan od dijagnostičkih alata iz repozitorija i sve
-# ispisuje u zapisnik pokretanja, koji Claude može pročitati.
-#
-# NIŠTA NE MIJENJA: alati samo čitaju stranice i ispisuju. U bazu ne pišu
-# i nemaju pristup ključevima.
+# Kad se lista kartona iz zapisnika razilazi s onom sa stranice
+# natjecanja, ovaj posao za zadana imena prođe kroz zapisnike njihovih
+# klubova i ispiše svaki događaj uz tog igrača. Iz ispisa se vidi je li
+# karton uopće u zapisniku, stoji li uz igrača koji u postavi nije
+# naveden, ili se ime piše drukčije.
 #
 # KAKO SE POKREĆE
-# Actions -> "Dijagnostika HNS" -> Run workflow, pa se odabere alat i
-# upiše adresa stranice (lige ili utakmice), po potrebi i prezime igrača.
+# Actions -> "Dijagnostika kartona" -> Run workflow, pa u polje "igraci"
+# upiši imena odvojena točka-zarezom, npr.:
+#   Doni Tanković;Ivan Rojnić;Admir Haznadar;Bakir Delić
+# Polje "natjecanje" se smije ostaviti prazno, tad ide kroz sve četiri
+# lige.
+#
+# NE DIRA BAZU. Samo čita Semafor i ispisuje, pa se smije pokretati kad
+# god zatreba. Traje koliko i nekoliko zapisnika, dakle manje od minute
+# po igraču.
 
-name: Dijagnostika HNS
+name: Dijagnostika kartona
 
 on:
   workflow_dispatch:
     inputs:
-      alat:
-        description: "Koji dijagnostički alat pokrenuti"
+      igraci:
+        description: "Imena igrača, odvojena točka-zarezom"
         required: true
-        default: "dijagnostika_klub_igraca.py"
-        type: choice
-        options:
-          - "dijagnostika_klub_igraca.py"
-          - "dijagnostika_nastupi.py"
-          - "dijagnostika_tablica.py"
-          - "dijagnostika_karton.py"
-      url:
-        description: "Adresa stranice (samo za alat klub_igraca)"
-        required: false
         type: string
-      igrac:
-        description: "Prezime igrača za detaljni ispis (samo za alat klub_igraca)"
+      natjecanje:
+        description: "Dio naziva lige (prazno = sve četiri)"
         required: false
         type: string
 
@@ -46,7 +38,7 @@ permissions:
 jobs:
   dijagnostika:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
 
     steps:
       - name: Preuzmi kod
@@ -58,14 +50,12 @@ jobs:
           python-version: "3.12"
 
       - name: Instaliraj pakete
-        run: pip install requests beautifulsoup4
+        run: pip install -r requirements.txt
 
-      - name: Pokreni alat
-        run: |
-          if [ "${{ inputs.alat }}" = "dijagnostika_klub_igraca.py" ]; then
-            python dijagnostika_klub_igraca.py \
-              --url "${{ inputs.url }}" \
-              --igrac "${{ inputs.igrac }}"
-          else
-            python "${{ inputs.alat }}"
-          fi
+      - name: Pokreni dijagnostiku
+        # Vrijednosti idu kroz okolinu, ne kroz naredbeni redak, da ime s
+        # navodnikom ili razmakom ne može razbiti naredbu.
+        env:
+          IGRACI: ${{ inputs.igraci }}
+          NATJECANJE: ${{ inputs.natjecanje }}
+        run: python dijagnostika_kartoni.py
