@@ -433,6 +433,37 @@ Poredak ide po crvenima pa po žutima, a u 3. kolu nije bilo nijednog
 crvenog, pa je na vrhu ostao isti igrač. Promjene su bile niže na
 listi. Nepromijenjen vrh liste nije dokaz da lista nije osvježena.
 
+DOPUNJENO 15.09.2026.: strijelci i kartoni se od tada ne čekaju od HNS-a
+nego se ZBRAJAJU IZ ZAPISNIKA koji su već u bazi. Podatak je cijelo
+vrijeme bio kod nas, u postavama, uz svakog igrača i njegove događaje;
+nitko ga nije zbrojio. Sada ljestvice budu ažurne u istom trenutku kad i
+rezultati, a ne sat i više kasnije.
+
+Kako radi (`ucinci_iz_zapisnika` u `scraper_supabase.py`):
+
+- igrač pripada momčadi u čijoj je POSTAVI, a ime kluba se uzima s retka
+  utakmice, dakle isto ono koje stranica već koristi za poveznice
+- autogol ne ulazi u golove, ni onaj koji scraper sam prepozna ni onaj iz
+  ručnog stupca `utakmice.autogolovi`
+- drugi žuti karton broji se kao crveni, a žuti prije njega je zaseban
+  događaj u zapisniku i broji se sam
+- vratar koji zabije ima gol. To nije proturječje s pravilom da se vratari
+  izbacuju iz strijelaca: ono vrijedi za SASTAVE na stranici natjecanja,
+  gdje stupac golova kod vratara znači primljene. U zapisniku gol znači gol.
+
+Lista sa stranice natjecanja nije ukinuta nego ostaje kočnica: ona iz
+zapisnika objavljuje se SAMO kad nigdje ne zaostaje za njom
+(`zaostaje_za_sluzbenom`). Ispred smije biti, jer HNS kasni; iza ne smije,
+jer to znači da nam fali zapisnik. Ispis pokretanja u oba slučaja kaže
+odakle je lista koja je otišla na stranicu.
+
+Tablica poretka i nastupi se i dalje SAMO scrapaju: tablica zbog kaznenih
+bodova, nastupi zato što zapisnik ne kaže koliko je tko bio na terenu.
+
+Zbog toga je rang-liste u prolazu trebalo pomaknuti IZA zapisnika. Prije
+su išle prve, pa bi se sada slagale od jučerašnjeg stanja i kolo pročitano
+maloprije ušlo bi tek u sljedeći prolaz. Čuva `test_rang_liste_iz_zapisnika.py`.
+
 
 **Ime upotrijebljeno dvaput za dvije stvari ruši scraper tek u pogonu.**
 02.09.2026. pao je posao "Provjera termina" s porukom

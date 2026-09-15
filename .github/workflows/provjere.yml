@@ -69,7 +69,8 @@ jobs:
                       test_odustali_klub test_nastupi test_autogol \
                       test_ponavljanje test_klub_igraca \
                       test_provjera_strijelaca test_rezultat_bez_brojki \
-                      test_zbroj_bez_postava test_fotografija; do
+                      test_zbroj_bez_postava test_rang_liste_iz_zapisnika \
+                      test_fotografija; do
             echo "=============================================="
             echo "$test.py"
             echo "=============================================="
