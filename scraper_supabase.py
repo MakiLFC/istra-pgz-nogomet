@@ -39,7 +39,10 @@ load_dotenv()  # učitava SUPABASE_URL i SUPABASE_SERVICE_KEY iz .env datoteke
 #   --sezona "2025/26"     upiši drugu sezonu od zadane u SEZONA
 #   --kolo 15              obradi samo to kolo (brže i blaže prema HNS-u)
 #   --samo-statistike      osvježi samo rang-liste (tablica, strijelci,
-#                          kartoni, nastupi), bez rasporeda i zapisnika
+#                          kartoni, nastupi), bez rasporeda i zapisnika.
+#                          Zapisnici se ne otvaraju iznova, ali se oni
+#                          koji su u bazi svejedno zbroje u strijelce i
+#                          kartone (vidi ucinci_iz_zapisnika)
 #   --samo-raspored        osvježi samo termine (datum, vrijeme, stadion)
 #                          s retka rasporeda, bez otvaranja zapisnika i
 #                          bez rang-lista; traje sekundu po ligi
@@ -681,6 +684,40 @@ def dohvati_postojece_termine(naziv_natjecanja, sezona):
     return {(r["kolo"], r["domacin"], r["gost"]): r for r in (odgovor.data or [])}
 
 
+def dohvati_zapisnike(naziv_natjecanja, sezona):
+    """Utakmice te lige iz baze, sa svime što rang-liste trebaju.
+
+    Čita se IZ BAZE, a ne samo ono što je pročitano u ovom prolazu: prolaz
+    zna biti sužen (--kolo, --samo-statistike), a rang-lista vrijedi za
+    cijelu sezonu. U bazi stoji sve što je ikad pročitano, uključujući ono
+    što je upisano maloprije, pa je to jedini potpun izvor.
+
+    Stupac autogolovi postoji tek nakon sql/autogolovi.sql. Dok ga nema,
+    upit s njim puca, pa se ponavlja bez njega - isto kao kod ručnih
+    termina. Scraper zbog toga ne smije stati.
+    """
+    if POSTAVKE["dry_run"]:
+        return []
+
+    def upit(stupci):
+        return (
+            klijent().table("utakmice").select(stupci)
+            .eq("natjecanje", naziv_natjecanja).eq("sezona", sezona)
+            .execute()
+        )
+
+    try:
+        odgovor = upit("kolo,domacin,gost,rezultat,autogolovi,"
+                       "postava_domacin,postava_gost")
+    except Exception:
+        odgovor = upit("kolo,domacin,gost,rezultat,"
+                       "postava_domacin,postava_gost")
+        print("  Napomena: autogolovi se ne čitaju jer stupac još ne "
+              "postoji (pokreni sql/autogolovi.sql).")
+
+    return odgovor.data or []
+
+
 def bez_klubova_izvan(utakmice, izvan):
     """Raspored bez utakmica klubova koji su napustili natjecanje.
 
@@ -1257,7 +1294,13 @@ def parsiraj_sve_igrace(soup):
     return igraci
 
 
-def slozi_pune_rang_liste(igraci, koliko=40):
+# Koliko igrača ide u rang-listu koja se sprema. Usporedba dviju listi
+# radi se PRIJE skraćivanja, nad punim listama: inače bi igrač koji je kod
+# nas 41., a kod HNS-a unutar prvih 40, ispao kao da nam fali.
+KOLIKO_U_RANG_LISTI = 40
+
+
+def slozi_pune_rang_liste(igraci, koliko=KOLIKO_U_RANG_LISTI):
     """Iz sastava složi punu listu strijelaca i kartona (do 'koliko' igrača)."""
     s = [i for i in igraci if not i["vratar"] and i["golovi"] > 0]
     s.sort(key=lambda i: (-i["golovi"], i["igrac"]))
@@ -1297,6 +1340,190 @@ def slozi_listu_nastupa(igraci, rezerva, koliko=2000):
             for r, i in enumerate(n[:koliko])]
 
 
+# ---------------------------------------------------------------------------
+# RANG-LISTE IZ ZAPISNIKA — strijelci i kartoni bez čekanja na HNS
+# ---------------------------------------------------------------------------
+# ZAŠTO POSTOJI
+# Stranica natjecanja ima dva mjesta s brojkama po igraču: sastave klubova
+# (odande nastaju rang-liste koje scrapamo) i same zapisnike. Ta se dva
+# mjesta NE osvježavaju istovremeno. 12.09.2026. je nakon 3. kola 3. NL
+# Zapad tablica poretka bila svježa, svih osam zapisnika potpuno, a golovi
+# po igraču zaostajali: Ahmed Durmo je po zapisnicima imao četiri gola, a u
+# sastavu dva. Ljestvica strijelaca na stranici zato je izgledala
+# zaglavljeno, iako je vjerno prenosila ono što je HNS tada imao.
+#
+# Zapisnik je pritom kod nas VEĆ spremljen, s postavama i s događajima uz
+# svakog igrača. Podatak dakle postoji, samo ga nitko nije zbrojio. Ovdje
+# se zbraja, pa strijelci i kartoni budu ažurni u istom trenutku kad i
+# rezultati, bez čekanja da HNS osvježi sastave.
+#
+# ŠTO SE I DALJE SCRAPA, A NE RAČUNA
+#  - tablica poretka: uključuje kaznene bodove (npr. "NK Crikvenica (-3)"),
+#    vlastiti izračun bio bi kriv
+#  - nastupi i minute: zapisnik ne kaže koliko je tko bio na terenu
+#
+# SIGURNOSNA KOČNICA
+# Lista iz zapisnika objavljuje se SAMO ako nigdje ne zaostaje za onom sa
+# stranice natjecanja (vidi zaostaje_za_sluzbenom). Smije biti ispred, jer
+# HNS kasni; ako je iza, nešto nam fali i objavljuje se službena.
+
+
+def _je_rucno_oznacen_autogol(ime, minuta, rucni):
+    """Je li taj pogodak naveden u ručnom popisu utakmice.autogolovi."""
+    trazena = _norm_min(minuta or "")
+    return any(_norm_min(m) == trazena and _ista_osoba(ime, i)
+               for i, m in rucni)
+
+
+def ucinci_iz_zapisnika(utakmice):
+    """Golovi i kartoni po igraču, zbrojeni iz već spremljenih zapisnika.
+
+    Vraća (ucinci, bez_postava):
+      ucinci       popis rječnika {"igrac", "klub", "vratar", "golovi",
+                   "zuti", "crveni"}, u obliku koji prima
+                   slozi_pune_rang_liste
+      bez_postava  opisi odigranih utakmica koje u bazi nemaju obje
+                   postave, pa u ovaj zbroj nisu mogle ući
+
+    PRAVILA su ista kao na stranici utakmice:
+      - igrač pripada momčadi u čijoj je POSTAVI; ime kluba uzima se s
+        retka utakmice, dakle isto ono koje stranica već koristi
+      - AUTOGOL nije zasluga strijelca i ne ulazi u golove. Prepoznaje se
+        iz oznake koju scraper sam upisuje (tip "autogol") i iz ručnog
+        popisa utakmice.autogolovi, koji postoji za starije utakmice i za
+        pogotke koje HNS nije označio
+      - drugi žuti karton (tip "karton_zutocrveni") broji se kao CRVENI.
+        Žuti koji mu je prethodio zaseban je događaj u zapisniku i broji
+        se sam za sebe
+      - vratar ovdje nije poseban slučaj: u zapisniku "gol" znači zabijeni
+        gol. (U sastavima klubova je obrnuto, ondje stupac golova kod
+        vratara znači PRIMLJENE, pa se vratari odande izbacuju.)
+    """
+    ucinci = {}
+    bez_postava = []
+
+    def ucinak(ime, klub):
+        kljuc = (ime, klub)
+        if kljuc not in ucinci:
+            ucinci[kljuc] = {"igrac": ime, "klub": klub, "vratar": False,
+                             "golovi": 0, "zuti": 0, "crveni": 0}
+        return ucinci[kljuc]
+
+    for u in utakmice:
+        strane = ((u.get("postava_domacin") or [], (u.get("domacin") or "").strip()),
+                  (u.get("postava_gost") or [], (u.get("gost") or "").strip()))
+        odigrana = bool(re.match(r"^\s*\d+\s*:\s*\d+\s*$",
+                                 (u.get("rezultat") or "")))
+
+        # Utakmica bez rezultata još nije odigrana: nema se što zbrojiti i
+        # nije propust. Odigrana bez postava jest propust i mora se vidjeti,
+        # jer njezini golovi i kartoni ispadaju iz zbroja.
+        if not all(postava and klub for postava, klub in strane):
+            if odigrana:
+                bez_postava.append(
+                    f"{u.get('kolo')}. kolo, {u.get('domacin')} - "
+                    f"{u.get('gost')} ({u.get('rezultat')})"
+                )
+            continue
+
+        rucni_autogoli = [((a.get("igrac") or ""), (a.get("minuta") or ""))
+                          for a in (u.get("autogolovi") or [])]
+
+        for postava, klub in strane:
+            for igrac in postava:
+                ime = (igrac.get("igrac") or "").strip()
+                if not ime:
+                    continue
+                for dogadjaj in igrac.get("dogadjaji") or []:
+                    tip = dogadjaj.get("tip")
+                    if tip == "gol":
+                        if _je_rucno_oznacen_autogol(
+                            ime, dogadjaj.get("minuta"), rucni_autogoli
+                        ):
+                            continue
+                        ucinak(ime, klub)["golovi"] += 1
+                    elif tip == "karton_zuti":
+                        ucinak(ime, klub)["zuti"] += 1
+                    elif tip in ("karton_crveni", "karton_zutocrveni"):
+                        ucinak(ime, klub)["crveni"] += 1
+
+    return list(ucinci.values()), bez_postava
+
+
+def uskladi_imena(ucinci, svi_igraci):
+    """Imena iz zapisnika svodi na ona iz sastava klubova, kad se razlikuju.
+
+    Stranica igrača nastaje iz imena, pa bi isti igrač zapisan na dva
+    načina bio dva igrača i dvije stranice. Ime iz sastava ima prednost,
+    jer odande dolazi i popis nastupa, dakle ono je ime koje stranica već
+    koristi.
+
+    Mijenja se SAMO kad u sastavima nema istog imena, a ima točno jedno
+    koje tolerantno odgovara (vidi _ista_osoba). Kad odgovaraju dva, a u
+    ligi zna biti dvoje ljudi istog prezimena, ne pogađa se ništa.
+    """
+    imena = sorted({i["igrac"] for i in svi_igraci if i.get("igrac")})
+
+    spojeni = {}
+    for u in ucinci:
+        ime = u["igrac"]
+        if ime not in imena:
+            kandidati = [i for i in imena if _ista_osoba(ime, i)]
+            if len(kandidati) == 1:
+                ime = kandidati[0]
+        kljuc = (ime, u["klub"])
+        if kljuc in spojeni:
+            # Isti igrač pod dva zapisa; brojke se zbrajaju, ne gube.
+            for polje in ("golovi", "zuti", "crveni"):
+                spojeni[kljuc][polje] += u[polje]
+        else:
+            spojeni[kljuc] = dict(u, igrac=ime)
+    return list(spojeni.values())
+
+
+def zaostaje_za_sluzbenom(nasi, sluzbeni, polja):
+    """Igrači kod kojih naša lista ima MANJE nego službena.
+
+    Lista iz zapisnika smije biti ispred službene, jer HNS sastave
+    osvježava sa zakašnjenjem od sat i više. Ako je iza, nešto nam fali
+    (najčešće zapisnik koji nije spremljen), i tada se ne objavljuje.
+
+    Uspoređuje se po igraču, ne po redoslijedu, iz istog razloga kao u
+    usporedi_sa_sluzbenom: kod istog broja golova poredak je proizvoljan.
+    """
+    nasi_po_imenu = {n["igrac"]: n for n in nasi}
+    manjkovi = []
+    for s in sluzbeni:
+        nas = nasi_po_imenu.get(s["igrac"])
+        for polje in polja:
+            sluzbeno = _broj(s.get(polje))
+            nase = _broj(nas.get(polje)) if nas else 0
+            if nase < sluzbeno:
+                manjkovi.append(f"{s['igrac']} ({polje}: službeno "
+                                f"{sluzbeno}, naše {nase})")
+    return manjkovi
+
+
+def odaberi_rang_listu(iz_zapisnika, sa_stranice, polja):
+    """Bira koja lista ide u bazu i vraća (lista, obrazloženje).
+
+    Prednost ima lista iz zapisnika, jer je svježija. Pada na onu sa
+    stranice natjecanja kad je prazna ili kad igdje zaostaje.
+    """
+    if not iz_zapisnika:
+        return sa_stranice, "sa stranice natjecanja (iz zapisnika nema ničega)"
+
+    manjkovi = zaostaje_za_sluzbenom(iz_zapisnika, sa_stranice, polja)
+    if manjkovi:
+        prikaz = ", ".join(manjkovi[:5])
+        if len(manjkovi) > 5:
+            prikaz += f" i još {len(manjkovi) - 5}"
+        return sa_stranice, ("sa stranice natjecanja, jer lista iz "
+                             f"zapisnika zaostaje kod: {prikaz}")
+
+    return iz_zapisnika, "iz zapisnika (svježije od sastava na stranici)"
+
+
 def usporedi_sa_sluzbenom(strijelci, sluzbeni):
     """Poruka samoprovjere: slaže li se naša lista strijelaca sa službenom.
 
@@ -1333,9 +1560,23 @@ def usporedi_sa_sluzbenom(strijelci, sluzbeni):
     return f"NE POKLAPA SE! {opisi}"
 
 
-def dohvati_i_spremi_statistike(natjecanje_naziv, natjecanje_url):
-    """Dohvaća tablicu + PUNE rang-liste sa stranice natjecanja i sprema u
-    Supabase tablicu 'statistike' (jedan redak po ligi i tipu, upsert)."""
+def dohvati_i_spremi_statistike(natjecanje_naziv, natjecanje_url,
+                                zapisnici=None):
+    """Dohvaća tablicu + rang-liste i sprema ih u Supabase tablicu
+    'statistike' (jedan redak po ligi i tipu, upsert).
+
+    Strijelci i kartoni imaju DVA izvora, oba s HNS-a:
+      - sastavi klubova na stranici natjecanja, koji zaostaju za
+        zapisnicima i sat i više,
+      - zapisnici koje već imamo u bazi, koji su ažurni čim je kolo
+        odigrano.
+    Objavljuje se onaj iz zapisnika, osim kad igdje zaostaje. Tablica
+    poretka i nastupi idu i dalje isključivo sa stranice: prva zbog
+    kaznenih bodova, druga jer zapisnik nema odigrane minute.
+
+    Vraća popis napomena za završni ispis pokretanja.
+    """
+    napomene = []
     response = dohvati_stranicu(natjecanje_url)
     soup = BeautifulSoup(response.text, "html.parser")
 
@@ -1343,13 +1584,33 @@ def dohvati_i_spremi_statistike(natjecanje_naziv, natjecanje_url):
 
     # Pune liste iz sastava klubova (desetci igrača, ne samo top 5)
     svi_igraci = parsiraj_sve_igrace(soup)
-    strijelci, kartoni = slozi_pune_rang_liste(svi_igraci)
+    strijelci_sa_stranice, kartoni_sa_stranice = slozi_pune_rang_liste(
+        svi_igraci, koliko=len(svi_igraci)
+    )
 
     # SAMOPROVJERA: usporedi naš izračun sa službenom HNS rang-listom.
     # Ako se broj golova po igraču poklapa, agregacija iz sastava je
     # pouzdana. Poredak se namjerno ne gleda, vidi usporedi_sa_sluzbenom.
     sluzbeni, _ = parsiraj_rang_liste(soup)
-    provjera = usporedi_sa_sluzbenom(strijelci, sluzbeni)
+    provjera = usporedi_sa_sluzbenom(strijelci_sa_stranice, sluzbeni)
+
+    # Iste dvije liste, ali zbrojene iz zapisnika koji su već u bazi.
+    ucinci, bez_postava = ucinci_iz_zapisnika(zapisnici or [])
+    ucinci = uskladi_imena(ucinci, svi_igraci)
+    strijelci_iz_zapisnika, kartoni_iz_zapisnika = slozi_pune_rang_liste(
+        ucinci, koliko=len(ucinci)
+    )
+
+    strijelci, otkud_strijelci = odaberi_rang_listu(
+        strijelci_iz_zapisnika, strijelci_sa_stranice, ("golovi",)
+    )
+    kartoni, otkud_kartoni = odaberi_rang_listu(
+        kartoni_iz_zapisnika, kartoni_sa_stranice, ("zuti", "crveni")
+    )
+    # Pozicije su upisane pri slaganju liste, pa skraćivanje na kraju
+    # zadržava 1. do 40. mjesto.
+    strijelci = strijelci[:KOLIKO_U_RANG_LISTI]
+    kartoni = kartoni[:KOLIKO_U_RANG_LISTI]
 
     nastupi = slozi_listu_nastupa(svi_igraci, parsiraj_rang_nastupa(soup))
 
@@ -1380,6 +1641,26 @@ def dohvati_i_spremi_statistike(natjecanje_naziv, natjecanje_url):
           f"nastupi={len(nastupi)} (s minutama: {s_minuta})"
           f" - {'BEZ UPISA' if POSTAVKE['dry_run'] else 'spremljeno'}")
     print(f"  PROVJERA strijelaca: {provjera}")
+    print(f"  IZ ZAPISNIKA: {len(zapisnici or [])} utakmica u bazi, "
+          f"strijelci={len(strijelci_iz_zapisnika)}, "
+          f"kartoni={len(kartoni_iz_zapisnika)}")
+    print(f"  STRIJELCI na stranicu: {otkud_strijelci}")
+    print(f"  KARTONI na stranicu: {otkud_kartoni}")
+
+    # Odigrana utakmica bez postava ispada iz zbroja, pa se mora vidjeti.
+    # Nije nužno greška: utakmica predana bez borbe ima rezultat, a nema
+    # zapisnika. Zato je ovo napomena, a ne greška.
+    if bez_postava:
+        print(f"  NAPOMENA: {len(bez_postava)} odigranih utakmica nema "
+              f"postave, pa ne ulaze u rang-liste iz zapisnika:")
+        for opis in bez_postava:
+            print(f"    - {opis}")
+        napomene.append(
+            f"{natjecanje_naziv}: bez postava u bazi, pa ne ulaze u "
+            f"rang-liste: " + "; ".join(bez_postava)
+        )
+
+    return napomene
 
 
 def _postavke_iz_naredbe():
@@ -1541,22 +1822,11 @@ if __name__ == "__main__":
             if utakmice_s_kolima else {}
         )
 
-        # Tablica lige + strijelci + kartoni (za sidebar na stranici)
-        #
-        # Greška se OVDJE hvata da jedna liga ne sruši ostale, ali se
-        # broji i na kraju ruši cijelo pokretanje. Prije se samo
-        # ispisala, pa je GitHub pokretanje ostajalo zeleno: tako je
-        # tjednima prolazilo neopaženo da baza odbija tip "nastupi" i
-        # da minute uopće ne ulaze.
-        try:
-            if args.samo_raspored:
-                print("Samo raspored: rang-liste se preskaču.")
-            else:
-                dohvati_i_spremi_statistike(natjecanje["naziv"], natjecanje["url"])
-        except Exception as greska:
-            ukupno_gresaka += 1
-            greske.append(f"statistike, {natjecanje['naziv']}: {greska}")
-            print(f"  GREŠKA kod statistika: {greska}")
+        # Zapisnici pročitani u OVOM prolazu. Trebaju samo suhom testu,
+        # jer ondje u bazu ništa ne ide, pa se rang-liste iz zapisnika
+        # nemaju odakle složiti. U pravom pokretanju se čitaju iz baze,
+        # gdje su i utakmice koje ovaj prolaz nije ni otvorio.
+        zapisnici_prolaza = []
 
         for i, stavka in enumerate(utakmice_s_kolima, start=1):
             try:
@@ -1631,6 +1901,8 @@ if __name__ == "__main__":
                     )
                     print(f"      UPOZORENJE: {neslaganje}")
                 spremi_u_supabase(detalji)
+                if detalji.get("postava_domacin"):
+                    zapisnici_prolaza.append(detalji)
                 ukupno_spremljeno += 1
             except Exception as greska:
                 ukupno_gresaka += 1
@@ -1641,6 +1913,39 @@ if __name__ == "__main__":
                 print(f"  [{i}/{ukupno}] GREŠKA na {stavka.get('hns_url') or stavka['domacin']}: {greska}")
             if stavka["hns_url"] and not args.samo_raspored:
                 time.sleep(1)
+
+        # Tablica lige + strijelci + kartoni (za sidebar na stranici).
+        #
+        # Ide NAKON zapisnika, a ne prije njih, jer se strijelci i kartoni
+        # sada zbrajaju iz zapisnika u bazi. Prije bi rang-liste nastale
+        # od jučerašnjeg stanja, pa bi kolo pročitano maloprije ušlo tek
+        # u sljedeći prolaz.
+        #
+        # Greška se OVDJE hvata da jedna liga ne sruši ostale, ali se
+        # broji i na kraju ruši cijelo pokretanje. Prije se samo
+        # ispisala, pa je GitHub pokretanje ostajalo zeleno: tako je
+        # tjednima prolazilo neopaženo da baza odbija tip "nastupi" i
+        # da minute uopće ne ulaze.
+        try:
+            if args.samo_raspored:
+                print("Samo raspored: rang-liste se preskaču.")
+            else:
+                if POSTAVKE["dry_run"]:
+                    print("Suhi test: rang-liste iz zapisnika računaju se "
+                          "samo iz utakmica ovog prolaza, jer se u bazu "
+                          "ništa ne upisuje i ništa se iz nje ne čita.")
+                    zapisnici = zapisnici_prolaza
+                else:
+                    zapisnici = dohvati_zapisnike(natjecanje["naziv"], SEZONA)
+                upozorenja.extend(
+                    dohvati_i_spremi_statistike(
+                        natjecanje["naziv"], natjecanje["url"], zapisnici
+                    )
+                )
+        except Exception as greska:
+            ukupno_gresaka += 1
+            greske.append(f"statistike, {natjecanje['naziv']}: {greska}")
+            print(f"  GREŠKA kod statistika: {greska}")
 
         # Utakmice koje su u bazi, a na rasporedu ih više nema.
         if utakmice_s_kolima:
