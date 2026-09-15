@@ -11,23 +11,26 @@
 --   jedinstvenog sluga, sto znaci da je prvo proslo.
 --
 -- ODAKLE STO
---   Sve u tekstu dolazi iz public.pregled_kola('2026/27','3. NL Zapad',4),
---   dakle iz zapisnika u bazi: rezultati, strijelci, minute, kartoni,
---   gledatelji i pomaci na ljestvici. Nijedna recenica nije dopisana
---   izvan toga, nema opisa tijeka igre ni ocjena, jer taj podatak u bazi
---   ne postoji. Ako zelis dodati ono sto si vidio na terenu, dopisi u
---   tekst prije objave, kao kod pregleda 2. kola.
+--   Rezultati, strijelci, minute, kartoni, gledatelji i pomaci na
+--   ljestvici dolaze iz public.pregled_kola('2026/27','3. NL Zapad',4),
+--   dakle iz zapisnika u bazi.
 --
---   JEDINA IZNIMKA je recenica o akciji "Korak za Matiju" uz utakmicu u
---   Labinu. Ona ne dolazi iz baze nego iz nase vlastite najave 4. kola,
---   gdje je akcija najavljena. Zato u tekstu pise da je bila najavljena,
---   a ne kako je prosla, jer toga nemamo. Slobodno je izbaci ako ti se
---   cini suvisnom.
+--   ANDREJEVO, iz njegove dopune 15.09.2026., toga u bazi nema:
+--     - promjena trenera u Naprijedu uoci utakmice, zahvala Djoniju
+--       Tafri i ocjena da je promjena urodila plodom
+--     - da se u Vinodolu na Bahalinu moraju zamisliti sto i kako dalje
+--     - pohvala Spremu-Veljaveckom da ne moze prestati zabijati
+--     - uputa na zaseban clanak o derbiju i na sazetak uz pregled svih
+--       rezultata na naslovnici
+--     - akcija "Korak za Matiju" uz utakmicu u Labinu i nada da se puno
+--       skupilo (akcija je najavljena u nasoj najavi 4. kola; koliko je
+--       skupljeno ne znamo, pa se to i ne tvrdi)
 --
 -- PROVJERENO PRIJE PISANJA
 --   Zbroj strijelaca po stranama slaze se s rezultatom na svih osam
 --   utakmica, dakle nema neoznacenog autogola ni pogotka koji u
---   zapisniku fali ili stoji dvaput.
+--   zapisniku fali ili stoji dvaput. Svaki rezultat provjeren je i
+--   protiv pomaka bodova u tablici.
 --
 --   AUTOGOL u Kraljevici: polje "klub" uz strijelca u pregled_kola()
 --   vec nosi momcad kojoj pogodak PRIPADA, ne momcad strijelca (vidi
@@ -54,9 +57,14 @@
 --   na stranici lige. Dno ljestvice se namjerno ne navodi, jer se ondje
 --   kazneni bodovi Crikvenice i osjete.
 --
+-- GLEDATELJI
+--   Navedeni su samo stadioni na kojima podatak postoji. Za Novi
+--   Vinodolski i Pazin ga nema, ali se to po Andrejevoj uputi ne
+--   spominje.
+--
 -- KRALJEVICA
---   Derbi Kraljevica - Buje opisan je kratko, samo rezultatom i
---   strijelcima, jer o njemu ide zaseban tekst.
+--   Derbi Kraljevica - Buje opisan je kratko, rezultatom i strijelcima,
+--   uz uputu na zaseban clanak i na sazetak uz pregled rezultata.
 --
 -- BEZ FOTOGRAFIJE
 --   Clanak nema sliku, pa se na kartici prikazuje zaglavlje 3. NL Zapad,
@@ -71,13 +79,13 @@ insert into public.clanci
   (slug, naslov, sazetak, tekst, natjecanje, objavljen, objavljeno_u)
 values (
   'pregled-4-kola-3-nl-zapad-2627',
-  'NAPRIJED DO PRVE POBJEDE, LOKOMOTIVA SAMA NA VRHU',
-  'Hreljin je u Rovinju zabio prve pogotke sezone i uzeo prve bodove, Kraljevica je u derbiju s Bujama ispustila prve, a Pazinka je skočila šest mjesta.',
+  'PREGLED 4. KOLA: NAPRIJED DO PRVE POBJEDE, LOKOMOTIVA SAMA NA VRHU',
+  'Hreljin je nakon promjene trenera u Rovinju zabio prve pogotke sezone i uzeo prve bodove, Kraljevica je u derbiju s Bujama ispustila prve, a Pazinka je skočila šest mjesta.',
 'Četvrto kolo 3. NL Zapad odigrano je sredinom tjedna, u utorak 15. rujna. Gosti su odnijeli četiri pobjede, domaćini dvije, a dvije su utakmice završile neriješeno. Palo je 28 pogodaka, u prosjeku tri i pol po utakmici, što je manje nego u prethodnom kolu. Oba crvena kartona u kolu pala su na istoj utakmici, u Senju.
 
-Rovinj - Naprijed (H) 1:3. Najveću vijest kola donio je Hreljin. Naprijed je u prva tri kola izgubio sve i nije zabio nijedan pogodak, jedini takav u ligi, a na Valbruni je zabio tri puta i uzeo prve bodove. Robert Jandrek pogodio je u 7. i 43., Dino Dukađin u 17. minuti, a Niko Šerifović smanjio je za domaće u 49. Rovinj je tako ostao na tri kola bez pobjede.
+Rovinj - Naprijed (H) 1:3. Najveću vijest kola donio je Hreljin. Naprijed je uoči utakmice promijenio trenera, dotadašnjem Đoniju Tafri zahvalili su na suradnji, a promjena je očito odmah urodila plodom. Momčad koja je u prva tri kola izgubila sve i nije zabila nijedan pogodak, jedina takva u ligi, na Valbruni je zabila tri puta i uzela prve bodove. Robert Jandrek pogodio je u 7. i 43., Dino Dukađin u 17. minuti, a Niko Šerifović smanjio je za domaće u 49. Rovinj je tako ostao na tri kola bez pobjede.
 
-Vinodol - Lokomotiva (R) 0:4. Vodeća momčad lige upisala je četvrtu pobjedu u četiri kola, ujedno najuvjerljiviju u kolu. Na Bahalinu su zabili Edin Junuzović u 7., Karlo Josipović u 25. te Frano Ivančić u 59. i 70. minuti. Lokomotiva je sada sama na vrhu ljestvice, s gol razlikom plus dvanaest. Vinodol je na četiri kola bez pobjede.
+Vinodol - Lokomotiva (R) 0:4. Vodeća momčad lige upisala je četvrtu pobjedu u četiri kola, ujedno najuvjerljiviju u kolu. Na Bahalinu su zabili Edin Junuzović u 7., Karlo Josipović u 25. te Frano Ivančić u 59. i 70. minuti. Lokomotiva je sada sama na vrhu ljestvice, s gol razlikom plus dvanaest. Vinodol je nakon četiri kola i dalje bez pobjede, pa se na Bahalinu moraju dobro zamisliti što i kako dalje.
 
 Nehaj - Halubjan 1:2. Po mjestima na ljestvici ovo je bio najveći obrat kola: četvrtoplasirani Nehaj izgubio je kod kuće od četrnaestog Halubjana. Lucijan Tomac doveo je domaće u vodstvo na isteku prvog poluvremena, a onda je Antonio Dedić zabio dvaput, u 64. i 77. minuti. Završnica je bila gruba. Simon Simonaj iz Halubjana isključen je u 84. minuti nakon drugog žutog kartona, a Luka Lopac iz Nehaja dobio je crveni karton u sudačkoj nadoknadi. Halubjan je prekinuo niz od dva poraza.
 
@@ -85,15 +93,15 @@ Pazinka-Pazin - Jadran-Poreč 3:0. Najveći skok kola napravila je Pazinka, šes
 
 Pomorac - OŠK Omišalj 3:1. Na Žuknici je gost poveo već u 5. minuti pogotkom Davida Rožajca, ali je Jakob Šprem-Veljavečki okrenuo rezultat s dva pogotka, u 15. i 39. minuti, a Artem Terletskyi potvrdio je pobjedu u 69. Pomorac je time treći, s devet bodova.
 
-Kraljevica - Buje 2:2. Derbi kola na Minti donio je Kraljevici prve ispuštene bodove ove sezone. Matija Kalizan doveo je Buje u vodstvo u 15. minuti, dvije minute poslije izjednačio je autogol Matije Šusterajtera, Victor Kargbo vratio je gostima prednost u 78., a Franko Bosančić postavio je konačni rezultat u 87. minuti. Kraljevica je i dalje neporažena i druga na ljestvici.
+Kraljevica - Buje 2:2. Derbi kola na Minti donio je Kraljevici prve ispuštene bodove ove sezone. Matija Kalizan doveo je Buje u vodstvo u 15. minuti, dvije minute poslije izjednačio je autogol Matije Šusterajtera, Victor Kargbo vratio je gostima prednost u 78., a Franko Bosančić postavio je konačni rezultat u 87. minuti. Kraljevica je i dalje neporažena i druga na ljestvici. O ovom derbiju imamo i zaseban članak, a kratak sažetak stoji i uz pregled svih rezultata na naslovnici.
 
-Rudar (L) - Crikvenica 0:2. Crikvenica je u Labinu upisala prvu pobjedu u sezoni. Petar Vidović zabio je u 71., Damjan Mendrila u 81. minuti. Uz tu je utakmicu bila najavljena i humanitarna akcija „Korak za Matiju“, za koju je Rudar najavio da će donirati prihod od prodaje ulaznica.
+Rudar (L) - Crikvenica 0:2. Crikvenica je u Labinu upisala prvu pobjedu u sezoni. Petar Vidović zabio je u 71., Damjan Mendrila u 81. minuti. Uz tu je utakmicu išla i humanitarna akcija „Korak za Matiju“, za koju je Rudar najavio da će donirati prihod od prodaje ulaznica. Nadamo se da se za Matiju puno skupilo.
 
 Banjole - Krk 2:2. Na Prematinki je Ahmed Durmo doveo domaće u vodstvo u 50. minuti, Krk je u razmaku od dvije minute okrenuo pogocima Marka Jelića u 75. i Emanuela Mrakovčića u 77., a Paolo Matteoni izjednačio je u 82. minuti.
 
 STRIJELCI
 
-Jakob Šprem-Veljavečki iz Pomorca sada je sam na vrhu liste strijelaca, sa šest pogodaka, od toga dva u ovom kolu. Slijede ga Ahmed Durmo iz Banjola s pet i Karlo Josipović iz Lokomotive s četiri. Po dva pogotka u kolu zabili su još Antonio Dedić za Halubjan, Frano Ivančić za Lokomotivu i Robert Jandrek za Naprijed. Hat-tricka nije bilo.
+Jakob Šprem-Veljavečki iz Pomorca jednostavno ne može prestati zabijati. Nakon dva pogotka na Žuknici ima ih šest i sam je na vrhu liste strijelaca, dva više nego drugi u ligi. Slijede ga Ahmed Durmo iz Banjola s pet i Karlo Josipović iz Lokomotive s četiri. Po dva pogotka u kolu zabili su još Antonio Dedić za Halubjan, Frano Ivančić za Lokomotivu i Robert Jandrek za Naprijed. Hat-tricka nije bilo.
 
 LJESTVICA
 
@@ -107,7 +115,7 @@ Službena ljestvica je na stranici lige, jer ona uključuje i kaznene bodove Cri
 
 GLEDATELJI
 
-Po stotinu gledatelja zabilježeno je u Kraljevici, Senju, Rovinju i Labinu, na Žuknici sedamdeset, a na Prematinki šezdeset. Za utakmice u Novom Vinodolskom i Pazinu podatka o posjećenosti nema.
+Po stotinu gledatelja zabilježeno je u Kraljevici, Senju, Rovinju i Labinu, na Žuknici sedamdeset, a na Prematinki šezdeset.
 
 ZA SLJEDEĆE KOLO
 
