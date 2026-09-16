@@ -28,8 +28,18 @@ import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
 
 // Isti razlog kao kod stranice utakmice: igrača je u sitemapu na tisuće
 // (sama lista nastupa 3. NL ima oko 350 imena po sezoni), a njihovi se
-// podaci mijenjaju samo nakon kola. Sat vremena umjesto pet minuta.
-export const revalidate = 3600;
+// podaci mijenjaju samo nakon kola.
+//
+// 16.09.2026. produljeno sa sat vremena na dan. Tražilice te tisuće
+// stranica obilaze redom, pa je svaki sat značio tisuće obnavljanja
+// dnevno, a podatak se mijenja najviše dvaput dnevno, koliko puta ide
+// scraper. Ovo je bio najjeftiniji preostali rez u potrošnji Fluid
+// Active CPU i ISR Writes na Vercelu.
+//
+// Cijena: nakon odigranog kola stranica igrača može do jedan dan
+// pokazivati stanje bez tog kola. Stranica utakmice je namjerno ostala
+// na sat vremena, jer ondje idu rezultati i sažeci.
+export const revalidate = 86400;
 
 /**
  * Unaprijed se pripremaju samo stranice igrača koji su zabili gol ili
