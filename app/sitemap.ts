@@ -11,9 +11,16 @@ import { dohvatiUtakmiceZaAdrese } from "@/lib/utakmice";
 import { dohvatiIgrace } from "@/lib/igraci";
 import { slugUtakmice } from "@/lib/slug";
 
-// Sitemap se osvježava svakih sat vremena, da novi članak ne mora čekati
-// sljedeću objavu da bi se u njemu pojavio.
-export const revalidate = 3600;
+// Sitemap se osvježava jednom dnevno. Prije je bio na sat vremena, da
+// novi članak ne mora čekati na uvrštenje, ali se sastavlja iz četiri
+// upita (članci, klubovi, utakmice, igrači), pa je to bio skup posao
+// koji se ponavljao 24 puta dnevno bez ikakve koristi: tražilice ga
+// ionako ne čitaju češće od toga.
+//
+// Novi članak se time ne skriva. On se dijeli poveznicom i vidi se na
+// naslovnici i u novostima čim je objavljen; sitemap je samo popis za
+// tražilice.
+export const revalidate = 86400;
 
 // Adresa stranice. Ista varijabla kao u app/layout.tsx; ovdje se čita
 // zasebno da se postojeće datoteke ne diraju. Zamjenska vrijednost je
