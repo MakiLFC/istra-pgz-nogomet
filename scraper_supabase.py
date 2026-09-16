@@ -1885,6 +1885,12 @@ if __name__ == "__main__":
                 )
                 opis_susreta = (f"{natjecanje['naziv']}, {stavka['kolo']}. kolo, "
                                 f"{stavka['domacin']} - {stavka['gost']}")
+                # Napomene se skupljaju i ispisuju TEK ISPOD retka svoje
+                # utakmice. Dok su se ispisivale prije njega, u ispisu su
+                # izgledale kao da pripadaju prethodnoj utakmici: napomena o
+                # terminu NK Snježnik - NK Mrkopalj stajala je ispod retka
+                # NK Željezničar (M) - NK Goranka.
+                redci_ispod = []
                 if stavka["hns_url"] and not args.samo_raspored \
                         and not detalji.get("rezultat"):
                     # Zapisnik postoji, ali u njemu nema rezultata. To nije
@@ -1892,13 +1898,14 @@ if __name__ == "__main__":
                     # samo prijavljuje i utakmica ostaje bez rezultata.
                     upozorenja.append(f"{opis_susreta}: zapisnik postoji, "
                                       "ali u njemu nema rezultata")
-                    print("      NAPOMENA: zapisnik postoji, ali nema rezultata")
+                    redci_ispod.append(
+                        "      NAPOMENA: zapisnik postoji, ali nema rezultata")
                 if promjena:
                     promjene_termina.append(f"{opis_susreta}: {promjena}")
-                    print(f"      PROMJENA TERMINA: {promjena}")
+                    redci_ispod.append(f"      PROMJENA TERMINA: {promjena}")
                 if napomena:
                     upozorenja.append(f"{opis_susreta}: {napomena}")
-                    print(f"      NAPOMENA: {napomena}")
+                    redci_ispod.append(f"      NAPOMENA: {napomena}")
                 detalji["datum"] = datum
                 detalji["vrijeme"] = vrijeme
                 detalji["stadion"] = stavka["stadion"]
@@ -1914,6 +1921,8 @@ if __name__ == "__main__":
                     poruka = _ispis_termina(datum, vrijeme)
                 ishod = "BEZ UPISA (suhi test)" if POSTAVKE["dry_run"] else "spremljeno"
                 print(f"  [{i}/{ukupno}] (kolo {stavka['kolo']}) {stavka['domacin']} - {stavka['gost']} ({poruka}): {ishod}")
+                for redak_ispod in redci_ispod:
+                    print(redak_ispod)
                 neslaganje = provjeri_zbroj_golova(detalji)
                 if neslaganje:
                     upozorenja.append(
