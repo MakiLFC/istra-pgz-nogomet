@@ -39,8 +39,14 @@ import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
 //     se dogodi ako netko otvori adresu PRIJE objave. Tada stranica
 //     javlja da članak nije pronađen, a taj odgovor se sprema, pa bi uz
 //     veći broj i Facebook i čitatelji tu poruku vidjeli dulje.
+//
+// 18.09.2026. podignuto sa šezdeset na sto osamdeset sekundi, pred
+// vikend u kojem sve četiri lige igraju, uz potrošnju Fluid Active CPU
+// od 3h31 od besplatnih 4h. Sve gore napisano vrijedi i dalje, samo se
+// izmjena već objavljenog članka, poput pomicanja kadra fotografije,
+// sada vidi do tri minute kasnije umjesto do minute.
 // ---------------------------------------------------------------------
-export const revalidate = 60;
+export const revalidate = 180;
 
 export async function generateMetadata({
   params,
