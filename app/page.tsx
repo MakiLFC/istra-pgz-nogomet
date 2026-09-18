@@ -16,7 +16,17 @@ import { zadnjeKolo, utakmiceKola, golovi } from "@/lib/kolo";
 // pet minuta to je do dvanaest renderiranja na sat, sve dok netko
 // dolazi. Petnaest minuta ih spušta na četiri, a rezultati ionako ne
 // stižu češće od toga, jer scraper ide dvaput navečer.
-export const revalidate = 900;
+//
+// 18.09.2026. produljeno s petnaest na trideset minuta, pred vikend u
+// kojem sve četiri lige igraju. Potrošnja Fluid Active CPU bila je tada
+// na 3h31 od besplatnih 4h, a naslovnica je stranica koju val posjeta
+// nakon objave rezultata pogodi prvu. Trideset minuta znači najviše dva
+// renderiranja na sat.
+//
+// Cijena: kartica novog članka i novi rezultat pojave se na naslovnici
+// do pola sata kasnije. Sam članak se vidi odmah, na svojoj adresi i u
+// novostima, a stranica lige nije keširana.
+export const revalidate = 1800;
 
 // Naslovnica dohvaća samo stupce koje prikazuje, pa ima i svoj uži tip.
 // (Puni tip Utakmica uključuje i postave, koje ovdje namjerno ne vučemo.)
