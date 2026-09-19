@@ -1,0 +1,69 @@
+# Ispis kola, samo rucno.
+#
+# CEMU SLUZI
+# Ispisuje sve sto treba za pisanje najave ili pregleda jednog kola:
+# rezultate, strijelce s minutama, kartone, gledatelje, sluzbenu
+# ljestvicu i rang-liste. Ispis ide u zapisnik posla, pa se cita i s
+# mobitela, i iz okruzenja koje nema pristup Supabaseu.
+#
+# KAKO SE POKRECE
+# Actions -> "Ispis kola" -> Run workflow, pa se upise dio naziva lige
+# i broj kola, npr. "3. NL" i 5.
+#
+# NE DIRA BAZU. Scraper se pokrece u suhom testu (--dry-run), dakle
+# samo cita Semafor. Za upis u bazu sluzi posao "Scraper HNS Semafor".
+#
+# ZASTO TRAJE NEKOLIKO MINUTA
+# Scraper prolazi kroz SVA kola, ne samo kroz trazeno, jer se strijelci
+# i kartoni zbrajaju iz zapisnika, a u suhom testu nema baze iz koje bi
+# se uzeli prijasnji. Uz samo jedno kolo bi lista zaostala za sluzbenom
+# i scraper bi objavio onu sa stranice natjecanja, koja kasi i po
+# nekoliko sati. Podrobno se ispisuje samo trazeno kolo.
+
+name: Ispis kola
+
+on:
+  workflow_dispatch:
+    inputs:
+      natjecanje:
+        description: "Dio naziva lige, npr. 3. NL"
+        required: true
+        type: string
+      kolo:
+        description: "Broj kola"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  ispis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Preuzmi kod
+        uses: actions/checkout@v7
+
+      - name: Postavi Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Instaliraj pakete
+        run: pip install -r requirements.txt
+
+      - name: Procitaj ligu sa Semafora
+        # Vrijednosti idu kroz okolinu, ne kroz naredbeni redak, da razmak
+        # ili navodnik u nazivu lige ne moze razbiti naredbu.
+        env:
+          NATJECANJE: ${{ inputs.natjecanje }}
+        run: |
+          python scraper_supabase.py --dry-run --json liga.json \
+            --natjecanje "$NATJECANJE"
+
+      - name: Ispisi kolo
+        env:
+          KOLO: ${{ inputs.kolo }}
+        run: python alati/ispis_kola.py liga.json "$KOLO"
