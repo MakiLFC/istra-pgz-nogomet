@@ -973,6 +973,32 @@ Uz to, na Pro planu onih 4 sata više nisu zid. Potrošnja se vuče iz
 mjesečnog kredita koji pokriva sve resurse zajedno, a preko njega se
 naplaćuje po potrošnji. Sto posto zaustavlja projekt samo na Hobbyju.
 
+Isti dan je zbunilo i to što banka nije provela transakciju i što nije
+stigla potvrda e-poštom, pa je izgledalo da kupnja nije ni prošla.
+Razriješila ju je stranica Settings, Billing, Invoices, i to je mjesto
+na koje se ide odmah kad se sumnja u plan:
+
+```
+September 2026: Monthly Pro Plan
+Total Due $20.00   [Upcoming Payment]
+This invoice will continue updating until the end of your
+billing period on October 19.
+```
+
+Račun je NADOLAZEĆI i naplaćuje se na kraju obračunskog razdoblja, dakle
+19. listopada. Tek tada stiže i teret na kartici i potvrda e-poštom.
+Izostanak jednog i drugog u danu kupnje nije znak da nešto nije u redu.
+Razlika između dvadeset dolara na računu i 25 eura viđenih pri kupnji je
+PDV.
+
+Na istom računu stoji i potrošnja od kupnje naovamo, dakle mjerena po
+Pro uvjetima: 189 zahtjeva, 927 pokretanja funkcija, 630 milisekundi
+dodatnog procesora, ukupno dva centa i to pokriveno kreditom. To je
+prava mjera koliko stranica košta. Kartica Usage na naslovnici scopea i
+dalje gleda unatrag kroz trideset dana i miješa Hobby razdoblje, pa
+zbunjuje. Kad treba stvarna slika, gleda se nadolazeći račun, ne ona
+kartica.
+
 Pouka je ista kao kod Deployment Storagea: kad brojka na tuđem sustavu
 ne reagira na ono što si napravio, prvo se pogleda na koje se RAZDOBLJE
 odnosi, pa tek onda traži uzrok.
