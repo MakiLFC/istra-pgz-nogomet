@@ -464,6 +464,39 @@ Zbog toga je rang-liste u prolazu trebalo pomaknuti IZA zapisnika. Prije
 su išle prve, pa bi se sada slagale od jučerašnjeg stanja i kolo pročitano
 maloprije ušlo bi tek u sljedeći prolaz. Čuva `test_rang_liste_iz_zapisnika.py`.
 
+DOPUNJENO 19.09.2026.: isto se dogodilo i LJESTVICI, ne samo rang-listama.
+Nakon 5. kola 3. NL Zapad prolaz u 19:10 po našem, dakle odmah nakon
+zadnjeg zvižduka, zatekao je tablicu u kojoj je peto kolo bilo upisano za
+šest klubova koji su igrali, a za osam nije. Zapisnici svih sedam utakmica
+bili su pritom potpuni i uredno pročitani.
+
+Provjera se radi klub po klub, usporedbom broja odigranih utakmica i
+golova sa zbrojem stvarnih rezultata:
+
+```
+ukljucuje 5. kolo:      Pomorac, Pazinka, Krk, Rudar, Halubjan, Naprijed
+pokazuje stanje po 4.:  Kraljevica, Nehaj, Omišalj, Jadran-Poreč,
+                        Buje, Rovinj, Crikvenica, Vinodol
+nisu ni igrali:         Lokomotiva, Banjole
+```
+
+Tablica se scrapa i ne računa, zbog kaznenih bodova, pa je takva
+polovična ušla u bazu i takva se prikazala na stranici lige. Lijek je isti
+kao i za rang-liste i jednako je besplatan: novo pokretanje scrapera. Ne
+dira se ni kod ni podatak ručno.
+
+Praktična pouka je za pisanje članaka: BROJKE ZA PREGLED KOLA NE PREPISUJU
+SE S LJESTVICE dok se ne provjeri da svi klubovi koji su igrali imaju isti
+broj odigranih utakmica. Bodovi, gol razlika i pomaci računaju se iz
+rezultata, što je aritmetika nad podacima koji su u bazi, a ne procjena.
+Račun se provjerava tako da se izračuna i stanje nakon prethodnog kola i
+usporedi s onim što je pisalo u najavi tog kola. Za 5. kolo je to dalo
+Lokomotiva 12, Kraljevica 10, Pomorac 9, točno kao u najavi.
+
+Otud i pravilo kad se objavljuje: pregled kola se ne objavljuje s prvog
+prolaza nakon utakmica, nego se prije objave pokrene scraper još jednom i
+pogleda ima li ljestvica sve klubove na istom broju kola.
+
 
 **Događaj bez minute je događaj, a scraper ga je bacao.**
 Prvo pokretanje s rang-listama iz zapisnika, 15.09.2026., pokazalo je da
