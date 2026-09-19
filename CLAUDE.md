@@ -927,6 +927,31 @@ Dvije pouke šire od ovog slučaja:
   opet naraste, ondje se traži dalje, a lijek nije brojka nego
   preseljenje biranja kola u preglednik.
 
+**Od 19.09.2026. projekt je na Vercelovom Pro planu.**
+Andrej ga je kupio za dvadesetak eura mjesečno, svojom odlukom, da ne
+mora pratiti brojke usred vikenda i da se nove mogućnosti ne vagaju
+prema minutama procesora.
+
+Što se time NE mijenja:
+
+- Sve izmjene odozgo ostaju. Naslovnica je na 30 minuta, stranica članka
+  na 180 sekundi, stranica utakmice i kluba na sat, stranica igrača i
+  sitemap na dan. Te su brojke i bez ograničenja razumne, jer scraper
+  ide najviše dvaput dnevno.
+- `vercel-preskoci-build.sh` ostaje. Manje buildova je uredno samo po
+  sebi i čuva povijest objava preglednom.
+- Pravilo 3 i dalje vrijedi: prije svakog pusha `npm run build`.
+- Ispis buildova se i dalje čita. Oznaka `ƒ` i dalje znači renderiranje
+  pri svakom otvaranju i dalje je to podatak, samo više nije alarm.
+
+Što se mijenja: `/liga/[slug]` više nije hitan slučaj. Preseljenje
+biranja kola u preglednik ostaje dobra ideja, ali se radi kad dođe na
+red, a ne pod pritiskom.
+
+Brojke pri kupnji, da se zna od čega se krenulo: Fluid Active CPU 3h31
+od besplatnih 4h, Deployment Storage 10,92 GB od 10 GB, ISR Writes 111K
+od 200K, sve mjereno kroz prozor od trideset dana.
+
 **U CSS-u svi `@import` moraju biti prije `@import "tailwindcss"`.**
 Tailwind se razmota u stotine redaka i svaki `@import` iza njega ruši build.
 
@@ -992,10 +1017,49 @@ ponavlja se.
 
 ## U planu
 
+Dogovoreno 19.09.2026., ovim redoslijedom. Prve dvije stvari idu čim se
+Andrej vrati s puta, u četvrtak ili petak.
+
+**1. Klik na rezultat na naslovnici.** Sada je klikabilan samo derbi, i
+to vodi na kolo na stranici lige. Svaki redak rezultata treba voditi
+izravno na stranicu TE utakmice, gdje već stoji zapisnik s postavama.
+To je bolje od vođenja na ligu, jer ne traži drugo traženje. Posao je
+mali i ne košta ništa, jer je stranica utakmice pripremljena unaprijed.
+
+**2. Imena igrača u postavama kao poveznice.** `PoveznicaIgraca` već
+postoji, ali se u `components/Postava.tsx` ime ispisuje kao običan
+tekst. Stranicu ima gotovo svaki igrač, jer se popis gradi i iz rang
+liste nastupa (250 do 500 imena po ligi). VAŽNO: ime se pretvara u
+poveznicu samo kad stranica stvarno postoji, inače ostaje običan tekst.
+Bez te provjere se s vremenom nakupe mrtve poveznice, jer se igrač
+prepoznaje po imenu.
+
+**3. Tražilica na naslovnici**, za igrače i klubove. Popis se priprema
+pri gradnji kao jedna datoteka, a pretraživanje ide u pregledniku, pa
+ne troši ništa na poslužitelju. Datoteka je stotinjak kilobajta, pa se
+učitava tek kad korisnik klikne u polje, ne odmah s naslovnicom.
+
+**4. Momčad kola, ponedjeljkom.** Izvedivo, ali NE automatski. U bazi
+nema ocjena igrača, obrana ni asistencija, pa računalo ne može znati
+tko je bio najbolji; automatski izbor bi bio popis strijelaca
+pobjedničkih momčadi, što nije isto. Zato se radi ovako: iz podataka se
+pripremi popis KANDIDATA (strijelci kola, vratari momčadi bez
+primljenog gola, igrači pobjedničkih momčadi, isključeni otpadaju),
+Andrej odabere jedanaestoricu, a stranica ih prikaže na terenu u
+formaciji, s grbovima i poveznicama na igrače. Ovo je jedini od četiri
+zahvata koji traži novu tablicu u bazi.
+
+Nijedna od ove četiri stvari nije tražila Pro plan. Zapisano da se
+kasnije ne pomiješa: Pro je kupljen radi mira, a ne zato što se ovo
+drukčije ne bi dalo napraviti.
+
 - Proširenje na druge lokalne sportove
 
 Trofej Terzić-Strukan (ljestvica strijelaca svih liga) više nije u planu;
 Andrej ga je 24.08.2026. skinuo s popisa. Ne predlagati ga ponovno.
+
+**Veće izmjene se ne objavljuju subotom i nedjeljom**, dok se igra.
+Ponedjeljak ili utorak, da eventualna greška ne padne usred kola.
 
 ## Pisanje najava i pregleda
 
