@@ -17,8 +17,16 @@
 --   navecer usli i u bazu, punim prolazom scrapera.
 --   Ljestvica i pomaci su izracunati iz rezultata svih pet kola, uz
 --   kaznene bodove Crikvenice. Zasto ne sa Semafora, vidi nize.
---   Nijedna recenica nije dopisana izvan toga: nema opisa tijeka igre,
---   ocjena ni izjava, jer taj podatak u bazi ne postoji.
+--   Sve ostalo je iz tih podataka: nema opisa tijeka igre ni izjava.
+--
+--   ANDREJEVO, cega u bazi nema i sto je upisano po njegovoj izricitoj
+--   uputi (19.09.2026.):
+--     - Naprijed (H) je utakmicu vodio novi trener Darko Deranja,
+--       donedavni trener Vinodola
+--     - Vinodol je klupu predao Marku Copu, renomiranom trenerskom imenu
+--       u lokalnom nogometu, i to se odmah vidjelo na momcadi
+--   Ocjena o Copu je Andrejeva, ne nasa, i takva je i zapisana. Bez
+--   njegove upute takva recenica ne bi smjela stajati (pravilo 5).
 --
 -- PROVJERENO PRIJE PISANJA
 --   Zbroj strijelaca po stranama slaze se s rezultatom na svih sedam
@@ -75,7 +83,7 @@ insert into public.clanci
 values (
   'pregled-5-kola-3-nl-zapad-2627',
   'POMORAC STIGAO LOKOMOTIVU, KRALJEVICA IZGUBILA PRVI PUT',
-  'Kolo bez ijednog remija. Pomorac je slavio u Brnasima i izjednačio se s Lokomotivom na vrhu, Crikvenica je s igračem više svladala Kraljevicu, a Vinodol je u Poreču došao do prve pobjede u sezoni.',
+  'Kolo bez ijednog remija. Pomorac je slavio u Brnasima i izjednačio se s Lokomotivom na vrhu, Crikvenica je s igračem više svladala Kraljevicu, a Vinodol je u Poreču, pod novim trenerom, došao do prve pobjede u sezoni.',
 'Peto kolo 3. NL Zapad odigrano je u subotu 19. rujna i prošlo je bez ijednog remija. Od sedam utakmica četiri su pripale domaćinima, a tri gostima. Palo je 22 pogotka, više od tri po utakmici, a trojica igrača završila su susret prije kraja. Utakmica Lokomotiva (R) - Banjole premještena je za 5. prosinca, pa su te dvije momčadi ovo kolo odmarale.
 
 Crikvenica - Kraljevica 1:0. Najvažnija utakmica kola odigrana je na Gradskom stadionu u Crikvenici, pred 70 gledatelja. Gosti su od 61. minute ostali s igračem manje, jer je Andro Depeder dobio drugi žuti karton, a jedanaest minuta kasnije Luka Mikulica zabio je jedini pogodak. Kraljevica je tako upisala prvi poraz sezone i propustila priliku da se popne na vrh. U sudačkoj nadoknadi crveni karton vidio je i domaći Petar Vidović. Crikvenici je to druga pobjeda zaredom.
@@ -86,11 +94,11 @@ OŠK Omišalj - Rovinj 4:2. Najviše golova vidjelo se na Pušći. David Rožaja
 
 Krk - Rudar (L) 4:1. Krk je na Josipu Uraviću-Pepiju poveo već u 6. minuti pogotkom Mirka Valenčića, a u 16. je prednost udvostručio autogol Antonija Načinovića. Lovre Travica zabio je dvaput, u 44. minuti i na isteku prvog poluvremena, dok je Patrik Čenaj u 61. bio jedini strijelac Labinjana.
 
-Naprijed (H) - Pazinka-Pazin 1:2. Kolo je otvoreno u 15 sati na Lonji u Hreljinu. Mate Ivetić doveo je Pazinku u vodstvo u 32. minuti, Robert Jandrek izjednačio je u 53., a Nikola Petković je u 73. odlučio susret. Pazinka je posljednjih petnaestak minuta igrala s igračem manje, jer je Gabriel Buršić u 74. minuti dobio drugi žuti karton. Na toj je utakmici podijeljeno osam žutih kartona, najviše u kolu.
+Naprijed (H) - Pazinka-Pazin 1:2. Kolo je otvoreno u 15 sati na Lonji u Hreljinu, a Naprijed je izašao s novim trenerom: momčad je s klupe vodio Darko Deranja, donedavni trener Vinodola. Mate Ivetić doveo je Pazinku u vodstvo u 32. minuti, Robert Jandrek izjednačio je u 53., a Nikola Petković je u 73. odlučio susret. Pazinka je posljednjih petnaestak minuta igrala s igračem manje, jer je Gabriel Buršić u 74. minuti dobio drugi žuti karton. Na toj je utakmici podijeljeno osam žutih kartona, najviše u kolu.
 
 Buje - Nehaj 2:1. Na Gradskom stadionu u Bujama sva tri pogotka pala su u razmaku od četiri minute. Lucijan Tomac doveo je Nehaj u vodstvo u 21. minuti, Mateo Maras izjednačio je u 23., a Damir Bartulović je u 25. minuti okrenuo rezultat. Nehaj je time upisao treći poraz zaredom.
 
-Jadran-Poreč - Vinodol 0:1. Vinodol je na Velom Joži došao do prve pobjede u sezoni. Jedini pogodak zabio je Edmar Junior Dos Santos Neves u 55. minuti.
+Jadran-Poreč - Vinodol 0:1. Vinodol je na Velom Joži došao do prve pobjede u sezoni, i to s novim trenerom. Klupu je preuzeo Marko Čop, renomirano trenersko ime u lokalnom nogometu, i odmah pokazao svoje znanje, jer je u momčad očito unio promjene koje su joj trebale. Jedini pogodak zabio je Edmar Junior Dos Santos Neves u 55. minuti.
 
 STRIJELCI
 
