@@ -15,9 +15,20 @@ KAKO SE POKRECE
 Preko posla "Ispis kola" na GitHubu (Actions), koji prvo pokrene
 scraper u suhom testu i spremi JSON, pa taj JSON preda ovom alatu:
 
-    python scraper_supabase.py --dry-run --json kolo.json \
-        --natjecanje "3. NL" --kolo 5
-    python alati/ispis_kola.py kolo.json
+    python scraper_supabase.py --dry-run --json liga.json --natjecanje "3. NL"
+    python alati/ispis_kola.py liga.json 5
+
+ZASTO SCRAPER IDE KROZ CIJELU SEZONU, A NE SAMO KROZ TRAZENO KOLO
+Zbog rang-lista. Strijelci i kartoni se od 15.09.2026. zbrajaju iz
+zapisnika, a u suhom testu nema baze iz koje bi se procitali prijasnji,
+pa scraper raspolaze samo zapisnicima ovog prolaza. Uz --kolo bi to bilo
+jedno kolo, lista bi zaostajala za sluzbenom i scraper bi objavio onu sa
+stranice natjecanja, a ona kasi i po nekoliko sati (vidi CLAUDE.md).
+Kad prolaz obuhvati sva kola, lista je ista ona koja je otisla na
+stranicu. Cijena je nekoliko minuta po ligi.
+
+Drugi argument je broj kola koje se ispisuje podrobno. Bez njega se
+ispisuju sve odigrane utakmice.
 
 STO SE NE ISPISUJE
 Pomaci na ljestvici. Njih racuna pregled_kola() iz baze, a ovdje bi
@@ -131,15 +142,24 @@ def ispisi_statistiku(redak):
 
 
 def main():
-    if len(sys.argv) != 2:
-        raise SystemExit("Uporaba: python alati/ispis_kola.py kolo.json")
+    if len(sys.argv) not in (2, 3):
+        raise SystemExit(
+            "Uporaba: python alati/ispis_kola.py liga.json [broj_kola]")
 
     sadrzaj = ucitaj(sys.argv[1])
     utakmice = sadrzaj.get("utakmice") or []
     statistike = sadrzaj.get("statistike") or []
 
+    trazeno_kolo = None
+    if len(sys.argv) == 3:
+        trazeno_kolo = int(sys.argv[2])
+        # Rang-liste se racunaju iz svih kola, ali se podrobno ispisuje
+        # samo trazeno, da zapisnik posla ostane citljiv.
+        utakmice = [u for u in utakmice if u.get("kolo") == trazeno_kolo]
+
     print("=" * 60)
     print(f"SEZONA: {sadrzaj.get('sezona')}   "
+          f"kolo: {trazeno_kolo if trazeno_kolo else 'sva'}   "
           f"utakmica: {len(utakmice)}   "
           f"redaka statistike: {len(statistike)}")
     print("=" * 60)

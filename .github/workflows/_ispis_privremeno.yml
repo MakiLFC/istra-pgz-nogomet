@@ -36,10 +36,10 @@ jobs:
       - name: Instaliraj pakete
         run: pip install -r requirements.txt
 
-      - name: Procitaj kolo sa Semafora
+      - name: Procitaj ligu sa Semafora
         run: |
-          python scraper_supabase.py --dry-run --json kolo.json \
-            --natjecanje "3. NL" --kolo 5
+          python scraper_supabase.py --dry-run --json liga.json \
+            --natjecanje "3. NL"
 
       - name: Ispisi kolo
-        run: python alati/ispis_kola.py kolo.json
+        run: python alati/ispis_kola.py liga.json 5
