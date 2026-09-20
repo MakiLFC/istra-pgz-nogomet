@@ -18,8 +18,18 @@
 --   Ljestvica i pomaci su izracunati iz rezultata sva tri kola. U 1. ŽNL
 --   nema kaznenih bodova, pa izracun i sluzbena tablica moraju dati isto,
 --   i daju (vidi nize).
---   Nijedna recenica nije dopisana izvan toga: nema opisa tijeka igre,
---   ocjena ni izjava, jer taj podatak u bazi ne postoji.
+--   Sve ostalo je iz tih podataka: nema izjava ni opisa tijeka igre.
+--
+--   ANDREJEVO, cega u bazi nema i sto je upisano po njegovoj izricitoj
+--   uputi (20.09.2026.):
+--     - Lovran - Losinj je derbi, pa se naglasava vaznost pogotka za 2:1
+--       i ostanak na prvom mjestu
+--     - Karlo Sneler je iskusno krilo Muna, a Patrik Bonicioli je s
+--       drugog krila bio jednako opasan
+--     - Risnjak ove sezone nece biti samo promatrac nego tezak suparnik
+--       svakome
+--   To su Andrejeve ocjene, ne nase, i takve su i zapisane. Bez njegove
+--   upute takve recenice ne bi smjele stajati (pravilo 5).
 --
 -- PROVJERENO PRIJE PISANJA
 --   Zbroj strijelaca po stranama slaze se s rezultatom na svih sedam
@@ -62,13 +72,13 @@ values (
   'pregled-3-kola-1-znl-pgz-2627',
   'LOVRAN OSTAO JEDINI BEZ IZGUBLJENOG BODA, ŠNELER ZABIO TRI',
   'Lovran je pogotkom Tina Sankovića u 87. minuti svladao Lošinj i zadržao maksimalan učinak. Karlo Šneler zabio je tri za Mune, Risnjak je do prve pobjede došao u sudačkoj nadoknadi, a Rab je u Vratima ispustio prve bodove.',
-'Treće kolo 1. ŽNL PGŽ odigrano je u subotu 19. i nedjelju 20. rujna. Palo je 21 pogodak u sedam utakmica, točno tri po susretu. Domaćini su slavili pet puta, gosti jednom, a jedna je utakmica završila bez pobjednika i bez pogotka. Crvenih kartona nije bilo.
+'Treće kolo 1. ŽNL PGŽ odigrano je u subotu 19. i nedjelju 20. rujna. Palo je 21 pogodaka u sedam utakmica, točno tri po susretu. Domaćini su slavili pet puta, gosti jednom, a jedna je utakmica završila bez pobjednika i bez pogotka. Crvenih kartona nije bilo.
 
-Lovran - Lošinj 2:1. Susret kola odigran je na Lokvi pred 45 gledatelja i spojio je dvije momčadi koje su kolo otvorile pri vrhu. Vitorio Antoninić doveo je Lošinj u vodstvo već u 5. minuti, Mateo Srok izjednačio je u 36., a Tin Sanković je u 87. minuti donio pobjedu domaćima. Lovran je tako ostao jedini klub lige bez izgubljenog boda, s tri pobjede iz tri kola.
+Lovran - Lošinj 2:1. Derbi kola odigran je na Lokvi pred 45 gledatelja i spojio je dvije momčadi koje su kolo otvorile pri vrhu. Vitorio Antoninić doveo je Lošinj u vodstvo već u 5. minuti, Mateo Srok izjednačio je u 36., a onda je Tin Sanković u 87. minuti zabio najvažniji pogodak kola. Tri minute prije kraja, u derbiju, za 2:1 i za ostanak na vrhu ljestvice. Lovran je tako ostao jedini klub lige bez izgubljenog boda, s tri pobjede iz tri kola.
 
-Mune - Draga 4:0. Najuvjerljivija pobjeda kola pala je na Crikvenoj dragi. Karlo Šneler zabio je tri puta, u 30., 43. i 75. minuti, a Patrik Bonicioli dodao je četvrti pogodak u 63. Munama je to prva pobjeda sezone, a Draga je nakon tri kola pala na dvanaesto mjesto.
+Mune - Draga 4:0. Najuvjerljivija pobjeda kola pala je na Crikvenoj dragi. Karlo Šneler, iskusno krilo Muna, zabio je tri puta, u 30., 43. i 75. minuti, a s drugog krila je jednako opasan bio Patrik Bonicioli, koji je u 63. dodao četvrti pogodak. Munama je to prva pobjeda sezone, a Draga je nakon tri kola pala na dvanaesto mjesto.
 
-Risnjak - Vrbovsko 2:1. U Lokvama se odlučivalo do zadnje minute. Mihael Malnar doveo je Risnjak u vodstvo u 64., Roko Kasun izjednačio je za Vrbovsko u 88., a Karlo Rupe je u trećoj minuti sudačke nadoknade zabio za prvu pobjedu Risnjaka u sezoni.
+Risnjak - Vrbovsko 2:1. U Lokvama se odlučivalo do zadnje minute. Mihael Malnar doveo je Risnjak u vodstvo u 64., Roko Kasun izjednačio je za Vrbovsko u 88., a Karlo Rupe je u trećoj minuti sudačke nadoknade zabio za prvu pobjedu Risnjaka u sezoni. Risnjak je time pokazao da ove sezone neće biti samo promatrač, nego težak suparnik svakome.
 
 Turbina - Vihor (B) 3:1. Na Gradskom stadionu u Crikvenici Luka Sirić zabio je u 5. minuti, Mazen Sharbini izjednačio je u 12., a onda je Turbina povela autogolom Ante Žunića u 48. i pogotkom Marina Ribarića u 50. minuti. Vihor je jedina momčad lige koja nakon tri kola još nema bod.
 
