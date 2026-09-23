@@ -48,9 +48,9 @@ insert into public.clanci
   (slug, naslov, sazetak, tekst, natjecanje, objavljen, objavljeno_u)
 values (
   'kup-1-16-finala-2627',
-  'HALUBJAN S BIJELE TOČKE IZBACIO POMORAC, VINODOL SRUŠIO KRALJEVICU',
+  'KUP NE PITA ZA RANG',
   'U 1/16 finala Hrvatskog nogometnog kupa 26/27 sastali su se klubovi iz različitih rangova i bilo je iznenađenja. Halubjan je nakon penala izbacio Pomorac, Rječina je svladala Naprijed, a Vinodol Kraljevicu. Lokomotiva je prošla bez igranja, jer je Rikard Benčić predao susret.',
-'Utakmice 1/16 finala Hrvatskog nogometnog kupa 26/27 odigrane su u utorak 22. rujna, gotovo sve u 16:30. Kup spaja klubove iz različitih rangova, a da se zna o kakvim je razlikama riječ: 3. NL Zapad je četvrti rang hrvatskog nogometa, 4. NL NS Rijeka peti, a županijske lige dolaze ispod njih. Baš su takvi susreti dali najviše priče, jer su dva kluba iz 3. NL ispala od nižerazrednih protivnika, a u dvije je utakmice odlučivala bijela točka.
+'Utakmice 1/16 finala Hrvatskog nogometnog kupa 26/27 odigrane su u utorak 22. rujna, gotovo sve u 16:30. Susreti klubova iz različitih rangova dali su i najviše priče, jer su dva kluba iz 3. NL Zapad ispala od nižerazrednih protivnika, a u dvije je utakmice odlučivala bijela točka.
 
 NK Halubjan - NK Pomorac 0:0, penali 4:3. Najveće iznenađenje kola. Oba su kluba iz 3. NL Zapad, ali Pomorac je pri vrhu ljestvice, a Halubjan u donjem dijelu. Devedeset minuta na Brnasima pred 35 gledatelja nije dalo pogodak, pa se odlučivalo s bijele točke. Za domaće su zabili Fran Knežević, Mihovil Jeronim Klapan, Ivan Paurević i Simon Simonaj, a promašio je Mario Jurković. Kod Pomorca su bili precizni Karlo Valjan, Jakob Šprem-Veljavečki i Artem Terletskyi, dok su promašili Marino Matković i Ivan Rupčić. Šprem-Veljavečki je inače prvi strijelac 3. NL Zapad sa šest pogodaka.
 
