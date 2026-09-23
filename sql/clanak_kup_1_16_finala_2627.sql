@@ -48,7 +48,7 @@ insert into public.clanci
   (slug, naslov, sazetak, tekst, natjecanje, objavljen, objavljeno_u)
 values (
   'kup-1-16-finala-2627',
-  'PENALI ODLUČILI DVA PARA: HALUBJAN IZBACIO POMORAC, OMIŠALJ PROŠAO NA CRESU',
+  'KUP NE PITA ZA RANG, A DVA PARA ODLUČILI SU PENALI',
   'U 1/16 finala Hrvatskog nogometnog kupa 26/27 sastali su se klubovi iz različitih rangova i bilo je iznenađenja. Halubjan je nakon penala izbacio Pomorac, Rječina je svladala Naprijed, a Vinodol Kraljevicu. Lokomotiva je prošla bez igranja, jer je Rikard Benčić predao susret.',
 'Utakmice 1/16 finala Hrvatskog nogometnog kupa 26/27 odigrane su u utorak 22. rujna, gotovo sve u 16:30. Susreti klubova iz različitih rangova dali su i najviše priče, jer su dva kluba iz 3. NL Zapad ispala od nižerazrednih protivnika, a u dvije je utakmice odlučivala bijela točka.
 
