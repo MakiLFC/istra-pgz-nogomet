@@ -34,6 +34,18 @@
 --   pripisan Sprem-Veljaveckom, a promasio je Matkovic; ispravljeno
 --   prije objave.
 --
+-- DOPUNE NAKON OBJAVE
+--   23.09.2026. je odigran Lovran - Opatija 0:7, pa je zadnji odlomak
+--   zamijenjen rezultatom s Lokve. Clanak je tada vec bio objavljen, pa
+--   se NIJE upisivao ponovno nego je promijenjen jednim update-om s
+--   replace() nad starim odlomkom. Tekst gore je konacna verzija.
+--   Kad 29.09. bude poznat Rab - Krk, isto se ponavlja nad zadnjim
+--   odlomkom.
+--   Napomena za ubuduce: duljina teksta u bazi bila je 20 znakova veca
+--   od ove datoteke, dakle ono sto je upisano sitno se razlikuje. Zato
+--   se prolaz zamjene NE provjerava duljinom nego s
+--   position('...' in tekst) > 0, sto je i ovaj put dalo odgovor.
+--
 -- BUDUCE KOLO
 --   Ako se kup bude pratio i dalje, vrijedi razmisliti o dodavanju
 --   natjecanja u scraper. Tada se ID NE uzima po nazivu nego se potvrdi
@@ -68,7 +80,9 @@ NK Klana - HNK Orijent 0:4. Najveća razlika u rangu u ovom kolu. Klana je iz 4.
 
 NK Lokomotiva (R) dalje bez borbe. Vodeća momčad 3. NL Zapad prošla je u sljedeće kolo bez odigrane utakmice, jer je Rikard Benčić predao susret zakazan na Belvederu.
 
-Dvije utakmice još se igraju. HNK Lovran, klub iz 1. ŽNL PGŽ, dočekuje NK Opatiju iz drugog ranga u srijedu 23. rujna u 17 sati na Lokvi. NK Rab i NK Krk sastaju se 29. rujna u 16:30 na Blatu, Rab iz 1. ŽNL PGŽ, a Krk iz 3. NL Zapad, pa je i to susret dvaju rangova.',
+HNK Lovran - NK Opatija 0:7. Razlika u rangu pokazala se u punoj mjeri. Opatija iz drugog ranga u srijedu je na Lokvi, pred 40 gledatelja, svladala Lovran iz 1. ŽNL PGŽ. Venis Havolli zabio je u 7., Leon Brlek u 34. i Gabriel Groznica u 43. minuti, a nakon odmora su pogodili Marino Miškulin u 47., Adriano Milanović u 65., Borna Bilobrk u 67. i Duje Ušalj u 70.
+
+Ostala je još jedna utakmica. NK Rab i NK Krk sastaju se 29. rujna u 16:30 na Blatu, Rab iz 1. ŽNL PGŽ, a Krk iz 3. NL Zapad, pa je i to susret dvaju rangova.',
   null,
   false,
   now()
