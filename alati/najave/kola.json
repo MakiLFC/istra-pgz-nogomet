@@ -246,6 +246,56 @@
           "gk": "BUJ"
         }
       ]
+    },
+    {
+      "dat": "3-nl-zapad-kolo-6",
+      "kolo": "6",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 26.09. i UTO 29.09.2026.",
+      "sat": "Satnica stoji uz svaki par",
+      "utakmice": [
+        {
+          "d": "Nehaj",
+          "g": "Crikvenica",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Rudar",
+          "g": "Lokomotiva",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Kraljevica",
+          "g": "Krk",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Pomorac",
+          "g": "Buje",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Rovinj",
+          "g": "Halubjan",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Pazinka-Pazin",
+          "g": "OŠK Omišalj",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Jadran-Poreč",
+          "g": "Naprijed",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Vinodol",
+          "g": "Banjole",
+          "termin": "UTO 16:30"
+        }
+      ]
     }
   ]
 }

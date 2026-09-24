@@ -96,6 +96,27 @@ svg.scena{position:absolute;inset:0;width:100%;height:100%}
   font-family:AR;font-weight:800;font-size:12.5px;color:#eaf1ea;background:rgba(11,51,56,.86);
   border:1px solid rgba(221,226,219,.16);box-shadow:0 2px 10px rgba(2,14,16,.5)}
 .chip.derbi{border-color:var(--zut);color:#f7e9b0;background:rgba(48,44,18,.86)}
+
+/* ============================ C. REDOVI ============================ */
+/* Jedan par po retku, satnica lijevo, imena slozena oko sredine. */
+.redovi-kola .glava{top:40px}
+.redovi-kola .naslov{font-size:46px}
+.redovi-kola .naslov i{font-size:48px}
+.redovi-kola .crtaH{top:160px}
+.redovi{position:absolute;left:64px;right:64px;top:170px;height:400px;display:grid;z-index:5}
+.red{display:grid;grid-template-columns:118px 1fr 74px 1fr 118px;align-items:center;column-gap:22px;
+  padding:0 12px;border-bottom:1px solid rgba(221,226,219,.09)}
+.red:last-child{border-bottom:0}
+.red.derbi{background:linear-gradient(90deg,rgba(232,197,71,.10) 0%,rgba(232,197,71,.03) 60%,transparent 100%);
+  box-shadow:inset 3px 0 0 var(--zut)}
+.kad{font-family:JB;font-weight:700;font-size:14px;letter-spacing:.04em;color:#a9bab8;white-space:nowrap}
+.red .ime{font-size:28px}
+.red .ime.d{text-align:right;padding:0}
+.red .ime.g{text-align:left;padding:0}
+.red.derbi .ime{color:#f7e5b4}
+.ploc{height:30px;display:flex;align-items:center;justify-content:center;background:rgba(221,226,219,.08);
+  font-family:JB;font-weight:700;font-size:11px;letter-spacing:.16em;color:var(--oxide-l)}
+.red.derbi .ploc{color:var(--zut)}
 </style></head><body>
 <div class="z" id="z"></div>
 <script>
@@ -190,8 +211,40 @@ function horizont(k){
   </div>`;
 }
 
+function redovi(k){
+  const redovi = k.utakmice.map(u => `
+    <div class="red${u.derbi ? ' derbi' : ''}">
+      <span class="kad">${esc(u.termin || '')}</span>
+      <span class="ime d">${esc(u.d)}</span>
+      <span class="ploc">${u.derbi ? 'DERBI' : 'VS'}</span>
+      <span class="ime g">${esc(u.g)}</span>
+      <span></span>
+    </div>`).join('');
+  return `
+  <div class="ploca redovi-kola" style="position:absolute;inset:0">
+    <div class="trake"></div><div class="luk"></div><div class="luk2"></div>
+    <div class="glava">
+      <div>
+        <div class="crta"></div>
+        <div class="oznaka">${esc(k.oznaka)}</div>
+        <div class="naslov">Najava <i>${esc(k.kolo)}. kola</i></div>
+      </div>
+      <div class="termin">
+        <div class="dan">${esc(k.datum)}</div>
+        <div class="sat">${esc(k.sat)}</div>
+      </div>
+    </div>
+    <div class="crtaH"></div>
+    <div class="redovi" style="grid-template-rows:repeat(${k.utakmice.length},1fr)">${redovi}</div>
+    <div class="potpis">LOKAL-ARENA</div>
+    <div class="brojka">${k.utakmice.length} ${rijecUtakmica(k.utakmice.length)} &middot; ${k.utakmice.length * 2} klubova</div>
+    <div class="rub"></div>
+  </div>`;
+}
+
 window.slozi = (k) => {
-  document.getElementById('z').innerHTML = k.stil === 'horizont' ? horizont(k) : ploca(k);
+  const crtaj = { horizont, redovi }[k.stil] || ploca;
+  document.getElementById('z').innerHTML = crtaj(k);
 };
 </script>
 </body></html>

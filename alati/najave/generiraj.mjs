@@ -8,8 +8,11 @@ import { chromium } from 'playwright';
 import { readFileSync, mkdirSync } from 'node:fs';
 
 const { kola } = JSON.parse(readFileSync(new URL('./kola.json', import.meta.url), 'utf8'));
-// 'horizont' je druga, atmosferska varijanta; ostaje u predlosku ako zatreba.
-const stilovi = ['ploca'];
+// Kolo bez polja "stil" crta se kao 'ploca'. 'redovi' je jedan par po
+// retku, sa satnicom uz svaki par. 'horizont' je druga, atmosferska
+// varijanta; ostaje u predlosku ako zatreba.
+// Samo jedno kolo: node generiraj.mjs 3-nl-zapad-kolo-6
+const samo = process.argv[2];
 
 mkdirSync('izlaz', { recursive: true });
 const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
@@ -18,7 +21,8 @@ await p.goto('http://127.0.0.1:8099/najave/najava.html?v=' + Date.now());
 await p.evaluate(() => document.fonts.ready);
 
 for (const k of kola) {
-  for (const stil of stilovi) {
+  if (samo && k.dat !== samo) continue;
+  for (const stil of [k.stil || 'ploca']) {
     await p.evaluate(kk => window.slozi(kk), { ...k, stil });
     await p.waitForTimeout(180);
     await p.locator('.z').screenshot({ path: `izlaz/najava-${stil}-${k.dat}.png` });
