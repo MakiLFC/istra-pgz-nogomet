@@ -32,6 +32,17 @@
 --   sluzbena_tablica_odstupa je true, pa se navode vrh i pomaci, uz
 --   uputu na sluzbenu ljestvicu na stranici lige.
 --
+-- ISPRAVAK NAKON OBJAVE, 24.09.2026.
+--   HNS je nakon 20.09. ispravio zapisnik Medulin 1921 - Cres: gol u 35.
+--   minuti zabio je Zeljko Tomic, a ne Bosko Babic, kako je stajalo u
+--   prvoj verziji zapisnika. Andrej je to uocio na Semaforu, a redak u
+--   bazi potvrdio (Slomic 7', Tomic 35', Pamic 36'). Clanak je vec bio
+--   objavljen, pa je ispravljen update-om s replace() nad dvije
+--   recenice; tekst gore je konacna verzija. Babic time ima tri gola,
+--   a Vujicic sam vodi s cetiri.
+--   Pouka: HNS zna zapisnik prepraviti i danima nakon utakmice, pa ni
+--   objavljeni pregled nije zakljucan.
+--
 -- IME KLUBA
 --   U bazi je "NK Borac (Ba)", u tekstu Borac (Bakar), po Andrejevoj
 --   uputi od 17.09.2026.
@@ -55,7 +66,7 @@ Otočac - Štinjan 3:1. Pred sto gledatelja, najviše u kolu, Otočac je upisao 
 
 Klana - Funtana 3:0. Klana je do prvih bodova došla najuvjerljivijom pobjedom kola. Tymur Merezhko zabio je u 65. i 81. minuti, a Ivan Laginja u 88. Tim je skokom Klana napravila najveći pomak u kolu, četiri mjesta, dok je Funtana ostala jedina bez osvojenog boda.
 
-Medulin 1921 - Cres 1:2. Jedina gostujuća pobjeda kola. Emir Slomić pogodio je već u 7. minuti, Boško Babić povisio u 35., a Luka Pamić smanjio minutu poslije. Babić je s četiri gola izjednačen na vrhu sa Vujičićem, a Cres je trećom pobjedom preuzeo prvo mjesto.
+Medulin 1921 - Cres 1:2. Jedina gostujuća pobjeda kola. Emir Slomić pogodio je već u 7. minuti, Željko Tomić povisio u 35., a Luka Pamić smanjio minutu poslije. Cres je trećom pobjedom preuzeo prvo mjesto.
 
 Žminj - Smoljanci Sloboda 1:0. Prvi bodovi i prvi pogodak Žminja u sezoni. Marko Lepinjica zabio je u 51. minuti, a susret je završio s dva isključenja u 90. minuti, oba na strani gostiju: Antonio Ivančić i Sanjin Puh.
 
@@ -69,7 +80,7 @@ Najveći skok kola napravila je Klana, četiri mjesta, a Žminj tri. Najviše su
 
 STRIJELCI
 
-Vrh dijele Antonijo Vujičić iz Otočca i Boško Babić s Cresa, obojica s četiri pogotka. Slijede Jamu Akou Arum Iluya i Tymur Merezhko s po tri. Merezhko je jedini u kolu zabio dvaput. Hat-tricka nije bilo.
+Vrh drži Antonijo Vujičić iz Otočca s četiri pogotka. Slijede Boško Babić s Cresa, Jamu Akou Arum Iluya i Tymur Merezhko s po tri. Merezhko je jedini u kolu zabio dvaput. Hat-tricka nije bilo.
 
 ZA SLJEDEĆE KOLO
 
