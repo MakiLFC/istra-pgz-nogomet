@@ -7,8 +7,10 @@
 --   KORAK 1 (upis) je odmah ispod, clanak ulazi s objavljen = false.
 --   KORAK 2 (objava) je zakomentiran na dnu.
 --
---   Upis se pokrece SAMO JEDNOM. Drugo pokretanje javlja gresku zbog
---   jedinstvenog sluga, sto znaci da je prvo proslo.
+--   Upis se smije ponoviti: ako clanak vec postoji, prepisu se samo
+--   naslov, sazetak i tekst, a objavljen i datum ostaju kakvi jesu.
+--   Tako je napravljeno jer je tekst mijenjan nakon sto je prva verzija
+--   vec bila poslana.
 --
 -- SLUG MORA POCETI S "najava-"
 --   Traka "Ovaj vikend" na naslovnici po tome prepoznaje najavu tog kola.
@@ -21,6 +23,10 @@
 --   public.pregled_kola('2026/27','4. NL NS Rijeka',3).
 --   Rezultati iz kupa (Cres, Rjecina, Klana, Borac) iz clanka o 1/16
 --   finala, dakle sa slika koje je poslao Andrej.
+--   ANDREJEVO, cega u bazi nema: poziv Jamu Akou Aruma Iluye u
+--   reprezentaciju Juznog Sudana (kvalifikacije za Africki kup nacija
+--   25. i 29.09., pa izostaje protiv Medulina), cestitka njemu i Umagu,
+--   te ocjena da se Rjecina "zahuktala i ove sezone ne sali".
 --
 -- BABIC IMA TRI, NE CETIRI
 --   HNS je nakon 20.09. ispravio zapisnik Medulin 1921 - Cres: drugi gol
@@ -54,15 +60,15 @@ values (
   'Vodeći Cres u subotu dočekuje Otočac, koji pobjedom može stići Cres i Borac na devet bodova. Borac (Bakar) je slobodan, a Ližnjan i Klana igraju tek u utorak.',
 'Četvrto kolo 4. NL NS Rijeka igra se u subotu 26. rujna. Cres - Otočac počinje u 16 sati, a ostale četiri subotnje utakmice u 16:30. Susret Ližnjan - Klana igra se u utorak 29. rujna u 17 sati. Slobodan je Borac (Bakar), koji s Cresom dijeli prvo mjesto.
 
-Cres - Otočac. Susret kola na Dariju. Cres je jedini s tri pobjede iz tri utakmice i ispred Borca je samo zbog bolje gol razlike. Otočac je četvrti sa šest bodova, ali s utakmicom manje, jer je u prvom kolu bio slobodan. Obje dosadašnje utakmice je dobio: 5:1 kod Smoljanaca Slobode i 3:1 protiv Štinjana. U njegovim redovima je Antonijo Vujičić, koji s četiri gola sam vodi listu strijelaca lige. Kod Cresa je Boško Babić s tri pogotka, sva tri zabijena Umagu. Cres je prošlog utorka u kupu ispao od Omišlja tek nakon sedam serija penala, uz 4:4 u regularnom dijelu, a Babić je svoj udarac pretvorio. Pobjedom bi Cres Borcu pobjegao na tri boda, a Otočac bi pobjedom stigao obojicu na devet.
+Cres - Otočac. Susret kola na Dariju. Cres je jedini s tri pobjede iz tri utakmice i ispred Borca je samo zbog bolje gol razlike. Otočac je četvrti sa šest bodova, ali s utakmicom manje, jer je u prvom kolu bio slobodan. Obje dosadašnje utakmice je dobio: 5:1 kod Smoljanaca Slobode i 3:1 protiv Štinjana. U njegovim redovima je Antonijo Vujičić, koji s četiri gola sam vodi listu strijelaca lige. Kod Cresa je Boško Babić s tri pogotka, sva tri zabijena Umagu. Cres je prošlog utorka u kupu ispao od Omišlja tek nakon sedam serija penala, uz 4:4 u regularnom dijelu, a Babić je u raspucavanju bio precizan s bijele točke. Pobjedom bi Cres Borcu pobjegao na tri boda, a Otočac bi pobjedom stigao obojicu na devet.
 
-Rječina - Funtana. Rječina je nakon poraza na Cresu u prvom kolu nepobijeđena: svladala je Klanu 3:1 i remizirala u Umagu 1:1. Prošlog utorka je u kupu izbacila Naprijed iz Hreljina, 2:1, a pobjednički pogodak zabio je Jeton Imeraj, koji u prvenstvu ima dva gola. Funtana u Dražice dolazi kao jedina momčad bez boda, nakon tri poraza. Najbolji strijelac joj je Robert Vlizlo s dva pogotka.
+Rječina - Funtana. Rječina se zahuktala i ove sezone se ne šali. Nakon poraza na Cresu u prvom kolu nije izgubila: svladala je Klanu 3:1 i remizirala u Umagu 1:1. Prošlog utorka je u kupu izbacila Naprijed iz Hreljina, 2:1, a pobjednički pogodak zabio je Jeton Imeraj, koji u prvenstvu ima dva gola. Funtana u Dražice dolazi kao jedina momčad bez boda, nakon tri poraza. Najbolji strijelac joj je Robert Vlizlo s dva pogotka.
 
 Smoljanci Sloboda - Mladost Fažana. Smoljanci Sloboda još traže prvu pobjedu: nakon remija s Medulinom u prvom kolu izgubili su dvaput, od Otočca 1:5 i u Žminju 0:1. Na Suhači u Svetvinčentu ostaju bez Antonija Ivančića i Sanjina Puha, isključenih u 90. minuti u Žminju. Mladost je u prošlom kolu bila slobodna. Ima tri boda iz dvije utakmice: u prvom kolu pobijedila je Funtanu, a u drugom izgubila u Ližnjanu 0:3.
 
 Štinjan - Žminj. Dvije momčadi s po tri boda na Fortinu. Štinjan je jedinu pobjedu upisao protiv Medulina, 3:0, a izgubio je u Umagu i u Otočcu, gdje je pogodio Antonio Gračić, sada s dva gola u sezoni. Žminj je u prošlom kolu došao do prvih bodova i prvog pogotka u sezoni, 1:0 protiv Smoljanaca Slobode golom Marka Lepinjice. Kao i Otočac, i Žminj ima utakmicu manje, jer je u drugom kolu bio slobodan.
 
-Umag-CC Umago - Medulin 1921. Umag ima četiri boda, a Jamu Akou Arum Iluya je s tri pogotka među najboljim strijelcima lige. U prošlom kolu protiv Rječine zabio je već u 2. minuti. Medulin je nakon remija u prvom kolu izgubio dvaput, u Štinjanu 0:3 i kod kuće od Cresa 1:2, i na Stella Marisu traži prvu pobjedu.
+Umag-CC Umago - Medulin 1921. Umag ima četiri boda, ali u subotu ostaje bez Jamu Akou Aruma Iluye, koji je s tri pogotka među najboljim strijelcima lige, a u prošlom kolu protiv Rječine zabio je već u 2. minuti. Iluya je ovaj tjedan dobio poziv u reprezentaciju Južnog Sudana, pa zbog utakmica 25. i 29. rujna u kvalifikacijama za Afrički kup nacija neće biti na raspolaganju. Ova stranica čestita njemu i NK Umagu na ovakvoj časti. Medulin je nakon remija u prvom kolu izgubio dvaput, u Štinjanu 0:3 i kod kuće od Cresa 1:2, i na Stella Marisu traži prvu pobjedu.
 
 Ližnjan - Klana, u utorak. Ližnjan je nakon dvije uvjerljive pobjede, 5:0 u Žminju i 3:0 protiv Mladosti, prvi put izgubio, u derbiju na Krasici 2:3. Unatoč tome ima najbolju gol razliku u ligi, plus sedam. Klana je u prošlom kolu došla do prvih bodova, 3:0 protiv Funtane, a Tymur Merezhko je s dva gola stigao do tri u sezoni. U kupu je 22. rujna izgubila od Orijenta, kluba iz drugog ranga, 0:4. Na Šaraji se igra od 17 sati.
 
@@ -78,7 +84,11 @@ KAZNE
   '4. NL NS Rijeka',
   false,
   now()
-);
+)
+on conflict (slug) do update
+  set naslov  = excluded.naslov,
+      sazetak = excluded.sazetak,
+      tekst   = excluded.tekst;
 
 
 -- =====================================================================
