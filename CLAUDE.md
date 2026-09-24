@@ -457,6 +457,18 @@ zapisnika objavljuje se SAMO kad nigdje ne zaostaje za njom
 jer to znači da nam fali zapisnik. Ispis pokretanja u oba slučaja kaže
 odakle je lista koja je otišla na stranicu.
 
+DOPUNJENO 24.09.2026.: kočnica je jednom radila naopako. HNS je nakon
+20.09. ispravio zapisnik Medulin 1921 - Cres i gol u 35. minuti s Boška
+Babića prepisao na Željka Tomića. Naš zbroj iz zapisnika spustio je
+Babića na tri, a stranica natjecanja danima je i dalje pokazivala
+četiri, pa je kočnica na stranicu vraćala HNS-ovu zastarjelu listu.
+Sada se manjak GOLOVA oprašta kad ga potvrdi sam zapisnik
+(`potvrdjeno_zapisnikom`): svaka odigrana utakmica ima postave u bazi,
+a traka strijelaca za tog igrača kaže isto što i zbroj iz postava. Prvi
+uvjet čuva slučaj kad zapisnik fali, jer tada nestanu i traka i postave
+pa bi se slagale u krivom broju. Oprošteni manjak ispisuje se na kraju
+pokretanja. Za kartone traka ne postoji, pa ondje kočnica ostaje ista.
+
 Tablica poretka i nastupi se i dalje SAMO scrapaju: tablica zbog kaznenih
 bodova, nastupi zato što zapisnik ne kaže koliko je tko bio na terenu.
 

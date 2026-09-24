@@ -38,6 +38,8 @@ from scraper_supabase import (  # noqa: E402
     zaostaje_za_sluzbenom,
     odaberi_rang_listu,
     slozi_pune_rang_liste,
+    golovi_iz_trake,
+    potvrdjeno_zapisnikom,
 )
 
 greske = []
@@ -251,6 +253,91 @@ provjeri([s["igrac"] for s in strijelci] == ["Vratar Vratarović"],
          "vratarov gol iz zapisnika ostaje na listi strijelaca")
 provjeri(ucinak(ucinci, "Netko Nikakav") is None,
          "izmjena nije ni gol ni karton")
+
+print("\n11) HNS ispravi zapisnik, a stranica natjecanja kasni")
+# Stvarni slučaj, 4. NL NS Rijeka 2026/27. Babić je Umagu zabio tri gola,
+# a gol u Medulinu HNS je naknadno prepisao na Tomića. Zapisnici kažu tri,
+# stranica natjecanja još pokazuje četiri. Kočnica tada ne smije vratiti
+# HNS-ovu listu, jer nama ne fali ništa.
+def strijelac(ime, minuta, autogol=False):
+    s = {"igrac": ime, "minuta": minuta}
+    if autogol:
+        s["autogol"] = True
+    return s
+
+cres_umag = utakmica(2, "NK Cres", "NK Umag", "4:1",
+                     [igrac("Boško Babić", ("gol", "35'"), ("gol", "44'"),
+                            ("gol", "65'")),
+                      igrac("Emir Slomić", ("gol", "80'"))],
+                     [igrac("Netko Umaški", ("gol", "50'"))])
+cres_umag["strijelci"] = [strijelac("Boško Babić", "35'"),
+                          strijelac("Boško Babić", "44'"),
+                          strijelac("Netko Umaški", "50'"),
+                          strijelac("Boško Babić", "65'"),
+                          strijelac("Emir Slomić", "80'")]
+medulin_cres = utakmica(3, "NK Medulin", "NK Cres", "1:2",
+                        [igrac("Luka Pamić", ("gol", "36'"))],
+                        [igrac("Emir Slomić", ("gol", "7'")),
+                         igrac("Željko Tomić", ("gol", "35'"))])
+medulin_cres["strijelci"] = [strijelac("Emir Slomić", "7'"),
+                             strijelac("Željko Tomić", "35'"),
+                             strijelac("Luka Pamić", "36'")]
+zapisnici = [cres_umag, medulin_cres]
+
+ucinci, bez_postava = ucinci_iz_zapisnika(zapisnici)
+nasi, _ = slozi_pune_rang_liste(ucinci)
+hns = [{"pozicija": "1", "igrac": "Boško Babić", "klub": "NK Cres",
+        "golovi": "4"}]
+traka = golovi_iz_trake(zapisnici)
+provjeri(traka("Boško Babić") == 3, "traka strijelaca daje Babiću tri")
+
+lista, otkud = odaberi_rang_listu(nasi, hns, ("golovi",),
+                                  potvrdjeno_zapisnikom(zapisnici, bez_postava))
+provjeri(lista is nasi, "na stranicu ide lista iz zapisnika")
+provjeri("ne potvrđuju" in otkud and "Boško Babić" in otkud,
+         "ispis kaže da HNS pokazuje više nego zapisnici")
+lista, _ = odaberi_rang_listu(nasi, hns, ("golovi",))
+provjeri(lista is hns, "bez potvrde zapisnikom kočnica radi kao prije")
+
+print("\n12) Zapisnik koji fali NE smije se oprostiti")
+# Stvarni slučaj od 24.09.2026.: zapisnik Klana - Funtana izbrisan je
+# nepotpunom stranicom HNS-a, pa su nestale i postave i traka. Merezhko
+# tada ima jedan gol i u postavama i u traci, a stvarno ih ima tri.
+klana_funtana = utakmica(3, "NK Klana", "NK Funtana", "3:0", [], [])
+rijecina_klana = utakmica(2, "NK Rječina", "NK Klana", "3:1",
+                          [igrac("Netko Riječki", ("gol", "10'"))],
+                          [igrac("Tymur Merezhko", ("gol", "70'"))])
+rijecina_klana["strijelci"] = [strijelac("Netko Riječki", "10'"),
+                               strijelac("Tymur Merezhko", "70'")]
+zapisnici = [rijecina_klana, klana_funtana]
+ucinci, bez_postava = ucinci_iz_zapisnika(zapisnici)
+nasi, _ = slozi_pune_rang_liste(ucinci)
+hns = [{"pozicija": "1", "igrac": "Tymur Merezhko", "klub": "NK Klana",
+        "golovi": "3"}]
+provjeri(potvrdjeno_zapisnikom(zapisnici, bez_postava) is None,
+         "uz utakmicu bez postava potvrde nema")
+lista, _ = odaberi_rang_listu(nasi, hns, ("golovi",),
+                              potvrdjeno_zapisnikom(zapisnici, bez_postava))
+provjeri(lista is hns, "kočnica ostaje i vraća HNS-ovu listu")
+
+print("\n13) Traka i postave se ne slažu: kočnica ostaje")
+# Traka ima gol koji u postavi nije upisan: ne zna se kome vjerovati.
+nesklad = utakmica(1, "NK A", "NK B", "1:0",
+                   [igrac("Ivo Ivić")], [igrac("Netko Drugi")])
+nesklad["strijelci"] = [strijelac("Ivo Ivić", "20'")]
+ucinci, bez_postava = ucinci_iz_zapisnika([nesklad])
+nasi, _ = slozi_pune_rang_liste(ucinci)
+hns = [{"pozicija": "1", "igrac": "Ivo Ivić", "klub": "NK A", "golovi": "1"}]
+lista, _ = odaberi_rang_listu(nasi, hns, ("golovi",),
+                              potvrdjeno_zapisnikom([nesklad], bez_postava))
+provjeri(lista is hns, "manjak koji traka ne potvrđuje se ne oprašta")
+
+print("\n14) Autogol se ne broji ni u traci")
+ag = utakmica(1, "NK A", "NK B", "1:0", [igrac("Ivo Ivić")],
+              [igrac("Pero Perić", ("autogol", "30'"))])
+ag["strijelci"] = [strijelac("Pero Perić", "30'", autogol=True)]
+provjeri(golovi_iz_trake([ag])("Pero Perić") == 0,
+         "autogol u traci nije gol strijelca")
 
 print()
 if greske:
