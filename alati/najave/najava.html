@@ -237,7 +237,7 @@ function redovi(k){
     <div class="crtaH"></div>
     <div class="redovi" style="grid-template-rows:repeat(${k.utakmice.length},1fr)">${redovi}</div>
     <div class="potpis">LOKAL-ARENA</div>
-    <div class="brojka">${k.utakmice.length} ${rijecUtakmica(k.utakmice.length)} &middot; ${k.utakmice.length * 2} klubova</div>
+    <div class="brojka">${k.utakmice.length} ${rijecUtakmica(k.utakmice.length)} &middot; ${k.utakmice.length * 2} klubova${k.slobodan ? ` &middot; slobodan: ${esc(k.slobodan)}` : ''}</div>
     <div class="rub"></div>
   </div>`;
 }

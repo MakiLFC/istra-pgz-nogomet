@@ -296,6 +296,47 @@
           "termin": "UTO 16:30"
         }
       ]
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-4",
+      "kolo": "4",
+      "stil": "redovi",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 26.09. i UTO 29.09.2026.",
+      "sat": "Satnica stoji uz svaki par",
+      "slobodan": "Borac (Ba)",
+      "utakmice": [
+        {
+          "d": "Cres",
+          "g": "Otočac",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Rječina",
+          "g": "Funtana",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Smoljanci",
+          "g": "Mladost Fažana",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Štinjan",
+          "g": "Žminj",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Umag-CC Umago",
+          "g": "Medulin 1921",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Ližnjan",
+          "g": "Klana",
+          "termin": "UTO 17:00"
+        }
+      ]
     }
   ]
 }
