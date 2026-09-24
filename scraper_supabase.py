@@ -807,10 +807,10 @@ def dohvati_zapisnike(naziv_natjecanja, sezona):
         )
 
     try:
-        odgovor = upit("kolo,domacin,gost,rezultat,autogolovi,"
+        odgovor = upit("kolo,domacin,gost,rezultat,autogolovi,strijelci,"
                        "postava_domacin,postava_gost")
     except Exception:
-        odgovor = upit("kolo,domacin,gost,rezultat,"
+        odgovor = upit("kolo,domacin,gost,rezultat,strijelci,"
                        "postava_domacin,postava_gost")
         print("  Napomena: autogolovi se ne čitaju jer stupac još ne "
               "postoji (pokreni sql/autogolovi.sql).")
@@ -1581,7 +1581,7 @@ def uskladi_imena(ucinci, svi_igraci):
     return list(spojeni.values())
 
 
-def zaostaje_za_sluzbenom(nasi, sluzbeni, polja):
+def zaostaje_za_sluzbenom(nasi, sluzbeni, polja, golovi_u_traci=None):
     """Igrači kod kojih naša lista ima MANJE nego službena.
 
     Lista iz zapisnika smije biti ispred službene, jer HNS sastave
@@ -1590,6 +1590,13 @@ def zaostaje_za_sluzbenom(nasi, sluzbeni, polja):
 
     Uspoređuje se po igraču, ne po redoslijedu, iz istog razloga kao u
     usporedi_sa_sluzbenom: kod istog broja golova poredak je proizvoljan.
+
+    golovi_u_traci  funkcija ime -> broj golova tog igrača u TRACI
+                    strijelaca svih zapisnika (vidi golovi_iz_trake). Kad
+                    je zadana, manjak golova se ne broji ako traka kaže
+                    točno isto što i naš zbroj iz postava. Tada zapisnik
+                    sam sa sobom potvrđuje naš broj, a zaostaje HNS.
+                    Vidi potvrdjeno_zapisnikom za to kad se smije zadati.
     """
     nasi_po_imenu = {n["igrac"]: n for n in nasi}
     manjkovi = []
@@ -1599,21 +1606,79 @@ def zaostaje_za_sluzbenom(nasi, sluzbeni, polja):
             sluzbeno = _broj(s.get(polje))
             nase = _broj(nas.get(polje)) if nas else 0
             if nase < sluzbeno:
+                if (polje == "golovi" and golovi_u_traci is not None
+                        and golovi_u_traci(s["igrac"]) == nase):
+                    continue
                 manjkovi.append(f"{s['igrac']} ({polje}: službeno "
                                 f"{sluzbeno}, naše {nase})")
     return manjkovi
 
 
-def odaberi_rang_listu(iz_zapisnika, sa_stranice, polja):
+def golovi_iz_trake(utakmice):
+    """Funkcija ime -> broj golova tog igrača u traci strijelaca zapisnika.
+
+    Traka strijelaca i postave su dva ODVOJENA dijela istog zapisnika, a
+    naš zbroj ide iz postava. Kad se slažu, zapisnik je dosljedan sam sa
+    sobom. Autogol se ne broji, isto kao u ucinci_iz_zapisnika, ni onaj
+    koji je scraper sam prepoznao ni onaj iz ručnog stupca autogolovi.
+    Ime se uspoređuje tolerantno (_ista_osoba), jer se ime u zapisniku
+    zna sitno razlikovati od onoga iz sastava.
+    """
+    zapisi = []
+    for u in utakmice:
+        if not re.match(r"^\s*\d+\s*:\s*\d+\s*$", (u.get("rezultat") or "")):
+            continue
+        rucni = [((a.get("igrac") or ""), (a.get("minuta") or ""))
+                 for a in (u.get("autogolovi") or [])]
+        for s in u.get("strijelci") or []:
+            ime = (s.get("igrac") or "").strip()
+            if not ime or s.get("autogol"):
+                continue
+            if _je_rucno_oznacen_autogol(ime, s.get("minuta"), rucni):
+                continue
+            zapisi.append(ime)
+
+    def koliko(ime):
+        return sum(1 for z in zapisi if _ista_osoba(z, ime))
+    return koliko
+
+
+def potvrdjeno_zapisnikom(utakmice, bez_postava):
+    """golovi_u_traci za kočnicu, ili None kad se zapisnicima ne smije vjerovati.
+
+    Zašto: 20.09.2026. zapisnik Medulin 1921 - Cres pokazivao je gol Boška
+    Babića u 35. minuti. HNS je poslije zapisnik ispravio, gol je Željka
+    Tomića, pa je naš zbroj iz zapisnika spustio Babića na tri. Stranica
+    natjecanja na Semaforu još je danima pokazivala četiri, a kočnica je,
+    vidjevši da "zaostajemo", na stranicu vraćala HNS-ovu zastarjelu listu.
+    Kočnica postoji da uhvati zapisnik koji NAM FALI, a ovdje nije falio
+    nijedan; krivo je bilo HNS-ovo zbrajanje.
+
+    Manjak se zato oprašta samo kad je isključeno da nam zapisnik fali:
+      - svaka odigrana utakmica ima postave u bazi (bez_postava je prazan)
+      - traka strijelaca za tog igrača kaže isto što i naš zbroj iz postava
+    Prvi uvjet je bitan. Kad se zapisnik izbriše ili ne pročita, i traka i
+    postave nestanu zajedno, pa bi se slagale u krivom broju. Upravo to se
+    24.09.2026. dogodilo Merezhku (Klana - Funtana), i tada kočnica mora
+    ostati.
+    """
+    if bez_postava:
+        return None
+    return golovi_iz_trake(utakmice)
+
+
+def odaberi_rang_listu(iz_zapisnika, sa_stranice, polja, golovi_u_traci=None):
     """Bira koja lista ide u bazu i vraća (lista, obrazloženje).
 
     Prednost ima lista iz zapisnika, jer je svježija. Pada na onu sa
-    stranice natjecanja kad je prazna ili kad igdje zaostaje.
+    stranice natjecanja kad je prazna ili kad igdje zaostaje, osim kad
+    manjak golova potvrđuje sam zapisnik (vidi potvrdjeno_zapisnikom).
     """
     if not iz_zapisnika:
         return sa_stranice, "sa stranice natjecanja (iz zapisnika nema ničega)"
 
-    manjkovi = zaostaje_za_sluzbenom(iz_zapisnika, sa_stranice, polja)
+    manjkovi = zaostaje_za_sluzbenom(iz_zapisnika, sa_stranice, polja,
+                                     golovi_u_traci)
     if manjkovi:
         prikaz = ", ".join(manjkovi[:5])
         if len(manjkovi) > 5:
@@ -1621,7 +1686,16 @@ def odaberi_rang_listu(iz_zapisnika, sa_stranice, polja):
         return sa_stranice, ("sa stranice natjecanja, jer lista iz "
                              f"zapisnika zaostaje kod: {prikaz}")
 
-    return iz_zapisnika, "iz zapisnika (svježije od sastava na stranici)"
+    obrazlozenje = "iz zapisnika (svježije od sastava na stranici)"
+    if golovi_u_traci is not None:
+        # Oprošteni manjkovi moraju se vidjeti u ispisu: znači da HNS
+        # pokazuje više nego što stoji u njegovim vlastitim zapisnicima.
+        oprosteni = zaostaje_za_sluzbenom(iz_zapisnika, sa_stranice, polja)
+        if oprosteni:
+            obrazlozenje += ("; HNS na stranici natjecanja pokazuje više, "
+                             "ali zapisnici to ne potvrđuju: "
+                             + ", ".join(oprosteni))
+    return iz_zapisnika, obrazlozenje
 
 
 def usporedi_sa_sluzbenom(strijelci, sluzbeni):
@@ -1709,8 +1783,11 @@ def dohvati_i_spremi_statistike(natjecanje_naziv, natjecanje_url,
     )
 
     strijelci, otkud_strijelci = odaberi_rang_listu(
-        strijelci_iz_zapisnika, strijelci_sa_stranice, ("golovi",)
+        strijelci_iz_zapisnika, strijelci_sa_stranice, ("golovi",),
+        potvrdjeno_zapisnikom(zapisnici or [], bez_postava),
     )
+    if "ne potvrđuju" in otkud_strijelci:
+        napomene.append(f"{natjecanje_naziv}: strijelci {otkud_strijelci}")
     kartoni, otkud_kartoni = odaberi_rang_listu(
         kartoni_iz_zapisnika, kartoni_sa_stranice, ("zuti", "crveni")
     )
