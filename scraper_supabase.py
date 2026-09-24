@@ -299,6 +299,63 @@ def dohvati_stranicu(url):
     raise zadnja_greska
 
 
+class NepotpunaStranica(Exception):
+    """HNS je odgovorio, ali stranica nema ono što na njoj uvijek stoji."""
+
+
+def dohvati_potpunu_stranicu(url, je_potpuna, sto_fali):
+    """Dohvaća stranicu i provjerava da je HNS vratio CIJELU stranicu.
+
+    dohvati_stranicu hvata samo slučaj kad HNS ne odgovori. 23. i 24.09.
+    2026. dogodilo se nešto gore: HNS je odgovorio uredno, bez ikakve
+    greške, ali sa stranicom natjecanja na kojoj nije bilo ni rasporeda
+    ni ljestvice. Scraper je to pročitao kao "nema ničega" i završio
+    zeleno. Prvi put, kod provjere termina, samo nije ništa osvježio.
+    Drugi put, u punom prolazu, upisao je u bazu PRAZNU ljestvicu i
+    prazne nastupe za sve četiri lige, pa su s naslovnice i stranica liga
+    nestale tablice. Ponovno pokretanje nekoliko minuta kasnije oba je
+    puta prošlo uredno, dakle ispad je bio kratak i na HNS-u.
+
+    Zato se nepotpuna stranica tretira isto kao neodgovor: pokuša se još
+    dvaput, s istim pauzama kao u dohvati_stranicu, a ako ni treći put
+    nije cijela, diže se greška. Pozivatelj je broji, liga ispada iz
+    prolaza, NIŠTA SE NE UPISUJE, a pokretanje završava crveno. Zadnji
+    dobri podaci ostaju u bazi, što je uvijek bolje od praznih.
+
+    je_potpuna  funkcija koja za pročitanu stranicu (soup) kaže je li
+                na njoj ono što mora biti
+    sto_fali    opis za poruku, npr. "rasporeda"
+
+    Vraća (odgovor, soup).
+    """
+    najvise_pokusaja = 3
+    pauze = (15, 45)
+
+    for pokusaj in range(1, najvise_pokusaja + 1):
+        odgovor = dohvati_stranicu(url)
+        soup = BeautifulSoup(odgovor.text, "html.parser")
+        if je_potpuna(soup):
+            return odgovor, soup
+        if pokusaj < najvise_pokusaja:
+            pauza = pauze[pokusaj - 1]
+            print(f"  HNS je vratio stranicu bez {sto_fali}, pokušaj "
+                  f"{pokusaj} od {najvise_pokusaja}. Ponavljam za {pauza} s.")
+            time.sleep(pauza)
+
+    raise NepotpunaStranica(
+        f"HNS je {najvise_pokusaja} puta vratio stranicu bez {sto_fali} "
+        f"({url}). Ništa nije upisano, u bazi ostaje zadnje dobro stanje."
+    )
+
+
+def _pocetak_rasporeda(soup):
+    """Naslov "Raspored..." od kojeg počinje čitanje utakmica, ili None."""
+    for element in soup.find_all(["h1", "h2", "h3"]):
+        if "Raspored" in element.get_text():
+            return element
+    return None
+
+
 def dohvati_popis_utakmica(natjecanje_url):
     """
     Otvara stranicu natjecanja i vraća listu utakmica CIJELOG rasporeda -
@@ -316,18 +373,15 @@ def dohvati_popis_utakmica(natjecanje_url):
     utakmica još nije odigrala).
     """
     print(f"Dohvaćam: {natjecanje_url}")
-    response = dohvati_stranicu(natjecanje_url)
-    soup = BeautifulSoup(response.text, "html.parser")
-
-    pocetna_tocka = None
-    for element in soup.find_all(["h1", "h2", "h3"]):
-        if "Raspored" in element.get_text():
-            pocetna_tocka = element
-            break
-
-    if pocetna_tocka is None:
-        print("UPOZORENJE: nisam pronašao početak rasporeda na stranici.")
-        return []
+    # Stranica bez rasporeda nije prazna liga nego nepotpun odgovor HNS-a;
+    # prije je ovdje samo ispisano upozorenje i vraćen prazan popis, pa je
+    # pokretanje završavalo zeleno. Vidi dohvati_potpunu_stranicu.
+    _, soup = dohvati_potpunu_stranicu(
+        natjecanje_url,
+        lambda s: _pocetak_rasporeda(s) is not None,
+        "rasporeda",
+    )
+    pocetna_tocka = _pocetak_rasporeda(soup)
 
     utakmice = []
     trenutno_kolo = None
@@ -661,11 +715,36 @@ def dohvati_detalje_utakmice(utakmica_url):
         "postava_domacin": domacin_postava,
         "postava_gost": gost_postava,
     }
-    if rezultat is None:
-        # Isti razlog kao kod neodigranih utakmica: stupac koji se ne posalje
-        # upsert ne dira, pa jedan losije procitan zapisnik ne moze obrisati
-        # rezultat koji je vec u bazi.
-        podaci.pop("rezultat")
+    return bez_praznog_kad_nema_rezultata(podaci)
+
+
+# Stupci zapisnika koji se ne šalju prazni kad zapisnik nema rezultata.
+STUPCI_ZAPISNIKA = ("rezultat", "stadion_datum", "gledatelja", "suci",
+                    "strijelci", "postava_domacin", "postava_gost")
+
+
+def bez_praznog_kad_nema_rezultata(podaci):
+    """Zapisnik bez rezultata ne smije prazninom prepisati ono što je u bazi.
+
+    Stupac koji se ne pošalje upsert ne dira. Tako je od početka bilo s
+    rezultatom: jedan lošije pročitan zapisnik ne može obrisati rezultat
+    koji je već upisan.
+
+    24.09.2026. pokazalo se da to nije dovoljno. HNS je nekoliko minuta
+    vraćao nepotpune stranice, pa su tri zapisnika 3. kola 4. NL NS Rijeka
+    (Borac - Ližnjan, Klana - Funtana, Žminj - Smoljanci Sloboda) stigla
+    bez rezultata, postava i strijelaca. Rezultat je preživio, ali su
+    postave i strijelci otišli u bazu kao prazni popisi, pa su sa stranica
+    tih utakmica nestali, a golovi i kartoni ispali iz rang-listi.
+
+    Zato se, kad rezultata nema, ne šalje nijedan PRAZAN stupac zapisnika.
+    Ono što jest pročitano ide normalno, pa postava upisana prije kraja
+    utakmice i dalje stigne na stranicu.
+    """
+    if podaci.get("rezultat") is None:
+        for stupac in STUPCI_ZAPISNIKA:
+            if stupac in podaci and not podaci[stupac]:
+                podaci.pop(stupac)
     return podaci
 
 
@@ -1598,8 +1677,15 @@ def dohvati_i_spremi_statistike(natjecanje_naziv, natjecanje_url,
     Vraća popis napomena za završni ispis pokretanja.
     """
     napomene = []
-    response = dohvati_stranicu(natjecanje_url)
-    soup = BeautifulSoup(response.text, "html.parser")
+    # Bez ljestvice je stranica nepotpuna, a ne liga bez klubova. 24.09.2026.
+    # je takva stranica ovdje prošla i u bazu je za sve četiri lige otišla
+    # prazna ljestvica i prazni nastupi. Sad se ponavlja, a ako ni treći put
+    # nije cijela, diže se greška PRIJE ijednog upisa.
+    _, soup = dohvati_potpunu_stranicu(
+        natjecanje_url,
+        lambda s: bool(parsiraj_tablicu_lige(s)),
+        "ljestvice",
+    )
 
     tablica = parsiraj_tablicu_lige(soup)
 
