@@ -1,0 +1,21 @@
+{
+  "_napomena": "Boje štitova za stil 'stitovi'. Nisu grbovi nego jednostavan štit u bojama kluba s troslovnom oznakom (vidi PROCITAJ.md). Uzorak: puno, glava, koso, okomito, pojas. Klub kojeg ovdje nema dobije neutralan štit u boji stranice.",
+  "klubovi": {
+    "Nehaj":         { "k": "NEH", "b1": "#1f7a3a", "b2": "#f4f7f4", "uzorak": "okomito" },
+    "Crikvenica":    { "k": "CRI", "b1": "#c8202b", "b2": "#1d3f8f", "uzorak": "glava" },
+    "Rudar":         { "k": "RUD", "b1": "#1d6b2e", "b2": "#15191a", "uzorak": "koso" },
+    "Lokomotiva":    { "k": "LOK", "b1": "#2a7fc0", "b2": "#f4f7f4", "uzorak": "pojas" },
+    "Kraljevica":    { "k": "KRA", "b1": "#1f3f8a", "b2": "#c8202b", "uzorak": "glava" },
+    "Krk":           { "k": "KRK", "b1": "#1f4f9c", "b2": "#f2c500", "uzorak": "glava" },
+    "Pomorac":       { "k": "POM", "b1": "#2a3f9a", "b2": "#d0202e", "uzorak": "koso" },
+    "Buje":          { "k": "BUJ", "b1": "#2e8b3a", "b2": "#f4f7f4", "uzorak": "pojas" },
+    "Rovinj":        { "k": "ROV", "b1": "#2d8a3c", "b2": "#f4d000", "uzorak": "glava" },
+    "Halubjan":      { "k": "HAL", "b1": "#cc2229", "b2": "#f4f7f4", "uzorak": "okomito" },
+    "Pazinka-Pazin": { "k": "PAZ", "b1": "#1f4f9c", "b2": "#f4f7f4", "uzorak": "okomito" },
+    "OŠK Omišalj":   { "k": "OMI", "b1": "#c8202b", "b2": "#f4f7f4", "uzorak": "pojas" },
+    "Jadran-Poreč":  { "k": "JAD", "b1": "#1b3f8a", "b2": "#f4f7f4", "uzorak": "glava" },
+    "Naprijed":      { "k": "NAP", "b1": "#1c2f5e", "b2": "#f4f7f4", "uzorak": "koso" },
+    "Vinodol":       { "k": "VIN", "b1": "#1f4f9c", "b2": "#f4f7f4", "uzorak": "pojas" },
+    "Banjole":       { "k": "BAN", "b1": "#2a5aa8", "b2": "#f4f7f4", "uzorak": "okomito" }
+  }
+}

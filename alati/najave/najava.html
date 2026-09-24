@@ -96,6 +96,29 @@ svg.scena{position:absolute;inset:0;width:100%;height:100%}
   font-family:AR;font-weight:800;font-size:12.5px;color:#eaf1ea;background:rgba(11,51,56,.86);
   border:1px solid rgba(221,226,219,.16);box-shadow:0 2px 10px rgba(2,14,16,.5)}
 .chip.derbi{border-color:var(--zut);color:#f7e9b0;background:rgba(48,44,18,.86)}
+
+/* ============================ C. STITOVI ============================ */
+/* Jedan par po retku, domacin lijevo, gost desno, svaki uz svoj stit.
+   Stitovi NISU grbovi: boje i oznake stoje u klubovi.json. */
+.stitovi .glava{top:40px}
+.stitovi .naslov{font-size:46px}
+.stitovi .naslov i{font-size:48px}
+.stitovi .crtaH{top:160px}
+.redovi{position:absolute;left:64px;right:64px;top:170px;height:400px;display:grid;z-index:5}
+.red{display:grid;grid-template-columns:118px 46px 1fr 74px 1fr 46px;align-items:center;column-gap:16px;
+  padding:0 12px;border-bottom:1px solid rgba(221,226,219,.09)}
+.red:last-child{border-bottom:0}
+.red.derbi{background:linear-gradient(90deg,rgba(232,197,71,.10) 0%,rgba(232,197,71,.03) 60%,transparent 100%);
+  box-shadow:inset 3px 0 0 var(--zut)}
+.kad{font-family:JB;font-weight:700;font-size:14px;letter-spacing:.04em;color:#a9bab8;white-space:nowrap}
+.red .ime{font-size:25px}
+.red .ime.d{text-align:left;padding:0}
+.red .ime.g{text-align:right;padding:0}
+.red.derbi .ime{color:#f7e5b4}
+.ploc{height:30px;display:flex;align-items:center;justify-content:center;background:rgba(221,226,219,.08);
+  font-family:JB;font-weight:700;font-size:11px;letter-spacing:.16em;color:var(--oxide-l)}
+.red.derbi .ploc{color:var(--zut)}
+svg.stit{width:46px;height:50px;display:block;filter:drop-shadow(0 2px 5px rgba(2,14,16,.55))}
 </style></head><body>
 <div class="z" id="z"></div>
 <script>
@@ -190,8 +213,65 @@ function horizont(k){
   </div>`;
 }
 
+// Stit u bojama kluba s troslovnom oznakom. Oznaka je bijela s tamnim
+// obrubom, pa se cita na svakoj boji i na svakom uzorku.
+let KLUBOVI = {};
+const OBRIS = 'M3 2H43V21C43 35 33 44 23 48C13 44 3 35 3 21Z';
+function stit(ime, kratica, id){
+  const c = KLUBOVI[ime] || { k: kratica, b1: '#1c5a61', b2: '#dde2db', uzorak: 'glava' };
+  const k = c.k || kratica || ime.slice(0, 3).toUpperCase();
+  const dio = {
+    puno: '',
+    glava: `<rect x="0" y="0" width="46" height="15" fill="${c.b2}"/>`,
+    koso: `<polygon points="0,50 46,4 46,50" fill="${c.b2}"/>`,
+    okomito: `<rect x="23" y="0" width="23" height="50" fill="${c.b2}"/>`,
+    pojas: `<rect x="0" y="0" width="7.7" height="50" fill="${c.b2}"/><rect x="15.3" y="0" width="7.7" height="50" fill="${c.b2}"/><rect x="30.7" y="0" width="7.7" height="50" fill="${c.b2}"/>`
+  }[c.uzorak || 'puno'];
+  return `<svg class="stit" viewBox="0 0 46 50">
+    <defs><clipPath id="s${id}"><path d="${OBRIS}"/></clipPath></defs>
+    <g clip-path="url(#s${id})"><rect width="46" height="50" fill="${c.b1}"/>${dio}</g>
+    <path d="${OBRIS}" fill="none" stroke="#f4f7f4" stroke-opacity=".85" stroke-width="1.6"/>
+    <text x="23" y="31" text-anchor="middle" font-family="AR" font-weight="800" font-size="12.5"
+      fill="#fff" stroke="#08262a" stroke-width="3" paint-order="stroke" stroke-linejoin="round">${esc(k)}</text>
+  </svg>`;
+}
+
+function stitovi(k){
+  const redovi = k.utakmice.map((u, i) => `
+    <div class="red${u.derbi ? ' derbi' : ''}">
+      <span class="kad">${esc(u.termin || '')}</span>
+      ${stit(u.d, u.dk, 'd' + i)}
+      <span class="ime d">${esc(u.d)}</span>
+      <span class="ploc">${u.derbi ? 'DERBI' : 'VS'}</span>
+      <span class="ime g">${esc(u.g)}</span>
+      ${stit(u.g, u.gk, 'g' + i)}
+    </div>`).join('');
+  return `
+  <div class="ploca stitovi" style="position:absolute;inset:0">
+    <div class="trake"></div><div class="luk"></div><div class="luk2"></div>
+    <div class="glava">
+      <div>
+        <div class="crta"></div>
+        <div class="oznaka">${esc(k.oznaka)}</div>
+        <div class="naslov">Najava <i>${esc(k.kolo)}. kola</i></div>
+      </div>
+      <div class="termin">
+        <div class="dan">${esc(k.datum)}</div>
+        <div class="sat">${esc(k.sat)}</div>
+      </div>
+    </div>
+    <div class="crtaH"></div>
+    <div class="redovi" style="grid-template-rows:repeat(${k.utakmice.length},1fr)">${redovi}</div>
+    <div class="potpis">LOKAL-ARENA</div>
+    <div class="brojka">${k.utakmice.length} ${rijecUtakmica(k.utakmice.length)} &middot; ${k.utakmice.length * 2} klubova</div>
+    <div class="rub"></div>
+  </div>`;
+}
+
 window.slozi = (k) => {
-  document.getElementById('z').innerHTML = k.stil === 'horizont' ? horizont(k) : ploca(k);
+  if (k.klubovi) KLUBOVI = k.klubovi;
+  const crtaj = { horizont, stitovi }[k.stil] || ploca;
+  document.getElementById('z').innerHTML = crtaj(k);
 };
 </script>
 </body></html>
