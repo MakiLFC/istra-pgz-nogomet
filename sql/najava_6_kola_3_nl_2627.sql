@@ -40,6 +40,9 @@
 --
 -- PREMJESTENA UTAKMICA
 --   Vinodol - Banjole je s 26.09. premjestena na 29.09.2026. u 16:30.
+--   Nehaj - Crikvenica je sa 16:30 pomaknuta na 16:00; to je uhvatila
+--   provjera termina 24.09. navecer, nakon sto je clanak vec bio poslan,
+--   pa je u bazi ispravljen update-om s replace().
 --
 -- LJESTVICA
 --   sluzbena_tablica_odstupa je true (Crikvenica ima kaznene bodove), pa
@@ -56,7 +59,7 @@ values (
   'najava-6-kola-3-nl-zapad-2627',
   'NAJAVA 6. KOLA: DODATNO POJAČANA LOKOMOTIVA VRAĆA SE NAKON STANKE, POMORAC JU JE U MEĐUVREMENU STIGAO',
   'Vodeća Lokomotiva, pojačana s dva nova igrača, nakon jedanaest dana bez utakmice gostuje u Labinu, a Pomorac, koji ju je dok je odmarala stigao na dvanaest bodova, dočekuje Buje. Vinodol i Banjole igraju tek u utorak.',
-'Šesto kolo 3. NL Zapad igra se u subotu 26. rujna, i to svih sedam utakmica u 16:30. Susret Vinodol - Banjole premješten je na utorak 29. rujna, također u 16:30.
+'Šesto kolo 3. NL Zapad igra se u subotu 26. rujna. Nehaj - Crikvenica počinje u 16 sati, a ostalih šest utakmica u 16:30. Susret Vinodol - Banjole premješten je na utorak 29. rujna, također u 16:30.
 
 Rudar (L) - Lokomotiva (R). Lokomotiva se vraća na teren nakon jedanaest dana: posljednju utakmicu odigrala je 15. rujna u Novom Vinodolskom, peto kolo je propustila jer je susret s Banjolama premješten na prosinac, a u kupu je prošla dalje bez igranja, jer je Rikard Benčić predao. U međuvremenu je dovela i dva nova pojačanja: Dina Bradarića, mladog napadača iz Grobničana, i Antonija Pejanovića, dugogodišnjeg strijelca Opatije i dobro poznato, renomirano ime na ovom području. Iz četiri utakmice ima četiri pobjede i gol razliku plus dvanaest, a Karlo Josipović s četiri i Edin Junuzović s tri pogotka predvode njezine strijelce. Rudar je nakon dvije pobjede izgubio dvaput zaredom, od Crikvenice kod kuće i na Krku 4:1, a Lokomotivu dočekuje na Gradskom stadionu u Labinu. Kovari će morati puno rudariti za bodove u ovome susretu.
 
