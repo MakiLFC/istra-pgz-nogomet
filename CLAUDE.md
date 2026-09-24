@@ -540,6 +540,45 @@ kriva lista nije objavila. Čuva `test_dogadjaj_bez_minute.py`, pisan po
 stvarnom HTML-u s ta dva zapisnika.
 
 
+**HNS zna odgovoriti uredno, a vratiti nepotpunu stranicu.**
+23. i 24.09.2026. HNS je u više navrata vraćao stranice natjecanja bez
+rasporeda i bez ljestvice, pa i zapisnike bez rezultata i postava. Nije
+bilo ni isteka vremena ni greške 500, pa ponavljanje iz
+`dohvati_stranicu` nije ni krenulo. Scraper je to čitao kao "nema
+ničega" i svaki put završio zeleno, s porukom "Grešaka: 0":
+
+- 23.09. navečer, provjera termina: nije osvježila ništa, a izgledalo je
+  kao da promjena termina nema.
+- 24.09. navečer, dva ručna puna prolaza: u bazu je upisana PRAZNA
+  ljestvica i prazni nastupi, prvi put za sve četiri lige, drugi put za
+  tri. Uz to su tri zapisnika 3. kola 4. NL NS Rijeka (Borac - Ližnjan,
+  Klana - Funtana, Žminj - Smoljanci Sloboda) stigla bez rezultata i
+  postava. Rezultat je preživio, jer se prazan ne šalje, ali postave i
+  strijelci otišli su u bazu kao prazni popisi.
+
+Popravljeno istog dana, na dva mjesta:
+
+- `dohvati_potpunu_stranicu`: stranica natjecanja bez rasporeda, odnosno
+  bez ljestvice, tretira se kao neodgovor. Pokuša se još dvaput, s istim
+  pauzama (15 i 45 s), a ako ni treći put nije cijela, diže se greška.
+  Liga ispada iz prolaza, NIŠTA se ne upisuje i pokretanje je crveno.
+  Zadnji dobri podaci ostaju u bazi.
+- `bez_praznog_kad_nema_rezultata`: kad zapisnik nema rezultata, ne šalje
+  se nijedan PRAZAN stupac zapisnika (strijelci, postave, suci,
+  gledatelji). Ono što jest pročitano ide normalno, pa postava upisana
+  prije kraja utakmice i dalje stiže na stranicu. Zapisnik S rezultatom
+  šalje se cijeli, jer 0:0 stvarno nema strijelaca.
+
+Čuva `test_nepotpuna_stranica.py`. Šteta se popravlja jednim uspješnim
+punim prolazom, jer se ljestvica, nastupi i zapisnici prepisuju svaki put.
+
+Pouka je ista kao kod statistika koje baza odbija: prazno nije isto što i
+"nema podatka". Kad izvor koji uvijek nešto ima odjednom nema ništa, to je
+kvar izvora, a ne vijest, i ne smije prepisati ono što već znamo.
+
+Uz to, nikad ne pokretati scraper više puta zaredom dok HNS šteka: svaki
+prolaz sa starim kodom radio je novu štetu. Prvo zaštita, pa pokretanje.
+
 **Ime upotrijebljeno dvaput za dvije stvari ruši scraper tek u pogonu.**
 02.09.2026. pao je posao "Provjera termina" s porukom
 `TypeError: 'str' object is not callable`. U petlji po utakmicama stajala
