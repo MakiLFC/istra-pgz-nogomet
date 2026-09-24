@@ -1188,6 +1188,17 @@ Ona vraća samo isključenja, a žute daje kao zbroj za cijelu sezonu, u
 `postava_domacin` i `postava_gost` (primjer stoji na dnu datoteke
 `sql/sazetak_vrbovsko_goranin_2_kolo.sql`).
 
+**Prag žutih kartona u 3. NL Zapad je četiri.** Andrej je to potvrdio
+24.09.2026. Funkcije `najava_kola()` i `pregled_kola()` i prije su
+računale s četiri, ali kao zadanom vrijednošću, pa se u tekstovima pisao
+samo broj kartona, bez posljedice. Za 3. NL Zapad sada se piše izravno:
+četvrti žuti znači pauzu u sljedećem prvenstvenom kolu, a tri znači
+"jedan od kazne". Za ostale tri lige prag još nije potvrđen, pa ondje i
+dalje stoji samo broj. Pazi i na to da polje `na_pragu` u
+`pregled_kola()` pokazuje samo igrače s TRI žuta; oni koji su baš u tom
+kolu dobili četvrti ne ulaze ni u `na_pragu` ni u `suspendirani`, pa ih
+treba naći usporedbom s prošlom najavom ili pregledom.
+
 **Sažetak uz zapisnik NIJE članak.** Kratak osvrt na pojedinu utakmicu,
 onaj koji stoji ispod zapisnika na stranici utakmice, ide u stupac
 `utakmice.tekst_clanka`, dakle u redak te utakmice. Tablica `clanci` je
