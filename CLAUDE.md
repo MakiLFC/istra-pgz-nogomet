@@ -457,6 +457,18 @@ zapisnika objavljuje se SAMO kad nigdje ne zaostaje za njom
 jer to znači da nam fali zapisnik. Ispis pokretanja u oba slučaja kaže
 odakle je lista koja je otišla na stranicu.
 
+DOPUNJENO 24.09.2026.: kočnica je jednom radila naopako. HNS je nakon
+20.09. ispravio zapisnik Medulin 1921 - Cres i gol u 35. minuti s Boška
+Babića prepisao na Željka Tomića. Naš zbroj iz zapisnika spustio je
+Babića na tri, a stranica natjecanja danima je i dalje pokazivala
+četiri, pa je kočnica na stranicu vraćala HNS-ovu zastarjelu listu.
+Sada se manjak GOLOVA oprašta kad ga potvrdi sam zapisnik
+(`potvrdjeno_zapisnikom`): svaka odigrana utakmica ima postave u bazi,
+a traka strijelaca za tog igrača kaže isto što i zbroj iz postava. Prvi
+uvjet čuva slučaj kad zapisnik fali, jer tada nestanu i traka i postave
+pa bi se slagale u krivom broju. Oprošteni manjak ispisuje se na kraju
+pokretanja. Za kartone traka ne postoji, pa ondje kočnica ostaje ista.
+
 Tablica poretka i nastupi se i dalje SAMO scrapaju: tablica zbog kaznenih
 bodova, nastupi zato što zapisnik ne kaže koliko je tko bio na terenu.
 
@@ -539,6 +551,45 @@ stvarni HTML, ne pretpostavka. I ovdje je kočnica napravila svoje, jer se
 kriva lista nije objavila. Čuva `test_dogadjaj_bez_minute.py`, pisan po
 stvarnom HTML-u s ta dva zapisnika.
 
+
+**HNS zna odgovoriti uredno, a vratiti nepotpunu stranicu.**
+23. i 24.09.2026. HNS je u više navrata vraćao stranice natjecanja bez
+rasporeda i bez ljestvice, pa i zapisnike bez rezultata i postava. Nije
+bilo ni isteka vremena ni greške 500, pa ponavljanje iz
+`dohvati_stranicu` nije ni krenulo. Scraper je to čitao kao "nema
+ničega" i svaki put završio zeleno, s porukom "Grešaka: 0":
+
+- 23.09. navečer, provjera termina: nije osvježila ništa, a izgledalo je
+  kao da promjena termina nema.
+- 24.09. navečer, dva ručna puna prolaza: u bazu je upisana PRAZNA
+  ljestvica i prazni nastupi, prvi put za sve četiri lige, drugi put za
+  tri. Uz to su tri zapisnika 3. kola 4. NL NS Rijeka (Borac - Ližnjan,
+  Klana - Funtana, Žminj - Smoljanci Sloboda) stigla bez rezultata i
+  postava. Rezultat je preživio, jer se prazan ne šalje, ali postave i
+  strijelci otišli su u bazu kao prazni popisi.
+
+Popravljeno istog dana, na dva mjesta:
+
+- `dohvati_potpunu_stranicu`: stranica natjecanja bez rasporeda, odnosno
+  bez ljestvice, tretira se kao neodgovor. Pokuša se još dvaput, s istim
+  pauzama (15 i 45 s), a ako ni treći put nije cijela, diže se greška.
+  Liga ispada iz prolaza, NIŠTA se ne upisuje i pokretanje je crveno.
+  Zadnji dobri podaci ostaju u bazi.
+- `bez_praznog_kad_nema_rezultata`: kad zapisnik nema rezultata, ne šalje
+  se nijedan PRAZAN stupac zapisnika (strijelci, postave, suci,
+  gledatelji). Ono što jest pročitano ide normalno, pa postava upisana
+  prije kraja utakmice i dalje stiže na stranicu. Zapisnik S rezultatom
+  šalje se cijeli, jer 0:0 stvarno nema strijelaca.
+
+Čuva `test_nepotpuna_stranica.py`. Šteta se popravlja jednim uspješnim
+punim prolazom, jer se ljestvica, nastupi i zapisnici prepisuju svaki put.
+
+Pouka je ista kao kod statistika koje baza odbija: prazno nije isto što i
+"nema podatka". Kad izvor koji uvijek nešto ima odjednom nema ništa, to je
+kvar izvora, a ne vijest, i ne smije prepisati ono što već znamo.
+
+Uz to, nikad ne pokretati scraper više puta zaredom dok HNS šteka: svaki
+prolaz sa starim kodom radio je novu štetu. Prvo zaštita, pa pokretanje.
 
 **Ime upotrijebljeno dvaput za dvije stvari ruši scraper tek u pogonu.**
 02.09.2026. pao je posao "Provjera termina" s porukom
@@ -1187,6 +1238,17 @@ Ona vraća samo isključenja, a žute daje kao zbroj za cijelu sezonu, u
 `statistike`. Za sažetak jedne utakmice čitaju se iz postava, upitom nad
 `postava_domacin` i `postava_gost` (primjer stoji na dnu datoteke
 `sql/sazetak_vrbovsko_goranin_2_kolo.sql`).
+
+**Prag žutih kartona u 3. NL Zapad je četiri.** Andrej je to potvrdio
+24.09.2026. Funkcije `najava_kola()` i `pregled_kola()` i prije su
+računale s četiri, ali kao zadanom vrijednošću, pa se u tekstovima pisao
+samo broj kartona, bez posljedice. Za 3. NL Zapad sada se piše izravno:
+četvrti žuti znači pauzu u sljedećem prvenstvenom kolu, a tri znači
+"jedan od kazne". Za ostale tri lige prag još nije potvrđen, pa ondje i
+dalje stoji samo broj. Pazi i na to da polje `na_pragu` u
+`pregled_kola()` pokazuje samo igrače s TRI žuta; oni koji su baš u tom
+kolu dobili četvrti ne ulaze ni u `na_pragu` ni u `suspendirani`, pa ih
+treba naći usporedbom s prošlom najavom ili pregledom.
 
 **Sažetak uz zapisnik NIJE članak.** Kratak osvrt na pojedinu utakmicu,
 onaj koji stoji ispod zapisnika na stranici utakmice, ide u stupac

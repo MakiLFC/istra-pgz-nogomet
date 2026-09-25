@@ -299,6 +299,63 @@ def dohvati_stranicu(url):
     raise zadnja_greska
 
 
+class NepotpunaStranica(Exception):
+    """HNS je odgovorio, ali stranica nema ono što na njoj uvijek stoji."""
+
+
+def dohvati_potpunu_stranicu(url, je_potpuna, sto_fali):
+    """Dohvaća stranicu i provjerava da je HNS vratio CIJELU stranicu.
+
+    dohvati_stranicu hvata samo slučaj kad HNS ne odgovori. 23. i 24.09.
+    2026. dogodilo se nešto gore: HNS je odgovorio uredno, bez ikakve
+    greške, ali sa stranicom natjecanja na kojoj nije bilo ni rasporeda
+    ni ljestvice. Scraper je to pročitao kao "nema ničega" i završio
+    zeleno. Prvi put, kod provjere termina, samo nije ništa osvježio.
+    Drugi put, u punom prolazu, upisao je u bazu PRAZNU ljestvicu i
+    prazne nastupe za sve četiri lige, pa su s naslovnice i stranica liga
+    nestale tablice. Ponovno pokretanje nekoliko minuta kasnije oba je
+    puta prošlo uredno, dakle ispad je bio kratak i na HNS-u.
+
+    Zato se nepotpuna stranica tretira isto kao neodgovor: pokuša se još
+    dvaput, s istim pauzama kao u dohvati_stranicu, a ako ni treći put
+    nije cijela, diže se greška. Pozivatelj je broji, liga ispada iz
+    prolaza, NIŠTA SE NE UPISUJE, a pokretanje završava crveno. Zadnji
+    dobri podaci ostaju u bazi, što je uvijek bolje od praznih.
+
+    je_potpuna  funkcija koja za pročitanu stranicu (soup) kaže je li
+                na njoj ono što mora biti
+    sto_fali    opis za poruku, npr. "rasporeda"
+
+    Vraća (odgovor, soup).
+    """
+    najvise_pokusaja = 3
+    pauze = (15, 45)
+
+    for pokusaj in range(1, najvise_pokusaja + 1):
+        odgovor = dohvati_stranicu(url)
+        soup = BeautifulSoup(odgovor.text, "html.parser")
+        if je_potpuna(soup):
+            return odgovor, soup
+        if pokusaj < najvise_pokusaja:
+            pauza = pauze[pokusaj - 1]
+            print(f"  HNS je vratio stranicu bez {sto_fali}, pokušaj "
+                  f"{pokusaj} od {najvise_pokusaja}. Ponavljam za {pauza} s.")
+            time.sleep(pauza)
+
+    raise NepotpunaStranica(
+        f"HNS je {najvise_pokusaja} puta vratio stranicu bez {sto_fali} "
+        f"({url}). Ništa nije upisano, u bazi ostaje zadnje dobro stanje."
+    )
+
+
+def _pocetak_rasporeda(soup):
+    """Naslov "Raspored..." od kojeg počinje čitanje utakmica, ili None."""
+    for element in soup.find_all(["h1", "h2", "h3"]):
+        if "Raspored" in element.get_text():
+            return element
+    return None
+
+
 def dohvati_popis_utakmica(natjecanje_url):
     """
     Otvara stranicu natjecanja i vraća listu utakmica CIJELOG rasporeda -
@@ -316,18 +373,15 @@ def dohvati_popis_utakmica(natjecanje_url):
     utakmica još nije odigrala).
     """
     print(f"Dohvaćam: {natjecanje_url}")
-    response = dohvati_stranicu(natjecanje_url)
-    soup = BeautifulSoup(response.text, "html.parser")
-
-    pocetna_tocka = None
-    for element in soup.find_all(["h1", "h2", "h3"]):
-        if "Raspored" in element.get_text():
-            pocetna_tocka = element
-            break
-
-    if pocetna_tocka is None:
-        print("UPOZORENJE: nisam pronašao početak rasporeda na stranici.")
-        return []
+    # Stranica bez rasporeda nije prazna liga nego nepotpun odgovor HNS-a;
+    # prije je ovdje samo ispisano upozorenje i vraćen prazan popis, pa je
+    # pokretanje završavalo zeleno. Vidi dohvati_potpunu_stranicu.
+    _, soup = dohvati_potpunu_stranicu(
+        natjecanje_url,
+        lambda s: _pocetak_rasporeda(s) is not None,
+        "rasporeda",
+    )
+    pocetna_tocka = _pocetak_rasporeda(soup)
 
     utakmice = []
     trenutno_kolo = None
@@ -661,11 +715,36 @@ def dohvati_detalje_utakmice(utakmica_url):
         "postava_domacin": domacin_postava,
         "postava_gost": gost_postava,
     }
-    if rezultat is None:
-        # Isti razlog kao kod neodigranih utakmica: stupac koji se ne posalje
-        # upsert ne dira, pa jedan losije procitan zapisnik ne moze obrisati
-        # rezultat koji je vec u bazi.
-        podaci.pop("rezultat")
+    return bez_praznog_kad_nema_rezultata(podaci)
+
+
+# Stupci zapisnika koji se ne šalju prazni kad zapisnik nema rezultata.
+STUPCI_ZAPISNIKA = ("rezultat", "stadion_datum", "gledatelja", "suci",
+                    "strijelci", "postava_domacin", "postava_gost")
+
+
+def bez_praznog_kad_nema_rezultata(podaci):
+    """Zapisnik bez rezultata ne smije prazninom prepisati ono što je u bazi.
+
+    Stupac koji se ne pošalje upsert ne dira. Tako je od početka bilo s
+    rezultatom: jedan lošije pročitan zapisnik ne može obrisati rezultat
+    koji je već upisan.
+
+    24.09.2026. pokazalo se da to nije dovoljno. HNS je nekoliko minuta
+    vraćao nepotpune stranice, pa su tri zapisnika 3. kola 4. NL NS Rijeka
+    (Borac - Ližnjan, Klana - Funtana, Žminj - Smoljanci Sloboda) stigla
+    bez rezultata, postava i strijelaca. Rezultat je preživio, ali su
+    postave i strijelci otišli u bazu kao prazni popisi, pa su sa stranica
+    tih utakmica nestali, a golovi i kartoni ispali iz rang-listi.
+
+    Zato se, kad rezultata nema, ne šalje nijedan PRAZAN stupac zapisnika.
+    Ono što jest pročitano ide normalno, pa postava upisana prije kraja
+    utakmice i dalje stigne na stranicu.
+    """
+    if podaci.get("rezultat") is None:
+        for stupac in STUPCI_ZAPISNIKA:
+            if stupac in podaci and not podaci[stupac]:
+                podaci.pop(stupac)
     return podaci
 
 
@@ -728,10 +807,10 @@ def dohvati_zapisnike(naziv_natjecanja, sezona):
         )
 
     try:
-        odgovor = upit("kolo,domacin,gost,rezultat,autogolovi,"
+        odgovor = upit("kolo,domacin,gost,rezultat,autogolovi,strijelci,"
                        "postava_domacin,postava_gost")
     except Exception:
-        odgovor = upit("kolo,domacin,gost,rezultat,"
+        odgovor = upit("kolo,domacin,gost,rezultat,strijelci,"
                        "postava_domacin,postava_gost")
         print("  Napomena: autogolovi se ne čitaju jer stupac još ne "
               "postoji (pokreni sql/autogolovi.sql).")
@@ -1502,7 +1581,7 @@ def uskladi_imena(ucinci, svi_igraci):
     return list(spojeni.values())
 
 
-def zaostaje_za_sluzbenom(nasi, sluzbeni, polja):
+def zaostaje_za_sluzbenom(nasi, sluzbeni, polja, golovi_u_traci=None):
     """Igrači kod kojih naša lista ima MANJE nego službena.
 
     Lista iz zapisnika smije biti ispred službene, jer HNS sastave
@@ -1511,6 +1590,13 @@ def zaostaje_za_sluzbenom(nasi, sluzbeni, polja):
 
     Uspoređuje se po igraču, ne po redoslijedu, iz istog razloga kao u
     usporedi_sa_sluzbenom: kod istog broja golova poredak je proizvoljan.
+
+    golovi_u_traci  funkcija ime -> broj golova tog igrača u TRACI
+                    strijelaca svih zapisnika (vidi golovi_iz_trake). Kad
+                    je zadana, manjak golova se ne broji ako traka kaže
+                    točno isto što i naš zbroj iz postava. Tada zapisnik
+                    sam sa sobom potvrđuje naš broj, a zaostaje HNS.
+                    Vidi potvrdjeno_zapisnikom za to kad se smije zadati.
     """
     nasi_po_imenu = {n["igrac"]: n for n in nasi}
     manjkovi = []
@@ -1520,21 +1606,79 @@ def zaostaje_za_sluzbenom(nasi, sluzbeni, polja):
             sluzbeno = _broj(s.get(polje))
             nase = _broj(nas.get(polje)) if nas else 0
             if nase < sluzbeno:
+                if (polje == "golovi" and golovi_u_traci is not None
+                        and golovi_u_traci(s["igrac"]) == nase):
+                    continue
                 manjkovi.append(f"{s['igrac']} ({polje}: službeno "
                                 f"{sluzbeno}, naše {nase})")
     return manjkovi
 
 
-def odaberi_rang_listu(iz_zapisnika, sa_stranice, polja):
+def golovi_iz_trake(utakmice):
+    """Funkcija ime -> broj golova tog igrača u traci strijelaca zapisnika.
+
+    Traka strijelaca i postave su dva ODVOJENA dijela istog zapisnika, a
+    naš zbroj ide iz postava. Kad se slažu, zapisnik je dosljedan sam sa
+    sobom. Autogol se ne broji, isto kao u ucinci_iz_zapisnika, ni onaj
+    koji je scraper sam prepoznao ni onaj iz ručnog stupca autogolovi.
+    Ime se uspoređuje tolerantno (_ista_osoba), jer se ime u zapisniku
+    zna sitno razlikovati od onoga iz sastava.
+    """
+    zapisi = []
+    for u in utakmice:
+        if not re.match(r"^\s*\d+\s*:\s*\d+\s*$", (u.get("rezultat") or "")):
+            continue
+        rucni = [((a.get("igrac") or ""), (a.get("minuta") or ""))
+                 for a in (u.get("autogolovi") or [])]
+        for s in u.get("strijelci") or []:
+            ime = (s.get("igrac") or "").strip()
+            if not ime or s.get("autogol"):
+                continue
+            if _je_rucno_oznacen_autogol(ime, s.get("minuta"), rucni):
+                continue
+            zapisi.append(ime)
+
+    def koliko(ime):
+        return sum(1 for z in zapisi if _ista_osoba(z, ime))
+    return koliko
+
+
+def potvrdjeno_zapisnikom(utakmice, bez_postava):
+    """golovi_u_traci za kočnicu, ili None kad se zapisnicima ne smije vjerovati.
+
+    Zašto: 20.09.2026. zapisnik Medulin 1921 - Cres pokazivao je gol Boška
+    Babića u 35. minuti. HNS je poslije zapisnik ispravio, gol je Željka
+    Tomića, pa je naš zbroj iz zapisnika spustio Babića na tri. Stranica
+    natjecanja na Semaforu još je danima pokazivala četiri, a kočnica je,
+    vidjevši da "zaostajemo", na stranicu vraćala HNS-ovu zastarjelu listu.
+    Kočnica postoji da uhvati zapisnik koji NAM FALI, a ovdje nije falio
+    nijedan; krivo je bilo HNS-ovo zbrajanje.
+
+    Manjak se zato oprašta samo kad je isključeno da nam zapisnik fali:
+      - svaka odigrana utakmica ima postave u bazi (bez_postava je prazan)
+      - traka strijelaca za tog igrača kaže isto što i naš zbroj iz postava
+    Prvi uvjet je bitan. Kad se zapisnik izbriše ili ne pročita, i traka i
+    postave nestanu zajedno, pa bi se slagale u krivom broju. Upravo to se
+    24.09.2026. dogodilo Merezhku (Klana - Funtana), i tada kočnica mora
+    ostati.
+    """
+    if bez_postava:
+        return None
+    return golovi_iz_trake(utakmice)
+
+
+def odaberi_rang_listu(iz_zapisnika, sa_stranice, polja, golovi_u_traci=None):
     """Bira koja lista ide u bazu i vraća (lista, obrazloženje).
 
     Prednost ima lista iz zapisnika, jer je svježija. Pada na onu sa
-    stranice natjecanja kad je prazna ili kad igdje zaostaje.
+    stranice natjecanja kad je prazna ili kad igdje zaostaje, osim kad
+    manjak golova potvrđuje sam zapisnik (vidi potvrdjeno_zapisnikom).
     """
     if not iz_zapisnika:
         return sa_stranice, "sa stranice natjecanja (iz zapisnika nema ničega)"
 
-    manjkovi = zaostaje_za_sluzbenom(iz_zapisnika, sa_stranice, polja)
+    manjkovi = zaostaje_za_sluzbenom(iz_zapisnika, sa_stranice, polja,
+                                     golovi_u_traci)
     if manjkovi:
         prikaz = ", ".join(manjkovi[:5])
         if len(manjkovi) > 5:
@@ -1542,7 +1686,16 @@ def odaberi_rang_listu(iz_zapisnika, sa_stranice, polja):
         return sa_stranice, ("sa stranice natjecanja, jer lista iz "
                              f"zapisnika zaostaje kod: {prikaz}")
 
-    return iz_zapisnika, "iz zapisnika (svježije od sastava na stranici)"
+    obrazlozenje = "iz zapisnika (svježije od sastava na stranici)"
+    if golovi_u_traci is not None:
+        # Oprošteni manjkovi moraju se vidjeti u ispisu: znači da HNS
+        # pokazuje više nego što stoji u njegovim vlastitim zapisnicima.
+        oprosteni = zaostaje_za_sluzbenom(iz_zapisnika, sa_stranice, polja)
+        if oprosteni:
+            obrazlozenje += ("; HNS na stranici natjecanja pokazuje više, "
+                             "ali zapisnici to ne potvrđuju: "
+                             + ", ".join(oprosteni))
+    return iz_zapisnika, obrazlozenje
 
 
 def usporedi_sa_sluzbenom(strijelci, sluzbeni):
@@ -1598,8 +1751,15 @@ def dohvati_i_spremi_statistike(natjecanje_naziv, natjecanje_url,
     Vraća popis napomena za završni ispis pokretanja.
     """
     napomene = []
-    response = dohvati_stranicu(natjecanje_url)
-    soup = BeautifulSoup(response.text, "html.parser")
+    # Bez ljestvice je stranica nepotpuna, a ne liga bez klubova. 24.09.2026.
+    # je takva stranica ovdje prošla i u bazu je za sve četiri lige otišla
+    # prazna ljestvica i prazni nastupi. Sad se ponavlja, a ako ni treći put
+    # nije cijela, diže se greška PRIJE ijednog upisa.
+    _, soup = dohvati_potpunu_stranicu(
+        natjecanje_url,
+        lambda s: bool(parsiraj_tablicu_lige(s)),
+        "ljestvice",
+    )
 
     tablica = parsiraj_tablicu_lige(soup)
 
@@ -1623,8 +1783,11 @@ def dohvati_i_spremi_statistike(natjecanje_naziv, natjecanje_url,
     )
 
     strijelci, otkud_strijelci = odaberi_rang_listu(
-        strijelci_iz_zapisnika, strijelci_sa_stranice, ("golovi",)
+        strijelci_iz_zapisnika, strijelci_sa_stranice, ("golovi",),
+        potvrdjeno_zapisnikom(zapisnici or [], bez_postava),
     )
+    if "ne potvrđuju" in otkud_strijelci:
+        napomene.append(f"{natjecanje_naziv}: strijelci {otkud_strijelci}")
     kartoni, otkud_kartoni = odaberi_rang_listu(
         kartoni_iz_zapisnika, kartoni_sa_stranice, ("zuti", "crveni")
     )

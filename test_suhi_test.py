@@ -68,6 +68,13 @@ def stranica_natjecanja():
         <span>Stadion Drugi</span>
       </li>
       <h2>Ljestvica</h2>
+      <!-- Stvarna stranica natjecanja uvijek ima ljestvicu. Od 24.09.2026.
+           stranica bez nje smatra se nepotpunim odgovorom HNS-a i ništa
+           se ne upisuje (vidi test_nepotpuna_stranica.py). -->
+      <div class="competition_table"><ul>
+        <li><div class="position">1.</div><a href="/klubovi/1/">NK Prvi</a></li>
+        <li><div class="position">2.</div><a href="/klubovi/2/">NK Drugi</a></li>
+      </ul></div>
     </body></html>
     """
 
