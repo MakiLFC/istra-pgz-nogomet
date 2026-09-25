@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
-import { LIGE } from "@/lib/lige";
+import { LIGE, adresaLige } from "@/lib/lige";
 import Navigacija from "@/components/Navigacija";
 import { IkonaTeren } from "@/components/Ikone";
 import PregledKola from "@/components/PregledKola";
@@ -256,7 +256,7 @@ export default async function Home() {
                   return u.derbi ? (
                     <Otkrivanje key={u.id} kasnjenje={idx * 45}>
                     <Link
-                      href={`/liga/${liga.slug}${u.kolo ? `?kolo=${u.kolo}` : ""}`}
+                      href={adresaLige(liga.slug, { kolo: u.kolo })}
                       className="flex items-center gap-3 bg-white px-4 py-3 transition-opacity hover:opacity-80"
                       style={{ border: "2px solid var(--card-yellow)" }}
                     >

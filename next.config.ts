@@ -45,6 +45,39 @@ const nextConfig: NextConfig = {
         destination: "https://lokalarena.com/:putanja*",
         permanent: true,
       },
+
+      // ---------------------------------------------------------------
+      // STARE ADRESE STRANICE LIGE (do 25.09.2026.)
+      // ---------------------------------------------------------------
+      // Kolo i sezona bili su u upitu (?kolo=6&sezona=2025/26), a sada su
+      // dio putanje (vidi adresaLige u lib/lige.ts). Takve su poveznice
+      // već podijeljene na Facebooku i spremljene u tražilicama, pa se
+      // preusmjeravaju trajno. Redoslijed je bitan: prvo pravilo koje
+      // odgovara odlučuje, pa najkonkretnije ide prvo.
+      //
+      // Upit se pri preusmjeravanju prenosi dalje, pa nova adresa na kraju
+      // i dalje nosi ?kolo=6. To ne smeta, jer ga stranica više ne čita.
+      {
+        source: "/liga/:slug",
+        has: [
+          { type: "query", key: "kolo", value: "(?<kolo>\\d{1,3})" },
+          { type: "query", key: "sezona", value: "(?<god>\\d{4})[-/](?<god2>\\d{2})" },
+        ],
+        destination: "/liga/:slug/sezona/:god-:god2/kolo/:kolo",
+        permanent: true,
+      },
+      {
+        source: "/liga/:slug",
+        has: [{ type: "query", key: "sezona", value: "(?<god>\\d{4})[-/](?<god2>\\d{2})" }],
+        destination: "/liga/:slug/sezona/:god-:god2",
+        permanent: true,
+      },
+      {
+        source: "/liga/:slug",
+        has: [{ type: "query", key: "kolo", value: "(?<kolo>\\d{1,3})" }],
+        destination: "/liga/:slug/kolo/:kolo",
+        permanent: true,
+      },
     ];
   },
 };

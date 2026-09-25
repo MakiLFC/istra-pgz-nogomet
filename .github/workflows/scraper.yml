@@ -90,8 +90,24 @@ jobs:
       - name: Instaliraj pakete
         run: pip install -r requirements.txt
 
+      # RANI PROLAZ OTVARA SAMO NOVE ZAPISNIKE (od 2026-09-28)
+      # Rani večernji prolaz dolazi po upravo odigrano kolo, pa zapisnike
+      # pročitane ranijih tjedana ne mora otvarati iznova. Kasni prolaz,
+      # ponedjeljak ujutro i svako ručno pokretanje ostaju PUNI, jer HNS
+      # zna ispraviti zapisnik i danima kasnije (vidi potpuni_zapisnici u
+      # scraper_supabase.py). Uzorci ispod moraju biti isti kao cron
+      # retci ranih prolaza gore; kad se oni mijenjaju, mijenja se i ovo.
       - name: Pokreni scraper
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: python scraper_supabase.py
+          RASPORED: ${{ github.event.schedule }}
+        run: |
+          ZASTAVICE=""
+          case "$RASPORED" in
+            "0 17 * * 6"|"0 17 * * 0"|"0 18 * * 5"|"0 17 * * 3")
+              ZASTAVICE="--samo-novi-zapisnici"
+              echo "Rani prolaz: otvaraju se samo zapisnici kojih u bazi još nema."
+              ;;
+          esac
+          python scraper_supabase.py $ZASTAVICE

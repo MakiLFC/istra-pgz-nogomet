@@ -24,7 +24,7 @@ import {
 } from "@/lib/utakmice";
 import { idIzSluga, slugUtakmice, kljucKluba } from "@/lib/slug";
 import { golovi } from "@/lib/kolo";
-import { LIGE } from "@/lib/lige";
+import { LIGE, adresaLige } from "@/lib/lige";
 import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
 import { odlomci } from "@/lib/clanci";
 import type { Utakmica } from "@/lib/supabase";
@@ -41,6 +41,16 @@ import type { Utakmica } from "@/lib/supabase";
 // sat vremena. Cijena je više renderiranja od tražilica, sada pokrivena
 // mjesečnim kreditom.
 export const revalidate = 300;
+
+// Prazan popis znači: nijedna utakmica se ne priprema pri gradnji, nego
+// pri prvom otvaranju, a onda se drži kao gotova stranica i osvježava po
+// revalidate. BEZ ove funkcije Next.js je rutu tretirao kao dinamičnu
+// (oznaka ƒ u ispisu gradnje), pa se stranica utakmice do 25.09.2026.
+// renderirala pri SVAKOM otvaranju, a revalidate iznad nije radio ništa.
+// Primijećeno tek kad je ispis gradnje pročitan redak po redak.
+export async function generateStaticParams() {
+  return [];
+}
 
 /** "NK A 2:1 NK B" za odigranu, "NK A - NK B" za onu koja se tek igra. */
 function naslovUtakmice(u: Utakmica): string {
@@ -114,7 +124,7 @@ export default async function StranicaUtakmice({
       <main className="mx-auto max-w-3xl px-6 py-14">
         {ligaSlug && (
           <Link
-            href={`/liga/${ligaSlug}${u.kolo ? `?kolo=${u.kolo}` : ""}`}
+            href={adresaLige(ligaSlug, { kolo: u.kolo, sezona: u.sezona })}
             className="font-sans text-xs font-medium hover:underline"
             style={{ color: "var(--pitch)" }}
           >
@@ -284,7 +294,7 @@ export default async function StranicaUtakmice({
               </Link>
               {ligaSlug && (
                 <Link
-                  href={`/liga/${ligaSlug}${u.kolo ? `?kolo=${u.kolo}` : ""}`}
+                  href={adresaLige(ligaSlug, { kolo: u.kolo, sezona: u.sezona })}
                   className="font-medium hover:underline"
                   style={{ color: "var(--pitch)" }}
                 >

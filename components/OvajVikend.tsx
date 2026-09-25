@@ -8,7 +8,7 @@
 
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
-import { LIGE } from "@/lib/lige";
+import { LIGE, adresaLige } from "@/lib/lige";
 import { golovi } from "@/lib/kolo";
 import { sBrojem } from "@/lib/hrvatski";
 import { koloNajave, koloPregleda } from "@/lib/clanci";
@@ -195,7 +195,7 @@ export default async function OvajVikend() {
         {redovi.slice(0, 4).map((r) => (
           <li key={r.liga.slug} className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
             <Link
-              href={`/liga/${r.liga.slug}${r.kolo ? `?kolo=${r.kolo}` : ""}`}
+              href={adresaLige(r.liga.slug, { kolo: r.kolo })}
               className="font-sans text-sm font-medium hover:underline"
               style={{ color: "var(--pitch)" }}
             >

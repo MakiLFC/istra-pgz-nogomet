@@ -46,6 +46,10 @@ load_dotenv()  # učitava SUPABASE_URL i SUPABASE_SERVICE_KEY iz .env datoteke
 #   --samo-raspored        osvježi samo termine (datum, vrijeme, stadion)
 #                          s retka rasporeda, bez otvaranja zapisnika i
 #                          bez rang-lista; traje sekundu po ligi
+#   --samo-novi-zapisnici  ne otvaraj zapisnike utakmica koje u bazi već
+#                          imaju rezultat i obje postave; raspored i
+#                          rang-liste idu normalno. Za rani večernji
+#                          prolaz, vidi potpuni_zapisnici
 #   --obrisi-nestale       obriši utakmice kojih na rasporedu više nema
 #                          (samo one bez rezultata); bez toga se samo
 #                          prijavljuju, jer je brisanje nepovratno
@@ -782,6 +786,35 @@ def dohvati_postojece_termine(naziv_natjecanja, sezona):
               "postoje (pokreni sql/termin_rucno.sql).")
 
     return {(r["kolo"], r["domacin"], r["gost"]): r for r in (odgovor.data or [])}
+
+
+def potpuni_zapisnici(utakmice):
+    """Ključevi (kolo, domaćin, gost) utakmica čiji je zapisnik već u bazi.
+
+    Za --samo-novi-zapisnici. Puni prolaz otvara SVAKI zapisnik sezone, i
+    one pročitane prije mjesec dana. Dok je odigrano tridesetak utakmica,
+    to su minute; u studenome, uz tristotinjak, prolaz traje dvadesetak
+    minuta, a HNS-u šaljemo stotine zahtjeva za podatke koje već imamo.
+    Mi smo na Semaforu gosti.
+
+    Potpun je zapisnik koji ima rezultat I obje postave. Utakmica s
+    rezultatom a bez postava (predana bez borbe, ili zapisnik koji je
+    HNS jednom vratio nepotpun) otvara se i dalje, jer bi joj inače
+    postave mogle zauvijek ostati prazne.
+
+    ZAŠTO NE SVAKI PROLAZ: HNS zapisnik zna ispraviti i danima nakon
+    utakmice (24.09.2026. gol u Medulinu prepisan s Babića na Tomića).
+    Prolaz koji preskače pročitane zapisnike takvu ispravku ne vidi. Zato
+    ova zastavica ide SAMO uz rani večernji prolaz, a kasni i
+    ponedjeljkom ujutro ostaju puni (vidi .github/workflows/scraper.yml).
+    Ispravka stigne istu večer, samo sat-dva kasnije.
+    """
+    potpuni = set()
+    for u in utakmice:
+        if (re.match(r"^\s*\d+\s*:\s*\d+\s*$", u.get("rezultat") or "")
+                and u.get("postava_domacin") and u.get("postava_gost")):
+            potpuni.add((u.get("kolo"), u.get("domacin"), u.get("gost")))
+    return potpuni
 
 
 def dohvati_zapisnike(naziv_natjecanja, sezona):
@@ -1872,6 +1905,9 @@ def _postavke_iz_naredbe():
     p.add_argument("--samo-raspored", action="store_true",
                    help="osvježi samo termine s rasporeda (datum, vrijeme, "
                         "stadion), bez zapisnika i rang-lista")
+    p.add_argument("--samo-novi-zapisnici", action="store_true",
+                   help="ne otvaraj zapisnike utakmica koje u bazi već "
+                        "imaju rezultat i obje postave")
     p.add_argument("--obrisi-nestale", action="store_true",
                    help="obriši i utakmice kojih na rasporedu više nema "
                         "(samo one bez rezultata); bez ove zastavice se "
@@ -2012,9 +2048,17 @@ if __name__ == "__main__":
         # gdje su i utakmice koje ovaj prolaz nije ni otvorio.
         zapisnici_prolaza = []
 
+        # Uz --samo-novi-zapisnici: što je već pročitano do kraja.
+        potpuni = (
+            potpuni_zapisnici(dohvati_zapisnike(natjecanje["naziv"], SEZONA))
+            if args.samo_novi_zapisnici and utakmice_s_kolima else set()
+        )
+        preskoceno_zapisnika = 0
+
         for i, stavka in enumerate(utakmice_s_kolima, start=1):
+            preskoci = (stavka["kolo"], stavka["domacin"], stavka["gost"]) in potpuni
             try:
-                if stavka["hns_url"] and not args.samo_raspored:
+                if stavka["hns_url"] and not args.samo_raspored and not preskoci:
                     detalji = dohvati_detalje_utakmice(stavka["hns_url"])
                     # domaćin/gost sa stranice zapisnika mogu se sitno
                     # razlikovati od rasporeda - raspored je izvor istine
@@ -2055,7 +2099,7 @@ if __name__ == "__main__":
                 # NK Željezničar (M) - NK Goranka.
                 redci_ispod = []
                 if stavka["hns_url"] and not args.samo_raspored \
-                        and not detalji.get("rezultat"):
+                        and not preskoci and not detalji.get("rezultat"):
                     # Zapisnik postoji, ali u njemu nema rezultata. To nije
                     # nasa greska nego nedovrsen zapisnik na HNS-u, pa se
                     # samo prijavljuje i utakmica ostaje bez rezultata.
@@ -2082,6 +2126,10 @@ if __name__ == "__main__":
                     # koji je stvarno upisan (ručni zna biti drugačiji od
                     # onoga s retka rasporeda).
                     poruka = _ispis_termina(datum, vrijeme)
+                if preskoci and stavka["hns_url"]:
+                    # Rezultat se ne šalje, pa ga ispis uzima iz baze.
+                    poruka = "zapisnik već u bazi, nije otvaran"
+                    preskoceno_zapisnika += 1
                 ishod = "BEZ UPISA (suhi test)" if POSTAVKE["dry_run"] else "spremljeno"
                 print(f"  [{i}/{ukupno}] (kolo {stavka['kolo']}) {stavka['domacin']} - {stavka['gost']} ({poruka}): {ishod}")
                 for redak_ispod in redci_ispod:
@@ -2104,8 +2152,11 @@ if __name__ == "__main__":
                     f"{stavka['domacin']} - {stavka['gost']}: {greska}"
                 )
                 print(f"  [{i}/{ukupno}] GREŠKA na {stavka.get('hns_url') or stavka['domacin']}: {greska}")
-            if stavka["hns_url"] and not args.samo_raspored:
+            if stavka["hns_url"] and not args.samo_raspored and not preskoci:
                 time.sleep(1)
+        if args.samo_novi_zapisnici:
+            print(f"  Samo novi zapisnici: {preskoceno_zapisnika} već "
+                  f"pročitanih nije otvarano.")
 
         # Tablica lige + strijelci + kartoni (za sidebar na stranici).
         #
