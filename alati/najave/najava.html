@@ -211,6 +211,13 @@ function horizont(k){
   </div>`;
 }
 
+// Retci ne smiju biti visi od 80 px, inace se liga s tri utakmice
+// razvuce preko cijele slike. Kraci popis se centrira u istom prostoru.
+function rasporedRedova(n){
+  const visina = Math.min(400 / n, 80) * n;
+  return `top:${170 + (400 - visina) / 2}px;height:${visina}px;grid-template-rows:repeat(${n},1fr)`;
+}
+
 function redovi(k){
   const redovi = k.utakmice.map(u => `
     <div class="red${u.derbi ? ' derbi' : ''}">
@@ -235,7 +242,7 @@ function redovi(k){
       </div>
     </div>
     <div class="crtaH"></div>
-    <div class="redovi" style="grid-template-rows:repeat(${k.utakmice.length},1fr)">${redovi}</div>
+    <div class="redovi" style="${rasporedRedova(k.utakmice.length)}">${redovi}</div>
     <div class="potpis">LOKAL-ARENA</div>
     <div class="brojka">${k.utakmice.length} ${rijecUtakmica(k.utakmice.length)} &middot; ${k.utakmice.length * 2} klubova${k.slobodan ? ` &middot; slobodan: ${esc(k.slobodan)}` : ''}</div>
     <div class="rub"></div>
