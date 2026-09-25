@@ -1184,6 +1184,23 @@ Andrej odabere jedanaestoricu, a stranica ih prikaže na terenu u
 formaciji, s grbovima i poveznicama na igrače. Ovo je jedini od četiri
 zahvata koji traži novu tablicu u bazi.
 
+NOVA TABLICA TREBA GRANT. Supabase je 23.09.2026. javio e-poštom da od
+30.10.2026. nove tablice u shemi `public` više ne dobivaju pristup
+preko Data API-ja sami od sebe. Postojeće tablice ostaju kakve jesu.
+Bez `grant` naredbe stranica i scraper novu tablicu ne vide (API vraća
+"permission denied"). Zato u ISTU datoteku koja stvara tablicu ide i:
+
+```
+grant select on public.<tablica> to anon, authenticated;
+grant select, insert, update, delete on public.<tablica> to service_role;
+```
+
+Primjer iz Supabaseova maila daje i `insert, update, delete` ulozi
+`authenticated`. To se kod nas namjerno NE radi: na stranicu se nitko
+ne prijavljuje, upis ide samo kroz SQL Editor ili scraper
+(`service_role`), pa pravo pisanja ne treba otvarati nikome drugom.
+Uz grant ide i RLS s politikom samo za čitanje, kao kod `clanci`.
+
 Nijedna od ove četiri stvari nije tražila Pro plan. Zapisano da se
 kasnije ne pomiješa: Pro je kupljen radi mira, a ne zato što se ovo
 drukčije ne bi dalo napraviti.
