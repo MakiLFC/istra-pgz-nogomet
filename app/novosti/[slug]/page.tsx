@@ -45,8 +45,10 @@ import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
 // od 3h31 od besplatnih 4h. Sve gore napisano vrijedi i dalje, samo se
 // izmjena već objavljenog članka, poput pomicanja kadra fotografije,
 // sada vidi do tri minute kasnije umjesto do minute.
+//
+// 25.09.2026., na Pro planu, vraćeno na šezdeset sekundi.
 // ---------------------------------------------------------------------
-export const revalidate = 180;
+export const revalidate = 60;
 
 export async function generateMetadata({
   params,

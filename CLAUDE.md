@@ -1022,6 +1022,17 @@ nove mogućnosti ne vagaju prema minutama procesora.
   na 180 sekundi, stranica utakmice i kluba na sat, stranica igrača i
   sitemap na dan. Te su brojke i bez ograničenja razumne, jer scraper
   ide najviše dvaput dnevno.
+
+  PROMIJENJENO 25.09.2026., na Andrejev zahtjev: naslovnica, stranica
+  utakmice i stranica kluba na 5 minuta, članak na 60 sekundi, igrač na
+  sat, sitemap ostaje na dan. Razlog nije scraper nego RUČNE izmjene iz
+  SQL Editora (derbi, sažetak uz zapisnik, obrisan termin odgođene
+  utakmice): Andrej ih pokrene i očekuje da se vide odmah, a naslovnica
+  ih je pokazivala tek nakon pola sata, pa je izgledalo da upit nije
+  prošao. Oznaka derbija Kraljevica - Krk bila je povod. Potrošnja se
+  prati na nadolazećem računu (Settings, Billing, Invoices); ako ikad
+  naraste, prvo se produlji stranica utakmice i igrača, jer njih
+  tražilice obilaze u tisućama.
 - `vercel-preskoci-build.sh` ostaje. Manje buildova je uredno samo po
   sebi i čuva povijest objava preglednom.
 - Pravilo 3 i dalje vrijedi: prije svakog pusha `npm run build`.
@@ -1183,6 +1194,23 @@ primljenog gola, igrači pobjedničkih momčadi, isključeni otpadaju),
 Andrej odabere jedanaestoricu, a stranica ih prikaže na terenu u
 formaciji, s grbovima i poveznicama na igrače. Ovo je jedini od četiri
 zahvata koji traži novu tablicu u bazi.
+
+NOVA TABLICA TREBA GRANT. Supabase je 23.09.2026. javio e-poštom da od
+30.10.2026. nove tablice u shemi `public` više ne dobivaju pristup
+preko Data API-ja sami od sebe. Postojeće tablice ostaju kakve jesu.
+Bez `grant` naredbe stranica i scraper novu tablicu ne vide (API vraća
+"permission denied"). Zato u ISTU datoteku koja stvara tablicu ide i:
+
+```
+grant select on public.<tablica> to anon, authenticated;
+grant select, insert, update, delete on public.<tablica> to service_role;
+```
+
+Primjer iz Supabaseova maila daje i `insert, update, delete` ulozi
+`authenticated`. To se kod nas namjerno NE radi: na stranicu se nitko
+ne prijavljuje, upis ide samo kroz SQL Editor ili scraper
+(`service_role`), pa pravo pisanja ne treba otvarati nikome drugom.
+Uz grant ide i RLS s politikom samo za čitanje, kao kod `clanci`.
 
 Nijedna od ove četiri stvari nije tražila Pro plan. Zapisano da se
 kasnije ne pomiješa: Pro je kupljen radi mira, a ne zato što se ovo

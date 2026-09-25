@@ -35,7 +35,12 @@ import type { Utakmica } from "@/lib/supabase";
 // odigrana utakmica se poslije zapisnika ne mijenja uopće. Pet minuta je
 // zato bilo prekratko: svaki ponovni posjet nakon njih pokretao je novo
 // renderiranje. Sat vremena daje isti sadržaj uz mnogo manje posla.
-export const revalidate = 3600;
+//
+// 25.09.2026., na Pro planu, spušteno na pet minuta. Sažetak uz zapisnik i
+// oznaka derbija upisuju se ručno i trebaju se vidjeti odmah, a ne tek za
+// sat vremena. Cijena je više renderiranja od tražilica, sada pokrivena
+// mjesečnim kreditom.
+export const revalidate = 300;
 
 /** "NK A 2:1 NK B" za odigranu, "NK A - NK B" za onu koja se tek igra. */
 function naslovUtakmice(u: Utakmica): string {
