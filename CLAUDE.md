@@ -1204,6 +1204,30 @@ težište je na dosadašnjim rezultatima momčadi u tekućoj sezoni, a
 prošlosezonski susreti se spominju samo kad stvarno nešto govore. Ne mora
 biti riječ o međusobnim ogledima.
 
+**Najava gleda UNAPRIJED, ne prepričava prošlo kolo.** 25.09.2026.
+Andrej je prvu verziju najave 4. kola 1. ŽNL vratio s napomenom da
+odlomci "ispadaju kao pregled a ne najava": svaki je počinjao nizanjem
+rezultata i strijelaca iz prošlog kola. Prepisana verzija je prošla uz
+"takve najave piši i ubuduće u tom stilu". Kako izgleda:
+
+- Odlomak počinje onim što je NA KOCKI u tom susretu: što pobjeda znači
+  za poredak ("pobjedom bi preskočio gosta", "može pobjeći na pet
+  bodova", "izravan dvoboj za gornju polovicu").
+- Forma se daje kao UČINAK KOD KUĆE ILI U GOSTIMA, izračunat iz rezultata
+  sezone ("na Gradskom stadionu ove sezone ne gubi: dvije utakmice, dvije
+  pobjede, uz gol razliku 6:1", "jedinu pobjedu upisala je upravo u
+  gostima"). To je aritmetika nad bazom, ne procjena.
+- Prošlo kolo ide najviše jednom rečenicom, i to kao povod ("dolazi
+  nabrijan nakon prve pobjede, izborene u trećoj minuti nadoknade").
+- Kad netko ne igra (slobodan, odgođeno), kaže se što to znači za
+  ostale ("dok Rab ovaj vikend ne igra").
+- I dalje vrijedi pravilo 5: ništa što nije u bazi ili od Andreja.
+- Precizno kod usporedbi: dva kluba s istim brojem pobjeda nisu "isti"
+  ako jedan ima bod više, pa se to kaže ("po jednu pobjedu, a Risnjak
+  bod više").
+
+Primjer je `sql/najava_4_kola_1_znl_2627.sql`.
+
 **Vodeći strijelac iz `najava_kola()` nije cijela slika.** Ta funkcija po
 klubu vraća SAMO JEDNOG igrača, onog s najviše pogodaka. Kraljevica je
 07.09.2026. imala trojicu s po dva pogotka (Znamenaček, Bosančić,
