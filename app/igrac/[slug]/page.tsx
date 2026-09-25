@@ -39,7 +39,12 @@ import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
 // Cijena: nakon odigranog kola stranica igrača može do jedan dan
 // pokazivati stanje bez tog kola. Stranica utakmice je namjerno ostala
 // na sat vremena, jer ondje idu rezultati i sažeci.
-export const revalidate = 86400;
+//
+// 25.09.2026., na Pro planu, vraćeno na sat vremena. Dan je bio predug:
+// igrač je nakon kola do sutra stajao bez svog gola. Kraće od sata nema
+// smisla, jer ovih stranica ima nekoliko tisuća, a podatak se mijenja
+// najviše dvaput dnevno.
+export const revalidate = 3600;
 
 /**
  * Unaprijed se pripremaju samo stranice igrača koji su zabili gol ili

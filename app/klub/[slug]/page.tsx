@@ -35,7 +35,10 @@ import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
 // pedesetak, svi su u sitemapu, a podaci im se mijenjaju najviše dvaput
 // dnevno, koliko puta ide scraper. Pet minuta je bilo prekratko i ova je
 // ruta 14.09.2026. bila druga po potrošnji procesora na Vercelu.
-export const revalidate = 3600;
+//
+// 25.09.2026., na Pro planu, spušteno na pet minuta, kao i stranica
+// utakmice, da premješteni termin i novi rezultat ne kasne sat vremena.
+export const revalidate = 300;
 
 /**
  * Adrese se pripremaju pri gradnji, da ih tražilice zateknu gotove.

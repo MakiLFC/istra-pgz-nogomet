@@ -26,7 +26,11 @@ import { zadnjeKolo, utakmiceKola, golovi } from "@/lib/kolo";
 // Cijena: kartica novog članka i novi rezultat pojave se na naslovnici
 // do pola sata kasnije. Sam članak se vidi odmah, na svojoj adresi i u
 // novostima, a stranica lige nije keširana.
-export const revalidate = 1800;
+//
+// 25.09.2026., na Pro planu, vraćeno na pet minuta. Ograničenje od četiri
+// sata više nije zid (vidi CLAUDE.md, Pro plan), a ručne izmjene iz SQL
+// Editora, poput oznake derbija ili novog sažetka, čekale su i pola sata.
+export const revalidate = 300;
 
 // Naslovnica dohvaća samo stupce koje prikazuje, pa ima i svoj uži tip.
 // (Puni tip Utakmica uključuje i postave, koje ovdje namjerno ne vučemo.)

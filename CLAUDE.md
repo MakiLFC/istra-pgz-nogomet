@@ -1022,6 +1022,17 @@ nove mogućnosti ne vagaju prema minutama procesora.
   na 180 sekundi, stranica utakmice i kluba na sat, stranica igrača i
   sitemap na dan. Te su brojke i bez ograničenja razumne, jer scraper
   ide najviše dvaput dnevno.
+
+  PROMIJENJENO 25.09.2026., na Andrejev zahtjev: naslovnica, stranica
+  utakmice i stranica kluba na 5 minuta, članak na 60 sekundi, igrač na
+  sat, sitemap ostaje na dan. Razlog nije scraper nego RUČNE izmjene iz
+  SQL Editora (derbi, sažetak uz zapisnik, obrisan termin odgođene
+  utakmice): Andrej ih pokrene i očekuje da se vide odmah, a naslovnica
+  ih je pokazivala tek nakon pola sata, pa je izgledalo da upit nije
+  prošao. Oznaka derbija Kraljevica - Krk bila je povod. Potrošnja se
+  prati na nadolazećem računu (Settings, Billing, Invoices); ako ikad
+  naraste, prvo se produlji stranica utakmice i igrača, jer njih
+  tražilice obilaze u tisućama.
 - `vercel-preskoci-build.sh` ostaje. Manje buildova je uredno samo po
   sebi i čuva povijest objava preglednom.
 - Pravilo 3 i dalje vrijedi: prije svakog pusha `npm run build`.
