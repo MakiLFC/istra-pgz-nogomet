@@ -23,6 +23,7 @@ from fotografija import (  # noqa: E402
     ime_datoteke,
     pripremi,
     procisti_adresu,
+    uokviri_cijelu,
 )
 
 
@@ -146,6 +147,60 @@ def test_bez_poveznice_jasna_poruka():
     print("OK: bez poveznice ide jasna poruka")
 
 
+def _vidi_se_cijela(platno, sirina, visina):
+    """Stane li slika sirina x visina, stavljena u sredinu platna, cijela
+    u okvir 3:2 (članak) i 16:9 (kartica) kad stranica reže višak."""
+    for okvir in (3 / 2, 16 / 9):
+        if platno.width / platno.height > okvir:
+            vidljivo = (platno.height * okvir, platno.height)
+        else:
+            vidljivo = (platno.width, platno.width / okvir)
+        if sirina > vidljivo[0] + 1 or visina > vidljivo[1] + 1:
+            return False
+    return True
+
+
+def test_cijela_stane_u_oba_okvira():
+    """Uspravna, položena, široka i već 16:9: cijela u članku i na kartici."""
+    for sirina, visina in ((1200, 1600), (1600, 1200), (1600, 800),
+                           (1600, 900), (900, 900)):
+        slika = Image.new("RGB", (sirina, visina), (200, 30, 30))
+        platno = uokviri_cijelu(slika)
+        assert _vidi_se_cijela(platno, sirina, visina), (sirina, visina, platno.size)
+        omjer = platno.width / platno.height
+        assert 1.5 - 0.01 <= omjer <= 16 / 9 + 0.01, (sirina, visina, platno.size)
+    print("OK: cijela slika stane i u 3:2 i u 16:9")
+
+
+def test_cijela_fotografija_ostaje_netaknuta():
+    """Fotografija je zalijepljena u sredinu u punoj veličini; podloga je
+    samo sa strane."""
+    slika = Image.new("RGB", (1200, 1600), (200, 30, 30))
+    platno = uokviri_cijelu(slika)
+    lijevo = (platno.width - 1200) // 2
+    assert platno.getpixel((lijevo + 600, 800)) == (200, 30, 30)
+    assert platno.getpixel((lijevo, 0)) == (200, 30, 30)
+    assert platno.getpixel((lijevo + 1199, 1599)) == (200, 30, 30)
+    # podloga je zatamnjena, dakle nije ista boja kao fotografija
+    assert platno.getpixel((5, 800)) != (200, 30, 30)
+    print(f"OK: 1200x1600 netaknuta na podlozi {platno.size}")
+
+
+def test_cijela_uspravna_kroz_pripremu():
+    izlaz = pripremi(_slika(1500, 2000), cijela=True)
+    nova = Image.open(io.BytesIO(izlaz))
+    assert nova.size == (1600, 900), nova.size
+    assert len(izlaz) <= NAJVISE_BAJTOVA, len(izlaz)
+    print(f"OK: uspravna 1500x2000 kao cijela postane {nova.size}, "
+          f"{len(izlaz) // 1024} KB")
+
+
+def test_bez_cijele_nista_se_ne_mijenja():
+    izlaz = pripremi(_slika(1500, 2000))
+    assert Image.open(io.BytesIO(izlaz)).size == (1200, 1600)
+    print("OK: bez kvačice slika ostaje u svom omjeru")
+
+
 if __name__ == "__main__":
     test_siroka_se_smanji_na_1600()
     test_uspravna_se_smanji_po_visini()
@@ -160,4 +215,8 @@ if __name__ == "__main__":
     test_adresa_iz_html_oznake_bez_navodnika()
     test_gola_adresa_prolazi()
     test_bez_poveznice_jasna_poruka()
+    test_cijela_stane_u_oba_okvira()
+    test_cijela_fotografija_ostaje_netaknuta()
+    test_cijela_uspravna_kroz_pripremu()
+    test_bez_cijele_nista_se_ne_mijenja()
     print("\nSVE PROLAZI")

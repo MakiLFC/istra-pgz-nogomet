@@ -29,6 +29,11 @@
 #
 # REZANJE NIJE POTREBNO. Stranica sama uklopi sliku u 3:2 u članku i 16:9
 # na kartici, a kadar govori koji se dio po visini zadrži.
+#
+# CIJELA SLIKA. Kad se mora vidjeti i vrh i dno uspravne fotografije,
+# označi kvačicu "cijela". Fotografija tada ide na širu podlogu od same
+# sebe, zamućene i zatamnjene, pa je stranica ne reže nigdje. Datoteka
+# dobiva nastavak "-cijela", da se ne pomiješa s ranijom, odrezanom.
 
 name: Fotografija za članak
 
@@ -57,6 +62,11 @@ on:
         required: false
         default: "Foto: Lokal-Arena"
         type: string
+      cijela:
+        description: "Cijela slika, bez rezanja vrha i dna (za uspravne fotografije)"
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   fotografija:
@@ -86,4 +96,5 @@ jobs:
             --slug "${{ inputs.slug }}" \
             --kadar "${{ inputs.kadar }}" \
             --opis "${{ inputs.opis }}" \
-            --potpis "${{ inputs.potpis }}"
+            --potpis "${{ inputs.potpis }}" \
+            ${{ inputs.cijela && '--cijela' || '' }}
