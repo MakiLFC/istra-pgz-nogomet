@@ -23,10 +23,12 @@ await p.evaluate(() => document.fonts.ready);
 for (const k of kola) {
   if (samo && k.dat !== samo) continue;
   for (const stil of [k.stil || 'ploca']) {
+    // Pregled kola ima svoje ime datoteke ("ime"), inace je najava-stil-dat.
+    const ime = k.ime || `najava-${stil}-${k.dat}`;
     await p.evaluate(kk => window.slozi(kk), { ...k, stil });
     await p.waitForTimeout(180);
-    await p.locator('.z').screenshot({ path: `izlaz/najava-${stil}-${k.dat}.png` });
-    console.log('napravljeno:', `najava-${stil}-${k.dat}.png`);
+    await p.locator('.z').screenshot({ path: `izlaz/${ime}.png` });
+    console.log('napravljeno:', `${ime}.png`);
   }
 }
 await b.close();
