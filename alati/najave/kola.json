@@ -407,6 +407,103 @@
           "termin": "NED 16:00"
         }
       ]
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-4-pregled",
+      "ime": "pregled-4-nl-ns-rijeka-kolo-4",
+      "kolo": "4",
+      "stil": "redovi",
+      "naslov": "Pregled",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 26.09. i UTO 29.09.2026.",
+      "sat": "Rezultati kola",
+      "slobodan": "Borac (Ba)",
+      "utakmice": [
+        {
+          "d": "Cres",
+          "g": "Otočac",
+          "termin": "SUB 16:00",
+          "rezultat": "3:1"
+        },
+        {
+          "d": "Rječina",
+          "g": "Funtana",
+          "termin": "SUB 16:30",
+          "rezultat": "1:2"
+        },
+        {
+          "d": "Smoljanci",
+          "g": "Mladost Fažana",
+          "termin": "SUB 16:30",
+          "rezultat": "4:1"
+        },
+        {
+          "d": "Štinjan",
+          "g": "Žminj",
+          "termin": "SUB 16:30",
+          "rezultat": "0:1"
+        },
+        {
+          "d": "Umag-CC Umago",
+          "g": "Medulin 1921",
+          "termin": "SUB 16:30",
+          "rezultat": "2:0"
+        },
+        {
+          "d": "Ližnjan",
+          "g": "Klana",
+          "termin": "UTO 17:00"
+        }
+      ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-4-pregled",
+      "ime": "pregled-1-znl-pgz-kolo-4",
+      "kolo": "4",
+      "stil": "redovi",
+      "naslov": "Pregled",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 26.09. i NED 27.09.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Lovran",
+          "g": "Draga",
+          "termin": "SUB 15:00",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Zamet",
+          "g": "Risnjak",
+          "termin": "SUB 16:00",
+          "rezultat": "1:2"
+        },
+        {
+          "d": "Vihor (B)",
+          "g": "Mune",
+          "termin": "NED 16:00"
+        },
+        {
+          "d": "Stari grad Rijeka",
+          "g": "Lošinj",
+          "termin": "NED 16:00"
+        },
+        {
+          "d": "Vrbovsko",
+          "g": "Rikard Benčić",
+          "termin": "NED 16:00"
+        },
+        {
+          "d": "Turbina",
+          "g": "Omladinac Vrata",
+          "termin": "NED 16:00"
+        },
+        {
+          "d": "Rab",
+          "g": "Goranin",
+          "termin": "ODGOĐENO"
+        }
+      ]
     }
   ]
 }
