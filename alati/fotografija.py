@@ -42,7 +42,7 @@ import time
 from datetime import date
 
 import requests
-from PIL import Image, ImageOps
+from PIL import Image, ImageEnhance, ImageFilter, ImageOps
 
 print = functools.partial(print, flush=True)  # zapisnik ide redom
 
@@ -100,17 +100,62 @@ def dohvati(adresa, najvise_pokusaja=3):
     raise SystemExit(f"Slika se ne može skinuti: {zadnja}")
 
 
-def pripremi(sadrzaj):
+def uokviri_cijelu(slika):
+    """Stavlja cijelu fotografiju na širu podlogu, da je stranica ne reže.
+
+    Stranica sliku u članku reže na 3:2, a na kartici na 16:9. Uspravnoj
+    fotografiji time otpadne i vrh i dno, a kadar može spasiti samo jedno.
+    26.09.2026. je Andrej za pregled 6. kola 3. NL tražio da se vidi
+    CIJELA, i gore i dolje.
+
+    Platno se zato slaže tako da cijela fotografija stane u OBA okvira:
+    dovoljno široko da je 16:9 ne odreže po visini, i dovoljno visoko da
+    je 3:2 ne odreže po širini. Prazan prostor sa strane popunjava ista
+    fotografija, razvučena, zamućena i zatamnjena, kao što rade televizije
+    kad prikazuju uspravnu snimku mobitela. Crne trake bi izgledale kao
+    greška.
+    """
+    sirina, visina = slika.size
+    platno_s = max(sirina, round(visina * 16 / 9))
+    platno_v = max(visina, round(sirina / 1.5))
+    if (platno_s, platno_v) == (sirina, visina):
+        return slika
+
+    # Podloga se radi na malenoj kopiji, jer je zamućenje ionako briše, a
+    # na punoj veličini bi trajalo. Razvuče se tako da pokrije cijelo platno.
+    omjer = max(platno_s / sirina, platno_v / visina)
+    malena = slika.resize(
+        (max(1, round(sirina * omjer / 8)), max(1, round(visina * omjer / 8))),
+        Image.LANCZOS)
+    malena = malena.filter(ImageFilter.GaussianBlur(4))
+    malena = ImageEnhance.Brightness(malena).enhance(0.55)
+    podloga = malena.resize((round(sirina * omjer), round(visina * omjer)),
+                            Image.LANCZOS)
+    lijevo = (podloga.width - platno_s) // 2
+    gore = (podloga.height - platno_v) // 2
+    platno = podloga.crop((lijevo, gore, lijevo + platno_s, gore + platno_v))
+
+    platno.paste(slika, ((platno_s - sirina) // 2, (platno_v - visina) // 2))
+    print(f"  cijela slika: {sirina}x{visina} na podlozi {platno_s}x{platno_v}")
+    return platno
+
+
+def pripremi(sadrzaj, cijela=False):
     """Uspravi, smanji i sažmi fotografiju. Vraća bajtove JPEG-a.
 
     EXIF ORIJENTACIJA je ovdje bitna: mobitel bočno snimljenu fotografiju
     sprema uspravno uz oznaku "zakreni pri prikazu". Alat koji tu oznaku
     ne poštuje dobije sliku položenu na stranu. Zato exif_transpose.
+
+    Uz cijela=True fotografija ide na širu podlogu (uokviri_cijelu), pa je
+    stranica prikaže cijelu, bez rezanja.
     """
     slika = Image.open(io.BytesIO(sadrzaj))
     slika = ImageOps.exif_transpose(slika)
     if slika.mode != "RGB":
         slika = slika.convert("RGB")
+    if cijela:
+        slika = uokviri_cijelu(slika)
 
     # Gleda se DUŽA stranica, ne samo širina. Uspravna fotografija s
     # mobitela zna biti 1500x2000: širina je ispod granice, pa se stara
@@ -222,6 +267,8 @@ def main():
                    help="okomiti kadar: vrh, sredina, dno ili broj 0 do 100")
     p.add_argument("--opis", default="", help="opis slike za čitače ekrana")
     p.add_argument("--potpis", default="Foto: Lokal-Arena")
+    p.add_argument("--cijela", action="store_true",
+                   help="prikaži cijelu sliku, bez rezanja vrha i dna")
     args = p.parse_args()
 
     adresa_baze = (os.environ.get("SUPABASE_URL") or "").rstrip("/")
@@ -233,9 +280,13 @@ def main():
     if adresa != (args.adresa or "").strip():
         print(f"Iz unosa je izvučena adresa: {adresa}")
     print(f"Skidam: {adresa}")
-    bajtovi = pripremi(dohvati(adresa))
+    bajtovi = pripremi(dohvati(adresa), cijela=args.cijela)
 
-    putanja = ime_datoteke(args.slug, args.ime)
+    # Cijela slika dobiva svoje ime. Da ode pod isto ime kao ranija,
+    # odrezana, stranica i Facebook bi još neko vrijeme pokazivali staru
+    # iz svoje zalihe, jer se adresa nije promijenila.
+    ime = args.ime or (f"{args.slug or 'slika'}-cijela" if args.cijela else "")
+    putanja = ime_datoteke(args.slug, ime)
     adresa_slike = ucitaj_u_storage(adresa_baze, kljuc, putanja, bajtovi)
     print(f"\nSlika je u Storageu:\n{adresa_slike}")
 
