@@ -105,6 +105,28 @@ def ispisi_utakmicu(utakmica):
 
     if not (utakmica.get("postava_domacin") or utakmica.get("postava_gost")):
         print("  NAPOMENA: zapisnik nema postave, pa kartoni nisu poznati.")
+        return
+
+    # Postave s brojevima dresa. Andrej s utakmice sažetak piše po
+    # brojevima ("16S", "L24"), jer imena s tribine ne vidi; iz ovoga se
+    # broj pretvara u ime bez upita nad bazom.
+    for strana, kljuc in (("D", "postava_domacin"), ("G", "postava_gost")):
+        print(f"  POSTAVA {strana}:")
+        for igrac in utakmica.get(kljuc) or []:
+            oznake = []
+            if igrac.get("pozicija") == "Vratar":
+                oznake.append("vratar")
+            if igrac.get("kapetan"):
+                oznake.append("kapetan")
+            if igrac.get("pricuvni"):
+                oznake.append("klupa")
+            dogadjaji = ", ".join(
+                f"{d.get('tip')} {d.get('minuta') or 'bez minute'}"
+                for d in igrac.get("dogadjaji") or []
+            )
+            print(f"    {igrac.get('broj') or '?':>2}  {igrac.get('igrac', '')}"
+                  f"{'  [' + ', '.join(oznake) + ']' if oznake else ''}"
+                  f"{'  ' + dogadjaji if dogadjaji else ''}")
 
 
 def ispisi_statistiku(redak):
