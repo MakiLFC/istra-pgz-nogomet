@@ -11,8 +11,18 @@
 -- ODAKLE STO
 --   Subota (Lovran - Draga, Zamet - Risnjak): zapisnici sa Semafora,
 --   posao "Ispis kola" 27.09.2026. u 14:45 po nasem.
---   Nedjelja: [[public.pregled_kola('2026/27','1. ŽNL PGŽ',4) nakon
---   utakmica]].
+--   Nedjelja: isti posao s postavama, 27.09.2026. u 18:35 po nasem.
+--   Ljestvica je sluzbena, iz istog ispisa (svi klubovi koji su igrali
+--   imaju po cetiri utakmice, Rab i Goranin tri).
+--
+-- POMACI
+--   Ljestvica prije kola izracunata je tako da se od sluzbene oduzme ovo
+--   kolo: Lovran 9, Rab 7, Turbina 6 (+3), Losinj 6 (+2), Stari grad 5,
+--   Mune 4 (+3), Omladinac 4 (+1), Goranin 4 (-1), Risnjak 4 (-6),
+--   Vrbovsko 3 (-1), Zamet 3 (-3), Draga 3 (-5), Rikard Bencic 1, Vihor 0.
+--   Poredak se slaze s najavom 4. kola (Draga dvanaesta). Poslije kola:
+--   Losinj 4 -> 2, Mune 6 -> 3, Risnjak 9 -> 6, Rikard Bencic 13 -> 10,
+--   Stari grad 5 -> 8, Rab 2 -> 4, Turbina 3 -> 5.
 --   Kup (Lovran - Opatija 0:7) iz clanka o 1/16 finala i najave 4. kola.
 --   Ucinak kod kuce izracunat iz rezultata sezone: Lovran je prije ovog
 --   kola kod kuce dobio obje utakmice, Zamet je kod kuce dobio Omladinac
@@ -41,15 +51,17 @@ Zamet - Risnjak 1:2. Zamet je na igralištu Robert Komen poveo već u 7. minuti 
 
 [[Stari grad Rijeka - Lošinj]]
 
-[[Turbina - Omladinac Vrata]]
+Vihor - Mune 0:3. Mune su na Zablaću u Baški riješile susret u prvih šesnaest minuta: David Gulan zabio je u 13., a Karlo Šneler u 16. minuti. Antonio Džaja postavio je konačnih 0:3 u 80. minuti. Mune su upisale drugu pobjedu zaredom, obje bez primljenog gola, i popele se na treće mjesto. Šneler je s pet pogodaka drugi strijelac lige. Vihor je izgubio i četvrtu utakmicu i jedini je bez boda.
 
-[[Vihor - Mune]]
+Vrbovsko - Rikard Benčić 0:1. Jedini gol u Vrbovskom zabio je Bakir Delić u 37. minuti, i time donio Rikard Benčiću prvu pobjedu u sezoni. Vrbovsko je doživjelo prvi poraz kod kuće. Susret je pratilo 80 gledatelja, a sudac je podijelio devet žutih kartona, četiri domaćima i pet gostima.
 
-[[Vrbovsko - Rikard Benčić]]
+Turbina - Omladinac Vrata 1:1. Moreno Maretić doveo je Turbinu u vodstvo u 25. minuti, a Diego Žic, koji je ušao na poluvremenu, izjednačio je u 69. Turbina je tako na Gradskom stadionu prvi put ove sezone ostala bez pobjede, a Omladinac je u gostima osvojio prvi bod. Žic ima tri gola.
 
 LJESTVICA
 
-[[Nakon nedjelje. Lovran 12 bodova iz četiri utakmice, Rab 7 iz tri (nije igrao). Provjeriti da svi klubovi koji su igrali imaju isti broj utakmica, vidi CLAUDE.md.]]
+Lovran vodi s dvanaest bodova, tri ispred Lošinja, koji je pobjedom na Belvederu skočio na drugo mjesto. Po sedam bodova imaju Mune, Rab, Turbina i Risnjak. Na dnu je Vihor, jedini bez boda. Rab i Goranin odigrali su utakmicu manje, jer je njihov susret odgođen.
+
+Najviše su napredovali Mune, Risnjak i Rikard Benčić, po tri mjesta, a najviše je pao Stari grad Rijeka, s petog na osmo mjesto. Uz Lovran, bez poraza je ostao još samo Rab.
 
 STRIJELCI
 
