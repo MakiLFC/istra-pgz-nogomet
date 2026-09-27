@@ -17,7 +17,9 @@
 --   Ucinak kod kuce izracunat iz rezultata sezone: Lovran je prije ovog
 --   kola kod kuce dobio obje utakmice, Zamet je kod kuce dobio Omladinac
 --   2:1 (najava 4. kola).
---   ANDREJEVO: "susjedski derbi" za Lovran - Draga (iz najave).
+--   ANDREJEVO: "susjedski derbi" za Lovran - Draga (iz najave). Odlomak
+--   o Lovranu je njegova verzija (27.09.). Za Risnjak: "kao da nikada
+--   nije ni ispao iz ove lige" (27.09.).
 --
 -- RISNJAK
 --   Rupe je u 3. kolu zabio pobjednicki gol protiv Vrbovskog u trecoj
@@ -33,9 +35,9 @@ values (
   '[[SAZETAK]]',
 'Četvrto kolo 1. ŽNL PGŽ odigrano je u subotu 26. i nedjelju 27. rujna. Susret Rab - Goranin je odgođen. [[BROJ GOLOVA U KOLU, NAJVIŠE GLEDATELJA]]
 
-Lovran - Draga 2:1. Lovran je u susjedskom derbiju na Lokvi, pred 300 gledatelja, upisao četvrtu pobjedu iz četiri utakmice i treću kod kuće. Do 77. minute bilo je bez golova, a onda je Mateo Mandić otvorio rezultat, a Patrik Vidmar u 84. povisio na 2:0. Andrea Štemberger smanjio je za Dragu u 88. minuti. Vidmar je sa sedam pogodaka i dalje prvi strijelac lige. Lovran se tako tri dana nakon poraza od Opatije u kupu, 0:7 na istom terenu, vratio pobjedom, a kako Rab nije igrao, ima pet bodova prednosti ispred njega.
+Lovran - Draga 2:1. Lovran je u susjedskom derbiju na Lokvi, pred čak 300 gledatelja, upisao četvrtu pobjedu iz četiri utakmice i treću kod kuće. Do 77. minute bilo je bez golova, a onda je Mateo Mandić doveo domaćina u vodstvo. Potom je Patrik Vidmar u 84. povisio na 2:0, dok je Andrea Štemberger smanjio za Dragu u 88. minuti. Vidmar je sa sedam pogodaka i dalje prvi strijelac lige. Lovran se tako tri dana nakon poraza od Opatije u kupu, 0:7 na istom terenu, vratio pobjedom, a kako Rab nije igrao, ima pet bodova prednosti ispred njega.
 
-Zamet - Risnjak 1:2. Zamet je na igralištu Robert Komen poveo već u 7. minuti golom Hrvoja Ožanića, ali je Risnjak preokrenuo. Erik Grgurić izjednačio je u 39. minuti, a Karlo Rupe u 49. zabio za 1:2, drugo kolo zaredom pobjednički gol. Risnjak je upisao drugu pobjedu zaredom, a Zamet prvi poraz kod kuće ove sezone.
+Zamet - Risnjak 1:2. Zamet je na igralištu Robert Komen poveo već u 7. minuti golom Hrvoja Ožanića, ali je Risnjak preokrenuo. Erik Grgurić izjednačio je u 39. minuti, a Karlo Rupe u 49. zabio za 1:2, drugo kolo zaredom pobjednički gol. Risnjak je upisao drugu pobjedu zaredom, a Zamet prvi poraz kod kuće ove sezone. I ovaj rezultat pokazuje da Risnjak igra kao da nikada nije ni ispao iz ove lige.
 
 [[Stari grad Rijeka - Lošinj]]
 
