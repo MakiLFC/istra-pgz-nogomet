@@ -55,7 +55,7 @@ STRIJELCI
 
 LJESTVICA
 
-Gomirje vodi s dvanaest bodova, pet ispred Goranke, koja se pobjedom u Skradu popela na drugo mjesto. Mrkopalj je pao na treće sa šest bodova, ali ima utakmicu manje. Željezničar je sa četiri boda preskočio Polet, a Snježnik je i dalje bez boda. Goranka i Gomirje imaju istu gol razliku, plus devet.
+Gomirje vodi s dvanaest bodova, pet ispred Goranke, koja se pobjedom u Skradu popela na drugo mjesto. Mrkopalj je pao na treće mjesto sa šest bodova. Željezničar je sa četiri boda preskočio Polet, a Snježnik je i dalje bez boda. Goranka i Gomirje imaju istu gol razliku, plus devet.
 
 Mrkopalj i Snježnik i dalje imaju utakmicu manje, jer je njihov susret iz 1. kola odgođen.
 
@@ -63,7 +63,7 @@ ZA SLJEDEĆE KOLO
 
 Peto kolo propušta Luka Mršić (Mrkopalj) zbog crvenog kartona.
 
-Peto kolo igra se u nedjelju 4. listopada u 16 sati: Goranka - Gomirje, Mrkopalj - Željezničar (M) i Snježnik - Polet (Sk). Drugi i prvi odmah se sastaju u Ravnoj Gori.',
+Igra se u nedjelju 4. listopada u 16 sati: Goranka - Gomirje, Mrkopalj - Željezničar (M) i Snježnik - Polet (Sk). Drugi i prvi odmah se sastaju u Ravnoj Gori.',
   '2. ŽNL PGŽ',
   false,
   now()
