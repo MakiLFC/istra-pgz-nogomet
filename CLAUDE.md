@@ -1267,3 +1267,11 @@ Andrej nije programer. Objašnjavaj bez žargona i uvijek reci **u koju točno
 mapu ide koja datoteka** (tri različite datoteke se zovu `page.tsx`).
 Kad nešto ne radi, prvo dijagnosticiraj pa tek onda mijenjaj — nekoliko puta
 se dogodilo da je "popravak" bez dijagnoze pokvario drugu stvar.
+
+**Fotografija poslana u razgovor bez ikakvog teksta vraća se kao datoteka.**
+Andrej tako prenosi fotografije s mobitela na laptop: učita je u razgovor
+s Claudeom, pa je na laptopu preuzme. Dogovoreno 27.09.2026. Kad stigne
+samo slika, bez ijedne riječi, ne pita se uz koji članak ide, ne mijenja
+se, ne smanjuje i ne sprema u repozitorij, nego se odmah vrati kao
+datoteka za preuzimanje (izvornik, nepromijenjen). Ako uz sliku stoji
+uputa, radi se po uputi.
