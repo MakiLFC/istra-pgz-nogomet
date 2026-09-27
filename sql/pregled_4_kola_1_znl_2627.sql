@@ -43,13 +43,13 @@ values (
   'pregled-4-kola-1-znl-pgz-2627',
   '[[NASLOV, npr. LOVRAN ČETIRI OD ČETIRI I PET BODOVA ISPRED RABA]]',
   '[[SAZETAK]]',
-'Četvrto kolo 1. ŽNL PGŽ odigrano je u subotu 26. i nedjelju 27. rujna. Susret Rab - Goranin je odgođen. [[BROJ GOLOVA U KOLU, NAJVIŠE GLEDATELJA]]
+'Četvrto kolo 1. ŽNL PGŽ odigrano je u subotu 26. i nedjelju 27. rujna. Susret Rab - Goranin je odgođen. U šest odigranih utakmica palo je 17 golova, a gosti su slavili četiri puta, domaćini samo jednom, uz jedan remi.
 
 Lovran - Draga 2:1. Lovran je u susjedskom derbiju na Lokvi, pred čak 300 gledatelja, upisao četvrtu pobjedu iz četiri utakmice i treću kod kuće. Do 77. minute bilo je bez golova, a onda je Mateo Mandić doveo domaćina u vodstvo. Potom je Patrik Vidmar u 84. povisio na 2:0, dok je Andrea Štemberger smanjio za Dragu u 88. minuti. Vidmar je sa sedam pogodaka i dalje prvi strijelac lige. Lovran se tako tri dana nakon poraza od Opatije u kupu, 0:7 na istom terenu, vratio pobjedom, a kako Rab nije igrao, ima pet bodova prednosti ispred njega.
 
 Zamet - Risnjak 1:2. Zamet je na igralištu Robert Komen poveo već u 7. minuti golom Hrvoja Ožanića, ali je Risnjak preokrenuo. Erik Grgurić izjednačio je u 39. minuti, a Karlo Rupe u 49. zabio za 1:2, drugo kolo zaredom pobjednički gol. Risnjak je upisao drugu pobjedu zaredom, a Zamet prvi poraz kod kuće ove sezone. I ovaj rezultat pokazuje da Risnjak igra kao da nikada nije ni ispao iz ove lige.
 
-[[Stari grad Rijeka - Lošinj]]
+Stari grad Rijeka - Lošinj 2:3. Derbi kola na Belvederu riješen je u 82. minuti. Lošinj je poveo u 9. minuti, kad je [[L23]] slobodnim udarcem s ruba šesnaesterca prebacio živi zid, a Stari grad je izjednačio preko [[strijelac]] i u 45. minuti iz brze kontre poveo golom [[Lukanović]]. Marin Baković je u 67. minuti lobom pogodio prečku, a gosti su tri minute kasnije izjednačili preko [[L24]]. Pobjedu je Lošinju donio [[L16]] udarcem po podu s dvadesetak metara u sam kut. Lošinj je dvaput pogodio i vratnicu. Stari grad je upisao prvi poraz u sezoni, a Lošinj je drugu gostujuću pobjedu, nakon one u Munama, iskoristio za skok na drugo mjesto. Detaljan izvještaj s Belvedera je u posebnom članku.
 
 Vihor - Mune 0:3. Mune su na Zablaću u Baški riješile susret u prvih šesnaest minuta: David Gulan zabio je u 13., a Karlo Šneler u 16. minuti. Antonio Džaja postavio je konačnih 0:3 u 80. minuti. Mune su upisale drugu pobjedu zaredom, obje bez primljenog gola, i popele se na treće mjesto. Šneler je s pet pogodaka drugi strijelac lige. Vihor je izgubio i četvrtu utakmicu i jedini je bez boda.
 
