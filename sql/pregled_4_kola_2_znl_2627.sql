@@ -61,7 +61,9 @@ Mrkopalj i Snježnik i dalje imaju utakmicu manje, jer je njihov susret iz 1. ko
 
 ZA SLJEDEĆE KOLO
 
-Peto kolo propušta Luka Mršić (Mrkopalj) zbog crvenog kartona.',
+Peto kolo propušta Luka Mršić (Mrkopalj) zbog crvenog kartona.
+
+Peto kolo igra se u nedjelju 4. listopada u 16 sati: Goranka - Gomirje, Mrkopalj - Željezničar (M) i Snježnik - Polet (Sk). Drugi i prvi odmah se sastaju u Ravnoj Gori.',
   '2. ŽNL PGŽ',
   false,
   now()
