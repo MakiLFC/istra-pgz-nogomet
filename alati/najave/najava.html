@@ -120,6 +120,15 @@ svg.scena{position:absolute;inset:0;width:100%;height:100%}
 /* Pregled kola: na mjestu "vs" stoji rezultat, kao plocica semafora. */
 .red.sa-znakom{grid-template-columns:118px 1fr var(--zn) 74px var(--zn) 1fr 118px;column-gap:16px}
 .red svg.klupski-znak{width:var(--zn);height:calc(var(--zn) * 1.16);display:block;filter:drop-shadow(0 2px 4px rgba(2,14,16,.6))}
+/* Pravi grb kluba (Andrejeva odluka 28.09.2026., vidi PROCITAJ.md), s
+   vlastitom obradom: bijeli okvir koji prati obris grba, izbočenje u
+   nekoliko slojeva i sjena ispod, kao da je grb iskovan. */
+.grb{position:relative;width:var(--zn);height:calc(var(--zn) * 1.12);display:flex;align-items:center;justify-content:center}
+.grb img{max-width:100%;max-height:100%;display:block;
+  filter:drop-shadow(1.6px 0 0 #fbf8ef) drop-shadow(-1.6px 0 0 #fbf8ef) drop-shadow(0 1.6px 0 #fbf8ef) drop-shadow(0 -1.6px 0 #fbf8ef)
+         drop-shadow(0 1px 0 #cfc8b3) drop-shadow(0 1px 0 #aea68e) drop-shadow(0 1px 0 #8e866f)
+         drop-shadow(0 4px 5px rgba(2,14,16,.65))}
+.grb.prazno{border-radius:50%;background:rgba(221,226,219,.08)}
 .ploc.rez{height:36px;font-size:19px;letter-spacing:.06em;color:#f4f7f4;background:rgba(221,226,219,.14)}
 </style></head><body>
 <div class="z" id="z"></div>
@@ -226,14 +235,14 @@ function rasporedRedova(n){
 
 function redovi(k){
   const redovi = k.utakmice.map(u => `
-    <div class="red${u.derbi ? ' derbi' : ''}${k.znakovi ? ' sa-znakom' : ''}">
+    <div class="red${u.derbi ? ' derbi' : ''}${k.znakovi || k.grbovi ? ' sa-znakom' : ''}">
       <span class="kad">${esc(u.termin || '')}</span>
       <span class="ime d">${esc(u.d)}</span>
-      ${k.znakovi ? znakKluba(KLUBOVI[u.d]) : ''}
+      ${k.znakovi ? znakKluba(KLUBOVI[u.d]) : ''}${k.grbovi ? grb(u.d) : ''}
       ${u.rezultat
         ? `<span class="ploc rez">${esc(u.rezultat)}</span>`
         : `<span class="ploc">${u.derbi ? 'DERBI' : 'VS'}</span>`}
-      ${k.znakovi ? znakKluba(KLUBOVI[u.g]) : ''}
+      ${k.znakovi ? znakKluba(KLUBOVI[u.g]) : ''}${k.grbovi ? grb(u.g) : ''}
       <span class="ime g">${esc(u.g)}</span>
       <span></span>
     </div>`).join('');
@@ -260,8 +269,26 @@ function redovi(k){
 }
 
 let KLUBOVI = {};
+let GRBOVI = {};
+
+// Ime u kola.json je skraćeno ("Rudar"), a HNS piše puno ("NK Rudar (L)").
+// Uspoređuje se bez oznake NK/HNK i bez zagrade, a ako ni to ne pogodi,
+// traži se HNS-ovo ime koje počinje našim ("Smoljanci" i "Smoljanci
+// Sloboda"). Kad se grb ne nađe, ostaje prazno mjesto, nikad tuđi grb.
+function cisto(ime){
+  return ime.toLowerCase().replace(/^(h?nk|ošk|nk)\s+/, '').replace(/\s*\(.*?\)\s*/g, ' ').trim();
+}
+function grb(ime){
+  const imena = Object.keys(GRBOVI);
+  const c = cisto(ime);
+  const nadeno = imena.find(h => h === ime) || imena.find(h => cisto(h) === c)
+    || imena.find(h => cisto(h).startsWith(c + ' '));
+  if (!nadeno) return '<span class="grb prazno"></span>';
+  return `<span class="grb"><img src="grbovi/${encodeURIComponent(GRBOVI[nadeno].datoteka)}"></span>`;
+}
 window.slozi = (k) => {
   if (k.klubovi) KLUBOVI = k.klubovi;
+  if (k.popisGrbova) GRBOVI = k.popisGrbova;
   const crtaj = { horizont, redovi }[k.stil] || ploca;
   document.getElementById('z').innerHTML = crtaj(k);
 };
