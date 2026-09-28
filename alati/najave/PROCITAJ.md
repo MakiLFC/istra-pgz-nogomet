@@ -19,7 +19,14 @@ popis `stilovi` u `generiraj.mjs`.
 
 ## Grbovi klubova
 
-Pravi klupski grbovi se NE koriste. Nisu dio dopuštenja koje je HNS dao
+ODLUKA 28.09.2026.: Andrej je odlučio da se pravi grbovi klubova KORISTE,
+izričito na svoju odgovornost ("ići ću na svoju odgovornost"), uz vlastitu
+obradu: okvir, izbočenje, sjena. Upozoren je da to nije dio dopuštenja
+koje je HNS dao i da je izmijenjen grb i dalje znak tog kluba. Grbove
+skida `preuzmi_grbove.py` (posao "Grbovi klubova" na GitHubu) u mapu
+`grbovi/`. Ispod je zapisano pravilo koje je vrijedilo prije te odluke.
+
+Do 28.09.2026.: pravi klupski grbovi se NE koriste. Nisu dio dopuštenja koje je HNS dao
 za prikaz podataka, a i sami su tuđi znakovi. Ako klub sam pošalje svoj
 grb i dopusti korištenje, to se rješava zasebno. Do tada u slici stoje
 samo imena klubova.

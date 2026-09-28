@@ -1198,6 +1198,14 @@ Ponedjeljak ili utorak, da eventualna greška ne padne usred kola.
 
 ## Pisanje najava i pregleda
 
+**Grbovi klubova na slikama najava i pregleda: Andrejeva odluka.**
+28.09.2026. Andrej je odlučio da se na tim slikama koriste PRAVI grbovi
+klubova, s vlastitom obradom (okvir, izbočenje, sjena), izričito na svoju
+odgovornost. Prije toga je upozoren da grbovi nisu dio dopuštenja koje je
+dao HNS i da je izmijenjen grb i dalje znak kluba. Odluka vrijedi samo za
+te slike; na samoj stranici grbova i dalje nema dok on ne kaže drukčije.
+Grbove skida posao "Grbovi klubova" (`alati/najave/preuzmi_grbove.py`).
+
 **Nova sezona je zanimljivija od prošle.** Do 07.09.2026. su najave bile
 pretrpane međusobnim ogledima iz prošle sezone. Andrej je tražio obrnuto:
 težište je na dosadašnjim rezultatima momčadi u tekućoj sezoni, a
