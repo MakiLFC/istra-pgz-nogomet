@@ -1029,7 +1029,23 @@ Dvije pouke šire od ovog slučaja:
   kola sezone s postavama, a to su na kraju sezone megabajti po
   otvaranju. Ovako je svako kolo gotova stranica (`●`), a stare adrese
   s `?kolo=` i `?sezona=` trajno preusmjerava `next.config.ts`.
-  `/novosti` i dalje čita `?liga=` i ostaje `ƒ`. Spojeno 28.09.2026.
+  Spojeno 28.09.2026.
+
+  ISTO NAPRAVLJENO I ZA POPIS NOVOSTI I ZA STRANICU KLUBA, 28.09.2026.
+  To su bile posljednje dvije rute s `ƒ`: popis novosti je čitao
+  `?liga=`, a stranica kluba `?sezona=`. Sada su filtar i sezona u
+  putanji (`/novosti/liga/3-nl-zapad`, `/klub/nk-rab/sezona/2025-26`,
+  vidi `adresaNovosti` u `lib/lige.ts` i `adresaKluba` u
+  `lib/klubovi.ts`), sadržaj je izdvojen u `components/StranicaNovosti.tsx`
+  i `components/StranicaKluba.tsx`, po uzoru na `StranicaLige.tsx`, a
+  stare adrese preusmjerava `next.config.ts`. U ispisu gradnje otad nema
+  nijednog `ƒ`.
+
+  Kod novosti se filtar u adresi ne piše nazivom natjecanja nego SLUGOM.
+  Naziv ima razmake i slovo Ž, pa bi preusmjeravanje sa starog upita
+  ovisilo o tome kako je adresa kodirana. Zato ta pravila u
+  `next.config.ts` gledaju samo broj na početku naziva ("3.", "4.",
+  "1.", "2."), koji je među našim ligama jedinstven.
 
   TEKUĆA SEZONA NEMA SEZONU U ADRESI. Prvog dana je Andrej primijetio da
   poveznica sa stranice utakmice vodi na `/sezona/2026-27/kolo/5`, dakle

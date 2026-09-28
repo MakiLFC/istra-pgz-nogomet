@@ -7,9 +7,28 @@
 import { cache } from "react";
 import { supabase } from "@/lib/supabase";
 import { slugKluba, kljucKluba } from "@/lib/slug";
+import { sezonaUAdresu } from "@/lib/lige";
 
 // Zadržane i ovdje, da se stranice klubova mogu služiti jednim uvozom.
 export { slugKluba, kljucKluba };
+
+/**
+ * Adresa stranice kluba.
+ *
+ * Bez sezone vodi na najnoviju sezonu u kojoj klub ima utakmice, a starija
+ * sezona stoji u PUTANJI, ne u upitu:
+ *
+ *   /klub/nk-jadran-porec                  najnovija sezona
+ *   /klub/nk-jadran-porec/sezona/2025-26   starija sezona
+ *
+ * Do 28.09.2026. je sezona bila upit (?sezona=2025/26), pa se stranica
+ * renderirala pri SVAKOM otvaranju, koliko god revalidate bio. Isti
+ * razlog i isti popravak kao kod stranice lige; vidi adresaLige u
+ * lib/lige.ts i CLAUDE.md, odjeljak o Fluid Active CPU.
+ */
+export function adresaKluba(slug: string, sezona?: string | null): string {
+  return sezona ? `/klub/${slug}/sezona/${sezonaUAdresu(sezona)}` : `/klub/${slug}`;
+}
 
 export type Klub = {
   /** Dio adrese: /klub/<slug> */

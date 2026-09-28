@@ -1,96 +1,22 @@
-// app/novosti/page.tsx — popis svih objavljenih članaka
+// app/novosti/page.tsx — popis svih objavljenih članaka.
+//
+// Sav sadržaj je u components/StranicaNovosti.tsx, a ista komponenta
+// služi i adresi s ligom u putanji (vidi adresaNovosti u lib/lige.ts).
+//
+// Do 28.09.2026. je filtar lige bio upit (?liga=...), pa se stranica
+// renderirala pri SVAKOM otvaranju, koliko god revalidate bio. Sada ne
+// čita ništa iz upita, pa je gotova stranica. Stare adrese s upitom
+// preusmjerava next.config.ts.
 
-import Link from "next/link";
 import type { Metadata } from "next";
-import Navigacija from "@/components/Navigacija";
-import PopisNovosti from "@/components/PopisNovosti";
-import Podnozje from "@/components/Podnozje";
-import { dohvatiClanke } from "@/lib/clanci";
-import { LIGE } from "@/lib/lige";
-import ZaglavljeStranice from "@/components/ZaglavljeStranice";
-import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
+import StranicaNovosti, { metapodaciNovosti } from "@/components/StranicaNovosti";
 
-// Popis novosti čita filtar lige iz adrese (?liga=...), pa se svejedno
-// renderira pri svakom otvaranju i ova brojka na njega zasad ne utječe.
-// Stoji ovdje umjesto dotadašnje nule da ne bude kriva uputa: nula znači
-// "nikad ne keširaj" i vrijedila bi čim filtar jednom ode s poslužitelja.
+// Članak se objavi i treba biti na popisu odmah, pa je interval kratak.
+// Popis je jedan upit nad malom tablicom, dakle jeftin.
 export const revalidate = 60;
 
-export const metadata: Metadata = {
-  title: "Novosti",
-  description:
-    "Transferi, najave i osvrti iz nižih nogometnih liga Istre i Primorsko-goranske županije.",
-  alternates: { canonical: "/novosti" },
-  openGraph: {
-    title: "Novosti",
-    description:
-      "Transferi, najave i osvrti iz nižih nogometnih liga Istre i Primorsko-goranske županije.",
-    url: "/novosti",
-    type: "website",
-    locale: "hr_HR",
-    images: [SLIKA_DIJELJENJE],
-  },
-};
+export const metadata: Metadata = metapodaciNovosti();
 
-export default async function StranicaNovosti({
-  searchParams,
-}: {
-  searchParams: Promise<{ liga?: string }>;
-}) {
-  const { liga } = await searchParams;
-  const clanci = await dohvatiClanke({ liga });
-
-  return (
-    <div className="min-h-screen" style={{ background: "var(--chalk)" }}>
-      <Navigacija />
-
-      <main className="mx-auto max-w-4xl px-6 py-14">
-        <ZaglavljeStranice slika="novosti" naslov="Novosti" />
-
-        {/* filtar po ligama */}
-        <div className="flex flex-wrap gap-1.5 pb-5" style={{ borderBottom: "1px solid var(--line)" }}>
-          <Link
-            href="/novosti"
-            className="font-sans px-3 py-1.5 text-xs font-medium"
-            style={
-              !liga
-                ? { background: "var(--pitch)", color: "var(--chalk)" }
-                : { border: "1px solid var(--line)", background: "var(--paper)" }
-            }
-          >
-            Sve
-          </Link>
-          {LIGE.map((l) => (
-            <Link
-              key={l.slug}
-              href={`/novosti?liga=${encodeURIComponent(l.naziv)}`}
-              className="font-sans px-3 py-1.5 text-xs font-medium"
-              style={
-                liga === l.naziv
-                  ? { background: "var(--pitch)", color: "var(--chalk)" }
-                  : { border: "1px solid var(--line)", background: "var(--paper)" }
-              }
-            >
-              {l.naziv}
-            </Link>
-          ))}
-        </div>
-
-        {clanci.length === 0 ? (
-          <p className="mt-6 font-sans text-sm" style={{ color: "var(--ink-muted)" }}>
-            {liga
-              ? "Za ovu ligu još nema objavljenih članaka."
-              : "Još nema objavljenih članaka."}
-          </p>
-        ) : (
-          // key veže popis uz odabranu ligu: bez njega bi se, pri
-          // prebacivanju s kartice na karticu, zadržalo koliko je kartica
-          // bilo otkriveno na prethodnoj.
-          <PopisNovosti key={liga ?? "sve"} clanci={clanci} />
-        )}
-      </main>
-
-      <Podnozje />
-    </div>
-  );
+export default async function Page() {
+  return <StranicaNovosti />;
 }
