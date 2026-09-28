@@ -26,6 +26,7 @@ import {
 import { idIzSluga, slugUtakmice, kljucKluba } from "@/lib/slug";
 import { golovi } from "@/lib/kolo";
 import { LIGE, adresaLige } from "@/lib/lige";
+import { slugoviIgracaLige } from "@/lib/igraci";
 import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
 import { odlomci } from "@/lib/clanci";
 import type { Utakmica } from "@/lib/supabase";
@@ -117,7 +118,14 @@ export default async function StranicaUtakmice({
   const ligaSlug = LIGE.find((l) => l.naziv === u.natjecanje)?.slug;
   // Tekuća sezona ide bez sezone u adresi, starija s njom; inače bi
   // poveznica vodila na dužu adresu iste stranice lige.
-  const tekuca = await najnovijaSezona(u.natjecanje);
+  const imaPostave = Boolean(u.postava_domacin?.length || u.postava_gost?.length);
+  const [tekuca, igraciSaStranicom] = await Promise.all([
+    najnovijaSezona(u.natjecanje),
+    // Imena u postavi su poveznice samo za igrače koji imaju stranicu.
+    imaPostave && u.sezona
+      ? slugoviIgracaLige(u.natjecanje, u.sezona)
+      : Promise.resolve(new Set<string>()),
+  ]);
   const adresaKola = ligaSlug
     ? adresaLige(ligaSlug, { kolo: u.kolo, sezona: u.sezona === tekuca ? null : u.sezona })
     : null;
@@ -241,6 +249,7 @@ export default async function StranicaUtakmice({
                       igraci={u.postava_domacin}
                       strijelci={u.strijelci ?? []}
                       autogolovi={u.autogolovi ?? []}
+                      igraciSaStranicom={igraciSaStranicom}
                     />
                   )}
                   {u.postava_gost && u.postava_gost.length > 0 && (
@@ -249,6 +258,7 @@ export default async function StranicaUtakmice({
                       igraci={u.postava_gost}
                       strijelci={u.strijelci ?? []}
                       autogolovi={u.autogolovi ?? []}
+                      igraciSaStranicom={igraciSaStranicom}
                     />
                   )}
                 </div>

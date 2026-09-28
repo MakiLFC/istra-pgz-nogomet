@@ -11,6 +11,7 @@
 import { cache } from "react";
 import { supabase, type IgracPostave, type Utakmica } from "@/lib/supabase";
 import { slugKluba } from "@/lib/slug";
+import { dohvatiStatistike } from "@/lib/statistike";
 
 /** Adresa igrača nastaje iz imena, istim pravilima kao kod klubova. */
 export const slugIgraca = slugKluba;
@@ -165,6 +166,32 @@ export const dohvatiIgrace = cache(async function dohvatiIgrace(): Promise<Igrac
     return [];
   }
 });
+
+/**
+ * Slugovi igrača jedne lige i sezone koji imaju svoju stranicu.
+ *
+ * Stranica igrača postoji točno za one koje vraća dohvatiIgrace, a on ih
+ * skuplja iz rang-lista strijelaca, kartona i nastupa (uz uvjet da je
+ * upisan klub). Ovdje se čitaju iste liste, ali samo za ligu i sezonu
+ * utakmice: to je nekoliko stotina imena umjesto cijele baze. Igrač koji
+ * na ovim listama nije, a stranicu ima iz druge lige ili sezone, u
+ * postavi ostaje običan tekst. Obrnuto se ne može dogoditi, pa poveznica
+ * nikad ne vodi na "nije pronađeno".
+ */
+export async function slugoviIgracaLige(
+  natjecanje: string,
+  sezona: string
+): Promise<Set<string>> {
+  const st = await dohvatiStatistike(natjecanje, sezona, ["strijelci", "kartoni", "nastupi"]);
+  const slugovi = new Set<string>();
+  for (const red of [...st.strijelci, ...st.kartoni, ...st.nastupi]) {
+    const ime = red.igrac?.trim();
+    if (!ime || !red.klub?.trim()) continue;
+    const slug = slugIgraca(ime);
+    if (slug) slugovi.add(slug);
+  }
+  return slugovi;
+}
 
 /** Jedan igrač po slugu, ili null. */
 export async function dohvatiIgraca(slug: string): Promise<Igrac | null> {

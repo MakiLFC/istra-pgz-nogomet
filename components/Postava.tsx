@@ -1,6 +1,8 @@
 import { IgracPostave, DogadjajIgraca } from "@/lib/supabase";
 import { kljucPogotka } from "@/lib/utakmice";
 import { IkonaLopta } from "./Ikone";
+import PoveznicaIgraca from "./PoveznicaIgraca";
+import { slugIgraca } from "@/lib/igraci";
 
 function StrelicaIzlazak() {
   return (
@@ -64,7 +66,8 @@ const minutaUBroj = (m: string) => parseInt(m, 10) || 0;
 function redakIgraca(
   igrac: IgracPostave,
   goloviIgraca: Set<string>,
-  autogoli: Set<string>
+  autogoli: Set<string>,
+  saStranicom?: Set<string>
 ) {
   // Događaji iz scrapera (imaju tip). Kao sigurnosnu mrežu dodajemo golove iz
   // liste strijelaca ako ih matchEvents slučajno ne bi sadržavao - da lopta
@@ -100,7 +103,14 @@ function redakIgraca(
         {igrac.broj ?? "–"}
       </span>
       <span className={igrac.kapetan ? "font-medium" : ""}>
-        {igrac.igrac}
+        {/* Ime je poveznica SAMO kad igrač stvarno ima stranicu. Igrač se
+            prepoznaje po imenu, pa bi se bez ove provjere s vremenom
+            nakupile poveznice na "nije pronađeno". */}
+        {saStranicom?.has(slugIgraca(igrac.igrac)) ? (
+          <PoveznicaIgraca ime={igrac.igrac} />
+        ) : (
+          igrac.igrac
+        )}
         {igrac.kapetan && (
           <span className="ml-1" style={{ color: "var(--card-yellow)" }}>
             (C)
@@ -138,11 +148,14 @@ export default function Postava({
   igraci,
   strijelci,
   autogolovi,
+  igraciSaStranicom,
 }: {
   nazivKluba: string;
   igraci: IgracPostave[];
   strijelci?: { igrac: string; minuta: string }[];
   autogolovi?: { igrac: string; minuta: string }[];
+  /** Slugovi igrača koji imaju svoju stranicu (vidi slugoviIgraca). */
+  igraciSaStranicom?: Set<string>;
 }) {
   const prvih11 = igraci.filter((i) => !i.pricuvni);
   const autogoli = new Set(
@@ -168,7 +181,7 @@ export default function Postava({
         {nazivKluba}
       </p>
       <ul className="font-sans text-sm">
-        {prvih11.map((i) => redakIgraca(i, goloviPoIgracu(i.igrac), autogoli))}
+        {prvih11.map((i) => redakIgraca(i, goloviPoIgracu(i.igrac), autogoli, igraciSaStranicom))}
       </ul>
       {pricuvni.length > 0 && (
         <>
@@ -176,7 +189,7 @@ export default function Postava({
             Pričuvni:
           </p>
           <ul className="font-sans text-sm" style={{ color: "var(--ink-muted)" }}>
-            {pricuvni.map((i) => redakIgraca(i, goloviPoIgracu(i.igrac), autogoli))}
+            {pricuvni.map((i) => redakIgraca(i, goloviPoIgracu(i.igrac), autogoli, igraciSaStranicom))}
           </ul>
         </>
       )}

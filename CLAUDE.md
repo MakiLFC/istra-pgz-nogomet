@@ -1226,6 +1226,13 @@ liste nastupa (250 do 500 imena po ligi). VAŽNO: ime se pretvara u
 poveznicu samo kad stranica stvarno postoji, inače ostaje običan tekst.
 Bez te provjere se s vremenom nakupe mrtve poveznice, jer se igrač
 prepoznaje po imenu.
+NAPRAVLJENO 28.09.2026., na STRANICI UTAKMICE. Provjera je
+`slugoviIgracaLige` u `lib/igraci.ts`: čita rang-liste strijelaca,
+kartona i nastupa samo za ligu i sezonu te utakmice, dakle iste liste iz
+kojih nastaje stranica igrača, pa poveznica ne može voditi na "nije
+pronađeno". Na STRANICI LIGE postave namjerno ostaju običan tekst: ondje
+se popis nastupa ne dohvaća, jer je bio najskuplji dio te stranice (vidi
+`lib/statistike.ts`), a postave su ondje ionako sklopljene.
 
 **3. Tražilica na naslovnici**, za igrače i klubove. Popis se priprema
 pri gradnji kao jedna datoteka, a pretraživanje ide u pregledniku, pa
