@@ -1,29 +1,11 @@
 {
   "_napomena": "Tko je koji grb. Puni ga preuzmi_grbove.py, ne ručno.",
   "klubovi": {
-    "GNK Dinamo": {
-      "datoteka": "gnk-dinamo.png",
-      "izvor": "https://hns.family/files/images_comet/ba/a/_resized/baa77bd8667690f88fa584d81cb8ccd24f7f7efa_100_100_wg_t.png",
-      "sha1": "686ad8320be7",
-      "natjecanje": "2. ŽNL PGŽ"
-    },
     "HNK Goranin": {
-      "datoteka": "hnk-goranin.jpg",
+      "datoteka": "hnk-goranin.png",
       "izvor": "https://hns.family/files/images_comet/Club/_resized/1565_245abf33-72e7-412f-8a92-d4e61b8cd25e_100_100_wg_t.jpg",
       "sha1": "2a76364a7791",
       "natjecanje": "1. ŽNL PGŽ"
-    },
-    "HNK Gorica s.d.d.": {
-      "datoteka": "hnk-gorica-s-d-d.png",
-      "izvor": "https://hns.family/files/images_comet/74/7/_resized/747579faeeb04f59cf5dae7932a0fcb410f4ff5e_100_100_wg_t.png",
-      "sha1": "b3d43d03f856",
-      "natjecanje": "2. ŽNL PGŽ"
-    },
-    "HNK Hajduk": {
-      "datoteka": "hnk-hajduk.png",
-      "izvor": "https://hns.family/files/images_comet/Club/_resized/515_1734293597_100_100_wg_t.png",
-      "sha1": "efaa4db103c5",
-      "natjecanje": "2. ŽNL PGŽ"
     },
     "HNK Lovran": {
       "datoteka": "hnk-lovran.png",
@@ -31,14 +13,8 @@
       "sha1": "37907af677d0",
       "natjecanje": "1. ŽNL PGŽ"
     },
-    "HNK Rijeka": {
-      "datoteka": "hnk-rijeka.png",
-      "izvor": "https://hns.family/files/images_comet/a9/3/_resized/a9387b131b8dba6f86cf819ad27cf1d351f659cf_100_100_wg_t.png",
-      "sha1": "acc2f97df4f5",
-      "natjecanje": "2. ŽNL PGŽ"
-    },
     "NK Banjole": {
-      "datoteka": "nk-banjole.jpg",
+      "datoteka": "nk-banjole.png",
       "izvor": "https://hns.family/files/images_comet/Club/_resized/1507_2049030508_100_100_wg_t.jpg",
       "sha1": "b10983456593",
       "natjecanje": "3. NL Zapad"
@@ -62,13 +38,7 @@
       "natjecanje": "4. NL NS Rijeka"
     },
     "NK Crikvenica": {
-      "datoteka": "nk-crikvenica.jpg",
-      "izvor": "https://hns.family/files/images_comet/Club/_resized/1553_2a49848f-406f-4498-9602-74f9500a226d_100_100_wg_t.jpg",
-      "sha1": "0caffb9c8cca",
-      "natjecanje": "3. NL Zapad"
-    },
-    "NK Crikvenica (-3)": {
-      "datoteka": "nk-crikvenica-3.jpg",
+      "datoteka": "nk-crikvenica.png",
       "izvor": "https://hns.family/files/images_comet/Club/_resized/1553_2a49848f-406f-4498-9602-74f9500a226d_100_100_wg_t.jpg",
       "sha1": "0caffb9c8cca",
       "natjecanje": "3. NL Zapad"
@@ -80,13 +50,13 @@
       "natjecanje": "1. ŽNL PGŽ"
     },
     "NK Funtana": {
-      "datoteka": "nk-funtana.jpg",
+      "datoteka": "nk-funtana.png",
       "izvor": "https://hns.family/files/images_comet/Club/_resized/1510_30dd19d1-06a0-40f2-8074-b66751f5b898_100_100_wg_t.jpg",
       "sha1": "42edabc67284",
       "natjecanje": "4. NL NS Rijeka"
     },
     "NK Gomirje": {
-      "datoteka": "nk-gomirje.jpg",
+      "datoteka": "nk-gomirje.png",
       "izvor": "https://hns.family/files/images_comet/Club/_resized/1564_c834879f-234d-41c3-b4bb-39a01e1e1359_100_100_wg_t.jpg",
       "sha1": "4a64c0498841",
       "natjecanje": "2. ŽNL PGŽ"
@@ -103,12 +73,6 @@
       "sha1": "e85d6720056e",
       "natjecanje": "3. NL Zapad"
     },
-    "NK Istra 1961": {
-      "datoteka": "nk-istra-1961.png",
-      "izvor": "https://hns.family/files/images_comet/79/3/_resized/79332c6c222d6f120954348554933cbebdc4bd93_100_100_wg_t.png",
-      "sha1": "3c748842e9f6",
-      "natjecanje": "2. ŽNL PGŽ"
-    },
     "NK Jadran-Poreč": {
       "datoteka": "nk-jadran-porec.png",
       "izvor": "https://hns.family/files/images_comet/Club/_resized/5020_-667475216_100_100_wg_t.png",
@@ -116,7 +80,7 @@
       "natjecanje": "3. NL Zapad"
     },
     "NK Klana": {
-      "datoteka": "nk-klana.jpg",
+      "datoteka": "nk-klana.png",
       "izvor": "https://hns.family/files/images_comet/Club/_resized/1569_f05b4819-2518-4371-afa2-a7f5e801ec46_100_100_wg_t.jpg",
       "sha1": "fc9fecbea2ee",
       "natjecanje": "4. NL NS Rijeka"
@@ -128,13 +92,13 @@
       "natjecanje": "3. NL Zapad"
     },
     "NK Krk": {
-      "datoteka": "nk-krk.jpg",
+      "datoteka": "nk-krk.png",
       "izvor": "https://hns.family/files/images_comet/Club/_resized/1558_21086dc6-b132-4f27-bda2-456e3d7318c2_100_100_wg_t.jpg",
       "sha1": "edc2c10fb0ab",
       "natjecanje": "3. NL Zapad"
     },
     "NK Ližnjan": {
-      "datoteka": "nk-liznjan.jpg",
+      "datoteka": "nk-liznjan.png",
       "izvor": "https://hns.family/files/images_comet/Club/_resized/1521_-1686027779_100_100_wg_t.jpg",
       "sha1": "1f9853f616ed",
       "natjecanje": "4. NL NS Rijeka"
@@ -145,20 +109,14 @@
       "sha1": "d95e1d33e03c",
       "natjecanje": "3. NL Zapad"
     },
-    "NK Lokomotiva (Z)": {
-      "datoteka": "nk-lokomotiva-z.png",
-      "izvor": "https://hns.family/files/images_comet/6b/5/_resized/6b573b5650a45a09ff1a9fa0bbb521f5cab69544_100_100_wg_t.png",
-      "sha1": "029b4a0490d7",
-      "natjecanje": "2. ŽNL PGŽ"
-    },
     "NK Lošinj": {
-      "datoteka": "nk-losinj.gif",
+      "datoteka": "nk-losinj.png",
       "izvor": "https://hns.family/files/images_comet/Club/_resized/1571_ce115f31-1f6a-45e0-844e-217a83ba5618_100_100_wg_t.gif",
       "sha1": "81457731443b",
       "natjecanje": "1. ŽNL PGŽ"
     },
     "NK Medulin 1921": {
-      "datoteka": "nk-medulin-1921.jpg",
+      "datoteka": "nk-medulin-1921.png",
       "izvor": "https://hns.family/files/images_comet/Club/_resized/1523_f16e7745-84a0-49c1-b881-1a9951ee17f4_100_100_wg_t.jpg",
       "sha1": "068e3eed5f92",
       "natjecanje": "4. NL NS Rijeka"
@@ -170,7 +128,7 @@
       "natjecanje": "4. NL NS Rijeka"
     },
     "NK Mrkopalj": {
-      "datoteka": "nk-mrkopalj.jpg",
+      "datoteka": "nk-mrkopalj.png",
       "izvor": "https://hns.family/files/images_comet/Club/_resized/1575_afd7dd40-a96c-40b0-9d51-c208f67d3a3a_100_100_wg_t.jpg",
       "sha1": "0635de32152e",
       "natjecanje": "2. ŽNL PGŽ"
@@ -182,22 +140,16 @@
       "natjecanje": "1. ŽNL PGŽ"
     },
     "NK Naprijed (H)": {
-      "datoteka": "nk-naprijed-h.jpg",
+      "datoteka": "nk-naprijed-h.png",
       "izvor": "https://hns.family/files/images_comet/Club/_resized/1578_632cfa5c-6ba0-424d-a901-d6c14cc8d906_100_100_wg_t.jpg",
       "sha1": "b8c9812ee971",
       "natjecanje": "3. NL Zapad"
     },
     "NK Nehaj": {
-      "datoteka": "nk-nehaj.jpg",
+      "datoteka": "nk-nehaj.png",
       "izvor": "https://hns.family/files/images_comet/Club/_resized/877_b430acb1-17fc-4b66-ac21-3cbe7a374062_100_100_wg_t.jpg",
       "sha1": "8d328a408275",
       "natjecanje": "3. NL Zapad"
-    },
-    "NK Novalja": {
-      "datoteka": "nk-novalja.png",
-      "izvor": "https://hns.family/files/images_comet/Club/_resized/417_-1089741923_100_100_wg_t.png",
-      "sha1": "e75d40e61d26",
-      "natjecanje": "4. NL NS Rijeka"
     },
     "NK Omladinac Vrata": {
       "datoteka": "nk-omladinac-vrata.png",
@@ -205,20 +157,14 @@
       "sha1": "49fea674708e",
       "natjecanje": "1. ŽNL PGŽ"
     },
-    "NK Osijek": {
-      "datoteka": "nk-osijek.png",
-      "izvor": "https://hns.family/files/images_comet/32/3/_resized/32325ed3a85bad73bc58a1562b2b4b200541fa2f_100_100_wg_t.png",
-      "sha1": "78cc73538960",
-      "natjecanje": "2. ŽNL PGŽ"
-    },
     "NK Otočac": {
-      "datoteka": "nk-otocac.gif",
+      "datoteka": "nk-otocac.png",
       "izvor": "https://hns.family/files/images_comet/Club/_resized/875_-1089528144_100_100_wg_t.gif",
       "sha1": "164a39489c91",
       "natjecanje": "4. NL NS Rijeka"
     },
     "NK OŠK Omišalj": {
-      "datoteka": "nk-osk-omisalj.jpg",
+      "datoteka": "nk-osk-omisalj.png",
       "izvor": "https://hns.family/files/images_comet/Club/_resized/3071_30fff506-27dc-42f2-8095-ed603d7935c9_100_100_wg_t.jpg",
       "sha1": "f5f0ffdd1e19",
       "natjecanje": "3. NL Zapad"
@@ -230,7 +176,7 @@
       "natjecanje": "3. NL Zapad"
     },
     "NK Polet (Sk)": {
-      "datoteka": "nk-polet-sk.gif",
+      "datoteka": "nk-polet-sk.png",
       "izvor": "https://hns.family/files/images_comet/Club/_resized/2573_ca2e0222-06d7-426a-b554-90b20cb167d7_100_100_wg_t.gif",
       "sha1": "5fd03e6b1607",
       "natjecanje": "2. ŽNL PGŽ"
@@ -248,7 +194,7 @@
       "natjecanje": "1. ŽNL PGŽ"
     },
     "NK Rikard Benčić": {
-      "datoteka": "nk-rikard-bencic.jpg",
+      "datoteka": "nk-rikard-bencic.png",
       "izvor": "https://hns.family/files/images_comet/Club/_resized/1582_4392ad74-6137-47e7-baa1-ffd50d749136_100_100_wg_t.jpg",
       "sha1": "df12803a1959",
       "natjecanje": "1. ŽNL PGŽ"
@@ -277,32 +223,20 @@
       "sha1": "9c61cae75a67",
       "natjecanje": "3. NL Zapad"
     },
-    "NK Rudeš": {
-      "datoteka": "nk-rudes.png",
-      "izvor": "https://hns.family/files/images_comet/5d/1/_resized/5d1c69e825a2ea8fd0f124e13de02f244394abf0_100_100_wg_t.png",
-      "sha1": "dbc888077b81",
-      "natjecanje": "2. ŽNL PGŽ"
-    },
-    "NK Slaven Belupo": {
-      "datoteka": "nk-slaven-belupo.png",
-      "izvor": "https://hns.family/files/images_comet/86/9/_resized/869d4096f24d06b8b16eb335199f7d637e7af7e7_100_100_wg_t.png",
-      "sha1": "368b8e7f7a92",
-      "natjecanje": "2. ŽNL PGŽ"
-    },
     "NK Smoljanci Sloboda": {
-      "datoteka": "nk-smoljanci-sloboda.jpg",
+      "datoteka": "nk-smoljanci-sloboda.png",
       "izvor": "https://hns.family/files/images_comet/Club/_resized/1540_945132900_100_100_wg_t.jpg",
       "sha1": "ab8c48f74fed",
       "natjecanje": "4. NL NS Rijeka"
     },
     "NK Snježnik": {
-      "datoteka": "nk-snjeznik.jpg",
+      "datoteka": "nk-snjeznik.png",
       "izvor": "https://hns.family/files/images_comet/Club/_resized/1585_dbf32702-16ef-4ce3-9e50-6fe15a31bb77_100_100_wg_t.jpg",
       "sha1": "060c10881e01",
       "natjecanje": "2. ŽNL PGŽ"
     },
     "NK Stari grad Rijeka": {
-      "datoteka": "nk-stari-grad-rijeka.jpg",
+      "datoteka": "nk-stari-grad-rijeka.png",
       "izvor": "https://hns.family/files/images_comet/2b/3/_resized/2b3a22cc0d6cbba65d611f86d97c79e46c9db275_100_100_wg_t.jpg",
       "sha1": "3f7eec856375",
       "natjecanje": "1. ŽNL PGŽ"
@@ -314,22 +248,10 @@
       "natjecanje": "1. ŽNL PGŽ"
     },
     "NK Umag-CC Umago": {
-      "datoteka": "nk-umag-cc-umago.jpg",
+      "datoteka": "nk-umag-cc-umago.png",
       "izvor": "https://hns.family/files/images_comet/a2/1/_resized/a21a7722a2a412dd1c9c3337bc80f70ff69f0d89_100_100_wg_t.jpg",
       "sha1": "bc8c4c9aef83",
       "natjecanje": "4. NL NS Rijeka"
-    },
-    "NK Umag-CC Umago (-3)": {
-      "datoteka": "nk-umag-cc-umago-3.jpg",
-      "izvor": "https://hns.family/files/images_comet/a2/1/_resized/a21a7722a2a412dd1c9c3337bc80f70ff69f0d89_100_100_wg_t.jpg",
-      "sha1": "bc8c4c9aef83",
-      "natjecanje": "4. NL NS Rijeka"
-    },
-    "NK Varaždin": {
-      "datoteka": "nk-varazdin.png",
-      "izvor": "https://hns.family/files/images_comet/eb/e/_resized/ebee9e8b4da5f251a2f10af4331ca8c937b11d7a_100_100_wg_t.png",
-      "sha1": "c26b12461f0e",
-      "natjecanje": "2. ŽNL PGŽ"
     },
     "NK Vihor (B)": {
       "datoteka": "nk-vihor-b.png",
@@ -338,7 +260,7 @@
       "natjecanje": "1. ŽNL PGŽ"
     },
     "NK Vinodol": {
-      "datoteka": "nk-vinodol.jpg",
+      "datoteka": "nk-vinodol.png",
       "izvor": "https://hns.family/files/images_comet/Club/_resized/1561_dc14adf1-cf71-4e95-b45c-465317ae7fb0_100_100_wg_t.jpg",
       "sha1": "1129ceff0407",
       "natjecanje": "3. NL Zapad"
@@ -356,7 +278,7 @@
       "natjecanje": "1. ŽNL PGŽ"
     },
     "NK Štinjan": {
-      "datoteka": "nk-stinjan.gif",
+      "datoteka": "nk-stinjan.png",
       "izvor": "https://hns.family/files/images_comet/Club/_resized/1542_-1182493538_100_100_wg_t.gif",
       "sha1": "90c24441ccc8",
       "natjecanje": "4. NL NS Rijeka"
