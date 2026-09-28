@@ -36,7 +36,7 @@ jobs:
           python-version: "3.12"
 
       - name: Instaliraj pakete
-        run: pip install -r requirements.txt
+        run: pip install -r requirements.txt pillow
 
       - name: Skini grbove sa Semafora
         run: python alati/najave/preuzmi_grbove.py
