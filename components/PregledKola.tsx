@@ -5,7 +5,7 @@
 import Link from "next/link";
 import Brojka from "@/components/Brojka";
 import Otkrivanje from "@/components/Otkrivanje";
-import { LIGE } from "@/lib/lige";
+import { LIGE, adresaLige } from "@/lib/lige";
 import {
   sazetakKola,
   najposjecenija,
@@ -108,7 +108,7 @@ function BlokDerbiji({ utakmice }: { utakmice: UtakmicaMin[] }) {
       {redovi.map(({ liga, d }) => (
         <Link
           key={d.id}
-          href={`/liga/${liga.slug}${d!.kolo ? `?kolo=${d!.kolo}` : ""}`}
+          href={adresaLige(liga.slug, { kolo: d!.kolo })}
           className="block px-3 py-2.5 transition-opacity hover:opacity-75"
           style={{ borderBottom: "1px solid var(--line)" }}
         >

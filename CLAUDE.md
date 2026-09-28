@@ -76,7 +76,9 @@ app/
   globals.css           paleta, animacije, tipografija
   icon.svg              favicon
   page.tsx              naslovnica (hero + rezultati + lijevi stupac)
-  liga/[slug]/page.tsx  stranica lige (tablica, kola, utakmice, bočni stupac)
+  liga/[slug]/page.tsx  stranica lige, tekuća sezona; uz nju kolo/[kolo],
+                        sezona/[sezona] i sezona/[sezona]/kolo/[kolo], sve
+                        četiri crtaju components/StranicaLige.tsx
   klub/[slug]/page.tsx  stranica kluba (raspored, rezultati, statistika)
   utakmica/[slug]/page.tsx  stranica utakmice (zapisnik s postavama)
   igrac/[slug]/page.tsx  stranica igrača (golovi, kartoni, minute)
@@ -86,7 +88,7 @@ app/
 components/
   Navigacija, Podnozje, Grb, Hero, PregledKola, TablicaLige, SidebarLiga,
   Postava, KarticaClanka, PoveznicaKluba, PoveznicaIgraca, Ikone, Brojka,
-  Otkrivanje, ZaglavljeStranice, IzvorPodataka
+  Otkrivanje, ZaglavljeStranice, IzvorPodataka, StranicaLige
 lib/
   supabase.ts  lige.ts  kolo.ts  statistike.ts  clanci.ts  slug.ts
   klubovi.ts  igraci.ts  utakmice.ts  tablica.ts  posjecenost.ts  metapodaci.ts
@@ -394,6 +396,15 @@ jer je odigrano tridesetak utakmica. Kad ih u studenome bude tristotinjak
 i prolaz potraje dvadesetak minuta, treba dodati zastavicu koja otvara
 samo zapisnike utakmica bez rezultata u bazi, pa da rani prolaz traje
 sekunde. Mi smo na Semaforu gosti i to se ne smije zaboraviti.
+
+NAPRAVLJENO 25.09.2026.: `--samo-novi-zapisnici` preskače zapisnike
+utakmica koje u bazi već imaju rezultat I obje postave
+(`potpuni_zapisnici`). Raspored i rang-liste idu normalno. Workflow je
+uključuje SAMO za rane večernje prolaze (uzorci crona u koraku
+"Pokreni scraper"); kasni prolaz, ponedjeljak ujutro i ručna pokretanja
+ostaju puni, jer HNS zapisnik zna ispraviti i danima kasnije (Babić i
+Tomić, 24.09.). Kad se mijenjaju cron retci ranih prolaza, mijenjaju se
+i ti uzorci. Čuva `test_samo_novi_zapisnici.py`.
 
 
 **HNS ne osvježi sve dijelove stranice odjednom, nego dio po dio.**
@@ -1011,6 +1022,24 @@ Dvije pouke šire od ovog slučaja:
   opet naraste, ondje se traži dalje, a lijek nije brojka nego
   preseljenje biranja kola u preglednik.
 
+  NAPRAVLJENO 25.09.2026., ali ne u pregledniku nego u PUTANJI: svako
+  kolo ima svoju adresu (`/liga/3-nl-zapad/kolo/6`, starije sezone
+  `/liga/3-nl-zapad/sezona/2025-26/kolo/6`, vidi `adresaLige` u
+  `lib/lige.ts`). U pregledniku bi stranica morala odjednom dobiti sva
+  kola sezone s postavama, a to su na kraju sezone megabajti po
+  otvaranju. Ovako je svako kolo gotova stranica (`●`), a stare adrese
+  s `?kolo=` i `?sezona=` trajno preusmjerava `next.config.ts`.
+  `/novosti` i dalje čita `?liga=` i ostaje `ƒ`.
+
+  Isti dan je iz ispisa gradnje ispalo da je i STRANICA UTAKMICE bila
+  `ƒ`, iako ne čita ništa iz adrese: ruta s parametrom u putanji
+  (`[slug]`) bez `generateStaticParams` renderira se pri svakom
+  otvaranju, a `revalidate` tada ne radi ništa. Lijek je
+  `generateStaticParams` koji vraća prazan popis: tada se stranica slaže
+  pri prvom otvaranju i drži kao gotova. Pravilo za svaku novu rutu s
+  parametrom u putanji: ili popis unaprijed, ili prazan popis, nikad
+  bez funkcije.
+
 **Od 19.09.2026. projekt je na Vercelovom Pro planu.**
 Andrej ga je kupio za 25 eura mjesečno (dvadeset dolara plus hrvatski
 PDV), svojom odlukom, da ne mora pratiti brojke usred vikenda i da se
@@ -1041,7 +1070,8 @@ nove mogućnosti ne vagaju prema minutama procesora.
 
 Što se mijenja: `/liga/[slug]` više nije hitan slučaj. Preseljenje
 biranja kola u preglednik ostaje dobra ideja, ali se radi kad dođe na
-red, a ne pod pritiskom.
+red, a ne pod pritiskom. (Napravljeno 25.09.2026., kolo je sada u
+putanji, vidi gore uz Fluid Active CPU.)
 
 Brojke pri kupnji, da se zna od čega se krenulo: Fluid Active CPU 3h31
 od besplatnih 4h, Deployment Storage 10,92 GB od 10 GB, ISR Writes 111K
