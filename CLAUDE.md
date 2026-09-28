@@ -1205,6 +1205,10 @@ odgovornost. Prije toga je upozoren da grbovi nisu dio dopuštenja koje je
 dao HNS i da je izmijenjen grb i dalje znak kluba. Odluka vrijedi samo za
 te slike; na samoj stranici grbova i dalje nema dok on ne kaže drukčije.
 Grbove skida posao "Grbovi klubova" (`alati/najave/preuzmi_grbove.py`).
+Izgled je odabrao isti dan: grb uz ime, s bijelim okvirom po obrisu,
+izbočenjem i sjenom, BEZ podloge u obliku štita (i ta je probana i
+odbijena). Od tada su grbovi zadani na svim novim slikama najava i
+pregleda; pojedino kolo ih gasi poljem `"grbovi": false`.
 
 **Nova sezona je zanimljivija od prošle.** Do 07.09.2026. su najave bile
 pretrpane međusobnim ogledima iz prošle sezone. Andrej je tražio obrnuto:

@@ -26,6 +26,15 @@ koje je HNS dao i da je izmijenjen grb i dalje znak tog kluba. Grbove
 skida `preuzmi_grbove.py` (posao "Grbovi klubova" na GitHubu) u mapu
 `grbovi/`. Ispod je zapisano pravilo koje je vrijedilo prije te odluke.
 
+IZGLED dogovoren 28.09.2026.: grb stoji uz ime kluba, s bijelim okvirom
+koji prati obris grba, izbočenjem u nekoliko slojeva i sjenom (klasa
+`.grb` u `najava.html`). Probana je i inačica s grbom na jednakom
+metalnom štitu; Andrej je odabrao ovu, bez štita. U stilu `redovi`
+grbovi su ZADANI, a isključuju se poljem `"grbovi": false` uz kolo.
+Kola složena prije te odluke imaju tu oznaku, da se iznova složena slika
+ne promijeni. Kad grb kluba nije pronađen, ostaje prazno mjesto, nikad
+tuđi grb.
+
 Do 28.09.2026.: pravi klupski grbovi se NE koriste. Nisu dio dopuštenja koje je HNS dao
 za prikaz podataka, a i sami su tuđi znakovi. Ako klub sam pošalje svoj
 grb i dopusti korištenje, to se rješava zasebno. Do tada u slici stoje

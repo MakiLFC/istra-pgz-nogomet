@@ -295,7 +295,8 @@
           "g": "Banjole",
           "termin": "UTO 16:30"
         }
-      ]
+      ],
+      "grbovi": false
     },
     {
       "dat": "4-nl-ns-rijeka-kolo-4",
@@ -336,7 +337,8 @@
           "g": "Klana",
           "termin": "UTO 17:00"
         }
-      ]
+      ],
+      "grbovi": false
     },
     {
       "dat": "1-znl-pgz-kolo-4",
@@ -381,7 +383,8 @@
           "g": "Goranin",
           "termin": "ODGOĐENO"
         }
-      ]
+      ],
+      "grbovi": false
     },
     {
       "dat": "2-znl-pgz-kolo-4",
@@ -406,7 +409,8 @@
           "g": "Snježnik",
           "termin": "NED 16:00"
         }
-      ]
+      ],
+      "grbovi": false
     },
     {
       "dat": "4-nl-ns-rijeka-kolo-4-pregled",
@@ -454,7 +458,8 @@
           "g": "Klana",
           "termin": "UTO 17:00"
         }
-      ]
+      ],
+      "grbovi": false
     },
     {
       "dat": "1-znl-pgz-kolo-4-pregled",
@@ -503,7 +508,8 @@
           "g": "Goranin",
           "termin": "ODGOĐENO"
         }
-      ]
+      ],
+      "grbovi": false
     },
     {
       "dat": "2-znl-pgz-kolo-4-pregled",
@@ -533,7 +539,8 @@
           "termin": "NED 16:00",
           "rezultat": "7:0"
         }
-      ]
+      ],
+      "grbovi": false
     },
     {
       "dat": "3-nl-zapad-kolo-6-znakovi",

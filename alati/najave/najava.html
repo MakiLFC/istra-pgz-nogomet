@@ -128,17 +128,11 @@ svg.scena{position:absolute;inset:0;width:100%;height:100%}
   filter:drop-shadow(1.6px 0 0 #fbf8ef) drop-shadow(-1.6px 0 0 #fbf8ef) drop-shadow(0 1.6px 0 #fbf8ef) drop-shadow(0 -1.6px 0 #fbf8ef)
          drop-shadow(0 1px 0 #cfc8b3) drop-shadow(0 1px 0 #aea68e) drop-shadow(0 1px 0 #8e866f)
          drop-shadow(0 4px 5px rgba(2,14,16,.65))}
-.stit-grba{position:relative;width:var(--zn);height:calc(var(--zn) * 1.18);display:block;
-  filter:drop-shadow(0 1px 0 #6f664d) drop-shadow(0 2px 0 #4f4836) drop-shadow(0 5px 6px rgba(2,14,16,.7))}
-.stit-grba svg{position:absolute;inset:0;width:100%;height:100%}
-.stit-grba img{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);max-width:68%;max-height:62%;
-  filter:drop-shadow(0 1px 1.5px rgba(0,0,0,.35))}
 .grb.prazno{border-radius:50%;background:rgba(221,226,219,.08)}
 .ploc.rez{height:36px;font-size:19px;letter-spacing:.06em;color:#f4f7f4;background:rgba(221,226,219,.14)}
 </style></head><body>
 <div class="z" id="z"></div>
 <script src="grbovi.js"></script>
-<script src="stit.js"></script>
 <script>
 function greben(H, bazaU, visinaU, korak){
   const baza = H * bazaU, visina = H * visinaU, t = [];
@@ -235,21 +229,20 @@ function horizont(k){
 // razvuce preko cijele slike. Kraci popis se centrira u istom prostoru.
 function rasporedRedova(n){
   const visina = Math.min(400 / n, 80) * n;
-  // stit je 1,18 puta visi nego sirok, a mora stati u redak
-  const znak = Math.round(Math.min(400 / n, 80) * 0.94 / 1.18);
+  const znak = Math.round(Math.min(400 / n, 80) * 0.9);
   return `top:${170 + (400 - visina) / 2}px;height:${visina}px;grid-template-rows:repeat(${n},1fr);--zn:${znak}px`;
 }
 
 function redovi(k){
   const redovi = k.utakmice.map(u => `
-    <div class="red${u.derbi ? ' derbi' : ''}${k.znakovi || k.grbovi ? ' sa-znakom' : ''}">
+    <div class="red${u.derbi ? ' derbi' : ''}${k.znakovi || k.grbovi !== false ? ' sa-znakom' : ''}">
       <span class="kad">${esc(u.termin || '')}</span>
       <span class="ime d">${esc(u.d)}</span>
-      ${k.znakovi ? znakKluba(KLUBOVI[u.d]) : ''}${k.grbovi ? grb(u.d) : ''}
+      ${k.znakovi ? znakKluba(KLUBOVI[u.d]) : ''}${k.grbovi !== false && !k.znakovi ? grb(u.d) : ''}
       ${u.rezultat
         ? `<span class="ploc rez">${esc(u.rezultat)}</span>`
         : `<span class="ploc">${u.derbi ? 'DERBI' : 'VS'}</span>`}
-      ${k.znakovi ? znakKluba(KLUBOVI[u.g]) : ''}${k.grbovi ? grb(u.g) : ''}
+      ${k.znakovi ? znakKluba(KLUBOVI[u.g]) : ''}${k.grbovi !== false && !k.znakovi ? grb(u.g) : ''}
       <span class="ime g">${esc(u.g)}</span>
       <span></span>
     </div>`).join('');
@@ -291,7 +284,7 @@ function grb(ime){
   const nadeno = imena.find(h => h === ime) || imena.find(h => cisto(h) === c)
     || imena.find(h => cisto(h).startsWith(c + ' '));
   if (!nadeno) return '<span class="grb prazno"></span>';
-  return stitGrba(`grbovi/${encodeURIComponent(GRBOVI[nadeno].datoteka)}`);
+  return `<span class="grb"><img src="grbovi/${encodeURIComponent(GRBOVI[nadeno].datoteka)}"></span>`;
 }
 window.slozi = (k) => {
   if (k.klubovi) KLUBOVI = k.klubovi;
