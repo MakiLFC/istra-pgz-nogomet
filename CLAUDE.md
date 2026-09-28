@@ -1041,6 +1041,16 @@ Dvije pouke šire od ovog slučaja:
   stare adrese preusmjerava `next.config.ts`. U ispisu gradnje otad nema
   nijednog `ƒ`.
 
+  PREUSMJERAVANJE UVIJEK VUČE STARI UPIT ZA SOBOM. Prvi posjet staroj
+  adresi nakon objave završio je na
+  `/novosti/liga/3-nl-zapad?liga=3.%20NL%20Zapad`: stranica ispravna,
+  adresa ružna. Next.js pri `redirects` prenosi upit na odredište i to se
+  ne da isključiti; isprobana su četiri oblika odredišta (obično, s "?",
+  s praznom vrijednošću, s punom adresom) i svi su ga zadržali. Zato rep
+  miče `components/OcistiStariUpit.tsx`, preko `history.replaceState`, u
+  pregledniku i bez novog učitavanja. Briše samo `kolo`, `sezona` i
+  `liga`, nikad cijeli upit. Vrijedi za sve tri stranice, i za onu lige.
+
   Kod novosti se filtar u adresi ne piše nazivom natjecanja nego SLUGOM.
   Naziv ima razmake i slovo Ž, pa bi preusmjeravanje sa starog upita
   ovisilo o tome kako je adresa kodirana. Zato ta pravila u

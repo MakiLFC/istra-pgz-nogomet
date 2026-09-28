@@ -3,6 +3,7 @@ import { Archivo, Bebas_Neue, Inter, JetBrains_Mono, Playfair_Display } from "ne
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
+import OcistiStariUpit from "@/components/OcistiStariUpit";
 
 // Fontovi se učitavaju preko next/font: Next ih poslužuje s vlastite domene,
 // unaprijed ih učita i spriječi treptaj teksta pri otvaranju stranice.
@@ -113,6 +114,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         {children}
+        {/* Miče ostatke starih adresa iz adresne trake (?kolo=, ?sezona=,
+            ?liga=). Ne iscrtava ništa. */}
+        <OcistiStariUpit />
         {/* Vercel Web Analytics: broji posjete i pregled stranica.
             Stoji zadnje u <body> da ne odgađa iscrtavanje sadržaja. */}
         <Analytics />
