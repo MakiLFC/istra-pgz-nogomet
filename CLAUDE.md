@@ -1214,6 +1214,10 @@ to vodi na kolo na stranici lige. Svaki redak rezultata treba voditi
 izravno na stranicu TE utakmice, gdje već stoji zapisnik s postavama.
 To je bolje od vođenja na ligu, jer ne traži drugo traženje. Posao je
 mali i ne košta ništa, jer je stranica utakmice pripremljena unaprijed.
+NAPRAVLJENO 28.09.2026. (`app/page.tsx`). Usput je `utakmiceKola` u
+`lib/kolo.ts` postala generička: vraćala je uži tip `UtakmicaMin`, u
+kojem `id` nije obavezan broj, pa gradnja nije prolazila. Ista zamka kao
+u pravilu 3, uhvaćena lokalnim `npm run build` prije pusha.
 
 **2. Imena igrača u postavama kao poveznice.** `PoveznicaIgraca` već
 postoji, ali se u `components/Postava.tsx` ime ispisuje kao običan

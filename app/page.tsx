@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
-import { LIGE, adresaLige } from "@/lib/lige";
+import { LIGE } from "@/lib/lige";
+import { slugUtakmice } from "@/lib/slug";
 import Navigacija from "@/components/Navigacija";
 import { IkonaTeren } from "@/components/Ikone";
 import PregledKola from "@/components/PregledKola";
@@ -251,26 +252,24 @@ export default async function Home() {
                     </>
                   );
 
-                  // Derbi kartica je klikabilna - vodi na kolo te utakmice
-                  // na stranici lige, gdje čeka sažetak.
-                  return u.derbi ? (
+                  // Svaki redak vodi na stranicu TE utakmice, gdje su
+                  // zapisnik, postave i sažetak. Do 28.09.2026. klikabilan
+                  // je bio samo derbi, i to na cijelo kolo na stranici lige,
+                  // pa je utakmicu ondje trebalo još tražiti. Derbi i dalje
+                  // ima žuti okvir, samo više nije jedini koji vodi dalje.
+                  return (
                     <Otkrivanje key={u.id} kasnjenje={idx * 45}>
                     <Link
-                      href={adresaLige(liga.slug, { kolo: u.kolo })}
+                      href={`/utakmica/${slugUtakmice(u)}`}
                       className="flex items-center gap-3 bg-white px-4 py-3 transition-opacity hover:opacity-80"
-                      style={{ border: "2px solid var(--card-yellow)" }}
+                      style={{
+                        border: u.derbi
+                          ? "2px solid var(--card-yellow)"
+                          : "1px solid var(--line)",
+                      }}
                     >
                       {sadrzaj}
                     </Link>
-                    </Otkrivanje>
-                  ) : (
-                    <Otkrivanje key={u.id} kasnjenje={idx * 45}>
-                    <div
-                      className="flex items-center gap-3 bg-white px-4 py-3"
-                      style={{ border: "1px solid var(--line)" }}
-                    >
-                      {sadrzaj}
-                    </div>
                     </Otkrivanje>
                   );
                 })}

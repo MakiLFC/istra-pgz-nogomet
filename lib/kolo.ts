@@ -35,11 +35,13 @@ export function zadnjeKolo(utakmice: UtakmicaMin[], liga: string): number | null
   return kola.length ? Math.max(...kola) : null;
 }
 
-export function utakmiceKola(
-  utakmice: UtakmicaMin[],
+// Vraća isti tip kakav primi, a ne uži UtakmicaMin: naslovnica iz rezultata
+// gradi poveznicu na stranicu utakmice, za što treba id kao broj.
+export function utakmiceKola<T extends UtakmicaMin>(
+  utakmice: T[],
   liga: string,
   kolo: number | null
-): UtakmicaMin[] {
+): T[] {
   if (kolo == null) return [];
   return utakmice.filter((u) => u.natjecanje === liga && u.kolo === kolo);
 }
