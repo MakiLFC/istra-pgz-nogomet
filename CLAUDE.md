@@ -1029,7 +1029,20 @@ Dvije pouke šire od ovog slučaja:
   kola sezone s postavama, a to su na kraju sezone megabajti po
   otvaranju. Ovako je svako kolo gotova stranica (`●`), a stare adrese
   s `?kolo=` i `?sezona=` trajno preusmjerava `next.config.ts`.
-  `/novosti` i dalje čita `?liga=` i ostaje `ƒ`.
+  `/novosti` i dalje čita `?liga=` i ostaje `ƒ`. Spojeno 28.09.2026.
+
+  TEKUĆA SEZONA NEMA SEZONU U ADRESI. Prvog dana je Andrej primijetio da
+  poveznica sa stranice utakmice vodi na `/sezona/2026-27/kolo/5`, dakle
+  na dužu adresu iste stranice kao `/kolo/5`. Stranica utakmice sada
+  pita koja je sezona najnovija (`najnovijaSezona` u `lib/utakmice.ts`),
+  a `StranicaLige` dugu adresu tekuće sezone trajno preusmjerava na
+  kratku. Svaka nova poveznica na kolo mora poštovati isto pravilo.
+
+  Uz spajanje je zbunio status "Canceled by Ignored Build Step" na
+  GitHubu. Kad se isti commit gurne i na main i na radnu granu, Vercel
+  napravi dva deploymenta, a status s grane (preskočen namjerno) prepiše
+  onaj s maina. Pravo stanje produkcije stoji u popisu deploymenata
+  (environment Production), ne u zadnjem statusu commita.
 
   Isti dan je iz ispisa gradnje ispalo da je i STRANICA UTAKMICE bila
   `ƒ`, iako ne čita ništa iz adrese: ruta s parametrom u putanji
