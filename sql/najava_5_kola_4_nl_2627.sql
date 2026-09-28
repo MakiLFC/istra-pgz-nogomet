@@ -1,0 +1,20 @@
+-- =====================================================================
+-- ČLANAK: NAJAVA 5. KOLA 4. NL NS RIJEKA 2026/27
+-- =====================================================================
+-- JOS NIJE NAPISANA. Andrej je radi u cetvrtak 01.10.2026.
+--
+-- ANDREJEVO, cega u bazi nema (javio 28.09.2026., ide u najavu doslovno):
+--
+--   Funtana ima novog trenera, to je Ivan Kukučka. Kukučka u Funtanu
+--   dolazi s dugim iskustvom rada u istarskom nogometu, uključujući
+--   vođenje seniorskih momčadi Jadrana iz Poreča, Rovinja, Medulina
+--   1921, Novigrada i pulskog Uljanika.
+--
+-- OSTALO ZA NAJAVU (iz pregleda 4. kola, sql/pregled_4_kola_4_nl_2627.sql)
+--   Umag ima tri kaznena boda (-3), razlog nije poznat, ne nagadja se.
+--   Peto kolo propustaju Tomas Dadic (Stinjan, crveni) i Goran Urosevic
+--   (Mladost Fazana, drugi zuti).
+--   Liznjan - Klana iz 4. kola igra se u utorak 29.09., pa stanje za
+--   najavu treba uzeti tek nakon te utakmice.
+--   Stil: najava gleda UNAPRIJED, vidi CLAUDE.md.
+-- =====================================================================
