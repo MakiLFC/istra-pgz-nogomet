@@ -27,6 +27,12 @@ samo imena klubova.
 Probani su i štitovi u bojama klubova umjesto grbova (24.09.2026.), ali
 su izgledali jeftino i Andrej ih je odbio. Ne predlagati ponovno.
 
+Na njegovo traženje 28.09.2026. napravljen je bolji PRIJEDLOG, zasad samo
+na ogledu: `grbovi.js` crta znak kluba s obrubom, sjenčanjem i simbolom
+izvedenim iz imena ili mjesta (sidro, kula, grozd...), a boje, oblik i
+simbol po klubu stoje u `klubovi.json`. Kolo ga dobije poljem
+`"znakovi": true`. Ogled svih znakova radi `ogled-grbova.html`.
+
 ## Kako pokrenuti
 
 ```

@@ -1,0 +1,21 @@
+{
+  "_napomena": "Znakovi klubova za slike najava i pregleda kola (grbovi.js). NISU pravi grbovi, vidi PROCITAJ.md. b1 i b2 su boje kluba, uzorak je raspored boja u polju (puno, polovice, pruge, koso, glava, pojas, krst), oblik je obris (stit, stari, krug, kruna), simbol je sličica u sredini (sidro, kormilo, kotac, kruna, kula, riba, krampovi, sunce, svjetionik, zir, zvijezda, galeb, valovi, strelica, grozd, jedro, jela, lopta).",
+  "klubovi": {
+    "Nehaj":         { "b1": "#1f7a3a", "b2": "#f4f7f4", "uzorak": "glava",    "oblik": "stari", "simbol": "kula" },
+    "Crikvenica":    { "b1": "#1d3f8f", "b2": "#c8202b", "uzorak": "pojas",    "oblik": "stit",  "simbol": "riba" },
+    "Rudar":         { "b1": "#1d6b2e", "b2": "#15191a", "uzorak": "koso",     "oblik": "stit",  "simbol": "krampovi" },
+    "Lokomotiva":    { "b1": "#2a7fc0", "b2": "#15385f", "uzorak": "glava",    "oblik": "krug",  "simbol": "kotac" },
+    "Kraljevica":    { "b1": "#1f3f8a", "b2": "#c8202b", "uzorak": "polovice", "oblik": "kruna", "simbol": "kruna" },
+    "Krk":           { "b1": "#1f4f9c", "b2": "#e9b800", "uzorak": "glava",    "oblik": "stari", "simbol": "sidro" },
+    "Pomorac":       { "b1": "#2a3f9a", "b2": "#d0202e", "uzorak": "koso",     "oblik": "stit",  "simbol": "kormilo" },
+    "Buje":          { "b1": "#2e8b3a", "b2": "#f4f7f4", "uzorak": "pruge",    "oblik": "stit",  "simbol": "sunce" },
+    "Rovinj":        { "b1": "#2d8a3c", "b2": "#e9c200", "uzorak": "polovice", "oblik": "stari", "simbol": "svjetionik" },
+    "Halubjan":      { "b1": "#cc2229", "b2": "#f4f7f4", "uzorak": "glava",    "oblik": "stit",  "simbol": "zir" },
+    "Pazinka-Pazin": { "b1": "#1f4f9c", "b2": "#f4f7f4", "uzorak": "pojas",    "oblik": "krug",  "simbol": "zvijezda" },
+    "OŠK Omišalj":   { "b1": "#c8202b", "b2": "#f4f7f4", "uzorak": "pruge",    "oblik": "stit",  "simbol": "galeb" },
+    "Jadran-Poreč":  { "b1": "#1b3f8a", "b2": "#2c7fc4", "uzorak": "pojas",    "oblik": "krug",  "simbol": "valovi" },
+    "Naprijed":      { "b1": "#1c2f5e", "b2": "#e9b800", "uzorak": "koso",     "oblik": "stit",  "simbol": "strelica" },
+    "Vinodol":       { "b1": "#1f4f9c", "b2": "#f4f7f4", "uzorak": "krst",     "oblik": "stari", "simbol": "grozd" },
+    "Banjole":       { "b1": "#2a5aa8", "b2": "#f4f7f4", "uzorak": "polovice", "oblik": "stit",  "simbol": "jedro" }
+  }
+}

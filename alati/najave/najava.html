@@ -118,9 +118,12 @@ svg.scena{position:absolute;inset:0;width:100%;height:100%}
   font-family:JB;font-weight:700;font-size:11px;letter-spacing:.16em;color:var(--oxide-l)}
 .red.derbi .ploc{color:var(--zut)}
 /* Pregled kola: na mjestu "vs" stoji rezultat, kao plocica semafora. */
+.red.sa-znakom{grid-template-columns:118px 1fr var(--zn) 74px var(--zn) 1fr 118px;column-gap:16px}
+.red svg.klupski-znak{width:var(--zn);height:calc(var(--zn) * 1.16);display:block;filter:drop-shadow(0 2px 4px rgba(2,14,16,.6))}
 .ploc.rez{height:36px;font-size:19px;letter-spacing:.06em;color:#f4f7f4;background:rgba(221,226,219,.14)}
 </style></head><body>
 <div class="z" id="z"></div>
+<script src="grbovi.js"></script>
 <script>
 function greben(H, bazaU, visinaU, korak){
   const baza = H * bazaU, visina = H * visinaU, t = [];
@@ -217,17 +220,20 @@ function horizont(k){
 // razvuce preko cijele slike. Kraci popis se centrira u istom prostoru.
 function rasporedRedova(n){
   const visina = Math.min(400 / n, 80) * n;
-  return `top:${170 + (400 - visina) / 2}px;height:${visina}px;grid-template-rows:repeat(${n},1fr)`;
+  const znak = Math.round(Math.min(400 / n, 80) * 0.78);
+  return `top:${170 + (400 - visina) / 2}px;height:${visina}px;grid-template-rows:repeat(${n},1fr);--zn:${znak}px`;
 }
 
 function redovi(k){
   const redovi = k.utakmice.map(u => `
-    <div class="red${u.derbi ? ' derbi' : ''}">
+    <div class="red${u.derbi ? ' derbi' : ''}${k.znakovi ? ' sa-znakom' : ''}">
       <span class="kad">${esc(u.termin || '')}</span>
       <span class="ime d">${esc(u.d)}</span>
+      ${k.znakovi ? znakKluba(KLUBOVI[u.d]) : ''}
       ${u.rezultat
         ? `<span class="ploc rez">${esc(u.rezultat)}</span>`
         : `<span class="ploc">${u.derbi ? 'DERBI' : 'VS'}</span>`}
+      ${k.znakovi ? znakKluba(KLUBOVI[u.g]) : ''}
       <span class="ime g">${esc(u.g)}</span>
       <span></span>
     </div>`).join('');
@@ -253,7 +259,9 @@ function redovi(k){
   </div>`;
 }
 
+let KLUBOVI = {};
 window.slozi = (k) => {
+  if (k.klubovi) KLUBOVI = k.klubovi;
   const crtaj = { horizont, redovi }[k.stil] || ploca;
   document.getElementById('z').innerHTML = crtaj(k);
 };
