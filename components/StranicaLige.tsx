@@ -25,6 +25,7 @@ import { strijelciPoKlubu, zapisStrijelca } from "@/lib/utakmice";
 import { formaPoKlubu } from "@/lib/tablica";
 import { posjecenostKlubova } from "@/lib/posjecenost";
 import { slugUtakmice } from "@/lib/slug";
+import { slugoviIzStatistika } from "@/lib/igraci";
 import ZaglavljeStranice from "@/components/ZaglavljeStranice";
 import PoveznicaKluba from "@/components/PoveznicaKluba";
 
@@ -144,10 +145,15 @@ export default async function StranicaLige({
   const [utakmiceSirovo, clanciLige, statistike] = await Promise.all([
     odabranoKolo ? dohvatiUtakmiceKola(liga.naziv, odabranaSezona, odabranoKolo) : Promise.resolve([]),
     dohvatiClanke({ liga: liga.naziv, koliko: 4 }),
-    // Bez "nastupi": taj je popis najveći (oko 350 igrača po ligi i
-    // sezoni), a ova stranica ga ne prikazuje. Vidi lib/statistike.ts.
-    dohvatiStatistike(liga.naziv, odabranaSezona, ["tablica", "strijelci", "kartoni"]),
+    // "nastupi" je najveći popis (oko 350 igrača po ligi i sezoni) i
+    // 14.09.2026. je maknut radi štednje (vidi lib/statistike.ts). Vraćen
+    // je 28.09.2026., na Pro planu, jer po njemu imena u postavama postaju
+    // poveznice na stranice igrača.
+    dohvatiStatistike(liga.naziv, odabranaSezona, ["tablica", "strijelci", "kartoni", "nastupi"]),
   ]);
+
+  // Imena u postavama su poveznice samo za igrače koji imaju stranicu.
+  const igraciSaStranicom = slugoviIzStatistika(statistike);
 
   // Derbi kola ide na vrh popisa
   const utakmiceKola = [...utakmiceSirovo].sort(
@@ -361,10 +367,10 @@ export default async function StranicaLige({
                                 style={{ borderTop: "1px solid var(--line)" }}
                               >
                                 {u.postava_domacin && u.postava_domacin.length > 0 && (
-                                  <Postava nazivKluba={u.domacin} igraci={u.postava_domacin} strijelci={u.strijelci ?? []} autogolovi={u.autogolovi ?? []} />
+                                  <Postava nazivKluba={u.domacin} igraci={u.postava_domacin} strijelci={u.strijelci ?? []} autogolovi={u.autogolovi ?? []} igraciSaStranicom={igraciSaStranicom} />
                                 )}
                                 {u.postava_gost && u.postava_gost.length > 0 && (
-                                  <Postava nazivKluba={u.gost} igraci={u.postava_gost} strijelci={u.strijelci ?? []} autogolovi={u.autogolovi ?? []} />
+                                  <Postava nazivKluba={u.gost} igraci={u.postava_gost} strijelci={u.strijelci ?? []} autogolovi={u.autogolovi ?? []} igraciSaStranicom={igraciSaStranicom} />
                                 )}
                               </div>
                             </details>
@@ -405,7 +411,9 @@ export default async function StranicaLige({
           <aside className="w-full shrink-0 lg:w-80">
             <div className="space-y-4 lg:sticky lg:top-6">
               <Otkrivanje>
-                <SidebarLiga statistike={statistike} posjecenost={posjecenost} />
+                {/* Bez nastupa: bočni stupac ih ne prikazuje, a radi u
+                    pregledniku, pa bi cijeli popis išao uz svaku stranicu. */}
+                <SidebarLiga statistike={{ ...statistike, nastupi: [] }} posjecenost={posjecenost} />
               </Otkrivanje>
               {clanciLige.length > 0 && (
                 <Otkrivanje kasnjenje={80}>

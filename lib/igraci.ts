@@ -11,7 +11,7 @@
 import { cache } from "react";
 import { supabase, type IgracPostave, type Utakmica } from "@/lib/supabase";
 import { slugKluba } from "@/lib/slug";
-import { dohvatiStatistike } from "@/lib/statistike";
+import { dohvatiStatistike, type StatistikeLige } from "@/lib/statistike";
 
 /** Adresa igrača nastaje iz imena, istim pravilima kao kod klubova. */
 export const slugIgraca = slugKluba;
@@ -183,6 +183,16 @@ export async function slugoviIgracaLige(
   sezona: string
 ): Promise<Set<string>> {
   const st = await dohvatiStatistike(natjecanje, sezona, ["strijelci", "kartoni", "nastupi"]);
+  return slugoviIzStatistika(st);
+}
+
+/**
+ * Isto kao slugoviIgracaLige, ali iz lista koje je stranica već dohvatila
+ * (stranica lige ih ionako čita), pa bez još jednog upita.
+ */
+export function slugoviIzStatistika(
+  st: Pick<StatistikeLige, "strijelci" | "kartoni" | "nastupi">
+): Set<string> {
   const slugovi = new Set<string>();
   for (const red of [...st.strijelci, ...st.kartoni, ...st.nastupi]) {
     const ime = red.igrac?.trim();

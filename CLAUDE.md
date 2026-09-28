@@ -1230,9 +1230,10 @@ NAPRAVLJENO 28.09.2026., na STRANICI UTAKMICE. Provjera je
 `slugoviIgracaLige` u `lib/igraci.ts`: čita rang-liste strijelaca,
 kartona i nastupa samo za ligu i sezonu te utakmice, dakle iste liste iz
 kojih nastaje stranica igrača, pa poveznica ne može voditi na "nije
-pronađeno". Na STRANICI LIGE postave namjerno ostaju običan tekst: ondje
-se popis nastupa ne dohvaća, jer je bio najskuplji dio te stranice (vidi
-`lib/statistike.ts`), a postave su ondje ionako sklopljene.
+pronađeno". Isto vrijedi i na STRANICI LIGE (`slugoviIzStatistika`):
+ondje je popis nastupa 14.09.2026. bio maknut radi štednje, a na Pro
+planu je vraćen upravo za ovo. U bočni stupac, koji radi u pregledniku,
+nastupi se i dalje NE šalju, da ne putuju uz svaku stranicu.
 
 **3. Tražilica na naslovnici**, za igrače i klubove. Popis se priprema
 pri gradnji kao jedna datoteka, a pretraživanje ide u pregledniku, pa
