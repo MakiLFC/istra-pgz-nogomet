@@ -8,6 +8,12 @@ import { chromium } from 'playwright';
 import { readFileSync, mkdirSync } from 'node:fs';
 
 const { kola } = JSON.parse(readFileSync(new URL('./kola.json', import.meta.url), 'utf8'));
+const { klubovi } = JSON.parse(readFileSync(new URL('./klubovi.json', import.meta.url), 'utf8'));
+// Pravi grbovi (Andrejeva odluka 28.09.2026.), ako su skinuti.
+let popisGrbova = {};
+try {
+  popisGrbova = JSON.parse(readFileSync(new URL('./grbovi/popis.json', import.meta.url), 'utf8')).klubovi;
+} catch { /* grbovi jos nisu skinuti */ }
 // Kolo bez polja "stil" crta se kao 'ploca'. 'redovi' je jedan par po
 // retku, sa satnicom uz svaki par. 'horizont' je druga, atmosferska
 // varijanta; ostaje u predlosku ako zatreba.
@@ -23,10 +29,13 @@ await p.evaluate(() => document.fonts.ready);
 for (const k of kola) {
   if (samo && k.dat !== samo) continue;
   for (const stil of [k.stil || 'ploca']) {
-    await p.evaluate(kk => window.slozi(kk), { ...k, stil });
+    // Pregled kola ima svoje ime datoteke ("ime"), inace je najava-stil-dat.
+    const ime = k.ime || `najava-${stil}-${k.dat}`;
+    await p.evaluate(kk => window.slozi(kk), { ...k, stil, klubovi, popisGrbova });
+    await p.waitForFunction(() => [...document.images].every(i => i.complete));
     await p.waitForTimeout(180);
-    await p.locator('.z').screenshot({ path: `izlaz/najava-${stil}-${k.dat}.png` });
-    console.log('napravljeno:', `najava-${stil}-${k.dat}.png`);
+    await p.locator('.z').screenshot({ path: `izlaz/${ime}.png` });
+    console.log('napravljeno:', `${ime}.png`);
   }
 }
 await b.close();

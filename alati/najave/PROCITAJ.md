@@ -19,13 +19,35 @@ popis `stilovi` u `generiraj.mjs`.
 
 ## Grbovi klubova
 
-Pravi klupski grbovi se NE koriste. Nisu dio dopuštenja koje je HNS dao
+ODLUKA 28.09.2026.: Andrej je odlučio da se pravi grbovi klubova KORISTE,
+izričito na svoju odgovornost ("ići ću na svoju odgovornost"), uz vlastitu
+obradu: okvir, izbočenje, sjena. Upozoren je da to nije dio dopuštenja
+koje je HNS dao i da je izmijenjen grb i dalje znak tog kluba. Grbove
+skida `preuzmi_grbove.py` (posao "Grbovi klubova" na GitHubu) u mapu
+`grbovi/`. Ispod je zapisano pravilo koje je vrijedilo prije te odluke.
+
+IZGLED dogovoren 28.09.2026.: grb stoji uz ime kluba, s bijelim okvirom
+koji prati obris grba, izbočenjem u nekoliko slojeva i sjenom (klasa
+`.grb` u `najava.html`). Probana je i inačica s grbom na jednakom
+metalnom štitu; Andrej je odabrao ovu, bez štita. U stilu `redovi`
+grbovi su ZADANI, a isključuju se poljem `"grbovi": false` uz kolo.
+Kola složena prije te odluke imaju tu oznaku, da se iznova složena slika
+ne promijeni. Kad grb kluba nije pronađen, ostaje prazno mjesto, nikad
+tuđi grb.
+
+Do 28.09.2026.: pravi klupski grbovi se NE koriste. Nisu dio dopuštenja koje je HNS dao
 za prikaz podataka, a i sami su tuđi znakovi. Ako klub sam pošalje svoj
 grb i dopusti korištenje, to se rješava zasebno. Do tada u slici stoje
 samo imena klubova.
 
 Probani su i štitovi u bojama klubova umjesto grbova (24.09.2026.), ali
 su izgledali jeftino i Andrej ih je odbio. Ne predlagati ponovno.
+
+Na njegovo traženje 28.09.2026. napravljen je bolji PRIJEDLOG, zasad samo
+na ogledu: `grbovi.js` crta znak kluba s obrubom, sjenčanjem i simbolom
+izvedenim iz imena ili mjesta (sidro, kula, grozd...), a boje, oblik i
+simbol po klubu stoje u `klubovi.json`. Kolo ga dobije poljem
+`"znakovi": true`. Ogled svih znakova radi `ogled-grbova.html`.
 
 ## Kako pokrenuti
 
