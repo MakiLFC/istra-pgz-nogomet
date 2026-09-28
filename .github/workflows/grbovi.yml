@@ -50,5 +50,8 @@ jobs:
             echo "Grbovi se nisu promijenili."
           else
             git commit -m "Grbovi klubova sa Semafora"
-            git push
+            # Grana se za vrijeme posla zna pomaknuti, pa se prvo pokupi
+            # ono novo, inace se spremanje odbije.
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            git push origin "HEAD:$GITHUB_REF_NAME"
           fi
