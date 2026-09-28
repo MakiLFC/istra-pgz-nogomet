@@ -584,8 +584,8 @@
           "termin": "UTO 16:30"
         }
       ],
-      "ime": "ogled-najava-sa-znakovima",
-      "znakovi": true
+      "ime": "ogled-najava-s-grbovima",
+      "grbovi": true
     }
   ]
 }

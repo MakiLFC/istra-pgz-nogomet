@@ -229,7 +229,7 @@ function horizont(k){
 // razvuce preko cijele slike. Kraci popis se centrira u istom prostoru.
 function rasporedRedova(n){
   const visina = Math.min(400 / n, 80) * n;
-  const znak = Math.round(Math.min(400 / n, 80) * 0.78);
+  const znak = Math.round(Math.min(400 / n, 80) * 0.9);
   return `top:${170 + (400 - visina) / 2}px;height:${visina}px;grid-template-rows:repeat(${n},1fr);--zn:${znak}px`;
 }
 
@@ -276,7 +276,7 @@ let GRBOVI = {};
 // traži se HNS-ovo ime koje počinje našim ("Smoljanci" i "Smoljanci
 // Sloboda"). Kad se grb ne nađe, ostaje prazno mjesto, nikad tuđi grb.
 function cisto(ime){
-  return ime.toLowerCase().replace(/^(h?nk|ošk|nk)\s+/, '').replace(/\s*\(.*?\)\s*/g, ' ').trim();
+  return ime.toLowerCase().replace(/^((h?nk|ošk)\s+)+/, '').replace(/\s*\(.*?\)\s*/g, ' ').trim();
 }
 function grb(ime){
   const imena = Object.keys(GRBOVI);
