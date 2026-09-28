@@ -73,3 +73,17 @@ export function adresaLige(
   const osnova = sezona ? `/liga/${slug}/sezona/${sezonaUAdresu(sezona)}` : `/liga/${slug}`;
   return kolo ? `${osnova}/kolo/${kolo}` : osnova;
 }
+
+/**
+ * Adresa popisa novosti. Bez lige vodi na sve članke, a filtar po ligi
+ * stoji u PUTANJI, ne u upitu:
+ *
+ *   /novosti                    svi članci
+ *   /novosti/liga/3-nl-zapad    samo članci te lige
+ *
+ * Razlog je isti kao kod kola na stranici lige: stranica koja čita upit
+ * renderira se pri svakom otvaranju, koliko god revalidate bio.
+ */
+export function adresaNovosti(ligaSlug?: string | null): string {
+  return ligaSlug ? `/novosti/liga/${ligaSlug}` : "/novosti";
+}

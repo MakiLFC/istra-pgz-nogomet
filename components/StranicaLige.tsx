@@ -8,7 +8,7 @@ import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 import { supabase, Utakmica } from "@/lib/supabase";
 import { dohvatiStatistike } from "@/lib/statistike";
-import { ligaPoSlugu, adresaLige, sezonaIzAdrese, koloIzAdrese } from "@/lib/lige";
+import { ligaPoSlugu, adresaLige, adresaNovosti, sezonaIzAdrese, koloIzAdrese } from "@/lib/lige";
 import Navigacija from "@/components/Navigacija";
 import Podnozje from "@/components/Podnozje";
 import Postava from "@/components/Postava";
@@ -420,7 +420,7 @@ export default async function StranicaLige({
                 <section style={{ background: "var(--paper)", border: "1px solid var(--line)" }}>
                   <div className="flex items-baseline justify-between gap-2 px-3 py-2" style={{ background: "var(--pitch)", color: "var(--chalk)" }}>
                     <h3 className="font-display text-sm uppercase tracking-wide">Novosti lige</h3>
-                    <Link href={`/novosti?liga=${encodeURIComponent(liga.naziv)}`} className="font-sans text-[11px] hover:underline">sve →</Link>
+                    <Link href={adresaNovosti(liga.slug)} className="font-sans text-[11px] hover:underline">sve →</Link>
                   </div>
                   <div className="space-y-2 p-2">
                     {clanciLige.map((c) => (
