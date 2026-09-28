@@ -1,0 +1,57 @@
+# Grbovi klubova, za slike najava i pregleda kola.
+#
+# Skine grbove klubova naše četiri lige sa Semafora i spremi ih u
+# alati/najave/grbovi/, pa ih doda u repozitorij na istoj grani.
+# Pokreće se ručno (Actions -> "Grbovi klubova" -> Run workflow), npr. na
+# početku sezone kad stignu novi klubovi, i samo od sebe kad se na
+# radnoj grani promijeni sam alat.
+#
+# NE DIRA BAZU i ne dira stranicu: mapa alati/ ne ulazi u build.
+
+name: Grbovi klubova
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["claude/**"]
+    paths:
+      - "alati/najave/preuzmi_grbove.py"
+      - ".github/workflows/grbovi.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  grbovi:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Preuzmi kod
+        uses: actions/checkout@v7
+
+      - name: Postavi Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Instaliraj pakete
+        run: pip install -r requirements.txt pillow
+
+      - name: Skini grbove sa Semafora
+        run: python alati/najave/preuzmi_grbove.py
+
+      - name: Spremi grbove u repozitorij
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add alati/najave/grbovi
+          if git diff --cached --quiet; then
+            echo "Grbovi se nisu promijenili."
+          else
+            git commit -m "Grbovi klubova sa Semafora"
+            # Grana se za vrijeme posla zna pomaknuti, pa se prvo pokupi
+            # ono novo, inace se spremanje odbije.
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi

@@ -1297,6 +1297,18 @@ Ponedjeljak ili utorak, da eventualna greška ne padne usred kola.
 
 ## Pisanje najava i pregleda
 
+**Grbovi klubova na slikama najava i pregleda: Andrejeva odluka.**
+28.09.2026. Andrej je odlučio da se na tim slikama koriste PRAVI grbovi
+klubova, s vlastitom obradom (okvir, izbočenje, sjena), izričito na svoju
+odgovornost. Prije toga je upozoren da grbovi nisu dio dopuštenja koje je
+dao HNS i da je izmijenjen grb i dalje znak kluba. Odluka vrijedi samo za
+te slike; na samoj stranici grbova i dalje nema dok on ne kaže drukčije.
+Grbove skida posao "Grbovi klubova" (`alati/najave/preuzmi_grbove.py`).
+Izgled je odabrao isti dan: grb uz ime, s bijelim okvirom po obrisu,
+izbočenjem i sjenom, BEZ podloge u obliku štita (i ta je probana i
+odbijena). Od tada su grbovi zadani na svim novim slikama najava i
+pregleda; pojedino kolo ih gasi poljem `"grbovi": false`.
+
 **Nova sezona je zanimljivija od prošle.** Do 07.09.2026. su najave bile
 pretrpane međusobnim ogledima iz prošle sezone. Andrej je tražio obrnuto:
 težište je na dosadašnjim rezultatima momčadi u tekućoj sezoni, a
@@ -1390,3 +1402,11 @@ Andrej nije programer. Objašnjavaj bez žargona i uvijek reci **u koju točno
 mapu ide koja datoteka** (tri različite datoteke se zovu `page.tsx`).
 Kad nešto ne radi, prvo dijagnosticiraj pa tek onda mijenjaj — nekoliko puta
 se dogodilo da je "popravak" bez dijagnoze pokvario drugu stvar.
+
+**Fotografija poslana u razgovor bez ikakvog teksta vraća se kao datoteka.**
+Andrej tako prenosi fotografije s mobitela na laptop: učita je u razgovor
+s Claudeom, pa je na laptopu preuzme. Dogovoreno 27.09.2026. Kad stigne
+samo slika, bez ijedne riječi, ne pita se uz koji članak ide, ne mijenja
+se, ne smanjuje i ne sprema u repozitorij, nego se odmah vrati kao
+datoteka za preuzimanje (izvornik, nepromijenjen). Ako uz sliku stoji
+uputa, radi se po uputi.
