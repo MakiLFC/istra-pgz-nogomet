@@ -21,6 +21,7 @@ import {
   strijelciPoKlubu,
   imaZapisnik,
   zapisStrijelca,
+  najnovijaSezona,
 } from "@/lib/utakmice";
 import { idIzSluga, slugUtakmice, kljucKluba } from "@/lib/slug";
 import { golovi } from "@/lib/kolo";
@@ -114,6 +115,12 @@ export default async function StranicaUtakmice({
 
   const rezultat = golovi(u.rezultat);
   const ligaSlug = LIGE.find((l) => l.naziv === u.natjecanje)?.slug;
+  // Tekuća sezona ide bez sezone u adresi, starija s njom; inače bi
+  // poveznica vodila na dužu adresu iste stranice lige.
+  const tekuca = await najnovijaSezona(u.natjecanje);
+  const adresaKola = ligaSlug
+    ? adresaLige(ligaSlug, { kolo: u.kolo, sezona: u.sezona === tekuca ? null : u.sezona })
+    : null;
   const { domacin, gost, nepoznato } = strijelciPoKlubu(u);
   const zapisnik = imaZapisnik(u);
 
@@ -122,9 +129,9 @@ export default async function StranicaUtakmice({
       <Navigacija />
 
       <main className="mx-auto max-w-3xl px-6 py-14">
-        {ligaSlug && (
+        {adresaKola && (
           <Link
-            href={adresaLige(ligaSlug, { kolo: u.kolo, sezona: u.sezona })}
+            href={adresaKola}
             className="font-sans text-xs font-medium hover:underline"
             style={{ color: "var(--pitch)" }}
           >
@@ -292,9 +299,9 @@ export default async function StranicaUtakmice({
               >
                 {u.gost} →
               </Link>
-              {ligaSlug && (
+              {adresaKola && (
                 <Link
-                  href={adresaLige(ligaSlug, { kolo: u.kolo, sezona: u.sezona })}
+                  href={adresaKola}
                   className="font-medium hover:underline"
                   style={{ color: "var(--pitch)" }}
                 >

@@ -5,7 +5,7 @@
 
 import Link from "next/link";
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { supabase, Utakmica } from "@/lib/supabase";
 import { dohvatiStatistike } from "@/lib/statistike";
 import { ligaPoSlugu, adresaLige, sezonaIzAdrese, koloIzAdrese } from "@/lib/lige";
@@ -129,6 +129,14 @@ export default async function StranicaLige({
 
   // Poveznice na tekuću sezonu idu bez sezone u adresi, na starije s njom.
   const tekucaSezona = sveSezone[0];
+
+  // Tekuća sezona upisana u adresu (/sezona/2026-27/kolo/5) trajno se
+  // preusmjerava na kratku (/kolo/5). Inače ista stranica ima dvije
+  // adrese, obje se spremaju zasebno, a tražilicama izgleda kao dvostruki
+  // sadržaj. Takve je poveznice do 28.09.2026. davala stranica utakmice.
+  if (sezonaIzUrl && sezonaIzUrl === tekucaSezona) {
+    permanentRedirect(adresaLige(slug, { kolo: koloIzUrl }));
+  }
   const sezonaZaAdresu = odabranaSezona === tekucaSezona ? null : odabranaSezona;
 
   // Sve što stranica treba dohvaćamo USPOREDNO, a pune podatke samo za

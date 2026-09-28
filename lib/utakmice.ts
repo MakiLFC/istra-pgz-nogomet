@@ -23,6 +23,32 @@ export async function dohvatiUtakmicu(id: number): Promise<Utakmica | null> {
   return (data as Utakmica) ?? null;
 }
 
+/**
+ * Najnovija sezona natjecanja, dakle ona koja na stranici lige nema
+ * sezonu u adresi. Dohvaća se jedan redak, samo stupac sezone.
+ *
+ * Postoji zato da poveznica sa stranice utakmice na kolo vodi na kratku
+ * adresu (/liga/3-nl-zapad/kolo/5) kad je utakmica iz tekuće sezone.
+ * Prije 28.09.2026. vodila je na dužu (/liga/3-nl-zapad/sezona/2026-27/
+ * kolo/5), koja je prikazivala isto, pa je ista stranica imala dvije
+ * adrese.
+ */
+export async function najnovijaSezona(nazivLige: string): Promise<string | null> {
+  const { data, error } = await supabase
+    .from("utakmice")
+    .select("sezona")
+    .eq("natjecanje", nazivLige)
+    .order("sezona", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (error) {
+    console.error("Najnovija sezona: greška kod dohvaćanja:", error.message);
+    return null;
+  }
+  return (data?.sezona as string | null) ?? null;
+}
+
 /** Ključ igrač + minuta, za usporedbu s popisom autogolova. */
 export function kljucPogotka(igrac: string, minuta: string): string {
   return `${igrac.trim().toLowerCase()}|${minuta.trim()}`;
