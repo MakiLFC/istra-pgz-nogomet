@@ -13,6 +13,12 @@ upisom `"stil": "redovi"`
 u `kola.json`, a svaki par tada nosi i svoj `termin` (npr. "SUB 16:30").
 Kolo bez polja `stil` crta se kao ploča.
 
+Za utakmice iz VIŠE natjecanja (npr. pregled jednog dana, 29.09.2026.)
+stil `redovi` prima još dva polja: `naslovKurziv` zamjenjuje "n. kola" u
+naslovu (npr. "29. rujna"), a `natjecanje` uz par stoji na mjestu
+satnice (npr. "4. NL NS Rijeka", "Kup 1/16 finala"). Primjer je unos
+`utakmice-29-09-2026` u `kola.json`.
+
 U predlošku stoji i treći stil, **horizont** (kvarnerski obzor kao na
 zaglavljima liga). Ne koristi se, ali je ostavljen ako zatreba: dopuni
 popis `stilovi` u `generiraj.mjs`.

@@ -593,6 +593,36 @@
       ],
       "ime": "ogled-najava-s-grbovima",
       "grbovi": true
+    },
+    {
+      "dat": "utakmice-29-09-2026",
+      "ime": "pregled-utakmica-29-09-2026",
+      "stil": "redovi",
+      "naslov": "Pregled utakmica",
+      "naslovKurziv": "29. rujna",
+      "oznaka": "Lokal-Arena · tri natjecanja",
+      "datum": "UTO 29.09.2026.",
+      "sat": "Rezultati dana",
+      "utakmice": [
+        {
+          "d": "Ližnjan",
+          "g": "Klana",
+          "rezultat": "1:0",
+          "natjecanje": "4. NL NS Rijeka"
+        },
+        {
+          "d": "Vinodol",
+          "g": "Banjole",
+          "rezultat": "2:2",
+          "natjecanje": "3. NL Zapad"
+        },
+        {
+          "d": "Rab",
+          "g": "Krk",
+          "rezultat": "1:3",
+          "natjecanje": "Kup 1/16 finala"
+        }
+      ]
     }
   ]
 }
