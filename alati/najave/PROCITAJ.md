@@ -19,6 +19,14 @@ naslovu (npr. "29. rujna"), a `natjecanje` uz par stoji na mjestu
 satnice (npr. "4. NL NS Rijeka", "Kup 1/16 finala"). Primjer je unos
 `utakmice-29-09-2026` u `kola.json`.
 
+SLIKA U ČLANKU JE 3:2, a predložak slaže 1200x630. Stranica članka sliku
+reže na okvir 3:2 (vidi `lib/slike.ts`), pa takvoj slici odreže lijevi i
+desni rub, baš ondje gdje su natjecanja i satnica, i slika izgleda
+uvećano. Andrej je to 29.09.2026. primijetio kao "prevelika je". Lijek:
+gotovu sliku produžiti gore i dolje za 85 px (`sharp(...).extend({top:85,
+bottom:85, extendWith:'copy'})`) na 1200x800. Tada stane cijela i u 3:2
+u članku i u 16:9 na kartici. Datoteka dobiva nastavak `-cijela`.
+
 U predlošku stoji i treći stil, **horizont** (kvarnerski obzor kao na
 zaglavljima liga). Ne koristi se, ali je ostavljen ako zatreba: dopuni
 popis `stilovi` u `generiraj.mjs`.

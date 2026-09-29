@@ -23,7 +23,7 @@
 --   Begonja i Jelic po dva gola na Minti: zapisnik Kraljevica - Krk 4:5.
 --
 -- SLIKA
---   public/slike/najave/pregled-utakmica-29-09-2026.png, slozena
+--   public/slike/najave/pregled-utakmica-29-09-2026-cijela.png, slozena
 --   predloskom alati/najave (unos "utakmice-29-09-2026" u kola.json), s
 --   nazivom natjecanja uz svaki par.
 -- =====================================================================
@@ -46,7 +46,7 @@ Vinodol - Banjole 2:2 (3. NL Zapad). Na Bahalinu, pred 70 gledatelja, sva četir
 
 Rab - Krk 1:3 (Hrvatski nogometni kup, 1/16 finala). Posljednju utakmicu 1/16 finala na Blatu je pratilo 200 gledatelja. Rab iz 1. ŽNL PGŽ poveo je u 16. minuti golom Marina Macolića, ali je Krk iz 3. NL Zapad preokrenuo. Jakov Delibegović izjednačio je u 44. minuti, Roko Begonja je u 49. doveo Krk u vodstvo, a Marko Jelić u 90. postavio konačnih 1:3. Krk je tako prošao u osminu finala. Begonja i Jelić zabili su po dva gola i tri dana ranije, u pobjedi Krka 5:4 na Minti.',
   null,
-  '/slike/najave/pregled-utakmica-29-09-2026.png',
+  '/slike/najave/pregled-utakmica-29-09-2026-cijela.png',
   'Rezultati utakmica odigranih 29. rujna 2026.: Ližnjan - Klana 1:0, Vinodol - Banjole 2:2, Rab - Krk 1:3',
   false,
   now()
