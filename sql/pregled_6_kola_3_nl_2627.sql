@@ -32,7 +32,7 @@ values (
   'pregled-6-kola-3-nl-zapad-2627',
   'LOKOMOTIVA PETICOM U LABINU OSTALA SAMA NA VRHU, NA MINTI DEVET GOLOVA',
   'Lokomotiva je u Labinu slavila 5:1 i sada ima dva boda prednosti ispred Pomorca i Pazinke. Krk je u derbiju kola pobijedio Kraljevicu 5:4, a Halubjan je u Rovinju upisao drugu prvenstvenu pobjedu.',
-'Šesto kolo 3. NL Zapad odigrano je u subotu 26. rujna, a nije još završeno: Vinodol i Banjole sastaju se u utorak 29. rujna. U sedam odigranih utakmica palo je dvadeset golova, od toga devet u jednoj.
+'Šesto kolo 3. NL Zapad odigrano je u subotu 26. rujna, a zaključeno u utorak 29. rujna susretom Vinodola i Banjola. U osam utakmica palo je 24 gola, od toga devet u jednoj.
 
 Rudar (L) - Lokomotiva (R) 1:5. Lokomotiva se nakon jedanaest dana stanke vratila najuvjerljivijom pobjedom kola i pred 158 gledatelja, najviše u kolu, riješila utakmicu u prvih 35 minuta. Karlo Josipović zabio je u 9., Edin Junuzović u 11., Ivor Weitzer u 20., a Mateo Monjac u 35. minuti. Nicolas Golja smanjio je na početku drugog poluvremena, a Josipović je u 56. postavio konačnih 1:5 i sa šest pogodaka stigao Jakoba Šprema-Veljavečkog na vrhu liste strijelaca. Lokomotiva ima pet pobjeda iz pet utakmica.
 
@@ -48,13 +48,15 @@ Rovinj - Halubjan 1:2. Halubjan je nakon izbacivanja Pomorca iz kupa upisao i pr
 
 Jadran-Poreč - Naprijed (H) 0:0. U prvoj utakmici pod vodstvom Elvisa Kastratija Jadran je na Velom Joži zaustavio niz od dva poraza, ali bez pogotka. Za obje momčadi to je prvi remi u sezoni.
 
+Vinodol - Banjole 2:2. Kolo je zaključeno u utorak na Bahalinu, pred 70 gledatelja, a sva četiri gola zabila su dvojica igrača, po jedan sa svake strane. Badara Seck doveo je Vinodol u vodstvo u 15. minuti, Ivan Giljanović izjednačio je u 56., Seck je tri minute kasnije ponovno doveo domaćine u vodstvo, a Giljanović je u 76. minuti postavio konačnih 2:2. Sudac je podijelio osam žutih kartona, po četiri svakoj momčadi.
+
 LJESTVICA
 
 Lokomotiva vodi s petnaest bodova i gol razlikom plus šesnaest, dva boda ispred Pomorca i Pazinke, uz utakmicu manje, jer joj je susret petog kola s Banjolama odgođen. Krk je četvrti s jedanaest, a Kraljevica peta s deset bodova. Službena ljestvica je na stranici lige, jer uključuje i kaznene bodove Crikvenice.
 
 STRIJELCI
 
-Vrh dijele Jakob Šprem-Veljavečki (Pomorac) i Karlo Josipović (Lokomotiva) sa šest pogodaka. Slijede Ahmed Durmo (Banjole), David Rožajac (Omišalj), Marino Matković (Pomorac) i Filip Znamenaček (Kraljevica) s po pet. Znamenačekov hat-trick bio je jedini u kolu.
+Vrh dijele Jakob Šprem-Veljavečki (Pomorac) i Karlo Josipović (Lokomotiva) sa šest pogodaka. Slijede Ahmed Durmo (Banjole), David Rožajac (Omišalj), Marino Matković (Pomorac) i Filip Znamenaček (Kraljevica) s po pet. Znamenačekov hat-trick bio je jedini u kolu. Badara Seck iz Vinodola s dva gola protiv Banjola stigao je na četiri.
 
 ZA SLJEDEĆE KOLO
 

@@ -82,7 +82,7 @@ NK Lokomotiva (R) dalje bez borbe. Vodeća momčad 3. NL Zapad prošla je u slje
 
 HNK Lovran - NK Opatija 0:7. Razlika u rangu pokazala se u punoj mjeri. Opatija iz drugog ranga u srijedu je na Lokvi, pred 40 gledatelja, svladala Lovran iz 1. ŽNL PGŽ. Venis Havolli zabio je u 7., Leon Brlek u 34. i Gabriel Groznica u 43. minuti, a nakon odmora su pogodili Marino Miškulin u 47., Adriano Milanović u 65., Borna Bilobrk u 67. i Duje Ušalj u 70.
 
-Ostala je još jedna utakmica. NK Rab i NK Krk sastaju se 29. rujna u 16:30 na Blatu, Rab iz 1. ŽNL PGŽ, a Krk iz 3. NL Zapad, pa je i to susret dvaju rangova.',
+NK Rab - NK Krk 1:3. Posljednja utakmica 1/16 finala odigrana je 29. rujna na Blatu, pred 200 gledatelja, a Krk iz 3. NL Zapad svladao je Rab iz 1. ŽNL PGŽ preokretom. Marin Macolić doveo je domaćine u vodstvo u 16. minuti, Jakov Delibegović izjednačio je u 44., Roko Begonja u 49. minuti doveo Krk u vodstvo, a Marko Jelić u 90. postavio konačnih 1:3. Begonja i Jelić zabili su po dva gola i tri dana ranije, u pobjedi Krka 5:4 na Minti.',
   null,
   false,
   now()

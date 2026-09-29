@@ -84,8 +84,8 @@ insert into public.clanci
 values (
   'pregled-4-kola-4-nl-ns-rijeka-2627',
   'CRES ČETIRI OD ČETIRI, FUNTANA I SMOLJANCI DO PRVIH POBJEDA',
-  'Cres je pobjedom nad Otočcem ostao jedini bez izgubljenog boda. Funtana je u Dražicama do prve pobjede stigla s dva pogotka Roberta Vlizla u dvije minute, Smoljanci Sloboda svladali su Mladost 4:1, a Žminj je slavio u Štinjanu. Ližnjan - Klana igra se u utorak.',
-'Četvrto kolo 4. NL NS Rijeka igralo se u subotu 26. rujna, ali još nije završeno: Ližnjan - Klana na rasporedu je u utorak 29. rujna u 17 sati. Slobodan je bio Borac (Bakar). U pet odigranih utakmica palo je 15 pogodaka, tri po susretu, a remija nije bilo. Domaćini su slavili tri puta, gosti dva.
+  'Cres je pobjedom nad Otočcem ostao jedini bez izgubljenog boda. Funtana je u Dražicama do prve pobjede stigla s dva pogotka Roberta Vlizla u dvije minute, Smoljanci Sloboda svladali su Mladost 4:1, a Žminj je slavio u Štinjanu. Ližnjan je u utorak svladao Klanu i popeo se na drugo mjesto.',
+'Četvrto kolo 4. NL NS Rijeka igralo se u subotu 26. rujna, a zaključeno je u utorak 29. rujna susretom Ližnjana i Klane. Slobodan je bio Borac (Bakar). U šest utakmica palo je 16 pogodaka, a remija nije bilo. Domaćini su slavili četiri puta, gosti dva.
 
 Cres - Otočac 3:1. Susret kola odigran je na Dariju pred 80 gledatelja. Željko Tomić doveo je Cres u vodstvo u 19. minuti, Josip Smolčić izjednačio je u 51., a onda su Demis Seo Salihović u 54. i Vito Crnković u 86. minuti odlučili susret. Cres je time upisao četvrtu pobjedu iz četiri kola i ostao jedini klub lige bez izgubljenog boda.
 
@@ -97,15 +97,17 @@ Smoljanci Sloboda - Mladost Fažana 4:1. Na Suhači u Svetvinčentu domaćini su
 
 Umag-CC Umago - Medulin 1921 2:0. Na Stella Marisu je Leon Miličević zabio na samom početku drugog poluvremena, u 46. minuti, a Kristian Boglić potvrdio je pobjedu u 87. Umag je time skupio sedam bodova, ali je na ljestvici ostao šesti, jer službena tablica sada uz njegovo ime pokazuje tri kaznena boda. Medulin je ostao na jednom bodu i na dnu ljestvice.
 
+Ližnjan - Klana 1:0. Kolo je zaključeno u utorak na Šaraji, pred 80 gledatelja. Jedini gol zabio je kapetan Ližnjana Dino Balde u 80. minuti. Ližnjan se time s devet bodova popeo na drugo mjesto, a Klana je ostala na tri.
+
 STRIJELCI
 
 Vrh liste strijelaca dijele trojica s po četiri pogotka: Antonijo Vujičić iz Otočca, Robert Vlizlo iz Funtane i Željko Tomić iz Cresa. Vlizlo je jedini koji je u ovom kolu zabio više od jednom. S po tri pogotka slijede Boško Babić iz Cresa, Jamu Akou Arum Iluya iz Umaga i Tymur Merezhko iz Klane.
 
 LJESTVICA
 
-Cres vodi s dvanaest bodova i jedini je bez izgubljenog boda. Borac (Bakar) ima devet bodova iz tri utakmice, a slijede Ližnjan, Otočac i Žminj s po šest. Na dnu je Medulin 1921 s jednim bodom.
+Cres vodi s dvanaest bodova i jedini je bez izgubljenog boda. Po devet bodova imaju Ližnjan, drugi po gol razlici, i Borac (Bakar), koji je odigrao utakmicu manje. Slijede Otočac i Žminj s po šest. Na dnu je Medulin 1921 s jednim bodom.
 
-Najviše je u kolu dobio Žminj, pet mjesta, a Smoljanci Sloboda četiri. Najviše su izgubili Štinjan i Mladost Fažana, po tri mjesta.
+Najviše je u kolu dobio Žminj, pet mjesta, a Smoljanci Sloboda četiri. Najviše je izgubila Mladost Fažana, tri mjesta.
 
 Službena ljestvica je na stranici lige, jer ona uključuje i tri kaznena boda Umaga. Klubovi pritom nemaju isti broj odigranih utakmica, jer u ligi s trinaest klubova svako kolo jedan ne igra.
 
@@ -113,7 +115,7 @@ ZA SLJEDEĆE KOLO
 
 Peto kolo propuštaju Tomas Dadić (Štinjan) nakon crvenog kartona i Goran Urošević (Mladost Fažana) nakon drugog žutog. Najviše žutih kartona u sezoni ima Diego Vlacci iz Smoljanaca Slobode, tri.
 
-Prije petog kola u utorak se igra Ližnjan - Klana, posljednja utakmica ovog kola. Raspored je na stranici lige.',
+Raspored petog kola je na stranici lige.',
   '4. NL NS Rijeka',
   false,
   now()
