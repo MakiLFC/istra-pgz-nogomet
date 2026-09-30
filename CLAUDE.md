@@ -1167,6 +1167,27 @@ Pouka je ista kao kod Deployment Storagea: kad brojka na tuđem sustavu
 ne reagira na ono što si napravio, prvo se pogleda na koje se RAZDOBLJE
 odnosi, pa tek onda traži uzrok.
 
+**Poslužitelj mora biti blizu baze, ne blizu nas.** Do 30.09.2026.
+Vercel je sve renderiranje radio u Washingtonu (`iad1`), jer je to
+zadana regija svakog novog projekta. Supabase projekt je u Frankfurtu
+(`eu-central-1`, provjereno u Supabaseu pod Project Settings, General,
+Region), pa je svaki upit prema bazi prelazio Atlantik i vraćao se. Jedno
+otvaranje stranice napravi više upita, pa se to zbraja.
+
+Od 30.09.2026. `vercel.json` ima `"regions": ["fra1"]`, dakle Frankfurt.
+Na besplatnom planu smije se odabrati jedna regija, na Pro planu do pet.
+
+Što to NE ubrzava: gotove stranice (`○` i `●`) i dalje stižu s Vercelove
+mreže, koja je i prije bila blizu posjetitelja. Dobitak je samo ondje gdje
+se u tom trenutku čita baza: prvo slaganje stranice koja još nije
+napravljena i osvježavanje po isteku `revalidate`. Otkad su sve rute
+gotove unaprijed (28.09.), to je manji dio posla nego prije, ali je
+besplatno i nema razloga da stoji krivo.
+
+Ako se ikad bude tražilo drugdje: regija se vidi i mijenja i na Vercelu,
+pod Project Settings, Functions, Function Region. Vrijednost iz
+`vercel.json` je ta koja vrijedi pri objavi.
+
 **U CSS-u svi `@import` moraju biti prije `@import "tailwindcss"`.**
 Tailwind se razmota u stotine redaka i svaki `@import` iza njega ruši build.
 

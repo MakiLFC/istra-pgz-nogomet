@@ -1,3 +1,4 @@
 {
-  "ignoreCommand": "bash vercel-preskoci-build.sh"
+  "ignoreCommand": "bash vercel-preskoci-build.sh",
+  "regions": ["fra1"]
 }
