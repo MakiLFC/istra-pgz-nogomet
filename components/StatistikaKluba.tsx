@@ -137,7 +137,8 @@ export default function StatistikaKluba({
                   Forma
                 </p>
                 <div className="mt-1.5 flex gap-1">
-                  {forma.map((i, n) => (
+                  {/* Starija lijevo, najnovija desno, kao u tablici lige. */}
+                  {[...forma].reverse().map((i, n) => (
                     <span
                       key={n}
                       title={BOJE[i].naziv}
@@ -154,7 +155,7 @@ export default function StatistikaKluba({
 
           {forma.length > 0 && (
             <p className="mt-2 font-sans text-xs" style={{ color: "var(--ink-muted)" }}>
-              Forma prikazuje zadnje odigrane utakmice, najnovija lijevo.
+              Forma prikazuje zadnje odigrane utakmice, najnovija desno.
             </p>
           )}
         </section>
