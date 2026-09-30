@@ -1184,9 +1184,14 @@ napravljena i osvježavanje po isteku `revalidate`. Otkad su sve rute
 gotove unaprijed (28.09.), to je manji dio posla nego prije, ali je
 besplatno i nema razloga da stoji krivo.
 
-Ako se ikad bude tražilo drugdje: regija se vidi i mijenja i na Vercelu,
-pod Project Settings, Functions, Function Region. Vrijednost iz
-`vercel.json` je ta koja vrijedi pri objavi.
+Taj ekran na Vercelu (Project Settings, Functions, Function Region) i
+dalje pokazuje kvačicu na Washingtonu i to zbunjuje. Mjerodavna je
+narančasta oznaka "Overridden" uz naslov; pokazivanjem miša na nju piše:
+"This setting is overridden by a vercel.json file in the current
+production deployment." Dakle kvačica je ostatak stare postavke koja
+više ne vrijedi, a regija dolazi iz datoteke. Ne treba je ondje
+ispravljati; kad bi se jednom htjelo mijenjati s tog ekrana, prvo se mora
+maknuti redak iz `vercel.json`, inače promjena nema učinka.
 
 **U CSS-u svi `@import` moraju biti prije `@import "tailwindcss"`.**
 Tailwind se razmota u stotine redaka i svaki `@import` iza njega ruši build.
