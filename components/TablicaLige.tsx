@@ -140,7 +140,9 @@ export default function TablicaLige({
                   {imaForme && (
                     <td className="px-2 py-2">
                       <span className="flex gap-1">
-                        {ishodi.map((o, n) => (
+                        {/* Izračun daje najnoviju prvu; prikaz ide obratno,
+                            starija lijevo, najnovija desno (Andrej, 30.09.2026.). */}
+                        {[...ishodi].reverse().map((o, n) => (
                           <span
                             key={n}
                             title={BOJE[o].naziv}
@@ -178,7 +180,7 @@ export default function TablicaLige({
           />
           ispadanje
         </span>
-        {imaForme && <span>Forma: zadnjih pet utakmica, najnovija lijevo.</span>}
+        {imaForme && <span>Forma: zadnjih pet utakmica, najnovija desno.</span>}
       </p>
     </section>
   );
