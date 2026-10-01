@@ -85,10 +85,11 @@ app/
   novosti/page.tsx      popis članaka
   novosti/[slug]/page.tsx  pojedini članak
   impresum/page.tsx  kontakt/page.tsx  sitemap.ts  robots.ts
+  pretraga.json/route.ts  popis klubova i igrača za tražilicu
 components/
   Navigacija, Podnozje, Grb, Hero, PregledKola, TablicaLige, SidebarLiga,
   Postava, KarticaClanka, PoveznicaKluba, PoveznicaIgraca, Ikone, Brojka,
-  Otkrivanje, ZaglavljeStranice, IzvorPodataka, StranicaLige
+  Otkrivanje, ZaglavljeStranice, IzvorPodataka, StranicaLige, Trazilica
 lib/
   supabase.ts  lige.ts  kolo.ts  statistike.ts  clanci.ts  slug.ts
   klubovi.ts  igraci.ts  utakmice.ts  tablica.ts  posjecenost.ts  metapodaci.ts
@@ -1291,6 +1292,14 @@ nastupi se i dalje NE šalju, da ne putuju uz svaku stranicu.
 pri gradnji kao jedna datoteka, a pretraživanje ide u pregledniku, pa
 ne troši ništa na poslužitelju. Datoteka je stotinjak kilobajta, pa se
 učitava tek kad korisnik klikne u polje, ne odmah s naslovnicom.
+NAPRAVLJENO 01.10.2026. Popis je `app/pretraga.json/route.ts` (gotova
+datoteka, osvježava se najviše jednom na sat), slaže se iz istih
+funkcija kao stranice kluba i igrača (`dohvatiKlubove`, `dohvatiIgrace`),
+pa nijedan pogodak ne vodi na "nije pronađeno". Polje je
+`components/Trazilica.tsx`, u Herou ispod uvodne rečenice. Traži se po
+početku riječi, bilo kojim redom i bez kvačica ("jos kar", "zminj").
+Kad baza pri osvježavanju ne vrati ništa, ruta baci grešku, pa Next
+zadrži zadnji ispravan popis umjesto da sat vremena poslužuje prazan.
 
 **4. Momčad kola, ponedjeljkom.** Izvedivo, ali NE automatski. U bazi
 nema ocjena igrača, obrana ni asistencija, pa računalo ne može znati

@@ -1,12 +1,13 @@
 // Hero.tsx — uvodna traka naslovnice.
 //
-// Tamna ploha odmah ispod izbornika: grb, izjava s naglašenom riječi
-// i četiri brojke koje se odbroje. Daje stranici uvodni "trenutak"
-// prije nego se ide u rezultate.
+// Tamna ploha odmah ispod izbornika: grb, izjava s naglašenom riječi,
+// tražilica igrača i klubova i četiri brojke koje se odbroje. Daje
+// stranici uvodni "trenutak" prije nego se ide u rezultate.
 
 import Grb from "@/components/Grb";
 import Brojka from "@/components/Brojka";
 import Otkrivanje from "@/components/Otkrivanje";
+import Trazilica from "@/components/Trazilica";
 
 export default function Hero({
   brojLiga,
@@ -77,6 +78,8 @@ export default function Hero({
                 Rezultati, zapisnici, tablice i strijelci nižih nogometnih liga,
                 sve na jednom mjestu i osvježeno svakog vikenda.
               </p>
+
+              <Trazilica />
             </div>
           </div>
         </Otkrivanje>
