@@ -75,6 +75,20 @@ Sedmo kolo propuštaju Lovro Šupraha (Kraljevica), isključen nakon drugog žut
 
 
 -- =====================================================================
+-- SLIKA
+--   najava-redovi-3-nl-zapad-kolo-7.png slozio je drugi agent (1200x630).
+--   Clanak sliku reze na 3:2, sto bi odrezalo satnicu lijevo i datum
+--   desno, pa je slika produzena gore i dolje na 1200x800 (-cijela),
+--   po uputi iz alati/najave/PROCITAJ.md.
+-- =====================================================================
+update public.clanci
+set slika_url  = '/slike/najave/najava-redovi-3-nl-zapad-kolo-7-cijela.png',
+    slika_opis = 'Raspored 7. kola 3. NL Zapad, subota 3. listopada 2026., sve utakmice u 15 sati'
+where slug = 'najava-7-kola-3-nl-zapad-2627'
+returning slug, slika_url;
+
+
+-- =====================================================================
 -- KORAK 2: OBJAVA
 -- =====================================================================
 -- update public.clanci set objavljen = true
