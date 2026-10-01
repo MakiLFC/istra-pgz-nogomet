@@ -163,6 +163,23 @@ def ispisi_statistiku(redak):
         print(f"  ... jos {len(podaci) - 25} redaka")
 
 
+def ispisi_sezonu(utakmice):
+    """Sve utakmice sezone, jedan redak po utakmici.
+
+    Za najavu treba ucinak kluba kod kuce i u gostima kroz cijelu sezonu,
+    a podrobni ispis pokazuje samo jedno kolo. Ovako se sve dobije jednim
+    citanjem Semafora, umjesto posebnog pokretanja za svako kolo.
+    """
+    print(f"\n{'=' * 60}")
+    print("SVE UTAKMICE SEZONE")
+    print("=" * 60)
+    for u in sorted(utakmice, key=lambda x: (x.get("kolo") or 0)):
+        print(f"  {u.get('kolo') or '?':>2}. kolo  "
+              f"{(u.get('datum') or '') + ' ' + (u.get('vrijeme') or ''):<18} "
+              f"{u.get('domacin')} - {u.get('gost')}  "
+              f"{u.get('rezultat') or '-:-'}  | {u.get('stadion') or ''}")
+
+
 def main():
     if len(sys.argv) not in (2, 3):
         raise SystemExit(
@@ -172,6 +189,7 @@ def main():
     utakmice = sadrzaj.get("utakmice") or []
     statistike = sadrzaj.get("statistike") or []
 
+    sve_utakmice = list(utakmice)
     trazeno_kolo = None
     if len(sys.argv) == 3:
         trazeno_kolo = int(sys.argv[2])
@@ -205,6 +223,8 @@ def main():
 
     for redak in statistike:
         ispisi_statistiku(redak)
+
+    ispisi_sezonu(sve_utakmice)
 
 
 if __name__ == "__main__":
