@@ -623,6 +623,97 @@
           "natjecanje": "Kup 1/16 finala"
         }
       ]
+    },
+    {
+      "dat": "3-nl-zapad-kolo-7",
+      "kolo": "7",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 03.10.2026.",
+      "sat": "Sve utakmice u 15:00",
+      "utakmice": [
+        {
+          "d": "Naprijed",
+          "g": "Vinodol",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "OŠK Omišalj",
+          "g": "Jadran-Poreč",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "Halubjan",
+          "g": "Pazinka-Pazin",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "Buje",
+          "g": "Rovinj",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "Crikvenica",
+          "g": "Pomorac",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "Krk",
+          "g": "Nehaj",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "Lokomotiva",
+          "g": "Kraljevica",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "Banjole",
+          "g": "Rudar",
+          "termin": "SUB 15:00"
+        }
+      ]
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-5",
+      "kolo": "5",
+      "stil": "redovi",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 03.10.2026.",
+      "sat": "Sve utakmice u 15:00",
+      "slobodan": "Klana",
+      "utakmice": [
+        {
+          "d": "Medulin 1921",
+          "g": "Rječina",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "Otočac",
+          "g": "Umag-CC Umago",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "Žminj",
+          "g": "Cres",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "Mladost Fažana",
+          "g": "Štinjan",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "Borac (Ba)",
+          "g": "Smoljanci",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "Funtana",
+          "g": "Ližnjan",
+          "termin": "SUB 15:00"
+        }
+      ]
     }
   ]
 }
