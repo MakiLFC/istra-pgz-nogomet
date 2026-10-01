@@ -28,6 +28,24 @@
 --     seniorskih momcadi Jadrana iz Poreca, Rovinja, Medulina 1921,
 --     Novigrada i pulskog Uljanika.
 --
+--   ANDREJEVO, dodano 01.10.2026. po njegovoj uputi:
+--     - Mihaelu Susnjaru (Borac) ovaj je tjedan urucena nagrada za
+--       igraca mjeseca. Ime je nadjeno u rang-listi strijelaca: Borac ima
+--       samo jednog Susnjara, Mihaela, s dva pogotka.
+--     - Otocac je tijekom tjedna imao prigovore na sudjenje proslog
+--       vikenda na Cresu i zeli na terenu pokazati da ih ni suci ne mogu
+--       zaustaviti na putu do vrha. Pise se kao prigovor kluba, ne kao
+--       nasa ocjena sudjenja.
+--     - Iluya je reprezentativac Juznog Sudana i proteklog je tjedna
+--       upisao prva dva nastupa za svoju drzavu.
+--     - Rjecina se u ovoj ligi snalazi mozda i bolje nego sto su neki
+--       ocekivali.
+--
+--   ISPRAVLJENO U ODNOSU NA UPUTU: Andrej je za Rjecinu rekao "prvi
+--   gostujuci bodovi", ali ona ih vec ima, remi 1:1 u Umagu u 3. kolu.
+--   Zato u tekstu stoji prva gostujuca POBJEDA, koju doista jos nema
+--   (u gostima 0-1-1). Javljeno mu uz tekst.
+--
 -- PROVJERENO PRIJE PISANJA
 --   Izracun iz rezultata poklapa se sa sluzbenom tablicom na svih
 --   trinaest mjesta, i po bodovima i po broju odigranih utakmica, uz
@@ -70,15 +88,15 @@ values (
 
 Žminj - Cres. Susret kola. Cres je jedini klub lige koji još nije izgubio bod, dvanaest iz četiri kola, i pobjedom bi stigao na petnaest. Žminj je peti sa šest bodova iz tri utakmice i pobjedom bi se izjednačio s Borcem i Ližnjanom na devet. Zanimljiv je po tome kako je te bodove skupio: dvije pobjede, oba puta 1:0, i ukupno samo dva zabijena gola, najmanje u ligi zajedno s Medulinom. Kod kuće ima jednu pobjedu i jedan poraz, a taj poraz je 0:5 od Ližnjana u prvom kolu. Cres je u gostima dosad igrao jednom i dobio, 2:1 u Medulinu, a Željko Tomić mu je s četiri pogotka među trojicom najboljih strijelaca lige.
 
-Borac (Bakar) - Smoljanci Sloboda. Borac je treći s devet bodova i uz Cres jedini je još bez poraza, a ima i utakmicu manje od njega. Pobjedom bi stigao na dvanaest, koliko Cres ima sada. Na svom terenu je bez izgubljenog boda, dvije pobjede i gol razlika 6:2, a u trećem kolu je ondje slomio Ližnjan 3:2. Smoljanci Sloboda su osmi s četiri boda i u gostima su igrali samo jednom, poraz 0:1 u Žminju. Prošlo kolo im je bilo najbolje dosad, 4:1 protiv Mladosti, i to nakon zaostatka.
+Borac (Bakar) - Smoljanci Sloboda. Borac je treći s devet bodova i uz Cres jedini je još bez poraza, a ima i utakmicu manje od njega. Pobjedom bi stigao na dvanaest, koliko Cres ima sada. Na svom terenu je bez izgubljenog boda, dvije pobjede i gol razlika 6:2, a u trećem kolu je ondje slomio Ližnjan 3:2. Kao zapeta puška čeka ih Mihael Šušnjar, kojem je ovaj tjedan uručena nagrada za igrača mjeseca. Smoljanci Sloboda su osmi s četiri boda i u gostima su igrali samo jednom, poraz 0:1 u Žminju. Prošlo kolo im je bilo najbolje dosad, 4:1 protiv Mladosti, i to nakon zaostatka.
 
 Funtana - Ližnjan. Funtana prvi put izlazi s novim trenerom. Klupu je preuzeo Ivan Kukučka, koji u Funtanu dolazi s dugim iskustvom rada u istarskom nogometu, uključujući vođenje seniorskih momčadi Jadrana iz Poreča, Rovinja, Medulina 1921, Novigrada i pulskog Uljanika. Zadatak na početku nije lagan: Funtana je jedanaesta s tri boda, kod kuće je igrala jednom i izgubila, a dolazi Ližnjan, drugi na ljestvici s devet bodova i gol razlikom plus osam, najboljom u ligi zajedno s Cresovom. Ližnjan je u gostima zabio sedam golova u dvije utakmice. Kod domaćih je Robert Vlizlo s četiri pogotka među trojicom najboljih strijelaca lige, a to su ujedno svi pogoci koje je Funtana ove sezone zabila.
 
-Otočac - Umag-CC Umago. Otočac je četvrti sa šest bodova i ima utakmicu manje od Umaga, pa bi pobjedom stigao na devet i izjednačio se s Borcem i Ližnjanom. Kod kuće je igrao jednom, pobjeda 3:1 protiv Štinjana, a Antonijo Vujičić mu je s četiri pogotka među trojicom najboljih strijelaca lige. Umag je šesti s četiri boda, ali je u četiri kola osvojio sedam, jer službena tablica uz njegovo ime pokazuje tri kaznena boda. U gostima je igrao jednom i izgubio 1:4 na Cresu, a Jamu Akou Arum Iluya ima tri pogotka.
+Otočac - Umag-CC Umago. Otočac je četvrti sa šest bodova i ima utakmicu manje od Umaga, pa bi pobjedom stigao na devet i izjednačio se s Borcem i Ližnjanom. Kod kuće je igrao jednom, pobjeda 3:1 protiv Štinjana, a Antonijo Vujičić mu je s četiri pogotka među trojicom najboljih strijelaca lige. U klubu su tijekom tjedna imali prigovore na suđenje prošlog vikenda na Cresu, pa će u subotu htjeti na samom terenu dokazati da ih ni suci ne mogu zaustaviti na putu do vrha. Umag je šesti s četiri boda, ali je u četiri kola osvojio sedam, jer službena tablica uz njegovo ime pokazuje tri kaznena boda. U gostima je igrao jednom i izgubio 1:4 na Cresu, a tri pogotka ima Jamu Akou Arum Iluya, reprezentativac Južnog Sudana, koji je proteklog tjedna upisao prva dva nastupa za svoju državu.
 
 Mladost Fažana - Štinjan. Izravan dvoboj dviju momčadi s po tri boda, s time da Mladost ima utakmicu manje. Oba kluba igraju bez igrača koji odrađuju kazne iz prošlog kola: Mladost bez Gorana Uroševića, isključenog nakon drugog žutog kartona protiv Smoljanaca Slobode, a Štinjan bez Tomasa Dadića, koji je protiv Žminja dobio crveni karton već u 15. minuti. Mladost je kod kuće igrala jednom i dobila, 2:1 protiv Funtane u prvom kolu. Štinjan je u gostima izgubio oba susreta, uz gol razliku 1:5.
 
-Medulin 1921 - Rječina. Medulin je trinaesti i jedini klub lige koji još nije pobijedio: jedan bod iz četiri kola i dva zabijena gola, najmanje u ligi zajedno sa Žminjem. Pobjedom bi se odmaknuo od dna. Zanimljivo je da je od četiri odigrane utakmice samo jednu igrao kod kuće, i to poraz 1:2 od Cresa. Rječina je sedma s četiri boda i pobjedom ide na sedam, a u gostima još nije dobila: remi u Umagu i poraz na Cresu.
+Medulin 1921 - Rječina. Medulin je trinaesti i jedini klub lige koji još nije pobijedio: jedan bod iz četiri kola i dva zabijena gola, najmanje u ligi zajedno sa Žminjem. Pobjedom bi se odmaknuo od dna. Zanimljivo je da je od četiri odigrane utakmice samo jednu igrao kod kuće, i to poraz 1:2 od Cresa. Rječina je sedma s četiri boda i pobjedom ide na sedam. Pokazuje da se u ovoj ligi snalazi možda i bolje nego što su neki očekivali, a ova je utakmica savršena prilika i za prvu gostujuću pobjedu ove sezone: u gostima je dosad odigrala dvije, remi u Umagu i poraz na Cresu.
 
 LJESTVICA
 
@@ -94,6 +112,19 @@ Peto kolo propuštaju Tomas Dadić (Štinjan) nakon crvenog kartona i Goran Uro�
   now()
 );
 
+
+-- =====================================================================
+-- SLIKA
+--   najava-redovi-4-nl-ns-rijeka-kolo-5.png slozio je drugi agent
+--   (1200x630). Clanak sliku reze na 3:2, sto bi odrezalo satnicu lijevo
+--   i datum desno, pa je produzena gore i dolje na 1200x800 (-cijela),
+--   po uputi iz alati/najave/PROCITAJ.md. Ovaj update koristi produzenu.
+-- =====================================================================
+update public.clanci
+set slika_url  = '/slike/najave/najava-redovi-4-nl-ns-rijeka-kolo-5-cijela.png',
+    slika_opis = 'Raspored 5. kola 4. NL NS Rijeka, subota 3. listopada 2026., sve utakmice u 15 sati'
+where slug = 'najava-5-kola-4-nl-ns-rijeka-2627'
+returning slug, slika_url;
 
 -- =====================================================================
 -- KORAK 2: OBJAVA
