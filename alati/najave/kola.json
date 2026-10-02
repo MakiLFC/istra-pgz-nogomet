@@ -784,6 +784,66 @@
           "termin": "NED 16:00"
         }
       ]
+    },
+    {
+      "dat": "proba-3-nl-zapad-kolo-4-pregled",
+      "ime": "proba-pregled-3-nl-zapad-kolo-4",
+      "kolo": "4",
+      "stil": "redovi",
+      "naslov": "Pregled",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "UTO 15.09.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Vinodol",
+          "g": "Lokomotiva",
+          "termin": "UTO 17:30",
+          "rezultat": "0:4"
+        },
+        {
+          "d": "Banjole",
+          "g": "Krk",
+          "termin": "UTO 17:30",
+          "rezultat": "2:2"
+        },
+        {
+          "d": "Rudar",
+          "g": "Crikvenica",
+          "termin": "UTO 17:30",
+          "rezultat": "0:2"
+        },
+        {
+          "d": "Kraljevica",
+          "g": "Buje",
+          "termin": "UTO 17:30",
+          "rezultat": "2:2"
+        },
+        {
+          "d": "Nehaj",
+          "g": "Halubjan",
+          "termin": "UTO 17:30",
+          "rezultat": "1:2"
+        },
+        {
+          "d": "Pomorac",
+          "g": "OŠK Omišalj",
+          "termin": "UTO 17:30",
+          "rezultat": "3:1"
+        },
+        {
+          "d": "Rovinj",
+          "g": "Naprijed",
+          "termin": "UTO 17:30",
+          "rezultat": "1:3"
+        },
+        {
+          "d": "Pazinka-Pazin",
+          "g": "Jadran-Poreč",
+          "termin": "UTO 18:00",
+          "rezultat": "3:0"
+        }
+      ]
     }
   ]
 }
