@@ -21,9 +21,16 @@
 --   Rab u kupu (Rab - Krk 1:3, 29.09.): clanak o utakmicama 29.09.2026.
 --
 -- RISNJAK - RAB NA GMAJNI
---   Raspored na Semaforu za tu utakmicu navodi "Gmajna, Vrata", a ne
---   igraliste Risnjaka u Lokvama. Tako je i upisano; ako je to greska
---   HNS-a, ispravlja se replace() nad tekstom.
+--   Raspored na Semaforu navodi "Gmajna, Vrata". Andrej je 02.10.
+--   potvrdio da je to Risnjaku privremeno domace igraliste, zbog obnove
+--   igralista u Lokvama koja je pocela tog tjedna.
+--
+-- ANDREJEVO (02.10.2026.)
+--   Derbi kola Mune - Lovran, "grdi pasi", legitimna nada da zaustave
+--   Lovrance, "za prste polizati"; Losinj legitimni kandidat za vrh i
+--   "barakude"; obnova u Lokvama; bolesti u Goraninu kao razlog odgode
+--   utakmice s Rabom; tradicija da se Draga na Slatinu vraca po zavrsetku
+--   turisticke sezone; Lukanovic kao pravo pojacanje.
 --
 -- ZUTI KARTONI
 --   Prag za ZNL nije potvrden, pa se navodi samo broj kartona, bez
@@ -42,15 +49,15 @@ values (
   'Vodeći Lovran u Munama igra protiv momčadi koja dvije utakmice nije primila gol, a Vidmar i Šneler, prva dva strijelca lige, nalaze se jedan nasuprot drugome. Lošinj dočekuje Vrbovsko, a Risnjak i Rab, oba sa sedam bodova, igraju na Gmajni.',
 'Peto kolo 1. ŽNL PGŽ igra se u subotu 3. i nedjelju 4. listopada. U subotu u 16 sati igraju Omladinac Vrata - Vihor i Draga - Stari grad Rijeka, a u nedjelju Goranin - Turbina u 14 sati, Lošinj - Vrbovsko u 15:30 te ostale tri utakmice u 16 sati. Igraju svi klubovi. Rab i Goranin i dalje imaju utakmicu manje, jer njihov odgođeni susret iz četvrtog kola u rasporedu još nema termin.
 
-Mune - Lovran, u nedjelju na Crikvenoj dragi. Lovran je jedini bez izgubljenog boda: četiri utakmice, četiri pobjede, gol razlika 14:4. Pobjedom bi zadržao najmanje tri boda prednosti, kako god igrao Lošinj. Ako izgubi, a Lošinj pobijedi, izjednačit će se na vrhu. Lovran je dosad samo jednom igrao u gostima, u prvom kolu, kad je u Lokvama slavio 9:2. Mune su treće sa sedam bodova i dolaze s dvije pobjede zaredom, obje bez primljenog gola, a pobjedom bi se Lovranu primaknule na dva boda. Kod kuće su ove sezone dobile Dragu 4:0, a izgubile od Lošinja 2:3. Sastaju se i dvojica najboljih strijelaca lige: Patrik Vidmar iz Lovrana ima sedam pogodaka, a Karlo Šneler iz Muna pet.
+Mune - Lovran, u nedjelju na Crikvenoj dragi. Derbi kola u kojem domaći "grdi pasi" žele biti prvi koji su ove sezone zaustavili Lovrance, a za to se imaju i legitimno pravo nadati. Lovran je jedini bez izgubljenog boda: četiri utakmice, četiri pobjede, gol razlika 14:4. Pobjedom bi zadržao najmanje tri boda prednosti, kako god igrao Lošinj. Ako izgubi, a Lošinj pobijedi, izjednačit će se na vrhu. Lovran je dosad samo jednom igrao u gostima, u prvom kolu, kad je u Lokvama slavio 9:2. Mune su treće sa sedam bodova i dolaze s dvije pobjede zaredom, obje bez primljenog gola, a pobjedom bi se Lovranu primaknule na dva boda. Kod kuće su ove sezone dobile Dragu 4:0, a izgubile od Lošinja 2:3. Sastaju se i dvojica najboljih strijelaca lige: Patrik Vidmar iz Lovrana ima sedam pogodaka, a Karlo Šneler iz Muna pet. Dvoboj "za prste polizati".
 
-Lošinj - Vrbovsko, u nedjelju na Čikatu. Lošinj je drugi s devet bodova, tri iza Lovrana, i pobjedom ostaje u izravnoj potjeri za vodećim. Na Čikatu je ove sezone igrao samo jednom, 2:0 protiv Drage, a u gostima je pobijedio dvaput, u Munama i prošlog vikenda na Belvederu. Vitorio Antoninić ima tri pogotka. Vrbovsko je jedanaesto s tri boda i izgubilo je dvije utakmice zaredom. U gostima je ove sezone izgubilo obje utakmice, uz gol razliku 3:6.
+Lošinj - Vrbovsko, u nedjelju na Čikatu. Lošinj je drugi s devet bodova, tri iza Lovrana, i pobjedom ostaje u izravnoj potjeri za vodećim. Na Čikatu je ove sezone igrao samo jednom, 2:0 protiv Drage, a u gostima je pobijedio dvaput, u Munama i prošlog vikenda na Belvederu. Lošinj se dokazao kao legitimni kandidat za vrh, a domaće "barakude" ni ne pomišljaju da bi ih Vrbovsko u tome moglo zaustaviti. Vitorio Antoninić ima tri pogotka. Vrbovsko je jedanaesto s tri boda i izgubilo je dvije utakmice zaredom. U gostima je ove sezone izgubilo obje utakmice, uz gol razliku 3:6.
 
-Risnjak - Rab, u nedjelju na Gmajni u Vratima. Obje momčadi imaju po sedam bodova, a Rab utakmicu manje. Pobjednik dolazi na deset bodova i u vrh ljestvice. Rab je, uz Lovran, jedini bez poraza, ali prvenstvenu utakmicu nije odigrao od 19. rujna, jer mu je susret s Goraninom odgođen. U utorak je u kupu ispao od Krka. Jedino gostovanje ove sezone odigrao je upravo na Gmajni, 0:0 protiv Omladinca. Antonio Belobrajdić ima dva gola. Risnjak dolazi s dvije pobjede zaredom, a u obje je pobjednički gol zabio Karlo Rupe. U gostima ove sezone nije izgubio: remi na Belvederu i pobjeda na Zametu.
+Risnjak - Rab, u nedjelju na Gmajni u Vratima. Gmajna je Risnjaku privremeno domaće igralište, zbog obnove igrališta u Lokvama, koja je počela ovog tjedna, pa neka gledatelji to imaju na umu, da ne bi došli na krivo mjesto. Obje momčadi imaju po sedam bodova, a Rab utakmicu manje. Pobjednik dolazi na deset bodova i u vrh ljestvice. Rab je, uz Lovran, jedini bez poraza, ali prvenstvenu utakmicu nije odigrao od 19. rujna, jer mu je susret s Goraninom odgođen. U utorak je u kupu ispao od Krka. Jedino gostovanje ove sezone odigrao je upravo na Gmajni, 0:0 protiv Omladinca. Antonio Belobrajdić ima dva gola. Risnjak dolazi s dvije pobjede zaredom, a u obje je pobjednički gol zabio Karlo Rupe. U gostima ove sezone nije izgubio: remi na Belvederu i pobjeda na Zametu.
 
-Goranin - Turbina, u nedjelju u 14 sati na Gradskom stadionu u Delnicama. Turbina ima sedam bodova i pobjedom bi stigla na deset. U gostima je dosad igrala samo jednom i izgubila na Rabu 2:4, dok je kod kuće neporažena. Marin Ribarić, Mihael Ažić i Moreno Maretić imaju po dva pogotka. Goranin je deveti s četiri boda, uz utakmicu manje, i u Delnicama ove sezone ne gubi: remi sa Starim gradom i pobjeda nad Zametom 2:1. Kao i Rab, prvenstveno nije igrao od 19. rujna.
+Goranin - Turbina, u nedjelju u 14 sati na Gradskom stadionu u Delnicama. Turbina ima sedam bodova i pobjedom bi stigla na deset. U gostima je dosad igrala samo jednom i izgubila na Rabu 2:4, dok je kod kuće neporažena. Marin Ribarić, Mihael Ažić i Moreno Maretić imaju po dva pogotka. Goranin je deveti s četiri boda, uz utakmicu manje, i u Delnicama ove sezone ne gubi: remi sa Starim gradom i pobjeda nad Zametom 2:1. Kao i Rab, prvenstveno nije igrao od 19. rujna. Goranin se nada da su bolesti dijela momčadi, zbog kojih je prošlog vikenda odgođena i utakmica s Rabom, iza njega te da mu neće poremetiti prezentaciju u ovom duelu.
 
-Draga - Stari grad Rijeka, u subotu na Slatini u Mošćeničkoj Dragi. Draga ove sezone prvi put igra kod kuće, nakon četiri gostovanja. Jedinu pobjedu upisala je u Baški, 4:3, i trinaesta je s tri boda. Kristijan Kurti ima tri pogotka. Stari grad je osmi s pet bodova i u gostima ove sezone nije izgubio: remi u Delnicama i pobjeda kod Rikard Benčića 3:1. Dolazi nakon prvog poraza u sezoni, 2:3 protiv Lošinja na Belvederu. Antonio Lukanović i Marin Baković imaju po dva gola.
+Draga - Stari grad Rijeka, u subotu na Slatini u Mošćeničkoj Dragi. Već tradicija nalaže da se Draga na Slatinu vraća tek po završetku turističke sezone, pa je ove subote prvi put doma, nakon četiri gostovanja. Jedinu pobjedu upisala je u Baški, 4:3, i trinaesta je s tri boda. Kristijan Kurti ima tri pogotka. Stari grad je osmi s pet bodova i u gostima ove sezone nije izgubio: remi u Delnicama i pobjeda kod Rikard Benčića 3:1. Dolazi nakon prvog poraza u sezoni, 2:3 protiv Lošinja na Belvederu. Antonio Lukanović odmah se predstavio kao pravo pojačanje i nema namjeru stati. On i Marin Baković imaju po dva gola.
 
 Omladinac Vrata - Vihor, u subotu na Gmajni. Vihor je posljednji i jedini bez boda: četiri poraza, uz četrnaest primljenih golova. Mazen Sharbini je s tri pogotka zabio polovicu njegovih golova. Omladinac je sedmi s pet bodova i bez poraza je u dvije utakmice, uz remije s Rabom i u Crikvenici. Na Gmajni ove sezone ne gubi: pobjeda nad Vrbovskim 4:2 i remi s Rabom. Diego Žic ima tri pogotka, a Mateo Tomić dva.
 
