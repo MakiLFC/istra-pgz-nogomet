@@ -232,7 +232,8 @@ function horizont(k){
 // razvuce preko cijele slike. Kraci popis se centrira u istom prostoru.
 function rasporedRedova(n){
   const visina = Math.min(400 / n, 80) * n;
-  const znak = Math.round(Math.min(400 / n, 80) * 0.9);
+  // najvise 58 px, inace se kod lige s tri utakmice grbovi dodiruju
+  const znak = Math.round(Math.min(Math.min(400 / n, 80) * 0.9, 58));
   return `top:${170 + (400 - visina) / 2}px;height:${visina}px;grid-template-rows:repeat(${n},1fr);--zn:${znak}px`;
 }
 
