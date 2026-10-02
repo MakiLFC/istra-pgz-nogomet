@@ -1,0 +1,73 @@
+# Članak u bazu, bez Supabasea i bez laptopa.
+#
+# ČEMU SLUŽI
+# Članak se do sada upisivao samo kroz SQL Editor u Supabaseu, za što je
+# trebalo računalo. Sada Claude napiše članak u datoteku clanci/<slug>.txt,
+# spremi je na main i pokrene ovaj posao, a on članak upiše u bazu.
+# Oblik datoteke i sve radnje opisane su u alati/clanak_u_bazu.py.
+#
+# KAKO SE POKREĆE (i s mobitela)
+# Actions -> "Članak u bazu" -> Run workflow:
+#   clanak  slug članka, npr. pregled-5-kola-3-nl-zapad-2627
+#   radnja  upis           novi ulazi neobjavljen, postojećem se prepiše sadržaj
+#           upis-i-objava  isto, pa odmah objavi
+#           objavi         objavi članak koji je već u bazi
+#           skini          vrati u neobjavljene
+#           provjeri       stanje u bazi, usporedba s datotekom
+#           obrisi         samo neobjavljen članak
+#
+# Isti ključevi kao scraper i "Fotografija za članak" (SUPABASE_URL i
+# SUPABASE_SERVICE_KEY u Settings -> Secrets and variables -> Actions).
+
+name: Članak u bazu
+
+on:
+  workflow_dispatch:
+    inputs:
+      clanak:
+        description: "Slug članka (ime datoteke u mapi clanci, bez .txt)"
+        required: true
+        type: string
+      radnja:
+        description: "Što napraviti"
+        required: true
+        default: "upis"
+        type: choice
+        options:
+          - upis
+          - upis-i-objava
+          - objavi
+          - skini
+          - provjeri
+          - obrisi
+
+permissions:
+  contents: read
+
+jobs:
+  clanak:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Preuzmi kod
+        uses: actions/checkout@v7
+
+      - name: Postavi Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Instaliraj pakete
+        run: pip install requests
+
+      - name: Članak u bazu
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          # Unos ide kroz varijable, ne izravno u naredbu, da navodnik ili
+          # znak dolara u slugu ne može promijeniti naredbu.
+          CLANAK: ${{ inputs.clanak }}
+          RADNJA: ${{ inputs.radnja }}
+          PYTHONUNBUFFERED: "1"
+        run: python alati/clanak_u_bazu.py "$CLANAK" --radnja "$RADNJA"

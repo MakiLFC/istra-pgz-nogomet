@@ -71,7 +71,8 @@ jobs:
                       test_provjera_strijelaca test_rezultat_bez_brojki \
                       test_zbroj_bez_postava test_rang_liste_iz_zapisnika \
                       test_dogadjaj_bez_minute test_fotografija \
-                      test_nepotpuna_stranica test_samo_novi_zapisnici; do
+                      test_nepotpuna_stranica test_samo_novi_zapisnici \
+                      test_clanak_u_bazu; do
             echo "=============================================="
             echo "$test.py"
             echo "=============================================="
