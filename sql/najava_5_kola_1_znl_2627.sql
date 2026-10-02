@@ -32,6 +32,11 @@
 --   utakmice s Rabom; tradicija da se Draga na Slatinu vraca po zavrsetku
 --   turisticke sezone; Lukanovic kao pravo pojacanje.
 --
+-- SLIKA
+--   najava-redovi-1-znl-pgz-kolo-5.png slozio je drugi agent (1200x630),
+--   produzena gore i dolje na 1200x800 (-cijela), da je clanak u 3:2 ne
+--   odreze sa strana (vidi alati/najave/PROCITAJ.md).
+--
 -- ZUTI KARTONI
 --   Prag za ZNL nije potvrden, pa se navodi samo broj kartona, bez
 --   posljedice (vidi CLAUDE.md).
@@ -42,7 +47,7 @@
 -- KORAK 1: UPIS CLANKA (jos nije objavljen)
 -- =====================================================================
 insert into public.clanci
-  (slug, naslov, sazetak, tekst, natjecanje, objavljen, objavljeno_u)
+  (slug, naslov, sazetak, tekst, natjecanje, slika_url, slika_opis, objavljen, objavljeno_u)
 values (
   'najava-5-kola-1-znl-pgz-2627',
   'NAJAVA 5. KOLA: LOVRAN S ČETIRI POBJEDE IZ ČETIRI UTAKMICE GOSTUJE KOD TREĆIH MUNA',
@@ -71,13 +76,17 @@ KAZNE
 
 U četvrtom kolu nije bilo isključenja, pa u petom nitko ne pauzira zbog crvenog kartona. Po tri žuta kartona imaju Aleksandar Cupać (Rikard Benčić) i Mateo Vukelja (Vrbovsko).',
   '1. ŽNL PGŽ',
+  '/slike/najave/najava-redovi-1-znl-pgz-kolo-5-cijela.png',
+  'Raspored 5. kola 1. ŽNL PGŽ, subota 3. i nedjelja 4. listopada 2026.',
   false,
   now()
 )
 on conflict (slug) do update
   set naslov  = excluded.naslov,
       sazetak = excluded.sazetak,
-      tekst   = excluded.tekst;
+      tekst   = excluded.tekst,
+      slika_url  = excluded.slika_url,
+      slika_opis = excluded.slika_opis;
 
 
 -- =====================================================================
