@@ -64,6 +64,9 @@ prepiše ili se stavi zarez, dvotočka ili točka.
     ručno: skine fotografiju s njezine adrese, uspravi je, smanji, učita
     u Supabase Storage i upiše u članak. Zamjenjuje ručni put preko
     Supabase dashboarda i radi s mobitela.
+  - `.github/workflows/clanak.yml` ("Članak u bazu") samo ručno: upiše,
+    ispravi, objavi ili skine članak iz datoteke `clanci/<slug>.txt`.
+    Zamjenjuje SQL Editor za članke, pa radi i bez laptopa.
   - `.github/workflows/slika.yml` ("Izreži sliku") samo ručno, kad se
     želi točno odabrani izrez spremljen u repozitorij; za obične
     fotografije uz članke više nije potreban
@@ -103,6 +106,8 @@ sql/
   slika_kadar.sql   jednokratno: stupac clanci.slika_kadar
   (ostale .sql datoteke su jednokratni zahvati nad podacima)
 alati/
+  clanak_u_bazu.py  članak iz mape clanci u bazu; pokreće ga posao
+                    "Članak u bazu"
   fotografija.py    fotografija s mobitela do slike na članku, u jednom
                     potezu; pokreće ga posao "Fotografija za članak"
   najave/     predložak i generator naslovnih slika za najave kola
@@ -112,6 +117,7 @@ alati/
                     treba vidjeti kako HNS nešto označava
   izrezi_sliku.py   rezanje fotografije na zadani omjer i sažimanje;
                     pokreće ga posao "Izreži sliku" na GitHubu
+clanci/                 članci za posao "Članak u bazu", <slug>.txt
 scraper_supabase.py     glavni scraper
 natjecanja.json         referenca ID-jeva natjecanja po sezonama
 derbi_tjedni_predlozak.sql  SQL predložak za tjedno označavanje derbija
@@ -889,6 +895,34 @@ Dvije stvari koje su se pokazale bitnima:
 Rezanje se i dalje ne radi unaprijed: stranica sama uklopi sliku, a
 `slika_kadar` govori koji se dio po visini zadrži. Čuva
 `test_fotografija.py`, koji slike stvara u memoriji, bez interneta.
+
+**Članak ide u bazu bez Supabasea i bez laptopa.** Do 02.10.2026.
+svaki se članak upisivao kroz SQL Editor u Supabaseu. Na mobitelu se
+dugačak SQL teško točno kopira, a Andrej preglede kola često radi kad
+nije doma (prvi povod: svadba u subotu 03.10.).
+
+Sada Claude članak piše u datoteku `clanci/<slug>.txt` (zaglavlje
+"ključ: vrijednost", redak `---`, pa tekst), spremi je na main i sam
+pokrene posao "Članak u bazu" (`.github/workflows/clanak.yml`, alat
+`alati/clanak_u_bazu.py`). Andrej u razgovoru kaže "objavi" i Claude
+pokrene radnju `objavi`. Ispravak se radi izmjenom datoteke i novim
+`upis`. Pravila alata, čuva ih `test_clanak_u_bazu.py`:
+
+- novi članak ulazi NEOBJAVLJEN, a ispravak postojećeg ne dira
+  objavljenost ni datum objave
+- datoteka s dugom ili srednjom crtom se ne upisuje (pravilo 6)
+- slug u datoteci mora biti jednak imenu datoteke
+- objavljeni članak se ne briše; prvo `skini`
+
+Isproban je od početka do kraja na pravoj bazi prije predaje (upis,
+ispravak, skidanje, brisanje probnog neobjavljenog članka), po pouci s
+fotografijama. Posao ne pokreće gradnju na Vercelu, jer `clanci/` i
+`alati/` nisu na popisu u `vercel-preskoci-build.sh`. Workflow mora
+biti na mainu da bi se uopće dao pokrenuti; datoteka članka mora biti
+na grani s koje se pokreće.
+
+SQL datoteke u `sql/` i dalje vrijede za sve ostalo (derbi, sažetak uz
+utakmicu, funkcije), a SQL Editor ostaje rezerva i za članke.
 
 **Za objavu na Facebooku s opisom i označavanjem ne koristi se naš gumb.**
 03.09.2026. najava 1. kola 4. NL nije se dala objaviti: Facebookov

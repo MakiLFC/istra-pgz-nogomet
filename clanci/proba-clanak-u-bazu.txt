@@ -1,6 +1,0 @@
-slug: proba-clanak-u-bazu
-naslov: PROBA POSLA ČLANAK U BAZU
-sazetak: Probni članak, nikad se ne objavljuje i briše se odmah nakon probe.
-natjecanje: nema
----
-Ovo je probni članak za posao "Članak u bazu". Ne objavljuje se. Druga verzija, za probu ispravka.
