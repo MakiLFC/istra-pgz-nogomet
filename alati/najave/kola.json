@@ -714,6 +714,76 @@
           "termin": "SUB 15:00"
         }
       ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-5",
+      "kolo": "5",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 03.10. i NED 04.10.2026.",
+      "sat": "Satnica stoji uz svaki par",
+      "utakmice": [
+        {
+          "d": "Omladinac Vrata",
+          "g": "Vihor (B)",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Draga",
+          "g": "Stari grad Rijeka",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Goranin",
+          "g": "Turbina",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Lošinj",
+          "g": "Vrbovsko",
+          "termin": "NED 15:30"
+        },
+        {
+          "d": "Risnjak",
+          "g": "Rab",
+          "termin": "NED 16:00"
+        },
+        {
+          "d": "Rikard Benčić",
+          "g": "Zamet",
+          "termin": "NED 16:00"
+        },
+        {
+          "d": "Mune",
+          "g": "Lovran",
+          "termin": "NED 16:00"
+        }
+      ]
+    },
+    {
+      "dat": "2-znl-pgz-kolo-5",
+      "kolo": "5",
+      "stil": "redovi",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "NED 04.10.2026.",
+      "sat": "Sve utakmice u 16:00",
+      "utakmice": [
+        {
+          "d": "Snježnik",
+          "g": "Polet (Sk)",
+          "termin": "NED 16:00"
+        },
+        {
+          "d": "Mrkopalj",
+          "g": "Željezničar (M)",
+          "termin": "NED 16:00"
+        },
+        {
+          "d": "Goranka",
+          "g": "Gomirje",
+          "termin": "NED 16:00"
+        }
+      ]
     }
   ]
 }
