@@ -784,6 +784,66 @@
           "termin": "NED 16:00"
         }
       ]
+    },
+    {
+      "dat": "3-nl-zapad-kolo-7-pregled",
+      "kolo": "7",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 03.10.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Naprijed",
+          "g": "Vinodol",
+          "termin": "SUB 15:00",
+          "rezultat": "3:1"
+        },
+        {
+          "d": "OŠK Omišalj",
+          "g": "Jadran-Poreč",
+          "termin": "SUB 15:00",
+          "rezultat": "0:2"
+        },
+        {
+          "d": "Halubjan",
+          "g": "Pazinka-Pazin",
+          "termin": "SUB 15:00",
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Buje",
+          "g": "Rovinj",
+          "termin": "SUB 15:00",
+          "rezultat": "0:0"
+        },
+        {
+          "d": "Crikvenica",
+          "g": "Pomorac",
+          "termin": "SUB 15:00",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Krk",
+          "g": "Nehaj",
+          "termin": "SUB 15:00",
+          "rezultat": "1:2"
+        },
+        {
+          "d": "Lokomotiva",
+          "g": "Kraljevica",
+          "termin": "SUB 15:00",
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Banjole",
+          "g": "Rudar",
+          "termin": "SUB 15:00",
+          "rezultat": "3:0"
+        }
+      ],
+      "ime": "pregled-3-nl-zapad-kolo-7",
+      "naslov": "Pregled"
     }
   ]
 }
