@@ -947,6 +947,36 @@
       ],
       "ime": "pregled-1-znl-pgz-kolo-5",
       "naslov": "Pregled"
+    },
+    {
+      "dat": "2-znl-pgz-kolo-5-pregled",
+      "kolo": "5",
+      "stil": "redovi",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "NED 04.10.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Snježnik",
+          "g": "Polet (Sk)",
+          "termin": "NED 16:00",
+          "rezultat": "2:4"
+        },
+        {
+          "d": "Mrkopalj",
+          "g": "Željezničar (M)",
+          "termin": "NED 16:00",
+          "rezultat": "3:4"
+        },
+        {
+          "d": "Goranka",
+          "g": "Gomirje",
+          "termin": "NED 16:00",
+          "rezultat": "2:0"
+        }
+      ],
+      "ime": "pregled-2-znl-pgz-kolo-5",
+      "naslov": "Pregled"
     }
   ]
 }
