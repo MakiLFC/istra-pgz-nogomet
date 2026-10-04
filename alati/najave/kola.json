@@ -893,6 +893,60 @@
       ],
       "ime": "pregled-4-nl-ns-rijeka-kolo-5",
       "naslov": "Pregled"
+    },
+    {
+      "dat": "1-znl-pgz-kolo-5-pregled",
+      "kolo": "5",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 03.10. i NED 04.10.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Omladinac Vrata",
+          "g": "Vihor (B)",
+          "termin": "SUB 16:00",
+          "rezultat": "3:3"
+        },
+        {
+          "d": "Draga",
+          "g": "Stari grad Rijeka",
+          "termin": "SUB 16:00",
+          "rezultat": "2:3"
+        },
+        {
+          "d": "Goranin",
+          "g": "Turbina",
+          "termin": "NED 14:00",
+          "rezultat": "2:0"
+        },
+        {
+          "d": "Lošinj",
+          "g": "Vrbovsko",
+          "termin": "NED 15:30",
+          "rezultat": "3:3"
+        },
+        {
+          "d": "Risnjak",
+          "g": "Rab",
+          "termin": "NED 16:00",
+          "rezultat": "2:5"
+        },
+        {
+          "d": "Rikard Benčić",
+          "g": "Zamet",
+          "termin": "NED 16:00",
+          "rezultat": "1:5"
+        },
+        {
+          "d": "Mune",
+          "g": "Lovran",
+          "termin": "NED 16:00",
+          "rezultat": "3:1"
+        }
+      ],
+      "ime": "pregled-1-znl-pgz-kolo-5",
+      "naslov": "Pregled"
     }
   ]
 }
