@@ -40,6 +40,24 @@ RADNJE
   obrisi         obriše članak iz baze, ali SAMO neobjavljen; objavljeni
                  se prvo mora skinuti, da se slučajno ne obriše živ članak
 
+SAŽETAK UZ ZAPISNIK  clanci/sazetak-<nešto>.txt
+Kratak osvrt koji stoji ispod zapisnika na stranici utakmice ide u
+stupac utakmice.tekst_clanka, ne u clanke (vidi CLAUDE.md). Takva
+datoteka umjesto sluga ima ključ utakmice, imena klubova točno kako
+stoje u bazi, i po tome je alat prepoznaje:
+
+    natjecanje: 1. ŽNL PGŽ
+    sezona: 2026/27
+    kolo: 5
+    domacin: NK Mune
+    gost: HNK Lovran
+    derbi: da            (neobavezno; da ili ne)
+    ---
+    tekst sažetka
+
+Sažetak nema oznaku objave, pa se vidi čim je upisan: upis, upis-i-objava
+i objavi ga upišu, skini i obrisi ga maknu, provjeri ispiše stanje.
+
 PRAVILO 6 IZ CLAUDE.md
 Datoteka s dugom ili srednjom crtom se ne upisuje: alat javi redak i
 stane. Tako crtica ne može na stranicu ni kad promakne pri pisanju.
@@ -57,6 +75,7 @@ MAPA = Path(__file__).resolve().parent.parent / "clanci"
 
 OBAVEZNI = ("slug", "naslov", "sazetak", "natjecanje")
 NEOBAVEZNI = ("slika_url", "slika_opis", "slika_potpis", "slika_kadar")
+SAZETAK_OBAVEZNI = ("natjecanje", "sezona", "kolo", "domacin", "gost")
 CRTICE = {"—": "duga crta", "–": "srednja crta"}
 
 
@@ -72,8 +91,8 @@ def putanja_clanka(zadano: str) -> Path:
     return MAPA / f"{ime}.txt"
 
 
-def procitaj(sadrzaj: str, ocekivani_slug: str) -> dict:
-    """Pretvara sadržaj datoteke u stupce tablice clanci."""
+def razdvoji(sadrzaj: str, dopustena: tuple) -> tuple:
+    """Dijeli datoteku na polja zaglavlja i tekst, uz provjeru crtica."""
     for broj, redak in enumerate(sadrzaj.splitlines(), start=1):
         for znak, naziv in CRTICE.items():
             if znak in redak:
@@ -94,9 +113,49 @@ def procitaj(sadrzaj: str, ocekivani_slug: str) -> dict:
             raise GreskaDatoteke(f"redak zaglavlja bez dvotočke: {redak}")
         kljuc, vrijednost = redak.split(":", 1)
         kljuc = kljuc.strip()
-        if kljuc not in OBAVEZNI + NEOBAVEZNI:
+        if kljuc not in dopustena:
             raise GreskaDatoteke(f"nepoznato polje u zaglavlju: {kljuc}")
         polja[kljuc] = vrijednost.strip()
+    return polja, tekst.strip()
+
+
+def je_sazetak(sadrzaj: str) -> bool:
+    """Sažetak uz utakmicu prepoznaje se po polju 'domacin' u zaglavlju."""
+    zaglavlje = ("\n" + sadrzaj).split("\n---", 1)[0]
+    return any(r.split(":", 1)[0].strip() == "domacin"
+               for r in zaglavlje.splitlines() if ":" in r)
+
+
+def procitaj_sazetak(sadrzaj: str) -> tuple:
+    """Sažetak uz zapisnik: vraća (ključ utakmice, stupci za upis).
+
+    Ključ je isti kao ključ za upsert u scraperu: natjecanje, sezona,
+    kolo, domaćin i gost, s imenima klubova točno kako stoje u bazi
+    (npr. "NK Mune", "HNK Lovran").
+    """
+    polja, tekst = razdvoji(sadrzaj, SAZETAK_OBAVEZNI + ("derbi",))
+    for kljuc in SAZETAK_OBAVEZNI:
+        if not polja.get(kljuc):
+            raise GreskaDatoteke(f"u zaglavlju fali polje: {kljuc}")
+    if not polja["kolo"].isdigit():
+        raise GreskaDatoteke(f"kolo mora biti broj: {polja['kolo']}")
+    if not tekst:
+        raise GreskaDatoteke("sažetak nema teksta ispod crte '---'")
+
+    kljuc = {k: polja[k] for k in SAZETAK_OBAVEZNI}
+    kljuc["kolo"] = int(polja["kolo"])
+    stupci = {"tekst_clanka": tekst}
+    if "derbi" in polja:
+        derbi = polja["derbi"].lower()
+        if derbi not in ("da", "ne"):
+            raise GreskaDatoteke("derbi može biti samo 'da' ili 'ne'")
+        stupci["derbi"] = derbi == "da"
+    return kljuc, stupci
+
+
+def procitaj(sadrzaj: str, ocekivani_slug: str) -> dict:
+    """Pretvara sadržaj datoteke u stupce tablice clanci."""
+    polja, tekst = razdvoji(sadrzaj, OBAVEZNI + NEOBAVEZNI)
 
     for kljuc in OBAVEZNI:
         if kljuc not in polja:
@@ -109,7 +168,6 @@ def procitaj(sadrzaj: str, ocekivani_slug: str) -> dict:
             f"slug u datoteci ({polja['slug']}) nije isti kao ime datoteke "
             f"({ocekivani_slug})")
 
-    tekst = tekst.strip()
     if not tekst:
         raise GreskaDatoteke("članak nema teksta ispod crte '---'")
 
@@ -174,6 +232,73 @@ class Baza:
         return self._provjeri(o, "Brisanje članka")
 
 
+class Utakmice:
+    """Redak utakmice, za sažetak uz zapisnik (stupac tekst_clanka).
+
+    Scraper taj stupac ne dira, pa upis ovdje preživi svako osvježavanje.
+    Utakmica se traži po istom ključu kao u scraperu, nikad po id-ju, da
+    se ne može pogoditi tuđi redak.
+    """
+
+    def __init__(self, adresa: str, kljuc: str):
+        self.cilj = f"{adresa.rstrip('/')}/rest/v1/utakmice"
+        self.zaglavlja = Baza(adresa, kljuc).zaglavlja
+
+    @staticmethod
+    def _uvjet(kljuc_utakmice):
+        return {k: f"eq.{v}" for k, v in kljuc_utakmice.items()}
+
+    def dohvati(self, kljuc_utakmice):
+        o = requests.get(self.cilj, headers=self.zaglavlja, timeout=30,
+                         params={**self._uvjet(kljuc_utakmice),
+                                 "select": "domacin,gost,rezultat,derbi,tekst_clanka"})
+        if o.status_code >= 400:
+            raise SystemExit(f"Dohvat utakmice nije uspio ({o.status_code}): {o.text}")
+        return o.json()
+
+    def promijeni(self, kljuc_utakmice, podaci):
+        o = requests.patch(self.cilj, headers=self.zaglavlja, timeout=30,
+                           params=self._uvjet(kljuc_utakmice), json=podaci)
+        if o.status_code >= 400:
+            raise SystemExit(f"Upis u utakmicu nije uspio ({o.status_code}): {o.text}")
+        return o.json()
+
+
+def opis_utakmice(kljuc_utakmice) -> str:
+    k = kljuc_utakmice
+    return f"{k['domacin']} - {k['gost']} ({k['natjecanje']}, {k['sezona']}, {k['kolo']}. kolo)"
+
+
+def sazetak_u_bazu(tablica, radnja: str, kljuc_utakmice: dict, stupci: dict) -> None:
+    """Upis, brisanje ili provjera sažetka uz jednu utakmicu.
+
+    Sažetak nema oznaku objave: čim je upisan, vidi se ispod zapisnika.
+    Zato se upisuje tek kad ga je Andrej odobrio.
+    """
+    if radnja in ("upis", "upis-i-objava", "objavi"):
+        redci = tablica.promijeni(kljuc_utakmice, stupci)
+        poruka = "Sažetak upisan, vidi se ispod zapisnika"
+    elif radnja in ("skini", "obrisi"):
+        redci = tablica.promijeni(kljuc_utakmice, {"tekst_clanka": None})
+        poruka = "Sažetak maknut"
+    else:
+        redci = tablica.dohvati(kljuc_utakmice)
+        poruka = "Stanje u bazi"
+
+    if len(redci) != 1:
+        raise SystemExit(
+            f"Utakmica {opis_utakmice(kljuc_utakmice)} nije pronađena jednoznačno "
+            f"(pronađeno redaka: {len(redci)}). Provjeri imena klubova, sezonu i kolo "
+            "točno kako stoje u bazi.")
+    r = redci[0]
+    print(f"{poruka}: {r.get('domacin')} - {r.get('gost')} {r.get('rezultat') or ''}")
+    print(f"  derbi:    {'DA' if r.get('derbi') else 'ne'}")
+    print(f"  sažetak:  {(r.get('tekst_clanka') or '(nema)')[:80]}")
+    if radnja == "provjeri":
+        isti = r.get("tekst_clanka") == stupci.get("tekst_clanka")
+        print("  datoteka: " + ("ista kao u bazi" if isti else "RAZLIKUJE SE"))
+
+
 def upisi(baza: Baza, redak: dict) -> dict:
     """Novi članak ulazi neobjavljen; postojećem se mijenja samo sadržaj."""
     postojeci = baza.dohvati(redak["slug"])
@@ -232,6 +357,20 @@ def main():
 
     putanja = putanja_clanka(args.clanak)
     slug = putanja.stem
+
+    # Sažetak uz utakmicu ide u svoj redak tablice utakmice; za njega
+    # datoteka treba uz svaku radnju, jer u njoj stoji koja je utakmica.
+    if putanja.exists() and je_sazetak(putanja.read_text(encoding="utf-8")):
+        try:
+            kljuc_utakmice, stupci = procitaj_sazetak(putanja.read_text(encoding="utf-8"))
+        except GreskaDatoteke as e:
+            raise SystemExit(f"Datoteka {putanja.name} nije ispravna: {e}")
+        adresa = os.environ.get("SUPABASE_URL") or ""
+        kljuc = os.environ.get("SUPABASE_SERVICE_KEY") or ""
+        if not adresa or not kljuc:
+            raise SystemExit("Nedostaju SUPABASE_URL i SUPABASE_SERVICE_KEY.")
+        sazetak_u_bazu(Utakmice(adresa, kljuc), args.radnja, kljuc_utakmice, stupci)
+        return
 
     redak = None
     if args.radnja in ("upis", "upis-i-objava", "provjeri"):

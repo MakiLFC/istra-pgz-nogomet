@@ -18,10 +18,13 @@ sys.path.insert(0, "alati")
 
 from clanak_u_bazu import (  # noqa: E402
     GreskaDatoteke,
+    je_sazetak,
     obrisi_neobjavljen,
     postavi_objavu,
     procitaj,
+    procitaj_sazetak,
     putanja_clanka,
+    sazetak_u_bazu,
     upisi,
 )
 
@@ -161,6 +164,85 @@ def test_objavljeni_se_ne_brise():
     raise AssertionError("objavljeni članak je obrisan")
 
 
+SAZETAK = """natjecanje: 1. ŽNL PGŽ
+sezona: 2026/27
+kolo: 5
+domacin: NK Mune
+gost: HNK Lovran
+derbi: da
+---
+Mune su prve zaustavile Lovran.
+"""
+
+
+class LazneUtakmice:
+    """Tablica utakmice u memoriji, s jednim retkom."""
+
+    def __init__(self):
+        self.redak = {"natjecanje": "1. ŽNL PGŽ", "sezona": "2026/27", "kolo": 5,
+                      "domacin": "NK Mune", "gost": "HNK Lovran", "rezultat": "3:1",
+                      "derbi": False, "tekst_clanka": None}
+
+    def _odgovara(self, kljuc):
+        return all(self.redak[k] == v for k, v in kljuc.items())
+
+    def dohvati(self, kljuc):
+        return [dict(self.redak)] if self._odgovara(kljuc) else []
+
+    def promijeni(self, kljuc, podaci):
+        if not self._odgovara(kljuc):
+            return []
+        self.redak.update(podaci)
+        return [dict(self.redak)]
+
+
+def test_sazetak_se_prepozna_i_procita():
+    assert je_sazetak(SAZETAK) and not je_sazetak(DATOTEKA)
+    kljuc, stupci = procitaj_sazetak(SAZETAK)
+    assert kljuc == {"natjecanje": "1. ŽNL PGŽ", "sezona": "2026/27", "kolo": 5,
+                     "domacin": "NK Mune", "gost": "HNK Lovran"}
+    assert stupci == {"tekst_clanka": "Mune su prve zaustavile Lovran.", "derbi": True}
+    bez_derbija = procitaj_sazetak(SAZETAK.replace("derbi: da\n", ""))[1]
+    assert "derbi" not in bez_derbija
+    print("✓ sažetak se prepozna po domaćinu i pročita")
+
+
+def test_sazetak_pogreske():
+    for kvar, poruka in ((SAZETAK.replace("kolo: 5", "kolo: peto"), "kolo mora biti broj"),
+                         (SAZETAK.replace("derbi: da", "derbi: možda"), "derbi može biti"),
+                         (SAZETAK.replace("gost: HNK Lovran\n", ""), "fali polje: gost"),
+                         (SAZETAK.replace("prve", "prve \u2014"), "duga crta")):
+        try:
+            procitaj_sazetak(kvar)
+        except GreskaDatoteke as e:
+            assert poruka in str(e), e
+            continue
+        raise AssertionError(f"očekivala se greška: {poruka}")
+    print("✓ krivi sažetak se ne upisuje")
+
+
+def test_sazetak_upis_i_skidanje():
+    tablica = LazneUtakmice()
+    kljuc, stupci = procitaj_sazetak(SAZETAK)
+    sazetak_u_bazu(tablica, "upis", kljuc, stupci)
+    assert tablica.redak["tekst_clanka"] == "Mune su prve zaustavile Lovran."
+    assert tablica.redak["derbi"] is True
+    sazetak_u_bazu(tablica, "skini", kljuc, stupci)
+    assert tablica.redak["tekst_clanka"] is None and tablica.redak["derbi"] is True
+    print("✓ sažetak se upiše i makne, derbi ostaje")
+
+
+def test_sazetak_kriva_utakmica():
+    kljuc, stupci = procitaj_sazetak(SAZETAK.replace("HNK Lovran", "NK Lovran"))
+    try:
+        sazetak_u_bazu(LazneUtakmice(), "upis", kljuc, stupci)
+    except SystemExit as e:
+        assert "nije pronađena" in str(e)
+        print("✓ utakmica s krivim imenom kluba javi grešku")
+        return
+    raise AssertionError("očekivala se greška")
+
+
 if __name__ == "__main__":
     test_ispravna_datoteka()
     test_bez_lige()
@@ -173,4 +255,8 @@ if __name__ == "__main__":
     test_ispravak_ne_dira_objavu()
     test_objava_nepostojeceg()
     test_objavljeni_se_ne_brise()
+    test_sazetak_se_prepozna_i_procita()
+    test_sazetak_pogreske()
+    test_sazetak_upis_i_skidanje()
+    test_sazetak_kriva_utakmica()
     print("\nSVE PROLAZI")

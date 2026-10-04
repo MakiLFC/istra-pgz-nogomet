@@ -921,8 +921,17 @@ fotografijama. Posao ne pokreće gradnju na Vercelu, jer `clanci/` i
 biti na mainu da bi se uopće dao pokrenuti; datoteka članka mora biti
 na grani s koje se pokreće.
 
-SQL datoteke u `sql/` i dalje vrijede za sve ostalo (derbi, sažetak uz
-utakmicu, funkcije), a SQL Editor ostaje rezerva i za članke.
+DOPUNJENO 04.10.2026.: isti posao upisuje i SAŽETAK UZ ZAPISNIK
+(`utakmice.tekst_clanka`) i oznaku derbija. Datoteka tada umjesto sluga
+ima ključ utakmice (natjecanje, sezona, kolo, domacin, gost, s imenima
+klubova točno kako stoje u bazi) i neobavezno `derbi: da`. Sažetak nema
+oznaku objave, pa se vidi čim je upisan; zato se upisuje tek kad ga
+Andrej odobri. Utakmica koja se ne nađe jednoznačno javlja grešku,
+umjesto da se tiho ne upiše ništa. Primjer je
+`clanci/sazetak-mune-lovran-5-kolo-1-znl-2627.txt`.
+
+SQL datoteke u `sql/` i dalje vrijede za funkcije i jednokratne zahvate,
+a SQL Editor ostaje rezerva i za članke i za sažetke.
 
 **Za objavu na Facebooku s opisom i označavanjem ne koristi se naš gumb.**
 03.09.2026. najava 1. kola 4. NL nije se dala objaviti: Facebookov
