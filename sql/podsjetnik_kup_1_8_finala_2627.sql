@@ -1,0 +1,32 @@
+-- =====================================================================
+-- PODSJETNIK: ČLANAK O 1/8 FINALA HRVATSKOG NOGOMETNOG KUPA 26/27
+-- Zapisano 04.10.2026. na Andrejevu uputu. Ovo NIJE upit za pokretanje.
+-- =====================================================================
+--
+-- STO I KADA
+--   U srijedu 07.10.2026. ide clanak o djelomicnom zavrsetku 1/8 finala
+--   kupa ("djelomican", jer se dio osmine finala igra kasnije).
+--
+-- KAKO, PO UZORU NA 1/16 FINALA (sql/clanak_kup_1_16_finala_2627.sql)
+--   - Kup NIJE u scraperu, pa podataka nema u bazi. Rezultati, strijelci
+--     i gledatelji citaju se sa slika ekrana koje Andrej posalje i sa
+--     stranica utakmica na Semaforu (popis natjecanja:
+--     semafor.hns.family/natjecanja/115436767/).
+--   - Rang klubova izvan nasih liga daje Andrej; 3. NL je cetvrti rang,
+--     pa se pisu imena liga, ne "treceligas" i slicno.
+--   - Clanak ide bez lige (natjecanje prazno, u datoteci "natjecanje:
+--     nema"), samo u novosti i na naslovnicu, kao i 1/16 finala.
+--   - Upisuje se poslom "Clanak u bazu": datoteka clanci/<slug>.txt,
+--     prijedlog sluga kup-1-8-finala-2627. Slika rezultata predloskom
+--     alati/najave, stil redovi s poljem "natjecanje" uz par, pa
+--     produzena na 1200x800 (-cijela).
+--   - Utakmice koje se igraju kasnije navode se s terminom, ako ga
+--     Semafor ima, inace samo da ih tek ceka.
+--
+-- KLUBOVI S NASEG PODRUCJA KOJI SU PROSLI 1/16 FINALA (iz clanaka o
+-- 1/16 finala i o utakmicama 29.09.2026.): Halubjan, OSK Omisalj,
+-- Rjecina, Vinodol, Crikvenica, Grobnican, Orijent, Opatija (0:7 u
+-- Lovranu), Lokomotiva (bez
+-- igranja, Rikard Bencic predao) i Krk (3:1 na Rabu, 29.09.). Parovi
+-- osmine finala nisu poznati; provjeriti na Semaforu ili pitati Andreja.
+-- =====================================================================
