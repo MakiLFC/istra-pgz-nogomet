@@ -1,0 +1,48 @@
+# Ispis kupa, samo ručno.
+#
+# Kup nije u scraperu, pa ga nema u bazi. Ovaj posao pročita stranicu
+# kupa na Semaforu i ispiše sve utakmice, a za klubove upisane u polje
+# "klubovi" i cijele zapisnike s postavama (alati/ispis_kupa.py).
+# Ne dira bazu.
+
+name: Ispis kupa
+
+on:
+  workflow_dispatch:
+    inputs:
+      adresa:
+        description: "Adresa natjecanja na Semaforu"
+        required: true
+        default: "https://semafor.hns.family/natjecanja/115436767/hrvatski-nogometni-kup-2627/"
+        type: string
+      klubovi:
+        description: "Dijelovi imena klubova, odvojeni točka-zarezom (prazno = samo popis)"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  ispis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Preuzmi kod
+        uses: actions/checkout@v7
+
+      - name: Postavi Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Instaliraj pakete
+        run: pip install -r requirements.txt
+
+      - name: Ispiši kup
+        env:
+          ADRESA: ${{ inputs.adresa }}
+          KLUBOVI: ${{ inputs.klubovi }}
+          PYTHONUNBUFFERED: "1"
+        run: python alati/ispis_kupa.py "$ADRESA" "$KLUBOVI"
