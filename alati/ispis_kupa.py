@@ -30,6 +30,7 @@ cijeli zapisnik. Bez njega se ispiše samo popis utakmica.
 
 import os
 import sys
+from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
 
@@ -127,7 +128,7 @@ def main():
         if not u["hns_url"]:
             print(f"\n{u['domacin']} - {u['gost']}: zapisnika još nema")
             continue
-        detalji = dohvati_detalje_utakmice(u["hns_url"])
+        detalji = dohvati_detalje_utakmice(urljoin(adresa, u["hns_url"]))
         detalji["domacin"], detalji["gost"] = u["domacin"], u["gost"]
         detalji.setdefault("kolo", u["faza"])
         for k in ("datum", "vrijeme"):
