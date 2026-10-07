@@ -1,0 +1,50 @@
+-- =====================================================================
+-- CLANAK: 1/8 FINALA KUPA 26/27 (Rjecina - Grobnican, Orijent - Lokomotiva)
+-- Isti tekst kao clanci/kup-1-8-finala-2627.txt.
+-- =====================================================================
+-- KORAK 1, upis ili ispravak teksta. Smije se pokrenuti vise puta.
+--   Ne dira sliku ni objavu: fotografija koju upise posao
+--   "Fotografija za clanak" ostaje.
+-- KORAK 2, objava, na dnu. Pokrece se tek kad je fotografija na clanku.
+-- =====================================================================
+
+insert into public.clanci (slug, naslov, sazetak, tekst, natjecanje, objavljen)
+values (
+  $c$kup-1-8-finala-2627$c$,
+  $c$KUP: LOKOMOTIVA NA KRIMEJI IZBACILA ORIJENT, RJEČINA ČASNO PALA PROTIV GROBNIČANA$c$,
+  $c$Lokomotiva je golom Matea Monjca, bivšeg igrača Orijenta, i s igračem manje kroz cijelo drugo poluvrijeme izbacila Orijent, klub drugog ranga, a Rječina je nakon odlične utakmice ispala od Grobničana, kojem je pobjedu donio i nekadašnji igrač Rječine Dražen Pilčić. Ostale tri utakmice osmine finala igraju se idući tjedan.$c$,
+  $c$Osmina finala Hrvatskog nogometnog kupa 26/27 počela je u utorak 6. i srijedu 7. listopada s dvije utakmice. Preostale tri igraju se tek idući tjedan: Halubjan - Opatija i OŠK Omišalj - Krk u utorak 13. listopada, a Crikvenica - Vinodol u srijedu 14. listopada.
+
+Mala kritika ovakvom sustavu natjecanja: utakmice istog kruga ne igraju se istovremeno, nego su razvučene na više od tjedan dana, a osmina finala na HNS Semaforu obuhvaćena je sa samo pet utakmica, pa laicima, štoviše svima izvan HNS sustava, ostaje nejasno tko dalje igra i s kime.
+
+NK Rječina - NK Grobničan 1:2. Rječina iz 4. NL NS Rijeka dočekala je u Dražicama Grobničan, klub trećeg ranga, i odigrala odličnu utakmicu. Bio je to pravi lokalni derbi, u kojem se udaljenost sjedišta klubova mjeri u metrima. Rječina je povela već u 2. minuti golom Denisa Randelja, ali je Grobničan izjednačio u 11. minuti. Strijelac je bio kapetan Dražen Pilčić, koji je karijeru započeo upravo u Rječini. Vito Podobnik je u 60. minuti doveo goste u vodstvo, a Rječina je i u drugom poluvremenu nastavila napadati i umalo izjednačila. Sudio je Tomislav Frlan, a podijeljena su dva žuta kartona, Luki Ratinu iz Rječine i Karlu Dundoviću iz Grobničana. Prema mišljenju pojedinaca, domaćinu je trebao biti dosuđen i jedanaesterac, čija je sporna fotografija na naslovu ovoga članka. U svakom slučaju, domaći navijači "Dive ribe" mogu biti ponosni na svoje dečke.
+
+Rječina: Sandro Srok, Loren Zoretić, Patrik Corallini, Denis Randelj, Darko Kaurin (kapetan), Jeton Imeraj, Silvano Rekić, Luka Orešković, Luka Ratin, Kristian Koraca, Dino Forgić. Ušli su Antonio Semion (46.), Domagoj Grdinić i Antonio Poštić (59.), Marin Rožić (67.) i Denis Marković (80.).
+
+Grobničan: Marko Biondić, Karlo Dundović, Daniel Matković, Dražen Pilčić (kapetan), Dino Živković, Artem Elshin, Alasana Samateh, Filip Batarelo, Leon Olujić, Dominik Antunović, Vito Podobnik. Ušli su Karlo Budanović (46.) te Marko Mady, Borna Kovačević, Niko Pučić i Patrik Srzentić (62.).
+
+HNK Orijent - NK Lokomotiva (R) 0:1. Senzacija na Krimeji! Lokomotiva, vodeća momčad 3. NL Zapad i klub četvrtog ranga, izbacila je Orijent, klub drugog ranga, i to pred njegovim navijačima. Krimejčani su time ostali bez prilike da obrane naslov osvajača županijskog kupa. Posebnu težinu pobjedi daje to što u Lokomotivi igra čak sedam bivših igrača Orijenta: Berković, Hibšer, Weitzer, Junuzović, Ivančić, Mohorovičić i Monjac.
+
+Presudio je upravo jedan od njih. Mateo Monjac, nekadašnji napadač crveno-bijelih, u 36. minuti svladao je vratara Vučetića, a taj je gol na kraju bio dovoljan za prolaz. Posao je postao teži malo prije odmora: Frano Ivančić, još jedan bivši igrač Orijenta, u samo šest minuta dobio je dva žuta kartona i u 44. minuti morao je napustiti teren. Lokomotiva je tako cijelo drugo poluvrijeme igrala s igračem manje, ali Orijent tu prednost nije uspio pretvoriti u pogodak.
+
+Sudio je Marino Majstrović iz Crikvenice, uz pomoćnike Marka Balena i Nou Perušića iz Rijeke. Žute kartone dobili su Prpić iz Orijenta te Ivančić, Pichler i Weitzer iz Lokomotive.
+
+Monjac je ovim pogotkom nastavio dobru jesen: u prvenstvu je dosad zabio tri gola, a sada i onaj koji je Lokomotivu odveo u četvrtfinale, gdje joj se već pridružio Grobničan. Lokomotiva od početka sezone nije izgubila nijednu utakmicu. U 3. NL Zapad ima šest pobjeda iz šest utakmica, 18 bodova i gol razliku 19:2, pa je pet bodova ispred Pomorca i Pazinke, koji su odigrali utakmicu više. Najbolji strijelac lige je njezin Karlo Josipović sa sedam golova, a Edin Junuzović ima četiri. Momčad koja je u šest prvenstvenih utakmica primila samo dva gola ni na Krimeji, i to s igračem manje kroz cijelo drugo poluvrijeme, nije dopustila pogodak. Lokomotiva je ovime dokazala da nema samo momčad za vrh 3. NL Zapad, nego sigurno i za borbu za vrh trećeg ranga, SuperSport Druge NL, u kojoj se natječe Grobničan.
+
+Orijent (trener Dario Bašić): Vučetić, Šare, Prpić, Zubović, Iličić, Andrijašević, Stašić, Vinarš, Bilajac, Peček, Sibi. Ušli su Agada (46.), Ružić i Ćumurdžić (62.) te Tadejević i Matić (76.).
+
+Lokomotiva (trener Bruno Lautar): Berković, Hibšer, Weitzer, Josipović, Ivančić, Ujčić, Pichler, Monjac, Mohorovičić, Junuzović, Grujević. Ušli su Pejanović (73.) i Bradarić (90.).$c$,
+  null,
+  false
+)
+on conflict (slug) do update set
+  naslov = excluded.naslov,
+  sazetak = excluded.sazetak,
+  tekst = excluded.tekst,
+  natjecanje = excluded.natjecanje;
+
+
+-- KORAK 2, objava:
+-- update public.clanci
+--   set objavljen = true, objavljeno_u = now()
+--   where slug = 'kup-1-8-finala-2627';
