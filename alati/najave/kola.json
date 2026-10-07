@@ -977,6 +977,46 @@
       ],
       "ime": "pregled-2-znl-pgz-kolo-5",
       "naslov": "Pregled"
+    },
+    {
+      "dat": "kup-1-8-finala-2627",
+      "ime": "kup-1-8-finala-2627",
+      "stil": "redovi",
+      "grbovi": false,
+      "naslov": "Kup",
+      "naslovKurziv": "1/8 finala",
+      "oznaka": "Hrvatski nogometni kup · 2026/27",
+      "datum": "6. DO 14.10.2026.",
+      "sat": "Rezultati i raspored",
+      "utakmice": [
+        {
+          "d": "Rječina",
+          "g": "Grobničan",
+          "termin": "UTO 06.10.",
+          "rezultat": "1:2"
+        },
+        {
+          "d": "Orijent",
+          "g": "Lokomotiva",
+          "termin": "SRI 07.10.",
+          "rezultat": "0:1"
+        },
+        {
+          "d": "Halubjan",
+          "g": "Opatija",
+          "termin": "UTO 13.10."
+        },
+        {
+          "d": "OŠK Omišalj",
+          "g": "Krk",
+          "termin": "UTO 13.10."
+        },
+        {
+          "d": "Crikvenica",
+          "g": "Vinodol",
+          "termin": "SRI 14.10."
+        }
+      ]
     }
   ]
 }
