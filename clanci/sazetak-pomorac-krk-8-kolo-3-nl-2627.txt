@@ -1,0 +1,7 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 8
+domacin: NK Pomorac
+gost: NK Krk
+derbi: da
+---

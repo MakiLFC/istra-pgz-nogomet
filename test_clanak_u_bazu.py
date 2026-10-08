@@ -232,6 +232,27 @@ def test_sazetak_upis_i_skidanje():
     print("✓ sažetak se upiše i makne, derbi ostaje")
 
 
+def test_samo_derbi_bez_teksta():
+    samo_derbi = SAZETAK.split("---")[0] + "---\n"
+    kljuc, stupci = procitaj_sazetak(samo_derbi)
+    assert stupci == {"derbi": True}
+    tablica = LazneUtakmice()
+    tablica.redak["tekst_clanka"] = "Stari sažetak."
+    sazetak_u_bazu(tablica, "upis", kljuc, stupci)
+    assert tablica.redak["derbi"] is True
+    assert tablica.redak["tekst_clanka"] == "Stari sažetak."
+    sazetak_u_bazu(tablica, "skini", kljuc, stupci)
+    assert tablica.redak["derbi"] is False
+    assert tablica.redak["tekst_clanka"] == "Stari sažetak."
+    try:
+        procitaj_sazetak(samo_derbi.replace("derbi: da\n", ""))
+    except GreskaDatoteke as e:
+        assert "ni oznake derbija" in str(e)
+    else:
+        raise AssertionError("bez teksta i bez derbija mora biti greška")
+    print("✓ samo derbi: dira se oznaka, sažetak ostaje")
+
+
 def test_sazetak_kriva_utakmica():
     kljuc, stupci = procitaj_sazetak(SAZETAK.replace("HNK Lovran", "NK Lovran"))
     try:
@@ -258,5 +279,6 @@ if __name__ == "__main__":
     test_sazetak_se_prepozna_i_procita()
     test_sazetak_pogreske()
     test_sazetak_upis_i_skidanje()
+    test_samo_derbi_bez_teksta()
     test_sazetak_kriva_utakmica()
     print("\nSVE PROLAZI")

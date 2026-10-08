@@ -58,6 +58,13 @@ stoje u bazi, i po tome je alat prepoznaje:
 Sažetak nema oznaku objave, pa se vidi čim je upisan: upis, upis-i-objava
 i objavi ga upišu, skini i obrisi ga maknu, provjeri ispiše stanje.
 
+SAMO DERBI, BEZ TEKSTA
+Derbi kola označava se prije utakmice, a sažetak se piše tek poslije.
+Zato datoteka smije imati "derbi: da" i ništa ispod crte. Tada se dira
+SAMO oznaka derbija: upis je postavi, skini i obrisi je skinu, a
+tekst_clanka ostaje kakav jest. Kad se poslije utakmice ispod crte
+dopiše sažetak, ista datoteka upisuje i njega.
+
 PRAVILO 6 IZ CLAUDE.md
 Datoteka s dugom ili srednjom crtom se ne upisuje: alat javi redak i
 stane. Tako crtica ne može na stranicu ni kad promakne pri pisanju.
@@ -139,12 +146,12 @@ def procitaj_sazetak(sadrzaj: str) -> tuple:
             raise GreskaDatoteke(f"u zaglavlju fali polje: {kljuc}")
     if not polja["kolo"].isdigit():
         raise GreskaDatoteke(f"kolo mora biti broj: {polja['kolo']}")
-    if not tekst:
-        raise GreskaDatoteke("sažetak nema teksta ispod crte '---'")
+    if not tekst and "derbi" not in polja:
+        raise GreskaDatoteke("sažetak nema teksta ispod crte '---' ni oznake derbija")
 
     kljuc = {k: polja[k] for k in SAZETAK_OBAVEZNI}
     kljuc["kolo"] = int(polja["kolo"])
-    stupci = {"tekst_clanka": tekst}
+    stupci = {"tekst_clanka": tekst} if tekst else {}
     if "derbi" in polja:
         derbi = polja["derbi"].lower()
         if derbi not in ("da", "ne"):
@@ -275,12 +282,14 @@ def sazetak_u_bazu(tablica, radnja: str, kljuc_utakmice: dict, stupci: dict) -> 
     Sažetak nema oznaku objave: čim je upisan, vidi se ispod zapisnika.
     Zato se upisuje tek kad ga je Andrej odobrio.
     """
+    samo_derbi = "tekst_clanka" not in stupci
     if radnja in ("upis", "upis-i-objava", "objavi"):
         redci = tablica.promijeni(kljuc_utakmice, stupci)
-        poruka = "Sažetak upisan, vidi se ispod zapisnika"
+        poruka = "Derbi označen" if samo_derbi else "Sažetak upisan, vidi se ispod zapisnika"
     elif radnja in ("skini", "obrisi"):
-        redci = tablica.promijeni(kljuc_utakmice, {"tekst_clanka": None})
-        poruka = "Sažetak maknut"
+        redci = tablica.promijeni(kljuc_utakmice,
+                                  {"derbi": False} if samo_derbi else {"tekst_clanka": None})
+        poruka = "Oznaka derbija maknuta" if samo_derbi else "Sažetak maknut"
     else:
         redci = tablica.dohvati(kljuc_utakmice)
         poruka = "Stanje u bazi"
@@ -295,7 +304,10 @@ def sazetak_u_bazu(tablica, radnja: str, kljuc_utakmice: dict, stupci: dict) -> 
     print(f"  derbi:    {'DA' if r.get('derbi') else 'ne'}")
     print(f"  sažetak:  {(r.get('tekst_clanka') or '(nema)')[:80]}")
     if radnja == "provjeri":
-        isti = r.get("tekst_clanka") == stupci.get("tekst_clanka")
+        if samo_derbi:
+            isti = bool(r.get("derbi")) == stupci["derbi"]
+        else:
+            isti = r.get("tekst_clanka") == stupci.get("tekst_clanka")
         print("  datoteka: " + ("ista kao u bazi" if isti else "RAZLIKUJE SE"))
 
 
