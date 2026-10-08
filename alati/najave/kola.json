@@ -1034,7 +1034,8 @@
         {
           "d": "Pomorac",
           "g": "Krk",
-          "termin": "SUB 16:00"
+          "termin": "SUB 16:00",
+          "derbi": true
         },
         {
           "d": "Pazinka-Pazin",
