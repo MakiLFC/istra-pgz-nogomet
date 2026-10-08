@@ -1017,6 +1017,56 @@
           "termin": "SRI 14.10."
         }
       ]
+    },
+    {
+      "dat": "3-nl-zapad-kolo-8",
+      "kolo": "8",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 10.10.2026.",
+      "sat": "Sve utakmice u 16:00",
+      "utakmice": [
+        {
+          "d": "Nehaj",
+          "g": "Lokomotiva",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Pomorac",
+          "g": "Krk",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Pazinka-Pazin",
+          "g": "Buje",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Kraljevica",
+          "g": "Banjole",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Jadran-Poreč",
+          "g": "Halubjan",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Rovinj",
+          "g": "Crikvenica",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Vinodol",
+          "g": "Rudar",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Naprijed",
+          "g": "OŠK Omišalj",
+          "termin": "SUB 16:00"
+        }
+      ]
     }
   ]
 }
