@@ -930,6 +930,13 @@ Andrej odobri. Utakmica koja se ne nađe jednoznačno javlja grešku,
 umjesto da se tiho ne upiše ništa. Primjer je
 `clanci/sazetak-mune-lovran-5-kolo-1-znl-2627.txt`.
 
+DOPUNJENO 08.10.2026.: derbi kola označava se PRIJE utakmice, a sažetak
+se piše poslije. Zato datoteka sažetka smije imati samo `derbi: da` i
+ništa ispod crte; tada posao dira samo oznaku derbija (`skini` je makne),
+a sažetak ostaje kakav jest. Poslije utakmice se u ISTU datoteku dopiše
+tekst i pokrene novi `upis`. Primjer je
+`clanci/sazetak-pomorac-krk-8-kolo-3-nl-2627.txt`.
+
 SQL datoteke u `sql/` i dalje vrijede za funkcije i jednokratne zahvate,
 a SQL Editor ostaje rezerva i za članke i za sažetke.
 
