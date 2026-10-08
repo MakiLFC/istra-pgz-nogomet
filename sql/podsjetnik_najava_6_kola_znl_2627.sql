@@ -1,0 +1,24 @@
+-- =====================================================================
+-- PODSJETNIK: NAJAVE 6. KOLA 1. I 2. ŽNL PGŽ 2026/27
+-- Zapisano 08.10.2026. na Andrejevu uputu. Ovo NIJE upit za pokretanje.
+-- =====================================================================
+--
+-- STO I KADA
+--   Najave 6. kola 1. ŽNL PGŽ i 2. ŽNL PGŽ pišu se 09.10.2026.
+--
+-- VRBOVSKO (1. ŽNL), DVA POJAČANJA, podatak od Andreja iz objave kluba
+--   U najavi KRATKO, ne prepisivati cijelu objavu (Andrejeva uputa).
+--   - Vladimir Kljajić, 19 godina, vezni ili krilni igrač. U sezonama
+--     21/22, 22/23 i 23/24 bio je igrač Vrbovskog, prvo pionir pa senior,
+--     zatim se vratio u matični NK Željezničar iz Moravica. Od ove jeseni
+--     ponovno je u Vrbovskom.
+--   - Ozren Mrvoš, 20 godina, veznjak. U istim sezonama igrao je za
+--     Vrbovsko, prvo kao pionir pa kao senior, 2024. se vratio u matični
+--     NK Željezničar, a od ove jeseni ponovno je u Vrbovskom.
+--   Prijedlog za tekst: Vrbovsko se pojačalo dvojicom povratnika iz
+--   Željezničara iz Moravica, veznim igračima Vladimirom Kljajićem (19) i
+--   Ozrenom Mrvošem (20), koji su već nosili njegov dres.
+--
+-- 2. ŽNL: Božidar Trbović (Gomirje), isključen u 5. kolu, propušta
+--   utakmicu u Skradu (iz pregleda 5. kola).
+-- =====================================================================
