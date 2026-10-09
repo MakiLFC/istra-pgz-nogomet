@@ -1104,6 +1104,51 @@
           "termin": "SUB 16:00"
         }
       ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-6",
+      "kolo": "6",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 10.10. do UTO 13.10.2026.",
+      "sat": "Vikendom u 15:30, utorak u 18:30",
+      "utakmice": [
+        {
+          "d": "Rab",
+          "g": "Rikard Benčić",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Omladinac Vrata",
+          "g": "Goranin",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Vihor (B)",
+          "g": "Lovran",
+          "termin": "NED 15:30"
+        },
+        {
+          "d": "Stari grad Rijeka",
+          "g": "Mune",
+          "termin": "NED 15:30"
+        },
+        {
+          "d": "Vrbovsko",
+          "g": "Draga",
+          "termin": "NED 15:30"
+        },
+        {
+          "d": "Turbina",
+          "g": "Risnjak",
+          "termin": "NED 15:30"
+        },
+        {
+          "d": "Zamet",
+          "g": "Lošinj",
+          "termin": "UTO 18:30"
+        }
+      ]
     }
   ]
 }
