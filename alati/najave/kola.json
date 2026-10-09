@@ -1150,6 +1150,31 @@
           "termin": "UTO 18:30"
         }
       ]
+    },
+    {
+      "dat": "2-znl-pgz-kolo-6",
+      "kolo": "6",
+      "stil": "redovi",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "NED 11.10.2026.",
+      "sat": "Sve utakmice u 15:30",
+      "utakmice": [
+        {
+          "d": "Polet (Sk)",
+          "g": "Gomirje",
+          "termin": "NED 15:30"
+        },
+        {
+          "d": "Goranka",
+          "g": "Željezničar (M)",
+          "termin": "NED 15:30"
+        },
+        {
+          "d": "Mrkopalj",
+          "g": "Snježnik",
+          "termin": "NED 15:30"
+        }
+      ]
     }
   ]
 }
