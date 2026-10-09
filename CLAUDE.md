@@ -937,6 +937,12 @@ a sažetak ostaje kakav jest. Poslije utakmice se u ISTU datoteku dopiše
 tekst i pokrene novi `upis`. Primjer je
 `clanci/sazetak-pomorac-krk-8-kolo-3-nl-2627.txt`.
 
+Blok "Derbiji vikenda" u lijevom stupcu naslovnice od 09.10.2026.
+pokazuje po ligi SAMO derbije iz najnovijeg kola s derbijem, i to dok
+to kolo nije starije od zadnjeg odigranog (`derbijiLige` u
+`lib/kolo.ts`). Prije je skupljao sve derbije sezone. Oznaka u bazi se
+pritom ne dira: stranica utakmice i lige i dalje pokazuju derbi.
+
 SQL datoteke u `sql/` i dalje vrijede za funkcije i jednokratne zahvate,
 a SQL Editor ostaje rezerva i za članke i za sažetke.
 

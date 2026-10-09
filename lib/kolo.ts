@@ -100,9 +100,25 @@ export function najposjecenija(
   return naj;
 }
 
-/** Sve utakmice te lige označene kao derbi, redom kako su stigle */
+/**
+ * Derbiji vikenda za tu ligu: samo oni iz najnovijeg kola u kojem je
+ * označen derbi, i to dok to kolo nije starije od zadnjeg odigranog.
+ *
+ * Oznaka derbija ostaje na utakmici zauvijek (stranica utakmice i lige je
+ * pokazuju), pa je nekad ovaj blok skupljao sve derbije sezone. Andrej je
+ * 09.10.2026. tražio da ostanu samo oni ovog vikenda. Derbi se tako vidi
+ * od označavanja do odigravanja sljedećeg kola, a onda nestaje sam, bez
+ * diranja oznake u bazi.
+ */
 export function derbijiLige(utakmice: UtakmicaMin[], liga: string): UtakmicaMin[] {
-  return utakmice.filter((u) => u.natjecanje === liga && u.derbi);
+  const derbiji = utakmice.filter(
+    (u) => u.natjecanje === liga && u.derbi && u.kolo != null
+  );
+  if (!derbiji.length) return [];
+  const kolo = Math.max(...derbiji.map((u) => u.kolo as number));
+  const zadnje = zadnjeKolo(utakmice, liga);
+  if (zadnje != null && kolo < zadnje) return [];
+  return derbiji.filter((u) => u.kolo === kolo);
 }
 
 /** Skrati tekst na cca `granica` znakova, na granici riječi */
