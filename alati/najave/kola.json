@@ -1131,7 +1131,8 @@
         {
           "d": "Stari grad Rijeka",
           "g": "Mune",
-          "termin": "NED 15:30"
+          "termin": "NED 15:30",
+          "derbi": true
         },
         {
           "d": "Vrbovsko",

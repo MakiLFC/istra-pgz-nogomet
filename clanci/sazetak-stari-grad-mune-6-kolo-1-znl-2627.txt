@@ -1,0 +1,7 @@
+natjecanje: 1. ŽNL PGŽ
+sezona: 2026/27
+kolo: 6
+domacin: NK Stari grad Rijeka
+gost: NK Mune
+derbi: da
+---
