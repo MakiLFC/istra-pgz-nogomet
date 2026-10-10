@@ -152,15 +152,19 @@ def ispisi_statistiku(redak):
                   f"{klub.get('bodovi') or '':>3}")
         return
 
-    # Strijelci, kartoni i nastupi: samo vrh liste, ostalo je za bazu.
-    for red in podaci[:25]:
+    # Strijelci i nastupi: samo vrh liste, ostalo je za bazu. Kartoni idu
+    # cijeli, jer se iz njih traže igrači na pragu kazne, a oni s tri ili
+    # četiri žuta znaju stajati ispod 25. mjesta (pregled 7. kola 3. NL
+    # zato je promašio Šprem-Veljavečkog).
+    granica = len(podaci) if tip == "kartoni" else 25
+    for red in podaci[:granica]:
         ostalo = " ".join(f"{k}={v}" for k, v in red.items()
                           if k not in ("pozicija", "igrac", "klub"))
         print(f"  {red.get('pozicija') or '':>3}. "
               f"{red.get('igrac') or '':<26} "
               f"{red.get('klub') or '':<22} {ostalo}")
-    if len(podaci) > 25:
-        print(f"  ... jos {len(podaci) - 25} redaka")
+    if len(podaci) > granica:
+        print(f"  ... jos {len(podaci) - granica} redaka")
 
 
 def ispisi_sezonu(utakmice):
