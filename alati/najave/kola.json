@@ -1175,6 +1175,55 @@
           "termin": "NED 15:30"
         }
       ]
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-6-pregled",
+      "kolo": "6",
+      "stil": "redovi",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 10.10.2026.",
+      "sat": "Rezultati kola",
+      "slobodan": "Funtana",
+      "utakmice": [
+        {
+          "d": "Štinjan",
+          "g": "Borac (Ba)",
+          "termin": "SUB 16:00",
+          "rezultat": "4:0"
+        },
+        {
+          "d": "Rječina",
+          "g": "Ližnjan",
+          "termin": "SUB 16:00",
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Medulin 1921",
+          "g": "Otočac",
+          "termin": "SUB 16:00",
+          "rezultat": "3:1"
+        },
+        {
+          "d": "Umag-CC Umago",
+          "g": "Žminj",
+          "termin": "SUB 16:00",
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Smoljanci",
+          "g": "Klana",
+          "termin": "SUB 16:00",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Cres",
+          "g": "Mladost Fažana",
+          "termin": "SUB 05.12.",
+          "rezultat": "premjesteno"
+        }
+      ],
+      "ime": "pregled-4-nl-ns-rijeka-kolo-6",
+      "naslov": "Pregled"
     }
   ]
 }
