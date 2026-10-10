@@ -1,6 +1,6 @@
 slug: pregled-8-kola-3-nl-zapad-2627
-naslov: NEHAJ ZAUSTAVIO LOKOMOTIVU, POMORAC DOBIO DERBI I STIGAO NA DVA BODA OD VRHA
-sazetak: Lokomotiva je u Senju doživjela prvi poraz u sezoni, a Pomorac je golom Jakoba Šprem-Veljavečkog u 82. minuti dobio derbi s Krkom i prišao na dva boda. Rovinj je Crikvenici zabio četiri gola, Vinodol Rudaru pet, a Omišalj je u nadoknadi upisao prve bodove u gostima.
+naslov: NEHAJ ZAUSTAVIO LOKOMOTIVU, POMORAC POBIJEDIO U DERBIJU I STIGAO NA DVA BODA OD VRHA
+sazetak: Lokomotiva je u Senju doživjela prvi poraz u sezoni, a Pomorac je golom Jakoba Šprem-Veljavečkog u 82. minuti pobijedio u derbiju s Krkom i prišao na dva boda vrhu. Rovinj je Crikvenici zabio četiri gola, Vinodol Rudaru pet, a Omišalj je u nadoknadi upisao prve bodove u gostima.
 natjecanje: 3. NL Zapad
 slika_url: /slike/najave/pregled-3-nl-zapad-kolo-8-cijela.png
 slika_opis: Rezultati 8. kola 3. NL Zapad, subota 10. listopada 2026.
@@ -25,7 +25,7 @@ Naprijed (H) - OŠK Omišalj 2:3. Najdramatičnija utakmica kola odlučena je u 
 
 LJESTVICA
 
-Službena ljestvica na Semaforu nakon kola još nije osvježena, pa je stanje izračunato iz rezultata. Lokomotiva vodi s osamnaest bodova i utakmicom manje, a Pomorac je drugi sa šesnaest. Pazinka ima četrnaest, Jadran-Poreč trinaest, a po dvanaest Banjole, koje imaju utakmicu manje, Nehaj i OŠK Omišalj. Krk ima jedanaest bodova, a po deset Kraljevica, Buje, Halubjan i Crikvenica. Na dnu su Vinodol s osam, Rovinj i Naprijed sa sedam te Rudar sa šest bodova. Ljestvica uključuje i tri kaznena boda Crikvenice.
+Lokomotiva vodi s osamnaest bodova i utakmicom manje, a Pomorac je drugi sa šesnaest. Pazinka ima četrnaest, Jadran-Poreč trinaest, a po dvanaest Banjole, koje imaju utakmicu manje, Nehaj i OŠK Omišalj. Krk ima jedanaest bodova, a po deset Kraljevica, Buje, Halubjan i Crikvenica. Na dnu su Vinodol s osam, Rovinj i Naprijed sa sedam te Rudar sa šest bodova. Ljestvica uključuje i tri kaznena boda Crikvenice.
 
 STRIJELCI
 
@@ -33,4 +33,4 @@ Jakob Šprem-Veljavečki (Pomorac) i Karlo Josipović (Lokomotiva) vode sa sedam
 
 ZA SLJEDEĆE KOLO
 
-Deveto kolo igra se u subotu 17. listopada u 15:30, a u njemu je i izravan dvoboj za vrh, Lokomotiva - Pomorac na Kantridi. Pomorac u njemu ostaje bez Jakoba Šprem-Veljavečkog i Benjamina Lapića, koji pauziraju zbog četvrtog žutog kartona. Isto vrijedi za Lovru Travicu (Krk) te Lovru Mikulicu i Marka Ivankovića (Halubjan). Isključeni Dino Dukađin (Naprijed) i Matija Kalizan (Buje) također propuštaju sljedeće kolo. Među igračima s tri žuta kartona, dakle jedan od kazne, su Ian Benčić (Pomorac), Filip Rosić (Banjole), Ivan Lucić i Mateo Jurešić (Krk), Luka Bogdan i Ivan Jakovčić (Jadran-Poreč), Luka Hodak (Nehaj), Anton Hrvatin i Lazar Peev (Rovinj), Karlo Radošević (Naprijed), Luka Mijić (Omišalj), Masimo Krizmanić (Buje) i Mikula Dunatov (Kraljevica).
+Deveto kolo igra se u subotu 17. listopada u 15:30, a u njemu je i izravan dvoboj za vrh, Lokomotiva - Pomorac na Kantridi. Pomorac u njemu ostaje bez Jakoba Šprem-Veljavečkog i Benjamina Lapića, koji pauziraju zbog četvrtog žutog kartona. Isto vrijedi za Lovru Travicu (Krk) te Lovru Mikulicu i Marka Ivankovića (Halubjan). Isključeni Dino Dukađin (Naprijed) i Matija Kalizan (Buje) također propuštaju sljedeće kolo.
