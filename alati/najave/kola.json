@@ -1177,6 +1177,67 @@
       ]
     },
     {
+      "dat": "3-nl-zapad-kolo-8-pregled",
+      "kolo": "8",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 10.10.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Nehaj",
+          "g": "Lokomotiva",
+          "termin": "SUB 16:00",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Pomorac",
+          "g": "Krk",
+          "termin": "SUB 16:00",
+          "derbi": true,
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Pazinka-Pazin",
+          "g": "Buje",
+          "termin": "SUB 16:00",
+          "rezultat": "0:0"
+        },
+        {
+          "d": "Kraljevica",
+          "g": "Banjole",
+          "termin": "SUB 16:00",
+          "rezultat": "0:2"
+        },
+        {
+          "d": "Jadran-Poreč",
+          "g": "Halubjan",
+          "termin": "SUB 16:00",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Rovinj",
+          "g": "Crikvenica",
+          "termin": "SUB 16:00",
+          "rezultat": "4:0"
+        },
+        {
+          "d": "Vinodol",
+          "g": "Rudar",
+          "termin": "SUB 16:00",
+          "rezultat": "5:1"
+        },
+        {
+          "d": "Naprijed",
+          "g": "OŠK Omišalj",
+          "termin": "SUB 16:00",
+          "rezultat": "2:3"
+        }
+      ],
+      "ime": "pregled-3-nl-zapad-kolo-8",
+      "naslov": "Pregled"
+    },
+    {
       "dat": "4-nl-ns-rijeka-kolo-6-pregled",
       "kolo": "6",
       "stil": "redovi",
