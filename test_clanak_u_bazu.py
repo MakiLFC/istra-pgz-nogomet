@@ -140,6 +140,23 @@ def test_ispravak_ne_dira_objavu():
     print("✓ ispravak objavljenog članka ga ne skida i ne mijenja datum")
 
 
+def test_objava_upisuje_vrijeme_objave():
+    baza = LaznaBaza({"najava-proba": {"slug": "najava-proba", "objavljen": False,
+                                        "objavljeno_u": "2026-10-01T10:00:00+00:00"}})
+    postavi_objavu(baza, "najava-proba", True)
+    prvi = baza.redci["najava-proba"]["objavljeno_u"]
+    assert baza.redci["najava-proba"]["objavljen"] is True
+    assert prvi > "2026-10-01T10:00:00+00:00", "objava mora upisati vrijeme objave"
+    # ponovna objava već objavljenog ne dira datum
+    baza.redci["najava-proba"]["objavljeno_u"] = "2026-10-02T10:00:00+00:00"
+    postavi_objavu(baza, "najava-proba", True)
+    assert baza.redci["najava-proba"]["objavljeno_u"] == "2026-10-02T10:00:00+00:00"
+    # skidanje ne dira datum
+    postavi_objavu(baza, "najava-proba", False)
+    assert baza.redci["najava-proba"]["objavljeno_u"] == "2026-10-02T10:00:00+00:00"
+    print("✓ objava upisuje vrijeme objave, ponovna objava i skidanje ga ne diraju")
+
+
 def test_objava_nepostojeceg():
     try:
         postavi_objavu(LaznaBaza(), "najava-proba", True)
@@ -274,6 +291,7 @@ if __name__ == "__main__":
     test_putanja_iz_bilo_cega()
     test_novi_ulazi_neobjavljen()
     test_ispravak_ne_dira_objavu()
+    test_objava_upisuje_vrijeme_objave()
     test_objava_nepostojeceg()
     test_objavljeni_se_ne_brise()
     test_sazetak_se_prepozna_i_procita()

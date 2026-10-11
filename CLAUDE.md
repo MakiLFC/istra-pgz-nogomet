@@ -938,6 +938,10 @@ pokrene radnju `objavi`. Ispravak se radi izmjenom datoteke i novim
 
 - novi članak ulazi NEOBJAVLJEN, a ispravak postojećeg ne dira
   objavljenost ni datum objave
+- objava neobjavljenog članka upisuje TRENUTAK OBJAVE kao datum objave
+  (od 11.10.2026.); prije je ostajao trenutak prvog upisa, pa je članak
+  koji je čekao odobrenje na kartici i u RSS feedu izgledao starije.
+  Ponovna objava već objavljenog i skidanje datum ne diraju
 - datoteka s dugom ili srednjom crtom se ne upisuje (pravilo 6)
 - slug u datoteci mora biti jednak imenu datoteke
 - objavljeni članak se ne briše; prvo `skini`

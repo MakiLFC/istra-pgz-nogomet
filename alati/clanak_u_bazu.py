@@ -34,7 +34,8 @@ RADNJE
                  objave ne dira, pa se ispravak objavljenog članka vidi
                  odmah, a neobjavljeni ostaje skriven.
   upis-i-objava  isto, pa odmah objavi
-  objavi         samo objavi članak koji je već u bazi
+  objavi         samo objavi članak koji je već u bazi. Datum objave tada
+                 postaje trenutak objave; već objavljenom se ne mijenja
   skini          vrati članak u neobjavljene (ostaje u bazi)
   provjeri       ispiše stanje u bazi i usporedi ga s datotekom
   obrisi         obriše članak iz baze, ali SAMO neobjavljen; objavljeni
@@ -326,7 +327,22 @@ def upisi(baza: Baza, redak: dict) -> dict:
 
 
 def postavi_objavu(baza: Baza, slug: str, objavljen: bool) -> dict:
-    rezultat = baza.promijeni(slug, {"objavljen": objavljen})
+    """Objavi ili skini članak.
+
+    Kad se NEOBJAVLJEN članak objavi, datum objave postaje trenutak
+    objave, a ne trenutak prvog upisa (Andrejeva odluka 11.10.2026.).
+    Prije je ostajao datum upisa, pa je članak koji je čekao na
+    odobrenje na kartici i u RSS feedu stajao kao stariji nego jest.
+    Već objavljenom članku ponovna objava datum NE mijenja, kao ni
+    skidanje sa stranice.
+    """
+    postojeci = baza.dohvati(slug)
+    if postojeci is None:
+        raise SystemExit(f"Članka {slug} nema u bazi. Prvo ga treba upisati.")
+    podaci = {"objavljen": objavljen}
+    if objavljen and not postojeci.get("objavljen"):
+        podaci["objavljeno_u"] = datetime.now(timezone.utc).isoformat()
+    rezultat = baza.promijeni(slug, podaci)
     if rezultat is None:
         raise SystemExit(f"Članka {slug} nema u bazi. Prvo ga treba upisati.")
     return rezultat
