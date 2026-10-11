@@ -1509,6 +1509,20 @@ Otoččevo slobodno prvo kolo bilo tema. Slobodan klub se vidi tako da se
 iz popisa klubova lige izbaci onih dvanaest koji su na rasporedu tog
 kola. U 2. kolu je slobodan bio NK Žminj.
 
+**Mjesto u lokativu: "u Baški", ne "u Baškoj".** 11.10.2026. je u
+pregledu 6. kola 1. ŽNL i u članku o derbiju pisalo "u Baškoj", a Andrej
+je to ispravio. Vihor igra u Baški (SRC Zablaće). Kod imena mjesta koja
+nisu pridjevi ne pogađa se pridjevski nastavak: Baška, u Baški; Draga, u
+Dragi; Krk, u Krku. Kad nisi siguran, pogledaj kako je mjesto napisano u
+ranijim člancima ili pitaj.
+
+**Isključenje zna trajati više od jednog kola.** Ante Žunić (Vihor),
+isključen u 5. kolu 1. ŽNL 2026/27, propustio je 6. i 7. kolo, a to je
+Andrej rekao, ne zapisnik. Duljinu kazne zapisnik ne kaže, pa se za
+isključene piše samo da propuštaju sljedeće kolo, a dulju kaznu samo kad
+je Andrej javi. Prije pisanja pregleda pogledaj i isključene iz
+prethodnih kola koji u ovom kolu nisu igrali.
+
 **Ne piše se "žuto-crveni karton".** Taj izraz Andrej ne koristi; kaže
 da ne postoji. Drugi žuti karton opisuje se onako kako se i govori:
 "nakon drugog žutog kartona" ili "igrač je isključen". Funkcija
