@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
 import OcistiStariUpit from "@/components/OcistiStariUpit";
+import { RSS_ALTERNATE } from "@/lib/rss";
 
 // Fontovi se učitavaju preko next/font: Next ih poslužuje s vlastite domene,
 // unaprijed ih učita i spriječi treptaj teksta pri otvaranju stranice.
@@ -82,7 +83,7 @@ export const metadata: Metadata = {
   },
   description:
     "Rezultati, zapisnici, tablice i strijelci nižih nogometnih liga Istre i Primorsko-goranske županije. Podaci: HNS Semafor.",
-  alternates: { canonical: "/" },
+  alternates: { canonical: "/", types: RSS_ALTERNATE },
   openGraph: {
     title: "Lokal-Arena",
     description:

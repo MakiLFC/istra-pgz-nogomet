@@ -11,6 +11,7 @@ import { dohvatiClanak, dohvatiClanke, datumHr, odlomci } from "@/lib/clanci";
 import { kadarSlike } from "@/lib/slike";
 import { LIGE } from "@/lib/lige";
 import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
+import { RSS_ALTERNATE } from "@/lib/rss";
 
 // ---------------------------------------------------------------------
 // ZAŠTO OVDJE VIŠE NE STOJI NULA
@@ -61,7 +62,7 @@ export async function generateMetadata({
   return {
     title: clanak.naslov,
     description: clanak.sazetak ?? undefined,
-    alternates: { canonical: `/novosti/${clanak.slug}` },
+    alternates: { canonical: `/novosti/${clanak.slug}`, types: RSS_ALTERNATE },
     openGraph: {
       title: clanak.naslov,
       description: clanak.sazetak ?? undefined,

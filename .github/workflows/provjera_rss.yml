@@ -1,0 +1,62 @@
+# Provjera RSS-a, samo ručno.
+#
+# CEMU SLUZI
+# Skine feed s prave stranice (https://lokalarena.com/rss.xml), ispise
+# prve dvije stavke, provjeri da u njemu nema nicega izvan dopustenja
+# (samo naslov, kratki opis, datum, poveznica i liga) i posalje ga W3C
+# validatoru. Sesija s Claudeom do stranice i validatora ne doseze, a
+# GitHub doseze, pa se provjera radi ovdje.
+#
+# KAKO SE POKRECE
+# Actions -> "Provjera RSS-a" -> Run workflow. Adresu ne treba mijenjati.
+
+name: Provjera RSS-a
+
+on:
+  workflow_dispatch:
+    inputs:
+      adresa:
+        description: "Adresa feeda"
+        required: false
+        default: "https://lokalarena.com/rss.xml"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  provjera:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Preuzmi kod
+        uses: actions/checkout@v7
+
+      - name: Postavi Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Skini feed
+        env:
+          ADRESA: ${{ inputs.adresa }}
+        run: |
+          curl -sS --fail -D zaglavlja.txt -o rss.xml "$ADRESA"
+          echo "Zaglavlja odgovora:"
+          grep -iE "^(HTTP|content-type|cache-control|x-vercel-cache)" zaglavlja.txt
+          if ! grep -qi "^content-type: application/rss+xml; charset=utf-8" zaglavlja.txt; then
+            echo "Content-Type nije application/rss+xml; charset=utf-8"
+            exit 1
+          fi
+
+      - name: Pitaj W3C validator
+        env:
+          ADRESA: ${{ inputs.adresa }}
+        run: |
+          KODIRANA=$(python -c "import urllib.parse,os;print(urllib.parse.quote(os.environ['ADRESA'], safe=''))")
+          curl -sS --fail -o w3c.xml \
+            "https://validator.w3.org/feed/check.cgi?url=${KODIRANA}&output=soap12"
+
+      - name: Provjeri feed
+        run: python alati/provjera_rss.py rss.xml w3c.xml

@@ -1278,6 +1278,21 @@ više ne vrijedi, a regija dolazi iz datoteke. Ne treba je ondje
 ispravljati; kad bi se jednom htjelo mijenjati s tog ekrana, prvo se mora
 maknuti redak iz `vercel.json`, inače promjena nema učinka.
 
+**RSS feed (/rss.xml) smije nositi samo naslov, opis, datum i poveznicu.**
+Napravljen 11.10.2026. za vanjsku aplikaciju HR Nogomet, kojoj je Andrej
+dopustio prikaz NASLOVA, KRATKOG OPISA (`sazetak`), DATUMA I POVEZNICE,
+uz ligu kao kategoriju. To je uvjet dopuštenja, ne tehnička odluka: u
+feed ne idu puni tekst, slike ni rezultate, i tko ga proširuje prvo pita
+Andreja. Feed slaže `lib/rss.ts`, a poslužuje `app/rss.xml/route.ts`
+(zadnjih 30 objavljenih, javni anon klijent, samo potrebni stupci,
+`revalidate = 300`). Članak bez sažetka ide bez opisa, nikad s komadom
+teksta. Oznaku za otkrivanje feeda nose layout, popis novosti i stranica
+članka (`RSS_ALTERNATE`); stranice sa svojim `alternates` ne nasljeđuju
+onu iz layouta, pa je treba dodati i ondje. Pravi feed na stranici
+provjerava ručni posao "Provjera RSS-a" (`alati/provjera_rss.py`): ispiše
+prve dvije stavke, pita W3C validator i pada kad se u feedu pojavi išta
+izvan dopuštenja.
+
 **U CSS-u svi `@import` moraju biti prije `@import "tailwindcss"`.**
 Tailwind se razmota u stotine redaka i svaki `@import` iza njega ruši build.
 

@@ -17,6 +17,7 @@ import ZaglavljeStranice from "@/components/ZaglavljeStranice";
 import { dohvatiClanke } from "@/lib/clanci";
 import { LIGE, ligaPoSlugu, adresaNovosti } from "@/lib/lige";
 import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
+import { RSS_ALTERNATE } from "@/lib/rss";
 
 const OPIS =
   "Transferi, najave i osvrti iz nižih nogometnih liga Istre i Primorsko-goranske županije.";
@@ -32,7 +33,7 @@ export function metapodaciNovosti(ligaSlug?: string | null): Metadata {
   return {
     title: naslov,
     description: opis,
-    alternates: { canonical: adresa },
+    alternates: { canonical: adresa, types: RSS_ALTERNATE },
     openGraph: {
       title: naslov,
       description: opis,
