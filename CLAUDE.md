@@ -487,6 +487,16 @@ uvjet čuva slučaj kad zapisnik fali, jer tada nestanu i traka i postave
 pa bi se slagale u krivom broju. Oprošteni manjak ispisuje se na kraju
 pokretanja. Za kartone traka ne postoji, pa ondje kočnica ostaje ista.
 
+DOPUNJENO 11.10.2026.: liste strijelaca i kartona spremaju se CIJELE.
+Do tada su se skraćivale na prvih 40 mjesta, a stranica igrača golove i
+kartone čita upravo iz tih lista. Igrač s jednim golom ili jednim žutim,
+kojih u 3. NL ima preko stotinu, tako je na svojoj stranici imao nulu.
+Andrej je to uočio na Marcelu Sudenu (Vinodol), koji je zabio Rudaru, a
+stranica je pokazivala 0 golova. Prvi prolaz s cijelim listama spremio
+je 97 strijelaca i 172 igrača s kartonima u 3. NL, 56 i 115 u 4. NL, 80
+i 94 u 1. ŽNL te 34 i 44 u 2. ŽNL. Stranica lige i dalje pokazuje samo
+vrh liste, uz gumb za cijelu.
+
 Tablica poretka i nastupi se i dalje SAMO scrapaju: tablica zbog kaznenih
 bodova, nastupi zato što zapisnik ne kaže koliko je tko bio na terenu.
 
