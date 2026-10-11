@@ -814,6 +814,24 @@ javnoj varijabli sada ruše build. Vercel u tom slučaju ostavlja zadnju
 ispravnu verziju na zraku. Adresa stranice ide u `NEXT_PUBLIC_SITE_URL`,
 nikad u `NEXT_PUBLIC_SUPABASE_URL`.
 
+DOPUNJENO 10.10.2026.: upravo zbog te provjere `npm run build` NE MOŽE
+proći do kraja u Claudeovoj sesiji u oblaku. Tamo nema datoteke
+`.env.local`, pa gradnja stane na koraku "Collecting page data" s
+porukom da `NEXT_PUBLIC_SUPABASE_URL` nije postavljen. To nije greška u
+kodu i ne znači da nešto ne radi.
+
+Zato se u takvoj sesiji čita ISPIS, ne samo zadnji redak:
+
+- "Compiled successfully" i "Finished TypeScript" znače da je prošlo ono
+  zbog čega pravilo 3 i postoji, dakle greške tipova.
+- Pad na "Collecting page data" uz tu poruku je nedostatak adrese baze u
+  tom spremniku, ne naša greška.
+- Kad gradnja padne IZNAD tih dvaju redaka, to je prava greška i ne smije
+  se gurati dalje.
+
+Isto tako se ne piše "build je prošao" kad je prošla samo prva polovica.
+Pravo mjerilo je gradnja na Vercelu, koja ima prave vrijednosti.
+
 **Fotografija se ne prilagođava stranici, stranica se prilagođava njoj.**
 Fotografije uz članke stižu s mobitela, u svakom omjeru, najčešće
 uspravne. Prije 05.09.2026. slika se u članku prikazivala cijela, u svom
@@ -1496,6 +1514,25 @@ jednom već zamijenjeno, pa je osvrt na derbi bio napisan kao zaseban
 **Nemoj pisati "klubovi se u našoj bazi dosad nisu sastali".** Čitatelja
 naša baza ne zanima. Kad međusobnih susreta nema, o njima se jednostavno
 ne piše, ili se, ako je klub nov u rangu, to kaže kao vijest.
+
+**Posao je podijeljen po ligama, po sesijama.** 10.10.2026. Andrej je
+rekao da ovu sesiju koristi ISKLJUČIVO za 4. NL NS Rijeka: scrapanje,
+najave kola, preglede kola, slike kola i objavu članaka za tu ligu. To
+je sesija koja je istog dana napisala i objavila pregled 6. kola 4. NL
+(`clanci/pregled-6-kola-4-nl-ns-rijeka-2627.txt`). Ostale tri lige
+(3. NL Zapad, 1. ŽNL PGŽ i 2. ŽNL PGŽ) radi druga sesija, ona koju
+Andrej zove "glavna sesija".
+
+Praktične posljedice:
+
+- Kad u ovoj sesiji kaže "pokreni scraper" ili "napiši pregled kola",
+  bez imena lige, misli na 4. NL NS Rijeka.
+- Prije pisanja se pogleda je li za to kolo članak već napisan: druga
+  sesija je jednom već napisala pregled 5. kola 4. NL, pa ga ne treba
+  pisati dvaput. Provjera je popis u mapi `clanci/` i radnja `provjeri`
+  u poslu "Članak u bazu".
+- Izmjene koda i stranice nisu nečije; svaka sesija radi sve što treba.
+  Dijele se SAMO tekstovi i objave po ligama.
 
 ## Stil rada s korisnikom
 
