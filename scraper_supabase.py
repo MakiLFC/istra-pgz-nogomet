@@ -1427,9 +1427,9 @@ def parsiraj_sve_igrace(soup):
     return igraci
 
 
-# Koliko igrača ide u rang-listu koja se sprema. Usporedba dviju listi
-# radi se PRIJE skraćivanja, nad punim listama: inače bi igrač koji je kod
-# nas 41., a kod HNS-a unutar prvih 40, ispao kao da nam fali.
+# Zadana duljina liste kad se slozi_pune_rang_liste pozove bez "koliko".
+# Pokretanje je uvijek poziva s punom duljinom i sprema cijele liste (vidi
+# dohvati_i_spremi_statistike); ova granica ostaje samo za izravne pozive.
 KOLIKO_U_RANG_LISTI = 40
 
 
@@ -1824,10 +1824,10 @@ def dohvati_i_spremi_statistike(natjecanje_naziv, natjecanje_url,
     kartoni, otkud_kartoni = odaberi_rang_listu(
         kartoni_iz_zapisnika, kartoni_sa_stranice, ("zuti", "crveni")
     )
-    # Pozicije su upisane pri slaganju liste, pa skraćivanje na kraju
-    # zadržava 1. do 40. mjesto.
-    strijelci = strijelci[:KOLIKO_U_RANG_LISTI]
-    kartoni = kartoni[:KOLIKO_U_RANG_LISTI]
+    # Liste se spremaju CIJELE. Do 11.10.2026. skraćivale su se na prvih
+    # 40 mjesta, pa je igrač s jednim golom ili jednim žutim, kojih u 3. NL
+    # ima i preko stotinu, na svojoj stranici imao nulu (Marcelo Suden,
+    # gol protiv Rudara). Stranica lige ionako pokazuje samo vrh liste.
 
     nastupi = slozi_listu_nastupa(svi_igraci, parsiraj_rang_nastupa(soup))
 
