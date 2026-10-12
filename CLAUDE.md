@@ -1516,6 +1516,15 @@ nisu pridjevi ne pogađa se pridjevski nastavak: Baška, u Baški; Draga, u
 Dragi; Krk, u Krku. Kad nisi siguran, pogledaj kako je mjesto napisano u
 ranijim člancima ili pitaj.
 
+**Andrejevi nogometni izrazi prepisuju se doslovno.** Kad Andrej pošalje
+bilješke s utakmice (prvi put 11.10.2026., Stari grad Rijeka - Mune), od
+njih se slaže tekst, ali se njegovi stručni izrazi NE zamjenjuju
+sinonimima. "Lopta u prostor" ostaje "lopta u prostor", a ne "pustio",
+"uposlio" ili "namjestio". Isto vrijedi za svaki drugi izraz kojim
+opisuje akciju: on zna kako se to na terenu kaže, a prepričani izraz
+zvuči kao da je pisao netko tko utakmicu nije gledao. Mijenja se samo
+red riječi i padež, da rečenica bude cijela.
+
 **Isključenje zna trajati više od jednog kola.** Ante Žunić (Vihor),
 isključen u 5. kolu 1. ŽNL 2026/27, propustio je 6. i 7. kolo, a to je
 Andrej rekao, ne zapisnik. Duljinu kazne zapisnik ne kaže, pa se za
