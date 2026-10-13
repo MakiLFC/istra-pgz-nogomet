@@ -38,11 +38,23 @@ from bs4 import BeautifulSoup  # noqa: E402
 from PIL import Image  # noqa: E402
 import requests  # noqa: E402
 
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+
+from ispis_kupa import popis_utakmica  # noqa: E402
 from scraper_supabase import (  # noqa: E402
     NATJECANJA, HEADERS, dohvati_stranicu, dohvati_popis_utakmica,
 )
 
 MAPA = os.path.join(os.path.dirname(__file__), "grbovi")
+
+# Kup nije u scraperu, a na slici kola kupa igraju i klubovi izvan naših
+# liga (Grobničan, Orijent, Opatija). Uzimaju se samo klubovi iz utakmica
+# kojima stranica kupa daje fazu ("1/16 finala", "1/8 finala"), jer ista
+# stranica prikazuje i parove prve lige, bez faze. Nova sezona, nova adresa.
+KUPOVI = [
+    {"naziv": "Hrvatski nogometni kup 26/27",
+     "url": "https://semafor.hns.family/natjecanja/115436767/hrvatski-nogometni-kup-2627/"},
+]
 
 
 def slug(ime):
@@ -181,30 +193,53 @@ def main():
         if not nadeno and prvi_redak is not None:
             print("   HTML prvog retka rasporeda, za dijagnozu:")
             print(str(prvi_redak)[:3000])
-        for ime, src in sorted(nadeno.items()):
-            try:
-                r = requests.get(src, headers=HEADERS, timeout=30)
-                r.raise_for_status()
-            except requests.RequestException as g:
-                print(f"   {ime}: slika se ne može skinuti ({g})")
-                bez_grba.append(ime)
-                continue
-            vrsta = r.headers.get("Content-Type", "").split(";")[0].strip()
-            datoteka = slug(ime) + ".png"
-            try:
-                bez_pozadine(r.content).save(os.path.join(MAPA, datoteka), optimize=True)
-            except Exception as g:  # nije slika
-                print(f"   {ime}: slika se ne može pročitati ({g})")
-                bez_grba.append(ime)
-                continue
-            popis[ime] = {
-                "datoteka": datoteka,
-                "izvor": src,
-                "sha1": hashlib.sha1(r.content).hexdigest()[:12],
-                "natjecanje": n["naziv"],
-            }
-            print(f"   {ime}: {datoteka} ({len(r.content)} B, {vrsta or '?'})")
+        spremi(nadeno, n["naziv"], popis, bez_grba)
 
+    for kup in KUPOVI:
+        print(f"\n== {kup['naziv']}")
+        nadeno, _ = grbovi_natjecanja(kup["url"])
+        soup = BeautifulSoup(dohvati_stranicu(kup["url"]).text, "html.parser")
+        klubovi = set()
+        for u in popis_utakmica(soup):
+            if u["faza"]:
+                klubovi.update((u["domacin"], u["gost"]))
+        # Klub koji igra i u našoj ligi već ima grb odande.
+        nadeno = {k: v for k, v in nadeno.items() if k in klubovi and k not in popis}
+        print(f"   novih grbova: {len(nadeno)}")
+        spremi(nadeno, kup["naziv"], popis, bez_grba)
+
+    zavrsi(popis, popis_put, bez_grba)
+
+
+def spremi(nadeno, naziv, popis, bez_grba):
+    """Skine grbove iz rječnika ime -> adresa slike i upiše ih u popis."""
+    for ime, src in sorted(nadeno.items()):
+        try:
+            r = requests.get(src, headers=HEADERS, timeout=30)
+            r.raise_for_status()
+        except requests.RequestException as g:
+            print(f"   {ime}: slika se ne može skinuti ({g})")
+            bez_grba.append(ime)
+            continue
+        vrsta = r.headers.get("Content-Type", "").split(";")[0].strip()
+        datoteka = slug(ime) + ".png"
+        try:
+            bez_pozadine(r.content).save(os.path.join(MAPA, datoteka), optimize=True)
+        except Exception as g:  # nije slika
+            print(f"   {ime}: slika se ne može pročitati ({g})")
+            bez_grba.append(ime)
+            continue
+        popis[ime] = {
+            "datoteka": datoteka,
+            "izvor": src,
+            "sha1": hashlib.sha1(r.content).hexdigest()[:12],
+            "natjecanje": naziv,
+        }
+        print(f"   {ime}: {datoteka} ({len(r.content)} B, {vrsta or '?'})")
+
+
+def zavrsi(popis, popis_put, bez_grba):
+    """Obriše grbove kojih više nema u popisu i zapiše popis."""
     for stara in os.listdir(MAPA):
         if stara != "popis.json" and stara not in {v["datoteka"] for v in popis.values()}:
             os.remove(os.path.join(MAPA, stara))
