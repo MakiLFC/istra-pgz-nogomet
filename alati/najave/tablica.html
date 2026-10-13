@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="hr"><head><meta charset="utf-8">
+<!-- Slika ljestvice lige, 1200x800, za članke. Izgled tablice prati
+     components/TablicaLige.tsx na stranici (zaglavlje u boji --pitch,
+     prvak i ispadanje trakom uz mjesto, forma u kvadratićima, starija
+     lijevo). Puni je tablica.mjs iz tablice.json. Vidi PROCITAJ.md. -->
+<style>
+@font-face{font-family:AR;font-weight:800;src:url("fonts/archivo-latin-800-normal.woff2") format("woff2");unicode-range:U+0000-00FF}
+@font-face{font-family:AR;font-weight:800;src:url("fonts/archivo-latin-ext-800-normal.woff2") format("woff2");unicode-range:U+0100-024F}
+@font-face{font-family:IN;font-weight:400;src:url("fonts/inter-latin-400-normal.woff2") format("woff2");unicode-range:U+0000-00FF}
+@font-face{font-family:IN;font-weight:400;src:url("fonts/inter-latin-ext-400-normal.woff2") format("woff2");unicode-range:U+0100-024F}
+@font-face{font-family:IN;font-weight:700;src:url("fonts/inter-latin-700-normal.woff2") format("woff2");unicode-range:U+0000-00FF}
+@font-face{font-family:IN;font-weight:700;src:url("fonts/inter-latin-ext-700-normal.woff2") format("woff2");unicode-range:U+0100-024F}
+@font-face{font-family:JB;font-weight:400;src:url("fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");unicode-range:U+0000-00FF}
+@font-face{font-family:JB;font-weight:400;src:url("fonts/jetbrains-mono-latin-ext-400-normal.woff2") format("woff2");unicode-range:U+0100-024F}
+@font-face{font-family:JB;font-weight:700;src:url("fonts/jetbrains-mono-latin-700-normal.woff2") format("woff2");unicode-range:U+0000-00FF}
+@font-face{font-family:JB;font-weight:700;src:url("fonts/jetbrains-mono-latin-ext-700-normal.woff2") format("woff2");unicode-range:U+0100-024F}
+@font-face{font-family:PD;font-weight:400;font-style:italic;src:url("fonts/playfair-display-latin-400-italic.woff2") format("woff2");unicode-range:U+0000-00FF}
+@font-face{font-family:PD;font-weight:400;font-style:italic;src:url("fonts/playfair-display-latin-ext-400-italic.woff2") format("woff2");unicode-range:U+0100-024F}
+
+:root{--pitch:#0d3b40;--pitch-dark:#07272b;--pitch-light:#2f9e8f;--chalk:#dde2db;--paper:#f7faf6;
+  --oxide:#b5502a;--oxide-l:#e08a55;--card-red:#bb3a2c;--ink:#10171a;--ink-muted:#5d686d;--line:#bcc4bb}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1200px;height:800px;overflow:hidden;background:#04191d}
+.z{position:relative;width:1200px;height:800px;overflow:hidden;
+  background:linear-gradient(160deg,#12474d 0%,#0d3b40 42%,#092d32 78%,#062327 100%)}
+.trake{position:absolute;inset:0;opacity:.055;
+  background:repeating-linear-gradient(90deg,#dde2db 0 1px,transparent 1px 84px)}
+.luk{position:absolute;right:-190px;top:-260px;width:760px;height:760px;border-radius:50%;
+  border:2px solid rgba(221,226,219,.075)}
+.rub{position:absolute;left:0;top:0;bottom:0;width:7px;background:var(--oxide);z-index:6}
+.glava{position:absolute;left:64px;right:64px;top:40px;display:flex;align-items:flex-end;
+  justify-content:space-between;z-index:5}
+.crta{width:44px;height:3px;background:var(--oxide);margin-bottom:13px}
+.oznaka{font-family:IN;font-weight:700;font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;
+  color:#8ea2a3;margin-bottom:9px}
+.naslov{font-family:AR;font-weight:800;font-size:46px;line-height:.98;letter-spacing:-.022em;
+  text-transform:uppercase;color:#f4f7f4}
+.naslov i{font-family:PD;font-weight:400;font-style:italic;text-transform:none;letter-spacing:0;
+  color:var(--oxide-l);font-size:48px}
+.termin{text-align:right;padding-bottom:4px}
+.termin .dan{font-family:JB;font-weight:700;font-size:20px;letter-spacing:.02em;color:#f4f7f4}
+.termin .sat{font-family:IN;font-weight:700;font-size:10.5px;letter-spacing:.2em;color:#8ea2a3;margin-top:8px}
+
+.karta{position:absolute;left:64px;right:64px;top:170px;z-index:5;background:var(--paper);
+  border:1px solid var(--line);box-shadow:0 18px 40px rgba(0,0,0,.28)}
+table{width:100%;border-collapse:collapse;font-family:IN;font-size:15px;color:var(--ink)}
+th{background:var(--pitch);color:var(--chalk);font-weight:400;font-size:13px;padding:0 10px;height:34px;
+  text-align:right;white-space:nowrap}
+th.l{text-align:left}
+td{padding:0 10px;text-align:right;font-family:JB;white-space:nowrap;border-top:1px solid var(--line)}
+td.mj{text-align:left;color:var(--ink-muted);border-left:4px solid transparent;width:46px}
+td.klub{text-align:left;font-family:IN;font-weight:700;width:100%}
+td.bod{font-weight:700}
+tr.prvak{background:rgba(47,158,143,.13)} tr.prvak td.mj{border-left-color:var(--pitch-light)}
+tr.ispada{background:rgba(187,58,44,.10)} tr.ispada td.mj{border-left-color:var(--card-red)}
+.forma{display:flex;gap:4px;justify-content:flex-start}
+.forma span{width:21px;height:21px;display:flex;align-items:center;justify-content:center;
+  font-family:JB;font-weight:700;font-size:11px}
+.P{background:var(--pitch-light);color:var(--pitch-dark)}
+.N{background:var(--line);color:var(--ink)}
+.I{background:var(--card-red);color:var(--chalk)}
+.potpis{position:absolute;left:64px;bottom:22px;font-family:IN;font-weight:700;font-size:10.5px;
+  letter-spacing:.34em;color:#6f8688;z-index:6}
+.brojka{position:absolute;right:64px;bottom:22px;font-family:JB;font-weight:400;font-size:11px;
+  letter-spacing:.1em;color:#6f8688;z-index:6}
+</style></head>
+<body><div class="z" id="z"></div>
+<script>
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+window.slozi = (t) => {
+  const n = t.redovi.length;
+  // Visina retka se prilagodi broju klubova, da tablica stane do potpisa.
+  const visina = Math.min(44, Math.floor((800 - 170 - 34 - 64) / n));
+  const imaForme = t.redovi.some(r => (r.forma || []).length);
+  const redovi = t.redovi.map((r, i) => {
+    const mjesto = i + 1;
+    const klasa = mjesto <= (t.prvak ?? 1) ? 'prvak' : (mjesto > n - (t.ispadanje ?? 1) ? 'ispada' : '');
+    const raz = r.raz > 0 ? '+' + r.raz : r.raz;
+    const forma = imaForme ? `<td><div class="forma">${(r.forma || []).map(o => `<span class="${o}">${o}</span>`).join('')}</div></td>` : '';
+    return `<tr class="${klasa}" style="height:${visina}px"><td class="mj">${esc(r.mj)}</td><td class="klub">${esc(r.klub)}</td>
+      <td>${r.o}</td><td>${r.p}</td><td>${r.n}</td><td>${r.i}</td><td>${r.gd}</td><td>${r.gp}</td><td>${raz}</td><td class="bod">${r.b}</td>${forma}</tr>`;
+  }).join('');
+  document.getElementById('z').innerHTML = `
+    <div class="trake"></div><div class="luk"></div>
+    <div class="glava">
+      <div><div class="crta"></div><div class="oznaka">${esc(t.oznaka)}</div>
+        <div class="naslov">${esc(t.naslov || 'Ljestvica')} <i>${esc(t.naslovKurziv || '')}</i></div></div>
+      <div class="termin"><div class="dan">${esc(t.datum)}</div><div class="sat">${esc(t.sat || '')}</div></div>
+    </div>
+    <div class="karta"><table>
+      <thead><tr><th class="l">#</th><th class="l">Klub</th><th>O</th><th>P</th><th>N</th><th>I</th>
+        <th>G+</th><th>G-</th><th>+/−</th><th>B</th>${imaForme ? '<th class="l">Forma</th>' : ''}</tr></thead>
+      <tbody>${redovi}</tbody></table></div>
+    <div class="potpis">LOKAL-ARENA</div>
+    <div class="brojka">${esc(t.izvor || 'Izvor: HNS Semafor')}</div>
+    <div class="rub"></div>`;
+};
+</script></body></html>

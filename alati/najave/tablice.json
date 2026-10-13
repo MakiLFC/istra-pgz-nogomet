@@ -1,0 +1,284 @@
+{
+  "_napomena": "Ljestvice za slike (tablica.mjs). Brojke sa Semafora, forma iz rezultata, starija lijevo.",
+  "tablice": [
+    {
+      "dat": "1-znl-pgz-kolo-6",
+      "ime": "tablica-1-znl-pgz-kolo-6",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "naslov": "Ljestvica",
+      "naslovKurziv": "nakon 6. kola",
+      "datum": "UTO 13.10.2026.",
+      "sat": "Nakon Zamet - Lošinj 1:3",
+      "prvak": 1,
+      "ispadanje": 1,
+      "redovi": [
+        {
+          "mj": 1,
+          "klub": "NK Mune",
+          "o": 6,
+          "p": 4,
+          "n": 1,
+          "i": 1,
+          "gd": 18,
+          "gp": 8,
+          "raz": 10,
+          "b": 13,
+          "forma": [
+            "I",
+            "P",
+            "P",
+            "P",
+            "P"
+          ]
+        },
+        {
+          "mj": 2,
+          "klub": "NK Lošinj",
+          "o": 6,
+          "p": 4,
+          "n": 1,
+          "i": 1,
+          "gd": 15,
+          "gp": 10,
+          "raz": 5,
+          "b": 13,
+          "forma": [
+            "P",
+            "I",
+            "P",
+            "N",
+            "P"
+          ]
+        },
+        {
+          "mj": 3,
+          "klub": "HNK Lovran",
+          "o": 6,
+          "p": 4,
+          "n": 0,
+          "i": 2,
+          "gd": 16,
+          "gp": 9,
+          "raz": 7,
+          "b": 12,
+          "forma": [
+            "P",
+            "P",
+            "P",
+            "I",
+            "I"
+          ]
+        },
+        {
+          "mj": 4,
+          "klub": "NK Rab",
+          "o": 5,
+          "p": 3,
+          "n": 2,
+          "i": 0,
+          "gd": 13,
+          "gp": 6,
+          "raz": 7,
+          "b": 11,
+          "forma": [
+            "P",
+            "P",
+            "N",
+            "P",
+            "N"
+          ]
+        },
+        {
+          "mj": 5,
+          "klub": "NK Turbina",
+          "o": 6,
+          "p": 3,
+          "n": 1,
+          "i": 2,
+          "gd": 13,
+          "gp": 10,
+          "raz": 3,
+          "b": 10,
+          "forma": [
+            "I",
+            "P",
+            "N",
+            "I",
+            "P"
+          ]
+        },
+        {
+          "mj": 6,
+          "klub": "NK Omladinac Vrata",
+          "o": 6,
+          "p": 2,
+          "n": 3,
+          "i": 1,
+          "gd": 11,
+          "gp": 8,
+          "raz": 3,
+          "b": 9,
+          "forma": [
+            "I",
+            "N",
+            "N",
+            "N",
+            "P"
+          ]
+        },
+        {
+          "mj": 7,
+          "klub": "NK Stari grad Rijeka",
+          "o": 6,
+          "p": 2,
+          "n": 2,
+          "i": 2,
+          "gd": 11,
+          "gp": 11,
+          "raz": 0,
+          "b": 8,
+          "forma": [
+            "N",
+            "P",
+            "I",
+            "P",
+            "I"
+          ]
+        },
+        {
+          "mj": 8,
+          "klub": "NK Vrbovsko",
+          "o": 6,
+          "p": 2,
+          "n": 1,
+          "i": 3,
+          "gd": 11,
+          "gp": 10,
+          "raz": 1,
+          "b": 7,
+          "forma": [
+            "P",
+            "I",
+            "I",
+            "N",
+            "P"
+          ]
+        },
+        {
+          "mj": 9,
+          "klub": "HNK Goranin",
+          "o": 5,
+          "p": 2,
+          "n": 1,
+          "i": 2,
+          "gd": 4,
+          "gp": 5,
+          "raz": -1,
+          "b": 7,
+          "forma": [
+            "N",
+            "I",
+            "P",
+            "P",
+            "I"
+          ]
+        },
+        {
+          "mj": 10,
+          "klub": "NK Risnjak",
+          "o": 6,
+          "p": 2,
+          "n": 1,
+          "i": 3,
+          "gd": 11,
+          "gp": 21,
+          "raz": -10,
+          "b": 7,
+          "forma": [
+            "N",
+            "P",
+            "P",
+            "I",
+            "I"
+          ]
+        },
+        {
+          "mj": 11,
+          "klub": "NK Zamet",
+          "o": 6,
+          "p": 2,
+          "n": 0,
+          "i": 4,
+          "gd": 10,
+          "gp": 12,
+          "raz": -2,
+          "b": 6,
+          "forma": [
+            "P",
+            "I",
+            "I",
+            "P",
+            "I"
+          ]
+        },
+        {
+          "mj": 12,
+          "klub": "NK Rikard Benčić",
+          "o": 6,
+          "p": 1,
+          "n": 2,
+          "i": 3,
+          "gd": 5,
+          "gp": 11,
+          "raz": -6,
+          "b": 5,
+          "forma": [
+            "I",
+            "I",
+            "P",
+            "I",
+            "N"
+          ]
+        },
+        {
+          "mj": 13,
+          "klub": "NK Vihor (B)",
+          "o": 6,
+          "p": 1,
+          "n": 1,
+          "i": 4,
+          "gd": 11,
+          "gp": 18,
+          "raz": -7,
+          "b": 4,
+          "forma": [
+            "I",
+            "I",
+            "I",
+            "N",
+            "P"
+          ]
+        },
+        {
+          "mj": 14,
+          "klub": "NK Draga",
+          "o": 6,
+          "p": 1,
+          "n": 0,
+          "i": 5,
+          "gd": 7,
+          "gp": 17,
+          "raz": -10,
+          "b": 3,
+          "forma": [
+            "P",
+            "I",
+            "I",
+            "I",
+            "I"
+          ]
+        }
+      ]
+    }
+  ]
+}
