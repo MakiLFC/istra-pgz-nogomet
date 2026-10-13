@@ -98,3 +98,17 @@ Slike izlaze u `izlaz/`. Sažmi ih prije nego ih preseliš u `public`:
 
 Za novo kolo dopuni `kola.json` novim unosom (`dat` je ime datoteke) i
 pokreni skriptu iznova.
+
+## Slika ljestvice (od 13.10.2026.)
+
+`tablica.html` i `tablica.mjs` crtaju ljestvicu lige kao sliku 1200x800,
+izgledom iste tablice kao na stranici (`components/TablicaLige.tsx`):
+zaglavlje u boji `--pitch`, prvak i ispadanje trakom uz mjesto, forma u
+kvadratićima, starija lijevo. Podaci su u `tablice.json`: brojke onakve
+kakve su na Semaforu (službena tablica, s kaznenim bodovima), a forma
+izračunata iz rezultata. Poslužitelj se diže u mapi `alati`, kao i za
+najave, pa:
+
+    node tablica.mjs 1-znl-pgz-kolo-6
+
+Slika ide u `public/slike/najave/` bez proširivanja, jer je već 1200x800.
