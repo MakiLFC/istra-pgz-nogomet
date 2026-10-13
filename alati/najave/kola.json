@@ -982,7 +982,6 @@
       "dat": "kup-1-8-finala-2627",
       "ime": "kup-1-8-finala-2627",
       "stil": "redovi",
-      "grbovi": false,
       "naslov": "Kup",
       "naslovKurziv": "1/8 finala",
       "oznaka": "Hrvatski nogometni kup · 2026/27",
@@ -1009,7 +1008,8 @@
         {
           "d": "OŠK Omišalj",
           "g": "Krk",
-          "termin": "UTO 13.10."
+          "termin": "UTO 13.10.",
+          "rezultat": "1:0"
         },
         {
           "d": "Crikvenica",
