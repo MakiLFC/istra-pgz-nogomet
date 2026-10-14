@@ -1,9 +1,13 @@
 slug: kup-1-8-finala-2-dio-2627
-naslov: KUP: OMIŠALJ DOBIO DERBI OTOKA KRKA
-sazetak: OŠK Omišalj je golom Davida Rožajca izbacio Krk i plasirao se u četvrtfinale kupa.
+naslov: KUP: OMIŠALJ I CRIKVENICA U ČETVRTFINALU, HALUBJAN I OPATIJA ODGOĐENI
+sazetak: OŠK Omišalj je golom Davida Rožajca izbacio Krk, a Crikvenica je Vinodol pobijedila 4:0, pa su oba kluba u četvrtfinalu kupa, uz Grobničan i Lokomotivu. Utakmica Halubjan - Opatija službeno je odgođena.
 natjecanje: nema
+slika_url: /slike/najave/kup-1-8-finala-2627-cijela.png
+slika_opis: Rezultati osmine finala Hrvatskog nogometnog kupa 2026/27, od 6. do 14. listopada 2026.
 ---
-NK OŠK Omišalj - NK Krk 1:0. Derbi otoka Krka na Pušći pripao je domaćinu. Pred 80 gledatelja jedini gol zabio je David Rožajac u 20. minuti, a Omišalj se tako plasirao u četvrtfinale, gdje ga već čekaju Grobničan i Lokomotiva. Sudio je Milan Kukuljan, uz pomoćnike Hrvoja Perkova i Andrea Olajoša. Žute kartone dobili su Luka Mijić i Andrija Belina iz Omišlja te Ivano Pranjić, Lovre Travica i Mirko Valenčić iz Krka.
+Osmina finala Hrvatskog nogometnog kupa 26/27 nastavljena je u utorak 13. i srijedu 14. listopada. OŠK Omišalj i Crikvenica izborili su četvrtfinale, gdje su im se pridružili Grobničan i Lokomotiva, koji su prošli tjedan ranije. Utakmica Halubjan - Opatija, zakazana za utorak, službeno je odgođena, a novi termin zasad nije objavljen.
+
+NK OŠK Omišalj - NK Krk 1:0. Derbi otoka Krka na Pušći pripao je domaćinu. Pred 80 gledatelja jedini gol zabio je David Rožajac u 20. minuti. Sudio je Milan Kukuljan, uz pomoćnike Hrvoja Perkova i Andrea Olajoša. Žute kartone dobili su Luka Mijić i Andrija Belina iz Omišlja te Ivano Pranjić, Lovre Travica i Mirko Valenčić iz Krka.
 
 Krk je na poluvremenu napravio četiri izmjene: izašli su Tomislav Jukičić, Ivano Pranjić, Mateo Klenovšek i Lovre Travica, a ušli Mirko Valenčić, Jakov Delibegović, Dino Dvorničić i Mateo Jurešić. Omišalj je u 53. minuti promijenio vratara, umjesto Lea Margana ušao je Igor Herman, a mreža je ostala netaknuta do kraja.
 
@@ -14,3 +18,15 @@ Oba kluba igraju 3. NL Zapad i ondje su susjedi na ljestvici: Omišalj je sedmi 
 Omišalj: Margan, Muminović, Ostović, Milinović, Rožajac, Mijatović, Todorović, Mijić, Miculinić (kapetan), Belina, Tatarević. Ušli su Herman (53.), Štimac (56.) i Grbac (70.).
 
 Krk: Brusić, Jukičić, Peter, Pranjić, Klenovšek, Lucić (kapetan), Jelić, Dorijan Jurešić, Travica, Golemac, Jurica. Ušli su Valenčić, Delibegović, Dvorničić i Mateo Jurešić (46.) te Kuljiš (75.).
+
+NK Crikvenica - NK Vinodol 4:0. Susjedski dvoboj na Gradskom stadionu u Crikvenici, pred 100 gledatelja, domaćin je riješio u prvih četvrt sata. Rhaillam Sousa Araujo doveo je Crikvenicu u vodstvo već u 3. minuti, a Jakov Mendrila povisio je u 13. Vinodol je morao mijenjati već u 11. minuti, kad je umjesto Ennija Travaglie ušao Noah Ugrinović, a kod Crikvenice je u 40. minuti umjesto Mendrile ušao Pedro Gustavo Dos Santos Melo. U drugom poluvremenu Luka Mikulica zabio je u 65., a Araujo drugi put u 70. minuti za konačnih 4:0. Sudio je Noel Sambol, uz pomoćnike Igora Bahuna i Roberta Barbića. Žute kartone dobili su Mario Smolčić, Alen Smolčić, Luka Mikulica i Petar Vidović iz Crikvenice te Marcelo Suden, Domagoj Barac i Tin Lagumdžija iz Vinodola.
+
+U šesnaestini finala Crikvenica je pobijedila Borac u Krasici 4:1, a Vinodol je kod kuće izbacio Kraljevicu, 1:0.
+
+I ova su dva kluba u 3. NL Zapad susjedi na ljestvici: Crikvenica je dvanaesta s deset bodova, uz tri boda kazne, a Vinodol trinaesti s osam. Crikvenica se ovom pobjedom vratila nakon 0:4 u Rovinju u zadnjem kolu prvenstva. U osam prvenstvenih utakmica zabila je devet golova, a ovo joj je najuvjerljivija pobjeda sezone. Vinodol je u kup došao nakon prvenstvene pobjede 5:1 protiv Rudara. Njegovi najbolji strijelci u prvenstvu, Badara Seck i Edmar Junior Dos Santos Neves s po četiri gola, igrali su do 80. minute. Prvenstveni dvoboj ta dva kluba igra se 28. studenoga u Crikvenici, u 15. kolu, posljednjem u jesenskom dijelu.
+
+Crikvenica: Bonamigo Toseto, Alen Smolčić, Ivan Filipović, Vidović, Mađovski, Damjan Mendrila, Lukarić (kapetan), Jakov Mendrila, Mario Smolčić, Sousa Araujo, Mikulica. Ušli su Dos Santos Melo (40.), Daničić (83.) te Županec, Deželin i Brnja (87.).
+
+Vinodol: Matija Ugrinović, Lagumdžija, Mazzarolli, Edmar Junior, Luka Filipović (kapetan), Seck, Suden, Travaglia, Pozderac, Antić, Proleta. Ušli su Noah Ugrinović (11.), Barac i Rubčić (46.) te Brčić i Peričić (80.).
+
+NK Halubjan - NK Opatija, odgođeno. Halubjan je u 3. NL Zapad jedanaesti s deset bodova, a u šesnaestini finala izbacio je Pomorac nakon jedanaesteraca, uz 0:0 nakon devedeset minuta. Opatija je u istom krugu u Lovranu pobijedila 7:0.

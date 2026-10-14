@@ -986,7 +986,7 @@
       "naslovKurziv": "1/8 finala",
       "oznaka": "Hrvatski nogometni kup · 2026/27",
       "datum": "6. DO 14.10.2026.",
-      "sat": "Rezultati i raspored",
+      "sat": "Rezultati osmine finala",
       "utakmice": [
         {
           "d": "Rječina",
@@ -1003,7 +1003,7 @@
         {
           "d": "Halubjan",
           "g": "Opatija",
-          "termin": "UTO 13.10."
+          "termin": "ODGOĐENO"
         },
         {
           "d": "OŠK Omišalj",
@@ -1014,7 +1014,8 @@
         {
           "d": "Crikvenica",
           "g": "Vinodol",
-          "termin": "SRI 14.10."
+          "termin": "SRI 14.10.",
+          "rezultat": "4:0"
         }
       ]
     },
