@@ -1421,6 +1421,48 @@
           "termin": "SUB 05.12."
         }
       ]
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-7",
+      "kolo": "7",
+      "stil": "redovi",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 17.10.2026.",
+      "sat": "Subota u 15:30 i 16:00",
+      "slobodan": "Ližnjan",
+      "utakmice": [
+        {
+          "d": "Borac (Ba)",
+          "g": "Cres",
+          "termin": "SUB 16:00",
+          "derbi": true
+        },
+        {
+          "d": "Otočac",
+          "g": "Rječina",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Žminj",
+          "g": "Medulin 1921",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Mladost Fažana",
+          "g": "Umag-CC Umago",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Klana",
+          "g": "Štinjan",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Funtana",
+          "g": "Smoljanci",
+          "termin": "SUB 15:30"
+        }
+      ]
     }
   ]
 }
