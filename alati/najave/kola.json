@@ -1370,6 +1370,57 @@
       ],
       "ime": "pregled-2-znl-pgz-kolo-6",
       "naslov": "Pregled"
+    },
+    {
+      "dat": "3-nl-zapad-kolo-9",
+      "kolo": "9",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 17.10.2026.",
+      "sat": "Subota u 14:00 i 15:30",
+      "utakmice": [
+        {
+          "d": "Crikvenica",
+          "g": "Pazinka-Pazin",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Lokomotiva",
+          "g": "Pomorac",
+          "termin": "SUB 15:30",
+          "derbi": true
+        },
+        {
+          "d": "Buje",
+          "g": "Jadran-Poreč",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Krk",
+          "g": "Rovinj",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Halubjan",
+          "g": "Naprijed",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Banjole",
+          "g": "Nehaj",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Rudar",
+          "g": "Kraljevica",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "OŠK Omišalj",
+          "g": "Vinodol",
+          "termin": "SUB 05.12."
+        }
+      ]
     }
   ]
 }
