@@ -63,7 +63,9 @@ async function clanci(): Promise<MetadataRoute.Sitemap> {
         return {
           url: adresa(`/novosti/${c.slug}`),
           lastModified: isNaN(datum.getTime()) ? undefined : datum,
-          priority: 0.7,
+          // Najveća važnost odmah iza naslovnice. Članci su jedini
+          // sadržaj koji netko stvarno piše; sve ostalo su podaci.
+          priority: 0.9,
           changeFrequency: "monthly" as const,
         };
       });
@@ -126,6 +128,20 @@ async function igraci(): Promise<MetadataRoute.Sitemap> {
   }
 }
 
+/**
+ * REDOSLIJED NIJE SVEJEDNO: članci idu odmah iza statičnih adresa.
+ *
+ * Tražilica svakoj stranici odvaja ograničeno vrijeme i popis čita
+ * redom. Do 16.10.2026. su članci stajali tek na četvrtom mjestu, iza
+ * dvije tisuće stranica igrača, pa ih Google nije stizao ni otvoriti:
+ * u izvještaju "Otkriveno, trenutačno nije indeksirano" stajao je 41
+ * članak (sve najave, pregledi i osvrti sezone 2026/27), uz datum
+ * zadnjeg posjeta 1970-01-01, što znači nijednom.
+ *
+ * Igrači i utakmice time ništa ne gube: njih je tisuće, slične su jedna
+ * drugoj i tražilica ih ionako obilazi mjesecima. Članak je jedini
+ * sadržaj koji netko stvarno napiše, pa ide prvi.
+ */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [odClanaka, odKlubova, odUtakmica, odIgraca] = await Promise.all([
     clanci(),
@@ -133,5 +149,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     utakmice(),
     igraci(),
   ]);
-  return [...STATICNE, ...odKlubova, ...odIgraca, ...odClanaka, ...odUtakmica];
+  return [...STATICNE, ...odClanaka, ...odKlubova, ...odUtakmica, ...odIgraca];
 }

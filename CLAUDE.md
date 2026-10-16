@@ -1297,6 +1297,44 @@ provjerava ručni posao "Provjera RSS-a" (`alati/provjera_rss.py`): ispiše
 prve dvije stavke, pita W3C validator i pada kad se u feedu pojavi išta
 izvan dopuštenja.
 
+**U sitemapu redoslijed odlučuje što će tražilica stići pročitati.**
+16.10.2026. je Google javio "Novi razlog zbog kojeg se stranice ne mogu
+indeksirati: Nije pronađeno (404)". Provjera je pokazala da 404 nije bio
+ništa: JEDNA adresa, `/liga/3-nl-zapad?kolo=29`, stara poveznica iz
+sezone koja je imala 30 kola, dok ih tekuća ima 15. Takva stranica s
+pravom ne postoji i Google je sam izbaci.
+
+Pravi nalaz je bio u izvještaju "Otkriveno, trenutačno nije
+indeksirano": 210 adresa, od toga 137 igrača, 32 utakmice i 41 ČLANAK,
+sve s datumom zadnjeg posjeta `1970-01-01`, što u Googleovu izvozu znači
+nijednom. Dakle praktički svaka najava, pregled i osvrt sezone 2026/27
+Googleu nisu bili ni otvoreni, dok je stranica inače imala 2,67 tisuća
+indeksiranih stranica.
+
+Uzrok je bio redoslijed u `app/sitemap.ts`: statične adrese, klubovi,
+IGRAČI, pa tek onda članci. Tražilica popis čita redom i svakoj stranici
+daje ograničeno vrijeme, pa je ispred svakog teksta stajalo dvije tisuće
+stranica igrača. Od 16.10.2026. članci idu odmah iza statičnih adresa i
+imaju važnost 0,9.
+
+Tri stvari uz to:
+
+- "Otkriveno, trenutačno nije indeksirano" NIJE kvar i nema prekidač.
+  To je tražiličina odluka o redu čekanja. Pomaže se redoslijedom,
+  internim poveznicama i, za pojedinu adresu, ručno preko "Pregled
+  URL-a" pa "Zatraži indeksiranje" (ograničeno na desetak dnevno).
+- Stranice igrača i utakmica time ništa ne gube. Njih je tisuće, slične
+  su jedna drugoj i obilaze se mjesecima; članak je jedini sadržaj koji
+  netko napiše.
+- Preostaje i drugi dio posla, dogovoren ali neodrađen: članci su
+  dosegljivi s premalo mjesta na stranici (naslovnica i novosti). Sa
+  stranice utakmice trebalo bi voditi na pregled tog kola, a sa stranice
+  kluba na članke u kojima se klub spominje.
+
+Pouka je ista kao kod Vercelovih brojki: kad stigne obavijest, prvo se
+pogleda IZVJEŠTAJ, a ne naslov obavijesti. Naslov je govorio o 404, a
+404 je bio jedan i bezopasan.
+
 **U CSS-u svi `@import` moraju biti prije `@import "tailwindcss"`.**
 Tailwind se razmota u stotine redaka i svaki `@import` iza njega ruši build.
 
