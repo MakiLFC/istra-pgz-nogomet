@@ -84,6 +84,11 @@ def main():
         if "/glasnik/" in url and url.rstrip("/") != adresa.rstrip("/") and url not in glasnici:
             if a.get_text(strip=True).lower().startswith("glasnik"):
                 glasnici.append(url)
+    # Stranica ima i bočni popis glasnika drugih liga, pa prednost imaju
+    # oni čija adresa počinje adresom popisa.
+    svoji = [g for g in glasnici if g.startswith(adresa.rstrip("/") + "/")]
+    if svoji:
+        glasnici = svoji
     print("Glasnici na popisu:", len(glasnici))
     for url in glasnici[:koliko]:
         print("\n==========", url)
