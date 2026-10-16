@@ -1,0 +1,58 @@
+# Glasnik saveza, samo ručno.
+#
+# ČEMU SLUŽI
+# Pročita zadnje službene glasnike Nogometnog saveza PGŽ (nspgz.hr) i u
+# njima potraži zadana imena, npr. igrača za kojeg treba provjeriti
+# koliko utakmica kazne mu je izrekao stegovni sudac. Semafor kazne ne
+# prikazuje. Sesija s Claudeom do nspgz.hr ne doseže, a GitHub doseže.
+# Ne dira bazu (alati/glasnik.py).
+
+name: Glasnik saveza
+
+on:
+  workflow_dispatch:
+    inputs:
+      adresa:
+        description: "Popis glasnika na nspgz.hr"
+        required: false
+        default: "https://www.nspgz.hr/glasnik/1-zupanijska-nogometna/"
+        type: string
+      koliko:
+        description: "Koliko zadnjih glasnika pročitati"
+        required: false
+        default: "4"
+        type: string
+      trazi:
+        description: "Imena, odvojena točka-zarezom"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  glasnik:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Preuzmi kod
+        uses: actions/checkout@v7
+
+      - name: Postavi Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Instaliraj pakete
+        run: |
+          pip install requests beautifulsoup4
+          sudo apt-get install -y poppler-utils >/dev/null
+
+      - name: Pročitaj glasnike
+        env:
+          ADRESA: ${{ inputs.adresa }}
+          KOLIKO: ${{ inputs.koliko }}
+          TRAZI: ${{ inputs.trazi }}
+          PYTHONUNBUFFERED: "1"
+        run: python alati/glasnik.py "$ADRESA" "$KOLIKO" "$TRAZI"
