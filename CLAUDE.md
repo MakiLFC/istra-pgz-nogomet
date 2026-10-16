@@ -1429,6 +1429,21 @@ ondje je popis nastupa 14.09.2026. bio maknut radi štednje, a na Pro
 planu je vraćen upravo za ovo. U bočni stupac, koji radi u pregledniku,
 nastupi se i dalje NE šalju, da ne putuju uz svaku stranicu.
 
+**DOGOVORENO ZA PONEDJELJAK 19.10.2026.: članci dosegljivi s više
+mjesta na stranici.** Drugi dio posla oko indeksiranja, prvi je bio
+redoslijed u sitemapu (vidi gore, 16.10.2026.). Tražilice idu za
+poveznicama, a stariji članak sada nije dosegljiv gotovo niotkud: s
+naslovnice se vide zadnji, dalje treba otvoriti novosti. Dvije stvari:
+
+- sa stranice utakmice poveznica na PREGLED TOG KOLA, ako postoji
+- sa stranice kluba poveznica na članke u kojima se taj klub spominje
+
+Vrijedi isto pravilo kao kod imena igrača u postavama: poveznica se
+ispisuje samo kad članak stvarno postoji, nikad napamet, da se s
+vremenom ne nakupe mrtve poveznice. Veza članka i kola se vidi iz
+`clanci.natjecanje` i sluga (npr. `pregled-5-kola-3-nl-zapad-2627`), ali
+to treba provjeriti u bazi prije pisanja koda, ne pogađati po nazivu.
+
 **3. Tražilica na naslovnici**, za igrače i klubove. Popis se priprema
 pri gradnji kao jedna datoteka, a pretraživanje ide u pregledniku, pa
 ne troši ništa na poslužitelju. Datoteka je stotinjak kilobajta, pa se
