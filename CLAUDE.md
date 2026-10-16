@@ -1525,6 +1525,25 @@ opisuje akciju: on zna kako se to na terenu kaže, a prepričani izraz
 zvuči kao da je pisao netko tko utakmicu nije gledao. Mijenja se samo
 red riječi i padež, da rečenica bude cijela.
 
+**Kazne se provjeravaju u glasniku saveza, poslom "Glasnik saveza".**
+Semafor kazne ne prikazuje. Izriče ih stegovni sudac Nogometnog saveza
+PGŽ i objavljuje u tjednom glasniku na nspgz.hr (PDF ugrađen u stranicu),
+a na kraju svakog glasnika stoji tablica "Neodrađene suspenzije" s brojem
+utakmica koje igrač još mora odraditi. Sesija s Claudeom do nspgz.hr ne
+doseže, pa glasnike čita posao "Glasnik saveza" (`.github/workflows/
+glasnik.yml`, alat `alati/glasnik.py`): zadaju se imena, a on ispiše
+svaki red u kojem se pojavljuju. Za 2. ŽNL u polje adrese ide popis
+`https://www.nspgz.hr/glasnik/2-zupanijska-nogometna/`.
+
+Prva provjera, 16.10.2026., potvrdila je Žunića (Vihor), kojem je nakon
+6. kola ostala još jedna utakmica, i otkrila dvije kazne kojih u
+podacima sa Semafora nema: Mateo Vukelja (Vrbovsko) pauzira zbog
+četvrtog žutog kartona, a Sanel Kuši (Stari grad Rijeka) ima suspenziju
+do 31.10.2026. Vukelja pokazuje da je i u 1. ŽNL prag četiri žuta, ali
+dok to Andrej ne potvrdi, u tekstovima se piše samo ono što stoji u
+glasniku. Prije svake najave 1. i 2. ŽNL pokreni ovaj posao s imenima
+isključenih i igrača s tri ili više žutih.
+
 **Isključenje zna trajati više od jednog kola.** Ante Žunić (Vihor),
 isključen u 5. kolu 1. ŽNL 2026/27, propustio je 6. i 7. kolo, a to je
 Andrej rekao, ne zapisnik. Duljinu kazne zapisnik ne kaže, pa se za
