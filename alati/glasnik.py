@@ -46,6 +46,16 @@ def tekst_pdfa(sadrzaj):
     return izlaz.stdout
 
 
+def tekst_worda(sadrzaj):
+    """Tekst .docx datoteke, bez dodatnih paketa: to je zip s XML-om."""
+    import io
+    import zipfile
+    with zipfile.ZipFile(io.BytesIO(sadrzaj)) as z:
+        xml = z.read("word/document.xml").decode("utf-8", "ignore")
+    xml = re.sub(r"</w:p>", "\n", xml)
+    return re.sub(r"<[^>]+>", "", xml)
+
+
 def pretrazi(naslov, tekst, imena):
     redovi = tekst.splitlines()
     print(f"\n----- {naslov} ({len(redovi)} redova)")
@@ -81,8 +91,21 @@ def main():
         naslov = stranica.find("h1")
         print("Naslov:", naslov.get_text(strip=True) if naslov else "?")
         pretrazi("tekst stranice", stranica.get_text("\n"), imena)
+        # Prilozi znaju biti i Word ili ugrađeni preglednik, ne samo PDF,
+        # pa se ispisuje sve što izgleda kao datoteka ili ugradnja.
+        for oznaka, atribut in (("a", "href"), ("iframe", "src"), ("embed", "src"), ("object", "data")):
+            for el in stranica.find_all(oznaka):
+                cilj = el.get(atribut)
+                if cilj and re.search(r"uploads|\.(pdf|docx?|xlsx?)($|\?)|drive|docs\.google|viewer", cilj, re.I):
+                    print(f"  [{oznaka}] {urljoin(url, cilj)}")
         for a in stranica.find_all("a", href=True):
             prilog = urljoin(url, a["href"])
+            if re.search(r"\.docx($|\?)", prilog, re.I):
+                print("\nPrilog (Word):", prilog)
+                try:
+                    pretrazi(prilog.rsplit("/", 1)[-1], tekst_worda(dohvati(prilog).content), imena)
+                except Exception as g:  # prilog se ne da pročitati
+                    print("  ne mogu pročitati:", g)
             if re.search(r"\.pdf($|\?)", prilog, re.I):
                 print("\nPrilog:", prilog)
                 try:
