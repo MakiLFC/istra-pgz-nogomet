@@ -18,7 +18,7 @@ import subprocess
 import sys
 import tempfile
 import unicodedata
-from urllib.parse import urljoin
+from urllib.parse import unquote, urljoin
 
 import requests
 from bs4 import BeautifulSoup
@@ -98,6 +98,15 @@ def main():
                 cilj = el.get(atribut)
                 if cilj and re.search(r"uploads|\.(pdf|docx?|xlsx?)($|\?)|drive|docs\.google|viewer", cilj, re.I):
                     print(f"  [{oznaka}] {urljoin(url, cilj)}")
+                    # Preglednik PDF-a nosi pravu adresu u parametru file=
+                    ugradjen = re.search(r"[?&]file=([^&]+\.pdf)", cilj, re.I)
+                    if ugradjen:
+                        pdf = urljoin(url, unquote(ugradjen.group(1)))
+                        print("\nPrilog (ugrađen PDF):", pdf)
+                        try:
+                            pretrazi(pdf.rsplit("/", 1)[-1], tekst_pdfa(dohvati(pdf).content), imena)
+                        except Exception as g:  # prilog se ne da pročitati
+                            print("  ne mogu pročitati:", g)
         for a in stranica.find_all("a", href=True):
             prilog = urljoin(url, a["href"])
             if re.search(r"\.docx($|\?)", prilog, re.I):
