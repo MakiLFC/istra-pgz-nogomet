@@ -537,6 +537,17 @@ Otud i pravilo kad se objavljuje: pregled kola se ne objavljuje s prvog
 prolaza nakon utakmica, nego se prije objave pokrene scraper još jednom i
 pogleda ima li ljestvica sve klubove na istom broju kola.
 
+DOPUNJENO 17.10.2026., na Andrejevu uputu: ako se tablica ni nakon drugog
+prolaza nije poravnala, OBJAVA SE NE ČEKA. Ljestvica se izračuna iz
+rezultata i članak ide van, a u tekstu stoji rečenica koja kaže da je
+ljestvica izračunata iz rezultata i što službenoj tablici fali. Tablica se
+sama posloži sljedećim prolazom, a stranica lige ionako pokazuje službenu.
+
+Povod je 7. kolo 4. NL: susret Funtane i Smoljanaca počeo je u 17:30, sat
+i pol iza ostalih, pa je u prvom čitanju zapisnik bio upisan, a tablica
+nije imala tu utakmicu. Sve ostalo se poklapalo klub po klub. Drugi prolaz
+ju je poravnao, ali pravilo od sada vrijedi i kad se ne poravna.
+
 
 **Događaj bez minute je događaj, a scraper ga je bacao.**
 Prvo pokretanje s rang-listama iz zapisnika, 15.09.2026., pokazalo je da
