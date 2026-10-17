@@ -1594,6 +1594,56 @@
       ],
       "ime": "pregled-3-nl-zapad-kolo-9",
       "naslov": "Pregled"
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-7-pregled",
+      "ime": "pregled-4-nl-ns-rijeka-kolo-7",
+      "kolo": "7",
+      "stil": "redovi",
+      "naslov": "Pregled",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 17.10.2026.",
+      "sat": "Rezultati kola",
+      "slobodan": "Ližnjan",
+      "utakmice": [
+        {
+          "d": "Borac (Ba)",
+          "g": "Cres",
+          "termin": "SUB 16:00",
+          "rezultat": "1:2",
+          "derbi": true
+        },
+        {
+          "d": "Mladost Fažana",
+          "g": "Umag-CC Umago",
+          "termin": "SUB 15:30",
+          "rezultat": "5:1"
+        },
+        {
+          "d": "Žminj",
+          "g": "Medulin 1921",
+          "termin": "SUB 15:30",
+          "rezultat": "4:0"
+        },
+        {
+          "d": "Otočac",
+          "g": "Rječina",
+          "termin": "SUB 15:30",
+          "rezultat": "3:2"
+        },
+        {
+          "d": "Funtana",
+          "g": "Smoljanci",
+          "termin": "SUB 17:30",
+          "rezultat": "2:0"
+        },
+        {
+          "d": "Klana",
+          "g": "Štinjan",
+          "termin": "SUB 15:30",
+          "rezultat": "0:2"
+        }
+      ]
     }
   ]
 }
