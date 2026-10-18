@@ -1644,6 +1644,61 @@
           "rezultat": "0:2"
         }
       ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-7-pregled",
+      "kolo": "7",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 17.10. i NED 18.10.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Rikard Benčić",
+          "g": "Turbina",
+          "termin": "SUB 15:30",
+          "rezultat": "0:3"
+        },
+        {
+          "d": "Draga",
+          "g": "Zamet",
+          "termin": "SUB 15:30",
+          "rezultat": "3:1"
+        },
+        {
+          "d": "Lovran",
+          "g": "Stari grad Rijeka",
+          "termin": "SUB 15:30",
+          "rezultat": "1:2"
+        },
+        {
+          "d": "Goranin",
+          "g": "Vihor (B)",
+          "termin": "NED 15:30",
+          "rezultat": "6:0"
+        },
+        {
+          "d": "Omladinac Vrata",
+          "g": "Risnjak",
+          "termin": "NED 15:30",
+          "rezultat": "1:1"
+        },
+        {
+          "d": "Mune",
+          "g": "Vrbovsko",
+          "termin": "NED 15:30",
+          "rezultat": "5:3"
+        },
+        {
+          "d": "Lošinj",
+          "g": "Rab",
+          "termin": "NED 16:00",
+          "derbi": true,
+          "rezultat": "2:1"
+        }
+      ],
+      "ime": "pregled-1-znl-pgz-kolo-7",
+      "naslov": "Pregled"
     }
   ]
 }
