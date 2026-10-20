@@ -1413,6 +1413,18 @@ Interval od sat vremena na stranici igrača NIJE diran, jer je Andrejeva
 odluka od 25.09.2026., a i nije bio uzrok: uzrok je bila cijena jednog
 otvaranja, ne njihov broj.
 
+PROVJERENO ODMAH NAKON POKRETANJA, 20.10.2026.:
+
+- `ucinci_igraca('marcelo-suden')` vraća ČETIRI retka, a prije je ista
+  stranica vukla oko 3850 stavki
+- `imena_igraca_lige('3. NL Zapad', '2026/27')` vraća 405 imena
+- slugovi iz baze i iz koda poklapaju se bez ijedne razlike. Supabasov
+  editor skida samo prikazanih stotinu redaka, pa se puni popis ne da
+  lako izvesti; umjesto toga je pokrenut upit koji traži imena sa
+  znakom izvan hrvatske abecede (regularni izraz
+  `[^A-Za-zčćžšđČĆŽŠĐ ''\-\.]`) i nije vratio nijedan redak. Dakle
+  nema imena na kojem bi se dvije izvedbe mogle raziđi.
+
 OSTAJE ZA SLJEDEĆI PUT, ako promet i dalje bude previsok:
 `dohvatiNastupe` povlači utakmice s OBJEMA punim postavama da bi
 pokazao događaje jednog igrača. Za igrača s petnaest nastupa to je
