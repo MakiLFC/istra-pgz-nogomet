@@ -1368,22 +1368,60 @@ radio i popis adresa pri gradnji (`generateStaticParams` na stranici
 `slugoviClanaka` u `lib/clanci.ts`, a tip popisa je `ClanakKartica`
 (članak bez teksta).
 
-SUMNJA KOJA SE NIJE DIRALA BEZ MJERENJA: stranica igrača je najskuplja
-stranica na cijeloj stranici, a ima ih nekoliko tisuća. `dohvatiIgraca`
-zove `dohvatiIgrace`, a ona dohvaća rang-liste SVIH liga i SVIH sezona,
-uključujući `nastupi`, koji je najveći blok i koji se od 11.10.2026.
-sprema cijeli. Uz to `dohvatiNastupe` povlači utakmice s objema punim
-postavama. Pri intervalu od sat vremena i tražilicama koje te stranice
-redom obilaze, to se zbraja brzo.
+RAŠČLAMBA JE SRUŠILA PRVU SUMNJU. Pretpostavka je bila da su uzrok
+fotografije uz članke. Supabase pod Usage, pa Egress, daje raščlambu po
+danu: 18.10.2026. je PostgREST Egress bio 384 MB (98,7 posto), a
+Storage Egress 5 MB (1,3 posto). Dakle slike nisu bile ni blizu, sve je
+bilo u upitima. Cijela baza je pritom 32 MB, a Storage 7 MB, pa je
+jasno da se isti mali sadržaj vukao iznova.
 
-Ne dira se napamet iz dva razloga: interval od sat vremena Andrej je
-izričito tražio 25.09.2026., a stvarni udio se vidi u Supabaseu pod
-Usage, gdje egress ima raščlambu po izvoru (Database, Storage, Auth,
-Realtime). Ako je glavnina Storage, onda su uzrok fotografije uz
-članke, a ne upiti, i lijek je posve drugi.
+Pravi uzrok je bila STRANICA IGRAČA. `dohvatiIgraca` je zvao
+`dohvatiIgrace`, a taj dohvaća rang-liste SVIH liga i OBIJU sezona
+(oko 3850 stavki), pa se tek u kodu tražio jedan igrač. Isto su radile
+stranica utakmice i stranica lige preko `slugoviIgracaLige`, kojima
+treba samo popis imena koja smiju biti poveznica.
+
+Graf po danima to potvrđuje dvama skokovima, oba naše izmjene:
+
+- 28.09.2026., imena igrača postala su poveznice i na stranici utakmice
+  i lige, pa te stranice od tada pri svakom osvježavanju vuku rang-liste
+  svoje lige, s nastupima
+- 11.10.2026., rang-liste se počele spremati cijele umjesto prvih 40
+  mjesta, pa je svaki takav dohvat postao višestruko veći (popis
+  nastupa 3. NL skočio je s 40 na 406 stavki)
+
+Obje izmjene su bile ispravne i ostaju. Popravljeno je ono što je bilo
+krivo: da se za jednog igrača vuče cijela liga.
+
+RJEŠENJE, 20.10.2026.: dvije funkcije u bazi, `sql/igraci_rpc.sql`.
+`ucinci_igraca(slug)` vraća samo stavke tog igrača, a
+`imena_igraca_lige(natjecanje, sezona)` samo imena za poveznice.
+Uz njih ide i `slug_imena(text)`, koja u SQL-u radi isto što `slugKluba`
+radi u `lib/slug.ts`.
+
+Dvije stvari su namjerno napravljene ovako:
+
+- `imena_igraca_lige` vraća IMENA, ne slugove. Slug i dalje računa kod,
+  istom funkcijom kojom nastaje i adresa stranice igrača, pa se dvije
+  strane ne mogu raziđi u tome što je čija adresa.
+- Oba brza puta imaju REZERVU: kad funkcije u bazi nema, kad javi grešku
+  ili ne nađe nikoga, ide se starim putem. Zato je svejedno objavi li se
+  prvo kod ili prvo SQL, i zato razlika u slugiranju ne može proizvesti
+  praznu stranicu, nego samo skuplji dohvat.
+
+Interval od sat vremena na stranici igrača NIJE diran, jer je Andrejeva
+odluka od 25.09.2026., a i nije bio uzrok: uzrok je bila cijena jednog
+otvaranja, ne njihov broj.
+
+OSTAJE ZA SLJEDEĆI PUT, ako promet i dalje bude previsok:
+`dohvatiNastupe` povlači utakmice s OBJEMA punim postavama da bi
+pokazao događaje jednog igrača. Za igrača s petnaest nastupa to je
+petnaest punih zapisnika. Isti lijek, funkcija u bazi koja vraća samo
+njegove događaje.
 
 Pouka je ista kao i dosad: prvo se pogleda raščlamba, pa se mijenja ono
-što stvarno troši.
+što stvarno troši. Da se krenulo po prvoj sumnji, preselile bi se slike
+i riješio jedan posto problema.
 
 **U CSS-u svi `@import` moraju biti prije `@import "tailwindcss"`.**
 Tailwind se razmota u stotine redaka i svaki `@import` iza njega ruši build.

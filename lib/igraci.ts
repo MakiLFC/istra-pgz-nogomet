@@ -81,22 +81,18 @@ type RedStatistike = {
  * vući ih pri svakom otvaranju. Rang-liste su male, a pokrivaju upravo
  * igrače koje netko i traži po imenu.
  */
-export const dohvatiIgrace = cache(async function dohvatiIgrace(): Promise<Igrac[]> {
-  try {
-    const { data, error } = await supabase
-      .from("statistike")
-      .select("natjecanje, sezona, tip, podaci")
-      .in("tip", ["strijelci", "kartoni", "nastupi"]);
-
-    if (error) {
-      console.error("Igrači: greška kod dohvaćanja rang-lista:", error.message);
-      return [];
-    }
-
+/**
+ * Profili igrača iz redaka rang-lista.
+ *
+ * Izdvojeno iz dohvatiIgrace 20.10.2026., da isti račun služi i brzom
+ * putu preko funkcije u bazi, koji dobiva samo stavke jednog igrača.
+ */
+function igraciIzRedova(redovi: RedStatistike[]): Igrac[] {
+  {
     // slug -> igrač u nastajanju; unutar njega ključ sezona|liga|klub
     const mapa = new Map<string, { ime: string; ucinci: Map<string, UcinakSezone> }>();
 
-    for (const red of (data ?? []) as RedStatistike[]) {
+    for (const red of redovi) {
       for (const stavka of red.podaci ?? []) {
         const ime = stavka.igrac?.trim();
         const klub = stavka.klub?.trim();
@@ -161,6 +157,22 @@ export const dohvatiIgrace = cache(async function dohvatiIgrace(): Promise<Igrac
         };
       })
       .sort((a, b) => a.ime.localeCompare(b.ime, "hr"));
+  }
+}
+
+export const dohvatiIgrace = cache(async function dohvatiIgrace(): Promise<Igrac[]> {
+  try {
+    const { data, error } = await supabase
+      .from("statistike")
+      .select("natjecanje, sezona, tip, podaci")
+      .in("tip", ["strijelci", "kartoni", "nastupi"]);
+
+    if (error) {
+      console.error("Igrači: greška kod dohvaćanja rang-lista:", error.message);
+      return [];
+    }
+
+    return igraciIzRedova((data ?? []) as RedStatistike[]);
   } catch (e) {
     console.error("Igrači: dohvat nije uspio:", e);
     return [];
@@ -182,6 +194,28 @@ export async function slugoviIgracaLige(
   natjecanje: string,
   sezona: string
 ): Promise<Set<string>> {
+  // BRZI PUT: baza vrati samo imena, a ne cijele rang-liste s nastupima,
+  // minutama i klubovima. Popis nastupa jedne lige ima i preko 400
+  // stavki, a ovoj provjeri treba samo ime. Vidi sql/igraci_rpc.sql.
+  try {
+    const { data, error } = await supabase.rpc("imena_igraca_lige", {
+      p_natjecanje: natjecanje,
+      p_sezona: sezona,
+    });
+
+    if (!error && Array.isArray(data) && data.length) {
+      const slugovi = new Set<string>();
+      for (const red of data as { ime: string | null }[]) {
+        const slug = slugIgraca((red.ime ?? "").trim());
+        if (slug) slugovi.add(slug);
+      }
+      if (slugovi.size) return slugovi;
+    }
+  } catch (e) {
+    console.error("Igrači lige: brzi put nije uspio, ide se rang-listama:", e);
+  }
+
+  // REZERVA, dok funkcija u bazi ne postoji ili ne vrati ništa.
   const st = await dohvatiStatistike(natjecanje, sezona, ["strijelci", "kartoni", "nastupi"]);
   return slugoviIzStatistika(st);
 }
@@ -203,8 +237,42 @@ export function slugoviIzStatistika(
   return slugovi;
 }
 
-/** Jedan igrač po slugu, ili null. */
+/**
+ * Jedan igrač po slugu, ili null.
+ *
+ * BRZI PUT: funkcija `ucinci_igraca` u bazi (vidi sql/igraci_rpc.sql)
+ * vrati samo stavke tog igrača, dakle nekoliko redaka. Prije se ovdje
+ * dohvaćalo SVE rang-liste svih liga i obiju sezona, oko 3850 stavki, i
+ * tek se onda u kodu tražio jedan igrač. Tih stranica ima nekoliko
+ * tisuća i tražilice ih redom obilaze, pa je to bilo glavno mjesto na
+ * kojem je odlazni promet Supabasea otišao preko kvote (19.10.2026.).
+ *
+ * REZERVA: ako funkcije u bazi nema, ako javi grešku ili ne nađe nikoga,
+ * ide se starim putem. Razlog je i taj što slug u bazi i slug u kodu
+ * računaju dvije odvojene izvedbe istog pravila; ako se za neko ime
+ * raziđu, igrač se svejedno nađe, samo skupljim putem.
+ */
 export async function dohvatiIgraca(slug: string): Promise<Igrac | null> {
+  try {
+    const { data, error } = await supabase.rpc("ucinci_igraca", { p_slug: slug });
+
+    if (!error && Array.isArray(data) && data.length) {
+      const redovi: RedStatistike[] = (
+        data as { natjecanje: string; sezona: string; tip: string; stavka: unknown }[]
+      ).map((r) => ({
+        natjecanje: r.natjecanje,
+        sezona: r.sezona,
+        tip: r.tip,
+        podaci: [r.stavka as RedStatistike["podaci"][number]],
+      }));
+
+      const igrac = igraciIzRedova(redovi).find((i) => i.slug === slug);
+      if (igrac) return igrac;
+    }
+  } catch (e) {
+    console.error("Igrač: brzi put nije uspio, ide se punim dohvatom:", e);
+  }
+
   const svi = await dohvatiIgrace();
   return svi.find((i) => i.slug === slug) ?? null;
 }
