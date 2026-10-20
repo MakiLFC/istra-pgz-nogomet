@@ -26,14 +26,36 @@ export type Clanak = {
   objavljeno_u: string;
 };
 
+/**
+ * Članak bez teksta, onoliko koliko treba kartici na popisu.
+ *
+ * Kartica prikazuje naslov, sažetak, datum, ligu i fotografiju; tekst
+ * joj ne treba. Vidi `dohvatiClanke` niže.
+ */
+export type ClanakKartica = Omit<Clanak, "tekst">;
+
+/**
+ * Stupci za popise. TEKST NAMJERNO NIJE MEĐU NJIMA.
+ *
+ * Do 20.10.2026. su popisi išli preko `select("*")`, pa je svaki dohvat
+ * povlačio i cijeli tekst svakog članka. Popis novosti nema ograničenje
+ * broja, dakle povlačio je sve tekstove sezone da bi ispisao kartice
+ * koje tekst ni ne prikazuju. Isto je radio i popis adresa pri gradnji.
+ * To je bio glavni sumnjivac kad je Supabase 19.10.2026. javio da je
+ * prijeđena kvota odlaznog prometa besplatnog plana (granica 5 GB).
+ */
+const STUPCI_KARTICE =
+  "id, slug, naslov, sazetak, natjecanje, autor, slika_url, slika_opis, " +
+  "slika_potpis, slika_kadar, objavljen, objavljeno_u";
+
 /** Objavljeni članci, najnoviji prvi. `liga` filtrira po natjecanju. */
 export async function dohvatiClanke(opcije?: {
   liga?: string;
   koliko?: number;
-}): Promise<Clanak[]> {
+}): Promise<ClanakKartica[]> {
   let upit = supabase
     .from("clanci")
-    .select("*")
+    .select(STUPCI_KARTICE)
     .eq("objavljen", true)
     .order("objavljeno_u", { ascending: false });
 
@@ -45,7 +67,25 @@ export async function dohvatiClanke(opcije?: {
     console.error("Greška kod dohvaćanja članaka:", error);
     return [];
   }
-  return data ?? [];
+  return (data ?? []) as unknown as ClanakKartica[];
+}
+
+/**
+ * Samo slugovi objavljenih članaka, za popis adresa pri gradnji.
+ *
+ * Jedan stupac umjesto cijele tablice. Vidi `STUPCI_KARTICE` iznad.
+ */
+export async function slugoviClanaka(): Promise<string[]> {
+  const { data, error } = await supabase
+    .from("clanci")
+    .select("slug")
+    .eq("objavljen", true);
+
+  if (error) {
+    console.error("Greška kod dohvaćanja adresa članaka:", error);
+    return [];
+  }
+  return (data ?? []).map((c) => c.slug).filter(Boolean);
 }
 
 export async function dohvatiClanak(slug: string): Promise<Clanak | null> {

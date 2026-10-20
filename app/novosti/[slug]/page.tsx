@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 import Navigacija from "@/components/Navigacija";
 import Podnozje from "@/components/Podnozje";
 import Dijeljenje from "@/components/Dijeljenje";
-import { dohvatiClanak, dohvatiClanke, datumHr, odlomci } from "@/lib/clanci";
+import { dohvatiClanak, slugoviClanaka, datumHr, odlomci } from "@/lib/clanci";
 import { kadarSlike } from "@/lib/slike";
 import { LIGE } from "@/lib/lige";
 import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
@@ -216,6 +216,8 @@ export default async function StranicaClanka({
 }
 
 export async function generateStaticParams() {
-  const clanci = await dohvatiClanke();
-  return clanci.map((c) => ({ slug: c.slug }));
+  // Samo stupac sluga; prije je ovdje stajao dohvat cijelih članaka, s
+  // tekstom, pri svakoj gradnji. Vidi slugoviClanaka u lib/clanci.ts.
+  const slugovi = await slugoviClanaka();
+  return slugovi.map((slug) => ({ slug }));
 }

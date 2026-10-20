@@ -11,14 +11,14 @@
 // stranicama: to bi dodalo čekanje ondje gdje ga sada nema.
 
 import { useState } from "react";
-import type { Clanak } from "@/lib/clanci";
+import type { ClanakKartica } from "@/lib/clanci";
 import KarticaClanka from "./KarticaClanka";
 import Otkrivanje from "./Otkrivanje";
 
 /** Koliko kartica stoji odmah, i koliko ih donese svaki klik. */
 const KORAK = 6;
 
-export default function PopisNovosti({ clanci }: { clanci: Clanak[] }) {
+export default function PopisNovosti({ clanci }: { clanci: ClanakKartica[] }) {
   const [vidljivo, setVidljivo] = useState(KORAK);
 
   const prikazani = clanci.slice(0, vidljivo);
