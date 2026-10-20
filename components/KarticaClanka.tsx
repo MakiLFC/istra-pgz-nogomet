@@ -1,7 +1,7 @@
 // KarticaClanka.tsx — jedan članak u popisu (novosti, naslovnica, stranica lige)
 
 import Link from "next/link";
-import { type Clanak, datumHr } from "@/lib/clanci";
+import { type ClanakKartica, datumHr } from "@/lib/clanci";
 import { kadarSlike } from "@/lib/slike";
 import { LIGE } from "@/lib/lige";
 
@@ -13,7 +13,7 @@ import { LIGE } from "@/lib/lige";
  * sa slikom. Ovako svaka kartica ima sliku, a zamjenska barem kaže o
  * kojoj je ligi riječ.
  */
-function slikaKartice(clanak: Clanak): { adresa: string; zamjenska: boolean } {
+function slikaKartice(clanak: ClanakKartica): { adresa: string; zamjenska: boolean } {
   if (clanak.slika_url) return { adresa: clanak.slika_url, zamjenska: false };
   const liga = LIGE.find((l) => l.naziv === clanak.natjecanje);
   return {
@@ -27,7 +27,7 @@ export default function KarticaClanka({
   kompaktno = false,
   className = "",
 }: {
-  clanak: Clanak;
+  clanak: ClanakKartica;
   kompaktno?: boolean;
   /** Dodatne klase - npr. "h-full" kad kartice stoje u retku jedna do
    *  druge, da im se visine izjednače bez obzira na duljinu sažetka. */

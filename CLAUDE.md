@@ -1346,6 +1346,45 @@ Pouka je ista kao kod Vercelovih brojki: kad stigne obavijest, prvo se
 pogleda IZVJEŠTAJ, a ne naslov obavijesti. Naslov je govorio o 404, a
 404 je bio jedan i bezopasan.
 
+**Supabase ima treće ograničenje, odlazni promet, i ono nema veze s
+Vercelom.** 19.10.2026. je stigla poruka da je organizacija MakiLFC
+prijeđla kvotu besplatnog plana, uz jedinu konkretnu brojku: "Reduce
+your egress bandwidth below 5.5 GB". Tekuće razdoblje puštaju, a od
+18.11.2026. vrijedi Fair Use Policy, dakle mogu usporiti ili ograničiti
+projekt.
+
+Egress je sve što baza POŠALJE prema stranici: svaki `select`, svako
+osvježavanje po isteku `revalidate` i svaka gradnja koja unaprijed
+složi stranice. Ne miješa se ni s Deployment Storageom ni s Fluid
+Active CPU na Vercelu; ta tri ograničenja mjere tri različite stvari i
+svako ima svoj lijek.
+
+Prvi rez, 20.10.2026.: popisi članaka više ne vuku TEKST. Do tada je
+`dohvatiClanke` išao preko `select("*")`, a popis novosti nema
+ograničenje broja, pa je svako otvaranje povlačilo cijele tekstove svih
+članaka sezone da bi ispisalo kartice na kojima teksta nema. Isto je
+radio i popis adresa pri gradnji (`generateStaticParams` na stranici
+članka), koji je trebao samo slugove. Sada postoje `STUPCI_KARTICE` i
+`slugoviClanaka` u `lib/clanci.ts`, a tip popisa je `ClanakKartica`
+(članak bez teksta).
+
+SUMNJA KOJA SE NIJE DIRALA BEZ MJERENJA: stranica igrača je najskuplja
+stranica na cijeloj stranici, a ima ih nekoliko tisuća. `dohvatiIgraca`
+zove `dohvatiIgrace`, a ona dohvaća rang-liste SVIH liga i SVIH sezona,
+uključujući `nastupi`, koji je najveći blok i koji se od 11.10.2026.
+sprema cijeli. Uz to `dohvatiNastupe` povlači utakmice s objema punim
+postavama. Pri intervalu od sat vremena i tražilicama koje te stranice
+redom obilaze, to se zbraja brzo.
+
+Ne dira se napamet iz dva razloga: interval od sat vremena Andrej je
+izričito tražio 25.09.2026., a stvarni udio se vidi u Supabaseu pod
+Usage, gdje egress ima raščlambu po izvoru (Database, Storage, Auth,
+Realtime). Ako je glavnina Storage, onda su uzrok fotografije uz
+članke, a ne upiti, i lijek je posve drugi.
+
+Pouka je ista kao i dosad: prvo se pogleda raščlamba, pa se mijenja ono
+što stvarno troši.
+
 **U CSS-u svi `@import` moraju biti prije `@import "tailwindcss"`.**
 Tailwind se razmota u stotine redaka i svaki `@import` iza njega ruši build.
 
