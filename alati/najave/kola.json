@@ -1751,7 +1751,8 @@
         {
           "d": "Pomorac",
           "g": "Banjole",
-          "termin": "SUB 15:30"
+          "termin": "SUB 15:30",
+          "derbi": true
         },
         {
           "d": "Rovinj",
