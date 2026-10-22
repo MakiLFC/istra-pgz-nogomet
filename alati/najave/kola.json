@@ -1729,6 +1729,47 @@
       ],
       "ime": "pregled-2-znl-pgz-kolo-7",
       "naslov": "Pregled"
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-8",
+      "kolo": "8",
+      "stil": "redovi",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 24.10.2026.",
+      "sat": "Sve utakmice u 15:30",
+      "slobodan": "Rječina",
+      "utakmice": [
+        {
+          "d": "Umag-CC Umago",
+          "g": "Borac (Ba)",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Otočac",
+          "g": "Žminj",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Smoljanci",
+          "g": "Ližnjan",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Cres",
+          "g": "Klana",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Štinjan",
+          "g": "Funtana",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Medulin 1921",
+          "g": "Mladost Fažana",
+          "termin": "SUB 15:30"
+        }
+      ]
     }
   ]
 }
