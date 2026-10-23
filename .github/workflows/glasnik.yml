@@ -47,6 +47,9 @@ jobs:
       - name: Instaliraj pakete
         run: |
           pip install requests beautifulsoup4
+          # Bez update se zna dogoditi da je popis paketa na izvođaču
+          # zastario i preuzimanje vrati 404 (23.10.2026.).
+          sudo apt-get update -qq
           sudo apt-get install -y poppler-utils >/dev/null
 
       - name: Pročitaj glasnike
