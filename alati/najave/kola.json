@@ -1867,6 +1867,31 @@
           "termin": "ODGOĐENO"
         }
       ]
+    },
+    {
+      "dat": "2-znl-pgz-kolo-8",
+      "kolo": "8",
+      "stil": "redovi",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "NED 25.10.2026.",
+      "sat": "Sve utakmice u 14:00",
+      "utakmice": [
+        {
+          "d": "Goranka",
+          "g": "Mrkopalj",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Gomirje",
+          "g": "Snježnik",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Polet (Sk)",
+          "g": "Željezničar (M)",
+          "termin": "NED 14:00"
+        }
+      ]
     }
   ]
 }
