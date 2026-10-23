@@ -1,6 +1,6 @@
 slug: najava-8-kola-2-znl-pgz-2627
 naslov: NAJAVA 8. KOLA: GORANKA I MRKOPALJ U DVOBOJU DRUGOG I TREĆEG, GOMIRJE DOČEKUJE SNJEŽNIK
-sazetak: Goranka u Ravnoj Gori dočekuje Mrkopalj, koji ima najjači napad lige i dva najbolja strijelca, a pobjednik može preuzeti vrh. Gomirje, kod kuće savršeno, dočekuje Snježnik, a Polet bez dvojice isključenih igrača dočekuje Željezničar.
+sazetak: Goranka u Ravnoj Gori dočekuje Mrkopalj, koji ima najjači napad lige i dva najbolja strijelca. Goranka bi pobjedom mogla preuzeti vrh. Gomirje, kod kuće savršeno, dočekuje Snježnik, a Polet bez dvojice isključenih igrača dočekuje Željezničar.
 natjecanje: 2. ŽNL PGŽ
 slika_url: /slike/najave/najava-redovi-2-znl-pgz-kolo-8-cijela.png
 slika_opis: Raspored 8. kola 2. ŽNL PGŽ, nedjelja 25. listopada 2026., sve utakmice u 14 sati
