@@ -1821,6 +1821,51 @@
           "termin": "SUB 15:30"
         }
       ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-8",
+      "kolo": "8",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 24.10. i NED 25.10.2026.",
+      "sat": "Subota u 15:30, nedjelja u 14:00",
+      "utakmice": [
+        {
+          "d": "Zamet",
+          "g": "Mune",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Turbina",
+          "g": "Lošinj",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Vrbovsko",
+          "g": "Lovran",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Vihor (B)",
+          "g": "Stari grad Rijeka",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Goranin",
+          "g": "Risnjak",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Rab",
+          "g": "Draga",
+          "termin": "BEZ TERMINA"
+        },
+        {
+          "d": "Omladinac Vrata",
+          "g": "Rikard Benčić",
+          "termin": "BEZ TERMINA"
+        }
+      ]
     }
   ]
 }
