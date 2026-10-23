@@ -1838,7 +1838,8 @@
         {
           "d": "Turbina",
           "g": "Lošinj",
-          "termin": "NED 14:00"
+          "termin": "NED 14:00",
+          "derbi": true
         },
         {
           "d": "Vrbovsko",
@@ -1858,12 +1859,12 @@
         {
           "d": "Rab",
           "g": "Draga",
-          "termin": "BEZ TERMINA"
+          "termin": "ODGOĐENO"
         },
         {
           "d": "Omladinac Vrata",
           "g": "Rikard Benčić",
-          "termin": "BEZ TERMINA"
+          "termin": "ODGOĐENO"
         }
       ]
     }

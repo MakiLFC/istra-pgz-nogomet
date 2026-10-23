@@ -1,0 +1,7 @@
+natjecanje: 1. ŽNL PGŽ
+sezona: 2026/27
+kolo: 8
+domacin: NK Turbina
+gost: NK Lošinj
+derbi: da
+---
