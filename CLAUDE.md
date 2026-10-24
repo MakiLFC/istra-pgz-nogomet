@@ -1533,9 +1533,16 @@ ondje je popis nastupa 14.09.2026. bio maknut radi štednje, a na Pro
 planu je vraćen upravo za ovo. U bočni stupac, koji radi u pregledniku,
 nastupi se i dalje NE šalju, da ne putuju uz svaku stranicu.
 
-**TAKOĐER ZA PONEDJELJAK 26.10.2026.: pravilo za žute kartone iznad
-četvrtog.** Pitati Andreja i zapisati uz "Prag žutih kartona u 3. NL
-Zapad je četiri" (dolje, u odjeljku o pisanju najava i pregleda).
+**ZA PONEDJELJAK 26.10.2026.: scraper ne smije brojati žuti prije
+drugog žutog.** Pravilo je pronađeno 24.10.2026. (vidi "Pravilo za žute
+kartone" u odjeljku o pisanju najava i pregleda), a naš zbroj ga ne
+poštuje: `ucinci_iz_zapisnika` žuti prije isključenja broji kao običan
+žuti. Prije izmjene treba pogledati koliko žutih takvom igraču pokazuje
+lista sa stranice natjecanja (npr. Buršić, Pazinka): ako HNS ondje broji
+oba, naš ispravan zbroj bi zaostajao i kočnica (`zaostaje_za_sluzbenom`)
+vratila bi HNS-ovu listu, pa kočnica mora znati za tu razliku, kao što za
+golove zna preko `potvrdjeno_zapisnikom`. Uz to i `najava_kola()` i
+`pregled_kola()` (polja `na_pragu`, `suspendirani`).
 
 **DOGOVORENO ZA PONEDJELJAK 26.10.2026.: članci dosegljivi s više
 mjesta na stranici.** Drugi dio posla oko indeksiranja, prvi je bio
@@ -1714,9 +1721,9 @@ Prva provjera, 16.10.2026., potvrdila je Žunića (Vihor), kojem je nakon
 6. kola ostala još jedna utakmica, i otkrila dvije kazne kojih u
 podacima sa Semafora nema: Mateo Vukelja (Vrbovsko) pauzira zbog
 četvrtog žutog kartona, a Sanel Kuši (Stari grad Rijeka) ima suspenziju
-do 31.10.2026. Vukelja pokazuje da je i u 1. ŽNL prag četiri žuta, ali
-dok to Andrej ne potvrdi, u tekstovima se piše samo ono što stoji u
-glasniku. Prije svake najave 1. i 2. ŽNL pokreni ovaj posao s imenima
+do 31.10.2026. Vukelja pokazuje da je i u 1. ŽNL prag četiri žuta, što
+je 24.10.2026. potvrdio i pravilnik HNS-a (vidi "Pravilo za žute
+kartone" niže). Prije svake najave 1. i 2. ŽNL pokreni ovaj posao s imenima
 isključenih i igrača s tri ili više žutih.
 
 **Isključenje zna trajati više od jednog kola.** Ante Žunić (Vihor),
@@ -1739,23 +1746,51 @@ Ona vraća samo isključenja, a žute daje kao zbroj za cijelu sezonu, u
 `postava_domacin` i `postava_gost` (primjer stoji na dnu datoteke
 `sql/sazetak_vrbovsko_goranin_2_kolo.sql`).
 
-**Prag žutih kartona u 3. NL Zapad je četiri.** Andrej je to potvrdio
-24.09.2026. Funkcije `najava_kola()` i `pregled_kola()` i prije su
-računale s četiri, ali kao zadanom vrijednošću, pa se u tekstovima pisao
-samo broj kartona, bez posljedice. Za 3. NL Zapad sada se piše izravno:
-četvrti žuti znači pauzu u sljedećem prvenstvenom kolu, a tri znači
-"jedan od kazne". Za ostale tri lige prag još nije potvrđen, pa ondje i
-dalje stoji samo broj. Pazi i na to da polje `na_pragu` u
-`pregled_kola()` pokazuje samo igrače s TRI žuta; oni koji su baš u tom
-kolu dobili četvrti ne ulaze ni u `na_pragu` ni u `suspendirani`, pa ih
-treba naći usporedbom s prošlom najavom ili pregledom.
+**Pravilo za žute kartone: kazna nakon SVAKOG četvrtog, u svim ligama.**
+Andrej je prag od četiri za 3. NL Zapad potvrdio 24.09.2026., a cijelo
+pravilo pronađeno je 24.10.2026. u Disciplinskom pravilniku HNS-a
+(hns.family/files/documents/32918) i u propozicijama 3. NL za 2026/27
+(Glasnik HNS-a 32/2026). Oba je pročitao posao "Glasnik saveza", kojem se
+u polje adrese može dati i izravna adresa PDF-a.
 
-OTVORENO, DOGOVORENO ZA PONEDJELJAK 26.10.2026.: pravilo za kartone IZNAD
-četvrtog (peti, šesti, osmi žuti). Nakon 10. kola 3. NL Zapad pet žutih
-imaju Lapić (Pomorac), Lukarić (Crikvenica), Travica (Krk), Suden
-(Vinodol), Buršić (Pazinka) i Radman (Jadran-Poreč), a šest Kocijan
-(Kraljevica). Dok Andrej ne kaže koje je pravilo, takvi se igrači u
-tekstovima ne spominju.
+- Članak 21: automatska kazna zabrane igranja jedne utakmice "nastaje
+  poslije svake četvrte sudačke opomene", na bilo kojem stupnju
+  natjecanja. Dakle kazna ide uz 4., 8. i 12. žuti. Peti, šesti i sedmi
+  ne donose ništa; sedmi znači "jedan od kazne", kao i treći.
+- Vrijedi za SVE četiri lige, ne samo za 3. NL. Vukelja (Vrbovsko,
+  1. ŽNL) je to već pokazao.
+- Kazna se odrađuje na prvoj sljedećoj prvenstvenoj utakmici istog
+  natjecanja (članak 23). Prvenstvo i kup broje se ODVOJENO, pa žuti iz
+  kupa ne ulaze u prvenstveni zbroj.
+- Opomene se ne prenose u sljedeću sezonu.
+- Članak 24: igraču isključenom nakon dva žuta na istoj utakmici te se
+  dvije opomene NE upisuju, upisuje se samo isključenje. Žuti prije
+  drugog žutog zato se ne broji prema pragu.
+
+Članak 24 je potvrđen i u praksi: Gabriel Buršić (Pazinka) je po našem
+zbroju četvrti žuti dobio u 7. kolu, a igrao je u 8. i 9. kolu. Njegov
+žuti s Naprijeda (5. kolo, kad je isključen nakon drugog žutog) HNS nije
+brojao. Pravi četvrti dobio je tek u 10. kolu, protiv Krka.
+
+Naš zbroj u bazi taj žuti zasad broji (popravak je u planu, vidi "U
+planu"). Dok se ne popravi, pri pisanju se od našeg broja oduzme po jedan
+za svako isključenje nakon dva žuta. U 2026/27 to su do 10. kola:
+3. NL Zapad Jurešić (Krk), Simonaj (Halubjan), Buršić (Pazinka), Depeder,
+Šupraha i Znamenaček (Kraljevica), Kalizan (Buje), Tomljanović (Nehaj),
+Mohorovičić (Lokomotiva) i Radman (Jadran-Poreč); 1. ŽNL Kordić (Rab),
+Štefša, Yankelevych i Delić (Rikard Benčić) te Kinkela (Draga); 2. ŽNL
+Knaus (Polet). Popis se dobije poslom "Ispis kola" s kolom "sve" i
+traženjem `karton_zutocrveni`. Zbog toga je 24.10.2026. ispravljen
+pregled 10. kola 3. NL: Buršić pauzira, a Depeder i Šupraha nisu jedan
+žuti od kazne nego dva.
+
+Pazi i na to da polje `na_pragu` u `pregled_kola()` pokazuje samo igrače
+s TRI žuta; oni koji su baš u tom kolu dobili četvrti ne ulaze ni u
+`na_pragu` ni u `suspendirani`, pa ih treba naći usporedbom s prošlom
+najavom ili pregledom.
+
+Kazne koje izrekne stegovni sudac (isključenja, suspenzije) i dalje se
+provjeravaju u glasniku, kako stoji gore.
 
 **Sažetak uz zapisnik NIJE članak.** Kratak osvrt na pojedinu utakmicu,
 onaj koji stoji ispod zapisnika na stranici utakmice, ide u stupac
