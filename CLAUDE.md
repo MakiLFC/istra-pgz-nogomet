@@ -54,7 +54,12 @@ prepiše ili se stavi zarez, dvotočka ili točka.
   - `.github/workflows/scraper.yml` (puni prolaz: raspored, zapisnici,
     rang-liste) petkom, subotom, nedjeljom i srijedom navečer, i to
     DVAPUT, ranije i kasnije, te ponedjeljkom ujutro (petkom jer se dio
-    kola igra u petak, srijedom zbog utakmica zakazanih sredinom tjedna)
+    kola igra u petak, srijedom zbog utakmica zakazanih sredinom tjedna).
+    Pri RUČNOM pokretanju ima dvije neobavezne postavke (od 24.10.2026.):
+    kvačicu "samo ljestvica i rang-liste" (`--samo-statistike`, traje
+    sekunde, jer ne otvara nijedan zapisnik) i polje za dio naziva lige.
+    Služe kad HNS naknadno upiše utakmicu u svoju tablicu, a zapisnici su
+    kod nas već svježi. Zakazana pokretanja time nisu dirana.
   - `.github/workflows/termini.yml` (samo termini s rasporeda) svaki dan
     ujutro i poslijepodne; kad je koja utakmica premještena, otvori issue
     na GitHubu, pa o tome stigne e-pošta
