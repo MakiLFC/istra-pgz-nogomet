@@ -67,7 +67,16 @@ on:
                            # zakazane utakmice; npr. 1. ŽNL PGŽ ima
                            # Omladinac Vrata - Vrbovsko u srijedu 09.09.2026.
                            # Bez ove runde takav bi rezultat čekao subotu.)
-  workflow_dispatch: {}     # omogućuje ručno pokretanje gumbom na GitHubu
+  workflow_dispatch:        # ručno pokretanje gumbom na GitHubu
+    inputs:
+      samo_statistike:
+        description: "Samo ljestvica i rang-liste (bez rasporeda i zapisnika, traje sekunde)"
+        type: boolean
+        default: false
+      natjecanje:
+        description: "Dio naziva lige, npr. 4. NL (prazno znači sve lige)"
+        type: string
+        required: false
 
 jobs:
   scrape:
@@ -102,6 +111,10 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           RASPORED: ${{ github.event.schedule }}
+          # Ručni odabir ide kroz okolinu, ne izravno u naredbu, da razmak
+          # ili navodnik u nazivu lige ne može promijeniti naredbu.
+          SAMO_STATISTIKE: ${{ inputs.samo_statistike }}
+          NATJECANJE: ${{ inputs.natjecanje }}
         run: |
           ZASTAVICE=""
           case "$RASPORED" in
@@ -110,4 +123,16 @@ jobs:
               echo "Rani prolaz: otvaraju se samo zapisnici kojih u bazi još nema."
               ;;
           esac
-          python scraper_supabase.py $ZASTAVICE
+          # Kvačica "samo statistike" služi kad HNS naknadno upiše utakmicu
+          # u svoju tablicu, a zapisnici su kod nas već svježi. Tada nema
+          # smisla otvarati svaki zapisnik iznova: ljestvica i rang-liste
+          # se pročitaju sa stranice natjecanja u nekoliko sekundi.
+          if [ "$SAMO_STATISTIKE" = "true" ]; then
+            ZASTAVICE="--samo-statistike"
+            echo "Samo ljestvica i rang-liste; raspored i zapisnici se preskaču."
+          fi
+          if [ -n "$NATJECANJE" ]; then
+            python scraper_supabase.py $ZASTAVICE --natjecanje "$NATJECANJE"
+          else
+            python scraper_supabase.py $ZASTAVICE
+          fi
