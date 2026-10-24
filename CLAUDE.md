@@ -1786,8 +1786,12 @@ ticalo, u 2026/27 do 10. kola:
 Šupraha i Znamenaček (Kraljevica), Kalizan (Buje), Tomljanović (Nehaj),
 Mohorovičić (Lokomotiva) i Radman (Jadran-Poreč); 1. ŽNL Kordić (Rab),
 Štefša, Yankelevych i Delić (Rikard Benčić) te Kinkela (Draga); 2. ŽNL
-Knaus (Polet). Popis se dobije poslom "Ispis kola" s kolom "sve" i
-traženjem `karton_zutocrveni`. Zbog toga je 24.10.2026. ispravljen
+Knaus (Polet); 4. NL NS Rijeka (do 8. kola) Peteh i Mršić (Funtana),
+Urošević (Mladost Fažana), Borić (Umag-CC Umago), Kolega (Cres) i Laginja
+(Klana). U 4. NL nijedan od njih nije bio blizu praga, a objavljeni
+tekstovi o toj ligi spominju ih samo kao isključene, što je točno, pa
+ondje ispravaka nije bilo. Popis se dobije poslom "Ispis kola" s kolom
+"sve" i traženjem `karton_zutocrveni`. Zbog toga je 24.10.2026. ispravljen
 pregled 10. kola 3. NL: Buršić pauzira, a Depeder i Šupraha nisu jedan
 žuti od kazne nego dva.
 
