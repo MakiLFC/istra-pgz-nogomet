@@ -30,7 +30,7 @@ on:
         required: true
         type: string
       kolo:
-        description: "Broj kola"
+        description: "Broj kola, ili sve za cijelu sezonu"
         required: true
         type: string
 
