@@ -44,9 +44,10 @@
 --    Za osvrt zadnjeg odigranog kola to je točno; za neko starije kolo
 --    taj popis pokazuje današnje stanje, ne ondašnje.
 --
--- 4. PRAG ŽUTIH nije provjeren, isto kao u najavi. Zadano je 4 (kad se
---    preda null), a prag se razlikuje po natjecanjima. Kad ga potvrdiš u
---    propozicijama, predaj ga pri pozivu:
+-- 4. PRAG ŽUTIH je 4 u svim našim ligama (Disciplinski pravilnik HNS-a,
+--    članak 21, provjereno 24.10.2026.). Kazna ide uz SVAKI četvrti žuti,
+--    pa "na_pragu" pokazuje igrače s tri, sedam, jedanaest žutih. Drugi
+--    prag i dalje se može predati pri pozivu:
 --      public.pregled_kola('2025/26','3. NL Zapad',15,5)
 --
 -- 5. VRATARI SE NE BROJE U STRIJELCE.
@@ -664,7 +665,9 @@ begin
     from public.statistike s,
          lateral jsonb_array_elements(s.podaci) e
     where s.natjecanje = v_liga and s.sezona = v_sezona and s.tip = 'kartoni'
-      and nullif(e ->> 'zuti', '')::int = greatest(v_prag - 1, 0)
+      -- jedan od kazne: treći, sedmi, jedanaesti (kazna ide uz SVAKI četvrti)
+      and v_prag > 0
+      and nullif(e ->> 'zuti', '')::int % v_prag = v_prag - 1
   )
   select jsonb_build_object(
     'meta', jsonb_build_object(

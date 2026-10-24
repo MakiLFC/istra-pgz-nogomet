@@ -30,11 +30,11 @@
 -- 3. "na_pragu_suspenzije" je stanje OD ZADNJEG SCRAPEA, ne "prije ovog
 --    kola" — iz istog razloga kao točka 1.
 --
--- 4. PRAG ŽUTIH (p_prag_zutih) NIJE PROVJEREN.
---    Zadano je 4, ali to je pretpostavka, ne podatak iz propozicija.
---    Prag se razlikuje po natjecanjima. Kad ga potvrdiš u propozicijama
---    NS Rijeka odnosno HNS-a, ili promijeni zadanu vrijednost ovdje, ili
---    ga predaj pri pozivu:  public.najava_kola('2026/27','3. NL Zapad',null,5)
+-- 4. PRAG ŽUTIH (p_prag_zutih) je 4 u svim našim ligama (Disciplinski
+--    pravilnik HNS-a, članak 21, provjereno 24.10.2026.). Kazna ide uz
+--    SVAKI četvrti žuti, pa "na_pragu_suspenzije" pokazuje igrače s tri,
+--    sedam, jedanaest žutih. Drugi prag se može predati pri pozivu:
+--      public.najava_kola('2026/27','3. NL Zapad',null,5)
 --
 -- 5. VRATARI SE NE BROJE U STRIJELCE.
 --    Na HNS Semaforu stupac "golovi" kod vratara znači PRIMLJENE golove.
@@ -236,7 +236,9 @@ begin
     from public.statistike s,
          lateral jsonb_array_elements(s.podaci) e
     where s.natjecanje = v_liga and s.sezona = v_sezona and s.tip = 'kartoni'
-      and nullif(e ->> 'zuti', '')::int = greatest(p_prag_zutih - 1, 0)
+      -- jedan od kazne: treći, sedmi, jedanaesti (kazna ide uz SVAKI četvrti)
+      and p_prag_zutih > 0
+      and nullif(e ->> 'zuti', '')::int % p_prag_zutih = p_prag_zutih - 1
     group by 1
   ),
   -- utakmice traženog kola
