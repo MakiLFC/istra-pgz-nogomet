@@ -195,7 +195,9 @@ def main():
 
     sve_utakmice = list(utakmice)
     trazeno_kolo = None
-    if len(sys.argv) == 3:
+    # "sve" ispisuje podrobno sva odigrana kola (posao na GitHubu broj
+    # kola uvijek traži, pa bez ove riječi cijela sezona ne bi išla).
+    if len(sys.argv) == 3 and sys.argv[2].strip().lower() not in ("", "sve"):
         trazeno_kolo = int(sys.argv[2])
         # Rang-liste se racunaju iz svih kola, ali se podrobno ispisuje
         # samo trazeno, da zapisnik posla ostane citljiv.
