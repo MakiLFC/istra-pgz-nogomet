@@ -77,6 +77,12 @@ def pretrazi(naslov, tekst, imena):
 def main():
     adresa, koliko, imena = sys.argv[1], int(sys.argv[2]), [
         i.strip() for i in sys.argv[3].split(";") if i.strip()]
+    # Izravna adresa PDF-a (npr. glasnik ili pravilnik HNS-a s hns.family,
+    # do kojeg sesija s Claudeom ne doseže): pretraži samo taj dokument.
+    if re.search(r"\.pdf($|\?)", adresa, re.I):
+        print("Dokument:", adresa)
+        pretrazi(adresa.rsplit("/", 1)[-1], tekst_pdfa(dohvati(adresa).content), imena)
+        return
     popis = BeautifulSoup(dohvati(adresa).text, "html.parser")
     glasnici = []
     for a in popis.find_all("a", href=True):
