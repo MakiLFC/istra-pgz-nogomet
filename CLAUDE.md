@@ -1542,7 +1542,11 @@ nastupi se i dalje NE šalju, da ne putuju uz svaku stranicu.
 `zuti_uz_iskljucenje`, a kočnica (`zaostaje_za_sluzbenom`) kod žutih
 oprašta manjak do tog broja, isto kao što za golove oprašta preko
 `potvrdjeno_zapisnikom`. Ispis pokretanja javlja kad HNS na stranici
-natjecanja broji više. `najava_kola()` i `pregled_kola()` u `na_pragu`
+natjecanja broji više. Prvi suhi prolaz s novim kodom, isti dan, nije
+javio nijednu takvu razliku ni u jednoj od tri lige, a lista iz zapisnika
+otišla je na stranicu: dakle ni HNS na stranici natjecanja te žute ne
+broji, i naš je zbroj do tada bio jedini koji ih je brojao. Oproštaj u
+kočnici ostaje kao zaštita. `najava_kola()` i `pregled_kola()` u `na_pragu`
 sada pokazuju igrače s tri, sedam i jedanaest žutih, ne samo s tri.
 Čuva `test_rang_liste_iz_zapisnika.py`, s Buršićevim slučajem.
 
