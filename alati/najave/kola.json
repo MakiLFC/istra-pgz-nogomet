@@ -1892,6 +1892,67 @@
           "termin": "NED 14:00"
         }
       ]
+    },
+    {
+      "dat": "3-nl-zapad-kolo-10-pregled",
+      "kolo": "10",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 24.10.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Vinodol",
+          "g": "Kraljevica",
+          "termin": "SUB 15:30",
+          "rezultat": "1:2"
+        },
+        {
+          "d": "Nehaj",
+          "g": "Rudar",
+          "termin": "SUB 15:30",
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Pomorac",
+          "g": "Banjole",
+          "termin": "SUB 15:30",
+          "derbi": true,
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Rovinj",
+          "g": "Lokomotiva",
+          "termin": "SUB 15:30",
+          "rezultat": "3:1"
+        },
+        {
+          "d": "Pazinka-Pazin",
+          "g": "Krk",
+          "termin": "SUB 15:30",
+          "rezultat": "4:0"
+        },
+        {
+          "d": "Jadran-Poreč",
+          "g": "Crikvenica",
+          "termin": "SUB 15:30",
+          "rezultat": "1:1"
+        },
+        {
+          "d": "Naprijed",
+          "g": "Buje",
+          "termin": "SUB 15:30",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "OŠK Omišalj",
+          "g": "Halubjan",
+          "termin": "SUB 15:30",
+          "rezultat": "4:1"
+        }
+      ],
+      "ime": "pregled-3-nl-zapad-kolo-10",
+      "naslov": "Pregled"
     }
   ]
 }
