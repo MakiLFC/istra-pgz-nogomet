@@ -539,9 +539,13 @@ pogleda ima li ljestvica sve klubove na istom broju kola.
 
 DOPUNJENO 17.10.2026., na Andrejevu uputu: ako se tablica ni nakon drugog
 prolaza nije poravnala, OBJAVA SE NE ČEKA. Ljestvica se izračuna iz
-rezultata i članak ide van, a u tekstu stoji rečenica koja kaže da je
-ljestvica izračunata iz rezultata i što službenoj tablici fali. Tablica se
-sama posloži sljedećim prolazom, a stranica lige ionako pokazuje službenu.
+rezultata i članak ide van. Tablica se sama posloži sljedećim prolazom, a
+stranica lige ionako pokazuje službenu.
+
+PROMIJENJENO 24.10.2026., na Andrejev izričit zahtjev: u tekstu se NIKAD
+ne piše da je ljestvica izračunata iz rezultata ni da službenoj tablici
+HNS-a nešto fali. Čitatelja to ne zanima, kao ni naša baza. Ljestvica se
+i dalje računa iz rezultata kad HNS kasni, ali se o tome šuti.
 
 Povod je 7. kolo 4. NL: susret Funtane i Smoljanaca počeo je u 17:30, sat
 i pol iza ostalih, pa je u prvom čitanju zapisnik bio upisan, a tablica
@@ -1529,6 +1533,10 @@ ondje je popis nastupa 14.09.2026. bio maknut radi štednje, a na Pro
 planu je vraćen upravo za ovo. U bočni stupac, koji radi u pregledniku,
 nastupi se i dalje NE šalju, da ne putuju uz svaku stranicu.
 
+**TAKOĐER ZA PONEDJELJAK 26.10.2026.: pravilo za žute kartone iznad
+četvrtog.** Pitati Andreja i zapisati uz "Prag žutih kartona u 3. NL
+Zapad je četiri" (dolje, u odjeljku o pisanju najava i pregleda).
+
 **DOGOVORENO ZA PONEDJELJAK 26.10.2026.: članci dosegljivi s više
 mjesta na stranici.** Drugi dio posla oko indeksiranja, prvi je bio
 redoslijed u sitemapu (vidi gore, 16.10.2026.). Tražilice idu za
@@ -1741,6 +1749,13 @@ dalje stoji samo broj. Pazi i na to da polje `na_pragu` u
 `pregled_kola()` pokazuje samo igrače s TRI žuta; oni koji su baš u tom
 kolu dobili četvrti ne ulaze ni u `na_pragu` ni u `suspendirani`, pa ih
 treba naći usporedbom s prošlom najavom ili pregledom.
+
+OTVORENO, DOGOVORENO ZA PONEDJELJAK 26.10.2026.: pravilo za kartone IZNAD
+četvrtog (peti, šesti, osmi žuti). Nakon 10. kola 3. NL Zapad pet žutih
+imaju Lapić (Pomorac), Lukarić (Crikvenica), Travica (Krk), Suden
+(Vinodol), Buršić (Pazinka) i Radman (Jadran-Poreč), a šest Kocijan
+(Kraljevica). Dok Andrej ne kaže koje je pravilo, takvi se igrači u
+tekstovima ne spominju.
 
 **Sažetak uz zapisnik NIJE članak.** Kratak osvrt na pojedinu utakmicu,
 onaj koji stoji ispod zapisnika na stranici utakmice, ide u stupac
