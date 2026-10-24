@@ -127,7 +127,7 @@ provjeri(ucinak(ucinci, "Josip Radić")["golovi"] == 1,
 provjeri(ucinak(ucinci, "Ivan Ivić")["golovi"] == 1,
          "ručni popis ne dira ostale strijelce")
 
-print("\n4) Drugi žuti karton je crveni; žuti prije njega se broji sam")
+print("\n4) Drugi žuti karton je crveni; žuti prije njega se NE broji")
 utakmice = [
     utakmica(1, "NK Žminj", "NK Ližnjan", "1:1",
              [igrac("Petar Perić", ("karton_zuti", "30'"),
@@ -136,8 +136,28 @@ utakmice = [
 ]
 ucinci, _ = ucinci_iz_zapisnika(utakmice)
 p = ucinak(ucinci, "Petar Perić")
-provjeri(p["crveni"] == 1 and p["zuti"] == 1,
-         "nakon drugog žutog: jedan crveni i jedan žuti")
+provjeri(p["crveni"] == 1 and p["zuti"] == 0,
+         "nakon drugog žutog: jedan crveni, a žuti prije njega se ne broji "
+         "(Disciplinski pravilnik HNS-a, članak 24)")
+provjeri(p["zuti_uz_iskljucenje"] == 1,
+         "izostavljeni žuti se pamti za kočnicu")
+
+# Buršić, Pazinka 2026/27: žuti u 2. i 4. kolu, u 5. dva žuta i
+# isključenje, žuti u 7. i 10. kolu. HNS ga nakon 7. kola nije
+# suspendirao, a pravi četvrti dobio je u 10. kolu.
+utakmice = [
+    utakmica(k, "NK Pazinka-Pazin", "NK Krk", "1:0",
+             [igrac("Gabriel Buršić", *d)], [igrac("Netko Drugi")])
+    for k, d in ((2, [("karton_zuti", "82'")]),
+                 (4, [("karton_zuti", "28'")]),
+                 (5, [("karton_zuti", "25'"), ("karton_zutocrveni", "74'")]),
+                 (7, [("karton_zuti", "21'")]),
+                 (10, [("karton_zuti", "21'")]))
+]
+ucinci_b, _ = ucinci_iz_zapisnika(utakmice)
+b = ucinak(ucinci_b, "Gabriel Buršić")
+provjeri(b["zuti"] == 4 and b["crveni"] == 1,
+         "Buršić: četiri žuta (četvrti u 10. kolu) i jedno isključenje")
 provjeri(ucinak(ucinci, "Luka Lukić")["crveni"] == 1,
          "izravan crveni karton se broji")
 
@@ -222,6 +242,24 @@ manje_zutih = [{"pozicija": "1", "igrac": "Petar Perić", "klub": "NK Žminj",
 provjeri(len(zaostaje_za_sluzbenom(manje_zutih, sluzbeni_k,
                                    ("zuti", "crveni"))) == 1,
          "manje žutih nego službeno je zaostajanje")
+
+sluzbeni_b = [{"pozicija": "1", "igrac": "Gabriel Buršić",
+               "klub": "NK Pazinka-Pazin", "zuti": "5", "crveni": "1"}]
+nasi_b = [{"pozicija": "1", "igrac": "Gabriel Buršić",
+           "klub": "NK Pazinka-Pazin", "zuti": "4", "crveni": "1"}]
+provjeri(zaostaje_za_sluzbenom(nasi_b, sluzbeni_b, ("zuti", "crveni"),
+                               zuti_uz_iskljucenje={"Gabriel Buršić": 1})
+         == [],
+         "HNS broji i žuti prije drugog žutog: jedan manje nije zaostajanje")
+nasi_b2 = [dict(nasi_b[0], zuti="3")]
+provjeri(len(zaostaje_za_sluzbenom(nasi_b2, sluzbeni_b, ("zuti", "crveni"),
+                                   zuti_uz_iskljucenje={"Gabriel Buršić": 1}))
+         == 1,
+         "dva manje jest zaostajanje: uz to fali i zapisnik")
+lista, otkud = odaberi_rang_listu(nasi_b, sluzbeni_b, ("zuti", "crveni"),
+                                  zuti_uz_iskljucenje={"Gabriel Buršić": 1})
+provjeri(lista is nasi_b and "prije drugog žutog" in otkud,
+         "lista iz zapisnika ide na stranicu, a razlika se ispiše")
 
 print("\n9) Poredak je isti kao kod liste sa stranice natjecanja")
 ucinci = [

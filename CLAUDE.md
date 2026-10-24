@@ -463,8 +463,11 @@ Kako radi (`ucinci_iz_zapisnika` u `scraper_supabase.py`):
   utakmice, dakle isto ono koje stranica već koristi za poveznice
 - autogol ne ulazi u golove, ni onaj koji scraper sam prepozna ni onaj iz
   ručnog stupca `utakmice.autogolovi`
-- drugi žuti karton broji se kao crveni, a žuti prije njega je zaseban
-  događaj u zapisniku i broji se sam
+- drugi žuti karton broji se kao crveni, a žuti prije njega se od
+  24.10.2026. NE broji (članak 24 Disciplinskog pravilnika, vidi "Pravilo
+  za žute kartone"). Kočnica zato kod žutih oprašta manjak do broja tako
+  izostavljenih žutih (`zuti_uz_iskljucenje`), jer ih HNS na stranici
+  natjecanja zna brojati
 - vratar koji zabije ima gol. To nije proturječje s pravilom da se vratari
   izbacuju iz strijelaca: ono vrijedi za SASTAVE na stranici natjecanja,
   gdje stupac golova kod vratara znači primljene. U zapisniku gol znači gol.
@@ -1533,16 +1536,19 @@ ondje je popis nastupa 14.09.2026. bio maknut radi štednje, a na Pro
 planu je vraćen upravo za ovo. U bočni stupac, koji radi u pregledniku,
 nastupi se i dalje NE šalju, da ne putuju uz svaku stranicu.
 
-**ZA PONEDJELJAK 26.10.2026.: scraper ne smije brojati žuti prije
-drugog žutog.** Pravilo je pronađeno 24.10.2026. (vidi "Pravilo za žute
-kartone" u odjeljku o pisanju najava i pregleda), a naš zbroj ga ne
-poštuje: `ucinci_iz_zapisnika` žuti prije isključenja broji kao običan
-žuti. Prije izmjene treba pogledati koliko žutih takvom igraču pokazuje
-lista sa stranice natjecanja (npr. Buršić, Pazinka): ako HNS ondje broji
-oba, naš ispravan zbroj bi zaostajao i kočnica (`zaostaje_za_sluzbenom`)
-vratila bi HNS-ovu listu, pa kočnica mora znati za tu razliku, kao što za
-golove zna preko `potvrdjeno_zapisnikom`. Uz to i `najava_kola()` i
-`pregled_kola()` (polja `na_pragu`, `suspendirani`).
+**Scraper ne broji žuti prije drugog žutog.** Dogovoreno za ponedjeljak
+26.10.2026., a na Andrejevu uputu NAPRAVLJENO odmah, u subotu 24.10.
+`ucinci_iz_zapisnika` takav žuti preskače i pamti ga u
+`zuti_uz_iskljucenje`, a kočnica (`zaostaje_za_sluzbenom`) kod žutih
+oprašta manjak do tog broja, isto kao što za golove oprašta preko
+`potvrdjeno_zapisnikom`. Ispis pokretanja javlja kad HNS na stranici
+natjecanja broji više. Prvi suhi prolaz s novim kodom, isti dan, nije
+javio nijednu takvu razliku ni u jednoj od tri lige, a lista iz zapisnika
+otišla je na stranicu: dakle ni HNS na stranici natjecanja te žute ne
+broji, i naš je zbroj do tada bio jedini koji ih je brojao. Oproštaj u
+kočnici ostaje kao zaštita. `najava_kola()` i `pregled_kola()` u `na_pragu`
+sada pokazuju igrače s tri, sedam i jedanaest žutih, ne samo s tri.
+Čuva `test_rang_liste_iz_zapisnika.py`, s Buršićevim slučajem.
 
 **DOGOVORENO ZA PONEDJELJAK 26.10.2026.: članci dosegljivi s više
 mjesta na stranici.** Drugi dio posla oko indeksiranja, prvi je bio
@@ -1772,9 +1778,10 @@ zbroju četvrti žuti dobio u 7. kolu, a igrao je u 8. i 9. kolu. Njegov
 žuti s Naprijeda (5. kolo, kad je isključen nakon drugog žutog) HNS nije
 brojao. Pravi četvrti dobio je tek u 10. kolu, protiv Krka.
 
-Naš zbroj u bazi taj žuti zasad broji (popravak je u planu, vidi "U
-planu"). Dok se ne popravi, pri pisanju se od našeg broja oduzme po jedan
-za svako isključenje nakon dva žuta. U 2026/27 to su do 10. kola:
+Naš zbroj u bazi taj žuti je do 24.10.2026. brojao, pa su brojke u
+ranijim tekstovima kod tih igrača za jedan veće. Od tada ga ne broji (vidi
+"U planu"), pa se brojke iz baze uzimaju kakve jesu. Igrači kojih se to
+ticalo, u 2026/27 do 10. kola:
 3. NL Zapad Jurešić (Krk), Simonaj (Halubjan), Buršić (Pazinka), Depeder,
 Šupraha i Znamenaček (Kraljevica), Kalizan (Buje), Tomljanović (Nehaj),
 Mohorovičić (Lokomotiva) i Radman (Jadran-Poreč); 1. ŽNL Kordić (Rab),

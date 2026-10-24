@@ -1526,8 +1526,13 @@ def ucinci_iz_zapisnika(utakmice):
         popisa utakmice.autogolovi, koji postoji za starije utakmice i za
         pogotke koje HNS nije označio
       - drugi žuti karton (tip "karton_zutocrveni") broji se kao CRVENI.
-        Žuti koji mu je prethodio zaseban je događaj u zapisniku i broji
-        se sam za sebe
+        Žuti koji mu je prethodio NE broji se među žute, jer se po
+        Disciplinskom pravilniku HNS-a (članak 24) te dvije opomene ne
+        upisuju, nego samo isključenje. Potvrđeno 24.10.2026. na Gabrielu
+        Buršiću (Pazinka): s tim žutim imao bi četvrti nakon 7. kola, a
+        igrao je u 8. i 9. Koliko je takvih žutih izostavljeno stoji u
+        polju "zuti_uz_iskljucenje", jer ih HNS na stranici natjecanja
+        zna brojati, pa kočnica mora znati za tu razliku
       - vratar ovdje nije poseban slučaj: u zapisniku "gol" znači zabijeni
         gol. (U sastavima klubova je obrnuto, ondje stupac golova kod
         vratara znači PRIMLJENE, pa se vratari odande izbacuju.)
@@ -1539,7 +1544,8 @@ def ucinci_iz_zapisnika(utakmice):
         kljuc = (ime, klub)
         if kljuc not in ucinci:
             ucinci[kljuc] = {"igrac": ime, "klub": klub, "vratar": False,
-                             "golovi": 0, "zuti": 0, "crveni": 0}
+                             "golovi": 0, "zuti": 0, "crveni": 0,
+                             "zuti_uz_iskljucenje": 0}
         return ucinci[kljuc]
 
     for u in utakmice:
@@ -1567,7 +1573,13 @@ def ucinci_iz_zapisnika(utakmice):
                 ime = (igrac.get("igrac") or "").strip()
                 if not ime:
                     continue
-                for dogadjaj in igrac.get("dogadjaji") or []:
+                dogadjaji = igrac.get("dogadjaji") or []
+                # Isključen nakon drugog žutog: jedan žuti s te utakmice
+                # ne broji se (članak 24, vidi gore).
+                iskljucen = any(d.get("tip") == "karton_zutocrveni"
+                                for d in dogadjaji)
+                preskoci_zuti = iskljucen
+                for dogadjaj in dogadjaji:
                     tip = dogadjaj.get("tip")
                     if tip == "gol":
                         if _je_rucno_oznacen_autogol(
@@ -1576,6 +1588,10 @@ def ucinci_iz_zapisnika(utakmice):
                             continue
                         ucinak(ime, klub)["golovi"] += 1
                     elif tip == "karton_zuti":
+                        if preskoci_zuti:
+                            preskoci_zuti = False
+                            ucinak(ime, klub)["zuti_uz_iskljucenje"] += 1
+                            continue
                         ucinak(ime, klub)["zuti"] += 1
                     elif tip in ("karton_crveni", "karton_zutocrveni"):
                         ucinak(ime, klub)["crveni"] += 1
@@ -1607,14 +1623,16 @@ def uskladi_imena(ucinci, svi_igraci):
         kljuc = (ime, u["klub"])
         if kljuc in spojeni:
             # Isti igrač pod dva zapisa; brojke se zbrajaju, ne gube.
-            for polje in ("golovi", "zuti", "crveni"):
-                spojeni[kljuc][polje] += u[polje]
+            for polje in ("golovi", "zuti", "crveni", "zuti_uz_iskljucenje"):
+                spojeni[kljuc][polje] = (spojeni[kljuc].get(polje, 0)
+                                         + u.get(polje, 0))
         else:
             spojeni[kljuc] = dict(u, igrac=ime)
     return list(spojeni.values())
 
 
-def zaostaje_za_sluzbenom(nasi, sluzbeni, polja, golovi_u_traci=None):
+def zaostaje_za_sluzbenom(nasi, sluzbeni, polja, golovi_u_traci=None,
+                          zuti_uz_iskljucenje=None):
     """Igrači kod kojih naša lista ima MANJE nego službena.
 
     Lista iz zapisnika smije biti ispred službene, jer HNS sastave
@@ -1630,6 +1648,11 @@ def zaostaje_za_sluzbenom(nasi, sluzbeni, polja, golovi_u_traci=None):
                     točno isto što i naš zbroj iz postava. Tada zapisnik
                     sam sa sobom potvrđuje naš broj, a zaostaje HNS.
                     Vidi potvrdjeno_zapisnikom za to kad se smije zadati.
+    zuti_uz_iskljucenje  rječnik ime -> broj žutih koje naš zbroj namjerno
+                    ne broji, jer su prethodili drugom žutom (članak 24,
+                    vidi ucinci_iz_zapisnika). Manjak žutih do tog broja
+                    nije zaostajanje. Veći manjak jest: znači da nam uz
+                    to fali i zapisnik.
     """
     nasi_po_imenu = {n["igrac"]: n for n in nasi}
     manjkovi = []
@@ -1641,6 +1664,10 @@ def zaostaje_za_sluzbenom(nasi, sluzbeni, polja, golovi_u_traci=None):
             if nase < sluzbeno:
                 if (polje == "golovi" and golovi_u_traci is not None
                         and golovi_u_traci(s["igrac"]) == nase):
+                    continue
+                if (polje == "zuti" and zuti_uz_iskljucenje
+                        and sluzbeno - nase
+                        <= zuti_uz_iskljucenje.get(s["igrac"], 0)):
                     continue
                 manjkovi.append(f"{s['igrac']} ({polje}: službeno "
                                 f"{sluzbeno}, naše {nase})")
@@ -1700,7 +1727,8 @@ def potvrdjeno_zapisnikom(utakmice, bez_postava):
     return golovi_iz_trake(utakmice)
 
 
-def odaberi_rang_listu(iz_zapisnika, sa_stranice, polja, golovi_u_traci=None):
+def odaberi_rang_listu(iz_zapisnika, sa_stranice, polja, golovi_u_traci=None,
+                       zuti_uz_iskljucenje=None):
     """Bira koja lista ide u bazu i vraća (lista, obrazloženje).
 
     Prednost ima lista iz zapisnika, jer je svježija. Pada na onu sa
@@ -1711,7 +1739,7 @@ def odaberi_rang_listu(iz_zapisnika, sa_stranice, polja, golovi_u_traci=None):
         return sa_stranice, "sa stranice natjecanja (iz zapisnika nema ničega)"
 
     manjkovi = zaostaje_za_sluzbenom(iz_zapisnika, sa_stranice, polja,
-                                     golovi_u_traci)
+                                     golovi_u_traci, zuti_uz_iskljucenje)
     if manjkovi:
         prikaz = ", ".join(manjkovi[:5])
         if len(manjkovi) > 5:
@@ -1727,6 +1755,12 @@ def odaberi_rang_listu(iz_zapisnika, sa_stranice, polja, golovi_u_traci=None):
         if oprosteni:
             obrazlozenje += ("; HNS na stranici natjecanja pokazuje više, "
                              "ali zapisnici to ne potvrđuju: "
+                             + ", ".join(oprosteni))
+    elif zuti_uz_iskljucenje:
+        oprosteni = zaostaje_za_sluzbenom(iz_zapisnika, sa_stranice, polja)
+        if oprosteni:
+            obrazlozenje += ("; HNS na stranici natjecanja broji i žuti "
+                             "prije drugog žutog, koji se ne broji: "
                              + ", ".join(oprosteni))
     return iz_zapisnika, obrazlozenje
 
@@ -1821,8 +1855,14 @@ def dohvati_i_spremi_statistike(natjecanje_naziv, natjecanje_url,
     )
     if "ne potvrđuju" in otkud_strijelci:
         napomene.append(f"{natjecanje_naziv}: strijelci {otkud_strijelci}")
+    uz_iskljucenje = {}
+    for u in ucinci:
+        if u.get("zuti_uz_iskljucenje"):
+            uz_iskljucenje[u["igrac"]] = (uz_iskljucenje.get(u["igrac"], 0)
+                                          + u["zuti_uz_iskljucenje"])
     kartoni, otkud_kartoni = odaberi_rang_listu(
-        kartoni_iz_zapisnika, kartoni_sa_stranice, ("zuti", "crveni")
+        kartoni_iz_zapisnika, kartoni_sa_stranice, ("zuti", "crveni"),
+        zuti_uz_iskljucenje=uz_iskljucenje,
     )
     # Liste se spremaju CIJELE. Do 11.10.2026. skraćivale su se na prvih
     # 40 mjesta, pa je igrač s jednim golom ili jednim žutim, kojih u 3. NL
