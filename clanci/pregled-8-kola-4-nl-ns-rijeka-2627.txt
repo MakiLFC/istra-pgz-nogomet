@@ -1,11 +1,11 @@
 slug: pregled-8-kola-4-nl-ns-rijeka-2627
 naslov: TOMIĆ U 95. MINUTI SPASIO CRES OD PRVOG PORAZA, FUNTANA SLAVILA U ŠTINJANU
-sazetak: Posljednja Klana vodila je na Dariju do pete minute nadoknade i Cresu uzela prve bodove ove sezone, iako je od 78. minute igrala s desetoricom. Funtana je u Štinjanu slavila 4:3 i skočila sa dvanaestog na šesto mjesto, Otočac je pobjedom nad Žminjem drugi, a kolo su obilježila čak četiri remija.
+sazetak: Posljednja Klana vodila je na Dariju do pete minute nadoknade i Cresu uzela prve bodove ove sezone, iako je od 78. minute igrala s desetoricom. Funtana je u Štinjanu slavila 4:3 i skočila sa dvanaestog na šesto mjesto, a Otočac je pobjedom nad Žminjem drugi. Susret Medulina 1921 i Mladosti Fažane prekinut je zbog kiše i igrat će se naknadno.
 natjecanje: 4. NL NS Rijeka
 slika_url: /slike/najave/pregled-4-nl-ns-rijeka-kolo-8-cijela.png
 slika_opis: Rezultati 8. kola 4. NL NS Rijeka, subota 24. listopada 2026.
 ---
-Osmo kolo 4. NL NS Rijeka odigrano je u subotu 24. listopada, svih šest utakmica. Slobodna je bila Rječina. Palo je devetnaest pogodaka, ali su rezultati bili neobično izjednačeni: četiri remija, jedna pobjeda domaćina i jedna gostiju. U sedam prethodnih kola ukupno su bila samo dva remija, a u ovom ih je četiri, i to tri odlučena u posljednjim minutama.
+Osmo kolo 4. NL NS Rijeka igralo se u subotu 24. listopada. Odigrano je pet utakmica, dok je susret Medulina 1921 i Mladosti Fažane prekinut zbog kiše. Slobodna je bila Rječina. Palo je devetnaest pogodaka, ali su rezultati bili neobično izjednačeni: tri remija, jedna pobjeda domaćina i jedna gostiju. U sedam prethodnih kola ukupno su bila samo dva remija, a u ovom ih je tri, i sva su odlučena u posljednjim minutama.
 
 Cres - Klana 1:1. Vodeći Cres prvi je put ove sezone ostao bez pobjede, i to protiv posljednje momčadi lige. Klana je povela u 66. minuti, kad je Ivan Francetić zabio autogol, a od 78. je igrala s desetoricom, nakon što je Ivan Laginja dobio drugi žuti karton. Izdržala je do pete minute nadoknade, kad je Željko Tomić donio Cresu bod. Cres tako ima devetnaest bodova i dalje je bez poraza, ali mu je prednost na vrhu sada četiri boda. Klana je osvojila prvi bod u gostima ove sezone i ima ih četiri. Tomić je sa šest pogodaka drugi strijelac lige.
 
@@ -17,7 +17,7 @@ Smoljanci Sloboda - Ližnjan 2:2. I ovdje se bod izrodio u posljednjoj minuti. D
 
 Otočac - Žminj 2:0. Jedina pobjeda domaćina u kolu. Ante Majetić zabio je u 14., a Matija Ostović u 71. minuti. Otočac je na Gradskom igralištu i dalje savršen: četiri utakmice, četiri pobjede, uz gol razliku 10:4. S petnaest bodova popeo se na drugo mjesto, četiri iza Cresa. Majetić je sa četiri pogotka među najboljim strijelcima lige. Žminj je pao na sedmo mjesto, a u sedam utakmica zabio je sedam golova. Sudac je podijelio šest žutih kartona, po tri svakoj momčadi.
 
-Medulin 1921 - Mladost Fažana 0:0. Prva utakmica ove sezone u ligi koja je završila bez pogotka. Medulin ima osam bodova, a Mladost Fažana sedam, uz šest odigranih utakmica, najmanje u ligi, jer joj je susret s Cresom premješten za 5. prosinca. Mladost je tako ostala neporažena u dva kola.
+Medulin 1921 - Mladost Fažana, prekinuto. Susret na Mutili prekinut je zbog kiše i igrat će se naknadno, a novi termin još nije poznat. Medulin ima sedam bodova, a Mladost Fažana šest, uz pet odigranih utakmica, daleko najmanje u ligi: osim ove, čeka je i susret s Cresom, premješten za 5. prosinca.
 
 STRIJELCI
 
@@ -25,9 +25,9 @@ Antonio Gračić iz Štinjana i dalje sam vodi listu sa sedam pogodaka, iako u o
 
 LJESTVICA
 
-Cres vodi s devetnaest bodova iz sedam utakmica i jedini je bez poraza. Otočac je drugi s petnaest, a slijede Ližnjan i Borac (Bakar) s po trinaest te Štinjan s dvanaest. Funtana i Žminj imaju po devet, Umag-CC Umago, Smoljanci Sloboda i Medulin 1921 po osam, Mladost Fažana i Rječina po sedam, a Klana je posljednja sa četiri. Umagu je oduzeto tri boda, pa ih je na terenu osvojio jedanaest.
+Cres vodi s devetnaest bodova iz sedam utakmica i jedini je bez poraza. Otočac je drugi s petnaest, a slijede Ližnjan i Borac (Bakar) s po trinaest te Štinjan s dvanaest. Funtana i Žminj imaju po devet, Umag-CC Umago i Smoljanci Sloboda po osam, Rječina i Medulin 1921 po sedam, Mladost Fažana šest, a Klana je posljednja sa četiri. Umagu je oduzeto tri boda, pa ih je na terenu osvojio jedanaest.
 
-Najviše je u kolu dobila Funtana, šest mjesta, a Otočac dva. Najviše je izgubila Rječina, pet mjesta, i to bez igranja, jer je ovo kolo bila slobodna.
+Najviše je u kolu dobila Funtana, šest mjesta, a Otočac dva. Najviše je izgubila Rječina, tri mjesta, i to bez igranja, jer je ovo kolo bila slobodna.
 
 ZA SLJEDEĆE KOLO
 
