@@ -2002,6 +2002,49 @@
           "rezultat": "PREKINUTO"
         }
       ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-8-pregled",
+      "kolo": "8",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 24.10. i NED 25.10.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Zamet",
+          "g": "Mune",
+          "termin": "SUB 15:30",
+          "rezultat": "2:4"
+        },
+        {
+          "d": "Turbina",
+          "g": "Lošinj",
+          "termin": "NED 14:00",
+          "derbi": true,
+          "rezultat": "2:2"
+        },
+        {
+          "d": "Vrbovsko",
+          "g": "Lovran",
+          "termin": "NED 14:00",
+          "rezultat": "4:0"
+        },
+        {
+          "d": "Vihor (B)",
+          "g": "Stari grad Rijeka",
+          "termin": "NED 14:00",
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Goranin",
+          "g": "Risnjak",
+          "termin": "NED 14:00",
+          "rezultat": "2:0"
+        }
+      ],
+      "ime": "pregled-1-znl-pgz-kolo-8",
+      "naslov": "Pregled"
     }
   ]
 }
