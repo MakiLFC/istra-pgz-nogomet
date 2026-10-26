@@ -1595,28 +1595,44 @@ kočnici ostaje kao zaštita. `najava_kola()` i `pregled_kola()` u `na_pragu`
 sada pokazuju igrače s tri, sedam i jedanaest žutih, ne samo s tri.
 Čuva `test_rang_liste_iz_zapisnika.py`, s Buršićevim slučajem.
 
-**ČEKA ANDREJEV ZNAK: članci dosegljivi s više mjesta na stranici.**
-Bilo je dogovoreno za 19.10., pa za 26.10., a oba puta je dan otišao na
-Supabaseov odlazni promet. 26.10. je Andrej rekao da ovo ostavlja za
-idući put, bez datuma. NIJE otkazano, nego čeka da on kaže. Drugi dio posla oko indeksiranja, prvi je bio
-redoslijed u sitemapu (vidi gore, 16.10.2026.). Tražilice idu za
-poveznicama, a stariji članak sada nije dosegljiv gotovo niotkud: s
-naslovnice se vide zadnji, dalje treba otvoriti novosti. Dvije stvari:
+**Članci dosegljivi s više mjesta na stranici.** Drugi dio posla oko
+indeksiranja, prvi je bio redoslijed u sitemapu (vidi gore,
+16.10.2026.). Tražilice idu za poveznicama, a stariji članak nije bio
+dosegljiv gotovo niotkud: s naslovnice se vide zadnji, dalje treba
+otvoriti novosti. Dvije stvari:
 
-- sa stranice utakmice poveznica na PREGLED TOG KOLA, ako postoji
-- sa stranice kluba poveznica na članke u kojima se taj klub spominje
+- sa stranice utakmice poveznica na PREGLED TOG KOLA, ako postoji.
+  NAPRAVLJENO 26.10.2026. Slug najave i pregleda nosi i ligu i sezonu
+  (`pregled-7-kola-3-nl-zapad-2627`), pa se SLAŽE umjesto da se dohvaća
+  popis članaka lige i traži u kodu; `clanciKola` u `lib/clanci.ts`
+  vraća nula do dva retka s dva stupca. Nakon odigranog kola poveznica
+  vodi na pregled, prije njega na najavu, a kad ni jednog ni drugog
+  nema, nema ni poveznice.
+- sa stranice kluba poveznica na članke u kojima se taj klub spominje.
+  NIJE NAPRAVLJENO, i to ne zbog vremena nego zbog nalaza.
 
-Prvo je bilo dogovoreno za 19.10., ali je taj dan otišao na Supabaseov
-odlazni promet (vidi gore). Odgođeno je svjesno, a ne zaboravljeno:
-ovaj posao DODAJE upite prema bazi, pa se ne radi istoga dana kad su
-tri mjesta mijenjana zbog prometa. Inače se ne bi znalo je li brojka
-pala zbog popravka ili porasla zbog dodatka.
+KLUBOVI SE U TEKSTOVIMA PIŠU BEZ PREFIKSA. Provjereno 26.10.2026. nad
+mapom `clanci/`: "NK Vinodol" se pojavljuje JEDNOM, a "Vinodol" 57 puta.
+U bazi klub stoji punim imenom, pa bi traženje po imenu iz baze
+(`ilike` nad tekstom) promašilo gotovo sve.
 
-Zato i uputa kako ga napraviti jeftino: ne dohvaćati sve članke lige pa
-tražiti u kodu, nego pitati bazu po UZORKU SLUGA (`pregled-7-kola-%`),
-što vrati nula ili jedan redak. Popisi članaka od 20.10.2026. ionako ne
-vuku tekst (`STUPCI_KARTICE`), pa je takav upit nekoliko stotina
-bajtova.
+Skraćivanje imena nije trivijalno i ne smije se pogoditi napamet:
+
+```
+NK Vinodol          -> Vinodol          prva riječ je dovoljna
+NK Pazinka-Pazin    -> Pazinka          u tekstu i Pazinka i Pazinka-Pazin
+NK Jadran-Poreč     -> Jadran           nalazi i puni oblik
+NK Naprijed (H)     -> Naprijed         zagrada se mora maknuti
+NK OŠK Omišalj      -> prva riječ daje OŠK, a treba Omišalj
+NK Stari grad Rijeka-> prva riječ daje Stari
+```
+
+Kriva pravila ovdje ne daju praznu stranicu nego KRIVE POVEZNICE, na
+članke koji taj klub ne spominju, a to je gore od nijedne. Zato se prije
+pisanja koda mora napraviti popis kratkih imena po klubu i provjeriti ga
+nad stvarnim tekstovima. Jeftina i sigurna međuvarijanta, ako se žuri:
+na stranici kluba prikazati članke NJEGOVE LIGE, kao što ih već prikazuje
+bočni stupac stranice lige.
 
 Vrijedi isto pravilo kao kod imena igrača u postavama: poveznica se
 ispisuje samo kad članak stvarno postoji, nikad napamet, da se s
