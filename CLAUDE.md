@@ -1468,6 +1468,21 @@ početnika, događaji su na mjestu, a prazan niz stoji ondje gdje igrač
 nije imao nijedan događaj. Prazan `datum` kod sezone 2025/26 je uredan:
 te utakmice su u bazi od prije uvođenja rasporeda.
 
+Uz tu provjeru su razjašnjene dvije stvari koje su isprva izgledale kao
+greška:
+
+- PRVI POSJETITELJ NAKON ISTEKA DOBIJE STARU STRANICU. Andrej je odmah
+  nakon objave otvorio stranicu igrača i vidio 33 utakmice, a baza ih je
+  imala 35. Nije bio kvar: stranica se po isteku `revalidate` ne gradi
+  dok netko ne dođe, a taj prvi dobije zadnju spremljenu verziju, dok se
+  nova slaže u pozadini. Drugo otvaranje pokazalo je 35. Kad se provjera
+  radi odmah nakon objave ili nakon scrapera, stranica se otvori DVAPUT.
+- 35 UTAKMICA I 33 NASTUPA NISU PROTURJEČJE. Gore stoji službeni broj
+  nastupa iz rang-liste, a dolje popis utakmica u kojima je igrač bio u
+  POSTAVI. Suden je u dvije bio pričuva i nije ušao (Vinodol - Lokomotiva
+  9. kolo i Pomorac - Vinodol 27. kolo 2025/26); uz njih na stranici piše
+  "na klupi". Razliku računa `jeIgrao` u `lib/igraci.ts`.
+
 Pouka je ista kao i dosad: prvo se pogleda raščlamba, pa se mijenja ono
 što stvarno troši. Da se krenulo po prvoj sumnji, preselile bi se slike
 i riješio jedan posto problema.
