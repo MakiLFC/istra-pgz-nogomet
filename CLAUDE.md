@@ -1437,11 +1437,29 @@ PROVJERENO ODMAH NAKON POKRETANJA, 20.10.2026.:
   `[^A-Za-zčćžšđČĆŽŠĐ ''\-\.]`) i nije vratio nijedan redak. Dakle
   nema imena na kojem bi se dvije izvedbe mogle raziđi.
 
-OSTAJE ZA SLJEDEĆI PUT, ako promet i dalje bude previsok:
-`dohvatiNastupe` povlači utakmice s OBJEMA punim postavama da bi
-pokazao događaje jednog igrača. Za igrača s petnaest nastupa to je
-petnaest punih zapisnika. Isti lijek, funkcija u bazi koja vraća samo
-njegove događaje.
+MJERENO 26.10.2026., u novom ciklusu (počeo 22.10.): 0,62 GB u pet
+dana, prekoračenje nula, dakle oko 125 MB dnevno prema prijašnjih 218.
+Pad od oko 40 posto i projekcija oko 3,8 GB od 5 GB. Dovoljno da se
+ostane ispod kvote, ali ne udobno, jer u studenome ima više kola.
+Raščlamba se nije promijenila: 25.10. je PostgREST bio 188,9 MB (98,8
+posto), Storage 2,2 MB (1,2 posto).
+
+DRUGI REZ, ISTI DAN: `dohvatiNastupe` je povlačio RETKE UTAKMICA, a s
+njima obje pune postave, da bi pokazao događaje jednog igrača. Za igrača
+s petnaest nastupa to je petnaest cijelih zapisnika, iz kojih se koristi
+po jedan redak. Sada to radi `nastupi_igraca(ime)` iz
+`sql/nastupi_rpc.sql`, koja vraća po jedan redak po nastupu.
+
+Dvije stvari uz nju:
+
+- Utakmica se vraća kao `jsonb` (`jsonb_build_object`), a ne kao stupci.
+  Tako funkcija ne ovisi o tipovima stupaca u tablici, pa je buduća
+  promjena sheme ne ruši.
+- Rezerva je ista kao kod `ucinci_igraca`, ali s jednom razlikom koja je
+  rečena naglas u kodu: prazan odgovor se ne može razlikovati od
+  "igrač nema nastupa", pa takav igrač jednom plati i skuplji dohvat.
+  Takvih je malo, a alternativa bi bila da se tiho izgubi popis
+  utakmica.
 
 Pouka je ista kao i dosad: prvo se pogleda raščlamba, pa se mijenja ono
 što stvarno troši. Da se krenulo po prvoj sumnji, preselile bi se slike
