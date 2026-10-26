@@ -28,7 +28,7 @@ import { golovi } from "@/lib/kolo";
 import { LIGE, adresaLige } from "@/lib/lige";
 import { slugoviIgracaLige } from "@/lib/igraci";
 import { SLIKA_DIJELJENJE } from "@/lib/metapodaci";
-import { odlomci } from "@/lib/clanci";
+import { odlomci, clanciKola } from "@/lib/clanci";
 import type { Utakmica } from "@/lib/supabase";
 
 // Stranica utakmice je najbrojnija na cijeloj stranici: po sezoni ih je
@@ -119,13 +119,20 @@ export default async function StranicaUtakmice({
   // Tekuća sezona ide bez sezone u adresi, starija s njom; inače bi
   // poveznica vodila na dužu adresu iste stranice lige.
   const imaPostave = Boolean(u.postava_domacin?.length || u.postava_gost?.length);
-  const [tekuca, igraciSaStranicom] = await Promise.all([
+  const [tekuca, igraciSaStranicom, clanci] = await Promise.all([
     najnovijaSezona(u.natjecanje),
     // Imena u postavi su poveznice samo za igrače koji imaju stranicu.
     imaPostave && u.sezona
       ? slugoviIgracaLige(u.natjecanje, u.sezona)
       : Promise.resolve(new Set<string>()),
+    // Najava i pregled tog kola, ako su napisani i objavljeni.
+    clanciKola(ligaSlug, u.sezona, u.kolo),
   ]);
+
+  // Nakon odigranog kola pregled je ono što čitatelja zanima; prije
+  // njega najava. Kad nema ni jednog ni drugog, nema ni poveznice.
+  const clanakKola = clanci.pregled ?? clanci.najava;
+  const vrstaClanka = clanci.pregled ? "Pregled" : "Najava";
   const adresaKola = ligaSlug
     ? adresaLige(ligaSlug, { kolo: u.kolo, sezona: u.sezona === tekuca ? null : u.sezona })
     : null;
@@ -316,6 +323,15 @@ export default async function StranicaUtakmice({
                   style={{ color: "var(--pitch)" }}
                 >
                   Cijelo {u.kolo ? `${u.kolo}. ` : ""}kolo →
+                </Link>
+              )}
+              {clanakKola && (
+                <Link
+                  href={`/novosti/${clanakKola.slug}`}
+                  className="font-medium hover:underline"
+                  style={{ color: "var(--pitch)" }}
+                >
+                  {vrstaClanka} {u.kolo ? `${u.kolo}. ` : ""}kola →
                 </Link>
               )}
             </nav>

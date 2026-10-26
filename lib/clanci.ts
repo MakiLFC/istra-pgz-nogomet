@@ -168,3 +168,67 @@ export function koloPregleda(clanak: { slug?: string | null; naslov?: string | n
 
   return null;
 }
+
+// ---------------------------------------------------------------------
+// ČLANAK KOJI PRIPADA JEDNOM KOLU
+// ---------------------------------------------------------------------
+// Najave i pregledi imaju slug po ustaljenom obrascu, koji nosi i ligu i
+// sezonu:
+//
+//   pregled-7-kola-3-nl-zapad-2627
+//   najava-10-kola-1-znl-pgz-2627
+//
+// Zato se slug može SLOŽITI, umjesto da se dohvaća popis članaka lige pa
+// traži u kodu. Upit tada vraća nula do dva retka s dva stupca, dakle
+// nekoliko stotina bajtova. To je bitno: stranica utakmice se osvježava
+// svakih pet minuta, a ima ih stotine (vidi odlomak o odlaznom prometu
+// Supabasea u CLAUDE.md).
+
+/** "2026/27" -> "2627", onako kako stoji na kraju sluga članka. */
+export function sezonaUSlugClanka(sezona: string): string {
+  const m = sezona.match(/^(\d{2})(\d{2})[-/](\d{2})$/);
+  return m ? `${m[2]}${m[3]}` : sezona.replace(/\D/g, "").slice(-4);
+}
+
+export type ClanakKola = { slug: string; naslov: string };
+
+/**
+ * Najava i pregled jednog kola, ako postoje i ako su objavljeni.
+ *
+ * Vraća null za ono čega nema, pa se poveznica ispisuje samo kad vodi na
+ * stvarni članak. Isto pravilo kao kod imena igrača u postavama: nikad
+ * poveznica napamet, da se s vremenom ne nakupe mrtve.
+ */
+export async function clanciKola(
+  ligaSlug: string | null | undefined,
+  sezona: string | null | undefined,
+  kolo: number | null | undefined
+): Promise<{ pregled: ClanakKola | null; najava: ClanakKola | null }> {
+  const prazno = { pregled: null, najava: null };
+  if (!ligaSlug || !sezona || !kolo) return prazno;
+
+  const kraj = `${ligaSlug}-${sezonaUSlugClanka(sezona)}`;
+  const slugPregleda = `pregled-${kolo}-kola-${kraj}`;
+  const slugNajave = `najava-${kolo}-kola-${kraj}`;
+
+  try {
+    const { data, error } = await supabase
+      .from("clanci")
+      .select("slug, naslov")
+      .eq("objavljen", true)
+      .in("slug", [slugPregleda, slugNajave]);
+
+    if (error) {
+      console.error("Članci kola: greška kod dohvaćanja:", error.message);
+      return prazno;
+    }
+
+    const nadji = (slug: string) =>
+      (data ?? []).find((c) => c.slug === slug) ?? null;
+
+    return { pregled: nadji(slugPregleda), najava: nadji(slugNajave) };
+  } catch (e) {
+    console.error("Članci kola: dohvat nije uspio:", e);
+    return prazno;
+  }
+}
