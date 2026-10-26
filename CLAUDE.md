@@ -1461,6 +1461,13 @@ Dvije stvari uz nju:
   Takvih je malo, a alternativa bi bila da se tiho izgubi popis
   utakmica.
 
+PROVJERENO 26.10.2026., odmah nakon pokretanja:
+`nastupi_igraca('Marcelo Suden')` vraća 35 redaka, po jedan za svaki
+nastup kroz obje sezone, bez duplikata. Pričuva se razlikuje od
+početnika, događaji su na mjestu, a prazan niz stoji ondje gdje igrač
+nije imao nijedan događaj. Prazan `datum` kod sezone 2025/26 je uredan:
+te utakmice su u bazi od prije uvođenja rasporeda.
+
 Pouka je ista kao i dosad: prvo se pogleda raščlamba, pa se mijenja ono
 što stvarno troši. Da se krenulo po prvoj sumnji, preselile bi se slike
 i riješio jedan posto problema.
@@ -1573,8 +1580,10 @@ kočnici ostaje kao zaštita. `najava_kola()` i `pregled_kola()` u `na_pragu`
 sada pokazuju igrače s tri, sedam i jedanaest žutih, ne samo s tri.
 Čuva `test_rang_liste_iz_zapisnika.py`, s Buršićevim slučajem.
 
-**DOGOVORENO ZA PONEDJELJAK 26.10.2026.: članci dosegljivi s više
-mjesta na stranici.** Drugi dio posla oko indeksiranja, prvi je bio
+**ČEKA ANDREJEV ZNAK: članci dosegljivi s više mjesta na stranici.**
+Bilo je dogovoreno za 19.10., pa za 26.10., a oba puta je dan otišao na
+Supabaseov odlazni promet. 26.10. je Andrej rekao da ovo ostavlja za
+idući put, bez datuma. NIJE otkazano, nego čeka da on kaže. Drugi dio posla oko indeksiranja, prvi je bio
 redoslijed u sitemapu (vidi gore, 16.10.2026.). Tražilice idu za
 poveznicama, a stariji članak sada nije dosegljiv gotovo niotkud: s
 naslovnice se vide zadnji, dalje treba otvoriti novosti. Dvije stvari:
