@@ -296,6 +296,15 @@ export type NastupIgraca = {
 const STUPCI_NASTUPA =
   "id, natjecanje, sezona, kolo, domacin, gost, rezultat, datum, postava_domacin, postava_gost";
 
+/** Najnovija sezona prva, unutar nje najviše kolo prvo. */
+function poredajNastupe(nastupi: NastupIgraca[]): NastupIgraca[] {
+  return nastupi.sort((a, b) => {
+    const s = (b.utakmica.sezona ?? "").localeCompare(a.utakmica.sezona ?? "");
+    if (s !== 0) return s;
+    return (b.utakmica.kolo ?? 0) - (a.utakmica.kolo ?? 0);
+  });
+}
+
 /**
  * Utakmice u kojima se igrač nalazi u postavi.
  *
@@ -303,6 +312,41 @@ const STUPCI_NASTUPA =
  * njegove utakmice, a ne sve postave u ligi.
  */
 export async function dohvatiNastupe(ime: string): Promise<NastupIgraca[]> {
+  // BRZI PUT: funkcija `nastupi_igraca` u bazi (vidi sql/nastupi_rpc.sql)
+  // vraća po jedan redak po nastupu, dakle samo ono što stranica
+  // prikazuje. Stari put ispod dohvaća RETKE UTAKMICA, a s njima obje
+  // pune postave; za igrača s petnaest nastupa to je petnaest cijelih
+  // zapisnika, iz kojih se koristi po jedan redak.
+  //
+  // REZERVA je ista kao kod ucinci_igraca: kad funkcije nema, kad javi
+  // grešku ili ne vrati ništa, ide se starim putem. Prazan odgovor je
+  // pritom neodvojiv od "igrač nema nastupa", pa takav igrač jednom
+  // plati skuplji dohvat. To je prihvatljivo: takvih je malo, a
+  // alternativa bi bila da se tiho izgubi popis utakmica.
+  try {
+    const { data, error } = await supabase.rpc("nastupi_igraca", { p_ime: ime });
+
+    if (!error && Array.isArray(data) && data.length) {
+      const nastupi: NastupIgraca[] = (
+        data as {
+          utakmica: NastupIgraca["utakmica"];
+          klub: string;
+          pricuvni: boolean;
+          dogadjaji: IgracPostave["dogadjaji"] | null;
+        }[]
+      ).map((r) => ({
+        utakmica: r.utakmica,
+        klub: r.klub,
+        pricuvni: Boolean(r.pricuvni),
+        dogadjaji: r.dogadjaji ?? [],
+      }));
+
+      return poredajNastupe(nastupi);
+    }
+  } catch (e) {
+    console.error("Nastupi: brzi put nije uspio, ide se punim dohvatom:", e);
+  }
+
   try {
     // Uvjet se predaje kao JSON NIZ ZNAKOVA, ne kao polje objekata.
     // Kad se preda polje, supabase-js ga pretvori u zapis polja za
@@ -352,11 +396,7 @@ export async function dohvatiNastupe(ime: string): Promise<NastupIgraca[]> {
     dodaj(doma.data ?? [], "domacin");
     dodaj(vani.data ?? [], "gost");
 
-    return nastupi.sort((a, b) => {
-      const s = (b.utakmica.sezona ?? "").localeCompare(a.utakmica.sezona ?? "");
-      if (s !== 0) return s;
-      return (b.utakmica.kolo ?? 0) - (a.utakmica.kolo ?? 0);
-    });
+    return poredajNastupe(nastupi);
   } catch (e) {
     console.error("Igrač: dohvat nastupa nije uspio:", e);
     return [];
