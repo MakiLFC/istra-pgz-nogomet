@@ -1877,6 +1877,18 @@ Trboviću (Gomirje) kao odrađena kazna; pregled 8. kola je pisao da je
 odrađuje u sljedećoj utakmici Gomirja. Kad je najava napisana, ovu
 stavku obriši.
 
+**ZA SLJEDEĆU NAJAVU 4. NL NS RIJEKA: kup, Funtana - Medulin 1921
+7:2.** Andrej je 27.10.2026. tražio da se u najavi navede da je toga dana
+odigrana osmina finala Kupa Nogometnog saveza Istarske županije (na
+Semaforu "Kup NSŽI 26/27 završnica, 1/8 finala"), i to kao IMPRESIVNA
+POBJEDA FUNTANE (njegov izraz). Podaci sa Semafora, iz Andrejeve snimke
+zaslona: utorak 27.10.2026. u 18 sati u Funtani, 50 gledatelja, suci
+Goran Krneta, Josip Krčalić i Perica Nikolić. Za Funtanu Robert Vlizlo u
+13., 63. i 67. minuti, Emanuel Šegon u 50., Abel Peteh u 56. te Leon
+Marunica u 76. i 85.; za Medulin Manuel Bulešić u 42. i Mateo Majdandžić
+u 48. Žuti kartoni iz kupa ne ulaze u prvenstveni zbroj (vidi "Pravilo
+za žute kartone"). Kad je najava napisana, ovu stavku obriši.
+
 **Sažetak uz zapisnik NIJE članak.** Kratak osvrt na pojedinu utakmicu,
 onaj koji stoji ispod zapisnika na stranici utakmice, ide u stupac
 `utakmice.tekst_clanka`, dakle u redak te utakmice. Tablica `clanci` je
