@@ -2075,6 +2075,58 @@
       ],
       "ime": "pregled-2-znl-pgz-kolo-8",
       "naslov": "Pregled"
+    },
+    {
+      "dat": "3-nl-zapad-kolo-11",
+      "kolo": "11",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 31.10.2026.",
+      "sat": "Subota u 14:00 i 14:30",
+      "utakmice": [
+        {
+          "d": "Halubjan",
+          "g": "Vinodol",
+          "termin": "SUB 14:30",
+          "derbi": true
+        },
+        {
+          "d": "Lokomotiva (R)",
+          "g": "Pazinka-Pazin",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Rudar (L)",
+          "g": "Pomorac",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Krk",
+          "g": "Jadran-Poreč",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Kraljevica",
+          "g": "Nehaj",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Buje",
+          "g": "OŠK Omišalj",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Crikvenica",
+          "g": "Naprijed (H)",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Banjole",
+          "g": "Rovinj",
+          "termin": "SUB 14:30"
+        }
+      ],
+      "ime": "najava-redovi-3-nl-zapad-kolo-11"
     }
   ]
 }
