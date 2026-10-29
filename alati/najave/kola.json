@@ -2127,6 +2127,47 @@
         }
       ],
       "ime": "najava-redovi-3-nl-zapad-kolo-11"
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-9",
+      "kolo": "9",
+      "stil": "redovi",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 31.10.2026.",
+      "sat": "Utakmice od 14:30",
+      "slobodan": "Smoljanci Sloboda",
+      "utakmice": [
+        {
+          "d": "Žminj",
+          "g": "Rječina",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Mladost Fažana",
+          "g": "Otočac",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Borac (Ba)",
+          "g": "Medulin 1921",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Klana",
+          "g": "Umag-CC Umago",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Ližnjan",
+          "g": "Štinjan",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Funtana",
+          "g": "Cres",
+          "termin": "SUB 15:30"
+        }
+      ]
     }
   ]
 }
