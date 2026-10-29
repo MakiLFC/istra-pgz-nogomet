@@ -2085,15 +2085,15 @@
       "sat": "Subota u 14:00 i 14:30",
       "utakmice": [
         {
-          "d": "Halubjan",
-          "g": "Vinodol",
-          "termin": "SUB 14:30",
+          "d": "Lokomotiva (R)",
+          "g": "Pazinka-Pazin",
+          "termin": "SUB 14:00",
           "derbi": true
         },
         {
-          "d": "Lokomotiva (R)",
-          "g": "Pazinka-Pazin",
-          "termin": "SUB 14:00"
+          "d": "Halubjan",
+          "g": "Vinodol",
+          "termin": "SUB 14:30"
         },
         {
           "d": "Rudar (L)",
