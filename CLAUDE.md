@@ -1483,6 +1483,23 @@ greška:
   9. kolo i Pomorac - Vinodol 27. kolo 2025/26); uz njih na stranici piše
   "na klupi". Razliku računa `jeIgrao` u `lib/igraci.ts`.
 
+MJERENO 29.10.2026., dva dana nakon drugog reza: 0,739 GB od 5 (15
+posto), prekoračenje nula, osmi dan ciklusa. Prva dva CIJELA dana pod oba
+reza, 27. i 28.10., najniži su puni dani ciklusa, oko 30 do 40 MB svaki,
+prema 105 do 130 MB na usporedivim radnim danima prije reza (22. do
+24.10.) i 191 MB u nedjelju 25.10. Dakle pad od oko 70 posto. Projekcija
+je time oko 1,8 GB od 5 umjesto prijašnjih 3,8, pa treći rez (stranica
+lige i stranica utakmice) zasad nije potreban. Prava provjera je prvi
+vikend s kolom, 31.10. i 01.11., jer je 25.10. bio najskuplji dan
+ciklusa.
+
+Napomena "Your grace period has started" na Usage stranici pritom i dalje
+stoji i to NIJE znak da pad nije primljen: odnosi se na PROŠLI ciklus,
+onaj koji je završio 22.10. s 6,53 GB. Ne miče je ovaj pad nego istek
+grace perioda 18.11., i to bez posljedica dok je tekući ciklus ispod
+kvote. Ista pouka kao kod Vercelovih brojki: prvo se pogleda na koje se
+RAZDOBLJE brojka odnosi.
+
 Pouka je ista kao i dosad: prvo se pogleda raščlamba, pa se mijenja ono
 što stvarno troši. Da se krenulo po prvoj sumnji, preselile bi se slike
 i riješio jedan posto problema.
