@@ -1889,6 +1889,12 @@ Marunica u 76. i 85.; za Medulin Manuel Bulešić u 42. i Mateo Majdandžić
 u 48. Žuti kartoni iz kupa ne ulaze u prvenstveni zbroj (vidi "Pravilo
 za žute kartone"). Kad je najava napisana, ovu stavku obriši.
 
+**Bodovi klubova pišu se znamenkama.** Andrejeva uputa od 29.10.2026.,
+uz najavu 11. kola 3. NL: "s 19 bodova", "Rudar ima 7", "po 10 bodova",
+a ne "s devetnaest". Odnosi se na broj bodova koje klub IMA; razlike
+("dva boda iza", "prišla bi na bod"), golovi, kola i kartoni i dalje
+idu slovima, kao dosad.
+
 **Sažetak uz zapisnik NIJE članak.** Kratak osvrt na pojedinu utakmicu,
 onaj koji stoji ispod zapisnika na stranici utakmice, ide u stupac
 `utakmice.tekst_clanka`, dakle u redak te utakmice. Tablica `clanci` je
