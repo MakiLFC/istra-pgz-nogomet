@@ -2168,6 +2168,53 @@
           "termin": "SUB 15:30"
         }
       ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-9",
+      "kolo": "9",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 31.10. i SRI 04.11.2026.",
+      "sat": "Subota u 14:00, 15:30 i 17:30",
+      "utakmice": [
+        {
+          "d": "Mune",
+          "g": "Rab",
+          "termin": "SUB 14:00",
+          "derbi": true
+        },
+        {
+          "d": "Lošinj",
+          "g": "Omladinac Vrata",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Draga",
+          "g": "Turbina",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Stari grad Rijeka",
+          "g": "Vrbovsko",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Rikard Benčić",
+          "g": "Goranin",
+          "termin": "SUB 17:30"
+        },
+        {
+          "d": "Lovran",
+          "g": "Zamet",
+          "termin": "SRI 15:30"
+        },
+        {
+          "d": "Vihor (B)",
+          "g": "Risnjak",
+          "termin": "BEZ TERMINA"
+        }
+      ],
+      "ime": "najava-redovi-1-znl-pgz-kolo-9"
     }
   ]
 }
