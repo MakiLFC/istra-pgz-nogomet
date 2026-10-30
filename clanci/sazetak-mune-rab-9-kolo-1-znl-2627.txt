@@ -1,0 +1,7 @@
+natjecanje: 1. ŽNL PGŽ
+sezona: 2026/27
+kolo: 9
+domacin: NK Mune
+gost: NK Rab
+derbi: da
+---
