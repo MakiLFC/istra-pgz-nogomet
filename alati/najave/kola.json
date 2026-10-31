@@ -2231,6 +2231,24 @@
         }
       ],
       "ime": "najava-2-znl-pgz-kolo-1-zaostala"
+    },
+    {
+      "dat": "2-znl-pgz-kolo-1-zaostala-pregled",
+      "kolo": "1",
+      "stil": "redovi",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 31.10.2026.",
+      "sat": "Zaostala utakmica, Pod Čelimbašom u Mrkoplju",
+      "utakmice": [
+        {
+          "d": "Snježnik",
+          "g": "Mrkopalj",
+          "termin": "SUB 14:00",
+          "rezultat": "0:8"
+        }
+      ],
+      "ime": "pregled-2-znl-pgz-kolo-1-zaostala",
+      "naslov": "Pregled"
     }
   ]
 }
