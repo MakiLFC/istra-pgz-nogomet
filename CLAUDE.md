@@ -1897,13 +1897,6 @@ nema među neodrađenim suspenzijama, dakle kazna je odrađena. Registracija
 3:0 spomenuta je i u najavi zaostale utakmice Snježnik - Mrkopalj, ali u
 najavi 9. kola ide svejedno.
 
-**ZA NAJAVU 12. KOLA 3. NL: kartoni s Krk - Jadran-Poreč 2:0.** Pregled
-11. kola objavljen je 31.10.2026. dok je zapisnik te utakmice imao samo
-strijelce, bez postava, pa ondje nema kartona Krka i Jadrana. Na tri
-žuta su bili Kodrnja i Bogdan (Jadran) te Lucić i Jurešić (Krk). Prije
-najave provjeri postave ("Ispis kola", 3. NL, 11) i navedi tko pauzira.
-Kad je najava napisana, ovu stavku obriši.
-
 **ZA PREGLED 9. KOLA 1. ŽNL: gol Turbine u Dragi.** Andrej je 31.10.2026.
 javio kako je pao: Velkoski za 1:0 na asistenciju Manestra sa gola.
 Izraze prepiši doslovno (vidi "Andrejevi nogometni izrazi"). Kad je
