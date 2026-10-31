@@ -2310,6 +2310,55 @@
       ],
       "ime": "pregled-3-nl-zapad-kolo-11",
       "naslov": "Pregled"
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-9-pregled",
+      "ime": "pregled-4-nl-ns-rijeka-kolo-9",
+      "kolo": "9",
+      "stil": "redovi",
+      "naslov": "Pregled",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 31.10.2026.",
+      "sat": "Rezultati kola",
+      "slobodan": "Smoljanci Sloboda",
+      "utakmice": [
+        {
+          "d": "Žminj",
+          "g": "Rječina",
+          "termin": "SUB 14:30",
+          "rezultat": "1:2"
+        },
+        {
+          "d": "Mladost Fažana",
+          "g": "Otočac",
+          "termin": "SUB 14:30",
+          "rezultat": "0:4"
+        },
+        {
+          "d": "Borac (Ba)",
+          "g": "Medulin 1921",
+          "termin": "SUB 14:30",
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Klana",
+          "g": "Umag-CC Umago",
+          "termin": "SUB 14:30",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Ližnjan",
+          "g": "Štinjan",
+          "termin": "SUB 14:30",
+          "rezultat": "0:7"
+        },
+        {
+          "d": "Funtana",
+          "g": "Cres",
+          "termin": "SUB 15:30",
+          "rezultat": "1:0"
+        }
+      ]
     }
   ]
 }
