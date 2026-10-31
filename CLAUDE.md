@@ -1892,7 +1892,15 @@ Goranka 16, Mrkopalj 12 (utakmica manje), Željezničar 11, Polet 10,
 Snježnik 0. Uz to provjeri u glasniku vrijedi li ta utakmica Božidaru
 Trboviću (Gomirje) kao odrađena kazna; pregled 8. kola je pisao da je
 odrađuje u sljedećoj utakmici Gomirja. Kad je najava napisana, ovu
-stavku obriši.
+stavku obriši. DOPUNJENO 30.10.2026.: u glasniku br. 9 Trbovića više
+nema među neodrađenim suspenzijama, dakle kazna je odrađena. Registracija
+3:0 spomenuta je i u najavi zaostale utakmice Snježnik - Mrkopalj, ali u
+najavi 9. kola ide svejedno.
+
+**ZA PREGLED 9. KOLA 1. ŽNL: gol Turbine u Dragi.** Andrej je 31.10.2026.
+javio kako je pao: Velkoski za 1:0 na asistenciju Manestra sa gola.
+Izraze prepiši doslovno (vidi "Andrejevi nogometni izrazi"). Kad je
+pregled napisan, ovu stavku obriši.
 
 **Sažetak uz zapisnik NIJE članak.** Kratak osvrt na pojedinu utakmicu,
 onaj koji stoji ispod zapisnika na stranici utakmice, ide u stupac
