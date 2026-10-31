@@ -2359,6 +2359,49 @@
           "rezultat": "1:0"
         }
       ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-9-pregled",
+      "kolo": "9",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 31.10.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Mune",
+          "g": "Rab",
+          "termin": "SUB 14:00",
+          "derbi": true,
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Lošinj",
+          "g": "Omladinac Vrata",
+          "termin": "SUB 14:00",
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Draga",
+          "g": "Turbina",
+          "termin": "SUB 14:00",
+          "rezultat": "1:1"
+        },
+        {
+          "d": "Stari grad Rijeka",
+          "g": "Vrbovsko",
+          "termin": "SUB 15:30",
+          "rezultat": "3:3"
+        },
+        {
+          "d": "Rikard Benčić",
+          "g": "Goranin",
+          "termin": "SUB 17:30",
+          "rezultat": "1:4"
+        }
+      ],
+      "ime": "pregled-1-znl-pgz-kolo-9",
+      "naslov": "Pregled"
     }
   ]
 }
