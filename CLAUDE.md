@@ -75,6 +75,11 @@ prepiše ili se stavi zarez, dvotočka ili točka.
   - `.github/workflows/slika.yml` ("Izreži sliku") samo ručno, kad se
     želi točno odabrani izrez spremljen u repozitorij; za obične
     fotografije uz članke više nije potreban
+  - `.github/workflows/ispis_kola.yml` ("Ispis kola") samo ručno: suhi
+    prolaz koji ispiše sve za pisanje najave ili pregleda jednog kola.
+    Od 31.10.2026. ima kvačicu "bez postava": postave su najdulji dio
+    zapisnika posla, a Claudeova sesija taj zapisnik čita samo od kraja,
+    pa bez nje rezultati, strijelci i kartoni ispadnu izvan dohvata
 
 ## Struktura
 
