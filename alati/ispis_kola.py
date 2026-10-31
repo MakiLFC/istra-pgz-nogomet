@@ -38,6 +38,7 @@ radi kad zatreba, a ne pretpostavka koju bi alat upisao sam.
 """
 
 import json
+import os
 import sys
 
 
@@ -105,6 +106,13 @@ def ispisi_utakmicu(utakmica):
 
     if not (utakmica.get("postava_domacin") or utakmica.get("postava_gost")):
         print("  NAPOMENA: zapisnik nema postave, pa kartoni nisu poznati.")
+        return
+
+    # Postave su najdulji dio ispisa, a Claudeova sesija u oblaku zapisnik
+    # posla cita samo od KRAJA, pa ga one izguraju izvan dohvata. Kvacica
+    # "bez postava" ih izostavlja, a strijelci i kartoni ostaju.
+    if os.environ.get("BEZ_POSTAVA", "").strip().lower() in ("1", "true", "da"):
+        print("  (postave izostavljene, kvacica 'bez postava')")
         return
 
     # Postave s brojevima dresa. Andrej s utakmice sažetak piše po
