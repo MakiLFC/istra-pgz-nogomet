@@ -2249,6 +2249,67 @@
       ],
       "ime": "pregled-2-znl-pgz-kolo-1-zaostala",
       "naslov": "Pregled"
+    },
+    {
+      "dat": "3-nl-zapad-kolo-11-pregled",
+      "kolo": "11",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 31.10.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Lokomotiva (R)",
+          "g": "Pazinka-Pazin",
+          "termin": "SUB 14:00",
+          "derbi": true,
+          "rezultat": "0:0"
+        },
+        {
+          "d": "Halubjan",
+          "g": "Vinodol",
+          "termin": "SUB 14:30",
+          "rezultat": "4:0"
+        },
+        {
+          "d": "Buje",
+          "g": "OŠK Omišalj",
+          "termin": "SUB 14:30",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Crikvenica",
+          "g": "Naprijed (H)",
+          "termin": "SUB 14:30",
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Krk",
+          "g": "Jadran-Poreč",
+          "termin": "SUB 14:30",
+          "rezultat": "2:0"
+        },
+        {
+          "d": "Banjole",
+          "g": "Rovinj",
+          "termin": "SUB 14:30",
+          "rezultat": "4:1"
+        },
+        {
+          "d": "Rudar (L)",
+          "g": "Pomorac",
+          "termin": "SUB 14:30",
+          "rezultat": "1:1"
+        },
+        {
+          "d": "Kraljevica",
+          "g": "Nehaj",
+          "termin": "SUB 14:30",
+          "rezultat": "1:1"
+        }
+      ],
+      "ime": "pregled-3-nl-zapad-kolo-11",
+      "naslov": "Pregled"
     }
   ]
 }
