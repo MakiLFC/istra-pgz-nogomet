@@ -218,6 +218,12 @@ def main():
     for utakmica in odigrane:
         ispisi_utakmicu(utakmica)
 
+    # Zapisnik zna stici na rate: strijelci i suci prije rezultata i
+    # postava. I takav se ispise cijeli, da se ne ceka sljedeci prolaz.
+    for utakmica in neodigrane:
+        if utakmica.get("strijelci") or utakmica.get("suci"):
+            ispisi_utakmicu(utakmica)
+
     if neodigrane:
         print(f"\n{'=' * 60}")
         print("BEZ REZULTATA")
