@@ -1500,6 +1500,20 @@ grace perioda 18.11., i to bez posljedica dok je tekući ciklus ispod
 kvote. Ista pouka kao kod Vercelovih brojki: prvo se pogleda na koje se
 RAZDOBLJE brojka odnosi.
 
+POTVRĐENO 03.11.2026., nakon prvog vikenda s kolom pod oba reza: 1,091 GB
+od 5 (22 posto), prekoračenje nula, trinaesti dan ciklusa. Od mjerenja
+29.10. do tada potrošeno je 0,352 GB u pet dana, u kojima je stao cijeli
+vikend s kolom, dakle oko 70 MB dnevno prema oko 210 MB dnevno u prošlom
+ciklusu, onom koji je probio kvotu. Nedjelja 01.11. je po grafu oko 60 MB,
+prema 191 MB na nedjelju 25.10.; subota 31.10. je ostala najviši dan nakon
+reza, oko 100 MB. Brojke po danima čitaju se s grafa i nepouzdane su na
+desetak megabajta, ispisana je samo ukupna.
+
+Projekcija je time oko 2,4 GB od 5 do kraja ciklusa, a oko 2,1 GB na dan
+isteka grace perioda (18.11.), pa Fair Use Policy nema na što primijeniti.
+TREĆI REZ (stranica lige i stranica utakmice) NIJE POTREBAN i ova je
+stavka zatvorena.
+
 Pouka je ista kao i dosad: prvo se pogleda raščlamba, pa se mijenja ono
 što stvarno troši. Da se krenulo po prvoj sumnji, preselile bi se slike
 i riješio jedan posto problema.
