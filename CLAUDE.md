@@ -1905,9 +1905,9 @@ najavi 9. kola ide svejedno.
 **ZA NAJAVU 10. KOLA 1. ŽNL: ozljeda Nikole Dlake (Lošinj).** Andrej je
 03.11.2026. javio da se Dlaka ozlijedio u 9. kolu, protiv Omladinca Vrata
 (zapisnik: izašao u 15. minuti). To je Andrejev podatak, pa se smije
-napisati (pravilo 5). Koliko će izbivati nije rečeno: u najavi se piše
-samo da se ozlijedio, a da propušta Goranin - Lošinj tek ako to Andrej
-potvrdi, pa ga pitaj. Kad je najava napisana, ovu stavku obriši.
+napisati (pravilo 5). Koliko će izbivati Andrej ne zna (rekao 03.11.), pa
+se u najavi piše SAMO da se ozlijedio u prošlom kolu, bez tvrdnje da
+propušta Goranin - Lošinj i bez ponovnog pitanja. Kad je najava napisana, ovu stavku obriši.
 
 **Sažetak uz zapisnik NIJE članak.** Kratak osvrt na pojedinu utakmicu,
 onaj koji stoji ispod zapisnika na stranici utakmice, ide u stupac
