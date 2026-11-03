@@ -1,0 +1,7 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 11
+domacin: NK Lokomotiva (R)
+gost: NK Pazinka-Pazin
+derbi: da
+---
