@@ -1902,6 +1902,13 @@ nema među neodrađenim suspenzijama, dakle kazna je odrađena. Registracija
 3:0 spomenuta je i u najavi zaostale utakmice Snježnik - Mrkopalj, ali u
 najavi 9. kola ide svejedno.
 
+**ZA NAJAVU 10. KOLA 1. ŽNL: ozljeda Nikole Dlake (Lošinj).** Andrej je
+03.11.2026. javio da se Dlaka ozlijedio u 9. kolu, protiv Omladinca Vrata
+(zapisnik: izašao u 15. minuti). To je Andrejev podatak, pa se smije
+napisati (pravilo 5). Koliko će izbivati nije rečeno: u najavi se piše
+samo da se ozlijedio, a da propušta Goranin - Lošinj tek ako to Andrej
+potvrdi, pa ga pitaj. Kad je najava napisana, ovu stavku obriši.
+
 **Sažetak uz zapisnik NIJE članak.** Kratak osvrt na pojedinu utakmicu,
 onaj koji stoji ispod zapisnika na stranici utakmice, ide u stupac
 `utakmice.tekst_clanka`, dakle u redak te utakmice. Tablica `clanci` je
