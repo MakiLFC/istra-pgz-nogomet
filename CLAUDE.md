@@ -75,6 +75,11 @@ prepiše ili se stavi zarez, dvotočka ili točka.
   - `.github/workflows/slika.yml` ("Izreži sliku") samo ručno, kad se
     želi točno odabrani izrez spremljen u repozitorij; za obične
     fotografije uz članke više nije potreban
+  - `.github/workflows/ispis_kola.yml` ("Ispis kola") samo ručno: suhi
+    prolaz koji ispiše sve za pisanje najave ili pregleda jednog kola.
+    Od 31.10.2026. ima kvačicu "bez postava": postave su najdulji dio
+    zapisnika posla, a Claudeova sesija taj zapisnik čita samo od kraja,
+    pa bez nje rezultati, strijelci i kartoni ispadnu izvan dohvata
 
 ## Struktura
 
@@ -1906,7 +1911,17 @@ Goranka 16, Mrkopalj 12 (utakmica manje), Željezničar 11, Polet 10,
 Snježnik 0. Uz to provjeri u glasniku vrijedi li ta utakmica Božidaru
 Trboviću (Gomirje) kao odrađena kazna; pregled 8. kola je pisao da je
 odrađuje u sljedećoj utakmici Gomirja. Kad je najava napisana, ovu
-stavku obriši.
+stavku obriši. DOPUNJENO 30.10.2026.: u glasniku br. 9 Trbovića više
+nema među neodrađenim suspenzijama, dakle kazna je odrađena. Registracija
+3:0 spomenuta je i u najavi zaostale utakmice Snježnik - Mrkopalj, ali u
+najavi 9. kola ide svejedno.
+
+**ZA NAJAVU 10. KOLA 1. ŽNL: ozljeda Nikole Dlake (Lošinj).** Andrej je
+03.11.2026. javio da se Dlaka ozlijedio u 9. kolu, protiv Omladinca Vrata
+(zapisnik: izašao u 15. minuti). To je Andrejev podatak, pa se smije
+napisati (pravilo 5). Koliko će izbivati Andrej ne zna (rekao 03.11.), pa
+se u najavi piše SAMO da se ozlijedio u prošlom kolu, bez tvrdnje da
+propušta Goranin - Lošinj i bez ponovnog pitanja. Kad je najava napisana, ovu stavku obriši.
 
 **Sažetak uz zapisnik NIJE članak.** Kratak osvrt na pojedinu utakmicu,
 onaj koji stoji ispod zapisnika na stranici utakmice, ide u stupac
