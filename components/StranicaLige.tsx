@@ -257,6 +257,10 @@ export default async function StranicaLige({
                         (u.strijelci && u.strijelci.length > 0) ||
                         (u.postava_domacin && u.postava_domacin.length > 0) ||
                         (u.postava_gost && u.postava_gost.length > 0);
+                      // HNS odgođenoj utakmici izbriše termin, pa bez
+                      // rezultata i bez datuma stoji samo "?:?". Utakmica
+                      // s novim terminom ima datum i ostaje kakva jest.
+                      const odgodjena = !u.rezultat && !u.datum && !u.stadion_datum;
 
                       const { domacin, gost, nepoznato } = strijelciPoKlubu(u);
 
@@ -283,7 +287,9 @@ export default async function StranicaLige({
                             <p className="font-sans text-lg leading-snug">
                               <PoveznicaKluba naziv={u.domacin} className="font-medium" />
                               {" "}
-                              <span className="semafor text-base">{u.rezultat ?? "?:?"}</span>
+                              <span className="semafor text-base">
+                                {u.rezultat ?? (odgodjena ? "ODG." : "?:?")}
+                              </span>
                               {" "}
                               <PoveznicaKluba naziv={u.gost} className="font-medium" />
                             </p>
@@ -312,6 +318,12 @@ export default async function StranicaLige({
                             )}
                             {u.suci && u.suci !== "Nepoznato" && <p>Suci: {u.suci}</p>}
                           </div>
+
+                          {odgodjena && (
+                            <p className="mt-3 font-sans text-sm italic" style={{ color: "var(--ink-muted)" }}>
+                              Utakmica je odgođena, novi termin još nije poznat.
+                            </p>
+                          )}
 
                           {!imaDetalje && u.rezultat && (
                             <p className="mt-3 font-sans text-sm italic" style={{ color: "var(--ink-muted)" }}>
