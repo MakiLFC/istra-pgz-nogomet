@@ -86,6 +86,29 @@ def main():
         BeautifulSoup("<html></html>", "html.parser"))
     sve &= provjeri(tablica == [], "prazno")
 
+    print("4. kočnica: ponovljeni klub ili krivi broj klubova se ne upisuje")
+    ukupna = scraper_supabase.parsiraj_tablicu_lige(stranica(UKUPNA))
+    sve &= provjeri(scraper_supabase.provjeri_tablicu(ukupna, 6) is None,
+                    "šest klubova u ligi od šest prolazi")
+    sve &= provjeri(scraper_supabase.provjeri_tablicu(ukupna, None) is None,
+                    "bez podatka o broju klubova prolazi")
+    dvostruka = [{"klub": k} for k, _, _ in UKUPNA + DOMACA]
+    sve &= provjeri("ponavljaju" in (scraper_supabase.provjeri_tablicu(
+                        dvostruka, None) or ""),
+                    "dvaput isti klub se prijavljuje")
+    sve &= provjeri("liga ih ima 7" in (scraper_supabase.provjeri_tablicu(
+                        ukupna, 7) or ""),
+                    "šest klubova u ligi od sedam se prijavljuje")
+
+    print("5. broj klubova iz natjecanja.json")
+    sezona = scraper_supabase.SEZONA
+    broj = scraper_supabase.ocekivani_broj_klubova
+    sve &= provjeri(broj("2. ŽNL PGŽ", sezona) == 6, "2. ŽNL PGŽ ima 6")
+    sve &= provjeri(broj("4. NL NS Rijeka", sezona) == 14,
+                    "4. NL NS Rijeka ima 14, s Novaljom koja je i dalje u tablici")
+    sve &= provjeri(broj("2. ŽNL PGŽ", "1999/00") is None,
+                    "za drugu sezonu se broj ne provjerava")
+
     if not sve:
         print("\nPALO: ljestvica se ne čita kako treba.")
         return 1

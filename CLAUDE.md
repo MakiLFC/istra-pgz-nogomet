@@ -800,6 +800,16 @@ koji se ponovi, dakle samo ukupnu. Čuva `test_tablica_dvostruka.py`.
 Pouka: broj klubova u ispisu ("tablica=32 klubova") odmah pokazuje da je
 nešto krivo, jer liga ima stalan broj klubova.
 
+Zato od 04.11.2026. postoji i KOČNICA (`provjeri_tablicu`): ljestvica u
+kojoj se klub ponavlja ili u kojoj broj klubova nije onaj iz
+`natjecanja.json` (popis `klubovi` plus `klubovi_izvan_natjecanja`, jer
+HNS odustalu Novalju i dalje drži u tablici) NE UPISUJE SE. Diže se
+greška prije ijednog upisa te lige, u bazi ostaju zadnji dobri podaci, a
+pokretanje završi crveno i stigne e-pošta. Kad klub uđe ili izađe iz lige
+usred sezone, popis u `natjecanja.json` se mora ispraviti, inače kočnica
+zaustavi ljestvicu te lige. Za druge sezone (`--sezona`) broj se ne
+provjerava, samo ponavljanje.
+
 **Tablica poretka se scrapa, ne računa.**
 Službena tablica već uključuje kaznene bodove (npr. "NK Crikvenica (-3)").
 Vlastiti izračun bi bio kriv.
