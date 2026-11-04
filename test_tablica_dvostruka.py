@@ -108,6 +108,10 @@ def main():
                     "4. NL NS Rijeka ima 14, s Novaljom koja je i dalje u tablici")
     sve &= provjeri(broj("2. ŽNL PGŽ", "1999/00") is None,
                     "za drugu sezonu se broj ne provjerava")
+    sve &= provjeri(broj("3. NL Zapad", sezona, "https://primjer.hr/x/") is None,
+                    "za drugu adresu (--url) se broj ne provjerava")
+    sve &= provjeri(broj("3. NL Zapad", sezona, scraper_supabase.NATJECANJA[0]["url"]) == 16,
+                    "za pravu adresu 3. NL Zapad ima 16")
 
     if not sve:
         print("\nPALO: ljestvica se ne čita kako treba.")

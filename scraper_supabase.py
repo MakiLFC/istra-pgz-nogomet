@@ -1809,11 +1809,13 @@ def usporedi_sa_sluzbenom(strijelci, sluzbeni):
     return f"NE POKLAPA SE! {opisi}"
 
 
-def ocekivani_broj_klubova(natjecanje_naziv, sezona):
+def ocekivani_broj_klubova(natjecanje_naziv, sezona, natjecanje_url=None):
     """
     Broj klubova u ljestvici po natjecanja.json: klubovi lige i odustali
     klubovi, koje HNS i dalje drži u tablici (Novalja u 4. NL). Vraća None
-    kad za tu ligu i sezonu podatka nema, pa se broj ne provjerava.
+    kad za tu ligu, sezonu i adresu podatka nema, pa se broj ne provjerava.
+    Adresa se uspoređuje kad je zadana, jer --url zna voditi na drugo
+    natjecanje pod istim nazivom (prošla sezona, suhi test).
     """
     try:
         with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -1824,6 +1826,8 @@ def ocekivani_broj_klubova(natjecanje_naziv, sezona):
     if referenca.get("sezona") != sezona:
         return None
     for n in referenca.get("natjecanja", []):
+        if natjecanje_url and n.get("url") != natjecanje_url:
+            continue
         if n.get("naziv") == natjecanje_naziv and n.get("klubovi"):
             return (len(n["klubovi"])
                     + len(n.get("klubovi_izvan_natjecanja") or []))
@@ -1879,7 +1883,7 @@ def dohvati_i_spremi_statistike(natjecanje_naziv, natjecanje_url,
     # ijednog upisa, pa u bazi ostaju zadnji dobri podaci, a pokretanje
     # završi crveno i stigne obavijest.
     problem = provjeri_tablicu(
-        tablica, ocekivani_broj_klubova(natjecanje_naziv, SEZONA))
+        tablica, ocekivani_broj_klubova(natjecanje_naziv, SEZONA, natjecanje_url))
     if problem:
         raise ValueError(f"ljestvica nije upisana, {problem}. HNS je "
                          f"vjerojatno promijenio stranicu natjecanja.")

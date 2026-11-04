@@ -807,8 +807,11 @@ HNS odustalu Novalju i dalje drži u tablici) NE UPISUJE SE. Diže se
 greška prije ijednog upisa te lige, u bazi ostaju zadnji dobri podaci, a
 pokretanje završi crveno i stigne e-pošta. Kad klub uđe ili izađe iz lige
 usred sezone, popis u `natjecanja.json` se mora ispraviti, inače kočnica
-zaustavi ljestvicu te lige. Za druge sezone (`--sezona`) broj se ne
-provjerava, samo ponavljanje.
+zaustavi ljestvicu te lige. Broj se provjerava samo za
+tekuću sezonu i adresu iz `natjecanja.json`; uz `--sezona` ili drugi
+`--url` (prošla sezona, suhi test) provjerava se samo ponavljanje. Prva
+verzija toga nije imala, pa je pao `test_suhi_test.py`, koji glumi
+"3. NL Zapad" s tri kluba.
 
 **Tablica poretka se scrapa, ne računa.**
 Službena tablica već uključuje kaznene bodove (npr. "NK Crikvenica (-3)").
