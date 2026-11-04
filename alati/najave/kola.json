@@ -2461,6 +2461,58 @@
       ],
       "ime": "pregled-1-znl-pgz-kolo-9-lovran-zamet",
       "naslov": "Pregled"
+    },
+    {
+      "dat": "3-nl-zapad-kolo-12",
+      "kolo": "12",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 07.11.2026.",
+      "sat": "Sve utakmice u 14:30",
+      "utakmice": [
+        {
+          "d": "Jadran-Poreč",
+          "g": "Lokomotiva (R)",
+          "termin": "SUB 14:30",
+          "derbi": true
+        },
+        {
+          "d": "Pomorac",
+          "g": "Kraljevica",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Pazinka-Pazin",
+          "g": "Banjole",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Naprijed (H)",
+          "g": "Krk",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "OŠK Omišalj",
+          "g": "Crikvenica",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Halubjan",
+          "g": "Buje",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Rovinj",
+          "g": "Rudar (L)",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Vinodol",
+          "g": "Nehaj",
+          "termin": "SUB 14:30"
+        }
+      ],
+      "ime": "najava-redovi-3-nl-zapad-kolo-12"
     }
   ]
 }
