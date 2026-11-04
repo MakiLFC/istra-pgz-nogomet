@@ -2443,6 +2443,24 @@
           "termin": "SUB 14:30"
         }
       ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-9-lovran-zamet",
+      "kolo": "9",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SRI 04.11.2026.",
+      "sat": "Posljednja utakmica 9. kola, na Lokvi",
+      "utakmice": [
+        {
+          "d": "Lovran",
+          "g": "Zamet",
+          "termin": "SRI 15:30",
+          "rezultat": "1:0"
+        }
+      ],
+      "ime": "pregled-1-znl-pgz-kolo-9-lovran-zamet",
+      "naslov": "Pregled"
     }
   ]
 }
