@@ -25,6 +25,7 @@ import { strijelciPoKlubu, zapisStrijelca } from "@/lib/utakmice";
 import { formaPoKlubu } from "@/lib/tablica";
 import { posjecenostKlubova } from "@/lib/posjecenost";
 import { slugUtakmice } from "@/lib/slug";
+import { uDatum } from "@/lib/klubovi";
 import { slugoviIzStatistika } from "@/lib/igraci";
 import ZaglavljeStranice from "@/components/ZaglavljeStranice";
 import PoveznicaKluba from "@/components/PoveznicaKluba";
@@ -257,10 +258,18 @@ export default async function StranicaLige({
                         (u.strijelci && u.strijelci.length > 0) ||
                         (u.postava_domacin && u.postava_domacin.length > 0) ||
                         (u.postava_gost && u.postava_gost.length > 0);
-                      // HNS odgođenoj utakmici izbriše termin, pa bez
-                      // rezultata i bez datuma stoji samo "?:?". Utakmica
-                      // s novim terminom ima datum i ostaje kakva jest.
-                      const odgodjena = !u.rezultat && !u.datum && !u.stadion_datum;
+                      // HNS odgođenoj utakmici izbriše termin. Scraper
+                      // tada zadrži zadnji poznati (prazan termin ne briše
+                      // onaj u bazi), pa odgođenu prepoznaje i datum koji je
+                      // prošao prije više od tri dana, a rezultata nema.
+                      // Utakmica s novim terminom ima budući datum i ostaje
+                      // kakva jest.
+                      const datumUtakmice = uDatum(u.datum);
+                      const odgodjena =
+                        !u.rezultat &&
+                        (datumUtakmice
+                          ? Date.now() - datumUtakmice.getTime() > 4 * 86400000
+                          : !u.stadion_datum);
 
                       const { domacin, gost, nepoznato } = strijelciPoKlubu(u);
 
