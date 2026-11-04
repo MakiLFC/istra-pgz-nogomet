@@ -789,6 +789,17 @@ okidaju uzbunu, a krivo zbrojen gol ili igrač koji je ispao i dalje se
 prijavljuju. Vrijedi isto pravilo kao kod ponavljanja prema HNS-u: lažna
 uzbuna je skupa jednako kao propuštena. Čuva `test_provjera_strijelaca.py`.
 
+**HNS je u blok ljestvice dodao i domaću ljestvicu.** Od 02.11.2026. iza
+ukupne ljestvice u istom bloku (`div.competition_table`) stoji i
+ljestvica domaćih utakmica, s istim klubovima od prvog mjesta. Scraper je
+čitao sve retke, pa je 02.11. upisao 32 kluba za 3. NL Zapad, 28 za 4. NL
+i 1. ŽNL te 12 za 2. ŽNL, a stranica lige prikazivala je tablicu dvaput:
+nakon zadnjeg mjesta opet je išlo 1. Andrej je to javio 04.11. sa
+snimkom zaslona 2. ŽNL. Sada `parsiraj_tablicu_lige` čita do prvog kluba
+koji se ponovi, dakle samo ukupnu. Čuva `test_tablica_dvostruka.py`.
+Pouka: broj klubova u ispisu ("tablica=32 klubova") odmah pokazuje da je
+nešto krivo, jer liga ima stalan broj klubova.
+
 **Tablica poretka se scrapa, ne računa.**
 Službena tablica već uključuje kaznene bodove (npr. "NK Crikvenica (-3)").
 Vlastiti izračun bi bio kriv.

@@ -1173,11 +1173,19 @@ def parsiraj_tablicu_lige(soup):
     blok = soup.find("div", class_="competition_table")
     if not blok:
         return []
+    # Od 02.11.2026. HNS u istom bloku iza ukupne ljestvice daje i
+    # ljestvicu domaćih utakmica, s istim klubovima od prvog mjesta. Prva
+    # je ukupna, pa se čita do prvog kluba koji se ponovi.
     tablica = []
+    vidjeni = set()
     for li in blok.find_all("li"):
         klub_link = li.find("a", href=lambda h: h and "/klubovi/" in h)
         if not klub_link:
             continue
+        klub = klub_link.get_text(strip=True)
+        if klub in vidjeni:
+            break
+        vidjeni.add(klub)
 
         def cell(k):
             d = li.find("div", class_=k)
@@ -1185,7 +1193,7 @@ def parsiraj_tablicu_lige(soup):
 
         tablica.append({
             "pozicija": cell("position"),
-            "klub": klub_link.get_text(strip=True),
+            "klub": klub,
             "odigrano": cell("played"),
             "pobjede": cell("wins"),
             "remiji": cell("draws"),
