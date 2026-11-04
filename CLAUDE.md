@@ -1964,9 +1964,16 @@ Dvije stvari uz to:
   Dariju ove sezone ima tri pobjede i remi, 11:4. Ostalo (poraz iz
   svibnja, prošlosezonski susreti) dolazi od Andreja, dakle smije u
   tekst, po iznimci iz pravila 5.
-- Navod je pisan iz kluba, u prvom licu. U našoj najavi ide u trećem
-  licu, bez uskličnika i bez "mi", osim ako Andrej ne kaže da ga
-  citiramo doslovno.
+- Navod je pisan iz kluba, u prvom licu. ANDREJ JE 04.11.2026. REKAO DA
+  SE PREPRIČA U TREĆEM LICU, dakle bez uskličnika, bez "mi" i bez
+  navodnika. Oblik koji ide u najavu:
+
+  "Na Dariju je Cres ove sezone najjači: četiri utakmice, tri pobjede i
+  remi, uz gol razliku 11:4. Posljednji prvenstveni poraz pred svojom
+  publikom upisao je još u svibnju. Prošle sezone su obje momčadi
+  slavile na svom terenu, Cres 3:0, a Ližnjan 2:1, pogocima u samoj
+  završnici."
+
 
 Kad je najava napisana, ovu stavku obriši.
 
