@@ -2402,6 +2402,47 @@
       ],
       "ime": "pregled-1-znl-pgz-kolo-9",
       "naslov": "Pregled"
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-10",
+      "kolo": "10",
+      "stil": "redovi",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 07.11.2026.",
+      "sat": "Sve utakmice u 14:30",
+      "slobodan": "Štinjan",
+      "utakmice": [
+        {
+          "d": "Rječina",
+          "g": "Smoljanci",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Cres",
+          "g": "Ližnjan",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Umag-CC Umago",
+          "g": "Funtana",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Medulin 1921",
+          "g": "Klana",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Otočac",
+          "g": "Borac (Ba)",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Žminj",
+          "g": "Mladost Fažana",
+          "termin": "SUB 14:30"
+        }
+      ]
     }
   ]
 }
