@@ -1947,6 +1947,29 @@ napisati (pravilo 5). Koliko će izbivati Andrej ne zna (rekao 03.11.), pa
 se u najavi piše SAMO da se ozlijedio u prošlom kolu, bez tvrdnje da
 propušta Goranin - Lošinj i bez ponovnog pitanja. Kad je najava napisana, ovu stavku obriši.
 
+**ZA NAJAVU 10. KOLA 4. NL: Cres - Ližnjan, navod s Cresa.** Andrej je
+04.11.2026. poslao ovo, u prvom licu, kako ga je dao klub:
+
+> Dari je ove sezone naša velika snaga! U četiri domaća susreta upisali
+> smo tri pobjede i jedan remi, uz gol-razliku 11:4. Posljednji
+> prvenstveni poraz pred domaćom publikom datira još iz svibnja, a taj
+> niz želimo nastaviti!
+>
+> Zanimljivo, prošle sezone obje su momčadi slavile na svom terenu. Mi
+> uvjerljivih 3:0, a Ližnjan 2:1, pogocima u samoj završnici utakmice.
+
+Dvije stvari uz to:
+
+- Učinak kod kuće se poklapa s našim podacima do znamenke: Cres na
+  Dariju ove sezone ima tri pobjede i remi, 11:4. Ostalo (poraz iz
+  svibnja, prošlosezonski susreti) dolazi od Andreja, dakle smije u
+  tekst, po iznimci iz pravila 5.
+- Navod je pisan iz kluba, u prvom licu. U našoj najavi ide u trećem
+  licu, bez uskličnika i bez "mi", osim ako Andrej ne kaže da ga
+  citiramo doslovno.
+
+Kad je najava napisana, ovu stavku obriši.
+
 **Sažetak uz zapisnik NIJE članak.** Kratak osvrt na pojedinu utakmicu,
 onaj koji stoji ispod zapisnika na stranici utakmice, ide u stupac
 `utakmice.tekst_clanka`, dakle u redak te utakmice. Tablica `clanci` je
