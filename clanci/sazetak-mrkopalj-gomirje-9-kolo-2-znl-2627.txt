@@ -1,0 +1,7 @@
+natjecanje: 2. ŽNL PGŽ
+sezona: 2026/27
+kolo: 9
+domacin: NK Mrkopalj
+gost: NK Gomirje
+derbi: da
+---
