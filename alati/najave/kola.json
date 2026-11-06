@@ -2513,6 +2513,53 @@
         }
       ],
       "ime": "najava-redovi-3-nl-zapad-kolo-12"
+    },
+    {
+      "dat": "1-znl-pgz-kolo-10",
+      "kolo": "10",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 07.11. i NED 08.11.2026.",
+      "sat": "Subota u 14:00, nedjelja u 14:00 i 14:30",
+      "utakmice": [
+        {
+          "d": "Zamet",
+          "g": "Stari grad Rijeka",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Rab",
+          "g": "Lovran",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Omladinac Vrata",
+          "g": "Draga",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Rikard Benčić",
+          "g": "Risnjak",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Goranin",
+          "g": "Lošinj",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Vihor (B)",
+          "g": "Vrbovsko",
+          "termin": "NED 14:30"
+        },
+        {
+          "d": "Turbina",
+          "g": "Mune",
+          "termin": "NED 14:30",
+          "derbi": true
+        }
+      ],
+      "ime": "najava-redovi-1-znl-pgz-kolo-10"
     }
   ]
 }

@@ -1940,13 +1940,6 @@ nema među neodrađenim suspenzijama, dakle kazna je odrađena. Registracija
 3:0 spomenuta je i u najavi zaostale utakmice Snježnik - Mrkopalj, ali u
 najavi 9. kola ide svejedno.
 
-**ZA NAJAVU 10. KOLA 1. ŽNL: ozljeda Nikole Dlake (Lošinj).** Andrej je
-03.11.2026. javio da se Dlaka ozlijedio u 9. kolu, protiv Omladinca Vrata
-(zapisnik: izašao u 15. minuti). To je Andrejev podatak, pa se smije
-napisati (pravilo 5). Koliko će izbivati Andrej ne zna (rekao 03.11.), pa
-se u najavi piše SAMO da se ozlijedio u prošlom kolu, bez tvrdnje da
-propušta Goranin - Lošinj i bez ponovnog pitanja. Kad je najava napisana, ovu stavku obriši.
-
 **ZA NAJAVU 10. KOLA 4. NL: Cres - Ližnjan, navod s Cresa.** Andrej je
 04.11.2026. poslao ovo, u prvom licu, kako ga je dao klub:
 
