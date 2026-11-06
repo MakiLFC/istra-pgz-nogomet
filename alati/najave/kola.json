@@ -2560,6 +2560,33 @@
         }
       ],
       "ime": "najava-redovi-1-znl-pgz-kolo-10"
+    },
+    {
+      "dat": "2-znl-pgz-kolo-9",
+      "kolo": "9",
+      "stil": "redovi",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "NED 08.11.2026.",
+      "sat": "Sve utakmice u 14:30",
+      "utakmice": [
+        {
+          "d": "Mrkopalj",
+          "g": "Gomirje",
+          "termin": "NED 14:30",
+          "derbi": true
+        },
+        {
+          "d": "Goranka",
+          "g": "Polet (Sk)",
+          "termin": "NED 14:30"
+        },
+        {
+          "d": "Snježnik",
+          "g": "Željezničar (M)",
+          "termin": "NED 14:30"
+        }
+      ],
+      "ime": "najava-redovi-2-znl-pgz-kolo-9"
     }
   ]
 }
