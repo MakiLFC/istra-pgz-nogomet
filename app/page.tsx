@@ -11,7 +11,8 @@ import { dohvatiClanke } from "@/lib/clanci";
 import Otkrivanje from "@/components/Otkrivanje";
 import Hero from "@/components/Hero";
 import OvajVikend from "@/components/OvajVikend";
-import { zadnjeKolo, utakmiceKola, golovi } from "@/lib/kolo";
+import { zadnjeKolo, utakmiceKola, golovi, sljedeceKolo } from "@/lib/kolo";
+import { datumKratko } from "@/lib/klubovi";
 
 // Naslovnica je najposjećenija stranica, pa se i najčešće obnavlja: uz
 // pet minuta to je do dvanaest renderiranja na sat, sve dok netko
@@ -43,6 +44,8 @@ type UtakmicaNaslovnica = {
   domacin: string;
   gost: string;
   rezultat: string | null;
+  datum: string | null;
+  vrijeme: string | null;
   gledatelja: string | null;
   derbi: boolean | null;
   tekst_clanka: string | null;
@@ -54,7 +57,7 @@ async function dohvatiUtakmice(): Promise<UtakmicaNaslovnica[]> {
   const { data, error } = await supabase
     .from("utakmice")
     .select(
-      "id, natjecanje, sezona, kolo, domacin, gost, rezultat, gledatelja, derbi, tekst_clanka"
+      "id, natjecanje, sezona, kolo, domacin, gost, rezultat, datum, vrijeme, gledatelja, derbi, tekst_clanka"
     )
     .order("created_at", { ascending: false });
 
@@ -91,6 +94,12 @@ export default async function Home() {
     : utakmice;
 
   const grupe = grupirajPoNatjecanju(utakmiceSezone);
+
+  // Ponoć današnjeg dana (UTC), za blok "Sljedeće kolo" ispod rezultata.
+  const sad = new Date();
+  const danas = new Date(
+    Date.UTC(sad.getUTCFullYear(), sad.getUTCMonth(), sad.getUTCDate())
+  );
 
   // Brojke za uvodnu traku. Utakmice i golovi broje se SAMO za odigrane
   // susrete, pa brojka raste iz kola u kolo umjesto da od prvog dana
@@ -206,6 +215,13 @@ export default async function Home() {
           // još nije odigrana - ništa za prikazati ovdje.
           if (najnovije.length === 0) return null;
 
+          // Ispod rezultata: utakmice sljedećeg kola, s danom i satom.
+          // Andrej je to tražio 06.11.2026., kad su sve najave bile
+          // objavljene. Kolo se bira po najbližem datumu (sljedeceKolo u
+          // lib/kolo.ts), pa odgođena utakmica bez novog termina ne
+          // zadržava blok na starom kolu.
+          const sljedece = sljedeceKolo(utakmiceSezone, liga.naziv, danas);
+
           return (
             <section key={liga.slug} className="mb-16">
               <Otkrivanje>
@@ -274,6 +290,56 @@ export default async function Home() {
                   );
                 })}
               </div>
+
+              {sljedece && (
+                <div className="mt-7">
+                  <p className="oznaka-sekcije mb-3">
+                    Sljedeće kolo · {sljedece.kolo}. kolo
+                  </p>
+                  <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                    {sljedece.utakmice.map((u, idx) => (
+                      <Otkrivanje key={u.id} kasnjenje={idx * 45}>
+                        <Link
+                          href={`/utakmica/${slugUtakmice(u)}`}
+                          className="flex items-center gap-3 px-4 py-3 transition-opacity hover:opacity-80"
+                          style={{
+                            background: "var(--paper)",
+                            border: u.derbi
+                              ? "2px solid var(--card-yellow)"
+                              : "1px dashed var(--line)",
+                          }}
+                        >
+                          <span
+                            className="w-[4.5rem] shrink-0 font-mono text-xs leading-tight"
+                            style={{ color: "var(--ink-muted)" }}
+                          >
+                            {datumKratko(u.datum)}
+                            {u.vrijeme && (
+                              <>
+                                <br />
+                                {u.vrijeme}
+                              </>
+                            )}
+                          </span>
+                          <p className="font-sans text-[15px] leading-snug">
+                            <span className="font-medium">{u.domacin}</span>
+                            {" - "}
+                            <span className="font-medium">{u.gost}</span>
+                          </p>
+                          {u.derbi && (
+                            <span
+                              className="ml-auto shrink-0 px-1.5 py-0.5 font-display text-[10px] font-bold uppercase tracking-widest"
+                              style={{ background: "var(--card-yellow)", color: "var(--ink)" }}
+                            >
+                              Derbi
+                            </span>
+                          )}
+                        </Link>
+                      </Otkrivanje>
+                    ))}
+                  </div>
+                </div>
+              )}
             </section>
           );
         })}
