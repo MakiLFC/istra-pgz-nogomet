@@ -1926,20 +1926,6 @@ najavom ili pregledom.
 Kazne koje izrekne stegovni sudac (isključenja, suspenzije) i dalje se
 provjeravaju u glasniku, kako stoji gore.
 
-**ZA NAJAVU 9. KOLA 2. ŽNL (08.11.2026.): Gomirje - Snježnik 3:0 bez
-borbe.** Utakmica 8. kola nije odigrana, a HNS ju je do 27.10.2026.
-registrirao kao 3:0 za Gomirje. Na Andrejevu uputu pregled 8. kola NIJE
-mijenjan (ondje piše da nije odigrana i da termin nove nije poznat), nego
-se registracija navodi u najavi 9. kola. Ljestvica tada glasi Gomirje 18,
-Goranka 16, Mrkopalj 12 (utakmica manje), Željezničar 11, Polet 10,
-Snježnik 0. Uz to provjeri u glasniku vrijedi li ta utakmica Božidaru
-Trboviću (Gomirje) kao odrađena kazna; pregled 8. kola je pisao da je
-odrađuje u sljedećoj utakmici Gomirja. Kad je najava napisana, ovu
-stavku obriši. DOPUNJENO 30.10.2026.: u glasniku br. 9 Trbovića više
-nema među neodrađenim suspenzijama, dakle kazna je odrađena. Registracija
-3:0 spomenuta je i u najavi zaostale utakmice Snježnik - Mrkopalj, ali u
-najavi 9. kola ide svejedno.
-
 **ZA NAJAVU 10. KOLA 4. NL: Cres - Ližnjan, navod s Cresa.** Andrej je
 04.11.2026. poslao ovo, u prvom licu, kako ga je dao klub:
 
