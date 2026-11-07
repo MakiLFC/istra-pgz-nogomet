@@ -1956,6 +1956,29 @@ Dvije stvari uz to:
 
 Kad je najava napisana, ovu stavku obriši.
 
+**ZA PREGLED 12. KOLA 3. NL: oproštaj Sousa Arauja (Crikvenica).** Andrej
+je 07.11.2026. poslao objavu NK Crikvenica uoči gostovanja u Omišlju
+(OŠK Omišalj - Crikvenica, Pušća, 12. kolo). Iz nje u pregled smije, jer
+dolazi od Andreja (iznimka iz pravila 5):
+
+- Brazilac Rhaillam Sousa Araujo (u bazi tim imenom) igrao je protiv
+  Omišlja POSLJEDNJU utakmicu za Crikvenicu. Čeka ga novi angažman u
+  Brazilu.
+- Jedan je od dvojice stranaca u seniorskoj momčadi, stigao je ove
+  jeseni i bio je jedan od standardnih igrača u ovoj polusezoni.
+- Klub mu je zahvalio i poželio sreću u nastavku karijere.
+
+Iz baze, do 11. kola: 11 nastupa i 984 minute, dva gola (protiv Krka u
+68. minuti za 2:2 i protiv Pomorca u 87. minuti za 2:1, oba kod kuće),
+dva žuta kartona. Prije pisanja provjeri je li igrao u Omišlju i je li
+zabio, pa to dodaj.
+
+Objava je pisana iz kluba, u prvom licu i s uskličnicima ("Joga bonito
+pod Kotor"). Prepričava se u TREĆEM LICU, bez "mi" i bez navodnika, kao
+navod s Cresa. Izraz "Joga bonito" je klupski, pa se ne prepisuje kao
+tvrdnja o igri. Ide uz odlomak o utakmici OŠK Omišalj - Crikvenica.
+Kad je pregled napisan, ovu stavku obriši.
+
 **Sažetak uz zapisnik NIJE članak.** Kratak osvrt na pojedinu utakmicu,
 onaj koji stoji ispod zapisnika na stranici utakmice, ide u stupac
 `utakmice.tekst_clanka`, dakle u redak te utakmice. Tablica `clanci` je
