@@ -1,0 +1,7 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 12
+domacin: NK Jadran-Poreč
+gost: NK Lokomotiva (R)
+derbi: da
+---

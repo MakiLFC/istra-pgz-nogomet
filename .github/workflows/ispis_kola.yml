@@ -33,6 +33,11 @@ on:
         description: "Broj kola, ili sve za cijelu sezonu"
         required: true
         type: string
+      bez_postava:
+        description: "Bez postava (krace, samo rezultati, strijelci i kartoni)"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -66,4 +71,5 @@ jobs:
       - name: Ispisi kolo
         env:
           KOLO: ${{ inputs.kolo }}
+          BEZ_POSTAVA: ${{ inputs.bez_postava }}
         run: python alati/ispis_kola.py liga.json "$KOLO"

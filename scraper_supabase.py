@@ -1173,11 +1173,19 @@ def parsiraj_tablicu_lige(soup):
     blok = soup.find("div", class_="competition_table")
     if not blok:
         return []
+    # Od 02.11.2026. HNS u istom bloku iza ukupne ljestvice daje i
+    # ljestvicu domaćih utakmica, s istim klubovima od prvog mjesta. Prva
+    # je ukupna, pa se čita do prvog kluba koji se ponovi.
     tablica = []
+    vidjeni = set()
     for li in blok.find_all("li"):
         klub_link = li.find("a", href=lambda h: h and "/klubovi/" in h)
         if not klub_link:
             continue
+        klub = klub_link.get_text(strip=True)
+        if klub in vidjeni:
+            break
+        vidjeni.add(klub)
 
         def cell(k):
             d = li.find("div", class_=k)
@@ -1185,7 +1193,7 @@ def parsiraj_tablicu_lige(soup):
 
         tablica.append({
             "pozicija": cell("position"),
-            "klub": klub_link.get_text(strip=True),
+            "klub": klub,
             "odigrano": cell("played"),
             "pobjede": cell("wins"),
             "remiji": cell("draws"),
@@ -1801,6 +1809,48 @@ def usporedi_sa_sluzbenom(strijelci, sluzbeni):
     return f"NE POKLAPA SE! {opisi}"
 
 
+def ocekivani_broj_klubova(natjecanje_naziv, sezona, natjecanje_url=None):
+    """
+    Broj klubova u ljestvici po natjecanja.json: klubovi lige i odustali
+    klubovi, koje HNS i dalje drži u tablici (Novalja u 4. NL). Vraća None
+    kad za tu ligu, sezonu i adresu podatka nema, pa se broj ne provjerava.
+    Adresa se uspoređuje kad je zadana, jer --url zna voditi na drugo
+    natjecanje pod istim nazivom (prošla sezona, suhi test).
+    """
+    try:
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                               "natjecanja.json"), encoding="utf-8") as f:
+            referenca = json.load(f)
+    except (OSError, ValueError):
+        return None
+    if referenca.get("sezona") != sezona:
+        return None
+    for n in referenca.get("natjecanja", []):
+        if natjecanje_url and n.get("url") != natjecanje_url:
+            continue
+        if n.get("naziv") == natjecanje_naziv and n.get("klubovi"):
+            return (len(n["klubovi"])
+                    + len(n.get("klubovi_izvan_natjecanja") or []))
+    return None
+
+
+def provjeri_tablicu(tablica, ocekivano):
+    """
+    Vraća opis problema s pročitanom ljestvicom, ili None kad je u redu.
+    02.11.2026. HNS je u blok ljestvice dodao i domaću ljestvicu, pa je u
+    bazu otišla tablica s dvostruko više klubova i stranica ju je
+    prikazala dvaput. Takva ljestvica se više ne upisuje.
+    """
+    klubovi = [r["klub"] for r in tablica]
+    ponovljeni = sorted({k for k in klubovi if klubovi.count(k) > 1})
+    if ponovljeni:
+        return f"klubovi se ponavljaju: {', '.join(ponovljeni)}"
+    if ocekivano is not None and len(tablica) != ocekivano:
+        return (f"pročitano {len(tablica)} klubova, a liga ih ima {ocekivano} "
+                f"(natjecanja.json)")
+    return None
+
+
 def dohvati_i_spremi_statistike(natjecanje_naziv, natjecanje_url,
                                 zapisnici=None):
     """Dohvaća tablicu + rang-liste i sprema ih u Supabase tablicu
@@ -1829,6 +1879,14 @@ def dohvati_i_spremi_statistike(natjecanje_naziv, natjecanje_url,
     )
 
     tablica = parsiraj_tablicu_lige(soup)
+    # Kriva ljestvica ne smije prepisati dobru. Greška se diže PRIJE
+    # ijednog upisa, pa u bazi ostaju zadnji dobri podaci, a pokretanje
+    # završi crveno i stigne obavijest.
+    problem = provjeri_tablicu(
+        tablica, ocekivani_broj_klubova(natjecanje_naziv, SEZONA, natjecanje_url))
+    if problem:
+        raise ValueError(f"ljestvica nije upisana, {problem}. HNS je "
+                         f"vjerojatno promijenio stranicu natjecanja.")
 
     # Pune liste iz sastava klubova (desetci igrača, ne samo top 5)
     svi_igraci = parsiraj_sve_igrace(soup)

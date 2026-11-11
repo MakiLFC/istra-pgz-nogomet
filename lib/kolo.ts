@@ -121,6 +121,43 @@ export function derbijiLige(utakmice: UtakmicaMin[], liga: string): UtakmicaMin[
   return derbiji.filter((u) => u.kolo === kolo);
 }
 
+/** "07.11.2026." -> ponoć UTC toga dana; stupac datum je tekst. */
+function datumIzTeksta(tekst: string | null | undefined): Date | null {
+  if (!tekst) return null;
+  const m = tekst.match(/^(\d{2})\.(\d{2})\.(\d{4})\./);
+  return m ? new Date(Date.UTC(+m[3], +m[2] - 1, +m[1])) : null;
+}
+
+/**
+ * Sljedeće kolo lige, za blok ispod rezultata na naslovnici: neodigrane
+ * utakmice kola kojem pripada NAJBLIŽA nadolazeća utakmica.
+ *
+ * Kolo se bira po datumu, a ne kao "zadnje odigrano plus jedan", iz dva
+ * razloga. U subotu navečer dio kola je odigran, pa bi "plus jedan"
+ * preskočio nedjeljne utakmice istog kola. I odgođena utakmica bez
+ * datuma, ili s davno prošlim zadnjim poznatim datumom, ne smije
+ * zadržati blok na starom kolu; zato ulaze samo utakmice s datumom od
+ * danas nadalje.
+ *
+ * `danas` je ponoć UTC današnjeg dana, isto kao u traci "Ovaj vikend".
+ */
+export function sljedeceKolo<
+  T extends UtakmicaMin & { datum?: string | null; vrijeme?: string | null }
+>(utakmice: T[], liga: string, danas: Date): { kolo: number; utakmice: T[] } | null {
+  const nadolazece = utakmice
+    .filter((u) => u.natjecanje === liga && u.kolo != null && !golovi(u.rezultat))
+    .map((u) => ({ u, d: datumIzTeksta(u.datum) }))
+    .filter((x): x is { u: T; d: Date } => x.d !== null && x.d >= danas)
+    .sort(
+      (a, b) =>
+        a.d.getTime() - b.d.getTime() ||
+        (a.u.vrijeme ?? "").localeCompare(b.u.vrijeme ?? "")
+    );
+  if (!nadolazece.length) return null;
+  const kolo = nadolazece[0].u.kolo as number;
+  return { kolo, utakmice: nadolazece.filter((x) => x.u.kolo === kolo).map((x) => x.u) };
+}
+
 /** Skrati tekst na cca `granica` znakova, na granici riječi */
 export function skrati(tekst: string, granica = 120): string {
   const t = tekst.trim();

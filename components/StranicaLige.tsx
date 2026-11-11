@@ -25,6 +25,7 @@ import { strijelciPoKlubu, zapisStrijelca } from "@/lib/utakmice";
 import { formaPoKlubu } from "@/lib/tablica";
 import { posjecenostKlubova } from "@/lib/posjecenost";
 import { slugUtakmice } from "@/lib/slug";
+import { uDatum } from "@/lib/klubovi";
 import { slugoviIzStatistika } from "@/lib/igraci";
 import ZaglavljeStranice from "@/components/ZaglavljeStranice";
 import PoveznicaKluba from "@/components/PoveznicaKluba";
@@ -257,6 +258,18 @@ export default async function StranicaLige({
                         (u.strijelci && u.strijelci.length > 0) ||
                         (u.postava_domacin && u.postava_domacin.length > 0) ||
                         (u.postava_gost && u.postava_gost.length > 0);
+                      // HNS odgođenoj utakmici izbriše termin. Scraper
+                      // tada zadrži zadnji poznati (prazan termin ne briše
+                      // onaj u bazi), pa odgođenu prepoznaje i datum koji je
+                      // prošao prije više od tri dana, a rezultata nema.
+                      // Utakmica s novim terminom ima budući datum i ostaje
+                      // kakva jest.
+                      const datumUtakmice = uDatum(u.datum);
+                      const odgodjena =
+                        !u.rezultat &&
+                        (datumUtakmice
+                          ? Date.now() - datumUtakmice.getTime() > 4 * 86400000
+                          : !u.stadion_datum);
 
                       const { domacin, gost, nepoznato } = strijelciPoKlubu(u);
 
@@ -283,7 +296,9 @@ export default async function StranicaLige({
                             <p className="font-sans text-lg leading-snug">
                               <PoveznicaKluba naziv={u.domacin} className="font-medium" />
                               {" "}
-                              <span className="semafor text-base">{u.rezultat ?? "?:?"}</span>
+                              <span className="semafor text-base">
+                                {u.rezultat ?? (odgodjena ? "ODG." : "?:?")}
+                              </span>
                               {" "}
                               <PoveznicaKluba naziv={u.gost} className="font-medium" />
                             </p>
@@ -312,6 +327,12 @@ export default async function StranicaLige({
                             )}
                             {u.suci && u.suci !== "Nepoznato" && <p>Suci: {u.suci}</p>}
                           </div>
+
+                          {odgodjena && (
+                            <p className="mt-3 font-sans text-sm italic" style={{ color: "var(--ink-muted)" }}>
+                              Utakmica je odgođena, novi termin još nije poznat.
+                            </p>
+                          )}
 
                           {!imaDetalje && u.rezultat && (
                             <p className="mt-3 font-sans text-sm italic" style={{ color: "var(--ink-muted)" }}>
