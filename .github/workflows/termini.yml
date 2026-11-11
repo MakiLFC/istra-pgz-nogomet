@@ -31,10 +31,28 @@
 name: Provjera termina
 
 on:
-  schedule:
-    # GitHub cron radi u UTC vremenu (ljeti +2 sata za hrvatsko vrijeme).
-    - cron: "0 5 * * *"    # svaki dan ujutro
-    - cron: "0 15 * * *"   # svaki dan poslijepodne
+  # ZAKAZANA POKRETANJA SU UGAŠENA 11.11.2026., privremeno.
+  #
+  # Od 10.11.2026. Semafor je iza Cloudflareove zaštite od robota: svaki
+  # dohvat s GitHuba vraća 403, a u odgovoru stoji "cf-mitigated: challenge"
+  # i stranica "Just a moment...". To je međuekran koji rješava JavaScript
+  # u pregledniku, pa ga scraper ne može proći. Provjereno poslom
+  # "Zašto 403" (alati/dijagnostika_403.py): padaju svi oblici zahtjeva
+  # jednako, i onaj koji izgleda kao pravi Chrome.
+  #
+  # Dok je tako, ovaj posao ne može ništa osvježiti, a svako pokretanje
+  # šalje dvanaest zahtjeva u njihovu zaštitu i Andreju mail o padu. Zato
+  # su cron retci zakomentirani, a ručno pokretanje je ostavljeno, da se
+  # jednim klikom provjeri je li zaštita popustila.
+  #
+  # VRAĆA SE tako da se maknu znakovi komentara s dva retka ispod, čim HNS
+  # propusti naš dohvat. Glavni scraper (scraper.yml) NIJE diran: on ide
+  # vikendom i ponedjeljkom, i ako ostane crven, to je znak da ovo još
+  # traje.
+  # schedule:
+  #   # GitHub cron radi u UTC vremenu (ljeti +2 sata za hrvatsko vrijeme).
+  #   - cron: "0 5 * * *"    # svaki dan ujutro
+  #   - cron: "0 15 * * *"   # svaki dan poslijepodne
   workflow_dispatch:
     inputs:
       obrisi_nestale:

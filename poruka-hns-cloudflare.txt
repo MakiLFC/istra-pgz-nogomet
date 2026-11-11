@@ -1,0 +1,57 @@
+Poruka za HNS, napisana 11.11.2026.
+
+Povod: od 10.11.2026. Semafor je iza Cloudflareove zaštite od robota, pa
+dohvat podataka za lokalarena.com vraća 403. Ovo je nacrt poruke kojom se
+traži da nas propuste. Prije slanja pogledaj je li sve točno i promijeni
+što želiš.
+
+Šalje se na adresu preko koje je dobiveno dopuštenje za prikaz podataka.
+
+----------------------------------------------------------------------
+Predmet: Lokal-Arena, zamolba za pristup Semaforu nakon uvođenja zaštite
+----------------------------------------------------------------------
+
+Poštovani,
+
+javljam se u vezi stranice lokalarena.com, za koju sam od vas dobio
+pisano dopuštenje za javni prikaz podataka s HNS Semafora, uz uvjet da
+nema nikakve komercijalizacije i da izvor bude jasno naveden. Oba uvjeta
+poštujem: na stranici nema nijednog oglasa niti bilo kakvog oblika
+zarade, a HNS Semafor je naveden kao izvor na svakoj stranici.
+
+Stranica prati niže lige na području Primorsko-goranske županije i Istre,
+dakle 3. NL Zapad, 4. NL NS Rijeka te 1. i 2. ŽNL PGŽ. Radim je sam, u
+slobodno vrijeme, i nije komercijalni projekt.
+
+Od 10. studenoga 2026. moj dohvat podataka sa Semafora više ne prolazi.
+Umjesto stranice dobivam odgovor Cloudflarea s kodom 403 i oznakom
+"cf-mitigated: challenge", dakle međuekran "Just a moment...". Iz
+preglednika se ista stranica otvara normalno, pa pretpostavljam da je
+riječ o novoj zaštiti od automatskog dohvata, a ne o odluci koja se tiče
+mene osobno.
+
+Zamolba mi je da za taj dohvat napravite iznimku, ako je to kod vas
+izvedivo.
+
+Da se zna o kojem je opsegu riječ:
+
+- dohvaćaju se stranice ta četiri natjecanja i zapisnici odigranih
+  utakmica, dakle isto ono što je javno vidljivo u pregledniku
+- dohvat ide najviše dvaput dnevno, u pravilu navečer nakon odigranog
+  kola, i jednom ponedjeljkom ujutro
+- zahtjevi dolaze s GitHub Actions poslužitelja, a ne s moje kućne adrese
+- podaci se ne preprodaju niti ustupaju trećima
+
+Spreman sam se prilagoditi onako kako vama odgovara. Mogu smanjiti
+učestalost, dohvaćati u vrijeme koje vam je najmanje opterećeno,
+predstavljati se jasnom oznakom po kojoj me možete prepoznati i
+blokirati ako ikad zasmeta, ili koristiti pristup koji mi vi odredite,
+ako postoji.
+
+Ako je iznimka moguća, javite mi što vam treba s moje strane. Ako nije,
+molim samo kratku potvrdu da je tako, pa ću se prilagoditi.
+
+Hvala unaprijed i lijep pozdrav,
+
+Andrej Malnar
+lokalarena.com
