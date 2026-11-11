@@ -1,0 +1,52 @@
+# Zašto 403, samo ručno.
+#
+# ČEMU SLUŽI
+# Od 10.11.2026. Semafor s GitHuba vraća 403 Forbidden na sve četiri
+# lige, a ista stranica se u pregledniku otvara normalno. Ovaj posao
+# dohvati jednu stranicu s nekoliko različitih skupova zaglavlja i
+# ispiše što poslužitelj vrati: status, zaglavlja i početak odgovora, uz
+# izlaznu adresu. Iz toga se vidi odbija li se oblik zahtjeva ili adresa
+# s koje dolazimo.
+#
+# KAKO SE POKREĆE
+# Actions -> "Zašto 403" -> Run workflow. Polje "adresa" se smije
+# ostaviti prazno, tad ide na stranicu 3. NL Zapad.
+#
+# NE DIRA BAZU i ne mijenja ništa na Semaforu. Nekoliko zahtjeva, s
+# pauzom (alati/dijagnostika_403.py).
+
+name: Zašto 403
+
+on:
+  workflow_dispatch:
+    inputs:
+      adresa:
+        description: "Stranica koja se proba (prazno = 3. NL Zapad)"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  dijagnostika:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Preuzmi kod
+        uses: actions/checkout@v7
+
+      - name: Postavi Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Instaliraj pakete
+        run: pip install requests
+
+      - name: Probaj dohvatiti Semafor
+        env:
+          ADRESA: ${{ inputs.adresa }}
+          PYTHONUNBUFFERED: "1"
+        run: python alati/dijagnostika_403.py

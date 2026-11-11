@@ -789,6 +789,30 @@ okidaju uzbunu, a krivo zbrojen gol ili igrač koji je ispao i dalje se
 prijavljuju. Vrijedi isto pravilo kao kod ponavljanja prema HNS-u: lažna
 uzbuna je skupa jednako kao propuštena. Čuva `test_provjera_strijelaca.py`.
 
+**HNS je u blok ljestvice dodao i domaću ljestvicu.** Od 02.11.2026. iza
+ukupne ljestvice u istom bloku (`div.competition_table`) stoji i
+ljestvica domaćih utakmica, s istim klubovima od prvog mjesta. Scraper je
+čitao sve retke, pa je 02.11. upisao 32 kluba za 3. NL Zapad, 28 za 4. NL
+i 1. ŽNL te 12 za 2. ŽNL, a stranica lige prikazivala je tablicu dvaput:
+nakon zadnjeg mjesta opet je išlo 1. Andrej je to javio 04.11. sa
+snimkom zaslona 2. ŽNL. Sada `parsiraj_tablicu_lige` čita do prvog kluba
+koji se ponovi, dakle samo ukupnu. Čuva `test_tablica_dvostruka.py`.
+Pouka: broj klubova u ispisu ("tablica=32 klubova") odmah pokazuje da je
+nešto krivo, jer liga ima stalan broj klubova.
+
+Zato od 04.11.2026. postoji i KOČNICA (`provjeri_tablicu`): ljestvica u
+kojoj se klub ponavlja ili u kojoj broj klubova nije onaj iz
+`natjecanja.json` (popis `klubovi` plus `klubovi_izvan_natjecanja`, jer
+HNS odustalu Novalju i dalje drži u tablici) NE UPISUJE SE. Diže se
+greška prije ijednog upisa te lige, u bazi ostaju zadnji dobri podaci, a
+pokretanje završi crveno i stigne e-pošta. Kad klub uđe ili izađe iz lige
+usred sezone, popis u `natjecanja.json` se mora ispraviti, inače kočnica
+zaustavi ljestvicu te lige. Broj se provjerava samo za
+tekuću sezonu i adresu iz `natjecanja.json`; uz `--sezona` ili drugi
+`--url` (prošla sezona, suhi test) provjerava se samo ponavljanje. Prva
+verzija toga nije imala, pa je pao `test_suhi_test.py`, koji glumi
+"3. NL Zapad" s tri kluba.
+
 **Tablica poretka se scrapa, ne računa.**
 Službena tablica već uključuje kaznene bodove (npr. "NK Crikvenica (-3)").
 Vlastiti izračun bi bio kriv.
@@ -1902,26 +1926,35 @@ najavom ili pregledom.
 Kazne koje izrekne stegovni sudac (isključenja, suspenzije) i dalje se
 provjeravaju u glasniku, kako stoji gore.
 
-**ZA NAJAVU 9. KOLA 2. ŽNL (08.11.2026.): Gomirje - Snježnik 3:0 bez
-borbe.** Utakmica 8. kola nije odigrana, a HNS ju je do 27.10.2026.
-registrirao kao 3:0 za Gomirje. Na Andrejevu uputu pregled 8. kola NIJE
-mijenjan (ondje piše da nije odigrana i da termin nove nije poznat), nego
-se registracija navodi u najavi 9. kola. Ljestvica tada glasi Gomirje 18,
-Goranka 16, Mrkopalj 12 (utakmica manje), Željezničar 11, Polet 10,
-Snježnik 0. Uz to provjeri u glasniku vrijedi li ta utakmica Božidaru
-Trboviću (Gomirje) kao odrađena kazna; pregled 8. kola je pisao da je
-odrađuje u sljedećoj utakmici Gomirja. Kad je najava napisana, ovu
-stavku obriši. DOPUNJENO 30.10.2026.: u glasniku br. 9 Trbovića više
-nema među neodrađenim suspenzijama, dakle kazna je odrađena. Registracija
-3:0 spomenuta je i u najavi zaostale utakmice Snježnik - Mrkopalj, ali u
-najavi 9. kola ide svejedno.
+**ZA NAJAVU 10. KOLA 4. NL: Cres - Ližnjan, navod s Cresa.** Andrej je
+04.11.2026. poslao ovo, u prvom licu, kako ga je dao klub:
 
-**ZA NAJAVU 10. KOLA 1. ŽNL: ozljeda Nikole Dlake (Lošinj).** Andrej je
-03.11.2026. javio da se Dlaka ozlijedio u 9. kolu, protiv Omladinca Vrata
-(zapisnik: izašao u 15. minuti). To je Andrejev podatak, pa se smije
-napisati (pravilo 5). Koliko će izbivati Andrej ne zna (rekao 03.11.), pa
-se u najavi piše SAMO da se ozlijedio u prošlom kolu, bez tvrdnje da
-propušta Goranin - Lošinj i bez ponovnog pitanja. Kad je najava napisana, ovu stavku obriši.
+> Dari je ove sezone naša velika snaga! U četiri domaća susreta upisali
+> smo tri pobjede i jedan remi, uz gol-razliku 11:4. Posljednji
+> prvenstveni poraz pred domaćom publikom datira još iz svibnja, a taj
+> niz želimo nastaviti!
+>
+> Zanimljivo, prošle sezone obje su momčadi slavile na svom terenu. Mi
+> uvjerljivih 3:0, a Ližnjan 2:1, pogocima u samoj završnici utakmice.
+
+Dvije stvari uz to:
+
+- Učinak kod kuće se poklapa s našim podacima do znamenke: Cres na
+  Dariju ove sezone ima tri pobjede i remi, 11:4. Ostalo (poraz iz
+  svibnja, prošlosezonski susreti) dolazi od Andreja, dakle smije u
+  tekst, po iznimci iz pravila 5.
+- Navod je pisan iz kluba, u prvom licu. ANDREJ JE 04.11.2026. REKAO DA
+  SE PREPRIČA U TREĆEM LICU, dakle bez uskličnika, bez "mi" i bez
+  navodnika. Oblik koji ide u najavu:
+
+  "Na Dariju je Cres ove sezone najjači: četiri utakmice, tri pobjede i
+  remi, uz gol razliku 11:4. Posljednji prvenstveni poraz pred svojom
+  publikom upisao je još u svibnju. Prošle sezone su obje momčadi
+  slavile na svom terenu, Cres 3:0, a Ližnjan 2:1, pogocima u samoj
+  završnici."
+
+
+Kad je najava napisana, ovu stavku obriši.
 
 **Sažetak uz zapisnik NIJE članak.** Kratak osvrt na pojedinu utakmicu,
 onaj koji stoji ispod zapisnika na stranici utakmice, ide u stupac
