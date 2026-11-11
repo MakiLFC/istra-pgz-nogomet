@@ -189,9 +189,14 @@ def main():
         for opis in prosli:
             print(f"  - {opis}")
     else:
-        print("Nijedan oblik ne prolazi. To govori u prilog tome da je")
-        print("blokirana ADRESA s koje dohvaćamo (GitHubovi poslužitelji),")
-        print("pa dotjerivanje zaglavlja nema smisla.")
+        print("Nijedan oblik ne prolazi, pa dotjerivanje zaglavlja nema")
+        print("smisla. PAZI: to samo po sebi NE znači da je blokirana adresa")
+        print("s koje dohvaćamo. Provjereno 11.11.2026.: isti zahtjev s")
+        print("kućne adrese, dakle izvan podatkovnog centra, također vraća")
+        print("403. Izazov se postavlja svemu što nije pravi preglednik,")
+        print("bilo odakle, jer ga rješava JavaScript koji requests ne")
+        print("izvršava. Sljedeća provjera je zato pravi preglednik, a ne")
+        print("druga adresa.")
 
     # Ovo je dijagnostika, ne provjera ispravnosti, pa se ne završava
     # crveno ni kad sve padne: crveno bi značilo da je nešto u NAŠEM kodu
