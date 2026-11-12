@@ -1,0 +1,83 @@
+# Podaci za kolo, samo ručno.
+#
+# ČEMU SLUŽI
+# Ispiše sve što treba za pisanje najave ili pregleda jednog kola:
+# raspored, poredak, formu, strijelce, kartone i ostalo. Čita ISKLJUČIVO
+# našu bazu, preko funkcija public.najava_kola() i public.pregled_kola().
+#
+# ZAMJENJUJE POSAO "Ispis kola", koji je iste podatke vadio sa Semafora
+# preko suhog prolaza scrapera. HNS je 12.11.2026. automatsko preuzimanje
+# zabranio (pravilo 7 u CLAUDE.md), pa se "Ispis kola" više ne pokreće.
+#
+# KAKO SE POKREĆE
+# Actions -> "Podaci za kolo" -> Run workflow, pa:
+#   vrsta  najava ili pregled
+#   liga   točno kako stoji u bazi, npr. "3. NL Zapad"
+#   kolo   broj, ili prazno (najava uzme prvo neodigrano, pregled zadnje
+#          odigrano)
+#
+# NE DIRA BAZU, samo čita (alati/podaci_kola.py).
+
+name: Podaci za kolo
+
+on:
+  workflow_dispatch:
+    inputs:
+      vrsta:
+        description: "Što se piše"
+        required: true
+        default: "najava"
+        type: choice
+        options:
+          - najava
+          - pregled
+      liga:
+        description: "Naziv lige, točno kako stoji u bazi"
+        required: true
+        default: "3. NL Zapad"
+        type: choice
+        options:
+          - "3. NL Zapad"
+          - "4. NL NS Rijeka"
+          - "1. ŽNL PGŽ"
+          - "2. ŽNL PGŽ"
+      kolo:
+        description: "Broj kola (prazno = funkcija sama odredi)"
+        required: false
+        type: string
+      sezona:
+        description: "Sezona"
+        required: false
+        default: "2026/27"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  podaci:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Preuzmi kod
+        uses: actions/checkout@v7
+
+      - name: Postavi Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Instaliraj pakete
+        run: pip install requests
+
+      - name: Ispiši podatke
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          VRSTA: ${{ inputs.vrsta }}
+          LIGA: ${{ inputs.liga }}
+          KOLO: ${{ inputs.kolo }}
+          SEZONA: ${{ inputs.sezona }}
+          PYTHONUNBUFFERED: "1"
+        run: python alati/podaci_kola.py
