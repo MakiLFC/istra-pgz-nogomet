@@ -2835,6 +2835,47 @@
         }
       ],
       "ime": "najava-redovi-3-nl-zapad-kolo-13"
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-11",
+      "kolo": "11",
+      "stil": "redovi",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 14.11.2026.",
+      "sat": "Sve utakmice u 14:30",
+      "slobodan": "Cres",
+      "utakmice": [
+        {
+          "d": "Mladost Fažana",
+          "g": "Rječina",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Borac (Ba)",
+          "g": "Žminj",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Klana",
+          "g": "Otočac",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Funtana",
+          "g": "Medulin 1921",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Ližnjan",
+          "g": "Umag-CC Umago",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Štinjan",
+          "g": "Smoljanci",
+          "termin": "SUB 14:30"
+        }
+      ]
     }
   ]
 }
