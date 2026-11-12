@@ -55,7 +55,6 @@ set vrijeme = '14:30'
 where natjecanje = '4. NL NS Rijeka'
   and sezona = '2026/27'
   and kolo = 11
-  and datum = '14.11.2026.'
   and vrijeme is distinct from '14:30';
 
 -- 4. PROVJERA: mora vratiti točno šest redaka, sve u 14:30
