@@ -16,12 +16,21 @@
 name: Grbovi klubova
 
 on:
+  # OKIDAC NA PUSH JE MAKNUT 12.11.2026.
+  #
+  # Posao se pokretao sam kad bi se na radnoj grani dirnuo ovaj workflow
+  # ili alat. Nakon zabrane od 12.11. to je znacilo da svaki push koji
+  # dirne ovu datoteku ode po grbove na Semafor i padne na Cloudflareu.
+  # Dogodilo se dvaput istog dana, upravo dok se u datoteku upisivala
+  # napomena da se ne pokrece.
+  #
+  # Pouka: oznaka u komentaru ne zaustavlja posao, okidac ga zaustavlja.
+  # push:
+  #   branches: ["claude/**"]
+  #   paths:
+  #     - "alati/najave/preuzmi_grbove.py"
+  #     - ".github/workflows/grbovi.yml"
   workflow_dispatch:
-  push:
-    branches: ["claude/**"]
-    paths:
-      - "alati/najave/preuzmi_grbove.py"
-      - ".github/workflows/grbovi.yml"
 
 permissions:
   contents: write

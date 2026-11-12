@@ -2783,6 +2783,99 @@
       ],
       "ime": "pregled-2-znl-pgz-kolo-9",
       "naslov": "Pregled"
+    },
+    {
+      "dat": "3-nl-zapad-kolo-13",
+      "kolo": "13",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 14.11.2026.",
+      "sat": "Sve utakmice u 14:30",
+      "utakmice": [
+        {
+          "d": "Nehaj",
+          "g": "Pomorac",
+          "termin": "SUB 14:30",
+          "derbi": true
+        },
+        {
+          "d": "Lokomotiva (R)",
+          "g": "Naprijed (H)",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Rudar (L)",
+          "g": "Pazinka-Pazin",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Krk",
+          "g": "OŠK Omišalj",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Kraljevica",
+          "g": "Rovinj",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Banjole",
+          "g": "Jadran-Poreč",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Crikvenica",
+          "g": "Halubjan",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Buje",
+          "g": "Vinodol",
+          "termin": "SUB 14:30"
+        }
+      ],
+      "ime": "najava-redovi-3-nl-zapad-kolo-13"
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-11",
+      "kolo": "11",
+      "stil": "redovi",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 14.11.2026.",
+      "sat": "Sve utakmice u 14:30",
+      "slobodan": "Cres",
+      "utakmice": [
+        {
+          "d": "Mladost Fažana",
+          "g": "Rječina",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Borac (Ba)",
+          "g": "Žminj",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Klana",
+          "g": "Otočac",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Funtana",
+          "g": "Medulin 1921",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Ližnjan",
+          "g": "Umag-CC Umago",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Štinjan",
+          "g": "Smoljanci",
+          "termin": "SUB 14:30"
+        }
+      ]
     }
   ]
 }
