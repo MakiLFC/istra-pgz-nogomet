@@ -1,0 +1,61 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 11
+domacin: NK Vinodol
+gost: NK Nehaj
+rezultat: 1:1
+stadion_datum: BAHALIN, NOVI VINODOLSKI, 07.11.2026. 14:30
+gledatelja: 100
+suci: Goran Krneta, David Ružić, Luka Mravić. Delegat: Goran Šajina.
+---
+# Prepisano iz snimke zaslona od 12.11.2026.
+# Dvoje nije bilo čitljivo i ne upisuje se dok Andrej ne potvrdi:
+#   - minuta ulaska Davida Svasta (Nehaj), klizač ju je prekrio
+#   - Marko Čop (Vinodol), je li igrač na klupi ili trener
+
+[domacin]
+99 | Matija Ugrinović | vratar
+4 | Tin Lagumdžija
+8 | Antonio Mazzarolli
+9 | Edmar Junior Dos Santos Neves | 68' izlazak
+10 | Deni Rubčić | 80' izlazak
+11 | Luka Filipović (C) | 84' zuti
+14 | Badara Seck
+18 | Marcelo Suden | 16' gol
+22 | Sebastijan Antić
+27 | Maro Peričić | 55' zuti
+77 | Noah Ugrinović | 80' izlazak
+
+[domacin pricuva]
+1 | Philipp Franjo Chaoui | vratar
+5 | Gabriel Proleta | 80' ulazak
+19 | Sven Ratković
+20 | Ivo Humberto Kreusch Junior
+23 | Din Pozderac | 68' ulazak
+24 | David Butorac | 80' ulazak
+25 | Maro Brčić
+50 | Duje Zrilić
+91 | Adriano Šmit
+
+[gost]
+1 | Lovro Pichler | vratar
+5 | Domagoj Prizmić (C)
+6 | David Dabac | 78' zuti
+8 | Duje Tomljanović
+11 | Ivan Vukelić | 64' izlazak
+14 | Luka Lopac | 64' zuti
+17 | Matej Prizmić | 22' zuti, 68' izlazak
+18 | Marko Hodak | 35' gol
+19 | Luka Hodak
+20 | Filip Dizdar
+21 | Filip Zrilić
+
+[gost pricuva]
+12 | Marino Godinić | vratar
+2 | Diego Čopić
+3 | Gabrijel Tomić
+7 | David Svast | 68' ulazak
+9 | Patrick Vrban
+13 | Ante Prpić | 64' ulazak, 86' zuti
+15 | Vinko Šolić
+25 | Dorian Katalinić
