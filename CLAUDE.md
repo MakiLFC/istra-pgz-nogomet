@@ -85,6 +85,18 @@ promijeni, mora stići pisanim putem od HNS-a.
   - `.github/workflows/slika.yml` ("Izreži sliku") samo ručno, kad se
     želi točno odabrani izrez spremljen u repozitorij; za obične
     fotografije uz članke više nije potreban
+  - `.github/workflows/zapisnik.yml` ("Zapisnik u bazu") samo ručno:
+    upiše rezultat, strijelce, obje postave, kartone i izmjene iz
+    datoteke `zapisnici/<slug>.txt`. Tako od 12.11.2026. podaci ulaze
+    umjesto scrapera.
+  - `.github/workflows/ljestvice.yml` ("Preračunaj ljestvice") samo
+    ručno: iz naše baze izračuna tablicu, strijelce i kartone. Pokreće
+    se nakon upisa zapisnika jednog kola.
+  - `.github/workflows/podaci_kola.yml` ("Podaci za kolo") samo ručno:
+    ispis za pisanje najave ili pregleda, iz funkcija `najava_kola()` i
+    `pregled_kola()`. Zamjenjuje "Ispis kola". BROJ KOLA SE UVIJEK
+    UPISUJE: bez njega funkcija uzme prvo kolo koje nije do kraja
+    odigrano, a to kod 3. NL daje 5. kolo, zbog odgođene utakmice.
   - `.github/workflows/ispis_kola.yml` ("Ispis kola") samo ručno: suhi
     prolaz koji ispiše sve za pisanje najave ili pregleda jednog kola.
     Od 31.10.2026. ima kvačicu "bez postava": postave su najdulji dio
@@ -228,6 +240,65 @@ objavljivanja pojedinih javno dostupnih informacija".
 Pouka šira od ovog slučaja: dopuštenje za PRIKAZ nije dopuštenje za
 PREUZIMANJE. Kad se gradi nešto nad tuđim podacima, to dvoje se pita
 odvojeno i unaprijed, a ne kad zaštita jednom stane na put.
+
+**Kako vikend izgleda bez scrapera.** Napravljeno i isprobano
+12.11.2026., prije prvog takvog vikenda.
+
+```
+1. Andrej snimi zaslon dok prolazi kroz zapisnik na Semaforu,
+   jednu snimku po utakmici, i posalje je u razgovor
+2. Claude iz kadrova prepise podatke u zapisnici/<slug>.txt i
+   pokrene posao "Zapisnik u bazu"
+3. kad je kolo upisano, pokrene se "Preracunaj ljestvice" za tu ligu
+```
+
+Snimka je bolja od slika: jedan potez po utakmici, prebacivanje na
+karticu gosta ide u istoj snimci, a ista stavka vidi se u više kadrova,
+pa kad klizač prekrije minutu u jednom, u drugom je čitljiva. Kad se
+nešto ipak ne vidi, PITA SE, ne pogađa.
+
+Prijepis je provjeren na Vinodol - Nehaj (12. kolo 3. NL), jedinoj
+utakmici koju imamo iz oba izvora: svih 39 igrača, svi golovi, kartoni i
+izmjene s minutama poklopili su se sa scraperovim zapisom. Razlike su
+bile dvije, obje u korist prijepisa ("Philipp  Franjo Chaoui" s dva
+razmaka i "DORIAN KATALINIĆ" velikim slovima u bazi).
+
+Što se izgubilo i što je zamjena:
+
+- KOČNICE koja je naš zbroj uspoređivala sa službenom listom na stranici
+  natjecanja više nema. Golove čuva provjera da se zbroj iz postava
+  slaže s rezultatom, i alat odbija upis kad se ne slaže. KARTONI NEMAJU
+  ARITMETIČKU PROVJERU: previđen žuti ne lomi nikakav zbroj. Zato snimke
+  ne brisati do kraja sezone, one su dokaz.
+- TABLICA SE VIŠE NE SCRAPA NEGO RAČUNA, pa kazneni bodovi stoje u
+  `kazneni_bodovi.json`. Izmjereni su 12.11.2026. usporedbom izračuna sa
+  zadnjom službenom tablicom koju je scraper skinuo: NK Crikvenica -3 u
+  3. NL i NK Umag-CC Umago -3 u 4. NL, u županijskima nijedan. Ta se
+  usporedba mogla napraviti samo dok je službena tablica još u bazi.
+- PREKINUTA UTAKMICA ima rezultat, a bodovi se ne upisuju dok se ne
+  odigra do kraja. Takve stoje u `prekinute_utakmice.json`; pri računanju
+  tablice im se poništi rezultat, a utakmica ostaje u popisu, da klubovi
+  ne ispadnu iz tablice. Prva je Medulin 1921 - Mladost Fažana (0:0),
+  prekinuta nakon 25 minuta. Claude je iz brojki prvo zaključio da je
+  naša tablica svježija od HNS-ove; Andrej je rekao što je doista bilo.
+  Pouka: razlika prema službenoj tablici nije uvijek kazneni bod.
+- NK NOVALJA ispada iz tablice 4. NL, jer je napustila ligu i njezine
+  utakmice su obrisane. Službena ju je i dalje držala. Andrej je
+  12.11.2026. rekao da je makne skroz.
+- LISTA NASTUPA I MINUTA se ne računa i ostaje zamrznuta na zadnjem
+  prolazu scrapera. Nju je scraper uzimao sa sastava na stranici
+  natjecanja i bez pogađanja se ne da izvesti.
+
+Provjereno 12.11.2026. na sve četiri lige: izračun iz naše baze daje
+istu tablicu i iste ljestvice strijelaca i kartona kao zadnji scraperov
+prolaz, bez ijedne razlike u brojkama (3. NL 121 i 206, 4. NL 87 i 142,
+1. ŽNL 110 i 147, 2. ŽNL 51 i 67).
+
+Jedna zamka pri upisu: KOLO SE NE PREPOZNAJE PO DATUMU. Vinodol - Nehaj
+odigran je 07.11., a pripada 12. kolu, dok je 11. kolo imalo Vinodol u
+gostima. Zapisnik na Semaforu kolo ne piše. Zato alat, kad par ne nađe u
+zadanom kolu, sam potraži taj par bez kola i ispiše u kojem stvarno
+stoji.
 
 **Tipovi događaja u postavi čitaju se IZ HTML-a, ne pogađaju se.**
 Svaki događaj je `<li>` unutar `div.matchEvents` i nosi tip u klasi i u
