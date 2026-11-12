@@ -65,6 +65,7 @@ from scraper_supabase import (  # noqa: E402
 )
 
 KAZNENI = Path("kazneni_bodovi.json")
+PREKINUTE = Path("prekinute_utakmice.json")
 
 STUPCI = ("kolo,domacin,gost,rezultat,postava_domacin,postava_gost,autogolovi")
 
@@ -126,6 +127,47 @@ def rezultat_u_brojke(rezultat):
         return int(dijelovi[0]), int(dijelovi[1])
     except ValueError:
         return None
+
+
+def bez_prekinutih(utakmice, prekinute):
+    """Izbacuje utakmice koje se ne broje u tablicu.
+
+    Prekinuta utakmica ima rezultat u bazi, ali se bodovi ne upisuju dok
+    se ne odigra do kraja. Prvi takav slucaj je Medulin 1921 - Mladost
+    Fazana u 4. NL 2026/27, prekinuta nakon 25 minuta: HNS je u svojoj
+    tablici oboma vodio utakmicu manje, a nas izracun ju je brojao.
+
+    Utakmica se NE IZBACUJE iz popisa nego joj se ponisti rezultat. Tako
+    oba kluba ostaju u tablici i kad im je to jedina utakmica u popisu,
+    samo bez bodova. Izbacivanje bi ih u tom slucaju maknulo iz tablice.
+
+    Dira SAMO tablicu. Ljestvice strijelaca i kartona se i s njom
+    poklapaju sa sluzbenima do zadnje brojke, pa se ne mijenjaju.
+    """
+    if not prekinute:
+        return utakmice, []
+
+    kljucevi = {((p.get("domacin") or "").strip(), (p.get("gost") or "").strip())
+                for p in prekinute}
+
+    ostaju, izbaceni = [], []
+    for u in utakmice:
+        kljuc = ((u.get("domacin") or "").strip(), (u.get("gost") or "").strip())
+        if kljuc in kljucevi and rezultat_u_brojke(u.get("rezultat")):
+            izbaceni.append(f"{kljuc[0]} - {kljuc[1]} ({u.get('rezultat')})")
+            ostaju.append({**u, "rezultat": None})
+        else:
+            ostaju.append(u)
+
+    nenadjene = [f"{d} - {g}" for d, g in kljucevi
+                 if not any(f"{d} - {g}" in i for i in izbaceni)]
+    if nenadjene:
+        print("UPOZORENJE: ove prekinute utakmice nisu nadjene medju odigranima, "
+              "pa nisu ni izbacene. Provjeri imena i tko je domacin:")
+        for opis in nenadjene:
+            print(f"  {opis}")
+
+    return ostaju, izbaceni
 
 
 def izracunaj_tablicu(utakmice, kazneni):
@@ -282,6 +324,11 @@ def main():
         kazneni_svi = json.loads(KAZNENI.read_text(encoding="utf-8"))
     kazneni = (kazneni_svi.get(args.sezona) or {}).get(args.natjecanje) or {}
 
+    prekinute_sve = {}
+    if PREKINUTE.exists():
+        prekinute_sve = json.loads(PREKINUTE.read_text(encoding="utf-8"))
+    prekinute = (prekinute_sve.get(args.sezona) or {}).get(args.natjecanje) or []
+
     print("=" * 60)
     print(f"{args.natjecanje}, sezona {args.sezona}, radnja {args.radnja}")
     print("=" * 60)
@@ -295,7 +342,14 @@ def main():
         print("Kazneni bodovi: nijedan nije upisan")
     print()
 
-    tablica = izracunaj_tablicu(utakmice, kazneni)
+    za_tablicu, izbaceni = bez_prekinutih(utakmice, prekinute)
+    if izbaceni:
+        print("Ne broje se u tablicu (prekinute):")
+        for opis in izbaceni:
+            print(f"  {opis}")
+        print()
+
+    tablica = izracunaj_tablicu(za_tablicu, kazneni)
 
     ucinci, bez_postava = ucinci_iz_zapisnika(odigrane)
     strijelci, kartoni = slozi_pune_rang_liste(ucinci, koliko=10000)
