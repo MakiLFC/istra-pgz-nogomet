@@ -208,7 +208,15 @@ def usporedi_tablice(nasa, sluzbena):
         print("  U bazi nema tablice za usporedbu.")
         return
 
-    # Klub u službenoj tablici zna nositi kaznu u imenu: "NK Crikvenica (-3)".
+    # Zagrada se čisti na OBJE strane, jer se pojavljuje u obje, ali
+    # različito. U službenoj tablici nosi kazneni bod ("NK Crikvenica
+    # (-3)"), a u utakmicama oznaku mjesta ("NK Lokomotiva (R)",
+    # "NK Naprijed (H)", "NK Rudar (L)"), koje u službenoj tablici nema.
+    # Prva verzija je čistila samo službenu stranu, pa su ta tri kluba
+    # 12.11.2026. ispala kao da ih nema u drugoj tablici.
+    #
+    # Ovo vrijedi samo za usporedbu. Spremaju se imena iz utakmica, jer
+    # su to ista imena koja stranica koristi za poveznice na klubove.
     def ocisti(ime):
         return (ime or "").split("(")[0].strip()
 
@@ -216,7 +224,7 @@ def usporedi_tablice(nasa, sluzbena):
     razlika = False
 
     for r in nasa:
-        njihov = njihovi.get(r["klub"])
+        njihov = njihovi.get(ocisti(r["klub"]))
         if njihov is None:
             print(f"  SAMO KOD NAS: {r['klub']}")
             razlika = True
@@ -227,8 +235,9 @@ def usporedi_tablice(nasa, sluzbena):
                   f"(odigrano {r['odigrano']} prema {njihov.get('odigrano')})")
             razlika = True
 
+    nasi = {ocisti(r["klub"]) for r in nasa}
     for ime in njihovi:
-        if not any(r["klub"] == ime for r in nasa):
+        if ime not in nasi:
             print(f"  SAMO U SLUŽBENOJ: {ime}")
             razlika = True
 
