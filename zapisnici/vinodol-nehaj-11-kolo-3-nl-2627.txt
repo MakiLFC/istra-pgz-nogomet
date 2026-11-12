@@ -9,9 +9,9 @@ gledatelja: 100
 suci: Goran Krneta, David Ružić, Luka Mravić. Delegat: Goran Šajina.
 ---
 # Prepisano iz snimke zaslona od 12.11.2026.
-# Dvoje nije bilo čitljivo i ne upisuje se dok Andrej ne potvrdi:
-#   - minuta ulaska Davida Svasta (Nehaj), klizač ju je prekrio
-#   - Marko Čop (Vinodol), je li igrač na klupi ili trener
+# Dvoje nije bilo čitljivo sa snimke, Andrej je potvrdio 12.11.2026.:
+#   - Svastova minuta ulaska potvrđena 12.11.: 68. minuta
+#   - Marko Čop je TRENER Vinodola, kao i Lopac kod Nehaja, pa ne ide u postavu
 
 [domacin]
 99 | Matija Ugrinović | vratar
