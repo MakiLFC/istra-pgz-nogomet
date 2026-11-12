@@ -1,3 +1,8 @@
+# !!! NE POKRETATI. Ovaj posao dohvaća sa Semafora, a HNS je 12.11.2026.
+# !!! zabranio automatsko preuzimanje podataka (pravilo 7 u CLAUDE.md).
+# !!! Datoteka ostaje radi povijesti. Podaci za najave i preglede od sada
+# !!! idu poslom "Podaci za kolo", koji čita samo našu bazu.
+#
 # Zašto 403, samo ručno.
 #
 # ČEMU SLUŽI
