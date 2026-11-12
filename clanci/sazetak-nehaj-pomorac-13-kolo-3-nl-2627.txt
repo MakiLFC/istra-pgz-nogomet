@@ -1,0 +1,7 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 13
+domacin: NK Nehaj
+gost: NK Pomorac
+derbi: da
+---
