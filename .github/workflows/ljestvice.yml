@@ -1,0 +1,85 @@
+# Preračunaj ljestvice, samo ručno.
+#
+# ČEMU SLUŽI
+# Od 12.11.2026. scraper ne radi (pravilo 7 u CLAUDE.md), pa se tablica
+# poretka te ljestvice strijelaca i kartona više ne pune same. Ovaj posao
+# ih izračuna IZ NAŠE BAZE, iz rezultata i iz postava koje je Andrej
+# upisao poslom "Zapisnik u bazu". Ne dohvaća ništa izvana.
+#
+# KADA SE POKREĆE
+# Nakon što su upisani svi zapisnici jednog kola. Tada su rezultati,
+# ljestvica i ljestvice strijelaca i kartona svježi u istom trenutku.
+#
+# KAKO SE POKREĆE
+# Actions -> "Preračunaj ljestvice" -> Run workflow:
+#   liga    koja liga
+#   radnja  provjeri (ništa ne upisuje, samo usporedi) ili upis
+#
+# PRVI PUT OBAVEZNO "provjeri". Dok u bazi još stoji zadnja tablica koju
+# je scraper skinuo s HNS-a, izračun se može usporediti s njom i razlika
+# u bodovima pokaže koji kazneni bod fali u kazneni_bodovi.json. Ta
+# prilika se gubi čim se tablica prepiše.
+#
+# NE DIRA LISTU NASTUPA, nju se iz zapisnika ne može izračunati
+# (alati/preracunaj_ljestvice.py).
+
+name: Preračunaj ljestvice
+
+on:
+  workflow_dispatch:
+    inputs:
+      liga:
+        description: "Liga"
+        required: true
+        default: "3. NL Zapad"
+        type: choice
+        options:
+          - "3. NL Zapad"
+          - "4. NL NS Rijeka"
+          - "1. ŽNL PGŽ"
+          - "2. ŽNL PGŽ"
+      radnja:
+        description: "Što napraviti"
+        required: true
+        default: "provjeri"
+        type: choice
+        options:
+          - provjeri
+          - upis
+      sezona:
+        description: "Sezona"
+        required: false
+        default: "2026/27"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  ljestvice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Preuzmi kod
+        uses: actions/checkout@v7
+
+      - name: Postavi Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Instaliraj pakete
+        run: pip install -r requirements.txt
+
+      - name: Preračunaj
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          LIGA: ${{ inputs.liga }}
+          RADNJA: ${{ inputs.radnja }}
+          SEZONA: ${{ inputs.sezona }}
+          PYTHONUNBUFFERED: "1"
+        run: |
+          python alati/preracunaj_ljestvice.py \
+            --natjecanje "$LIGA" --sezona "$SEZONA" --radnja "$RADNJA"
