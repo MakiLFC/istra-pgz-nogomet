@@ -81,7 +81,6 @@ RADNJE
 """
 
 import argparse
-import json
 import os
 import re
 import sys
@@ -344,7 +343,8 @@ class Utakmice:
     def dohvati(self, kljuc_utakmice):
         o = requests.get(self.cilj, headers=self.zaglavlja, timeout=30,
                          params={**self._uvjet(kljuc_utakmice),
-                                 "select": "id,domacin,gost,rezultat,suci,gledatelja"})
+                                 "select": "id,domacin,gost,rezultat,suci,gledatelja,"
+                                           "strijelci,postava_domacin,postava_gost"})
         if o.status_code >= 400:
             raise SystemExit(f"Dohvat utakmice nije uspio ({o.status_code}): {o.text}")
         return o.json()
@@ -374,6 +374,81 @@ class Utakmice:
         if o.status_code >= 400:
             raise SystemExit(f"Upis u utakmicu nije uspio ({o.status_code}): {o.text}")
         return o.json()
+
+
+def kljuc_igraca(igrac):
+    """Igrač i njegovi događaji, u obliku pogodnom za usporedbu."""
+    dogadjaji = sorted((d.get("tip", ""), d.get("minuta", ""))
+                       for d in igrac.get("dogadjaji") or [])
+    return (igrac.get("igrac", ""), bool(igrac.get("pricuvni")), tuple(dogadjaji))
+
+
+def usporedi_postavu(naziv, iz_datoteke, iz_baze):
+    """Ispiše razlike između prijepisa i onoga što je u bazi.
+
+    Postoji zbog jedne jedine prilike: Vinodol - Nehaj iz 12. kola 2026/27
+    je utakmica koju imamo iz OBA izvora, scraperovog i ručnog prijepisa.
+    Usporedba je jedini način da se vidi prepisuje li se točno, a kasnije
+    je neće biti, jer scraper više ne radi.
+    """
+    if iz_baze is None:
+        print(f"  {naziv}: u bazi nema postave, usporedba nije moguća")
+        return
+
+    nasi = {kljuc_igraca(i) for i in iz_datoteke}
+    njihovi = {kljuc_igraca(i) for i in iz_baze}
+
+    print(f"  {naziv}: datoteka {len(iz_datoteke)}, baza {len(iz_baze)} igrača")
+
+    samo_mi = sorted(nasi - njihovi)
+    samo_oni = sorted(njihovi - nasi)
+
+    if not samo_mi and not samo_oni:
+        print("    poklapa se u cijelosti")
+        return
+
+    for ime, pricuva, dogadjaji in samo_mi:
+        print(f"    SAMO U DATOTECI: {ime}"
+              f"{' (pričuva)' if pricuva else ''} {list(dogadjaji)}")
+    for ime, pricuva, dogadjaji in samo_oni:
+        print(f"    SAMO U BAZI:     {ime}"
+              f"{' (pričuva)' if pricuva else ''} {list(dogadjaji)}")
+
+
+def usporedi_s_bazom(redak, stupci):
+    print()
+    print("USPOREDBA PRIJEPISA S ONIM ŠTO JE U BAZI")
+    print("-" * 60)
+
+    for polje in ("rezultat", "gledatelja", "suci"):
+        nas = stupci.get(polje)
+        njihov = redak.get(polje)
+        if nas is None:
+            continue
+        # Suci u bazi imaju prijelome redaka iz HTML-a, pa se uspoređuju
+        # bez praznina.
+        isti = "".join(str(nas).split()) == "".join(str(njihov or "").split())
+        print(f"  {polje}: {'isto' if isti else 'RAZLIKUJE SE'}")
+        if not isti:
+            print(f"    datoteka: {nas}")
+            print(f"    baza:     {njihov}")
+
+    nasi_strijelci = [(s["igrac"], s["minuta"], bool(s.get("autogol")))
+                      for s in stupci["strijelci"]]
+    njihovi_strijelci = [(s.get("igrac"), s.get("minuta"), bool(s.get("autogol")))
+                         for s in (redak.get("strijelci") or [])]
+    if sorted(nasi_strijelci) == sorted(njihovi_strijelci):
+        print("  strijelci: poklapaju se")
+    else:
+        print("  strijelci: RAZLIKUJU SE")
+        print(f"    datoteka: {nasi_strijelci}")
+        print(f"    baza:     {njihovi_strijelci}")
+
+    usporedi_postavu("postava domaćina", stupci["postava_domacin"],
+                     redak.get("postava_domacin"))
+    usporedi_postavu("postava gosta", stupci["postava_gost"],
+                     redak.get("postava_gost"))
+    print()
 
 
 def opis(kljuc_utakmice) -> str:
@@ -466,8 +541,7 @@ def main():
 
     if args.radnja == "provjeri":
         print("Utakmica je pronađena. Ovo je samo provjera, ništa nije upisano.")
-        print("Stanje u bazi:")
-        print(json.dumps(redci[0], ensure_ascii=False, indent=2))
+        usporedi_s_bazom(redci[0], stupci)
         return
 
     if args.radnja == "skini":
