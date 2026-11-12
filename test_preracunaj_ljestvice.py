@@ -110,6 +110,38 @@ def test_sve_vrijednosti_su_tekst():
     print("OK: sve vrijednosti su tekst, kao i kod scrapera")
 
 
+def test_prekinuta_ne_ulazi_u_tablicu():
+    """Prekinuta utakmica ima rezultat, ali se bodovi ne upisuju.
+
+    Prvi slucaj: Medulin 1921 - Mladost Fazana u 4. NL 2026/27,
+    prekinuta nakon 25 minuta. HNS ju u tablici nije brojao, a nas je
+    izracun oboma davao utakmicu i bod vise.
+    """
+    utakmice = [utakmica("A", "B", "1:1"), utakmica("A", "C", "2:0")]
+    prekinute = [{"domacin": "A", "gost": "B"}]
+
+    ostaju, izbaceni = p.bez_prekinutih(utakmice, prekinute)
+    # Utakmica ostaje u popisu, ali bez rezultata, da klubovi ne ispadnu
+    # iz tablice kad im je to jedina utakmica.
+    assert len(ostaju) == 2, ostaju
+    assert len(izbaceni) == 1, izbaceni
+
+    tablica = {r["klub"]: r for r in p.izracunaj_tablicu(ostaju, {})}
+    assert tablica["A"]["odigrano"] == "1"
+    assert tablica["B"]["odigrano"] == "0"
+    assert tablica["B"]["bodovi"] == "0"
+    print("OK: prekinuta utakmica ne ulazi u tablicu")
+
+
+def test_prekinuta_u_drugom_smjeru_se_ne_dira():
+    """Uzvrat istog para je druga utakmica i mora ostati."""
+    utakmice = [utakmica("B", "A", "3:0")]
+    ostaju, izbaceni = p.bez_prekinutih(utakmice, [{"domacin": "A", "gost": "B"}])
+    assert len(ostaju) == 1 and not izbaceni
+    assert ostaju[0]["rezultat"] == "3:0"
+    print("OK: utakmica obrnutog smjera se ne izbacuje")
+
+
 if __name__ == "__main__":
     test_rezultat_u_brojke()
     test_bodovi_i_poredak()
@@ -118,4 +150,6 @@ if __name__ == "__main__":
     test_kazneni_bodovi()
     test_prazno_ime_kluba_se_preskace()
     test_sve_vrijednosti_su_tekst()
+    test_prekinuta_ne_ulazi_u_tablicu()
+    test_prekinuta_u_drugom_smjeru_se_ne_dira()
     print("\nSVE PROLAZI")

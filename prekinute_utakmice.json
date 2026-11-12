@@ -1,0 +1,12 @@
+{
+  "_upute": "Utakmice koje se NE BROJE u tablicu poretka, iako u bazi imaju rezultat. Tipicno prekinute utakmice: bodovi se ne upisuju dok se ne odigraju do kraja. Kad se utakmica odigra, stavka se odavde makne i tablica se preracuna. Isuljucuje se SAMO iz tablice, ne i iz ljestvica strijelaca i kartona, jer se one sa sluzbenima poklapaju i bez toga. Par je jedinstven po sezoni i smjeru, pa kolo ne treba.",
+  "2026/27": {
+    "4. NL NS Rijeka": [
+      {
+        "domacin": "NK Medulin 1921",
+        "gost": "NK Mladost Fažana",
+        "napomena": "prekinuta nakon 25 minuta, bodovi se ne upisuju do odigravanja"
+      }
+    ]
+  }
+}
