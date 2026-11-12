@@ -1,0 +1,84 @@
+# Zapisnik u bazu, samo ručno.
+#
+# ČEMU SLUŽI
+# Od 12.11.2026. scraper više ne radi, jer je HNS zabranio automatsko
+# preuzimanje (pravilo 7 u CLAUDE.md). Rezultate, strijelce, postave,
+# kartone i izmjene od tada upisuje Andrej: snimi zaslon dok prolazi
+# kroz zapisnik na Semaforu, Claude iz snimke prepiše podatke u datoteku
+# zapisnici/<slug>.txt, a ovaj posao je upiše u redak te utakmice.
+#
+# Upisuje iste stupce koje je upisivao i scraper, u istom obliku, pa
+# stranica prikazuje zapisnik kao i dosad. Stupce derbi, tekst_clanka,
+# slika_url i autogolovi ne dira.
+#
+# KAKO SE POKREĆE
+# Actions -> "Zapisnik u bazu" -> Run workflow:
+#   zapisnik  ime datoteke bez nastavka, npr.
+#             vinodol-nehaj-11-kolo-3-nl-2627
+#   radnja    provjeri (ništa ne upisuje), upis, skini
+#
+# Datoteka mora biti na grani s koje se posao pokreće, a sam workflow
+# mora biti na mainu da bi se uopće dao pokrenuti.
+#
+# KOČNICA
+# Zbroj golova iz postava mora se slagati s rezultatom, uz autogol
+# pripisan protivniku. Kad se ne slaže, ne upisuje se ništa, jer to
+# gotovo uvijek znači krivo prepisanu minutu ili igrača. Kvačica
+# "dopusti nesklad" to propušta, i koristi se samo kad je nesklad
+# stvaran.
+
+name: Zapisnik u bazu
+
+on:
+  workflow_dispatch:
+    inputs:
+      zapisnik:
+        description: "Ime datoteke iz mape zapisnici, bez .txt"
+        required: true
+        type: string
+      radnja:
+        description: "Što napraviti"
+        required: true
+        default: "provjeri"
+        type: choice
+        options:
+          - provjeri
+          - upis
+          - skini
+      dopusti_nesklad:
+        description: "Upiši i kad se zbroj golova ne slaže s rezultatom"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+jobs:
+  zapisnik:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Preuzmi kod
+        uses: actions/checkout@v7
+
+      - name: Postavi Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Instaliraj pakete
+        run: pip install requests
+
+      - name: Upiši zapisnik
+        # Vrijednosti idu kroz okolinu, ne kroz naredbeni redak, da ime s
+        # navodnikom ili razmakom ne može razbiti naredbu.
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          ZAPISNIK: ${{ inputs.zapisnik }}
+          RADNJA: ${{ inputs.radnja }}
+          NESKLAD: ${{ inputs.dopusti_nesklad && '--dopusti-nesklad' || '' }}
+          PYTHONUNBUFFERED: "1"
+        run: python alati/zapisnik_u_bazu.py "$ZAPISNIK" --radnja "$RADNJA" $NESKLAD
