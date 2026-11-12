@@ -1,6 +1,6 @@
 natjecanje: 3. NL Zapad
 sezona: 2026/27
-kolo: 11
+kolo: 12
 domacin: NK Vinodol
 gost: NK Nehaj
 rezultat: 1:1
