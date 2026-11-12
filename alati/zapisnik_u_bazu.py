@@ -349,6 +349,25 @@ class Utakmice:
             raise SystemExit(f"Dohvat utakmice nije uspio ({o.status_code}): {o.text}")
         return o.json()
 
+    def nadji_par(self, kljuc_utakmice):
+        """Isti par, ali BEZ kola. Služi samo za poruku o grešci.
+
+        Kad utakmica nije nađena, najčešći uzrok nije krivo ime nego
+        krivo kolo: utakmica zna biti odgođena ili igrana unaprijed, pa
+        datum ne govori kojem kolu pripada. Provjereno 12.11.2026. na
+        Vinodol - Nehaj, odigranoj 07.11., koja nije u 11. kolu.
+
+        Zato alat sam potraži par i kaže u kojem kolu stoji, umjesto da
+        korisnik pogađa.
+        """
+        bez_kola = {k: v for k, v in kljuc_utakmice.items() if k != "kolo"}
+        o = requests.get(self.cilj, headers=self.zaglavlja, timeout=30,
+                         params={**self._uvjet(bez_kola),
+                                 "select": "kolo,datum,rezultat"})
+        if o.status_code >= 400:
+            return []
+        return o.json()
+
     def promijeni(self, kljuc_utakmice, podaci):
         o = requests.patch(self.cilj, headers=self.zaglavlja, timeout=30,
                            params=self._uvjet(kljuc_utakmice), json=podaci)
@@ -424,11 +443,26 @@ def main():
 
     redci = tablica.dohvati(kljuc_utakmice)
     if len(redci) != 1:
-        raise SystemExit(
-            f"Utakmica nije pronađena jednoznačno ({len(redci)} redaka). "
-            "Provjeri natjecanje, sezonu, kolo i imena klubova, koja moraju "
-            "stajati točno kako su u bazi."
-        )
+        poruka = [f"Utakmica nije pronađena jednoznačno ({len(redci)} redaka)."]
+
+        if not redci:
+            drugdje = tablica.nadji_par(kljuc_utakmice)
+            if drugdje:
+                poruka.append("Taj par u bazi POSTOJI, ali u drugom kolu:")
+                for r in drugdje:
+                    poruka.append(
+                        f"  {r.get('kolo')}. kolo, datum {r.get('datum') or 'nepoznat'}, "
+                        f"rezultat {r.get('rezultat') or 'nema'}"
+                    )
+                poruka.append("Ispravi 'kolo' u zaglavlju datoteke.")
+            else:
+                poruka.append(
+                    "Par nije nađen ni bez kola, pa je vjerojatno krivo ime "
+                    "kluba, natjecanja ili sezone. Imena moraju stajati točno "
+                    "kako su u bazi."
+                )
+
+        raise SystemExit("\n".join(poruka))
 
     if args.radnja == "provjeri":
         print("Utakmica je pronađena. Ovo je samo provjera, ništa nije upisano.")
