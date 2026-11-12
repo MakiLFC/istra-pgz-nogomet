@@ -116,7 +116,44 @@ def main():
         print("Funkcija nije vratila ništa. Provjeri naziv lige i sezonu.")
         sys.exit(1)
 
+    upozori_na_staro_kolo(podaci, kolo)
     print(json.dumps(podaci, ensure_ascii=False, indent=2))
+
+
+def upozori_na_staro_kolo(podaci, zadano_kolo):
+    """Kad kolo nije zadano, javi ako je ispalo neko staro.
+
+    Funkcija bez zadanog kola uzima PRVO KOLO KOJE JOŠ NIJE ODIGRANO. To
+    nije isto što i sljedeće kolo na rasporedu: dovoljno je da u nekom
+    ranijem kolu stoji jedna odgođena utakmica bez rezultata pa da se
+    zaustavi ondje.
+
+    Provjereno 12.11.2026. na 3. NL Zapad: bez zadanog kola vratilo je
+    5. kolo, zbog odgođene utakmice od 19.09., umjesto 12. koje se tada
+    igralo. Takav ispis izgleda potpuno uredno i lako se po njemu napiše
+    najava krivog kola.
+
+    Zato se broj kola UVIJEK zadaje, a ovo je mreža ispod toga.
+    """
+    if zadano_kolo:
+        return
+
+    meta = podaci.get("meta") or {}
+    kolo = meta.get("kolo")
+    prvi = (meta.get("prvi_termin") or "")[:10]
+
+    if not kolo:
+        return
+
+    print("!" * 60)
+    print(f"KOLO NIJE ZADANO, funkcija je sama uzela {kolo}. kolo.")
+    if prvi:
+        print(f"Prvi termin tog kola je {prvi}.")
+    print("Ako to nije kolo koje pišeš, pokreni posao ponovno i upiši")
+    print("broj kola u polje. Staro kolo ispadne kad u njemu stoji")
+    print("odgođena utakmica bez rezultata.")
+    print("!" * 60)
+    print()
 
 
 if __name__ == "__main__":
