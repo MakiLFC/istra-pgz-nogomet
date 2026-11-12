@@ -1,7 +1,9 @@
 {
   "_upute": "Kazneni bodovi po sezoni i ligi, za izracun tablice. Sluzbena tablica ih je imala u imenu kluba (npr. 'NK Crikvenica (-3)'), a izracun ih ne moze znati. Broj se pise kako se oduzima, dakle negativan. Alat 'Preracunaj ljestvice' s radnjom 'provjeri' usporedi izracun sa zadnjom sluzbenom tablicom u bazi i razlika pokaze koji kazneni bod ovdje fali.",
   "2026/27": {
-    "3. NL Zapad": {},
+    "3. NL Zapad": {
+      "NK Crikvenica": -3
+    },
     "4. NL NS Rijeka": {},
     "1. ŽNL PGŽ": {},
     "2. ŽNL PGŽ": {}
