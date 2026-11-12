@@ -43,6 +43,16 @@ odgovore Andreju. Parovi klubova pišu se s običnim spojnicom i razmacima:
 "Naprijed (H) - Kraljevica". Gdje bi crtica dijelila rečenicu, rečenica se
 prepiše ili se stavi zarez, dvotočka ili točka.
 
+**7. Scraper se više ne pokreće. HNS je 12.11.2026. zabranio
+automatsko preuzimanje.**
+Njihovo odobrenje pokriva uredničko korištenje i objavljivanje POJEDINIH
+javno dostupnih informacija, a ne automatizirano i sustavno preuzimanje
+podataka iz njihove baze u drugu bazu. Izričito su rekli da pritom nije
+presudno je li projekt komercijalan ni koliko se često dohvaća. Nikad ne
+predlaži ni ne piši zaobilaženje te zaštite, ni pravim preglednikom, ni
+preko posrednika, ni na bilo koji drugi način. Ako se odobrenje ikad
+promijeni, mora stići pisanim putem od HNS-a.
+
 ---
 
 ## Tehnologija
@@ -159,6 +169,65 @@ raspored_migracija.sql  jednokratna migracija (već pokrenuta 08/2026)
 ---
 
 ## Naučeno na teži način (ne ponavljati)
+
+**HNS je zatvorio automatsko preuzimanje, i to je kraj scrapera.**
+10.11.2026. svi dohvati sa Semafora počeli su vraćati 403. Dijagnostika
+(`alati/dijagnostika_403.py`, posao "Zašto 403") pokazala je Cloudflareovu
+zaštitu: `server: cloudflare`, `cf-mitigated: challenge` i stranica
+"Just a moment...". Pala su sva četiri oblika zahtjeva, uključujući onaj
+koji izgleda kao pravi Chrome.
+
+Prva dva zaključka bila su kriva i oba su ispravljena istim danom:
+
+- "Blokira oblik zahtjeva" je palo, jer nijedan oblik nije prošao.
+- "Blokira adrese GitHuba" je palo kad je Andrej isti zahtjev pokrenuo s
+  kućnog računala (PowerShell, `Invoke-WebRequest`) i dobio isti 403.
+  Dakle izazov se postavlja svemu što nije pravi preglednik, bilo odakle,
+  jer ga rješava JavaScript koji `requests` ne izvršava.
+
+Time je ostao samo jedan tehnički put, pravi preglednik, i taj put je
+prestao biti naš izbor. Andrej je 11.11. pitao HNS za iznimku, a
+12.11.2026. je dobio odgovor koji to odbija. Ključne rečenice, da se ne
+prepričavaju napamet:
+
+> ... važno je razlikovati javni prikaz i uredničko korištenje pojedinih
+> informacija od automatiziranog i sustavnog preuzimanja podataka iz naše
+> baze.
+>
+> Činjenica da su određeni podaci javno dostupni svim korisnicima HNS
+> Semafora ne znači da je dopušteno njihovo automatizirano prikupljanje,
+> kopiranje i pohranjivanje u druge baze podataka.
+>
+> ... ne možemo omogućiti pristup API-ju jer je takav oblik korištenja
+> podataka rezerviran za nositelja odgovarajućih prava. Korištenje botova
+> za automatizirano preuzimanje podataka u suštini predstavlja
+> zaobilaženje tog ograničenja i ostvarivanje istog cilja drugim
+> tehničkim putem, što ne možemo dopustiti.
+>
+> Pritom ovdje nije presudno radi li se o komercijalnom ili
+> nekomercijalnom projektu, kao ni koliko se često podaci preuzimaju.
+
+Uz to su ponovili da nemaju ništa protiv "uredničkog korištenja i
+objavljivanja pojedinih javno dostupnih informacija".
+
+Što iz toga slijedi, i ne raspravlja se iznova:
+
+- Zakazana pokretanja `scraper.yml` i `termini.yml` su ugašena. Datoteke
+  nisu obrisane, jer nose povijest projekta, ali se posao NE pokreće ni
+  ručno.
+- Zaobilaženje Cloudflarea pravim preglednikom je bilo na stolu kao
+  mogućnost dok odgovor nije stigao. Nakon ovog odgovora nije, jer bi to
+  bilo točno ono što su imenovali i odbili. Isto vrijedi za svaki drugi
+  tehnički put do istog cilja.
+- Podaci koji su već u bazi nisu predmet ove poruke; brisanje nitko nije
+  tražio. Stranica radi i dalje.
+- Ono što OSTAJE dopušteno je uredničko: Andrej gleda, čita i piše, a
+  tekstovi, najave, pregledi i sažeci idu kao i dosad. Razlika je što
+  podatak od sada ulazi ljudskim radom, a ne prolazom scrapera.
+
+Pouka šira od ovog slučaja: dopuštenje za PRIKAZ nije dopuštenje za
+PREUZIMANJE. Kad se gradi nešto nad tuđim podacima, to dvoje se pita
+odvojeno i unaprijed, a ne kad zaštita jednom stane na put.
 
 **Tipovi događaja u postavi čitaju se IZ HTML-a, ne pogađaju se.**
 Svaki događaj je `<li>` unutar `div.matchEvents` i nosi tip u klasi i u
