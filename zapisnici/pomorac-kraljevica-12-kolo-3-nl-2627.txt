@@ -1,0 +1,60 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 12
+domacin: NK Pomorac
+gost: NK Kraljevica
+rezultat: 1:3
+stadion_datum: ŽUKNICA, KOSTRENA, 07.11.2026. 14:30
+gledatelja: 30
+suci: Dalibor Šušnjar, Antonio Kranjac, Luka Stanišić. Delegat: Edmond Paljušaj.
+---
+# Prepisano iz snimke zaslona od 13.11.2026.
+# PROBNI PRIJEPIS: utakmica je odigrana 07.11. i scraper ju je već upisao,
+# pa radnja "provjeri" uspoređuje ovaj prijepis s onim u bazi.
+
+[domacin]
+1 | Matko Božičković | vratar
+3 | Alan Franco Brusić | 3' gol, 89' izlazak
+4 | Antonio Kružić
+5 | Karlo Valjan | 73' izlazak
+8 | Benjamin Lapić | 12' zuti
+10 | Leo Burul
+14 | Ian Benčić | 89' izlazak
+15 | Lucas Precetti | 66' izlazak
+17 | Matej Momčilovski | 73' izlazak
+19 | Jakob Šprem Veljavečki (C) | 84' zuti
+22 | Artem Terletskyi
+
+[domacin pricuva]
+12 | Antonio Oštarić | vratar
+2 | Leo Arbanas
+6 | Arianit Ljušaj
+7 | Paolo Sobotinčić | 73' ulazak
+9 | Dominik Lukežić
+18 | Ante Bilen | 73' ulazak
+20 | Andrej Soldan | 89' ulazak
+21 | Marino Matković | 66' ulazak
+25 | David Gjugjaj | 89' ulazak
+
+[gost]
+1 | Dominik Grgurev | vratar
+2 | Andro Depeder
+3 | Mikula Dunatov | 85' gol
+5 | Filip Znamenaček (C)
+6 | Borna Znamenaček | 70' gol
+8 | Luka Vlašić | 81' izlazak
+9 | Matija Čabrijan | 90+3 izlazak
+11 | Paulo Kocijan
+15 | Sven Stević
+18 | Lovro Šupraha | 64' gol, 90+1 izlazak
+23 | Nino Jovanović | 58' zuti, 72' drugi zuti
+
+[gost pricuva]
+4 | Franko Bosančić | 81' ulazak
+10 | Dominik Čarija
+13 | Andro Zubović
+14 | Luka Galer
+16 | Lovro Matošić
+17 | Leon Sedlić | 90+3 ulazak
+20 | Dominik Paljokaj | 90+1 ulazak
+22 | Luka Šupraha
