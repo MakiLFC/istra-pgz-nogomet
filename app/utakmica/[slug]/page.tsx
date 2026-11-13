@@ -208,10 +208,17 @@ export default async function StranicaUtakmice({
             </div>
 
             {/* Poruka smije stajati samo kad utakmica IMA rezultat, a nema
-                zapisnik. Inače bi je dobila svaka buduća utakmica. */}
+                zapisnik. Inače bi je dobila svaka buduća utakmica.
+
+                13.11.2026. je tekst promijenjen iz "predana bez borbe" u
+                ovaj. Dok je radio scraper, utakmica s rezultatom i bez
+                postava doista je bila predana. Otkad zapisnike upisuje
+                Andrej ručno (pravilo 7), rezultat zna biti upisan prije
+                postava, pa bi stara poruka tvrdila nešto što nije istina.
+                Ova je točna u oba slučaja. */}
             {!zapisnik && rezultat && (
               <p className="mt-4 font-sans text-sm italic" style={{ color: "var(--ink-muted)" }}>
-                Utakmica predana bez borbe, zapisnik nije dostupan.
+                Zapisnik ove utakmice nije objavljen.
               </p>
             )}
 

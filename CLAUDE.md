@@ -18,8 +18,12 @@ predlaži AdSense, bannere, sponzore ni affiliate. Ako korisnik to zatraži,
 podsjeti ga na uvjet dopuštenja.
 
 **2. Atribucija mora ostati vidljiva.**
-Komponenta `components/IzvorPodataka.tsx` navodi HNS Semafor kao izvor i
-prikazuje se preko `app/layout.tsx`. To je uvjet dopuštenja — ne uklanjaj je.
+HNS Semafor naveden je kao izvor u podnožju SVAKE stranice,
+`components/Podnozje.tsx`. To je uvjet dopuštenja i ne uklanja se.
+Komponenta `components/IzvorPodataka.tsx` starija je izvedba iste
+napomene i, provjereno 13.11.2026., nije uključena nigdje u kodu; ostaje
+u repozitoriju, ali atribuciju drži podnožje. Tko mijenja podnožje, neka
+zna da time dira uvjet dopuštenja.
 
 **3. Prije svakog pusha pokreni `npm run build`.**
 `npm run dev` NE hvata greške tipova; Vercel ih hvata i build padne.
@@ -89,6 +93,11 @@ promijeni, mora stići pisanim putem od HNS-a.
     upiše rezultat, strijelce, obje postave, kartone i izmjene iz
     datoteke `zapisnici/<slug>.txt`. Tako od 12.11.2026. podaci ulaze
     umjesto scrapera.
+  - `.github/workflows/termin.yml` ("Termin u bazu") samo ručno: upiše
+    novi datum, vrijeme ili stadion jedne utakmice. Od 13.11.2026.
+    zamjenjuje ugašenu "Provjeru termina". Imena klubova smiju biti
+    nepotpuna, kolo treba samo kad se par u sezoni ponavlja, a datum "-"
+    briše termin (odgoda bez novog termina).
   - `.github/workflows/ljestvice.yml` ("Preračunaj ljestvice") samo
     ručno: iz naše baze izračuna tablicu, strijelce i kartone. Pokreće
     se nakon upisa zapisnika jednog kola.
@@ -300,6 +309,41 @@ gostima. Zapisnik na Semaforu kolo ne piše. Zato alat, kad par ne nađe u
 zadanom kolu, sam potraži taj par bez kola i ispiše u kojem stvarno
 stoji.
 
+**Što je na stranici trebalo prepraviti nakon gašenja scrapera.**
+Napravljeno 13.11.2026., dan prije prvog punog kola bez njega. Nalaz je
+nastao pregledom cijelog koda, a ne čekanjem da se nešto javi, jer se
+ovakve stvari ne jave: stranica radi i dalje, samo govori neistinu.
+
+- TEKSTOVI SU PISALI DA PODATKE PREUZIMAMO AUTOMATSKI. Impresum na dva
+  mjesta, Kontakt i dno stranice igrača imali su glagol "preuzimaju se".
+  To je od 12.11. neistina i opisuje točno ono što je HNS imenovao i
+  odbio. Sada piše da se podaci temelje na javno dostupnim podacima s
+  HNS Semafora, a da ih u bazu unosi urednik. Izvor je i dalje naveden
+  svugdje gdje je bio, mijenjao se samo glagol. Uz to je maknuta
+  rečenica "Za točnost izvornih podataka odgovoran je izvor", jer
+  prijepis je od sada naš, pa je i pogreška u prijepisu naša. Isto na
+  Kontaktu, gdje je pisalo da ćemo pogrešku proslijediti izvoru.
+- NASTUPI SU SE SMRZAVALI NA STRANICI IGRAČA. Službena lista nastupa
+  stoji na zadnjem scraperovom prolazu, a zapisnici se i dalje upisuju,
+  pa bi do kraja sezone gore pisalo dvanaest nastupa, a ispod bi stajalo
+  dvadeset utakmica. Sada se uzima VEĆA od dviju brojki, i to po ključu
+  sezona, natjecanje i klub, da se igraču koji je promijenio klub ništa
+  ne pomiješa. Službena ostaje donja granica, jer broji i utakmice
+  kojima zapisnik nije objavljen. MINUTE OSTAJU ZAMRZNUTE, njih se iz
+  zapisnika ne da izvesti i ne procjenjuju se.
+- "UTAKMICA PREDANA BEZ BORBE" POSTALA JE ZAMKA. Stranica tu poruku
+  ispisuje kad utakmica ima rezultat, a nema postave. Dok je radio
+  scraper, to je značilo pravu predanu utakmicu. Sada rezultat zna biti
+  upisan prije postava, pa poruka sada glasi "Zapisnik ove utakmice nije
+  objavljen", što je točno u oba slučaja.
+- TERMIN VIŠE NITKO NE PRATI. Posao "Termin u bazu" zamjenjuje ugašenu
+  "Provjeru termina", ali premještaj se sada mora PRIMIJETITI, jer ga
+  ništa ne javlja. Vidi i zamku s `datum_rucno` niže.
+
+Pouka šire od ovog slučaja: kad se ugasi dovod podataka, ne gase se samo
+poslovi nego i sve rečenice koje su o tom dovodu govorile. Stranica koja
+i dalje radi najopasniji je oblik zastarjelosti, jer ništa ne pocrveni.
+
 **Tipovi događaja u postavi čitaju se IZ HTML-a, ne pogađaju se.**
 Svaki događaj je `<li>` unutar `div.matchEvents` i nosi tip u klasi i u
 `title` atributu ikone (`yellow`, `red`, `substitutionOut`, `substitutionIn`,
@@ -442,6 +486,12 @@ Dva pravila uz to, oba čuva `test_termini.py`:
   pravila da ručne stupce ne dira, i postoji zato što bi zaboravljen ručni
   termin kasnije zaustavio pravu promjenu s HNS-a, bez ijedne poruke.
   Briše se samo kad je jednak onome što HNS pokazuje, pa se ništa ne gubi.
+
+  OD 12.11.2026. OVO VIŠE NE VRIJEDI, i to je zamka: stupce `datum_rucno`
+  i `vrijeme_rucno` čitao je ISKLJUČIVO scraper, a stranica čita `datum`
+  i `vrijeme`. Bez scrapera upis u ručne stupce ne promijeni ništa na
+  stranici i nitko to ne primijeti. Termin se od sada mijenja izravno u
+  `datum` i `vrijeme`, poslom "Termin u bazu".
 
 **HNS ne odgovori uvijek iz prve, i to nije naša greška.**
 03.09.2026. pala je dnevna "Provjera termina" s porukom

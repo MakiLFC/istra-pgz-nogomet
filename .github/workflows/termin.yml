@@ -1,0 +1,128 @@
+# Termin u bazu, samo ručno.
+#
+# ČEMU SLUŽI
+# HNS premještanje utakmice ne objavljuje nigdje, nego tiho prepiše redak
+# rasporeda. Do 12.11.2026. to je svaki dan hvatao posao "Provjera
+# termina". Scraper više ne radi (pravilo 7 u CLAUDE.md), pa termin od
+# sada mijenja Andrej, čim premještaj vidi na Semaforu.
+#
+# ZAŠTO NE datum_rucno
+# Stupce datum_rucno i vrijeme_rucno čitao je samo scraper i prepisivao
+# ih u datum i vrijeme, a stranica čita datum i vrijeme. Bez scrapera
+# upis u datum_rucno ne bi promijenio ništa. Ovaj posao piše izravno u
+# datum, vrijeme i stadion.
+#
+# KAKO SE POKREĆE
+# Actions -> "Termin u bazu" -> Run workflow:
+#   liga, sezona        koje natjecanje
+#   domacin, gost       smiju biti nepotpuni ("Vinodol", "Naprijed")
+#   kolo                treba samo kad se par u sezoni ponavlja
+#   datum, vrijeme      novo stanje; prazno znači "ne diraj"
+#   stadion             neobavezno
+#   radnja              provjeri (ništa ne upisuje) ili upis
+#
+# PRVO "provjeri". Ispiše staro i novo stanje, pa se vidi je li pogođena
+# prava utakmica.
+#
+# ODGODA BEZ NOVOG TERMINA: u datum upiši "-". Stranica tada piše da je
+# utakmica odgođena i da novi termin još nije poznat.
+#
+# NE DIRA REZULTAT ni zapisnik, samo termin.
+
+name: Termin u bazu
+
+on:
+  workflow_dispatch:
+    inputs:
+      liga:
+        description: "Liga"
+        required: true
+        default: "3. NL Zapad"
+        type: choice
+        options:
+          - "3. NL Zapad"
+          - "4. NL NS Rijeka"
+          - "1. ŽNL PGŽ"
+          - "2. ŽNL PGŽ"
+      domacin:
+        description: "Domaćin (dovoljan dio naziva)"
+        required: true
+        type: string
+      gost:
+        description: "Gost (dovoljan dio naziva)"
+        required: true
+        type: string
+      datum:
+        description: "Novi datum, npr. 14.11.2026. ('-' briše termin, prazno ne dira)"
+        required: false
+        default: ""
+        type: string
+      vrijeme:
+        description: "Novo vrijeme, npr. 14:30 (prazno ne dira)"
+        required: false
+        default: ""
+        type: string
+      kolo:
+        description: "Kolo (treba samo kad se isti par igra dvaput)"
+        required: false
+        default: ""
+        type: string
+      stadion:
+        description: "Stadion (prazno ne dira)"
+        required: false
+        default: ""
+        type: string
+      radnja:
+        description: "Što napraviti"
+        required: true
+        default: "provjeri"
+        type: choice
+        options:
+          - provjeri
+          - upis
+      sezona:
+        description: "Sezona"
+        required: false
+        default: "2026/27"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  termin:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Preuzmi kod
+        uses: actions/checkout@v7
+
+      - name: Postavi Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Instaliraj pakete
+        run: pip install -r requirements.txt
+
+      - name: Promijeni termin
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          LIGA: ${{ inputs.liga }}
+          SEZONA: ${{ inputs.sezona }}
+          DOMACIN: ${{ inputs.domacin }}
+          GOST: ${{ inputs.gost }}
+          KOLO: ${{ inputs.kolo }}
+          DATUM: ${{ inputs.datum }}
+          VRIJEME: ${{ inputs.vrijeme }}
+          STADION: ${{ inputs.stadion }}
+          RADNJA: ${{ inputs.radnja }}
+          PYTHONUNBUFFERED: "1"
+        run: |
+          python alati/termin_u_bazu.py \
+            --natjecanje "$LIGA" --sezona "$SEZONA" \
+            --domacin "$DOMACIN" --gost "$GOST" --kolo "$KOLO" \
+            --datum "$DATUM" --vrijeme "$VRIJEME" --stadion "$STADION" \
+            --radnja "$RADNJA"

@@ -74,7 +74,7 @@ export default function StranicaImpresum() {
         <Odjeljak naslov="Izvor podataka">
           <p>
             Rezultati, tablice, strijelci, kartoni i zapisnici utakmica
-            preuzimaju se s HNS Semafora (
+            temelje se na javno dostupnim podacima s HNS Semafora (
             <a
               href="https://semafor.hns.family"
               target="_blank"
@@ -84,8 +84,8 @@ export default function StranicaImpresum() {
             >
               semafor.hns.family
             </a>
-            ). Za točnost izvornih podataka odgovoran je izvor. Uočite li
-            pogrešku, javite nam se i ispravit ćemo je.
+            ), a u našu bazu ih unosi urednik. Uočite li pogrešku, javite
+            nam se i ispravit ćemo je.
           </p>
           <p>
             Lokal-Arena nije službena stranica Hrvatskog nogometnog saveza,
@@ -96,7 +96,8 @@ export default function StranicaImpresum() {
 
         <Odjeljak naslov="Sadržaj">
           <p>
-            Podaci o rezultatima preuzimaju se s HNS Semafora. Svi tekstovi na
+            Podaci o rezultatima temelje se na javno dostupnim podacima s HNS
+            Semafora. Svi tekstovi na
             ovoj stranici, vijesti, najave kola, sažeci utakmica i analize,
             nastaju u vlastitoj redakciji i za njih odgovara urednik portala. Ne
             preuzimaju se s drugih portala ni iz priopćenja.

@@ -3,9 +3,16 @@
 // Sastavljen je od dvaju izvora: rang-lista strijelaca i kartona (ukupni
 // učinak po sezoni) te postava pojedinih utakmica (nastupi i događaji).
 //
-// Nastupi i minute dolaze iz službene rang-liste natjecanja, kad je
-// stranica nudi. Kad ih nema, nastupi se broje iz zapisnika, a minute se
-// ne prikazuju; ne procjenjuju se iz izmjena.
+// Minute dolaze iz službene rang-liste natjecanja, kad je stranica nudi.
+// Kad ih nema, ne prikazuju se; ne procjenjuju se iz izmjena.
+//
+// NASTUPI su od 13.11.2026. VEĆA od dviju brojki, službene i naše. Dok je
+// radio scraper, službena je bila mjerodavna i uvijek svježa. Od 12.11.
+// stoji zamrznuta na njegovom zadnjem prolazu (pravilo 7), a zapisnici se
+// i dalje upisuju, pa bi inače do kraja sezone gore pisalo dvanaest
+// nastupa, a dolje bi stajalo dvadeset utakmica. Službena brojka svejedno
+// ostaje donja granica, jer broji i utakmice kojima zapisnik nije
+// objavljen, a naša preuzima čim je prestigne.
 
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -180,7 +187,17 @@ export default async function StranicaIgraca({
   const nastupi = await dohvatiNastupe(igrac.ime);
   // Službeni broj nastupa ima prednost; kad ga nema, broje se zapisnici.
   const izZapisnika = nastupi.filter(jeIgrao).length;
-  const brojNastupa = igrac.nastupi ?? (izZapisnika || null);
+  const brojNastupa = Math.max(igrac.nastupi ?? 0, izZapisnika) || null;
+
+  // Isto po sezonama, za tablicu niže. Ključ je sezona|natjecanje|klub,
+  // jednak onomu po kojem lib/igraci.ts slaže učinak po sezoni, pa se
+  // igraču koji je usred sezone promijenio klub brojke ne pomiješaju.
+  const nastupiPoSezoni = new Map<string, number>();
+  for (const n of nastupi) {
+    if (!jeIgrao(n)) continue;
+    const kljuc = `${n.utakmica.sezona}|${n.utakmica.natjecanje}|${n.klub}`;
+    nastupiPoSezoni.set(kljuc, (nastupiPoSezoni.get(kljuc) ?? 0) + 1);
+  }
 
   return (
     <div className="min-h-screen" style={{ background: "var(--chalk)" }}>
@@ -247,7 +264,10 @@ export default async function StranicaIgraca({
                         <PoveznicaKluba naziv={u.klub} />
                       </td>
                       <td className="px-3 py-2 text-right font-mono">
-                        {u.nastupi ?? "-"}
+                        {Math.max(
+                          u.nastupi ?? 0,
+                          nastupiPoSezoni.get(`${u.sezona}|${u.natjecanje}|${u.klub}`) ?? 0
+                        ) || "-"}
                       </td>
                       <td className="px-3 py-2 text-right font-mono">
                         {u.minute ?? "-"}
@@ -284,10 +304,10 @@ export default async function StranicaIgraca({
         )}
 
         <p className="mt-10 font-sans text-xs" style={{ color: "var(--ink-muted)" }}>
-          Golovi, kartoni, nastupi i minute preuzimaju se iz službenih
-          rang-lista natjecanja. Gdje minuta nema, stranica natjecanja ih ne
-          objavljuje; ne procjenjujemo ih. Popis utakmica slaže se iz
-          zapisnika, pa sadrži samo one kojima je zapisnik objavljen.
+          Golovi, kartoni i nastupi računaju se iz zapisnika utakmica i iz
+          službenih rang-lista natjecanja. Minute dolaze iz rang-lista; gdje
+          ih nema, ne prikazujemo ih i ne procjenjujemo. Popis utakmica slaže
+          se iz zapisnika, pa sadrži samo one kojima je zapisnik objavljen.
         </p>
       </main>
 
