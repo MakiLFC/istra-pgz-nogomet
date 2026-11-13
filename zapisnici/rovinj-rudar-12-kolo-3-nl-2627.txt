@@ -1,0 +1,58 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 12
+domacin: NK Rovinj
+gost: NK Rudar (L)
+rezultat: 1:0
+stadion_datum: VALBRUNA, ROVINJ, 07.11.2026. 14:30
+gledatelja: 150
+suci: Luka Milković, Nenad Marušić, Andre Olajoš. Delegat: Slaven Savić.
+---
+# Prepisano iz snimke zaslona od 13.11.2026.
+# PROBNI PRIJEPIS: utakmica je odigrana 07.11. i već je u bazi.
+
+[domacin]
+12 | Stefan Vasiljević | vratar
+2 | Dominik Žgomba
+4 | Matej Vladišković
+5 | Anton Hrvatin | 85' zuti
+7 | Viktor Milošević | 34' zuti
+8 | Andres Camilo De Armas Bracho (C)
+17 | Lukas Stošić | 27' gol, 65' izlazak
+22 | Niko Šerifović | 82' izlazak
+23 | Lazar Peev | 55' izlazak
+24 | Mateo Buljević
+27 | Dejan Kukić
+
+[domacin pricuva]
+1 | Andrej Kajfeš | vratar
+6 | Matija Hek
+9 | Masimo Terlević | 55' ulazak
+10 | Manuel Perković | 65' ulazak, 90+4 zuti
+13 | Andi Bešić
+15 | Fran Bernobić
+19 | David Lazarić | 82' ulazak
+
+[gost]
+32 | Andrej Prskalo | vratar
+4 | Antonio Načinović (C)
+8 | Nino Lazarić
+9 | Ivan Macan | 46' izlazak
+10 | Paolo Juričić
+13 | Anton Bilić | 75' izlazak
+14 | Karlo Krnjus
+16 | Matija Ristić | 23' izlazak
+18 | Darian Živolić | 67' izlazak
+42 | Patrik Čenaj
+44 | Nikola Terković | 84' zuti
+
+[gost pricuva]
+1 | Luka Verbanac | vratar
+5 | Matej Trajkovski
+6 | Petar Mitrović | 23' ulazak, 57' zuti
+7 | Amel Ibrahimović | 75' ulazak
+11 | Ševko Okić | 46' ulazak
+15 | Tino Licul
+21 | Kristijan Simić
+22 | Connor Jacob Stayton
+77 | Matteo Movrić | 67' ulazak

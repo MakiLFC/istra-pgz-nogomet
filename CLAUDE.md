@@ -344,6 +344,93 @@ Pouka šire od ovog slučaja: kad se ugasi dovod podataka, ne gase se samo
 poslovi nego i sve rečenice koje su o tom dovodu govorile. Stranica koja
 i dalje radi najopasniji je oblik zastarjelosti, jer ništa ne pocrveni.
 
+**Proba cijelog vikenda, 13.11.2026., uoči prvog kola bez scrapera.**
+Andrej je poslao snimke zaslona ČETIRI utakmice 12. kola 3. NL koje su
+već bile u bazi, pa je svaki prijepis provjeren radnjom `provjeri` u
+poslu "Zapisnik u bazu", koja uspoređuje datoteku s onim što je scraper
+upisao. Nakon toga je iz istih podataka napisan pregled kola.
+
+Rezultat: 154 igrača u četiri zapisnika, svi golovi, kartoni, izmjene i
+minute točni. Jedna jedina razlika, i to u imenu.
+
+```
+Pomorac - Kraljevica 1:3      39 igraca, 1 razlika u imenu
+Rovinj - Rudar (L) 1:0        38 igraca, poklapa se u cijelosti
+Pazinka - Banjole 4:0         40 igraca, poklapa se u cijelosti
+Jadran-Porec - Lokomotiva 1:4 37 igraca, poklapa se u cijelosti
+```
+
+Što se iz probe naučilo, i vrijedi za svaki budući prijepis:
+
+- IME SE NE PREPISUJE NAPAMET, NEGO SE PROVJERI KAKO VEĆ STOJI U BAZI.
+  Na Semaforu danas piše "Jakob Šprem Veljavečki", a u bazi stoji
+  "Jakob Šprem-Veljavečki", kako ga je scraper zatekao. Igrač se u bazi
+  prepoznaje PO IMENU, pa bi prijepis bez spojnice napravio drugu
+  stranicu igrača i razdvojio mu golove i kartone na dva mjesta, tiho i
+  zauvijek. Kad ime ima dva prezimena, spojnicu, neobičan razmak ili
+  strano pisanje, pogleda se kako taj igrač stoji u ranijim kolima.
+- SMJER STRELICE GOVORI ULAZAK ILI IZLAZAK, ALI SE ČITA PO BOJI. Kod
+  početnika je crvena strelica prema dolje (izlazak), kod pričuve zelena
+  prema gore (ulazak). Pouzdanije od boje je mjesto u popisu: sve iznad
+  naslova "PRIČUVNI IGRAČI" je početna postava.
+- GOL IZ JEDANAESTERCA IMA SVOJU IKONU, loptu pred vratima umjesto
+  obične lopte. Upisuje se kao obični gol i usporedba potvrđuje da je i
+  scraper tako radio: naša baza ne pamti da je pogodak bio s bijele
+  točke. Dakle iz baze se to ne smije tvrditi, a sa snimke se smije.
+- BOJA IKONE MIJENJA ZNAČENJE, i to je Andrejeva uputa od 13.11.2026.:
+
+  ```
+  siva lopta                     gol
+  CRVENA lopta                   AUTOGOL
+  siva lopta pred vratima        gol iz jedanaesterca
+  CRVENA lopta pred vratima      PROMASEN jedanaesterac
+  ```
+
+  Autogol se upisuje oznakom `autogol` i alat ga sam pripiše protivniku,
+  i u zbroju i u listi strijelaca. PROMAŠEN JEDANAESTERAC SE NE UPISUJE,
+  jer naša baza za njega nema mjesta, a alat bi takvu oznaku odbio. Smije
+  se spomenuti u tekstu, jer je viđen na snimci, ali u zapisnik ne ide.
+  Tko ga pogrešno upiše kao gol, srušit će kočnicu koja uspoređuje zbroj
+  golova s rezultatom, i to je dobro.
+- ZBROJ IZMJENA JE KOČNICA KOJU NIŠTA NE PROVJERAVA UMJESTO TEBE. Koliko
+  je igrača izašlo, toliko ih je i ušlo, i to u istim minutama. Kad se
+  ne poklopi, nešto je promašeno, najčešće kraj klupe koji je ostao
+  izvan snimke.
+- SNIMKA SE GLEDA U JEDNOM SMJERU. U prvoj snimci se Andrej na kraju
+  vratio prema gore, pa je trećina kadrova pokazivala ono što je već
+  viđeno. Jedan prolaz od vrha do trenera, uz kratak zastoj na svakom
+  ekranu, dovoljan je za cijeli zapisnik.
+
+KOLIKO TO TROŠI, izmjereno na istoj probi (postotak Claudeova limita
+koji je Andrej očitavao nakon svake utakmice):
+
+```
+prva utakmica   7 posto   (skuplja, jer se trazi gdje sto stoji)
+svaka sljedeca  5 posto
+pregled kola    4 posto
+```
+
+Prva je skuplja od ostalih, a ostale ne rastu primjetno, jer podatak
+nakon upisa živi u datoteci i u bazi, pa se stare snimke više ne gledaju.
+Iz toga slijedi računica za puni vikend: osam utakmica 3. NL i pregled
+je oko 46 posto, šest utakmica 4. NL i pregled oko 36. Zajedno oko 82
+posto, što u jednu sesiju stane samo ako krene od nule i ako se ništa ne
+ponavlja. ZATO SE RADI PODIJELJENO PO LIGAMA, po jedna sesija za svaku,
+kako Andrej ionako radi. Tada svaka ima dosta zraka za ispravke,
+fotografije i objavu.
+
+ISPIS "PODATAKA ZA KOLO" SE NE ČITA IZ ZAPISA POKRETANJA. Ispis jednog
+kola je oko 1300 redaka i 67 tisuća znakova, a čitanje kroz zapis posla
+na GitHubu sve to doslovno unosi u sesiju. Umjesto toga se ispis spremi
+u datoteku, pa se iz njega s nekoliko redaka Pythona izvuče samo ono što
+treba: rezultati sa strijelcima, tablica, serije, istaknuto i
+suspendirani. Tako je pregled kola koštao četiri posto umjesto petnaest.
+
+Jedna zamka u tom ispisu: polje `meta.napomena` kaže da je tablica
+izračunata BEZ KAZNENIH BODOVA. Crikvenici se mora oduzeti tri boda
+(vidi `kazneni_bodovi.json`), inače u tekstu ispadne previsoko. Na
+stranici je to već uračunato, ovdje nije.
+
 **Tipovi događaja u postavi čitaju se IZ HTML-a, ne pogađaju se.**
 Svaki događaj je `<li>` unutar `div.matchEvents` i nosi tip u klasi i u
 `title` atributu ikone (`yellow`, `red`, `substitutionOut`, `substitutionIn`,

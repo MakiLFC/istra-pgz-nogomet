@@ -1,0 +1,60 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 12
+domacin: NK Jadran-Poreč
+gost: NK Lokomotiva (R)
+rezultat: 1:4
+stadion_datum: VELI JOŽE, POREČ, 07.11.2026. 14:30
+gledatelja: 147
+suci: Milan Kukuljan, Marko Tićak, Igor Bahun. Delegat: Elvis Kubaj.
+---
+# Prepisano iz snimke zaslona od 13.11.2026.
+# PROBNI PRIJEPIS: utakmica je odigrana 07.11. i već je u bazi.
+# NAPOMENA: kraj klupe Jadrana nije se vidio u snimci, pa je moguće da
+# iza Nike Buljana ima još pričuvnih igrača bez događaja. Usporedba s
+# bazom će pokazati.
+
+[domacin]
+12 | Mateo Božac | vratar
+4 | Luka Bogdan | 67' izlazak
+7 | David Ereiz | 78' izlazak
+9 | Ilija Batrićević | 18' zuti, 90+1 gol
+10 | Luka Paulinić | 84' izlazak
+11 | Filip Šverko | 78' izlazak
+17 | Ivan Jakovčić | 67' izlazak
+21 | Donato Bernobić
+23 | Vedran Radman (C) | 45+1 zuti
+24 | Bernard Kodrnja
+33 | Paolo Bernobić
+
+[domacin pricuva]
+1 | Ivan Matukina | vratar
+2 | Deni Velenik
+8 | Luka Nerlović | 67' ulazak
+16 | Andrea Dobrilović
+18 | Leon Aquilante
+20 | Petar Leko | 67' ulazak
+22 | Lukas Banko | 78' ulazak
+25 | Dominik-Velin Mrvčić | 78' ulazak
+27 | Niko Buljan | 84' ulazak
+
+[gost]
+30 | Giuliano Popović (C) | vratar
+7 | Marin Grujević
+9 | Karlo Josipović | 74' gol, 75' gol, 84' izlazak
+10 | Frano Ivančić
+14 | Antonio Pejanović | 63' izlazak
+15 | Lukas Ujčić
+16 | Loren Pichler | 84' izlazak
+17 | Mateo Monjac | 39' gol, 84' izlazak
+19 | Nino Mohorovičić | 46' zuti, 79' izlazak
+20 | Vanja Malinić
+23 | Edin Junuzović | 52' gol
+
+[gost pricuva]
+25 | Nikša Maltež | vratar
+5 | Ronan Hibšer | 84' ulazak
+8 | Roko Kuvač | 84' ulazak
+11 | Ermin Bašić | 84' ulazak
+22 | Dino Bradarić | 63' ulazak
+44 | Marko Dejanović | 79' ulazak
