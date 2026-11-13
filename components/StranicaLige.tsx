@@ -334,9 +334,13 @@ export default async function StranicaLige({
                             </p>
                           )}
 
+                          {/* Tekst promijenjen 13.11.2026., isto kao na
+                              stranici utakmice: od ručnog upisa zapisnika
+                              rezultat zna stići prije postava, pa se više
+                              ne tvrdi da je utakmica predana bez borbe. */}
                           {!imaDetalje && u.rezultat && (
                             <p className="mt-3 font-sans text-sm italic" style={{ color: "var(--ink-muted)" }}>
-                              Utakmica predana bez borbe, zapisnik nije dostupan.
+                              Zapisnik ove utakmice nije objavljen.
                             </p>
                           )}
 

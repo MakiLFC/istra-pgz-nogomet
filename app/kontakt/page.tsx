@@ -26,7 +26,7 @@ const BLOKOVI = [
   {
     naslov: "Ispravci",
     tekst:
-      "Pogrešan rezultat, krivo pripisan gol, pogrešno napisano ime igrača? Javite i ispravljamo. Podaci dolaze s HNS Semafora, pa ćemo pogrešku proslijediti i dalje ako je u izvoru.",
+      "Pogrešan rezultat, krivo pripisan gol, pogrešno napisano ime igrača? Javite i ispravljamo. Rezultate i zapisnike unosimo ručno, pa pogreška može biti i naša.",
   },
   {
     naslov: "Suradnja",
