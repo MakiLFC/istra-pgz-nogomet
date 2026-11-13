@@ -1,0 +1,76 @@
+# Preimenuj igrača, samo ručno.
+#
+# ČEMU SLUŽI
+# Igrač se u bazi prepoznaje PO IMENU, i iz imena se računa adresa
+# njegove stranice. Dva zapisa istog imena znače dvije stranice i
+# podijeljene golove i kartone. Otkad zapisnike prepisuje čovjek
+# (pravilo 7 u CLAUDE.md), razlaz imena je pitanje vremena.
+#
+# KAKO SE POKREĆE
+# Actions -> "Preimenuj igrača" -> Run workflow:
+#   staro   ime kakvo je SADA u bazi, točno
+#   novo    ispravno ime
+#   radnja  provjeri (ništa ne mijenja) ili upis
+#
+# PRVO "provjeri". Ispis kaže u kojim je utakmicama i rang-listama ime
+# nađeno, pa se vidi je li pogođen pravi igrač.
+#
+# Traži se TOČNO ime, nikad dio imena.
+#
+# NAKON UPISA se stranica igrača seli na novu adresu, jer slug nastaje
+# iz imena. Stara adresa prestaje postojati; to je u redu, jer je i
+# nastala greškom.
+
+name: Preimenuj igrača
+
+on:
+  workflow_dispatch:
+    inputs:
+      staro:
+        description: "Ime kako je sada u bazi"
+        required: true
+        type: string
+      novo:
+        description: "Ispravno ime"
+        required: true
+        type: string
+      radnja:
+        description: "Što napraviti"
+        required: true
+        default: "provjeri"
+        type: choice
+        options:
+          - provjeri
+          - upis
+
+permissions:
+  contents: read
+
+jobs:
+  preimenuj:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Preuzmi kod
+        uses: actions/checkout@v7
+
+      - name: Postavi Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Instaliraj pakete
+        run: pip install requests
+
+      - name: Preimenuj
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          STARO: ${{ inputs.staro }}
+          NOVO: ${{ inputs.novo }}
+          RADNJA: ${{ inputs.radnja }}
+          PYTHONUNBUFFERED: "1"
+        run: |
+          python alati/preimenuj_igraca.py \
+            --staro "$STARO" --novo "$NOVO" --radnja "$RADNJA"
