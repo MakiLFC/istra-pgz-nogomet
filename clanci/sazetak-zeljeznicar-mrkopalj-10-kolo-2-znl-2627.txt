@@ -1,0 +1,7 @@
+natjecanje: 2. ŽNL PGŽ
+sezona: 2026/27
+kolo: 10
+domacin: NK Željezničar (M)
+gost: NK Mrkopalj
+derbi: da
+---
