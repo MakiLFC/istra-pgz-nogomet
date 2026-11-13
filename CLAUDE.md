@@ -377,6 +377,21 @@ Jadran-Porec - Lokomotiva 1:4 37 igraca, poklapa se u cijelosti
   obične lopte. Upisuje se kao obični gol i usporedba potvrđuje da je i
   scraper tako radio: naša baza ne pamti da je pogodak bio s bijele
   točke. Dakle iz baze se to ne smije tvrditi, a sa snimke se smije.
+- BOJA IKONE MIJENJA ZNAČENJE, i to je Andrejeva uputa od 13.11.2026.:
+
+  ```
+  siva lopta                     gol
+  CRVENA lopta                   AUTOGOL
+  siva lopta pred vratima        gol iz jedanaesterca
+  CRVENA lopta pred vratima      PROMASEN jedanaesterac
+  ```
+
+  Autogol se upisuje oznakom `autogol` i alat ga sam pripiše protivniku,
+  i u zbroju i u listi strijelaca. PROMAŠEN JEDANAESTERAC SE NE UPISUJE,
+  jer naša baza za njega nema mjesta, a alat bi takvu oznaku odbio. Smije
+  se spomenuti u tekstu, jer je viđen na snimci, ali u zapisnik ne ide.
+  Tko ga pogrešno upiše kao gol, srušit će kočnicu koja uspoređuje zbroj
+  golova s rezultatom, i to je dobro.
 - ZBROJ IZMJENA JE KOČNICA KOJU NIŠTA NE PROVJERAVA UMJESTO TEBE. Koliko
   je igrača izašlo, toliko ih je i ušlo, i to u istim minutama. Kad se
   ne poklopi, nešto je promašeno, najčešće kraj klupe koji je ostao
