@@ -76,6 +76,15 @@ def test_utakmica_bez_imena_ne_daje_posao():
     print("OK: utakmica bez tog igrača se ne dira")
 
 
+def test_slug_spojnica_i_razmak_daju_isto():
+    """Zato se ne smije tvrditi da preimenovanje mijenja adresu."""
+    assert p.slug_imena("Jakob Šprem-Veljavečki") == "jakob-sprem-veljavecki"
+    assert p.slug_imena("Jakob Šprem Veljavečki") == "jakob-sprem-veljavecki"
+    # Kvačice i đ idu u osnovno slovo, kao u lib/slug.ts.
+    assert p.slug_imena("Đuro Čačić") == "duro-cacic"
+    print("OK: slug je isti za spojnicu i razmak")
+
+
 if __name__ == "__main__":
     test_zamjena_trazi_tocno_ime()
     test_ostala_polja_ostaju()
@@ -83,4 +92,5 @@ if __name__ == "__main__":
     test_prazno_i_neocekivano()
     test_salju_se_samo_dirnuti_stupci()
     test_utakmica_bez_imena_ne_daje_posao()
+    test_slug_spojnica_i_razmak_daju_isto()
     print("\nSVE PROLAZI")

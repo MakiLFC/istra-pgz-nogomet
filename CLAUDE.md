@@ -98,6 +98,10 @@ promijeni, mora stići pisanim putem od HNS-a.
     zamjenjuje ugašenu "Provjeru termina". Imena klubova smiju biti
     nepotpuna, kolo treba samo kad se par u sezoni ponavlja, a datum "-"
     briše termin (odgoda bez novog termina).
+  - `.github/workflows/preimenuj.yml` ("Preimenuj igrača") samo ručno:
+    zamijeni ime igrača u postavama, strijelcima i rang-listama, kroz
+    sve sezone. Postoji od 13.11.2026., jer se igrač u bazi prepoznaje
+    po imenu, pa dva zapisa istog imena znače dvije stranice.
   - `.github/workflows/ljestvice.yml` ("Preračunaj ljestvice") samo
     ručno: iz naše baze izračuna tablicu, strijelce i kartone. Pokreće
     se nakon upisa zapisnika jednog kola.
@@ -369,6 +373,19 @@ Jadran-Porec - Lokomotiva 1:4 37 igraca, poklapa se u cijelosti
   stranicu igrača i razdvojio mu golove i kartone na dva mjesta, tiho i
   zauvijek. Kad ime ima dva prezimena, spojnicu, neobičan razmak ili
   strano pisanje, pogleda se kako taj igrač stoji u ranijim kolima.
+
+  RAZRIJEŠENO 13.11.2026.: Andrej je rekao da je pravo ime BEZ spojnice,
+  pa je posao "Preimenuj igrača" promijenio 34 utakmice i 4 rang-liste,
+  kroz obje sezone. Provjera nakon upisa više nije našla staro ime
+  nigdje. Od tada taj alat rješava svaki takav razlaz, pa se ime ne
+  ispravlja ručno po SQL-u.
+
+  ADRESA STRANICE SE PRITOM NIJE PROMIJENILA, iako je alat isprva tvrdio
+  da hoće. Slug nastaje tako da se svaki niz znakova koji nisu slovo ni
+  broj pretvori u crticu, pa razmak i spojnica daju isto
+  (`jakob-sprem-veljavecki`). Alat sada računa slug prije i poslije i
+  kaže mijenja li se adresa doista. Pouka je šira: kad se tvrdi što će
+  se dogoditi s adresom, to se izračuna, ne pretpostavi.
 - SMJER STRELICE GOVORI ULAZAK ILI IZLAZAK, ALI SE ČITA PO BOJI. Kod
   početnika je crvena strelica prema dolje (izlazak), kod pričuve zelena
   prema gore (ulazak). Pouzdanije od boje je mjesto u popisu: sve iznad

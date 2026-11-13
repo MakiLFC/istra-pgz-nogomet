@@ -24,12 +24,27 @@ Ispis kaže u koliko je utakmica i rang-lista ime nađeno, i ništa ne mijenja.
 import argparse
 import json
 import os
+import re
 import sys
+import unicodedata
 
 import requests
 
 
 STUPCI_IGRACA = ("postava_domacin", "postava_gost", "strijelci")
+
+
+def slug_imena(ime):
+    """Isto što radi slugKluba u lib/slug.ts, jer iz imena nastaje adresa.
+
+    Važno: i razmak i spojnica daju istu crticu, pa se "Šprem-Veljavečki"
+    i "Šprem Veljavečki" svode na isti slug. Zato se ne smije napamet
+    tvrditi da preimenovanje mijenja adresu stranice.
+    """
+    s = (ime or "").replace("đ", "d").replace("Đ", "D")
+    s = unicodedata.normalize("NFD", s)
+    s = "".join(z for z in s if not unicodedata.combining(z))
+    return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
 
 
 def zamijeni_u_popisu(popis, staro, novo):
@@ -197,7 +212,13 @@ def main():
     print()
     print(f"Upisano: {len(posao_utakmice)} utakmica, "
           f"{len(posao_statistike)} rang-lista.")
-    print("Stranica igrača dobiva novu adresu, jer se slug računa iz imena.")
+
+    stari_slug, novi_slug = slug_imena(staro), slug_imena(novo)
+    if stari_slug == novi_slug:
+        print(f"Adresa stranice igrača se NE mijenja (/igrac/{novi_slug}).")
+    else:
+        print(f"Adresa stranice se mijenja: /igrac/{stari_slug} "
+              f"-> /igrac/{novi_slug}. Stara prestaje postojati.")
 
 
 if __name__ == "__main__":
