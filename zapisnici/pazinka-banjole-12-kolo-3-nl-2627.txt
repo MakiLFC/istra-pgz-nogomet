@@ -1,0 +1,63 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 12
+domacin: NK Pazinka-Pazin
+gost: NK Banjole
+rezultat: 4:0
+stadion_datum: SC EGIDIE MARION, PAZIN, 07.11.2026. 14:30
+gledatelja: 110
+suci: Nico Celić, Dragan Kukić, Florian Belavić. Delegat: Zoran Suzanić.
+---
+# Prepisano iz snimke zaslona od 13.11.2026.
+# PROBNI PRIJEPIS: utakmica je odigrana 07.11. i već je u bazi.
+# Mate Ivetić u 48' ima IKONU JEDANAESTERCA (gol iz kaznenog udarca),
+# a ne običnu loptu. Upisan je kao gol, pa usporedba s bazom pokaže
+# kako to scraper bilježi.
+
+[domacin]
+27 | Petar Guga | vratar
+2 | Entony Pavat
+4 | Ivan Rojnić
+9 | Maikol Prenc | 72' izlazak
+10 | Nikola Ivetac | 57' izlazak
+11 | Deni Radovčić | 34' gol, 81' izlazak
+13 | Doni Tanković
+19 | Leo Lenić | 55' gol
+22 | Adam Mofardin | 63' zuti
+23 | Patrick Rabar (C) | 46' izlazak
+77 | Mate Ivetić | 48' gol, 57' izlazak
+
+[domacin pricuva]
+49 | Mauro Mendiković | vratar
+5 | Marko Načinović | 72' ulazak
+6 | Gabriel Buršić | 46' ulazak
+7 | Damjan Ivančić
+14 | Nikola Petković
+17 | Marko Krištofić | 57' ulazak
+21 | Loren Maružin | 57' ulazak, 65' gol
+66 | Luka Delšeno | 81' ulazak
+80 | Noel Pavat
+
+[gost]
+12 | Damir Daić | vratar
+4 | Sandi Mofardin
+5 | Martin Sivonjić | 46' izlazak
+6 | Marshal Mfon Johnson
+7 | Anel Salihović (C) | 74' zuti
+8 | Elvis Krasniqi | 58' izlazak
+9 | Ahmed Durmo | 74' izlazak
+10 | Paolo Matteoni
+21 | Ivan Giljanović
+23 | Robert Raković | 81' izlazak
+88 | Filip Rosić | 58' izlazak
+
+[gost pricuva]
+1 | Marco Delfar | vratar
+2 | Venas Džanić | 46' ulazak, 63' zuti
+3 | Muhamed Durmo | 74' ulazak
+15 | Erik Zorica
+16 | Benjamin Čoban Skoko
+18 | Dominik Frank
+19 | Stefano Matteoni | 58' ulazak
+98 | Vice Miljanić | 58' ulazak
+99 | Matija Paulović | 81' ulazak
