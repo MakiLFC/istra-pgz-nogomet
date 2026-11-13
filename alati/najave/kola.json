@@ -2876,6 +2876,53 @@
           "termin": "SUB 14:30"
         }
       ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-11",
+      "kolo": "11",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 14.11. i NED 15.11.2026.",
+      "sat": "Subota u 13:30, nedjelja u 13:30 i 14:00",
+      "utakmice": [
+        {
+          "d": "Rikard Benčić",
+          "g": "Vihor (B)",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Draga",
+          "g": "Goranin",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Lošinj",
+          "g": "Risnjak",
+          "termin": "NED 13:30"
+        },
+        {
+          "d": "Mune",
+          "g": "Omladinac Vrata",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Turbina",
+          "g": "Lovran",
+          "termin": "NED 14:00",
+          "derbi": true
+        },
+        {
+          "d": "Stari grad Rijeka",
+          "g": "Rab",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Vrbovsko",
+          "g": "Zamet",
+          "termin": "NED 14:00"
+        }
+      ],
+      "ime": "najava-redovi-1-znl-pgz-kolo-11"
     }
   ]
 }
