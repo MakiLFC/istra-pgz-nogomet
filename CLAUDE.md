@@ -2268,7 +2268,20 @@ ISPRAVLJENO U BAZI 14.11.2026., SQL-om preko Supabasea
 pa stranica lige za njih piše "ODG." i "Utakmica je odgođena, novi
 termin još nije poznat." (`odgodjena` u `components/StranicaLige.tsx`),
 Mladost - Rječina ima nedjeljni termin, a Funtani je upisano pravo
-igralište, kamp NK Jadran-Poreč u Poreču. Kad je pregled napisan, ovu
+igralište, kamp NK Jadran-Poreč u Poreču. Termin Štinjana i Smoljanaca
+upisan je 14.11.2026. poslom "Termin u bazu" (17.11. u 19:00, Valkane,
+Pula), pa ta utakmica više ne piše ODG.
+
+U PREGLEDU OD 14.11. IDE NAPOMENA O PREOSTALE DVIJE UTAKMICE, na
+Andrejev zahtjev. Oblik koji je dogovoren:
+
+  "Mladost Fažana i Rječina igraju u nedjelju, a Štinjan i Smoljanci
+  Sloboda u utorak na Valkanama u Puli. O te dvije utakmice donosimo
+  podroban pregled nakon odigravanja, a rezultat i zapisnik svake od
+  njih bit će na stranici odmah po završetku susreta."
+
+Taj drugi, podroban pregled piše se u srijedu 18.11. ujutro; podsjetnik
+je postavljen. Kad je pregled napisan, ovu
 stavku obriši.
 
 **Sažetak uz zapisnik NIJE članak.** Kratak osvrt na pojedinu utakmicu,
