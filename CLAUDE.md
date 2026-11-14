@@ -2220,35 +2220,27 @@ najavom ili pregledom.
 Kazne koje izrekne stegovni sudac (isključenja, suspenzije) i dalje se
 provjeravaju u glasniku, kako stoji gore.
 
-**ZA NAJAVU 10. KOLA 4. NL: Cres - Ližnjan, navod s Cresa.** Andrej je
-04.11.2026. poslao ovo, u prvom licu, kako ga je dao klub:
+**ZA PREGLED 11. KOLA 4. NL: dvije odgode i jedan premještaj.**
+Andrej je 14.11.2026. sa Semafora javio da se kolo nije odigralo u
+cijelosti:
 
-> Dari je ove sezone naša velika snaga! U četiri domaća susreta upisali
-> smo tri pobjede i jedan remi, uz gol-razliku 11:4. Posljednji
-> prvenstveni poraz pred domaćom publikom datira još iz svibnja, a taj
-> niz želimo nastaviti!
->
-> Zanimljivo, prošle sezone obje su momčadi slavile na svom terenu. Mi
-> uvjerljivih 3:0, a Ližnjan 2:1, pogocima u samoj završnici utakmice.
+- Borac (Ba) - Žminj, Krasica: ODGOĐENO, novi termin nije poznat
+- Štinjan - Smoljanci Sloboda, Fortin: ODGOĐENO, novi termin nije poznat
+- Mladost Fažana - Rječina: premješteno na nedjelju 15.11.2026. u 13:30,
+  Oliva, Fažana
 
-Dvije stvari uz to:
+U subotu 14.11. u 14:30 igraju samo Klana - Otočac, Funtana - Medulin
+1921 (kamp NK Jadran-Poreč u Poreču) i Ližnjan - Umag-CC Umago. Pregled
+kola zato pokriva tri subotnje i jednu nedjeljnu utakmicu.
 
-- Učinak kod kuće se poklapa s našim podacima do znamenke: Cres na
-  Dariju ove sezone ima tri pobjede i remi, 11:4. Ostalo (poraz iz
-  svibnja, prošlosezonski susreti) dolazi od Andreja, dakle smije u
-  tekst, po iznimci iz pravila 5.
-- Navod je pisan iz kluba, u prvom licu. ANDREJ JE 04.11.2026. REKAO DA
-  SE PREPRIČA U TREĆEM LICU, dakle bez uskličnika, bez "mi" i bez
-  navodnika. Oblik koji ide u najavu:
+NAJAVA SE NE MIJENJA. Objavljena je 12.11., prije odgoda, i Andrej je
+14.11. izričito rekao da se ne dira.
 
-  "Na Dariju je Cres ove sezone najjači: četiri utakmice, tri pobjede i
-  remi, uz gol razliku 11:4. Posljednji prvenstveni poraz pred svojom
-  publikom upisao je još u svibnju. Prošle sezone su obje momčadi
-  slavile na svom terenu, Cres 3:0, a Ližnjan 2:1, pogocima u samoj
-  završnici."
-
-
-Kad je najava napisana, ovu stavku obriši.
+U bazi svih šest i dalje stoji 14.11. u 14:30, jer scraper više ne radi
+(pravilo 7). Dok se ručno ne isprave, stranica lige odgođene pokazuje
+kao "?:?", a kao "ODG." tek kad datum ostari više od četiri dana ili se
+obriše (`odgodjena` u `components/StranicaLige.tsx`). Kad je pregled
+napisan, ovu stavku obriši.
 
 **Sažetak uz zapisnik NIJE članak.** Kratak osvrt na pojedinu utakmicu,
 onaj koji stoji ispod zapisnika na stranici utakmice, ide u stupac
