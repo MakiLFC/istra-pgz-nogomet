@@ -142,6 +142,34 @@ def test_prekinuta_u_drugom_smjeru_se_ne_dira():
     print("OK: utakmica obrnutog smjera se ne izbacuje")
 
 
+def test_otisak_imena_spaja_spojnicu_i_razmak():
+    """Razlaz imena se mora vidjeti odmah, a ne kad igrac dobije dvije stranice."""
+    assert p.otisak_imena("Jakob Šprem-Veljavečki") == p.otisak_imena(
+        "Jakob Šprem Veljavečki")
+    assert p.otisak_imena("Đuro Čačić") == "durocacic"
+    # Dva razlicita igraca ne smiju dobiti isti otisak.
+    assert p.otisak_imena("Marko Hodak") != p.otisak_imena("Luka Hodak")
+    print("OK: otisak imena spaja spojnicu i razmak, a razlicite ne")
+
+
+def test_sumnjiva_nova_imena():
+    stara = {"Jakob Šprem Veljavečki", "Marko Hodak"}
+    nalazi = p.sumnjiva_nova_imena({"Jakob Šprem-Veljavečki"}, stara)
+    assert nalazi and nalazi[0][1] == "Jakob Šprem Veljavečki", nalazi
+    assert nalazi[0][2] == "isti otisak"
+
+    # Pravi novi igrac ne smije okinuti upozorenje.
+    assert p.sumnjiva_nova_imena({"Ante Prpić"}, stara) == []
+    print("OK: sumnjivo novo ime se prijavi, a pravi novi igrac ne")
+
+
+def test_golovi_u_kolu_broji_samo_odigrane():
+    kolo = [utakmica("A", "B", "2:1"), utakmica("C", "D", None),
+            utakmica("E", "F", "0:0")]
+    assert p.golovi_u_kolu(kolo) == 3
+    print("OK: golovi u kolu se broje iz rezultata")
+
+
 if __name__ == "__main__":
     test_rezultat_u_brojke()
     test_bodovi_i_poredak()
@@ -152,4 +180,7 @@ if __name__ == "__main__":
     test_sve_vrijednosti_su_tekst()
     test_prekinuta_ne_ulazi_u_tablicu()
     test_prekinuta_u_drugom_smjeru_se_ne_dira()
+    test_otisak_imena_spaja_spojnicu_i_razmak()
+    test_sumnjiva_nova_imena()
+    test_golovi_u_kolu_broji_samo_odigrane()
     print("\nSVE PROLAZI")

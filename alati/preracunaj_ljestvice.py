@@ -52,7 +52,10 @@ RADNJE
 import argparse
 import json
 import os
+import re
 import sys
+import unicodedata
+from difflib import get_close_matches
 from pathlib import Path
 
 import requests
@@ -307,11 +310,164 @@ def usporedi_liste(naziv, nasa, njihova, kljuc_broja):
         print(f"    ... i još {len(razlike) - 15}")
 
 
+# ---------------------------------------------------------------------
+# Promjene u jednom kolu
+# ---------------------------------------------------------------------
+
+def ucinci_po_igracu(utakmice):
+    """{(ime, klub): ucinak} za zadani skup utakmica."""
+    ucinci, bez_postava = ucinci_iz_zapisnika(utakmice)
+    return {(u["igrac"], u["klub"]): u for u in ucinci}, bez_postava
+
+
+def otisak_imena(ime):
+    """Ime svedeno na slova i brojke, bez kvačica, razmaka i spojnica.
+
+    Služi samo za UPOZORENJE: "Šprem-Veljavečki" i "Šprem Veljavečki"
+    daju isti otisak, pa se razlaz imena vidi odmah, a ne za mjesec dana
+    kad igrač ima dvije stranice.
+    """
+    s = (ime or "").replace("đ", "d").replace("Đ", "D")
+    s = unicodedata.normalize("NFD", s)
+    s = "".join(z for z in s if not unicodedata.combining(z))
+    return re.sub(r"[^a-z0-9]+", "", s.lower())
+
+
+def sumnjiva_nova_imena(nova, stara):
+    """Nova imena koja su sumnjivo slična nekom već postojećem.
+
+    Vraća popis (novo, staro, koliko_je_sigurno). Jednak otisak znači
+    gotovo sigurno isti igrač; blizak oblik je samo napomena.
+    """
+    po_otisku = {}
+    for ime in stara:
+        po_otisku.setdefault(otisak_imena(ime), ime)
+
+    nalazi = []
+    for ime in sorted(nova):
+        isti = po_otisku.get(otisak_imena(ime))
+        if isti and isti != ime:
+            nalazi.append((ime, isti, "isti otisak"))
+            continue
+        blizu = get_close_matches(ime, sorted(stara), n=1, cutoff=0.9)
+        if blizu:
+            nalazi.append((ime, blizu[0], "vrlo slično"))
+    return nalazi
+
+
+def ispisi_promjene(naziv, polje, prije, poslije, u_kolu):
+    """Tko je u ovom kolu dobio koliko, i koliko sada ukupno ima."""
+    print(f"{naziv.upper()}")
+    print("-" * 60)
+
+    kljucevi = sorted(set(prije) | set(poslije), key=lambda k: (k[0], k[1]))
+    promjena = 0
+    zbroj = 0
+    for k in kljucevi:
+        bilo = (prije.get(k) or {}).get(polje, 0)
+        sada = (poslije.get(k) or {}).get(polje, 0)
+        if bilo == sada:
+            continue
+        promjena += 1
+        zbroj += sada - bilo
+        oznaka = "NOVI" if k not in prije else "    "
+        print(f"  {oznaka} {k[0]} ({k[1]}): {bilo} -> {sada}")
+
+        # Delta MORA biti jednaka onome što je igrač napravio u tom kolu.
+        # Ako nije, nešto je s ključem igrača, npr. promjena kluba.
+        iz_kola = (u_kolu.get(k) or {}).get(polje, 0)
+        if sada - bilo != iz_kola:
+            print(f"       NE SLAŽE SE: iz samog kola proizlazi {iz_kola}")
+
+    if not promjena:
+        print("  nijedna promjena")
+    else:
+        print(f"  ukupno {promjena} igrača, zbroj promjena {zbroj}")
+    print()
+    return zbroj
+
+
+def golovi_u_kolu(utakmice):
+    """Koliko je golova palo po REZULTATIMA, neovisno o zapisnicima."""
+    ukupno = 0
+    for u in utakmice:
+        brojke = rezultat_u_brojke(u.get("rezultat"))
+        if brojke:
+            ukupno += brojke[0] + brojke[1]
+    return ukupno
+
+
+def prikazi_promjene_kola(utakmice, kolo):
+    odigrane = [u for u in utakmice if rezultat_u_brojke(u.get("rezultat"))]
+    prije_u = [u for u in odigrane if (u.get("kolo") or 0) < kolo]
+    poslije_u = [u for u in odigrane if (u.get("kolo") or 0) <= kolo]
+    kolo_u = [u for u in odigrane if (u.get("kolo") or 0) == kolo]
+
+    if not kolo_u:
+        raise SystemExit(f"U {kolo}. kolu nema nijedne odigrane utakmice.")
+
+    print(f"PROMJENE U {kolo}. KOLU ({len(kolo_u)} odigranih utakmica)")
+    print("=" * 60)
+    print()
+
+    prije, _ = ucinci_po_igracu(prije_u)
+    poslije, bez_postava = ucinci_po_igracu(poslije_u)
+    u_kolu, bez_postava_kolo = ucinci_po_igracu(kolo_u)
+
+    if bez_postava_kolo:
+        print("UPOZORENJE: ove utakmice iz ovog kola nemaju obje postave, "
+              "pa njihovi golovi i kartoni nisu nigdje zbrojeni:")
+        for opis in bez_postava_kolo:
+            print(f"  {opis}")
+        print()
+
+    pribrojeno = ispisi_promjene("strijelci", "golovi", prije, poslije, u_kolu)
+    ispisi_promjene("žuti kartoni", "zuti", prije, poslije, u_kolu)
+    ispisi_promjene("crveni kartoni", "crveni", prije, poslije, u_kolu)
+
+    palo = golovi_u_kolu(kolo_u)
+    print("GOLOVI, PROVJERA ZBROJA")
+    print("-" * 60)
+    print(f"  po rezultatima u kolu:   {palo}")
+    print(f"  pribrojeno strijelcima:  {pribrojeno}")
+    razlika = palo - pribrojeno
+    if razlika == 0:
+        print("  razlika: nema, dakle nijedan gol nije ispao")
+    elif razlika > 0:
+        print(f"  razlika: {razlika}. Toliko bi trebalo biti AUTOGOLOVA. "
+              "Ako ih nije bilo toliko, netko fali u zapisniku.")
+    else:
+        print(f"  razlika: {razlika}, dakle strijelaca ima VIŠE nego golova. "
+              "Netko je upisan dvaput ili je rezultat kriv.")
+    print()
+
+    nova = {k[0] for k in poslije} - {k[0] for k in prije}
+    sumnjiva = sumnjiva_nova_imena(nova, {k[0] for k in prije})
+    print("NOVA IMENA U LISTAMA")
+    print("-" * 60)
+    if not nova:
+        print("  nijedno")
+    else:
+        for ime in sorted(nova):
+            print(f"  {ime}")
+    if sumnjiva:
+        print()
+        print("  PAZI, ova nova imena vrlo su slična postojećima:")
+        for novo, staro, zasto in sumnjiva:
+            print(f"    \"{novo}\"  prema  \"{staro}\"  ({zasto})")
+        print("    Ako je riječ o istom igraču, ispravi poslom "
+              "\"Preimenuj igrača\", inače će imati dvije stranice.")
+    print()
+
+
 def main():
     parser = argparse.ArgumentParser(description="Ljestvice iz naše baze.")
     parser.add_argument("--natjecanje", required=True)
     parser.add_argument("--sezona", required=True)
-    parser.add_argument("--radnja", default="provjeri", choices=("provjeri", "upis"))
+    parser.add_argument("--radnja", default="provjeri",
+                        choices=("provjeri", "upis", "promjene"))
+    parser.add_argument("--kolo", default="",
+                        help="broj kola, obavezno uz radnju promjene")
     args = parser.parse_args()
 
     adresa = (os.environ.get("SUPABASE_URL") or "").rstrip("/")
@@ -334,6 +490,13 @@ def main():
     print("=" * 60)
 
     utakmice = dohvati_utakmice(adresa, kljuc, args.natjecanje, args.sezona)
+
+    if args.radnja == "promjene":
+        if not str(args.kolo).strip():
+            raise SystemExit("Uz radnju 'promjene' treba zadati --kolo.")
+        prikazi_promjene_kola(utakmice, int(args.kolo))
+        return
+
     odigrane = [u for u in utakmice if rezultat_u_brojke(u.get("rezultat"))]
     print(f"Utakmica u bazi: {len(utakmice)}, s rezultatom: {len(odigrane)}")
     if kazneni:
