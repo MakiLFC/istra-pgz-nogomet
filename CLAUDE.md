@@ -2249,7 +2249,10 @@ Andrej je 14.11.2026. sa Semafora javio da se kolo nije odigralo u
 cijelosti:
 
 - Borac (Ba) - Žminj, Krasica: ODGOĐENO, novi termin nije poznat
-- Štinjan - Smoljanci Sloboda, Fortin: ODGOĐENO, novi termin nije poznat
+- Štinjan - Smoljanci Sloboda: ODGOĐENO s Fortina, a novi termin je
+  UTORAK 17.11.2026. u 19:00, na igralištu Valkane u Puli (Andrej,
+  14.11.2026.). Igra se dakle pod reflektorima i prije ostatka
+  nadoknada. U srijedu ujutro o toj utakmici ide članak.
 - Mladost Fažana - Rječina: premješteno na nedjelju 15.11.2026. u 13:30,
   Oliva, Fažana
 
@@ -2260,11 +2263,13 @@ kola zato pokriva tri subotnje i jednu nedjeljnu utakmicu.
 NAJAVA SE NE MIJENJA. Objavljena je 12.11., prije odgoda, i Andrej je
 14.11. izričito rekao da se ne dira.
 
-U bazi svih šest i dalje stoji 14.11. u 14:30, jer scraper više ne radi
-(pravilo 7). Dok se ručno ne isprave, stranica lige odgođene pokazuje
-kao "?:?", a kao "ODG." tek kad datum ostari više od četiri dana ili se
-obriše (`odgodjena` u `components/StranicaLige.tsx`). Kad je pregled
-napisan, ovu stavku obriši.
+ISPRAVLJENO U BAZI 14.11.2026., SQL-om preko Supabasea
+(`sql/kolo_11_4nl_odgode.sql`): obje odgođene su bez datuma i vremena,
+pa stranica lige za njih piše "ODG." i "Utakmica je odgođena, novi
+termin još nije poznat." (`odgodjena` u `components/StranicaLige.tsx`),
+Mladost - Rječina ima nedjeljni termin, a Funtani je upisano pravo
+igralište, kamp NK Jadran-Poreč u Poreču. Kad je pregled napisan, ovu
+stavku obriši.
 
 **Sažetak uz zapisnik NIJE članak.** Kratak osvrt na pojedinu utakmicu,
 onaj koji stoji ispod zapisnika na stranici utakmice, ide u stupac
