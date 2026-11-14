@@ -1,0 +1,57 @@
+natjecanje: 4. NL NS Rijeka
+sezona: 2026/27
+kolo: 11
+domacin: NK Ližnjan
+gost: NK Umag-CC Umago
+rezultat: 1:0
+stadion_datum: ŠARAJA, LIŽNJAN, 14.11.2026. 14:30
+gledatelja: 50
+suci: Alen Dokuš, Sandi Orbanić, Ivan Kuftić. Delegat: Zdravko Jurinjak.
+---
+# Prepisano iz snimke zaslona od 14.11.2026.
+# Urosevicev pogodak u 24. minuti je iz kaznenog udarca (ikona lopte
+# pred vratima), a upisuje se kao obican gol.
+
+[domacin]
+12 | Manuel Matošević | vratar
+4 | Luka Pavić
+5 | Hisa Ramadani
+6 | Bruno Banković
+7 | Saša Urošević (C) | 24' gol, 90+2 izlazak
+11 | Slaven Sandić | 64' izlazak
+14 | Dragiša Adžić | 46' zuti
+16 | Nikola Radović
+18 | Luka Privrat | 68' izlazak
+19 | Antonio Jovanović | 64' izlazak
+20 | Dean Moravac
+
+[domacin pricuva]
+1 | Luka Jukić | vratar
+2 | Lorens Popović | 68' ulazak
+3 | Petar Zohil | 90+2 ulazak
+8 | Mauro Čude
+9 | Marko Kontošić | 64' ulazak
+10 | Dino Balde
+17 | Milan Bulić | 64' ulazak
+
+[gost]
+26 | Kristian Boglić | vratar
+4 | Andrea Manić
+5 | Antonio Bolčević
+10 | Dejan Đuričin | 90+2 zuti
+11 | Andreas Marijanović | 68' izlazak
+15 | Jamu Akou Arum Iluya
+20 | Marko Režić | 59' zuti
+29 | Leon Miličević | 86' izlazak
+44 | Filip Prodan (C) | 84' zuti
+71 | Roko Sirotić
+80 | Gabriel Babič | 78' izlazak
+
+[gost pricuva]
+30 | Leon Čičak | vratar
+99 | Deni Višković | vratar, 46' zuti
+9 | Luka Jašarević | 78' ulazak
+13 | Aleksandar Uzelac
+14 | Luka Čavarović | 68' ulazak
+16 | Filip Simić
+23 | Ivan Radić | 86' ulazak

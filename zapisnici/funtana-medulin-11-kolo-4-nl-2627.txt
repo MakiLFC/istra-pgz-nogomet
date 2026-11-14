@@ -1,0 +1,55 @@
+natjecanje: 4. NL NS Rijeka
+sezona: 2026/27
+kolo: 11
+domacin: NK Funtana
+gost: NK Medulin 1921
+rezultat: 4:0
+stadion_datum: KAMP NK JADRAN-POREČ, POREČ, 14.11.2026. 14:30
+suci: Dorian Klarić, Luka Gržinčić, Ante Ritmajer. Delegat: Petra Žudić.
+---
+# Prepisano iz snimke zaslona od 14.11.2026.
+# Vlizlov pogodak u 63. minuti je iz kaznenog udarca (ikona lopte pred
+# vratima), a upisuje se kao obican gol, kako radi i baza.
+# Broj gledatelja na zapisniku nije naveden.
+
+[domacin]
+1 | Gianfranco Milocani (C) | vratar
+2 | Ljubomir Simić
+4 | Roko Andričević
+7 | Emanuel Šegon
+8 | Noa Kodrnja
+10 | Robert Vlizlo | 58' gol, 63' gol, 73' gol
+11 | David Mršić
+17 | Abel Peteh | 33' gol, 85' izlazak
+18 | Leon Marunica | 80' izlazak
+22 | Marko Šantor | 80' izlazak
+27 | Ivan Al Tharwan
+
+[domacin pricuva]
+31 | Marin Martić | vratar
+3 | Marko Vlahović | 80' ulazak
+5 | Arian Težak | 85' ulazak
+9 | Kerim Bajrić | 85' zuti
+20 | Šimun Ivković | 80' ulazak
+40 | Vjekoslav Dorčić
+
+[gost]
+12 | Patrik Vujica | vratar
+2 | Matija Brizić (C)
+5 | Dino Gorički | 58' izlazak, 67' zuti
+7 | Mateo Majdandžić | 67' izlazak
+8 | Vito Traven
+9 | Luka Pamić | 87' izlazak
+15 | Matija Suljić
+17 | Tomas Peternel | 18' zuti, 46' izlazak
+18 | Stefan Stošić
+19 | Petrit Lekaj
+22 | Damjan Gerlič
+
+[gost pricuva]
+1 | Saša Todić | vratar
+3 | Matej Zoričić | 58' ulazak
+10 | Nikola Raković | 67' ulazak
+11 | Robert Rosenberg
+13 | Patrik Živić | 87' ulazak
+16 | Lovro Radolović | 46' ulazak

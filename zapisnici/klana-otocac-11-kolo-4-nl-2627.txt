@@ -1,0 +1,53 @@
+natjecanje: 4. NL NS Rijeka
+sezona: 2026/27
+kolo: 11
+domacin: NK Klana
+gost: NK Otočac
+rezultat: 3:4
+stadion_datum: GRAŠĆINA, KLANA, 14.11.2026. 14:30
+suci: Tomislav Frlan, Bojan Sobol, Matija Leskovar. Delegat: Marko Linić.
+---
+# Prepisano iz snimke zaslona od 14.11.2026.
+# Broj gledatelja na zapisniku nije naveden.
+
+[domacin]
+32 | Matia Torbarina | vratar
+3 | Ivano Buk
+4 | Niko Hrmić
+6 | Roni Šnajdar | 61' izlazak
+8 | Matija Milković | 86' izlazak
+9 | Vid Vlaše | 72' gol
+10 | Antonio Markanović | 42' gol
+14 | Đoša Lazarević | 47' zuti, 66' izlazak
+15 | Patrik Ujčić | 61' izlazak
+17 | Tymur Merezhko
+20 | Mario Jerbić (C) | 26' gol
+
+[domacin pricuva]
+5 | Siniša Kuzmić | 66' ulazak
+7 | Emanuel Iskra
+11 | Ivan Laginja | 61' ulazak
+13 | David Pekar | 86' ulazak
+19 | Dino Jeletić | 61' ulazak, 67' zuti
+
+[gost]
+1 | Antonio Krznarić | vratar
+4 | Josip Smolčić
+6 | Ante Majetić | 14' gol, 82' izlazak
+10 | Marko Krznarić (C) | 71' izlazak
+14 | Dario Pajdaković | 89' izlazak
+16 | Niko Tomaić | 46' izlazak
+17 | Frane Radošević | 71' izlazak
+18 | Antonijo Vujičić | 64' gol, 77' gol, 87' zuti
+19 | Martin Bogdanić | 58' gol
+22 | Karlo Lončar
+24 | Danijel Matovina
+
+[gost pricuva]
+5 | Luka Banić
+7 | Matija Ostović | 46' ulazak
+8 | Antonio Sertić | 71' ulazak
+11 | Antonio Vidmar | 89' ulazak
+15 | Josip Jergović
+23 | Ante Džaja | 82' ulazak
+25 | Alen Vuković | 71' ulazak
