@@ -307,6 +307,30 @@ istu tablicu i iste ljestvice strijelaca i kartona kao zadnji scraperov
 prolaz, bez ijedne razlike u brojkama (3. NL 121 i 206, 4. NL 87 i 142,
 1. ŽNL 110 i 147, 2. ŽNL 51 i 67).
 
+ŠTO SE NAKON PRIJEPISA RAČUNA SAMO, A ŠTO NE (pitanje od 14.11.2026.):
+
+```
+strijelci     sami, iz golova uz igraca u postavi
+kartoni       sami, iz kartona uz igraca u postavi
+gledatelji    iz zaglavlja zapisnika, polje gledatelja
+asistencije   NE POSTOJE, ni u zapisniku ni u bazi
+minute        zamrznute, ne racunaju se
+```
+
+Strijelci i kartoni idu kroz "Preračunaj ljestvice", koji ih zbroji iz
+svih zapisnika lige. Ništa se ne broji napamet i ništa se ne upisuje
+ručno u rang-liste.
+
+Gledatelje treba PREPISATI u polje `gledatelja`, inače ta utakmica tiho
+ispadne iz ljestvice posjećenosti. Ljestvicu stranica računa sama, iz
+retka utakmice, i pripisuje ih domaćinu.
+
+ASISTENCIJA NEMA I NIKAD IH NIJE BILO. HNS ih na Semaforu ne bilježi,
+zapisnik ih nema, baza nema stupac za njih, a ni scraper ih nije čitao.
+Zato se u tekstu NIKAD ne piše tko je asistirao, ni kad se na snimci
+čini da se vidi: to bi bilo izmišljanje podatka (pravilo 5). Iznimka je
+samo ako Andrej izričito kaže tko je asistirao, jer je gledao utakmicu.
+
 Jedna zamka pri upisu: KOLO SE NE PREPOZNAJE PO DATUMU. Vinodol - Nehaj
 odigran je 07.11., a pripada 12. kolu, dok je 11. kolo imalo Vinodol u
 gostima. Zapisnik na Semaforu kolo ne piše. Zato alat, kad par ne nađe u
