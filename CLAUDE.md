@@ -2300,6 +2300,17 @@ za cijelo kolo. Za tekst:
 
 Kad je pregled napisan, ovu stavku obriši.
 
+**ZA PREGLED 10. KOLA 2. ŽNL PGŽ.** U 10. kolu odigrana je samo
+Polet (Sk) - Snježnik. Dvije utakmice nisu:
+
+- Gomirje - Goranka: odgođena, novi termin nije poznat (Semafor i
+  glasnik br. 10); u bazi bez datuma, piše ODG.
+- Željezničar (M) - Mrkopalj: ODGOĐENA ZBOG ZIMSKIH UVJETA, novi termin
+  NEDJELJA 22.11.2026. u 14:00, u Moravicama (Andrej). Upisano u bazu
+  poslom "Termin u bazu". U pregledu ide NAPOMENA o tome.
+
+Kad je pregled napisan, ovu stavku obriši.
+
 **Sažetak uz zapisnik NIJE članak.** Kratak osvrt na pojedinu utakmicu,
 onaj koji stoji ispod zapisnika na stranici utakmice, ide u stupac
 `utakmice.tekst_clanka`, dakle u redak te utakmice. Tablica `clanci` je
