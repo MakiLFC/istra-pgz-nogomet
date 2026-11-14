@@ -321,6 +321,35 @@ Strijelci i kartoni idu kroz "Preračunaj ljestvice", koji ih zbroji iz
 svih zapisnika lige. Ništa se ne broji napamet i ništa se ne upisuje
 ručno u rang-liste.
 
+PROVJERA NAKON PREGLEDA KOLA, OBAVEZAN KORAK (od 14.11.2026., Andrejev
+zahtjev). Kad je pregled kola napisan i objavljen, pokrene se posao
+"Preračunaj ljestvice" s radnjom `promjene` i UPISANIM brojem kola. Ta
+radnja ništa ne mijenja u bazi: uzme listu kakva je sada, izračuna kakva
+bi bila bez tog kola i ispiše razliku igrač po igraču, za strijelce te
+žute i crvene kartone. Služi zato što se napamet ne zna je li se komu
+povećao broj golova ili kartona.
+
+Što se u ispisu gleda:
+
+- PROVJERA ZBROJA GOLOVA. Broj golova po rezultatima kola mora biti
+  jednak onome što je pribrojeno strijelcima. Razlika znači autogole i
+  mora se poklopiti s njihovim brojem u kolu; ako se ne poklapa, nekom
+  zapisniku fali gol. Žuti i crveni takvu aritmetičku kočnicu nemaju,
+  pa je ispis promjena jedino mjesto na kojem se vidi da je karton
+  negdje promašen.
+- NOVA IMENA. Igrači koji se u listama pojavljuju prvi put ispisuju se
+  posebno, a alat javlja i kad je novo ime sumnjivo slično postojećem
+  (isti otisak bez kvačica, razmaka i spojnica). To je zaštita od
+  slučaja Šprem Veljavečki, gdje je jedna spojnica napravila drugog
+  igrača.
+- KOLO KOJE NIJE ODIGRANO DO KRAJA daje samo djelomičnu sliku, pa se
+  provjera ponovi nakon nadoknada.
+
+Prvi put napravljeno 14.11.2026.: 3. NL 13. kolo (16 strijelaca, zbroj
+promjena 17, uz 19 golova po rezultatima i dva autogola potvrđena iz
+pregleda, 34 žuta, jedan crveni) i 4. NL 11. kolo (9 strijelaca, zbroj
+12, golovi 12 na 12, 11 žutih, nijedan crveni).
+
 Gledatelje treba PREPISATI u polje `gledatelja`, inače ta utakmica tiho
 ispadne iz ljestvice posjećenosti. Ljestvicu stranica računa sama, iz
 retka utakmice, i pripisuje ih domaćinu.
@@ -2310,6 +2339,12 @@ Polet (Sk) - Snježnik. Dvije utakmice nisu:
   poslom "Termin u bazu". U pregledu ide NAPOMENA o tome.
 
 Kad je pregled napisan, ovu stavku obriši.
+
+**Nakon objavljenog pregleda ide provjera promjena u ljestvicama.** Posao
+"Preračunaj ljestvice", radnja `promjene`, s upisanim brojem kola. Ispiše
+komu je u tom kolu narastao broj golova ili kartona i provjeri zbroj
+golova. Ne mijenja ništa u bazi. Puni opis stoji gore, u odjeljku o tome
+što se nakon prijepisa računa samo.
 
 **Sažetak uz zapisnik NIJE članak.** Kratak osvrt na pojedinu utakmicu,
 onaj koji stoji ispod zapisnika na stranici utakmice, ide u stupac
