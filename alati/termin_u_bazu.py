@@ -21,8 +21,13 @@ ne dira ništa.
 PRVO "provjeri", koji samo ispiše staro i novo stanje. Upis ide tek uz
 radnju "upis".
 
-ODGODA: datum "-" briše termin. Stranica tada piše da je utakmica
-odgođena i da novi termin još nije poznat.
+ODGODA: datum "-" briše termin i utakmicu označi odgođenom. Stranica
+tada piše da je utakmica odgođena i da novi termin još nije poznat.
+
+ODGOĐENA S NOVIM TERMINOM (od 14.11.2026.): uz novi datum odabere se
+odgoda "da". Stranica tada umjesto "?:?" piše ODG. i novi termin. Bez te
+oznake odgođena utakmica s novim datumom izgleda kao svaka buduća.
+Oznaka "ne" je skida. Stupac odgodjena dodaje sql/odgodjena.sql.
 """
 
 import argparse
@@ -141,6 +146,15 @@ def odaberi_utakmicu(redovi, domacin, gost, kolo=None):
     return pogodci[0]
 
 
+def oznaka_odgode(odgoda, datum):
+    """True, False ili None (ne diraj). Brisanje termina je uvijek odgoda."""
+    if odgoda == "da" or datum is None:
+        return True
+    if odgoda == "ne":
+        return False
+    return None
+
+
 def promjene(red, datum, vrijeme, stadion):
     """Samo polja koja se stvarno mijenjaju; prazno znači "ne diraj"."""
     novo = {}
@@ -202,6 +216,7 @@ def main():
     p.add_argument("--datum", default="")
     p.add_argument("--vrijeme", default="")
     p.add_argument("--stadion", default="")
+    p.add_argument("--odgoda", choices=("", "ne diraj", "da", "ne"), default="")
     p.add_argument("--radnja", choices=("provjeri", "upis"), default="provjeri")
     a = p.parse_args()
 
@@ -211,8 +226,11 @@ def main():
     if stadion.lower() in BRISANJE:
         stadion = None
 
-    if datum == "" and vrijeme == "" and stadion == "":
-        raise SystemExit("Nije zadano ništa novo: upiši datum, vrijeme ili stadion.")
+    odgoda = oznaka_odgode(a.odgoda, datum)
+
+    if datum == "" and vrijeme == "" and stadion == "" and odgoda is None:
+        raise SystemExit("Nije zadano ništa novo: upiši datum, vrijeme, "
+                         "stadion ili odgodu.")
 
     adresa = os.environ.get("SUPABASE_URL")
     kljuc = os.environ.get("SUPABASE_SERVICE_KEY")
@@ -227,6 +245,11 @@ def main():
     print(f"  sada:  {opis_termina(red)}")
 
     novo = promjene(red, datum, vrijeme, stadion)
+    # Stupac odgodjena se ne čita (nije u STUPCI), da alat radi i prije
+    # nego se pokrene sql/odgodjena.sql. Zato se oznaka uvijek šalje.
+    if odgoda is not None:
+        novo["odgodjena"] = odgoda
+        print(f"  odgoda: {'da' if odgoda else 'ne'}")
     if not novo:
         print("  novo:  ništa se ne mijenja, termin je već takav.")
         return

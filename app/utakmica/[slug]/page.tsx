@@ -207,6 +207,15 @@ export default async function StranicaUtakmice({
               {u.suci && u.suci !== "Nepoznato" && <Podatak>Suci: {u.suci}</Podatak>}
             </div>
 
+            {/* Ručna oznaka odgode, vidi sql/odgodjena.sql (14.11.2026.). */}
+            {!rezultat && u.odgodjena && (
+              <p className="mt-4 font-sans text-sm italic" style={{ color: "var(--ink-muted)" }}>
+                {u.datum
+                  ? `Utakmica je odgođena. Novi termin: ${u.datum}${u.vrijeme ? ` u ${u.vrijeme}.` : ""}`
+                  : "Utakmica je odgođena, novi termin još nije poznat."}
+              </p>
+            )}
+
             {/* Poruka smije stajati samo kad utakmica IMA rezultat, a nema
                 zapisnik. Inače bi je dobila svaka buduća utakmica.
 

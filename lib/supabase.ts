@@ -164,4 +164,11 @@ export type Utakmica = {
   slika_url: string | null;
   created_at: string;
   derbi: boolean | null;
+  /**
+   * Ručna oznaka odgode (sql/odgodjena.sql), od 14.11.2026. Bez nje
+   * stranica odgodu prepoznaje samo po praznom ili davno prošlom datumu,
+   * pa odgođena utakmica s NOVIM terminom izgleda kao obična buduća.
+   * Neobavezno u tipu, jer stupca nema dok se ta datoteka ne pokrene.
+   */
+  odgodjena?: boolean | null;
 };

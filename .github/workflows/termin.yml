@@ -27,6 +27,9 @@
 # ODGODA BEZ NOVOG TERMINA: u datum upiši "-". Stranica tada piše da je
 # utakmica odgođena i da novi termin još nije poznat.
 #
+# ODGOĐENA S NOVIM TERMINOM: upiši novi datum i vrijeme i odaberi
+# odgoda "da". Stranica tada piše ODG. i novi termin, umjesto "?:?".
+#
 # NE DIRA REZULTAT ni zapisnik, samo termin.
 
 name: Termin u bazu
@@ -72,6 +75,15 @@ on:
         required: false
         default: ""
         type: string
+      odgoda:
+        description: "Je li utakmica odgođena"
+        required: false
+        default: "ne diraj"
+        type: choice
+        options:
+          - "ne diraj"
+          - da
+          - ne
       radnja:
         description: "Što napraviti"
         required: true
@@ -119,10 +131,11 @@ jobs:
           VRIJEME: ${{ inputs.vrijeme }}
           STADION: ${{ inputs.stadion }}
           RADNJA: ${{ inputs.radnja }}
+          ODGODA: ${{ inputs.odgoda }}
           PYTHONUNBUFFERED: "1"
         run: |
           python alati/termin_u_bazu.py \
             --natjecanje "$LIGA" --sezona "$SEZONA" \
             --domacin "$DOMACIN" --gost "$GOST" --kolo "$KOLO" \
             --datum "$DATUM" --vrijeme "$VRIJEME" --stadion "$STADION" \
-            --radnja "$RADNJA"
+            --odgoda "$ODGODA" --radnja "$RADNJA"

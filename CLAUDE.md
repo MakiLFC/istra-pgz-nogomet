@@ -97,7 +97,11 @@ promijeni, mora stići pisanim putem od HNS-a.
     novi datum, vrijeme ili stadion jedne utakmice. Od 13.11.2026.
     zamjenjuje ugašenu "Provjeru termina". Imena klubova smiju biti
     nepotpuna, kolo treba samo kad se par u sezoni ponavlja, a datum "-"
-    briše termin (odgoda bez novog termina).
+    briše termin (odgoda bez novog termina). Od 14.11.2026. ima polje
+    "odgoda": "da" uz novi datum označi ODGOĐENU utakmicu s novim
+    terminom (stupac `utakmice.odgodjena`, `sql/odgodjena.sql`), pa
+    stranica lige piše ODG. i novi termin umjesto "?:?". Bez oznake
+    stranica odgodu prepoznaje samo po praznom ili davno prošlom datumu.
   - `.github/workflows/preimenuj.yml` ("Preimenuj igrača") samo ručno:
     zamijeni ime igrača u postavama, strijelcima i rang-listama, kroz
     sve sezone. Postoji od 13.11.2026., jer se igrač u bazi prepoznaje

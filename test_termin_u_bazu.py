@@ -117,6 +117,18 @@ def test_brisanje_termina():
     print("OK: odgoda briše termin, i to samo kad ima što obrisati")
 
 
+def test_oznaka_odgode():
+    # Prazno i "ne diraj" ne diraju oznaku.
+    assert t.oznaka_odgode("", "22.11.2026.") is None
+    assert t.oznaka_odgode("ne diraj", "") is None
+    # Novi termin uz odgodu "da": Željezničar - Mrkopalj, 14.11.2026.
+    assert t.oznaka_odgode("da", "22.11.2026.") is True
+    assert t.oznaka_odgode("ne", "") is False
+    # Brisanje termina je uvijek odgoda, i bez izričite oznake.
+    assert t.oznaka_odgode("", None) is True
+    print("OK: oznaka odgode")
+
+
 if __name__ == "__main__":
     test_datum()
     test_krivi_datum_pada()
@@ -127,4 +139,5 @@ if __name__ == "__main__":
     test_obrnut_par_nije_ista_utakmica()
     test_mijenja_se_samo_zadano()
     test_brisanje_termina()
+    test_oznaka_odgode()
     print("\nSVE PROLAZI")

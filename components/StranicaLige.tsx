@@ -265,11 +265,17 @@ export default async function StranicaLige({
                       // Utakmica s novim terminom ima budući datum i ostaje
                       // kakva jest.
                       const datumUtakmice = uDatum(u.datum);
-                      const odgodjena =
+                      const bezTermina =
                         !u.rezultat &&
                         (datumUtakmice
                           ? Date.now() - datumUtakmice.getTime() > 4 * 86400000
                           : !u.stadion_datum);
+                      // Od 14.11.2026. odgodu se može i OZNAČITI (stupac
+                      // odgodjena). Tada utakmica s novim terminom piše
+                      // ODG. i taj termin, umjesto "?:?".
+                      const noviTermin =
+                        !u.rezultat && !!u.odgodjena && !bezTermina && !!u.datum;
+                      const odgodjena = bezTermina || noviTermin;
 
                       const { domacin, gost, nepoznato } = strijelciPoKlubu(u);
 
@@ -330,7 +336,9 @@ export default async function StranicaLige({
 
                           {odgodjena && (
                             <p className="mt-3 font-sans text-sm italic" style={{ color: "var(--ink-muted)" }}>
-                              Utakmica je odgođena, novi termin još nije poznat.
+                              {noviTermin
+                                ? `Utakmica je odgođena. Novi termin: ${u.datum}${u.vrijeme ? ` u ${u.vrijeme}.` : ""}`
+                                : "Utakmica je odgođena, novi termin još nije poznat."}
                             </p>
                           )}
 
