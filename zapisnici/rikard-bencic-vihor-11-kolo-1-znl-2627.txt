@@ -11,8 +11,7 @@ suci: Danijel Klarić, Dario Nedić, Fran Tomičić. Delegat: Vladimir Jurić.
 # Broja gledatelja u zapisniku nema, pa polje izostaje.
 # Luka Makin (Rikard Benčić) promašio je jedanaesterac u 21. minuti.
 # Promašen jedanaesterac se ne upisuje (CLAUDE.md), ali smije u tekst.
-# Klupa Vihora: snimka završava na Matiji Strilčiću; ako ih je bilo
-# više, nisu ušli u igru i dopisuju se naknadno.
+# Klupa Vihora završava na Matiji Strilčiću (Andrej, 14.11.2026.).
 
 [domacin]
 1 | Deni Pavlić | vratar

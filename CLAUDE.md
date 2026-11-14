@@ -2284,6 +2284,22 @@ Taj drugi, podroban pregled piše se u srijedu 18.11. ujutro; podsjetnik
 je postavljen. Kad je pregled napisan, ovu
 stavku obriši.
 
+**ZA PREGLED 11. KOLA 1. ŽNL PGŽ (piše se 15.11.2026.).** Subotnje
+dvije utakmice upisane su 14.11. (`zapisnici/rikard-bencic-vihor-11-kolo-1-znl-2627.txt`
+i `zapisnici/draga-goranin-11-kolo-1-znl-2627.txt`), a ljestvica je
+preračunata. Ostalih pet stiže snimkama u nedjelju, pa ide jedan pregled
+za cijelo kolo. Za tekst:
+
+- Rikard Benčić - Vihor (B) 2:0: Ivo Dorić ušao u 83. i zabio u 83. i
+  85. minuti; Luka Makin promašio jedanaesterac u 21. (sa snimke, nije u
+  bazi). Broja gledatelja nema.
+- Draga - Goranin 2:3: Lalić 29. i 75., Darin Brajdić 41.; za Dragu
+  Rubinić 40. i Kovačević 76. Marin Injić (Goranin, s klupe) isključen
+  nakon drugog žutog u 70.; Andrej 14.11.: piše se SAMO "isključen",
+  bez tvrdnje da je to bilo s klupe. Propušta sljedeće kolo.
+
+Kad je pregled napisan, ovu stavku obriši.
+
 **Sažetak uz zapisnik NIJE članak.** Kratak osvrt na pojedinu utakmicu,
 onaj koji stoji ispod zapisnika na stranici utakmice, ide u stupac
 `utakmice.tekst_clanka`, dakle u redak te utakmice. Tablica `clanci` je
