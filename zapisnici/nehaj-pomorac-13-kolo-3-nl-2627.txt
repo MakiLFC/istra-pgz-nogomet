@@ -1,0 +1,59 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 13
+domacin: NK Nehaj
+gost: NK Pomorac
+rezultat: 2:2
+stadion_datum: NEHAJ, SENJ, 14.11.2026. 14:30
+gledatelja: 80
+suci: Jan Jelić, Andre Olajoš, Milan Butorac. Delegat: Josip Šimunić.
+---
+# Prepisano iz snimke zaslona od 14.11.2026.
+# Filip Dizdar (Nehaj) u 19. minuti: crvena lopta, autogol.
+
+[domacin]
+1 | Lovro Pichler | vratar
+5 | Domagoj Prizmić | (C)
+6 | David Dabac
+7 | David Svast | 69' izlazak
+8 | Duje Tomljanović | 46' izlazak
+11 | Ivan Vukelić | 62' izlazak
+14 | Luka Lopac | 34' zuti, 69' izlazak
+18 | Marko Hodak
+19 | Luka Hodak
+20 | Filip Dizdar | 19' autogol
+21 | Filip Zrilić | 37' gol
+
+[domacin pricuva]
+12 | Marino Godinić | vratar
+3 | Gabrijel Tomić
+9 | Lucijan Tomac | 46' ulazak, 90+3' zuti
+10 | Ivan Prpić
+13 | Ante Prpić | 62' ulazak
+15 | Vinko Šolić
+17 | Matej Prizmić | 69' ulazak, 83' gol
+25 | Dorian Katalinić | 69' ulazak
+
+[gost]
+1 | Roberto Nicoletti | vratar
+3 | Alan Franco Brusić | 59' izlazak
+4 | Antonio Kružić | 44' zuti
+5 | Karlo Valjan
+7 | Paolo Sobotinčić
+10 | Leo Burul
+11 | Niko Lovrić | 59' izlazak
+14 | Ian Benčić | 38' izlazak
+16 | Rene Ende | (C)
+19 | Jakob Šprem Veljavečki
+22 | Artem Terletskyi
+
+[gost pricuva]
+12 | Matko Božičković | vratar
+2 | Luka Penava
+6 | Arianit Ljušaj
+8 | Benjamin Lapić | 38' ulazak
+15 | Lucas Precetti
+17 | Matej Momčilovski | 59' ulazak, 61' gol
+18 | Ante Bilen
+20 | Emanuel Mlinarić
+25 | David Gjugjaj | 59' ulazak, 84' zuti

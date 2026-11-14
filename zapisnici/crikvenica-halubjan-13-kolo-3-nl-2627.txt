@@ -1,0 +1,55 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 13
+domacin: NK Crikvenica
+gost: NK Halubjan
+rezultat: 0:0
+stadion_datum: GRADSKI STADION, CRIKVENICA, 14.11.2026. 14:30
+gledatelja: 60
+suci: Petar Pejkunović, Patrik Beniković, Antun Taranić. Delegat: Marijan Tkalčević.
+---
+# Prepisano iz snimke zaslona od 14.11.2026.
+
+[domacin]
+23 | Breno Bonamigo Toseto | vratar
+3 | Alen Smolčić
+5 | Niko Daničić | 46' izlazak
+6 | Ivan Filipović
+7 | Petar Vidović
+8 | Luka Mađovski
+10 | Damjan Mendrila
+14 | Ivan Lukarić | (C), 74' zuti
+15 | Jakov Mendrila | 83' izlazak
+17 | Vito Lukarić | 46' izlazak
+20 | Mario Smolčić | 69' izlazak
+
+[domacin pricuva]
+12 | Mladen Ćućić | vratar
+9 | Antonio Buljat | 69' ulazak
+11 | Paulo Deželin | 83' ulazak
+21 | Paolo Brnja | 89' zuti
+22 | Juraj Peričić
+29 | Pedro Gustavo Dos Santos Melo | 46' ulazak
+77 | Luka Mikulica | 46' ulazak
+
+[gost]
+32 | Ivan Puljić | vratar
+2 | Leonardo Milih
+4 | Štefan Vrhovac
+6 | Marko Ivanković | 85' izlazak
+7 | Bruno Došen
+10 | Mario Jurković
+11 | Marko Tadić | 61' izlazak
+20 | Lovro Mikulica
+22 | Antonio Dedić | (C), 61' izlazak
+24 | Noel Jakac
+41 | Simon Simonaj
+
+[gost pricuva]
+40 | Vito Sviličić Kraš | vratar
+5 | Erik Šafarek
+9 | Moreno Stanić | 85' ulazak
+14 | Mihovil Jeronim Klapan | 61' ulazak
+17 | Petar Vukajlović | 61' ulazak
+18 | Matej Šarlija
+47 | Vito Franković

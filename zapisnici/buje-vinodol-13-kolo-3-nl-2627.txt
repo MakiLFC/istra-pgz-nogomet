@@ -1,0 +1,59 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 13
+domacin: NK Buje
+gost: NK Vinodol
+rezultat: 0:1
+stadion_datum: GRADSKI STADION, BUJE, 14.11.2026. 14:30
+gledatelja: 150
+suci: Daniel Starčević, Matej Bezelj, David Ružić. Delegat: Aljoša Radolović.
+---
+# Prepisano iz snimke zaslona od 14.11.2026.
+
+[domacin]
+22 | Matteo Fabac | vratar
+3 | Emanuele Dubaz | 79' zuti
+4 | Matija Šusterajter
+9 | Matteo Fakin | (C), 84' izlazak
+11 | Marko Cukon | 65' izlazak
+14 | Damir Bartulović | 54' zuti
+18 | Matija Kalizan
+23 | Stefan Stefanovski
+27 | Dario Čakarun
+33 | Ivan Iveljić
+77 | Mark Bulešić | 65' izlazak
+
+[domacin pricuva]
+12 | Josip Benjak | vratar
+5 | Azariah Uriel Hines
+6 | Dominik Jugovac
+7 | Masimo Krizmanić | 65' ulazak
+8 | Kevin Bobson Kargbo | 65' ulazak
+17 | Victor Kargbo | 84' ulazak
+26 | William Ayanda Maseko
+88 | Leon Lakošeljac
+99 | Borna Švenda
+
+[gost]
+99 | Matija Ugrinović | vratar
+4 | Tin Lagumdžija | 58' zuti
+8 | Antonio Mazzarolli | 81' izlazak
+9 | Edmar Junior Dos Santos Neves | 29' gol, 58' izlazak
+10 | Deni Rubčić | 81' izlazak
+11 | Luka Filipović | (C), 72' izlazak
+14 | Badara Seck | 90+5' zuti
+18 | Marcelo Suden | 31' zuti
+22 | Sebastijan Antić
+27 | Maro Peričić | 12' zuti, 46' izlazak
+77 | Noah Ugrinović
+
+[gost pricuva]
+5 | Domagoj Barac | 46' ulazak, 66' zuti
+19 | Sven Ratković
+20 | Ivo Humberto Kreusch Junior | 81' ulazak, 83' zuti
+21 | Gabriel Proleta | 72' ulazak
+23 | Din Pozderac | 58' ulazak, 62' zuti
+24 | David Butorac | 81' ulazak
+25 | Maro Brčić
+50 | Duje Zrilić
+91 | Adriano Šmit

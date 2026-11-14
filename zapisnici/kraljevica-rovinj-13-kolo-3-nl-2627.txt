@@ -1,0 +1,55 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 13
+domacin: NK Kraljevica
+gost: NK Rovinj
+rezultat: 1:1
+stadion_datum: MILAN RUŽIĆ - MINTA, KRALJEVICA, 14.11.2026. 14:30
+gledatelja: 70
+suci: Amel Dizdarević, Milan Kukuljan, Nenad Marušić. Delegat: Željko Tulić.
+---
+# Prepisano iz snimke zaslona od 14.11.2026.
+
+[domacin]
+1 | Dominik Grgurev | vratar
+2 | Andro Depeder
+3 | Mikula Dunatov
+4 | Franko Bosančić | 28' gol, 76' zuti
+5 | Filip Znamenaček | (C)
+6 | Borna Znamenaček
+8 | Luka Vlašić | 81' izlazak
+9 | Matija Čabrijan
+11 | Paulo Kocijan
+15 | Sven Stević
+18 | Lovro Šupraha | 81' izlazak
+
+[domacin pricuva]
+10 | Maro Rosić
+13 | Andro Zubović
+14 | Luka Galer
+16 | Lovro Matošić
+17 | Leon Sedlić | 81' ulazak
+19 | Petar Jakov Tomičić
+20 | Dominik Paljokaj | 81' ulazak
+21 | Dominik Čarija
+22 | Luka Šupraha
+
+[gost]
+33 | Stefan Vasiljević | vratar
+2 | Dominik Žgomba | 32' zuti
+4 | Matej Vladišković
+7 | Viktor Milošević
+8 | Andres Camilo De Armas Bracho | (C)
+9 | Masimo Terlević | 24' gol
+17 | Lukas Stošić | 46' izlazak
+22 | Niko Šerifović | 84' izlazak
+23 | Lazar Peev
+24 | Mateo Buljević
+27 | Dejan Kukić
+
+[gost pricuva]
+12 | Karlo Doblanović | vratar
+6 | Matija Hek | 46' ulazak
+13 | Andi Bešić
+15 | Fran Bernobić
+19 | David Lazarić | 84' ulazak
