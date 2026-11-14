@@ -13,7 +13,9 @@
 # KAKO SE POKREĆE
 # Actions -> "Preračunaj ljestvice" -> Run workflow:
 #   liga    koja liga
-#   radnja  provjeri (ništa ne upisuje, samo usporedi) ili upis
+#   radnja  provjeri (ništa ne upisuje, samo usporedi), upis, ili
+#           promjene (tko je u zadanom kolu dobio gol ili karton)
+#   kolo    samo uz radnju "promjene"
 #
 # PRVI PUT OBAVEZNO "provjeri". Dok u bazi još stoji zadnja tablica koju
 # je scraper skinuo s HNS-a, izračun se može usporediti s njom i razlika
@@ -46,6 +48,12 @@ on:
         options:
           - provjeri
           - upis
+          - promjene
+      kolo:
+        description: "Broj kola (samo uz radnju promjene)"
+        required: false
+        default: ""
+        type: string
       sezona:
         description: "Sezona"
         required: false
@@ -79,7 +87,9 @@ jobs:
           LIGA: ${{ inputs.liga }}
           RADNJA: ${{ inputs.radnja }}
           SEZONA: ${{ inputs.sezona }}
+          KOLO: ${{ inputs.kolo }}
           PYTHONUNBUFFERED: "1"
         run: |
           python alati/preracunaj_ljestvice.py \
-            --natjecanje "$LIGA" --sezona "$SEZONA" --radnja "$RADNJA"
+            --natjecanje "$LIGA" --sezona "$SEZONA" --radnja "$RADNJA" \
+            --kolo "$KOLO"
