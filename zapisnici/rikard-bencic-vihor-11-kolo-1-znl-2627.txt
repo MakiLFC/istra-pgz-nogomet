@@ -1,0 +1,56 @@
+natjecanje: 1. ŽNL PGŽ
+sezona: 2026/27
+kolo: 11
+domacin: NK Rikard Benčić
+gost: NK Vihor (B)
+rezultat: 2:0
+stadion_datum: SRC BELVEDER, RIJEKA, 14.11.2026. 13:30
+suci: Danijel Klarić, Dario Nedić, Fran Tomičić. Delegat: Vladimir Jurić.
+---
+# Prepisano iz snimke zaslona od 14.11.2026.
+# Broja gledatelja u zapisniku nema, pa polje izostaje.
+# Luka Makin (Rikard Benčić) promašio je jedanaesterac u 21. minuti.
+# Promašen jedanaesterac se ne upisuje (CLAUDE.md), ali smije u tekst.
+# Klupa Vihora: snimka završava na Matiji Strilčiću; ako ih je bilo
+# više, nisu ušli u igru i dopisuju se naknadno.
+
+[domacin]
+1 | Deni Pavlić | vratar
+2 | Jan Jusup
+3 | Marino Štefša
+4 | Ante Mioč
+5 | Mateo Mladenović
+6 | Nino Popović | 72' izlazak
+7 | Zoran Štokan | (C)
+11 | Goran Iličić | 83' izlazak
+14 | Matteo Petković | 46' izlazak
+15 | Matvii Yankelevych
+20 | Luka Makin
+
+[domacin pricuva]
+12 | Vedran Paris | vratar
+8 | Jan Ciceran | 72' ulazak
+9 | Bakir Delić | 46' ulazak
+13 | Marino Saftich
+16 | Ivo Dorić | 83' ulazak, 83' gol, 85' gol
+17 | Dorian Crljenko
+18 | Mile Glumac
+
+[gost]
+1 | Muamer Avdić | vratar
+3 | Ante Žunić | (C)
+6 | Hrvoje Pilčić
+7 | Edi Begaj
+8 | Anton Božanić | 56' izlazak
+9 | Matej Brlošić
+10 | Nikola Seršić | 46' izlazak
+15 | Mihael Radić
+18 | Adnan Husić | 60' zuti
+21 | Filip Sablić
+22 | Roko Ferenčić
+
+[gost pricuva]
+11 | Dominik Barbalić | 46' ulazak
+14 | Eldin Huskić
+17 | Mario Grbec
+19 | Matija Strilčić | 56' ulazak

@@ -1,0 +1,56 @@
+natjecanje: 1. ŽNL PGŽ
+sezona: 2026/27
+kolo: 11
+domacin: NK Draga
+gost: HNK Goranin
+rezultat: 2:3
+stadion_datum: SLATINA, MOŠĆENIČKA DRAGA, 14.11.2026. 13:30
+gledatelja: 30
+suci: Gabrijel Flegar, David Mirić, Frane Baškarad. Delegat: Paula Rigović.
+---
+# Prepisano iz snimke zaslona od 14.11.2026.
+# Marin Injić (Goranin, pričuva): žuti u 43., u 70. ikona žuto-crvena,
+# dakle drugi žuti. Žuti u 43. dobio je i pričuvni vratar Adriano Đukić.
+
+[domacin]
+1 | Toni Bošnjak | vratar
+3 | Luka Lanča | 58' zuti
+4 | Pino Kovačević
+5 | Erik Drozdek
+8 | Zoran Rubinić | (C), 40' gol, 58' izlazak
+10 | Toni Juničić
+11 | Toni Rudan
+16 | Ivan Kinkela
+18 | Dante Bujas
+19 | Đerđ Kurti
+22 | Andro Belošević | 46' izlazak
+
+[domacin pricuva]
+2 | Josip Rudan
+7 | Kristijan Kurti | 46' ulazak
+9 | Sanjin Rubinić
+12 | Karlo Perković
+15 | Leonardo Rubinić
+17 | Ivan Kovačević | 58' ulazak, 76' gol
+
+[gost]
+1 | Karlo Bliznac | vratar
+2 | Darin Brajdić | 41' gol
+5 | Dario Mikešić | 45' zuti
+7 | Matija Markovčić | 90' zuti
+8 | Borna Janeš
+9 | Antonio Frlan | 85' izlazak
+10 | Branimir Brelih | 8' zuti
+14 | Anton Lalić | 29' gol, 75' gol, 85' izlazak
+18 | Dominik Brajdić
+19 | Ivan Tomić | 55' izlazak
+22 | Alen Dedić | (C)
+
+[gost pricuva]
+12 | Adriano Đukić | vratar, 43' zuti
+4 | Kristijan Frlan | 85' ulazak
+11 | Fran Petrušanec Pečar | 85' ulazak
+13 | Mario Krištof
+15 | Rok Stipaničić | 55' ulazak
+20 | Marin Injić | 43' zuti, 70' drugi zuti
+21 | Ivano Pelko
