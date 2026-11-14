@@ -1,0 +1,56 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 13
+domacin: NK Naprijed (H)
+gost: NK Lokomotiva (R)
+rezultat: 2:3
+stadion_datum: LONJA, HRELJIN, 14.11.2026. 14:30
+gledatelja: 100
+suci: Marin Rožman, Dalibor Šušnjar, Hrvoje Perkov. Delegat: Rajko Planinić.
+---
+# Prepisano iz snimke zaslona od 14.11.2026.
+# Karlo Josipović (Lokomotiva): žuti u 75., u 76. ikona žuto-crvena, dakle drugi žuti.
+
+[domacin]
+1 | Gabriel Pehar | vratar
+6 | Luka Žeželić
+7 | Dino Dukađin | 5' gol, 72' gol
+14 | Filip Cetina
+15 | Fran Vušković
+16 | Karlo Radošević | (C)
+17 | Lovro Tomljanović
+20 | Filip Pleše
+21 | Leon Petrović
+23 | Ivan Frigan | 54' izlazak
+47 | Robert Jandrek
+
+[domacin pricuva]
+12 | Filip Mufić | vratar
+5 | Mauro Milić | 54' ulazak, 79' zuti
+9 | Tomislav Krpan
+13 | Šime Stančić
+18 | Andri Kašovski
+19 | Armando Begić
+24 | Luka Jakovljević
+27 | Dominik Topić
+
+[gost]
+30 | Giuliano Popović | vratar, (C)
+7 | Marin Grujević | 10' zuti
+8 | Ivor Weitzer | 44' zuti, 88' izlazak
+9 | Karlo Josipović | 75' zuti, 76' drugi zuti
+10 | Frano Ivančić | 90+2' gol
+15 | Lukas Ujčić
+16 | Loren Pichler
+17 | Mateo Monjac | 38' gol
+19 | Nino Mohorovičić | 61' gol
+20 | Vanja Malinić
+23 | Edin Junuzović | 40' zuti, 73' izlazak
+
+[gost pricuva]
+25 | Nikša Maltež | vratar
+4 | Andre Franković
+5 | Ronan Hibšer
+14 | Antonio Pejanović | 73' ulazak
+18 | Dominik Fuštar
+22 | Dino Bradarić | 88' ulazak

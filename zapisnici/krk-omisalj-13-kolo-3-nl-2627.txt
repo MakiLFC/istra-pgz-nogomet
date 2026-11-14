@@ -1,0 +1,54 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 13
+domacin: NK Krk
+gost: NK OŠK Omišalj
+rezultat: 2:3
+stadion_datum: JOSIP URAVIĆ-PEPI, KRK, 14.11.2026. 14:30
+gledatelja: 80
+suci: Sandro Miličković, Luka Šipić, Noa Perušić. Delegat: Ivan Jakovac.
+---
+# Prepisano iz snimke zaslona od 14.11.2026.
+# Ivan Lucić (Krk) u 43. minuti: crvena lopta, autogol.
+
+[domacin]
+13 | Matej Brusić | vratar
+8 | Ivan Lucić | 43' autogol
+9 | Marko Jelić | 10' gol, 55' zuti
+14 | Lovre Travica | 75' zuti, 77' izlazak
+17 | Jakov Delibegović | 63' izlazak
+19 | Roko Begonja
+20 | Dino Dvorničić
+22 | Mateo Jurešić | (C), 73' izlazak
+23 | Ivan Golemac
+37 | Tin Jurica | 13' gol
+95 | Emanuel Mrakovčić | 63' izlazak
+
+[domacin pricuva]
+12 | Izak Hrelja | vratar
+2 | Tomislav Jukičić | 73' ulazak
+3 | Mathew Peter | 63' ulazak
+4 | Ivano Pranjić | 77' ulazak
+6 | Mateo Klenovšek | 63' ulazak
+7 | Luka Kuljiš
+18 | Alin Hadžić
+
+[gost]
+12 | Igor Herman | vratar
+4 | Bruno Požega
+5 | Sanin Muminović
+10 | Mateo Ostović | 75' zuti, 89' izlazak
+14 | Karlo Milinović | 22' zuti
+15 | David Rožajac
+17 | Luka Štimac | 35' gol, 82' zuti
+19 | Sanjin Grbac | (C), 37' izlazak
+20 | Patrik Gundić | 45+1' gol, 89' izlazak
+29 | Luka Mijić | 38' izlazak
+49 | Andrija Belina
+
+[gost pricuva]
+23 | Leo Margan | vratar
+9 | Matteo Pavković | 89' ulazak
+30 | Paolo Lenac | 38' ulazak
+70 | Dino Tatarević | 89' ulazak
+90 | Niko Maksić | 37' ulazak

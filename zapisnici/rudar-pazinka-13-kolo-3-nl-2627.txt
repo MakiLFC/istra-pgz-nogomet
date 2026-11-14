@@ -1,0 +1,59 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 13
+domacin: NK Rudar (L)
+gost: NK Pazinka-Pazin
+rezultat: 0:0
+stadion_datum: GRADSKI STADION LABIN, LABIN, 14.11.2026. 14:30
+suci: Ivan Šantić, Marko Balen, Petar Tubak. Delegat: Dino Hajdarević.
+---
+# Prepisano iz snimke zaslona od 14.11.2026.
+# Broja gledatelja u zapisniku nema, pa polje izostaje.
+
+[domacin]
+32 | Andrej Prskalo | vratar
+4 | Antonio Načinović | (C), 85' zuti
+6 | Petar Mitrović
+8 | Nino Lazarić | 58' izlazak
+10 | Paolo Juričić | 64' izlazak
+11 | Ševko Okić | 65' izlazak
+13 | Anton Bilić
+16 | Matija Ristić | 75' izlazak
+18 | Darian Živolić | 58' izlazak
+42 | Patrik Čenaj | 56' zuti
+44 | Nikola Terković
+
+[domacin pricuva]
+1 | Luka Verbanac | vratar
+5 | Matej Trajkovski
+7 | Amel Ibrahimović | 64' ulazak
+9 | Ivan Macan | 65' ulazak, 90+2' zuti
+14 | Karlo Krnjus
+15 | Tino Licul | 75' ulazak, 90+2' zuti
+19 | Timi Mohorović | 58' ulazak
+22 | Connor Jacob Stayton
+77 | Matteo Movrić | 58' ulazak
+
+[gost]
+27 | Petar Guga | vratar
+2 | Entony Pavat
+4 | Ivan Rojnić | 64' zuti
+9 | Maikol Prenc | 58' izlazak
+10 | Nikola Ivetac | 80' izlazak
+11 | Deni Radovčić | 80' izlazak
+13 | Doni Tanković | (C)
+19 | Leo Lenić
+21 | Loren Maružin | 80' izlazak
+22 | Adam Mofardin
+77 | Mate Ivetić
+
+[gost pricuva]
+49 | Mauro Mendiković | vratar
+5 | Marko Načinović
+6 | Gabriel Buršić
+7 | Damjan Ivančić
+14 | Nikola Petković | 80' ulazak
+17 | Marko Krištofić | 58' ulazak, 85' zuti
+23 | Patrick Rabar
+66 | Luka Delšeno | 80' ulazak
+80 | Noel Pavat | 80' ulazak

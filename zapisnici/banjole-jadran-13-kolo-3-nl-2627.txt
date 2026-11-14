@@ -1,0 +1,56 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 13
+domacin: NK Banjole
+gost: NK Jadran-Poreč
+rezultat: 2:0
+stadion_datum: PREMATINKA, BANJOLE, 14.11.2026. 14:30
+gledatelja: 70
+suci: Marko Tićak, Noel Sambol, Igor Bahun. Delegat: Goran Kvalić.
+---
+# Prepisano iz snimke zaslona od 14.11.2026.
+
+[domacin]
+12 | Damir Daić | vratar
+2 | Venas Džanić
+4 | Sandi Mofardin
+6 | Marshal Mfon Johnson
+7 | Anel Salihović | (C)
+8 | Elvis Krasniqi | 61' izlazak
+9 | Ahmed Durmo | 38' gol, 68' izlazak
+10 | Paolo Matteoni
+21 | Ivan Giljanović
+88 | Filip Rosić | 36' gol, 88' izlazak
+98 | Vice Miljanić | 88' izlazak
+
+[domacin pricuva]
+1 | Marco Delfar | vratar
+5 | Martin Sivonjić | 88' ulazak
+14 | Kavanah William Morgan Bollinger | 68' ulazak
+18 | Dominik Frank
+19 | Stefano Matteoni | 88' ulazak
+20 | Luka Radonić
+23 | Robert Raković | 61' ulazak
+99 | Matija Paulović
+
+[gost]
+1 | Ivan Matukina | vratar
+4 | Luka Bogdan
+9 | Ilija Batrićević | 46' izlazak
+10 | Luka Paulinić | 46' izlazak
+11 | Filip Šverko | 79' izlazak
+17 | Ivan Jakovčić | 14' zuti
+20 | Petar Leko
+21 | Donato Bernobić | 62' izlazak
+22 | Lukas Banko | 46' izlazak
+28 | Vedran Radman | (C), 12' zuti
+33 | Paolo Bernobić
+
+[gost pricuva]
+12 | Leo Krišto | vratar
+7 | David Ereiz | 46' ulazak
+8 | Luka Nerlović | 46' ulazak
+16 | Andrea Dobrilović | 79' ulazak
+24 | Bernard Kodrnja | 46' ulazak
+25 | Dominik-Velin Mrvčić | 62' ulazak
+27 | Niko Buljan
