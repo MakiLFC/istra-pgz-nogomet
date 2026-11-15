@@ -1,0 +1,56 @@
+natjecanje: 4. NL NS Rijeka
+sezona: 2026/27
+kolo: 11
+domacin: NK Mladost Fažana
+gost: NK Rječina
+rezultat: 4:3
+stadion_datum: OLIVA, FAŽANA, 15.11.2026. 13:30
+gledatelja: 80
+suci: Adrian Ivošević, Lucia Jović, Robi Kezele. Delegat: Mauricio Kožljan.
+---
+# Prepisano iz snimke zaslona od 15.11.2026.
+# Svih sedam pogodaka ima ikonu obicne sive lopte, dakle nema autogola
+# ni pogotka iz kaznenog udarca.
+
+[domacin]
+12 | Luka Šteko | vratar, 85' izlazak
+2 | Jan Lazarević | 46' izlazak
+4 | Toni Nišević (C) | 85' izlazak
+9 | Danial Adrović | 44' gol
+10 | Edi Butković
+11 | Luka Špelić | 66' zuti, 74' izlazak
+16 | Marin Sić | 15' gol, 33' gol, 40' gol, 61' izlazak
+18 | Noel Radolović
+21 | Teo Filipović
+22 | Rocco Rakovac
+23 | Goran Urošević
+
+[domacin pricuva]
+1 | Duje Bravar | vratar, 85' ulazak
+6 | Mateo Mirčić
+13 | Ugo Šuran | 74' ulazak
+15 | Vanja Ruba | 61' ulazak
+17 | Dominik Marjanović | 46' ulazak
+24 | Almir Halilović | 85' ulazak
+
+[gost]
+1 | Sandro Srok (C) | vratar
+2 | Antonio Semion | 64' izlazak
+4 | Patrik Corallini | 78' zuti
+5 | Denis Randelj
+6 | Denis Marković
+7 | Domagoj Grdinić | 46' izlazak
+9 | Ivan Fumić | 90+1' zuti
+11 | Mauro Magaš | 46' izlazak
+13 | Jeton Imeraj | 83' gol
+15 | Luka Orešković | 46' izlazak
+21 | Antonio Poštić | 46' izlazak
+
+[gost pricuva]
+3 | Loren Zoretić
+10 | Antonio Božičević | 46' ulazak
+14 | Dino Dujmić | 64' ulazak
+17 | Luka Ratin | 46' ulazak, 89' gol
+19 | Kristian Koraca | 46' ulazak, 90+1' gol
+20 | Marin Rožić | 46' ulazak
+22 | Dino Forgić | 62' zuti
