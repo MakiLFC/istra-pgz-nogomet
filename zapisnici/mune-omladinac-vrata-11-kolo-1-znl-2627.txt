@@ -1,0 +1,51 @@
+natjecanje: 1. ŽNL PGŽ
+sezona: 2026/27
+kolo: 11
+domacin: NK Mune
+gost: NK Omladinac Vrata
+rezultat: 0:3
+stadion_datum: CRIKVENA DRAGA, MUNE, 15.11.2026. 14:00
+suci: Bojan Blašković, Dalibor Šušnjar, Tomislav Frlan. Delegat: Ivan Perica.
+---
+# Prepisano iz snimke zaslona od 15.11.2026. Broja gledatelja u zapisniku nema.
+
+[domacin]
+1 | Erik Perić | vratar
+5 | David Gulan
+6 | Ivan Šop | 90' zuti
+7 | Patrik Bonicioli | (C), 84' izlazak
+8 | Dino Alinčić
+9 | Petar Džaja | 46' izlazak
+10 | Alen Smolić | 8' zuti
+25 | Jurica Juranović | 90' zuti
+32 | Tin Bubnić | 73' izlazak
+33 | Fran Ivan Brguljan | 45' zuti
+34 | Antonio Džaja
+
+[domacin pricuva]
+3 | Teo Grubiša
+16 | Dario Kosmić | 84' ulazak
+17 | Karlo Šneler
+19 | Mateo Šepić | 46' ulazak, 65' zuti
+30 | Eric Milo Varljen | 73' ulazak
+31 | Matija Juranović
+35 | Borna Dujmović
+
+[gost]
+1 | Leo Lucić | vratar, (C)
+2 | Saša Kauzlarić
+3 | Niko Kumir
+4 | Petar Bitanga | 45' zuti
+5 | Anton Babić | 78' zuti
+7 | Zorko Tomljenović | 59' gol, 75' gol
+8 | Matija Kovačić | 33' zuti
+9 | Frano Mihelić | 60' izlazak
+10 | Andrej Purković | 72' gol, 87' izlazak
+11 | Diego Žic | 32' zuti, 74' izlazak
+16 | Damjan Rački
+
+[gost pricuva]
+14 | Ramesh Tamang | 74' ulazak
+15 | Andrej Mandić | 87' ulazak
+17 | Franko Mandić | 60' ulazak
+18 | Alen Šljivar

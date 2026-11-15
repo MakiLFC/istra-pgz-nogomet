@@ -1,0 +1,52 @@
+natjecanje: 1. ŽNL PGŽ
+sezona: 2026/27
+kolo: 11
+domacin: NK Stari grad Rijeka
+gost: NK Rab
+rezultat: 3:1
+stadion_datum: SRC BELVEDER, RIJEKA, 15.11.2026. 14:00
+gledatelja: 50
+suci: Gabriel Rusich, Miran Maržić, Fran Tomičić. Delegat: Tihomir Tomić.
+---
+# Prepisano iz snimke zaslona od 15.11.2026.
+
+[domacin]
+12 | Leon Negovetić | vratar
+5 | Marin Baković | 60' gol
+6 | David Babić
+7 | Robert Babić | 81' izlazak
+8 | Ivan Baričević | (C)
+9 | Jakov Aščić | 17' gol, 81' izlazak
+11 | Antonio Lukanović | 29' zuti, 40' gol, 81' izlazak
+13 | Mateo Pendić
+14 | Damjan Francetić | 73' izlazak
+18 | Sanel Kuši
+19 | Paulo Kružić | 60' izlazak
+
+[domacin pricuva]
+2 | Darien Jureković
+3 | Dino Gračić | 73' ulazak
+4 | Osman Jusufović
+10 | Amed Clever Verduguez Via | 81' ulazak
+15 | David Hasanović | 81' ulazak
+16 | Luka Majetić | 60' ulazak
+17 | Rene Gržić | 81' ulazak
+
+[gost]
+12 | Marko Tomljanović | vratar
+3 | Luka Šimičić
+4 | Luka Grce
+5 | Niko Španjol | 30' zuti
+6 | Andro Mlacović | 51' gol
+7 | Niko Šanić | 85' izlazak
+8 | Bruno Ivić | (C)
+10 | Marin Macolić
+14 | Antonio Dokupil | 61' izlazak
+21 | Dominik Grgurić | 46' izlazak
+22 | Josip Krstinić | 46' izlazak
+
+[gost pricuva]
+15 | Karlo Gorup | 61' ulazak
+17 | Adrian Kurelić | 46' ulazak
+23 | Antonio Belobrajdić | 46' ulazak
+26 | Franko Fafanđel | 85' ulazak
