@@ -2358,7 +2358,18 @@ za cijelo kolo. Za tekst:
   (Andrej). Upisano poslom "Termin u bazu" (bez datuma, oznaka odgode),
   pa stranica piše ODG. Pregled kola zato pokriva šest utakmica.
 
-Kad je pregled napisan, ovu stavku obriši.
+PREGLED JE NAPISAN 15.11.2026. (`clanci/pregled-11-kola-1-znl-pgz-2627.txt`,
+u bazi, neobjavljen) i ČEKA DOPUNU iz dva zapisnika koja na Semaforu još
+nisu bila objavljena: Lošinj - Risnjak 4:1 (rezultat od Andreja, bez
+strijelaca) i Turbina - Lovran 5:0 (strijelci iz objave kluba koju je
+Andrej poslao: Leoni 10., Marin Ribarić 36. glavom i 41. iz jedanaesterca,
+Mihael Ažić 58. uz asistenciju Leonija, koju je Andrej dopustio napisati,
+Aleksandar Velkoski 76.). Kad stignu snimke: upisati oba zapisnika,
+preračunati ljestvicu, Leoniju dopisati ime, Lošinju strijelce i
+gledatelje, dodati odlomak STRIJELCI (Antoninić može promijeniti vrh) i
+provjeriti žute za Kalanja, Rupea i Markovića te igrače Turbine i
+Lovrana. Ljestvica u tekstu je ručno uračunala oba rezultata. Kad je
+dopuna upisana, ovu stavku obriši.
 
 **10. KOLO 2. ŽNL PGŽ NIJE ODIGRANO NI U JEDNOJ UTAKMICI.** Andrej je
 15.11.2026. javio da je odgođena i Polet (Sk) - Snježnik, novi termin
