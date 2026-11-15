@@ -2317,6 +2317,30 @@ Taj drugi, podroban pregled piše se u srijedu 18.11. ujutro; podsjetnik
 je postavljen. Kad je pregled napisan, ovu
 stavku obriši.
 
+MLADOST FAŽANA - RJEČINA 4:3 UPISANA JE 15.11.2026., iz snimke
+(`zapisnici/mladost-rjecina-11-kolo-4-nl-2627.txt`), a ljestvica je
+odmah preračunata. Andrej je rekao da se o njoj NE piše zaseban članak
+sada, nego da podatak čeka utorak, kad igraju Štinjan i Smoljanci, pa
+oba susreta idu u jedan podroban članak u utorak navečer ili u srijedu
+ujutro. Što iz te utakmice ide u tekst:
+
+```
+Oliva, Fazana, 80 gledatelja, suci Ivosevic, Jovic, Kezele
+Marin Sic 15', 33', 40' (hat-trick), Danial Adrovic 44' za 4:0
+Rjecina na 46' mijenja cetvoricu odjednom
+Imeraj 83', Ratin 89', Koraca 90+1' za 4:3, prekasno
+Ratin i Koraca su usli na poluvremenu i obojica zabila
+zuti: Spelic 66' (M), Forgic 62' s klupe, Corallini 78', Fumic 90+1'
+```
+
+Mladost je time treca pobjeda sezone i skok s 13. na 10. mjesto, 9
+bodova iz osam utakmica, dakle i dalje najmanje odigranih u ligi (uz
+zaostatak s Cresom 5.12. i nedovrseni susret s Medulinom). Kod kuce ima
+tri pobjede i dva poraza, u gostima nijedan bod. Rječina pada sa 6. na
+7. mjesto, 13 bodova, peti poraz. DINO FORGIĆ (Rječina) dobio je ČETVRTI
+žuti, i to s klupe, pa propušta sljedeće kolo; Corallini je svoj četvrti
+odradio već nakon 9. kola, pa mu ovaj ne nosi kaznu.
+
 **ZA PREGLED 11. KOLA 1. ŽNL PGŽ (piše se 15.11.2026.).** Subotnje
 dvije utakmice upisane su 14.11. (`zapisnici/rikard-bencic-vihor-11-kolo-1-znl-2627.txt`
 i `zapisnici/draga-goranin-11-kolo-1-znl-2627.txt`), a ljestvica je
