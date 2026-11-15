@@ -2360,8 +2360,10 @@ za cijelo kolo. Za tekst:
 
 PREGLED JE NAPISAN 15.11.2026. (`clanci/pregled-11-kola-1-znl-pgz-2627.txt`,
 u bazi, neobjavljen) i ČEKA DOPUNU iz dva zapisnika koja na Semaforu još
-nisu bila objavljena: Lošinj - Risnjak 4:1 (rezultat od Andreja, bez
-strijelaca) i Turbina - Lovran 5:0 (strijelci iz objave kluba koju je
+nisu bila objavljena: Lošinj - Risnjak 4:1 (UPISAN 15.11. navečer, i
+pregled je dopunjen: strijelci, 100 gledatelja, odlomak STRIJELCI,
+Markovićev četvrti žuti, Kalanj, Rupe i Turk na pragu) i Turbina -
+Lovran 5:0 (strijelci iz objave kluba koju je
 Andrej poslao: Leoni 10., Marin Ribarić 36. glavom i 41. iz jedanaesterca,
 Mihael Ažić 58. uz asistenciju Leonija, koju je Andrej dopustio napisati,
 Aleksandar Velkoski 76.). Kad stignu snimke: upisati oba zapisnika,
