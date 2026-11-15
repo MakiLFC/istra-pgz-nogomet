@@ -2341,38 +2341,6 @@ tri pobjede i dva poraza, u gostima nijedan bod. Rječina pada sa 6. na
 žuti, i to s klupe, pa propušta sljedeće kolo; Corallini je svoj četvrti
 odradio već nakon 9. kola, pa mu ovaj ne nosi kaznu.
 
-**ZA PREGLED 11. KOLA 1. ŽNL PGŽ (piše se 15.11.2026.).** Subotnje
-dvije utakmice upisane su 14.11. (`zapisnici/rikard-bencic-vihor-11-kolo-1-znl-2627.txt`
-i `zapisnici/draga-goranin-11-kolo-1-znl-2627.txt`), a ljestvica je
-preračunata. Ostalih pet stiže snimkama u nedjelju, pa ide jedan pregled
-za cijelo kolo. Za tekst:
-
-- Rikard Benčić - Vihor (B) 2:0: Ivo Dorić ušao u 83. i zabio u 83. i
-  85. minuti; Luka Makin promašio jedanaesterac u 21. (sa snimke, nije u
-  bazi). Broja gledatelja nema.
-- Draga - Goranin 2:3: Lalić 29. i 75., Darin Brajdić 41.; za Dragu
-  Rubinić 40. i Kovačević 76. Marin Injić (Goranin, s klupe) isključen
-  nakon drugog žutog u 70.; Andrej 14.11.: piše se SAMO "isključen",
-  bez tvrdnje da je to bilo s klupe. Propušta sljedeće kolo.
-- Vrbovsko - Zamet: ODGOĐENA 15.11.2026., novi termin nije poznat
-  (Andrej). Upisano poslom "Termin u bazu" (bez datuma, oznaka odgode),
-  pa stranica piše ODG. Pregled kola zato pokriva šest utakmica.
-
-PREGLED JE NAPISAN 15.11.2026. (`clanci/pregled-11-kola-1-znl-pgz-2627.txt`,
-u bazi, neobjavljen) i ČEKA DOPUNU iz dva zapisnika koja na Semaforu još
-nisu bila objavljena: Lošinj - Risnjak 4:1 (UPISAN 15.11. navečer, i
-pregled je dopunjen: strijelci, 100 gledatelja, odlomak STRIJELCI,
-Markovićev četvrti žuti, Kalanj, Rupe i Turk na pragu) i Turbina -
-Lovran 5:0 (strijelci iz objave kluba koju je
-Andrej poslao: Leoni 10., Marin Ribarić 36. glavom i 41. iz jedanaesterca,
-Mihael Ažić 58. uz asistenciju Leonija, koju je Andrej dopustio napisati,
-Aleksandar Velkoski 76.). Kad stignu snimke: upisati oba zapisnika,
-preračunati ljestvicu, Leoniju dopisati ime, Lošinju strijelce i
-gledatelje, dodati odlomak STRIJELCI (Antoninić može promijeniti vrh) i
-provjeriti žute za Kalanja, Rupea i Markovića te igrače Turbine i
-Lovrana. Ljestvica u tekstu je ručno uračunala oba rezultata. Kad je
-dopuna upisana, ovu stavku obriši.
-
 **10. KOLO 2. ŽNL PGŽ NIJE ODIGRANO NI U JEDNOJ UTAKMICI.** Andrej je
 15.11.2026. javio da je odgođena i Polet (Sk) - Snježnik, novi termin
 nije poznat (upisano poslom "Termin u bazu", bez datuma, oznaka
