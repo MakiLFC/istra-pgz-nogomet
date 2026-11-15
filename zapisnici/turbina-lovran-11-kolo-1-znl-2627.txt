@@ -1,0 +1,52 @@
+natjecanje: 1. ŽNL PGŽ
+sezona: 2026/27
+kolo: 11
+domacin: NK Turbina
+gost: HNK Lovran
+rezultat: 5:0
+stadion_datum: CRIKVENICA, CRIKVENICA, 15.11.2026. 14:00
+gledatelja: 60
+suci: Marino Majstrović, Milan Kukuljan, Igor Bahun. Delegat: Ivan Tomljenović.
+---
+# Prepisano iz snimke zaslona od 15.11.2026.
+# Marin Ribarić u 44.: lopta pred vratima, gol iz jedanaesterca.
+
+[domacin]
+32 | Matija Manestar | vratar
+3 | Jan Jurman | 65' zuti
+5 | Marko Čorak
+7 | Danijel Leoni | 14' gol
+8 | Ivan Šušnja | 71' zuti, 72' izlazak
+9 | Mihael Ažić | 58' gol, 67' izlazak
+10 | Adam Rubčić
+11 | Marin Ribarić | 40' gol, 44' gol, 59' izlazak
+13 | Aleksandar Velkoski | 77' gol
+19 | Angelo Miletić | 46' izlazak
+25 | Marin Car | (C)
+
+[domacin pricuva]
+1 | Dario Đotlo | vratar
+17 | Mateo Bruketa | 46' ulazak
+20 | Branimir Dragičević | 72' ulazak
+21 | Luka Sirić | 67' ulazak
+24 | Hrvoje Cvitković | 59' ulazak
+
+[gost]
+77 | Josip Iveša | vratar, 70' izlazak
+2 | Dominik Mohorovičić | 53' zuti
+4 | Nino Vuković
+5 | Tino Staraj | 46' izlazak
+6 | Tin Sanković | 76' izlazak
+7 | Ivano Pavinčić
+8 | Mateo Srok | (C)
+9 | Anteo-Antonio Horvatinčić | 46' izlazak
+13 | David Radan | 70' izlazak
+17 | Mateo Mandić
+19 | Vito Sandalj
+
+[gost pricuva]
+1 | Mykhailo Metreveli | vratar, 70' ulazak
+15 | Matej Jergović | 46' ulazak
+16 | Dian Žeko | 70' ulazak
+18 | Luka Kršanac | 76' ulazak
+21 | David Mulvaj | 46' ulazak
