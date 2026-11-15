@@ -2330,19 +2330,24 @@ za cijelo kolo. Za tekst:
   Rubinić 40. i Kovačević 76. Marin Injić (Goranin, s klupe) isključen
   nakon drugog žutog u 70.; Andrej 14.11.: piše se SAMO "isključen",
   bez tvrdnje da je to bilo s klupe. Propušta sljedeće kolo.
+- Vrbovsko - Zamet: ODGOĐENA 15.11.2026., novi termin nije poznat
+  (Andrej). Upisano poslom "Termin u bazu" (bez datuma, oznaka odgode),
+  pa stranica piše ODG. Pregled kola zato pokriva šest utakmica.
 
 Kad je pregled napisan, ovu stavku obriši.
 
-**ZA PREGLED 10. KOLA 2. ŽNL PGŽ.** U 10. kolu odigrana je samo
-Polet (Sk) - Snježnik. Dvije utakmice nisu:
+**10. KOLO 2. ŽNL PGŽ NIJE ODIGRANO NI U JEDNOJ UTAKMICI.** Andrej je
+15.11.2026. javio da je odgođena i Polet (Sk) - Snježnik, novi termin
+nije poznat (upisano poslom "Termin u bazu", bez datuma, oznaka
+odgode). PREGLED 10. KOLA SE ZATO NE PIŠE, Andrejeva odluka. Ostale dvije:
 
 - Gomirje - Goranka: odgođena, novi termin nije poznat (Semafor i
   glasnik br. 10); u bazi bez datuma, piše ODG.
 - Željezničar (M) - Mrkopalj: ODGOĐENA ZBOG ZIMSKIH UVJETA, novi termin
   NEDJELJA 22.11.2026. u 14:00, u Moravicama (Andrej). Upisano u bazu
-  poslom "Termin u bazu". U pregledu ide NAPOMENA o tome.
+  poslom "Termin u bazu".
 
-Kad je pregled napisan, ovu stavku obriši.
+Kad se kolo odigra ili Andrej kaže drukčije, ovu stavku obriši.
 
 **Nakon objavljenog pregleda ide provjera promjena u ljestvicama.** Posao
 "Preračunaj ljestvice", radnja `promjene`, s upisanim brojem kola. Ispiše
