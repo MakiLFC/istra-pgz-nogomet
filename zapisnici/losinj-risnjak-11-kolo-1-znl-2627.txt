@@ -1,0 +1,50 @@
+natjecanje: 1. ŽNL PGŽ
+sezona: 2026/27
+kolo: 11
+domacin: NK Lošinj
+gost: NK Risnjak
+rezultat: 4:1
+stadion_datum: ČIKAT, MALI LOŠINJ, 15.11.2026. 13:30
+gledatelja: 100
+suci: Luka Gržinčić, Dorian Klarić, Noa Perušić. Delegat: Vladimir Lončarić.
+---
+# Prepisano iz snimke zaslona od 15.11.2026.
+# Edi Matešić u 42.: siva lopta pred vratima, gol iz jedanaesterca.
+
+[domacin]
+1 | Domagoj Stupičić | vratar
+2 | Edi Matešić | 42' gol
+3 | Dantes Benvin
+4 | Tin Gršković | 61' izlazak
+10 | Kevin Kalanj | 53' gol, 89' izlazak
+15 | Antonio Bujačić
+17 | Antonio Matić | 32' gol, 64' izlazak
+21 | Slaven Slobodan Jovanović | 87' gol
+24 | Vitorio Antoninić | (C)
+25 | Adam Pahljina Hernandez
+91 | Adrian Gardijan | 89' izlazak
+
+[domacin pricuva]
+12 | Edi Milković | vratar
+20 | Noa Margeta
+27 | Gabriel Maružin | 61' ulazak
+29 | Šimun Simić | 64' ulazak
+53 | Vito Bonić Grašo | 89' ulazak
+92 | Benjamin Bertić | 89' ulazak
+93 | Filip Zovko
+
+[gost]
+1 | Filip Rakas | vratar, 80' zuti
+4 | Dino Magaš | (C)
+5 | Dorijan Bašić
+10 | Luka Marković | 44' zuti
+14 | Adrian Godeša
+17 | Jurica Dramac | 41' zuti
+18 | Adrijan Javor
+19 | Matija Turk | 21' gol, 41' zuti
+20 | Karlo Veseli
+21 | Damjan Raukar | 75' izlazak
+22 | Mihael Malnar
+
+[gost pricuva]
+15 | Bartol Bašić | 75' ulazak
