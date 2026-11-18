@@ -3112,6 +3112,30 @@
       ],
       "ime": "pregled-1-znl-pgz-kolo-11",
       "naslov": "Pregled"
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-11-nadoknade",
+      "ime": "nadoknade-4-nl-ns-rijeka-kolo-11",
+      "kolo": "11",
+      "stil": "redovi",
+      "naslov": "Nadoknade",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "NED 15.11. i UTO 17.11.2026.",
+      "sat": "Odgođene utakmice 11. kola",
+      "utakmice": [
+        {
+          "d": "Mladost Fažana",
+          "g": "Rječina",
+          "termin": "NED 13:30",
+          "rezultat": "4:3"
+        },
+        {
+          "d": "Štinjan",
+          "g": "Smoljanci",
+          "termin": "UTO 19:00",
+          "rezultat": "7:3"
+        }
+      ]
     }
   ]
 }
