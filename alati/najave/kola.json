@@ -3136,6 +3136,24 @@
           "rezultat": "7:3"
         }
       ]
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-8-nastavak",
+      "ime": "nastavak-4-nl-ns-rijeka-kolo-8",
+      "kolo": "8",
+      "stil": "redovi",
+      "naslov": "Nastavak",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SRI 18.11.2026.",
+      "sat": "Nastavak prekinute utakmice 8. kola",
+      "utakmice": [
+        {
+          "d": "Medulin 1921",
+          "g": "Mladost Fažana",
+          "termin": "SRI 14:30",
+          "rezultat": "1:1"
+        }
+      ]
     }
   ]
 }
