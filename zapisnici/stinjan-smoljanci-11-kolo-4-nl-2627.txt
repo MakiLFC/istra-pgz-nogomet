@@ -1,0 +1,55 @@
+natjecanje: 4. NL NS Rijeka
+sezona: 2026/27
+kolo: 11
+domacin: NK Štinjan
+gost: NK Smoljanci Sloboda
+rezultat: 7:3
+stadion_datum: SRC VALKANE (UMJETNA TRAVA), PULA, 17.11.2026. 19:00
+gledatelja: 40
+suci: Karlo Terković, Sandi Skrletović, Perica Nikolić. Delegat: Zorko Belac.
+---
+# Prepisano iz snimke zaslona od 18.11.2026.
+# Gracicev pogodak u 19. minuti ima ikonu lopte pred vratima, dakle iz
+# kaznenog udarca, a upisuje se kao obican gol. Ostalih devet su obicne
+# sive lopte, nema autogola.
+
+[domacin]
+1 | Erik Ofak | vratar, 79' izlazak
+4 | Ljubo Malobabić | 59' izlazak
+5 | Marin Filipović | 41' zuti
+7 | Ismar Hairlahović | 50' gol, 72' izlazak
+9 | Stefan Antanasković | 17' gol, 59' izlazak
+10 | Antonio Gračić (C) | 19' gol
+14 | Dominik Pušar
+23 | Moris Sficco
+44 | Sebastian Jokić | 58' gol, 72' izlazak
+77 | Martin Buzuk | 87' gol
+99 | Tomas Dadić | 55' gol, 83' zuti
+
+[domacin pricuva]
+12 | Željko Turčić | vratar, 79' ulazak
+8 | Karlo Dumančić
+11 | George Davone Clarington | 59' ulazak, 71' gol
+17 | Domagoj Kupčak | 72' ulazak
+19 | Luka Rosenberg | 59' ulazak
+21 | Adin Mujanović | 72' ulazak
+88 | Marko Vujičić
+
+[gost]
+12 | David Tarčuki | vratar
+5 | Diego Vlacci | 70' izlazak
+6 | Antonio Ivančić
+7 | Matija Mišan | 10' gol, 70' izlazak
+8 | Andreas Prgić
+9 | Mauro Mišan (C) | 14' zuti, 87' izlazak
+10 | Ivan Banović | 61' gol
+11 | Dante Begić
+17 | Mike Amachi Ezemonye
+24 | Ivan Andrijančić
+92 | Filip Tiani | 80' izlazak
+
+[gost pricuva]
+3 | Nino Radetić | 80' ulazak
+14 | Abuchi Henry Okah | 70' ulazak
+18 | Andrea Žgomba | 87' ulazak
+Eduardo Doblanović | 70' ulazak, 85' gol
