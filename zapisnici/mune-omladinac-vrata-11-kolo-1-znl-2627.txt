@@ -5,7 +5,7 @@ domacin: NK Mune
 gost: NK Omladinac Vrata
 rezultat: 0:3
 stadion_datum: CRIKVENA DRAGA, MUNE, 15.11.2026. 14:00
-suci: Bojan Blašković, Dalibor Šušnjar, Tomislav Frlan. Delegat: Ivan Perica.
+suci: Bojan Blaškić, Dalibor Šušnjar, Tomislav Frlan. Delegat: Ivan Perica.
 ---
 # Prepisano iz snimke zaslona od 15.11.2026. Broja gledatelja u zapisniku nema.
 

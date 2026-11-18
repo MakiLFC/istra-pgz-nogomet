@@ -1,0 +1,49 @@
+natjecanje: 1. ŽNL PGŽ
+sezona: 2026/27
+kolo: 9
+domacin: NK Vihor (B)
+gost: NK Risnjak
+rezultat: 3:1
+stadion_datum: SRC ZABLAĆE, BAŠKA, 18.11.2026. 14:00
+gledatelja: 20
+suci: Bojan Blaškić, Luka Gržinčić, Gabriel Rusich. Delegat: Zvonimir Podnar.
+---
+# Prepisano iz snimaka zaslona od 18.11.2026. (odgođeno 9. kolo).
+
+[domacin]
+1 | Muamer Avdić | vratar
+3 | Ante Žunić | (C)
+4 | Leo Juras | 81' izlazak
+6 | Hrvoje Pilčić
+7 | Edi Begaj | 53' izlazak
+8 | Anton Božanić | 40' zuti
+9 | Matej Brlošić | 64' izlazak
+10 | Mazen Sharbini | 27' gol
+14 | Nikola Seršić | 46' izlazak
+15 | Mihael Radić
+18 | Adnan Husić
+
+[domacin pricuva]
+12 | Luka Tomljenović | vratar
+2 | Eldin Huskić
+5 | Noa Miš-Mešić | 46' ulazak, 63' zuti, 88' gol
+11 | Dominik Barbalić | 64' ulazak
+16 | Fernando De La Cruz
+21 | Filip Sablić | 53' ulazak, 74' gol
+22 | Roko Ferenčić | 81' ulazak
+
+[gost]
+1 | Filip Rakas | vratar, 85' zuti
+2 | Dominik Rupe
+4 | Dino Magaš | (C)
+5 | Dorijan Bašić | 82' zuti
+11 | Karlo Rupe
+17 | Jurica Dramac
+18 | Adrijan Javor | 79' zuti
+19 | Matija Turk
+20 | Karlo Veseli
+21 | Damjan Raukar | 64' gol, 73' izlazak
+22 | Mihael Malnar
+
+[gost pricuva]
+15 | Bartol Bašić | 73' ulazak
