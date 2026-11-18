@@ -1,0 +1,54 @@
+natjecanje: 4. NL NS Rijeka
+sezona: 2026/27
+kolo: 8
+domacin: NK Medulin 1921
+gost: NK Mladost Fažana
+rezultat: 1:1
+stadion_datum: MUTILA, MEDULIN, 18.11.2026. 14:30
+gledatelja: 70
+suci: Karlo Terković, Alen Dokuš, Rafael Mađarić. Delegat: Zoran Vasiljević.
+---
+# Prepisano sa snimaka zaslona od 18.11.2026.
+# Utakmica je prekinuta u 25. minuti, a 18.11.2026. odigran je nastavak.
+# Zapisnik pokriva cijeli susret, pa su u njemu i dogadjaji iz prvog
+# dijela (zuti Stosica u 18. i ulazak Peternela u 28.).
+# Oba pogotka imaju ikonu obicne sive lopte, dakle nema autogola.
+
+[domacin]
+91 | Patrik Vujica | vratar
+2 | Matija Brizić (C)
+5 | Dino Gorički
+8 | Vito Traven | 28' izlazak
+9 | Luka Pamić
+11 | Manuel Bulešić
+15 | Matija Suljić | 88' gol
+16 | Lovro Radolović | 67' izlazak
+18 | Stefan Stošić | 18' zuti
+19 | Petrit Lekaj
+22 | Damjan Gerlič
+
+[domacin pricuva]
+1 | Saša Todić | vratar
+3 | Matej Zoričić | 67' ulazak
+7 | Mateo Majdandžić | 67' ulazak
+13 | Patrik Živić
+17 | Tomas Peternel | 28' ulazak, 67' izlazak
+
+[gost]
+12 | Luka Šteko | vratar
+4 | Toni Nišević
+5 | Marin Ristić (C)
+7 | Filip Lazendić
+9 | Danial Adrović | 83' izlazak
+10 | Edi Butković | 66' gol
+11 | Luka Špelić | 58' zuti
+16 | Marin Sić | 87' zuti
+18 | Noel Radolović
+21 | Teo Filipović
+22 | Rocco Rakovac
+
+[gost pricuva]
+2 | Jan Lazarević | 83' ulazak
+15 | Vanja Ruba
+19 | Luka Miškulin
+24 | Almir Halilović
