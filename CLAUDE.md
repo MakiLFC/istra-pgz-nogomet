@@ -2277,69 +2277,20 @@ najavom ili pregledom.
 Kazne koje izrekne stegovni sudac (isključenja, suspenzije) i dalje se
 provjeravaju u glasniku, kako stoji gore.
 
-**ZA PREGLED 11. KOLA 4. NL: dvije odgode i jedan premještaj.**
-Andrej je 14.11.2026. sa Semafora javio da se kolo nije odigralo u
-cijelosti:
+**NAKON 11. KOLA 4. NL, ZA NAJAVU 12. KOLA.** Kolo je odigrano u tri
+navrata: tri utakmice u subotu 14.11., Mladost Fažana - Rječina u
+nedjelju, a Štinjan - Smoljanci Sloboda u utorak 17.11. na Valkanama u
+Puli. Pregled kola objavljen je 14.11., a o dvije nadoknade je
+18.11.2026. objavljen zaseban članak
+(`clanci/nadoknade-11-kola-4-nl-ns-rijeka-2627.txt`). Borac (Ba) -
+Žminj je i dalje odgođen i nema novi termin.
 
-- Borac (Ba) - Žminj, Krasica: ODGOĐENO, novi termin nije poznat
-- Štinjan - Smoljanci Sloboda: ODGOĐENO s Fortina, a novi termin je
-  UTORAK 17.11.2026. u 19:00, na igralištu Valkane u Puli (Andrej,
-  14.11.2026.). Igra se dakle pod reflektorima i prije ostatka
-  nadoknada. U srijedu ujutro o toj utakmici ide članak.
-- Mladost Fažana - Rječina: premješteno na nedjelju 15.11.2026. u 13:30,
-  Oliva, Fažana
-
-U subotu 14.11. u 14:30 igraju samo Klana - Otočac, Funtana - Medulin
-1921 (kamp NK Jadran-Poreč u Poreču) i Ližnjan - Umag-CC Umago. Pregled
-kola zato pokriva tri subotnje i jednu nedjeljnu utakmicu.
-
-NAJAVA SE NE MIJENJA. Objavljena je 12.11., prije odgoda, i Andrej je
-14.11. izričito rekao da se ne dira.
-
-ISPRAVLJENO U BAZI 14.11.2026., SQL-om preko Supabasea
-(`sql/kolo_11_4nl_odgode.sql`): obje odgođene su bez datuma i vremena,
-pa stranica lige za njih piše "ODG." i "Utakmica je odgođena, novi
-termin još nije poznat." (`odgodjena` u `components/StranicaLige.tsx`),
-Mladost - Rječina ima nedjeljni termin, a Funtani je upisano pravo
-igralište, kamp NK Jadran-Poreč u Poreču. Termin Štinjana i Smoljanaca
-upisan je 14.11.2026. poslom "Termin u bazu" (17.11. u 19:00, Valkane,
-Pula), pa ta utakmica više ne piše ODG.
-
-U PREGLEDU OD 14.11. IDE NAPOMENA O PREOSTALE DVIJE UTAKMICE, na
-Andrejev zahtjev. Oblik koji je dogovoren:
-
-  "Mladost Fažana i Rječina igraju u nedjelju, a Štinjan i Smoljanci
-  Sloboda u utorak na Valkanama u Puli. O te dvije utakmice donosimo
-  podroban pregled nakon odigravanja, a rezultat i zapisnik svake od
-  njih bit će na stranici odmah po završetku susreta."
-
-Taj drugi, podroban pregled piše se u srijedu 18.11. ujutro; podsjetnik
-je postavljen. Kad je pregled napisan, ovu
-stavku obriši.
-
-MLADOST FAŽANA - RJEČINA 4:3 UPISANA JE 15.11.2026., iz snimke
-(`zapisnici/mladost-rjecina-11-kolo-4-nl-2627.txt`), a ljestvica je
-odmah preračunata. Andrej je rekao da se o njoj NE piše zaseban članak
-sada, nego da podatak čeka utorak, kad igraju Štinjan i Smoljanci, pa
-oba susreta idu u jedan podroban članak u utorak navečer ili u srijedu
-ujutro. Što iz te utakmice ide u tekst:
-
-```
-Oliva, Fazana, 80 gledatelja, suci Ivosevic, Jovic, Kezele
-Marin Sic 15', 33', 40' (hat-trick), Danial Adrovic 44' za 4:0
-Rjecina na 46' mijenja cetvoricu odjednom
-Imeraj 83', Ratin 89', Koraca 90+1' za 4:3, prekasno
-Ratin i Koraca su usli na poluvremenu i obojica zabila
-zuti: Spelic 66' (M), Forgic 62' s klupe, Corallini 78', Fumic 90+1'
-```
-
-Mladost je time treca pobjeda sezone i skok s 13. na 10. mjesto, 9
-bodova iz osam utakmica, dakle i dalje najmanje odigranih u ligi (uz
-zaostatak s Cresom 5.12. i nedovrseni susret s Medulinom). Kod kuce ima
-tri pobjede i dva poraza, u gostima nijedan bod. Rječina pada sa 6. na
-7. mjesto, 13 bodova, peti poraz. DINO FORGIĆ (Rječina) dobio je ČETVRTI
-žuti, i to s klupe, pa propušta sljedeće kolo; Corallini je svoj četvrti
-odradio već nakon 9. kola, pa mu ovaj ne nosi kaznu.
+ČETVRTI ŽUTI U 11. KOLU DOBILA SU TROJICA, pa propuštaju 12. kolo:
+Dino Forgić (Rječina), Filip Prodan (Umag-CC Umago) i Kerim Bajrić
+(Funtana). Nađeni su radnjom `promjene` u poslu "Preračunaj ljestvice",
+jer igrač koji baš u tom kolu dobije četvrti ne ulazi ni u `na_pragu`
+ni u `suspendirani`. Kad je najava 12. kola napisana, ovu stavku
+obriši.
 
 **10. KOLO 2. ŽNL PGŽ NIJE ODIGRANO NI U JEDNOJ UTAKMICI.** Andrej je
 15.11.2026. javio da je odgođena i Polet (Sk) - Snježnik, novi termin
