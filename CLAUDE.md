@@ -2149,6 +2149,13 @@ rezultata i strijelaca iz prošlog kola. Prepisana verzija je prošla uz
 
 Primjer je `sql/najava_4_kola_1_znl_2627.sql`.
 
+**Ne piše se tko je jedan žuti karton od kazne.** Andrejeva uputa od
+19.11.2026., da tekst bude kraći: u najavama i pregledima više nema
+rečenica "X i Y jedan su žuti karton od kazne", ni onih o igračima sa
+sedam žutih. Piše se samo tko PAUZIRA (isključenje, četvrti žuti) i tko
+se vraća nakon odrađene kazne. Polje `na_pragu` i dalje se čita, ali
+samo zato da se usporedbom nađe tko je u kolu dobio četvrti žuti.
+
 **Vodeći strijelac iz `najava_kola()` nije cijela slika.** Ta funkcija po
 klubu vraća SAMO JEDNOG igrača, onog s najviše pogodaka. Kraljevica je
 07.09.2026. imala trojicu s po dva pogotka (Znamenaček, Bosančić,
