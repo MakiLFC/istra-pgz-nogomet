@@ -3154,6 +3154,47 @@
           "rezultat": "1:1"
         }
       ]
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-12",
+      "kolo": "12",
+      "stil": "redovi",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 21.11.2026.",
+      "sat": "Od 12:15 do 16:00",
+      "slobodan": "Umag-CC Umago",
+      "utakmice": [
+        {
+          "d": "Cres",
+          "g": "Smoljanci",
+          "termin": "SUB 12:15"
+        },
+        {
+          "d": "Rječina",
+          "g": "Štinjan",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Ližnjan",
+          "g": "Medulin 1921",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Žminj",
+          "g": "Klana",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Mladost Fažana",
+          "g": "Borac (Ba)",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Funtana",
+          "g": "Otočac",
+          "termin": "SUB 16:00"
+        }
+      ]
     }
   ]
 }
