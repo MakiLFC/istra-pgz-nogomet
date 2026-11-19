@@ -1,11 +1,15 @@
 slug: najava-12-kola-4-nl-ns-rijeka-2627
-naslov: NAJAVA 12. KOLA: FUNTANA I OTOČAC U POREČU ZA VRH, ŠTINJAN NA PROBI U DRAŽICAMA
-sazetak: Dvanaesto kolo 4. NL NS Rijeka igra se u subotu, a najzanimljiviji je susret Funtane i Otočca u Poreču, u kojem domaćin traži šestu pobjedu zaredom, a gost peto kolo bez poraza. Vodeći Cres dočekuje Smoljance, Štinjan gostuje u Dražicama kod Rječine, a slobodan je Umag-CC Umago.
+naslov: NAJAVA 12. KOLA: CRES OTVARA SUBOTU NA DARIJU, A FUNTANA I OTOČAC JE ZATVARAJU U POREČU
+sazetak: Dvanaesto kolo 4. NL NS Rijeka igra se u subotu, a otvara ga vodeći Cres, koji u 12:15 dočekuje Smoljance. Kolo zatvaraju Funtana i Otočac u Poreču, gdje domaćin traži šestu pobjedu zaredom, a gost peto kolo bez poraza. Štinjan gostuje u Dražicama kod Rječine, a slobodan je Umag-CC Umago.
 natjecanje: 4. NL NS Rijeka
 slika_url: /slike/najave/najava-redovi-4-nl-ns-rijeka-kolo-12-cijela.png
 slika_opis: Raspored 12. kola 4. NL NS Rijeka, subota 21. studenoga 2026.
 ---
 Dvanaesto kolo 4. NL NS Rijeka igra se u subotu 21. studenoga, a utakmice su raspoređene kroz cijelo poslijepodne: Cres i Smoljanci počinju u 12:15, četiri susreta idu u 14:00, a Funtana i Otočac zatvaraju kolo u 16:00. Slobodan je Umag-CC Umago. Na vrhu su Cres i Otočac s po 22 boda, slijede Štinjan i Funtana s po 18 te Borac (Bakar) sa 17, a Cres, Borac i Žminj imaju i utakmicu manje od ostalih.
+
+Cres - Smoljanci Sloboda. Vodeći Cres otvara kolo u 12:15 i pobjedom ide na 25 bodova. Na Dariju ove sezone još nije izgubio, četiri pobjede i remi uz gol razliku 17:6, a prošlo kolo je bio slobodan, pa posljednji put igrao prije dva tjedna, kada je sa 6:2 svladao Ližnjan. Demis Seo Salihović s osam pogodaka treći je strijelac lige, Željko Tomić ima šest, a Boško Babić pet.
+
+Smoljanci Sloboda su dvanaesti s osam bodova i dolaze nakon dva poraza, posljednji 3:7 u Puli kod Štinjana. Njihov je problem jasan: u gostima su bez bodova, pet utakmica i pet poraza, uz gol razliku 5:16. Mauro Mišan i Mike Amachi Ezemonye imaju po četiri pogotka, a Diego Vlacci tri žuta kartona.
 
 Funtana - Otočac. Utakmica kola i izravan susret četvrtog i drugog. Funtana je u najboljem nizu sezone, pet pobjeda zaredom, i pobjedom bi stigla na 21 bod te se primakla Otočcu na samo jedan. Na svom terenu ove sezone ima tri pobjede i dva poraza, uz gol razliku 9:4, a prošlo kolo je s 4:0 svladala Medulin, uz tri pogotka Roberta Vlizla. On je s devet pogodaka drugi strijelac lige. Funtana igra bez Kerima Bajrića, koji je prošlo kolo dobio četvrti žuti karton.
 
@@ -26,7 +30,3 @@ Klana je posljednja sa sedam bodova i u nizu od dva poraza, posljednji 3:4 kod k
 Mladost Fažana - Borac (Bakar). Mladost je deseta s deset bodova i u najboljem je razdoblju sezone: pobjeda 4:3 protiv Rječine i remi 1:1 s Medulinom u nastavku prekinute utakmice. Na Olivi ima tri pobjede i dva poraza, a Marin Sić sa četiri pogotka, od kojih tri u jednoj utakmici, najbolji joj je strijelac.
 
 Borac je peti sa 17 bodova i tri kola bez poraza, a ima i utakmicu manje od većine. Pobjedom bi stigao na 20 bodova i priključio se borbi za vrh, no gostovanja su mu najslabija strana: jedna pobjeda, dva remija i poraz, uz samo četiri zabijena gola. Mihael Šušnjar s pet pogodaka najbolji je strijelac, a uz njega Ivan Ferinac i Željko Tomiek imaju po tri žuta kartona.
-
-Cres - Smoljanci Sloboda. Vodeći Cres otvara kolo u 12:15 i pobjedom ide na 25 bodova. Na Dariju ove sezone još nije izgubio, četiri pobjede i remi uz gol razliku 17:6, a prošlo kolo je bio slobodan, pa posljednji put igrao prije dva tjedna, kada je sa 6:2 svladao Ližnjan. Demis Seo Salihović s osam pogodaka treći je strijelac lige, Željko Tomić ima šest, a Boško Babić pet.
-
-Smoljanci Sloboda su dvanaesti s osam bodova i dolaze nakon dva poraza, posljednji 3:7 u Puli kod Štinjana. Njihov je problem jasan: u gostima su bez bodova, pet utakmica i pet poraza, uz gol razliku 5:16. Mauro Mišan i Mike Amachi Ezemonye imaju po četiri pogotka, a Diego Vlacci tri žuta kartona.
