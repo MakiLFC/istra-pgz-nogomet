@@ -2290,21 +2290,6 @@ najavom ili pregledom.
 Kazne koje izrekne stegovni sudac (isključenja, suspenzije) i dalje se
 provjeravaju u glasniku, kako stoji gore.
 
-**NAKON 11. KOLA 4. NL, ZA NAJAVU 12. KOLA.** Kolo je odigrano u tri
-navrata: tri utakmice u subotu 14.11., Mladost Fažana - Rječina u
-nedjelju, a Štinjan - Smoljanci Sloboda u utorak 17.11. na Valkanama u
-Puli. Pregled kola objavljen je 14.11., a o dvije nadoknade je
-18.11.2026. objavljen zaseban članak
-(`clanci/nadoknade-11-kola-4-nl-ns-rijeka-2627.txt`). Borac (Ba) -
-Žminj je i dalje odgođen i nema novi termin.
-
-ČETVRTI ŽUTI U 11. KOLU DOBILA SU TROJICA, pa propuštaju 12. kolo:
-Dino Forgić (Rječina), Filip Prodan (Umag-CC Umago) i Kerim Bajrić
-(Funtana). Nađeni su radnjom `promjene` u poslu "Preračunaj ljestvice",
-jer igrač koji baš u tom kolu dobije četvrti ne ulazi ni u `na_pragu`
-ni u `suspendirani`. Kad je najava 12. kola napisana, ovu stavku
-obriši.
-
 **10. KOLO 2. ŽNL PGŽ NIJE ODIGRANO NI U JEDNOJ UTAKMICI.** Andrej je
 15.11.2026. javio da je odgođena i Polet (Sk) - Snježnik, novi termin
 nije poznat (upisano poslom "Termin u bazu", bez datuma, oznaka
