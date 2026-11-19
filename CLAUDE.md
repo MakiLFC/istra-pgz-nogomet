@@ -102,6 +102,12 @@ promijeni, mora stići pisanim putem od HNS-a.
     terminom (stupac `utakmice.odgodjena`, `sql/odgodjena.sql`), pa
     stranica lige piše ODG. i novi termin umjesto "?:?". Bez oznake
     stranica odgodu prepoznaje samo po praznom ili davno prošlom datumu.
+    Od 19.11.2026. ima i polje "zamijeni": "da" OKRENE DOMAĆINA I GOSTA,
+    jer HNS zna promijeniti tko je domaćin, a to dotad nije išlo bez
+    SQL-a. Utakmica se traži po starom redoslijedu imena, onom koji je
+    sada u bazi. Odigrana utakmica se ne okreće, jer bi joj postave
+    ostale na krivoj strani, a odbija se i kad u istom kolu već postoji
+    obrnut par. Čuva `test_termin_u_bazu.py`.
   - `.github/workflows/preimenuj.yml` ("Preimenuj igrača") samo ručno:
     zamijeni ime igrača u postavama, strijelcima i rang-listama, kroz
     sve sezone. Postoji od 13.11.2026., jer se igrač u bazi prepoznaje

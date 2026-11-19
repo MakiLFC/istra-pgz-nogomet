@@ -129,6 +129,35 @@ def test_oznaka_odgode():
     print("OK: oznaka odgode")
 
 
+def test_zamjena_okrece_par():
+    r = red(12, "NK Medulin 1921", "NK Ližnjan", "21.11.2026.", "13:30")
+    novo = t.zamjena_parova(r, [r])
+    assert novo == {"domacin": "NK Ližnjan", "gost": "NK Medulin 1921"}
+    print("OK: zamjena okreće domaćina i gosta")
+
+
+def test_zamjena_odbija_odigranu():
+    r = red(8, "NK Medulin 1921", "NK Mladost Fažana", "18.11.2026.",
+            "14:30", rezultat="1:1")
+    try:
+        t.zamjena_parova(r, [r])
+    except SystemExit:
+        print("OK: odigrana utakmica se ne okreće")
+        return
+    raise AssertionError("odigrana utakmica je okrenuta, a ne smije")
+
+
+def test_zamjena_odbija_dvojnika():
+    r = red(12, "NK Otočac", "NK Funtana")
+    blizanac = red(12, "NK Funtana", "NK Otočac")
+    try:
+        t.zamjena_parova(r, [r, blizanac])
+    except SystemExit:
+        print("OK: zamjena se odbija kad obrnut par već postoji")
+        return
+    raise AssertionError("nastala bi dva ista para, a to je prošlo")
+
+
 if __name__ == "__main__":
     test_datum()
     test_krivi_datum_pada()
@@ -140,4 +169,7 @@ if __name__ == "__main__":
     test_mijenja_se_samo_zadano()
     test_brisanje_termina()
     test_oznaka_odgode()
+    test_zamjena_okrece_par()
+    test_zamjena_odbija_odigranu()
+    test_zamjena_odbija_dvojnika()
     print("\nSVE PROLAZI")

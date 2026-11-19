@@ -30,6 +30,11 @@
 # ODGOĐENA S NOVIM TERMINOM: upiši novi datum i vrijeme i odaberi
 # odgoda "da". Stranica tada piše ODG. i novi termin, umjesto "?:?".
 #
+# ZAMJENA DOMAĆINA I GOSTA (od 19.11.2026.): kad HNS okrene par, dakle kad
+# domaćin postane gost, odabere se zamjena "da". Utakmica se i dalje traži
+# po starom redoslijedu imena, onom koji je sada u bazi. Odigrana utakmica
+# se ne okreće, ni ona kojoj u istom kolu već postoji obrnut par.
+#
 # NE DIRA REZULTAT ni zapisnik, samo termin.
 
 name: Termin u bazu
@@ -84,6 +89,14 @@ on:
           - "ne diraj"
           - da
           - ne
+      zamijeni:
+        description: "Zamijeni domaćina i gosta (kad je HNS okrenuo par)"
+        required: false
+        default: "ne"
+        type: choice
+        options:
+          - ne
+          - da
       radnja:
         description: "Što napraviti"
         required: true
@@ -132,10 +145,12 @@ jobs:
           STADION: ${{ inputs.stadion }}
           RADNJA: ${{ inputs.radnja }}
           ODGODA: ${{ inputs.odgoda }}
+          ZAMIJENI: ${{ inputs.zamijeni }}
           PYTHONUNBUFFERED: "1"
         run: |
           python alati/termin_u_bazu.py \
             --natjecanje "$LIGA" --sezona "$SEZONA" \
             --domacin "$DOMACIN" --gost "$GOST" --kolo "$KOLO" \
             --datum "$DATUM" --vrijeme "$VRIJEME" --stadion "$STADION" \
-            --odgoda "$ODGODA" --radnja "$RADNJA"
+            --odgoda "$ODGODA" --zamijeni "$ZAMIJENI" \
+            --radnja "$RADNJA"

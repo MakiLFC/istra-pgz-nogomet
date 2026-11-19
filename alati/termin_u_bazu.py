@@ -28,6 +28,14 @@ ODGOĐENA S NOVIM TERMINOM (od 14.11.2026.): uz novi datum odabere se
 odgoda "da". Stranica tada umjesto "?:?" piše ODG. i novi termin. Bez te
 oznake odgođena utakmica s novim datumom izgleda kao svaka buduća.
 Oznaka "ne" je skida. Stupac odgodjena dodaje sql/odgodjena.sql.
+
+ZAMJENA DOMAĆINA I GOSTA (od 19.11.2026.): zamjena "da" okrene par, jer
+HNS zna promijeniti tko je domaćin, a to nije promjena termina nego
+promjena retka. Dotad se radilo SQL-om preko Supabasea. Utakmica se i
+dalje traži po STAROM redoslijedu imena, dakle onako kako sada stoji u
+bazi. Dvije kočnice: odigrana utakmica se ne okreće, jer bi joj postave
+i strijelci ostali na krivoj strani, i ne okreće se kad u istom kolu već
+postoji redak s obrnutim parom, jer bi nastala dva ista para.
 """
 
 import argparse
@@ -167,6 +175,33 @@ def promjene(red, datum, vrijeme, stadion):
     return novo
 
 
+def zamjena_parova(red, redovi):
+    """Okretanje domaćina i gosta, uz dvije kočnice.
+
+    Traži se u svim redovima lige, a ne samo u istom kolu, jer bi se
+    inače previdio redak koji je netko već okrenuo.
+    """
+    if red.get("rezultat"):
+        raise SystemExit(
+            f"Utakmica već ima rezultat ({red['rezultat']}), pa se ne "
+            "okreće: postave i strijelci bi ostali na krivoj strani.\n"
+            "Ako je redak doista krivo upisan, javi, ide ručno."
+        )
+
+    blizanac = [r for r in redovi
+                if str(r.get("kolo")) == str(red.get("kolo"))
+                and r.get("domacin") == red.get("gost")
+                and r.get("gost") == red.get("domacin")]
+    if blizanac:
+        raise SystemExit(
+            f"U {red.get('kolo')}. kolu već postoji "
+            f"{red.get('gost')} - {red.get('domacin')}, pa bi zamjenom "
+            "nastala dva ista para. Prvo se riješi suvišan redak."
+        )
+
+    return {"domacin": red["gost"], "gost": red["domacin"]}
+
+
 def opis_termina(red):
     datum = red.get("datum") or "bez datuma"
     vrijeme = red.get("vrijeme") or "bez vremena"
@@ -217,6 +252,7 @@ def main():
     p.add_argument("--vrijeme", default="")
     p.add_argument("--stadion", default="")
     p.add_argument("--odgoda", choices=("", "ne diraj", "da", "ne"), default="")
+    p.add_argument("--zamijeni", choices=("", "ne", "da"), default="")
     p.add_argument("--radnja", choices=("provjeri", "upis"), default="provjeri")
     a = p.parse_args()
 
@@ -228,9 +264,12 @@ def main():
 
     odgoda = oznaka_odgode(a.odgoda, datum)
 
-    if datum == "" and vrijeme == "" and stadion == "" and odgoda is None:
+    zamijeni = a.zamijeni == "da"
+
+    if (datum == "" and vrijeme == "" and stadion == ""
+            and odgoda is None and not zamijeni):
         raise SystemExit("Nije zadano ništa novo: upiši datum, vrijeme, "
-                         "stadion ili odgodu.")
+                         "stadion, odgodu ili zamjenu domaćina i gosta.")
 
     adresa = os.environ.get("SUPABASE_URL")
     kljuc = os.environ.get("SUPABASE_SERVICE_KEY")
@@ -238,13 +277,17 @@ def main():
         raise SystemExit("Nedostaju SUPABASE_URL i SUPABASE_SERVICE_KEY.")
 
     baza = Utakmice(adresa, kljuc)
-    red = odaberi_utakmicu(baza.kolo_lige(a.natjecanje, a.sezona),
-                           a.domacin, a.gost, a.kolo)
+    redovi = baza.kolo_lige(a.natjecanje, a.sezona)
+    red = odaberi_utakmicu(redovi, a.domacin, a.gost, a.kolo)
 
     print(f"{red['kolo']}. kolo, {red['domacin']} - {red['gost']}")
     print(f"  sada:  {opis_termina(red)}")
 
     novo = promjene(red, datum, vrijeme, stadion)
+    if zamijeni:
+        novo.update(zamjena_parova(red, redovi))
+        print(f"  zamjena: domaćin postaje {red['gost']}, "
+              f"gost postaje {red['domacin']}")
     # Stupac odgodjena se ne čita (nije u STUPCI), da alat radi i prije
     # nego se pokrene sql/odgodjena.sql. Zato se oznaka uvijek šalje.
     if odgoda is not None:
@@ -255,7 +298,8 @@ def main():
         return
 
     buduci = {**red, **novo}
-    print(f"  novo:  {opis_termina(buduci)}")
+    print(f"  novo:  {buduci['domacin']} - {buduci['gost']}, "
+          f"{opis_termina(buduci)}")
 
     if red.get("rezultat"):
         print(f"NAPOMENA: utakmica već ima rezultat ({red['rezultat']}). "
