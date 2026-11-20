@@ -1,6 +1,14 @@
 {
-  "_upute": "Utakmice koje se NE BROJE u tablicu poretka, iako u bazi imaju rezultat. Tipicno prekinute utakmice: bodovi se ne upisuju dok se ne odigraju do kraja. Kad se utakmica odigra, stavka se odavde makne i tablica se preracuna. Isuljucuje se SAMO iz tablice, ne i iz ljestvica strijelaca i kartona, jer se one sa sluzbenima poklapaju i bez toga. Par je jedinstven po sezoni i smjeru, pa kolo ne treba.",
+  "_upute": "Utakmice koje se NE BROJE u tablicu poretka, iako u bazi imaju rezultat. Tipicno prekinute utakmice: bodovi se ne upisuju dok se ne odigraju do kraja. Kad se utakmica odigra, stavka se odavde makne i tablica se preracuna. Isuljucuje se SAMO iz tablice, ne i iz ljestvica strijelaca i kartona, jer se one sa sluzbenima poklapaju i bez toga. Par je jedinstven po sezoni i smjeru, pa kolo ne treba. Stavka smije imati i polje 'registrirano' (npr. '0:3'): tada utakmica u tablicu ulazi SLUZBENIM rezultatom umjesto onog s terena, a strijelci i kartoni ostaju s terena. Prvi slucaj: Snjeznik - Zeljeznicar (M), 9. kolo 2. ZNL 2026/27, odigrano 1:1, registrirano 0:3 par forfe (glasnik br. 11).",
   "2026/27": {
-    "4. NL NS Rijeka": []
+    "4. NL NS Rijeka": [],
+    "2. ŽNL PGŽ": [
+      {
+        "domacin": "NK Snježnik",
+        "gost": "NK Željezničar (M)",
+        "registrirano": "0:3",
+        "razlog": "nastupio igrač koji nije upisan u zapisnik, čl. 83 PoNN, glasnik br. 11"
+      }
+    ]
   }
 }

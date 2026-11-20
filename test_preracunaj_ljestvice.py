@@ -170,6 +170,21 @@ def test_golovi_u_kolu_broji_samo_odigrane():
     print("OK: golovi u kolu se broje iz rezultata")
 
 
+def test_registrirani_rezultat_ulazi_u_tablicu():
+    """Snjeznik - Zeljeznicar (M) 1:1, registrirano 0:3 par forfe."""
+    utakmice = [utakmica("A", "B", "1:1")]
+    ostaju, izbaceni = p.bez_prekinutih(
+        utakmice, [{"domacin": "A", "gost": "B", "registrirano": "0:3"}])
+    assert len(izbaceni) == 1 and "registrirano 0:3" in izbaceni[0], izbaceni
+    tablica = {r["klub"]: r for r in p.izracunaj_tablicu(ostaju, {"A": -1})}
+    assert tablica["B"]["bodovi"] == "3" and tablica["B"]["pobjede"] == "1"
+    assert tablica["A"]["bodovi"] == "-1" and tablica["A"]["porazi"] == "1"
+    assert tablica["A"]["odigrano"] == "1"
+    # Rezultat u bazi se ne dira, samo kopija za tablicu.
+    assert utakmice[0]["rezultat"] == "1:1"
+    print("OK: registrirani rezultat ulazi u tablicu umjesto onog s terena")
+
+
 if __name__ == "__main__":
     test_rezultat_u_brojke()
     test_bodovi_i_poredak()
@@ -180,6 +195,7 @@ if __name__ == "__main__":
     test_sve_vrijednosti_su_tekst()
     test_prekinuta_ne_ulazi_u_tablicu()
     test_prekinuta_u_drugom_smjeru_se_ne_dira()
+    test_registrirani_rezultat_ulazi_u_tablicu()
     test_otisak_imena_spaja_spojnicu_i_razmak()
     test_sumnjiva_nova_imena()
     test_golovi_u_kolu_broji_samo_odigrane()

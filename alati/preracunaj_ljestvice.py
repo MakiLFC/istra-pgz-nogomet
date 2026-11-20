@@ -146,19 +146,34 @@ def bez_prekinutih(utakmice, prekinute):
 
     Dira SAMO tablicu. Ljestvice strijelaca i kartona se i s njom
     poklapaju sa sluzbenima do zadnje brojke, pa se ne mijenjaju.
+
+    Stavka smije imati i polje "registrirano" (npr. "0:3"): tada se
+    utakmica u tablicu broji SLUZBENIM rezultatom umjesto onog s terena.
+    Prvi slucaj: Snjeznik - Zeljeznicar (M), 9. kolo 2. ZNL 2026/27,
+    odigrana 1:1, a registrirana 0:3 par forfe jer je za Snjeznik
+    nastupio igrac koji nije upisan u zapisnik (glasnik br. 11).
+    Strijelci i kartoni ostaju s terena, kao i rezultat u bazi.
     """
     if not prekinute:
         return utakmice, []
 
-    kljucevi = {((p.get("domacin") or "").strip(), (p.get("gost") or "").strip())
+    kljucevi = {((p.get("domacin") or "").strip(), (p.get("gost") or "").strip()):
+                (p.get("registrirano") or "").strip() or None
                 for p in prekinute}
 
     ostaju, izbaceni = [], []
     for u in utakmice:
         kljuc = ((u.get("domacin") or "").strip(), (u.get("gost") or "").strip())
         if kljuc in kljucevi and rezultat_u_brojke(u.get("rezultat")):
-            izbaceni.append(f"{kljuc[0]} - {kljuc[1]} ({u.get('rezultat')})")
-            ostaju.append({**u, "rezultat": None})
+            registrirano = kljucevi[kljuc]
+            if registrirano and not rezultat_u_brojke(registrirano):
+                raise SystemExit(f"Neispravan registrirani rezultat za "
+                                 f"{kljuc[0]} - {kljuc[1]}: {registrirano!r}")
+            opis = f"{kljuc[0]} - {kljuc[1]} ({u.get('rezultat')})"
+            if registrirano:
+                opis += f", registrirano {registrirano}"
+            izbaceni.append(opis)
+            ostaju.append({**u, "rezultat": registrirano})
         else:
             ostaju.append(u)
 
@@ -507,7 +522,7 @@ def main():
 
     za_tablicu, izbaceni = bez_prekinutih(utakmice, prekinute)
     if izbaceni:
-        print("Ne broje se u tablicu (prekinute):")
+        print("U tablicu ne ulaze rezultatom s terena (prekinute ili registrirane):")
         for opis in izbaceni:
             print(f"  {opis}")
         print()
