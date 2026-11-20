@@ -3294,6 +3294,33 @@
         }
       ],
       "ime": "najava-redovi-1-znl-pgz-kolo-12"
+    },
+    {
+      "dat": "2-znl-pgz-kolo-10-novi-termin",
+      "kolo": "10",
+      "stil": "redovi",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "NED 22.11.2026.",
+      "sat": "Utakmice u 14:00, Gomirje - Goranka odgođena",
+      "utakmice": [
+        {
+          "d": "Željezničar (M)",
+          "g": "Mrkopalj",
+          "termin": "NED 14:00",
+          "derbi": true
+        },
+        {
+          "d": "Polet (Sk)",
+          "g": "Snježnik",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Gomirje",
+          "g": "Goranka",
+          "termin": "ODGOĐENO"
+        }
+      ],
+      "ime": "najava-redovi-2-znl-pgz-kolo-10-novi-termin"
     }
   ]
 }
