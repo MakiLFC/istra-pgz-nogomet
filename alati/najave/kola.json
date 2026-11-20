@@ -3247,6 +3247,53 @@
         }
       ],
       "ime": "najava-redovi-3-nl-zapad-kolo-14"
+    },
+    {
+      "dat": "1-znl-pgz-kolo-12",
+      "kolo": "12",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 21.11. i NED 22.11.2026.",
+      "sat": "Subota u 13:00, 13:30 i 14:00, nedjelja u 14:00",
+      "utakmice": [
+        {
+          "d": "Rab",
+          "g": "Vrbovsko",
+          "termin": "SUB 13:00"
+        },
+        {
+          "d": "Rikard Benčić",
+          "g": "Lošinj",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Omladinac Vrata",
+          "g": "Lovran",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Draga",
+          "g": "Risnjak",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Goranin",
+          "g": "Mune",
+          "termin": "NED 14:00",
+          "derbi": true
+        },
+        {
+          "d": "Turbina",
+          "g": "Stari grad Rijeka",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Vihor (B)",
+          "g": "Zamet",
+          "termin": "NED 14:00"
+        }
+      ],
+      "ime": "najava-redovi-1-znl-pgz-kolo-12"
     }
   ]
 }
