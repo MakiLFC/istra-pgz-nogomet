@@ -1,5 +1,5 @@
 slug: pregled-14-kola-3-nl-zapad-2627
-naslov: LOKOMOTIVA I BEZ JOSIPOVIĆA SLAVILA NA PUŠĆI, PAZINKA PREOKRENULA KRALJEVICU, SEDAM GOLOVA NA VALBRUNI
+naslov: LOKOMOTIVA I BEZ JOSIPOVIĆA SLAVILA NA PUŠĆI, PREOKRET PAZINKE PROTIV KRALJEVICE, SEDAM GOLOVA NA VALBRUNI
 sazetak: Lokomotiva je na Pušći svladala OŠK Omišalj 2:1 i uz utakmicu manje vodi šest bodova ispred Pazinke, koja je kod kuće preokrenula protiv Kraljevice i slavila 3:2. Rovinj je Nehaju prekinuo niz od sedam utakmica bez poraza pobjedom 4:3, s dva gola u posljednje dvije minute.
 natjecanje: 3. NL Zapad
 slika_url: /slike/najave/pregled-3-nl-zapad-kolo-14-cijela.png

@@ -9,7 +9,7 @@ suci: Daniel Starčević, Nico Celić, Antun Taranić. Delegat: Denis Šturman.
 ---
 # Prepisano iz snimke zaslona od 21.11.2026. Broja gledatelja u zapisniku nema.
 # Luka Bogdan (Jadran-Poreč): žuti karton, minuta je na snimci odrezana na
-# rubu ekrana, pa je upisan bez minute. Pitati Andreja.
+# rubu ekrana, pa je upisan bez minute. Andrej minutu ne zna (21.11.2026.).
 # Trener Jadran-Poreča Elvis Kastrati dobio je žuti karton u 45+1. minuti.
 
 [domacin]
