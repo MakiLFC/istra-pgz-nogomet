@@ -1,0 +1,57 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 14
+domacin: NK Rovinj
+gost: NK Nehaj
+rezultat: 4:3
+stadion_datum: VALBRUNA, ROVINJ, 21.11.2026. 14:00
+gledatelja: 80
+suci: Matej Bezelj, Petar Pejkunović, Patrik Beniković. Delegat: Mauro Tonetti.
+---
+# Prepisano iz snimke zaslona od 21.11.2026.
+
+[domacin]
+12 | Stefan Vasiljević | vratar
+2 | Dominik Žgomba
+4 | Matej Vladišković | 57' zuti
+5 | Anton Hrvatin | 68' izlazak
+7 | Viktor Milošević | 47' zuti, 51' gol
+8 | Andres Camilo De Armas Bracho
+9 | Masimo Terlević | 24' gol
+10 | Manuel Perković | (C), 85' izlazak
+23 | Lazar Peev
+24 | Mateo Buljević | 89' gol, 89' zuti
+27 | Dejan Kukić
+
+[domacin pricuva]
+1 | Andrej Kajfeš | vratar
+6 | Matija Hek
+13 | Andi Bešić
+15 | Fran Bernobić
+17 | Lukas Stošić | 85' ulazak
+19 | David Lazarić
+20 | Ivan Džeba
+22 | Niko Šerifović | 68' ulazak, 88' gol
+
+[gost]
+1 | Lovro Pichler | vratar
+5 | Domagoj Prizmić | (C)
+6 | David Dabac | 50' zuti
+7 | David Svast | 61' izlazak
+8 | Duje Tomljanović
+13 | Ante Prpić | 46' izlazak
+17 | Matej Prizmić | 90+1' izlazak
+18 | Marko Hodak
+19 | Luka Hodak
+20 | Filip Dizdar
+21 | Filip Zrilić | 6' gol, 66' gol
+
+[gost pricuva]
+12 | Marino Godinić | vratar
+3 | Gabrijel Tomić | 61' ulazak
+9 | Ivan Kranjčević
+10 | Ivan Prpić | 46' ulazak, 82' gol
+11 | Patrick Vrban
+14 | Vinko Šolić
+15 | Filip Tomljanović
+25 | Dorian Katalinić | 90+1' ulazak

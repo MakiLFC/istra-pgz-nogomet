@@ -1,0 +1,60 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 14
+domacin: NK Naprijed (H)
+gost: NK Banjole
+rezultat: 2:2
+stadion_datum: LONJA, HRELJIN, 21.11.2026. 14:00
+gledatelja: 70
+suci: Paolo Jakovašić, Marko Balen, Hrvoje Perkov. Delegat: Goran Šajina.
+---
+# Prepisano iz snimke zaslona od 21.11.2026.
+# Karlo Radošević u 90+3. minuti: lopta pred vratima, gol iz jedanaesterca.
+# Elvis Krasniqi (Banjole) u 90+1. minuti: izravni crveni karton, bez žutog.
+
+[domacin]
+1 | Gabriel Pehar | vratar
+7 | Dino Dukađin
+8 | Ivan Babić
+10 | Matej Tobisch | 42' izlazak
+14 | Filip Cetina | 81' izlazak
+15 | Fran Vušković | 68' izlazak
+16 | Karlo Radošević | (C), 90+3' gol
+17 | Lovro Tomljanović | 68' izlazak
+20 | Filip Pleše | 73' zuti
+21 | Leon Petrović
+47 | Robert Jandrek | 29' gol
+
+[domacin pricuva]
+12 | Filip Mufić | vratar
+5 | Mauro Milić
+6 | Luka Žeželić
+13 | Šime Stančić
+18 | Andri Kašovski | 68' ulazak
+19 | Armando Begić | 81' ulazak
+23 | Ivan Frigan | 42' ulazak
+24 | Luka Jakovljević | 68' ulazak
+27 | Dominik Topić
+
+[gost]
+12 | Damir Daić | vratar
+2 | Venas Džanić | 36' zuti, 84' izlazak
+4 | Sandi Mofardin
+5 | Martin Sivonjić | 64' izlazak
+6 | Marshal Mfon Johnson
+7 | Anel Salihović | (C)
+9 | Ahmed Durmo | 10' gol
+10 | Paolo Matteoni
+21 | Ivan Giljanović | 34' zuti
+23 | Robert Raković | 55' gol, 64' izlazak
+98 | Vice Miljanić
+
+[gost pricuva]
+1 | Marco Delfar | vratar
+3 | Muhamed Durmo
+8 | Elvis Krasniqi | 64' ulazak, 90+1' crveni
+18 | Dominik Frank
+19 | Stefano Matteoni | 84' ulazak, 88' zuti
+20 | Luka Radonić
+88 | Filip Rosić | 64' ulazak, 86' zuti
+99 | Matija Paulović

@@ -1,0 +1,59 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 14
+domacin: NK Pazinka-Pazin
+gost: NK Kraljevica
+rezultat: 3:2
+stadion_datum: SC EGIDIE MARION, PAZIN, 21.11.2026. 14:00
+gledatelja: 100
+suci: Milan Kukuljan, Dalibor Šušnjar, Igor Bahun. Delegat: Stjepan Sinožić.
+---
+# Prepisano iz snimke zaslona od 21.11.2026.
+# Mate Ivetić u 72. minuti: siva lopta pred vratima, gol iz jedanaesterca.
+
+[domacin]
+25 | Petar Guga | vratar
+2 | Entony Pavat | 69' izlazak
+4 | Ivan Rojnić
+10 | Nikola Ivetac | 46' izlazak
+11 | Deni Radovčić | 47' gol, 57' gol, 89' izlazak
+13 | Doni Tanković
+19 | Leo Lenić
+21 | Loren Maružin | 81' izlazak
+22 | Adam Mofardin
+23 | Patrick Rabar | (C), 69' izlazak
+77 | Mate Ivetić | 72' gol
+
+[domacin pricuva]
+27 | Dominik Jadreško | vratar
+49 | Mauro Mendiković | vratar
+5 | Marko Načinović | 81' ulazak
+7 | Damjan Ivančić
+9 | Maikol Prenc | 46' ulazak, 90+2' zuti
+14 | Nikola Petković
+17 | Marko Krištofić | 69' ulazak
+66 | Luka Delšeno | 89' ulazak
+80 | Noel Pavat | 69' ulazak
+
+[gost]
+1 | Dominik Grgurev | vratar
+2 | Andro Depeder
+4 | Franko Bosančić | 35' zuti
+5 | Filip Znamenaček | (C), 63' gol
+6 | Borna Znamenaček
+9 | Matija Čabrijan | 61' izlazak
+11 | Paulo Kocijan
+17 | Leon Sedlić | 78' izlazak
+18 | Lovro Šupraha | 61' izlazak
+19 | Nino Jovanović
+21 | Mikula Dunatov | 32' gol, 85' izlazak
+
+[gost pricuva]
+3 | Andro Zubović | 85' ulazak
+8 | Dominik Čarija
+10 | Maro Rosić
+13 | Luka Galer
+14 | Sven Stević | 61' ulazak
+16 | Petar Jakov Tomičić | 78' ulazak
+20 | Dominik Paljokaj | 61' ulazak, 66' zuti
+22 | Luka Šupraha

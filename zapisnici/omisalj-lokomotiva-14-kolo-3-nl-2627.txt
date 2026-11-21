@@ -1,0 +1,51 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 14
+domacin: NK OŠK Omišalj
+gost: NK Lokomotiva (R)
+rezultat: 1:2
+stadion_datum: PUŠĆA, OMIŠALJ, 21.11.2026. 14:00
+suci: Noel Sambol, Luka Mravić, Antonio Kranjac. Delegat: Dinko Šimunić.
+---
+# Prepisano iz snimke zaslona od 21.11.2026. Broja gledatelja u zapisniku nema.
+
+[domacin]
+12 | Igor Herman | vratar
+5 | Sanin Muminović
+7 | Matija Brdar
+10 | Mateo Ostović | 66' izlazak
+14 | Karlo Milinović
+15 | David Rožajac
+17 | Luka Štimac | 81' zuti
+20 | Patrik Gundić | 52' izlazak
+30 | Paolo Lenac | 66' izlazak
+34 | Marko Miculinić | (C), 57' zuti
+49 | Andrija Belina | 21' gol
+
+[domacin pricuva]
+23 | Leo Margan | vratar
+4 | Bruno Požega
+9 | Matteo Pavković
+21 | Marko Mijatović | 52' ulazak, 58' zuti
+29 | Luka Mijić | 66' ulazak
+70 | Dino Tatarević
+90 | Niko Maksić | 66' ulazak
+
+[gost]
+30 | Giuliano Popović | vratar, (C)
+5 | Ronan Hibšer | 46' izlazak
+8 | Ivor Weitzer
+10 | Frano Ivančić
+14 | Antonio Pejanović
+17 | Mateo Monjac | 75' gol, 87' izlazak
+19 | Nino Mohorovičić
+20 | Vanja Malinić
+22 | Dino Bradarić | 46' izlazak
+23 | Edin Junuzović | 62' gol
+27 | Marko Dejanović
+
+[gost pricuva]
+58 | Carlo Berković | vratar
+4 | Andre Franković | 46' ulazak
+7 | Roko Kuvač | 87' ulazak
+18 | Dominik Fuštar | 46' ulazak
