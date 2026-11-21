@@ -1,5 +1,5 @@
 slug: pregled-12-kola-4-nl-ns-rijeka-2627
-naslov: OTOČAC S IGRAČEM MANJE DOBIO U POREČU I OPET STIGAO CRES, ŠTINJAN TREĆOM POBJEDOM ZAREDOM NA 21 BOD
+naslov: OTOČAC S IGRAČEM MANJE DOBIO U POREČU I OSTAO IZJEDNAČEN S CRESOM, ŠTINJAN TREĆOM POBJEDOM ZAREDOM NA 21 BOD
 sazetak: Otočac je u Poreču svladao Funtanu 2:0 s dva pogotka Antonija Vujičića, i to zadnjih pola sata s igračem manje, pa je s 25 bodova ponovno stigao Cres na vrhu. Cres je sa 4:1 svladao Smoljance, Štinjan je u Dražicama dobio 3:1 i upisao treću pobjedu zaredom, a Ližnjan je pobjedom nad Medulinom skočio na četvrto mjesto.
 natjecanje: 4. NL NS Rijeka
 slika_url: /slike/najave/pregled-4-nl-ns-rijeka-kolo-12-cijela.png
