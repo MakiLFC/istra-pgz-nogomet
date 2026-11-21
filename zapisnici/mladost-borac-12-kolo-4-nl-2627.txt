@@ -2,7 +2,7 @@ natjecanje: 4. NL NS Rijeka
 sezona: 2026/27
 kolo: 12
 domacin: NK Mladost Fažana
-gost: NK Borac (BA)
+gost: NK Borac (Ba)
 rezultat: 1:1
 stadion_datum: OLIVA, FAŽANA, 21.11.2026. 14:00
 gledatelja: 50
