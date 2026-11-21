@@ -3321,6 +3321,67 @@
         }
       ],
       "ime": "najava-redovi-2-znl-pgz-kolo-10-novi-termin"
+    },
+    {
+      "dat": "3-nl-zapad-kolo-14-pregled",
+      "kolo": "14",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 21.11.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "OŠK Omišalj",
+          "g": "Lokomotiva (R)",
+          "termin": "SUB 14:00",
+          "derbi": true,
+          "rezultat": "1:2"
+        },
+        {
+          "d": "Pazinka-Pazin",
+          "g": "Kraljevica",
+          "termin": "SUB 14:00",
+          "rezultat": "3:2"
+        },
+        {
+          "d": "Vinodol",
+          "g": "Pomorac",
+          "termin": "SUB 14:00",
+          "rezultat": "0:1"
+        },
+        {
+          "d": "Naprijed (H)",
+          "g": "Banjole",
+          "termin": "SUB 14:00",
+          "rezultat": "2:2"
+        },
+        {
+          "d": "Rovinj",
+          "g": "Nehaj",
+          "termin": "SUB 14:00",
+          "rezultat": "4:3"
+        },
+        {
+          "d": "Halubjan",
+          "g": "Krk",
+          "termin": "SUB 14:00",
+          "rezultat": "2:3"
+        },
+        {
+          "d": "Buje",
+          "g": "Crikvenica",
+          "termin": "SUB 14:00",
+          "rezultat": "1:1"
+        },
+        {
+          "d": "Jadran-Poreč",
+          "g": "Rudar (L)",
+          "termin": "SUB 14:00",
+          "rezultat": "1:3"
+        }
+      ],
+      "ime": "pregled-3-nl-zapad-kolo-14",
+      "naslov": "Pregled"
     }
   ]
 }
