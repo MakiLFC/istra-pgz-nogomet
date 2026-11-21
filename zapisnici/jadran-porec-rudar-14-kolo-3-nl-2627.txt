@@ -1,0 +1,61 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 14
+domacin: NK Jadran-Poreč
+gost: NK Rudar (L)
+rezultat: 1:3
+stadion_datum: VELI JOŽE, POREČ, 21.11.2026. 14:00
+suci: Daniel Starčević, Nico Celić, Antun Taranić. Delegat: Denis Šturman.
+---
+# Prepisano iz snimke zaslona od 21.11.2026. Broja gledatelja u zapisniku nema.
+# Luka Bogdan (Jadran-Poreč): žuti karton, minuta je na snimci odrezana na
+# rubu ekrana, pa je upisan bez minute. Pitati Andreja.
+# Trener Jadran-Poreča Elvis Kastrati dobio je žuti karton u 45+1. minuti.
+
+[domacin]
+1 | Ivan Matukina | vratar
+7 | David Ereiz
+8 | Luka Nerlović | 66' izlazak
+9 | Ilija Batrićević | 74' izlazak
+10 | Luka Paulinić | 46' izlazak
+11 | Filip Šverko | 74' izlazak
+17 | Ivan Jakovčić | 51' gol
+20 | Petar Leko
+21 | Donato Bernobić | 80' izlazak
+23 | Vedran Radman | (C)
+33 | Paolo Bernobić | 42' zuti
+
+[domacin pricuva]
+12 | Mateo Božac | vratar
+4 | Luka Bogdan | 74' ulazak, zuti
+6 | Andrija Tomčić
+14 | Filip Ritoša
+16 | Andrea Dobrilović | 80' ulazak
+22 | Lukas Banko | 74' ulazak
+25 | Dominik-Velin Mrvčić
+27 | Niko Buljan | 46' ulazak
+99 | Marko Herak | 66' ulazak
+
+[gost]
+32 | Andrej Prskalo | vratar
+4 | Antonio Načinović | (C), 23' gol, 66' gol
+6 | Petar Mitrović
+8 | Nino Lazarić | 46' izlazak
+10 | Paolo Juričić | 18' gol, 41' zuti, 64' izlazak
+11 | Ševko Okić | 83' izlazak
+13 | Anton Bilić
+16 | Matija Ristić | 46' izlazak
+18 | Darian Živolić | 62' zuti
+44 | Nikola Terković
+77 | Matteo Movrić | 58' izlazak
+
+[gost pricuva]
+1 | Luka Verbanac | vratar
+5 | Matej Trajkovski
+7 | Amel Ibrahimović | 64' ulazak
+14 | Karlo Krnjus | 58' ulazak
+15 | Tino Licul | 46' ulazak
+19 | Timi Mohorović | 46' ulazak
+21 | Kristijan Simić
+22 | Connor Jacob Stayton
+42 | Patrik Čenaj | 83' ulazak

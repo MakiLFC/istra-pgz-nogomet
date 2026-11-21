@@ -1,0 +1,53 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 14
+domacin: NK Buje
+gost: NK Crikvenica
+rezultat: 1:1
+stadion_datum: BUJE - UMJETNA TRAVA, BUJE, 21.11.2026. 14:00
+gledatelja: 150
+suci: Luka Milković, Luka Šipić, Noa Perušić. Delegat: Neven Jadreško.
+---
+# Prepisano iz snimke zaslona od 21.11.2026.
+# Damjan Mendrila u 53. minuti: lopta pred vratima, gol iz jedanaesterca.
+
+[domacin]
+22 | Matteo Fabac | vratar
+3 | Emanuele Dubaz | 50' izlazak
+4 | Matija Šusterajter
+7 | Masimo Krizmanić | (C)
+11 | Marko Cukon
+18 | Matija Kalizan
+19 | Matteo Fakin | 69' izlazak
+23 | Stefan Stefanovski
+27 | Dario Čakarun | 69' izlazak
+33 | Ivan Iveljić | 82' izlazak
+77 | Mark Bulešić | 79' gol
+
+[domacin pricuva]
+12 | Josip Benjak | vratar
+2 | Erik Peroša | 82' ulazak
+5 | Azariah Uriel Hines | 50' ulazak
+6 | Dominik Jugovac
+9 | Enis Šoškić | 69' ulazak
+17 | Victor Kargbo | 69' ulazak
+26 | William Ayanda Maseko
+88 | Leon Lakošeljac
+99 | Borna Švenda
+
+[gost]
+23 | Breno Bonamigo Toseto | vratar
+5 | Niko Daničić | 59' izlazak
+6 | Ivan Filipović
+7 | Petar Vidović | (C)
+8 | Luka Mađovski
+10 | Damjan Mendrila | 53' gol
+11 | Paulo Deželin | 57' zuti
+15 | Jakov Mendrila
+17 | Vito Lukarić | 46' izlazak
+29 | Pedro Gustavo Dos Santos Melo
+77 | Luka Mikulica
+
+[gost pricuva]
+9 | Antonio Buljat | 46' ulazak
+22 | Dean Županec | 59' ulazak, 90+1' zuti

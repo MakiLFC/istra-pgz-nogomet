@@ -1,0 +1,57 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 14
+domacin: NK Halubjan
+gost: NK Krk
+rezultat: 2:3
+stadion_datum: BRNASI, VIŠKOVO, 21.11.2026. 14:00
+gledatelja: 50
+suci: Dragan Kukić, David Ružić, Florian Belavić. Delegat: Katarina Radić.
+---
+# Prepisano iz snimke zaslona od 21.11.2026.
+# Mihovil Jeronim Klapan u 5. minuti: lopta pred vratima, gol iz jedanaesterca.
+# Trener Krka Marko Miletić dobio je žuti karton u 42. minuti (nije u postavi).
+
+[domacin]
+32 | Ivan Puljić | vratar
+2 | Leonardo Milih
+4 | Štefan Vrhovac | 52' zuti
+6 | Marko Ivanković | 12' zuti
+7 | Bruno Došen | 76' izlazak
+10 | Mario Jurković | 16' izlazak
+14 | Mihovil Jeronim Klapan | 5' gol
+20 | Lovro Mikulica
+22 | Antonio Dedić | (C), 81' zuti, 85' izlazak
+24 | Noel Jakac
+41 | Simon Simonaj
+
+[domacin pricuva]
+40 | Vito Sviličić Kraš | vratar
+5 | Erik Šafarek
+8 | Fran Knežević | 16' ulazak, 51' gol
+9 | Moreno Stanić | 76' ulazak
+17 | Petar Vukajlović | 85' ulazak
+18 | Matej Šarlija
+25 | Niko Šimičević
+
+[gost]
+13 | Matej Brusić | vratar
+7 | Mirko Valenčić | 75' izlazak
+8 | Ivan Lucić
+9 | Marko Jelić | 3' gol
+17 | Jakov Delibegović | 7' zuti, 65' izlazak
+19 | Roko Begonja | 85' zuti, 89' izlazak
+20 | Dino Dvorničić
+22 | Mateo Jurešić | (C), 22' zuti, 65' izlazak
+23 | Ivan Golemac | 65' izlazak
+37 | Tin Jurica | 4' zuti, 83' gol, 89' gol
+95 | Emanuel Mrakovčić
+
+[gost pricuva]
+12 | Filip Hutinski | vratar
+2 | Tomislav Jukičić | 65' ulazak
+3 | Mathew Peter | 89' ulazak
+4 | Ivano Pranjić | 75' ulazak, 78' zuti
+6 | Mateo Klenovšek | 65' ulazak
+14 | Lovre Travica | 65' ulazak, 70' zuti
+18 | Alin Hadžić
