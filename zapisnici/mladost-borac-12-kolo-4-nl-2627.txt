@@ -1,0 +1,57 @@
+natjecanje: 4. NL NS Rijeka
+sezona: 2026/27
+kolo: 12
+domacin: NK Mladost Fažana
+gost: NK Borac (BA)
+rezultat: 1:1
+stadion_datum: OLIVA, FAŽANA, 21.11.2026. 14:00
+gledatelja: 50
+suci: Karlo Terković, Sandi Skrletović, Branko Vukojević. Delegat: Toni Benčić.
+---
+# Prepisano iz snimke zaslona od 21.11.2026.
+# Oba pogotka imaju ikonu obicne sive lopte.
+# Cargonja ima obican crveni karton, bez zutog prije njega.
+
+[domacin]
+12 | Luka Šteko | vratar
+2 | Jan Lazarević | 46' izlazak
+4 | Toni Nišević
+5 | Marin Ristić (C) | 56' izlazak
+9 | Danial Adrović | 46' izlazak
+10 | Edi Butković
+11 | Luka Špelić | 66' gol, 77' zuti
+16 | Marin Sić
+18 | Noel Radolović | 62' zuti
+21 | Teo Filipović | 86' izlazak
+22 | Rocco Rakovac
+
+[domacin pricuva]
+1 | Lucas Dobrovac | vratar
+13 | Ugo Šuran
+15 | Vanja Ruba | 56' ulazak
+17 | Dominik Marjanović | 46' ulazak
+19 | Luka Miškulin
+23 | Goran Urošević | 46' ulazak
+24 | Almir Halilović | 86' ulazak
+
+[gost]
+1 | Marin Ždralović | vratar
+2 | Nikola Ružić
+5 | Roko Čargonja | 72' crveni
+9 | Ivano Ćumurdžić | 73' izlazak
+10 | Ivan Golić (C) | 72' zuti
+11 | David Golić | 45' zuti
+15 | Mihael Šušnjar | 25' gol
+16 | Goran Minovski
+17 | Ivan Ferinac
+19 | Luka Jurić | 31' zuti, 46' izlazak
+33 | Aleksandar Zlatevski | 34' zuti
+
+[gost pricuva]
+12 | Dorian Mičetić | vratar
+4 | Roko Antonić
+6 | Josip Miškulin
+7 | Filip Jagić | 46' ulazak
+14 | Paolo Černi | 73' ulazak
+20 | Dino Omerović
+23 | Zvonimir Hoić
