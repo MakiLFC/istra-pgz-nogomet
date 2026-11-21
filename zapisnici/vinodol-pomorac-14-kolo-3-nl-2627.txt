@@ -1,0 +1,59 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 14
+domacin: NK Vinodol
+gost: NK Pomorac
+rezultat: 0:1
+stadion_datum: BAHALIN, NOVI VINODOLSKI, 21.11.2026. 14:00
+gledatelja: 100
+suci: Marin Rožman, Milan Butorac, Luka Stanišić. Delegat: Robert Maršanić.
+---
+# Prepisano iz snimke zaslona od 21.11.2026.
+
+[domacin]
+99 | Matija Ugrinović | vratar
+4 | Tin Lagumdžija
+8 | Antonio Mazzarolli | 80' izlazak
+9 | Edmar Junior Dos Santos Neves | 68' izlazak
+10 | Deni Rubčić | 68' izlazak
+11 | Luka Filipović | (C), 69' zuti, 73' izlazak
+14 | Badara Seck
+18 | Marcelo Suden
+22 | Sebastijan Antić
+27 | Maro Peričić | 31' zuti, 73' izlazak
+77 | Noah Ugrinović
+
+[domacin pricuva]
+17 | Sven Ratković
+19 | Ennio Travaglia | 68' ulazak
+20 | Ivo Humberto Kreusch Junior | 73' ulazak
+21 | Gabriel Proleta | 73' ulazak, 90+4' zuti
+23 | Din Pozderac | 68' ulazak
+24 | David Butorac | 80' ulazak
+25 | Maro Brčić
+50 | Duje Zrilić
+91 | Adriano Šmit
+
+[gost]
+1 | Roberto Nicoletti | vratar
+4 | Antonio Kružić | 63' izlazak
+7 | Paolo Sobotinčić | (C), 63' izlazak
+8 | Benjamin Lapić | 49' zuti
+10 | Leo Burul
+11 | Niko Lovrić | 88' izlazak
+17 | Matej Momčilovski
+19 | Jakob Šprem Veljavečki
+21 | Marino Matković | 56' zuti, 67' gol
+22 | Artem Terletskyi
+24 | Ivan Rupčić
+
+[gost pricuva]
+12 | Matko Božičković | vratar
+2 | Leo Arbanas
+5 | Karlo Valjan | 63' ulazak, 83' zuti
+6 | Arianit Ljušaj
+15 | Lucas Precetti
+16 | Rene Ende | 63' ulazak
+18 | Ante Bilen
+20 | Andrej Soldan | 88' ulazak
+25 | David Gjugjaj
