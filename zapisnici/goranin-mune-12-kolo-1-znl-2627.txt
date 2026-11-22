@@ -1,0 +1,55 @@
+natjecanje: 1. ŽNL PGŽ
+sezona: 2026/27
+kolo: 12
+domacin: HNK Goranin
+gost: NK Mune
+rezultat: 3:1
+stadion_datum: GRADSKI STADION, DELNICE, 22.11.2026. 14:00
+gledatelja: 80
+suci: Tomislav Frlan, Marko Ban, Zoran Martinović. Delegat: Zvonimir Podnar.
+---
+# Prepisano iz snimke zaslona od 22.11.2026.
+# Antonio Frlan (Goranin) u 57. minuti: crvena lopta pred vratima, PROMAŠEN
+# jedanaesterac. Ne upisuje se; u zaglavlju zapisnika stoji pod "Jedanaesterci".
+# David Gulan (Mune): žuti karton, minuta je na snimci odrezana na rubu
+# ekrana u svim kadrovima, pa je upisan bez minute.
+
+[domacin]
+1 | Karlo Bliznac | vratar
+2 | Darin Brajdić | 13' gol
+5 | Dario Mikešić
+7 | Matija Markovčić
+8 | Borna Janeš
+9 | Antonio Frlan | 67' zuti
+10 | Branimir Brelih | 85' izlazak
+14 | Anton Lalić | 82' izlazak
+18 | Dominik Brajdić
+19 | Ivan Tomić | 46' izlazak
+22 | Alen Dedić | (C), 36' gol
+
+[domacin pricuva]
+12 | Adriano Đukić | vratar
+4 | Kristijan Frlan | 82' ulazak
+11 | Fran Petrušanec Pečar | 85' ulazak, 89' gol
+16 | Tin Tadej | 46' ulazak
+20 | Rene Cvijanović
+21 | Ivano Pelko
+23 | Fran Polić
+
+[gost]
+1 | Erik Perić | vratar
+3 | Teo Grubiša | 60' zuti, 76' izlazak
+5 | David Gulan | zuti
+6 | Ivan Šop | 35' zuti
+7 | Patrik Bonicioli | (C)
+8 | Dino Alinčić
+9 | Petar Džaja | 84' izlazak
+11 | Eric Milo Varljen | 52' gol
+32 | Tin Bubnić
+34 | Antonio Džaja
+35 | Borna Dujmović
+
+[gost pricuva]
+10 | Ivan Grbac
+16 | Siniša Kamenar | 84' ulazak
+31 | Matija Juranović | 76' ulazak

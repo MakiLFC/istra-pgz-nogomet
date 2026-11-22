@@ -1,0 +1,49 @@
+natjecanje: 1. ŽNL PGŽ
+sezona: 2026/27
+kolo: 12
+domacin: NK Vihor (B)
+gost: NK Zamet
+rezultat: 3:0
+stadion_datum: SRC ZABLAĆE, BAŠKA, 22.11.2026. 14:00
+gledatelja: 20
+suci: Luka Gržinčić, Andre Olajoš, Nikola Rukavina. Delegat: Dino Piljić.
+---
+# Prepisano iz snimke zaslona od 22.11.2026.
+
+[domacin]
+1 | Muamer Avdić | vratar, 82' izlazak
+3 | Ante Žunić | (C)
+4 | Leo Juras | 82' izlazak
+6 | Hrvoje Pilčić
+7 | Edi Begaj
+8 | Anton Božanić | 21' gol, 82' izlazak
+9 | Matej Brlošić | 70' gol, 74' izlazak
+10 | Mazen Sharbini | 78' gol
+14 | Nikola Seršić | 58' izlazak
+15 | Mihael Radić
+18 | Adnan Husić
+
+[domacin pricuva]
+12 | Luka Tomljenović | vratar, 82' ulazak
+2 | Eldin Huskić | 82' ulazak
+11 | Dominik Barbalić | 74' ulazak
+21 | Filip Sablić | 58' ulazak
+22 | Roko Ferenčić | 82' ulazak
+
+[gost]
+12 | Patrik Buk | vratar
+4 | Karlo Turk
+5 | Karlo Rukavina | 29' izlazak
+8 | Jan Daka | 61' izlazak
+11 | Luka Kocijan | (C)
+16 | David Stojnšek | 38' izlazak
+20 | Din Murica
+28 | Igor Džepina
+70 | Patrik Cindrić
+72 | Damjan Pilepić
+97 | Luka Magaš
+
+[gost pricuva]
+6 | Leonardo Kos | 29' ulazak
+14 | Sandro Hasanbegović | 61' ulazak
+52 | Ivano Miljević | 38' ulazak
