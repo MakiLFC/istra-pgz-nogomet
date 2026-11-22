@@ -2290,18 +2290,11 @@ najavom ili pregledom.
 Kazne koje izrekne stegovni sudac (isključenja, suspenzije) i dalje se
 provjeravaju u glasniku, kako stoji gore.
 
-**10. KOLO 2. ŽNL PGŽ NIJE ODIGRANO NI U JEDNOJ UTAKMICI.** Andrej je
-15.11.2026. javio da je odgođena i Polet (Sk) - Snježnik, novi termin
-nije poznat (upisano poslom "Termin u bazu", bez datuma, oznaka
-odgode). PREGLED 10. KOLA SE ZATO NE PIŠE, Andrejeva odluka. Ostale dvije:
-
-- Gomirje - Goranka: odgođena, novi termin nije poznat (Semafor i
-  glasnik br. 10); u bazi bez datuma, piše ODG.
-- Željezničar (M) - Mrkopalj: ODGOĐENA ZBOG ZIMSKIH UVJETA, novi termin
-  NEDJELJA 22.11.2026. u 14:00, u Moravicama (Andrej). Upisano u bazu
-  poslom "Termin u bazu".
-
-Kad se kolo odigra ili Andrej kaže drukčije, ovu stavku obriši.
+**10. KOLO 2. ŽNL PGŽ ODIGRANO JE 22.11.2026., OSIM GOMIRJE - GORANKA.**
+Ta je utakmica i dalje odgođena, bez novog termina (u bazi ODG.). Pregled
+10. kola objavljen je 22.11.2026.; Mrkopalj je tom pobjedom jesenski prvak
+(Andrejeva formulacija). Kad Gomirje - Goranka dobije termin ili se
+odigra, ovu stavku obriši.
 
 **Nakon objavljenog pregleda ide provjera promjena u ljestvicama.** Posao
 "Preračunaj ljestvice", radnja `promjene`, s upisanim brojem kola. Ispiše
