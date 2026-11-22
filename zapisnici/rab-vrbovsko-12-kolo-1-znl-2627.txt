@@ -1,0 +1,51 @@
+natjecanje: 1. ŽNL PGŽ
+sezona: 2026/27
+kolo: 12
+domacin: NK Rab
+gost: NK Vrbovsko
+rezultat: 1:2
+stadion_datum: BLATO, RAB, 21.11.2026. 13:00
+suci: Ivano Mijić, Ante Ritmajer, Josip Tkalčević. Delegat: Jure Dundović.
+---
+# Prepisano iz snimke zaslona od 22.11.2026. Broja gledatelja u zapisniku nema.
+# Marin Macolić u 61. minuti: lopta pred vratima, gol iz jedanaesterca.
+
+[domacin]
+12 | Marko Tomljanović | vratar
+2 | Emanuel Fafanđel | 68' izlazak
+3 | Luka Dumenčić | 46' izlazak
+4 | Luka Grce | 70' zuti
+5 | Niko Španjol | 46' izlazak
+6 | Andro Mlacović
+7 | Niko Šanić | 88' izlazak
+8 | Bruno Ivić | (C)
+10 | Marin Macolić | 61' gol
+11 | Luka Šimičić | 64' zuti, 75' izlazak
+19 | Antonio Belobrajdić | 51' zuti
+
+[domacin pricuva]
+1 | Niko Dumičić | vratar
+13 | Lovro Beg | 46' ulazak
+14 | Antonio Dokupil | 46' ulazak
+15 | Adrian Kurelić | 68' ulazak
+16 | Franko Fafanđel
+20 | Ivan Pećarina | 88' ulazak, 90+1' zuti
+21 | Karlo Gorup | 75' ulazak
+
+[gost]
+12 | Kristijan Dragović | vratar
+5 | Mihael Jardas | (C)
+7 | Mate Cindrić
+8 | Patrik Poljak | 40' zuti, 42' gol, 84' izlazak
+10 | Denis Dukađin | 45+1' gol, 76' izlazak
+11 | Marijo Sedlić
+13 | Fran Vukelja
+14 | Mateo Vukelja
+15 | Marko Puškarić
+20 | Živko Blagojević | 68' izlazak
+21 | Aleksandar Ivošević
+
+[gost pricuva]
+2 | Ivan Barko | 68' ulazak
+9 | Ozren Mrvoš | 76' ulazak
+19 | Igor Cindrić | 84' ulazak

@@ -1,0 +1,49 @@
+natjecanje: 1. ŽNL PGŽ
+sezona: 2026/27
+kolo: 12
+domacin: NK Draga
+gost: NK Risnjak
+rezultat: 6:2
+stadion_datum: SLATINA, MOŠĆENIČKA DRAGA, 21.11.2026. 14:00
+suci: Miran Maržić, Marko Ban, David Mirić. Delegat: Dragan Jakovašić.
+---
+# Prepisano iz snimke zaslona od 22.11.2026. Broja gledatelja u zapisniku nema.
+# Toni Juničić u 60. minuti: lopta pred vratima, gol iz jedanaesterca.
+
+[domacin]
+1 | Toni Bošnjak | vratar
+3 | Luka Lanča | 53' izlazak
+4 | Ivan Kinkela | 2' gol, 17' gol, 61' izlazak
+5 | Erik Drozdek | 30' zuti
+7 | Kristijan Kurti | 37' zuti, 47' gol
+8 | Zoran Rubinić | (C), 46' izlazak
+10 | Toni Juničić | 55' gol, 60' gol, 75' izlazak
+11 | Toni Rudan | 61' izlazak
+17 | Ivan Kovačević | 34' gol
+18 | Dante Bujas
+19 | Đerđ Kurti
+
+[domacin pricuva]
+2 | Josip Rudan | 53' ulazak
+9 | Sanjin Rubinić | 61' ulazak
+15 | Leonardo Rubinić | 75' ulazak
+16 | Andrea Štemberger | 46' ulazak
+22 | Andro Belošević | 61' ulazak
+
+[gost]
+1 | Filip Rakas | vratar
+4 | Dino Magaš | (C), 50' izlazak
+5 | Dorijan Bašić
+7 | Mario Rižnik
+10 | Luka Marković | 63' gol
+14 | Adrian Godeša
+18 | Adrijan Javor
+19 | Matija Turk | 66' izlazak
+20 | Karlo Veseli | 50' izlazak
+21 | Damijan Raukar
+22 | Mihael Malnar | 80' gol
+
+[gost pricuva]
+11 | Karlo Rupe | 50' ulazak
+15 | Bartol Bašić | 66' ulazak
+16 | Miroslav Dukić | 50' ulazak

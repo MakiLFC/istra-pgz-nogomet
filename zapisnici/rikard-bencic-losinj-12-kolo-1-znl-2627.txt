@@ -1,0 +1,58 @@
+natjecanje: 1. ŽNL PGŽ
+sezona: 2026/27
+kolo: 12
+domacin: NK Rikard Benčić
+gost: NK Lošinj
+rezultat: 3:5
+stadion_datum: SRC BELVEDER, RIJEKA, 21.11.2026. 13:30
+gledatelja: 70
+suci: Gabriel Rusich, Bojan Sobol, Luka Gržinčić. Delegat: Ante Tonković.
+---
+# Prepisano iz snimke zaslona od 22.11.2026.
+# Zoran Štokan u 77. minuti: lopta pred vratima, gol iz jedanaesterca.
+# Matvii Yankelevych u 71. minuti: izravni crveni karton, bez žutog.
+# Luka Makin u 90+1. minuti: žuti, pa u istoj minuti žuto-crvena ikona.
+# Marino Saftich: žuti karton, minuta je na snimci odrezana na rubu ekrana,
+# pa je upisan bez minute.
+
+[domacin]
+1 | Deni Pavlić | vratar
+2 | Jan Jusup
+3 | Marino Štefša | 79' izlazak
+4 | Ante Mioč | 39' izlazak
+7 | Zoran Štokan | (C), 77' gol, 88' zuti
+9 | Bakir Delić | 69' izlazak
+11 | Goran Iličić | 69' izlazak
+14 | Matteo Petković | 43' gol
+15 | Matvii Yankelevych | 71' crveni
+20 | Luka Makin | 90+1' zuti, 90+1' drugi zuti
+21 | Marko Cvijanović | 69' izlazak
+
+[domacin pricuva]
+12 | Vedran Paris | vratar
+5 | Mateo Mladenović
+6 | Nino Popović | 39' ulazak, 61' gol
+8 | Jan Ciceran | 69' ulazak
+13 | Marino Saftich | 79' ulazak, zuti
+16 | Ivo Dorić | 69' ulazak
+18 | Mile Glumac | 69' ulazak
+
+[gost]
+12 | Edi Milković | vratar
+3 | Dantes Benvin | 55' zuti, 69' izlazak
+4 | Tin Gršković | 6' zuti
+5 | Karlo Frančišković | 32' gol
+10 | Kevin Kalanj | 19' gol, 46' izlazak
+15 | Antonio Bujačić | 7' gol, 22' gol
+21 | Slaven Slobodan Jovanović | 82' izlazak
+23 | Antonio Matić
+24 | Vitorio Antoninić | (C), 69' izlazak
+25 | Adam Pahljina Hernandez
+27 | Gabriel Maružin
+
+[gost pricuva]
+1 | Domagoj Stupičić | vratar
+11 | Benjamin Bertić | 82' ulazak
+13 | Vito Bonić Grašo | 69' ulazak
+16 | Šimun Simić | 46' ulazak, 50' gol
+20 | Adrian Gardijan | 69' ulazak

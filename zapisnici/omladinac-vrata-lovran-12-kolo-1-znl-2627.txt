@@ -1,0 +1,51 @@
+natjecanje: 1. ŽNL PGŽ
+sezona: 2026/27
+kolo: 12
+domacin: NK Omladinac Vrata
+gost: HNK Lovran
+rezultat: 2:1
+stadion_datum: GMAJNA, VRATA, 21.11.2026. 14:00
+suci: Gabrijel Flegar, Dario Nedić, Fran Tomičić. Delegat: Stipica Baškarad.
+---
+# Prepisano iz snimke zaslona od 22.11.2026. Broja gledatelja u zapisniku nema.
+
+[domacin]
+1 | Leo Lucić | vratar
+2 | Dominik Razmilić
+3 | Niko Kumir
+4 | Petar Bitanga
+5 | Anton Babić | 81' izlazak
+7 | Zorko Tomljenović
+8 | Matija Kovačić
+9 | Mateo Tomić | (C), 90+1' gol
+10 | Andrej Purković | 52' izlazak
+14 | Franco Vukić | 65' izlazak
+16 | Damjan Rački
+
+[domacin pricuva]
+11 | Diego Žic | 52' ulazak, 57' gol
+13 | Ramesh Tamang | 81' ulazak
+15 | Frano Mihelić | 65' ulazak
+17 | Matija Laušin
+18 | Saša Kauzlarić
+
+[gost]
+77 | Josip Iveša | vratar
+2 | Dominik Mohorovičić
+4 | Nino Vuković | (C)
+6 | Tin Sanković | 71' izlazak
+7 | Ivano Pavinčić | 81' izlazak
+10 | Mihael Gazdek | 60' izlazak
+11 | Patrik Vidmar | 19' gol
+13 | David Radan
+18 | Frane Grgić
+19 | Vito Sandalj | 60' izlazak
+24 | Leo Dennis Schneider | 46' izlazak
+
+[gost pricuva]
+1 | Mykhailo Metreveli
+5 | Tino Staraj | 60' ulazak
+15 | Matej Jergović | 60' ulazak
+16 | Dian Žeko | 71' ulazak
+17 | Mateo Mandić | 46' ulazak
+20 | Luka Kršanac | 81' ulazak
