@@ -3431,6 +3431,61 @@
           "rezultat": "1:1"
         }
       ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-12-pregled",
+      "kolo": "12",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 21.11. i NED 22.11.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Rab",
+          "g": "Vrbovsko",
+          "termin": "SUB 13:00",
+          "rezultat": "1:2"
+        },
+        {
+          "d": "Rikard Benčić",
+          "g": "Lošinj",
+          "termin": "SUB 13:30",
+          "rezultat": "3:5"
+        },
+        {
+          "d": "Omladinac Vrata",
+          "g": "Lovran",
+          "termin": "SUB 14:00",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Draga",
+          "g": "Risnjak",
+          "termin": "SUB 14:00",
+          "rezultat": "6:2"
+        },
+        {
+          "d": "Goranin",
+          "g": "Mune",
+          "termin": "NED 14:00",
+          "derbi": true,
+          "rezultat": "3:1"
+        },
+        {
+          "d": "Turbina",
+          "g": "Stari grad Rijeka",
+          "termin": "NED 14:00",
+          "rezultat": "ODG."
+        },
+        {
+          "d": "Vihor (B)",
+          "g": "Zamet",
+          "termin": "NED 14:00",
+          "rezultat": "3:0"
+        }
+      ],
+      "ime": "pregled-1-znl-pgz-kolo-12",
+      "naslov": "Pregled"
     }
   ]
 }
