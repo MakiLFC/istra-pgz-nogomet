@@ -13,7 +13,7 @@ suci: Gabriel Rusich, Bojan Sobol, Luka Gržinčić. Delegat: Ante Tonković.
 # Matvii Yankelevych u 71. minuti: izravni crveni karton, bez žutog.
 # Luka Makin u 90+1. minuti: žuti, pa u istoj minuti žuto-crvena ikona.
 # Marino Saftich: žuti karton, minuta je na snimci odrezana na rubu ekrana,
-# pa je upisan bez minute.
+# pa je upisan bez minute. Andrej minutu ne zna (22.11.2026.).
 
 [domacin]
 1 | Deni Pavlić | vratar

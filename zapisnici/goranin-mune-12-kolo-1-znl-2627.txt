@@ -12,7 +12,7 @@ suci: Tomislav Frlan, Marko Ban, Zoran Martinović. Delegat: Zvonimir Podnar.
 # Antonio Frlan (Goranin) u 57. minuti: crvena lopta pred vratima, PROMAŠEN
 # jedanaesterac. Ne upisuje se; u zaglavlju zapisnika stoji pod "Jedanaesterci".
 # David Gulan (Mune): žuti karton, minuta je na snimci odrezana na rubu
-# ekrana u svim kadrovima, pa je upisan bez minute.
+# ekrana u svim kadrovima, pa je upisan bez minute. Andrej minutu ne zna (22.11.2026.).
 
 [domacin]
 1 | Karlo Bliznac | vratar
