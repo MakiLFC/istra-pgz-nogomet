@@ -1,0 +1,42 @@
+natjecanje: 2. ŽNL PGŽ
+sezona: 2026/27
+kolo: 10
+domacin: NK Polet (Sk)
+gost: NK Snježnik
+rezultat: 5:0
+stadion_datum: SKRADSKA DRAGA, SKRAD, 22.11.2026. 14:00
+suci: David Mirić, Stjepan Jurić, Nikola Ružić. Delegat: Željko Dragović.
+---
+# Prepisano iz snimke zaslona od 22.11.2026. Broja gledatelja u zapisniku nema.
+# Snježnik je u zapisniku imao samo DESET igrača, bez pričuvnih.
+
+[domacin]
+1 | Vedran Jauk | vratar
+2 | Jordan James Whitby | 34' gol, 47' zuti
+3 | Dino Knaus | 31' izlazak
+4 | Vjeran Brenc | (C), 31' izlazak
+5 | Tomislav Purić
+7 | Mateo Tadej
+8 | Josip Purić
+9 | Boris Crnković | 18' gol, 40' gol, 42' gol
+13 | Karlo Jurković
+18 | Ivan Božić | 46' izlazak
+20 | David Ožbolt
+
+[domacin pricuva]
+11 | Siniša Rajačić | 31' ulazak, 38' gol
+21 | Branimir Grgurić
+23 | Daniel Vuković | 31' ulazak
+25 | Tomislav Brenc | 46' ulazak
+
+[gost]
+1 | Goran Ožbolt | vratar
+2 | Antonio Milošević
+3 | Danijel Bertović
+4 | Marin Kovač
+7 | Vito Kovač
+11 | Enes Cerovac
+14 | Lucas Vrančić
+17 | Gabrijel Palčić
+19 | Matija Buneta
+20 | Sanjin Stjepanović | (C)

@@ -1,0 +1,47 @@
+natjecanje: 2. ŽNL PGŽ
+sezona: 2026/27
+kolo: 10
+domacin: NK Željezničar (M)
+gost: NK Mrkopalj
+rezultat: 4:6
+stadion_datum: KRAJ DOBRE, MORAVICE, 22.11.2026. 14:00
+suci: Ivano Mijić, Jure Brkljača, Josip Tkalčević. Delegat: Goran Jelenčić.
+---
+# Prepisano iz snimke zaslona od 22.11.2026. Broja gledatelja u zapisniku nema.
+# Filip Crnić (Mrkopalj) u 88. minuti: crvena lopta, autogol.
+
+[domacin]
+1 | Neven Frković | vratar
+2 | Dino Milošević
+3 | Armin Palić | 85' gol
+4 | Dominik Perić | 22' zuti
+5 | Zoran Kurjaga | 60' gol
+6 | Branko Škantar
+7 | Srđan Vučković
+8 | Enej Zalar
+9 | Dalibor Krebelj | 75' izlazak
+10 | Neven Musulin | (C)
+11 | Luka Kujavec | 32' gol
+
+[domacin pricuva]
+14 | Ozren Jakšić | 75' ulazak
+
+[gost]
+1 | Marko Tomić | vratar
+2 | Fabijan Tomić | 75' izlazak
+3 | Dominik Matijašić | 80' zuti
+4 | Filip Reljac
+5 | Dominik Bajus | 16' gol, 41' gol
+10 | Aleksandar Ilić | 83' izlazak
+11 | Antonio Krištof | 2' gol, 9' gol, 29' gol, 55' gol
+13 | Ivan Gašparac
+14 | Antonio Fućak
+15 | Dominik Čop | 70' izlazak
+16 | Šimun Starčević | (C), 71' zuti
+
+[gost pricuva]
+7 | Šimun Grgurić
+8 | Reni Liverić | 83' ulazak
+9 | Stjepan Baković | 70' ulazak
+17 | Filip Crnić | 75' ulazak, 88' autogol
+18 | Matej Jakovac
