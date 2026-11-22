@@ -1,0 +1,51 @@
+natjecanje: 4. NL NS Rijeka
+sezona: 2026/27
+kolo: 12
+domacin: NK Cres
+gost: NK Smoljanci Sloboda
+rezultat: 4:1
+stadion_datum: DARI, CRES, 21.11.2026. 12:15
+gledatelja: 45
+suci: Marko Tićak, Frane Baškarad, Andre Olajoš. Delegat: Damir Keser.
+---
+# Prepisano iz snimke zaslona od 21.11.2026.
+# Svih pet pogodaka ima ikonu obicne sive lopte.
+
+[domacin]
+12 | Dino Curać | vratar
+2 | Filip Budimir | 60' izlazak
+3 | Val Krešić
+5 | Ivan Francetić
+8 | Emir Slomić | 81' zuti
+9 | Boško Babić | 14' gol, 38' gol, 74' izlazak
+10 | Patrik Tarabocchia | 60' izlazak
+11 | Filip Fumić
+14 | Karlo Zubović (C) | 60' izlazak
+17 | Demis Seo Salihović | 35' gol, 65' gol
+19 | Vito Crnković | 46' izlazak
+
+[domacin pricuva]
+4 | Erik Zurak
+7 | Antonio Rubčić | 60' ulazak
+13 | Dean Dodik | 60' ulazak
+16 | Željko Tomić | 46' ulazak
+18 | Adam Kolega | 60' ulazak
+Sead Slomić | 74' ulazak
+
+[gost]
+12 | David Tarčuki | vratar
+5 | Diego Vlacci
+6 | Antonio Ivančić
+7 | Matija Mišan | 55' zuti
+8 | Andreas Prgić
+9 | Mauro Mišan (C) | 59' izlazak
+10 | Ivan Banović | 80' izlazak
+11 | Dante Begić | 37' zuti
+13 | Loren Vitasović | 76' izlazak
+17 | Mike Amachi Ezemonye | 3' gol
+24 | Ivan Andrijančić
+
+[gost pricuva]
+3 | Nino Radetić | 80' ulazak
+20 | Eduardo Doblanović | 59' ulazak
+43 | Petar Raić Sudar | 76' ulazak

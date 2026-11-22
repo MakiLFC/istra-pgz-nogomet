@@ -1,0 +1,52 @@
+natjecanje: 4. NL NS Rijeka
+sezona: 2026/27
+kolo: 12
+domacin: NK Ližnjan
+gost: NK Medulin 1921
+rezultat: 2:1
+stadion_datum: ŠARAJA, LIŽNJAN, 21.11.2026. 14:00
+gledatelja: 100
+suci: Sandi Orbanić, Alen Dokuš, Marijan Pavlović. Delegat: Matej Bičvić.
+---
+# Prepisano iz snimke zaslona od 21.11.2026.
+# Sva tri pogotka imaju ikonu obicne sive lopte.
+
+[domacin]
+12 | Manuel Matošević | vratar
+4 | Luka Pavić
+5 | Hisa Ramadani | 88' izlazak
+6 | Bruno Banković | 76' zuti
+7 | Saša Urošević (C) | 21' gol
+11 | Slaven Sandić | 63' izlazak
+14 | Dragiša Adžić | 73' zuti
+15 | Nikola Perković | 55' gol
+16 | Nikola Radović
+18 | Luka Privrat
+20 | Dean Moravac | 48' izlazak
+
+[domacin pricuva]
+1 | Luka Jukić | vratar
+2 | Lorens Popović | 48' ulazak, 82' zuti
+8 | Mauro Čude
+9 | Marko Kontošić | 88' ulazak
+10 | Dino Balde
+19 | Antonio Jovanović | 63' ulazak
+
+[gost]
+91 | Patrik Vujica | vratar
+2 | Matija Brizić (C) | 85' zuti
+3 | Matej Zoričić | 62' izlazak
+8 | Vito Traven | 61' zuti
+9 | Luka Pamić
+11 | Manuel Bulešić
+15 | Matija Suljić
+17 | Tomas Peternel | 62' izlazak
+18 | Stefan Stošić | 62' izlazak
+19 | Petrit Lekaj | 80' zuti
+22 | Damjan Gerlič | 25' gol, 76' zuti
+
+[gost pricuva]
+1 | Saša Todić
+5 | Dino Gorički | 62' ulazak
+7 | Mateo Majdandžić | 62' ulazak, 71' zuti
+16 | Lovro Radolović | 62' ulazak

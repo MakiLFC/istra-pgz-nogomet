@@ -1,0 +1,55 @@
+natjecanje: 4. NL NS Rijeka
+sezona: 2026/27
+kolo: 12
+domacin: NK Rječina
+gost: NK Štinjan
+rezultat: 1:3
+stadion_datum: STADION "FRAN JURETIĆ BEKAROV", DRAŽICE, 21.11.2026. 14:00
+gledatelja: 40
+suci: Mirko Bićanić, Matija Kraljić, Ivan Krznarić. Delegat: Matija Šarić.
+---
+# Prepisano iz snimke zaslona od 21.11.2026.
+# Bozicevicev pogodak u 56. minuti ima ikonu lopte pred vratima, dakle iz
+# kaznenog udarca, a upisuje se kao obican gol.
+
+[domacin]
+1 | Sandro Srok (C) | vratar, 36' zuti
+3 | Loren Zoretić | 45+2' zuti, 75' izlazak
+4 | Patrik Corallini
+5 | Denis Randelj
+6 | Denis Marković
+7 | Domagoj Grdinić | 33' zuti, 82' izlazak
+9 | Ivan Fumić
+13 | Jeton Imeraj
+15 | Luka Orešković | 46' izlazak
+20 | Marin Rožić | 62' izlazak
+21 | Antonio Poštić | 62' izlazak
+
+[domacin pricuva]
+2 | Antonio Semion
+8 | Darko Kaurin | 75' ulazak
+10 | Antonio Božičević | 46' ulazak, 56' gol
+11 | Mauro Magaš | 62' ulazak
+14 | Dino Dujmić
+17 | Luka Ratin | 33' zuti, 62' ulazak
+19 | Kristian Koraca | 82' ulazak
+
+[gost]
+1 | Erik Ofak | vratar
+5 | Marin Filipović | 74' gol
+7 | Ismar Hairlahović | 85' izlazak
+9 | Stefan Antanasković | 81' izlazak
+10 | Antonio Gračić (C) | 32' gol, 84' zuti
+11 | George Davone Clarington | 58' gol, 85' izlazak
+14 | Dominik Pušar | 90+2' izlazak
+19 | Luka Rosenberg | 41' zuti
+23 | Moris Sficco
+77 | Martin Buzuk
+99 | Tomas Dadić
+
+[gost pricuva]
+12 | Željko Turčić | vratar
+6 | Danijel Božić | 90+2' ulazak
+17 | Domagoj Kupčak | 81' ulazak
+20 | Daniel Jelenaca | 85' ulazak
+21 | Adin Mujanović | 85' ulazak

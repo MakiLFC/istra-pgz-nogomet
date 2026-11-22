@@ -1,0 +1,57 @@
+natjecanje: 4. NL NS Rijeka
+sezona: 2026/27
+kolo: 12
+domacin: NK Funtana
+gost: NK Otočac
+rezultat: 0:2
+stadion_datum: KAMP NK JADRAN-POREČ, POREČ, 21.11.2026. 16:00
+gledatelja: 50
+suci: Danijel Klarić, Adrian Ivošević, Robi Kezele. Delegat: Mario Nađ.
+---
+# Prepisano iz snimke zaslona od 21.11.2026.
+# Oba pogotka imaju ikonu obicne sive lopte.
+# Marko Krznaric je u 55' dobio drugi zuti karton, ikona je zuto-crvena.
+
+[domacin]
+1 | Gianfranco Milocani (C) | vratar
+2 | Ljubomir Simić
+3 | Marko Vlahović
+4 | Roko Andričević | 62' izlazak
+7 | Emanuel Šegon
+8 | Noa Kodrnja
+10 | Robert Vlizlo
+14 | Vigan Hoxha | 50' zuti, 62' izlazak
+17 | Abel Peteh
+18 | David Mršić
+27 | Ivan Al Tharwan
+
+[domacin pricuva]
+31 | Ajdin Veladžić | vratar
+5 | Arian Težak
+11 | Rico Bencich
+19 | Leon Marunica
+20 | Šimun Ivković | 62' ulazak
+22 | Marko Šantor | 62' ulazak
+40 | Vjekoslav Dorčić
+
+[gost]
+1 | Antonio Krznarić | vratar
+5 | Luka Banić (C)
+6 | Ante Majetić
+7 | Matija Ostović
+10 | Marko Krznarić | 50' zuti, 55' drugi zuti
+14 | Dario Pajdaković | 75' izlazak
+16 | Niko Tomaić | 69' izlazak
+17 | Frane Radošević | 69' izlazak
+18 | Antonijo Vujičić | 12' gol, 29' gol, 86' izlazak
+22 | Karlo Lončar
+24 | Danijel Matovina | 88' zuti
+
+[gost pricuva]
+4 | Josip Smolčić
+8 | Antonio Sertić | 69' ulazak
+11 | Antonio Vidmar | 75' ulazak
+15 | Josip Jergović
+21 | Filip Bogdanić
+23 | Ante Džaja | 86' ulazak
+25 | Alen Vuković | 69' ulazak

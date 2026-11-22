@@ -1,0 +1,53 @@
+natjecanje: 4. NL NS Rijeka
+sezona: 2026/27
+kolo: 12
+domacin: NK Žminj
+gost: NK Klana
+rezultat: 3:0
+stadion_datum: NK "ŽMINJ", ŽMINJ, 21.11.2026. 14:00
+suci: Zvonko Radić, Dorian Klarić, Matija Leskovar. Delegat: Goran Gašpert.
+---
+# Prepisano iz snimke zaslona od 21.11.2026.
+# U zaglavlju zapisnika nema podatka o broju gledatelja.
+# Sva tri pogotka imaju ikonu obicne sive lopte.
+
+[domacin]
+12 | Patrik Laganis | vratar
+2 | Matias Šugar
+3 | Luka Križanac (C) | 11' izlazak
+5 | Marin Lilić | 57' izlazak
+7 | Marin Križanac | 57' izlazak
+9 | Sandi Burić | 69' gol, 83' gol
+11 | Luka Matošević | 71' izlazak
+16 | Leonard Šverko
+17 | Teo Pamić
+18 | Filip Krnjus
+20 | Patrik Butući | 56' zuti
+
+[domacin pricuva]
+1 | Marko Horvat | vratar
+6 | Marko Orbanić | 57' ulazak
+8 | Arian Debeljuh | 71' ulazak
+10 | Marko Lepinjica | 11' ulazak, 59' gol, 71' izlazak
+13 | Noa Žufić | 57' ulazak
+19 | Alen Damijanić | 71' ulazak
+21 | Leonardo Žulić
+
+[gost]
+32 | Matia Torbarina | vratar
+3 | Ivano Buk
+4 | Niko Hrmić | 76' zuti
+6 | Roni Šnajdar
+7 | Emanuel Iskra (C) | 57' izlazak
+8 | Matija Milković
+9 | Vid Vlaše
+10 | Antonio Markanović
+16 | Dino Jeletić
+17 | Tymur Merezhko
+18 | Mario Jerbić
+
+[gost pricuva]
+1 | Florian Crnković | vratar
+2 | Kristijan Grgurev
+11 | Ivan Laginja
+13 | David Pekar | 57' ulazak
