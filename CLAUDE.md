@@ -2308,6 +2308,14 @@ vremenskih neprilika, jer to piše klub; datum 6.12. samo kao očekivani
 ("trebala bi se igrati"), dok ga HNS ne potvrdi. Kad se odigra, ovu
 stavku obriši.
 
+**ZAOSTALE UTAKMICE 1. ŽNL PGŽ, STANJE 25.11.2026.** Rab - Goranin
+(4. kolo) igra se u subotu 5.12.2026. u 13:00 na Blatu u Rabu; termin je
+Andrej pročitao na Semaforu i upisan je poslom "Termin u bazu" uz
+odgoda "da". Za ostale zaostale utakmice 1. ŽNL (Vrbovsko - Zamet,
+Rab - Draga, Omladinac - Rikard Benčić) Semafor 25.11. NEMA termina, pa
+u bazi stoje kao ODG. bez datuma. Za Turbinu i Stari grad vidi stavku
+ispod. Kad se koja odigra ili dobije termin, ispravi ovu stavku.
+
 **Nakon objavljenog pregleda ide provjera promjena u ljestvicama.** Posao
 "Preračunaj ljestvice", radnja `promjene`, s upisanim brojem kola. Ispiše
 komu je u tom kolu narastao broj golova ili kartona i provjeri zbroj
