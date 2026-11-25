@@ -2296,6 +2296,18 @@ Ta je utakmica i dalje odgođena, bez novog termina (u bazi ODG.). Pregled
 (Andrejeva formulacija). Kad Gomirje - Goranka dobije termin ili se
 odigra, ovu stavku obriši.
 
+**TURBINA - STARI GRAD RIJEKA, 12. KOLO 1. ŽNL PGŽ, ODGOĐENA.** Zakazana
+za nedjelju 22.11.2026. u 14:00 u Crikvenici. Prema objavi NK Turbina
+Tribalj na Facebooku (Andrej poslao 25.11.2026.), odgođena je zbog
+vremenskih neprilika NAKON ŠTO JE SUDAČKI TROJAC IZAŠAO NA TEREN, a novi
+termin "trebao bi biti 6.12.2026.". To je najava kluba, ne potvrda HNS-a,
+i bez sata. U bazi zasad stoji odgođena bez datuma (ODG.). Kad termin
+potvrdi Semafor ili glasnik, upiše se poslom "Termin u bazu" uz
+odgoda "da". U tekstovima se smije napisati da je utakmica odgođena zbog
+vremenskih neprilika, jer to piše klub; datum 6.12. samo kao očekivani
+("trebala bi se igrati"), dok ga HNS ne potvrdi. Kad se odigra, ovu
+stavku obriši.
+
 **Nakon objavljenog pregleda ide provjera promjena u ljestvicama.** Posao
 "Preračunaj ljestvice", radnja `promjene`, s upisanim brojem kola. Ispiše
 komu je u tom kolu narastao broj golova ili kartona i provjeri zbroj
