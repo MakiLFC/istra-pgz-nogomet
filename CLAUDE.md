@@ -2314,7 +2314,7 @@ Andrej pročitao na Semaforu i upisan je poslom "Termin u bazu" uz
 odgoda "da". Za ostale zaostale utakmice 1. ŽNL (Vrbovsko - Zamet,
 Rab - Draga, Omladinac - Rikard Benčić) Semafor 25.11. NEMA termina, pa
 u bazi stoje kao ODG. bez datuma. Za Turbinu i Stari grad vidi stavku
-ispod. Kad se koja odigra ili dobije termin, ispravi ovu stavku.
+iznad. Kad se koja odigra ili dobije termin, ispravi ovu stavku.
 
 **Nakon objavljenog pregleda ide provjera promjena u ljestvicama.** Posao
 "Preračunaj ljestvice", radnja `promjene`, s upisanim brojem kola. Ispiše
