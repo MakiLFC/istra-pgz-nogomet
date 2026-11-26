@@ -3517,6 +3517,57 @@
       ],
       "ime": "pregled-2-znl-pgz-kolo-10",
       "naslov": "Pregled"
+    },
+    {
+      "dat": "3-nl-zapad-kolo-15",
+      "kolo": "15",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 28.11.2026.",
+      "sat": "Posljednje kolo jesenskog dijela",
+      "utakmice": [
+        {
+          "d": "Lokomotiva (R)",
+          "g": "Halubjan",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Nehaj",
+          "g": "Pazinka-Pazin",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Pomorac",
+          "g": "Rovinj",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Banjole",
+          "g": "OŠK Omišalj",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Krk",
+          "g": "Buje",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Kraljevica",
+          "g": "Jadran-Poreč",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Crikvenica",
+          "g": "Vinodol",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Rudar (L)",
+          "g": "Naprijed (H)",
+          "termin": "SUB 13:30"
+        }
+      ],
+      "ime": "najava-redovi-3-nl-zapad-kolo-15"
     }
   ]
 }
