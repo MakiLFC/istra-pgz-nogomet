@@ -2210,6 +2210,21 @@ glasnik.yml`, alat `alati/glasnik.py`): zadaju se imena, a on ispiše
 svaki red u kojem se pojavljuju. Za 2. ŽNL u polje adrese ide popis
 `https://www.nspgz.hr/glasnik/2-zupanijska-nogometna/`.
 
+GLASNIKA ZA 4. NL NA NSPGZ.HR NEMA. 26.11.2026. je posao četiri puta
+zaredom pao s greškom 404, na četiri pogođene adrese
+(`4-nogometna-liga`, `4-nl-ns-rijeka`, `cetvrta-nogometna-liga`,
+`4-nogometna-liga-ns-rijeka`). Nijedna ne postoji, jer je nspgz.hr
+stranica županijskog saveza i nosi glasnike SVOJIH natjecanja, dakle
+županijskih liga. Adresa se ne pogađa: svako palo pokretanje šalje
+Andreju e-poštu, pa četiri pokušaja znače četiri maila.
+
+ZA 4. NL ANDREJ GLASNIK POŠALJE KAO PDF U RAZGOVOR, i to je dogovoreni
+put od 26.11.2026. On ga nađe i preuzme sam, a Claude ga pročita
+izravno iz razgovora, bez pokretanja posla. Isto vrijedi za svaki
+glasnik koji posao ne može dohvatiti. Razlika prema poslu je u tome što
+posao pretražuje imena kroz više glasnika odjednom, a ovako se vidi
+samo ono što je poslano, pa se pita kad treba i raniji broj.
+
 Prva provjera, 16.10.2026., potvrdila je Žunića (Vihor), kojem je nakon
 6. kola ostala još jedna utakmica, i otkrila dvije kazne kojih u
 podacima sa Semafora nema: Mateo Vukelja (Vrbovsko) pauzira zbog
