@@ -3568,6 +3568,47 @@
         }
       ],
       "ime": "najava-redovi-3-nl-zapad-kolo-15"
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-13",
+      "kolo": "13",
+      "stil": "redovi",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 28.11.2026.",
+      "sat": "Od 13:30 do 16:30",
+      "slobodan": "Medulin 1921",
+      "utakmice": [
+        {
+          "d": "Borac (Ba)",
+          "g": "Rječina",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Klana",
+          "g": "Mladost Fažana",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Ližnjan",
+          "g": "Otočac",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Umag-CC Umago",
+          "g": "Smoljanci",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Funtana",
+          "g": "Žminj",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Štinjan",
+          "g": "Cres",
+          "termin": "SUB 16:30"
+        }
+      ]
     }
   ]
 }
