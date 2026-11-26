@@ -2219,6 +2219,49 @@ je 24.10.2026. potvrdio i pravilnik HNS-a (vidi "Pravilo za žute
 kartone" niže). Prije svake najave 1. i 2. ŽNL pokreni ovaj posao s imenima
 isključenih i igrača s tri ili više žutih.
 
+**GLASNIK 4. NL NS RIJEKA STIŽE OD ANDREJA, NE S WEBA.** Dogovoreno
+26.11.2026. Glasnik te lige izdaje NS Primorsko-goranske županije
+(potpisuju ga povjerenik natjecanja Robi Fonović i disciplinski sudac
+Darko Banić), ali na nspgz.hr nije dosegljiv s adrese koju znamo:
+popis `/glasnik/` izlistava samo 1. ŽNL, a `/glasnik/4-nl-ns-rijeka/`,
+`/glasnik/cetvrta-nogometna-liga/` i `/glasnik/4-nogometna-liga-ns-rijeka/`
+vraćaju 404 (provjereno 26.11.2026. poslom "Glasnik saveza"). Zato
+Andrej glasnik ŠALJE KAO PDF u razgovor, prije svake najave.
+
+PRIJE SVAKE NAJAVE 4. NL PITAJ ZA GLASNIK ako nije stigao. Bez njega se
+kazne mogu izvesti samo iz zapisnika, dakle samo automatske (četvrti
+žuti, isključenje), a to NIJE cijela slika. Najava 13. kola napisana je
+26.11.2026. bez glasnika i promašila je dvojicu: Robin Krota i Filip
+Prodan (obojica Umag-CC Umago) imali su neodrađenu kaznu iz ranijih kola,
+a Umag je prošlo kolo bio slobodan, pa se iz zapisnika 12. kola nisu
+vidjeli. Uz to je Roku Čargonji (Borac) izrečena zabrana na DVIJE
+utakmice, a iz crvenog kartona se pretpostavlja jedna.
+
+Što glasnik ima, a zapisnik nema:
+
+```
+tablica "NEODRADENE SUSPENZIJE"   tko jos ima kaznu i koliko utakmica
+                                  (crveno = iskljucenje, zuto = 4. zuti)
+zapisnik disciplinskog suca       razlog i duljina svake kazne
+rezultati i tablica kola          sluzbena potvrda nasih brojki
+lista strijelaca i autogolova     isto, za provjeru rang-lista
+```
+
+KAZNA IZ RANIJEG KOLA PREŽIVI SLOBODNO KOLO. Klub koji je bio slobodan
+ne odrađuje ništa, pa mu igrači ostaju na popisu. Zato se popis
+neodrađenih suspenzija čita CIJELI, ne samo redci klubova koji su
+prošlo kolo igrali.
+
+Glasnik 13 (25.11.2026.) potvrdio je i da se naša izračunata tablica
+nakon 12. kola poklapa sa službenom u svemu, klub po klub, uključujući
+Umagovih -3 i broj odigranih utakmica. Isto i lista strijelaca.
+
+JEDAN RAZLAZ OSTAJE OTVOREN: Semafor u zapisniku Mladost Fažana - Borac
+(12. kolo) crveni karton Roka Čargonje stavlja u 72. minutu, a glasnik
+kaže da je isključen u 55. minuti zbog vrijeđanja glavnog suca. U bazi
+stoji 72', kako piše na Semaforu, i nije dirano bez Andrejeve riječi.
+Kod Marka Krznarića se oba izvora slažu (50' i 55').
+
 **Isključenje zna trajati više od jednog kola.** Ante Žunić (Vihor),
 isključen u 5. kolu 1. ŽNL 2026/27, propustio je 6. i 7. kolo, a to je
 Andrej rekao, ne zapisnik. Duljinu kazne zapisnik ne kaže, pa se za
