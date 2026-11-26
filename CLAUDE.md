@@ -2326,8 +2326,9 @@ opomene i odluke disciplinskog suca za to kolo. Glasnik 15 (25.11.2026.):
 Elvis Krasniqi (Banjole), isključen u 14. kolu, kažnjen je zabranom
 igranja na TRI prvenstvene ili kup utakmice, od 15.11.2026., dakle
 propušta 15. kolo, Lokomotiva - Banjole (5.12.) i jednu utakmicu u
-proljeće. Kazna Karla Josipovića (Lokomotiva, isključen u 13. kolu) stoji
-u glasniku 14, koji još nije pročitan.
+proljeće. Glasnik 14 (19.11.2026.): Karlo Josipović (Lokomotiva),
+isključen u 13. kolu nakon dva žuta, kažnjen je jednom utakmicom, koju
+je odradio u 14. kolu na Pušći.
 
 **Nakon objavljenog pregleda ide provjera promjena u ljestvicama.** Posao
 "Preračunaj ljestvice", radnja `promjene`, s upisanim brojem kola. Ispiše
