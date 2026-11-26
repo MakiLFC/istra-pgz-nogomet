@@ -2321,7 +2321,10 @@ ga nema, pa ga posao "Glasnik saveza" s popisa ne nalazi. Objavljuje se
 na hns.family kao PDF ("Glasnik N.pdf", npr. broj 9 je
 hns.family/files/documents/33561/), svaki broj pod svojim brojem
 dokumenta koji se ne da pogoditi. Zato ga Andrej pošalje u razgovor ili
-da adresu PDF-a. Izlazi nakon svakog kola i ima rezultate, akumulirane
+da adresu PDF-a. DOGOVORENO 26.11.2026.: prije svake najave 3. NL Andrej
+pošalje najnoviji glasnik kao PDF, a Claude iz njega uzme isključenja,
+duljinu kazni i četvrte žute. Za 1. i 2. ŽNL to ne treba, glasnik čita
+posao "Glasnik saveza". Izlazi nakon svakog kola i ima rezultate, akumulirane
 opomene i odluke disciplinskog suca za to kolo. Glasnik 15 (25.11.2026.):
 Elvis Krasniqi (Banjole), isključen u 14. kolu, kažnjen je zabranom
 igranja na TRI prvenstvene ili kup utakmice, od 15.11.2026., dakle
