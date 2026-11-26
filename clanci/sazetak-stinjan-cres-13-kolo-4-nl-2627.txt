@@ -1,0 +1,7 @@
+natjecanje: 4. NL NS Rijeka
+sezona: 2026/27
+kolo: 13
+domacin: NK Štinjan
+gost: NK Cres
+derbi: da
+---
