@@ -2316,6 +2316,19 @@ Rab - Draga, Omladinac - Rikard Benčić) Semafor 25.11. NEMA termina, pa
 u bazi stoje kao ODG. bez datuma. Za Turbinu i Stari grad vidi stavku
 iznad. Kad se koja odigra ili dobije termin, ispravi ovu stavku.
 
+**GLASNIK 3. NL ZAPAD IZDAJE HNS SREDIŠTE RIJEKA, NE NS PGŽ.** Na nspgz.hr
+ga nema, pa ga posao "Glasnik saveza" s popisa ne nalazi. Objavljuje se
+na hns.family kao PDF ("Glasnik N.pdf", npr. broj 9 je
+hns.family/files/documents/33561/), svaki broj pod svojim brojem
+dokumenta koji se ne da pogoditi. Zato ga Andrej pošalje u razgovor ili
+da adresu PDF-a. Izlazi nakon svakog kola i ima rezultate, akumulirane
+opomene i odluke disciplinskog suca za to kolo. Glasnik 15 (25.11.2026.):
+Elvis Krasniqi (Banjole), isključen u 14. kolu, kažnjen je zabranom
+igranja na TRI prvenstvene ili kup utakmice, od 15.11.2026., dakle
+propušta 15. kolo, Lokomotiva - Banjole (5.12.) i jednu utakmicu u
+proljeće. Kazna Karla Josipovića (Lokomotiva, isključen u 13. kolu) stoji
+u glasniku 14, koji još nije pročitan.
+
 **Nakon objavljenog pregleda ide provjera promjena u ljestvicama.** Posao
 "Preračunaj ljestvice", radnja `promjene`, s upisanim brojem kola. Ispiše
 komu je u tom kolu narastao broj golova ili kartona i provjeri zbroj
