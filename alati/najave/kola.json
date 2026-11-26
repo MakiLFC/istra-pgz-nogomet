@@ -1,3611 +1,3614 @@
-[
-  {
-    "dat": "3-nl-zapad-kolo-1",
-    "kolo": "1",
-    "oznaka": "3. NL Zapad · sezona 2026/27",
-    "podnaslov": "Osam utakmica otvara novu sezonu trećeg ranga",
-    "datum": "SUB 29.08.2026.",
-    "sat": "Sve utakmice u 17:30",
-    "utakmice": [
-      {
-        "d": "Pazinka-Pazin",
-        "dk": "PAZ",
-        "g": "Pomorac",
-        "gk": "POM"
-      },
-      {
-        "d": "Buje",
-        "dk": "BUJ",
-        "g": "Lokomotiva",
-        "gk": "LOK"
-      },
-      {
-        "d": "Naprijed",
-        "dk": "NAP",
-        "g": "Kraljevica",
-        "gk": "KRA",
-        "derbi": true
-      },
-      {
-        "d": "Rovinj",
-        "dk": "ROV",
-        "g": "Vinodol",
-        "gk": "VIN"
-      },
-      {
-        "d": "Jadran-Poreč",
-        "dk": "JAD",
-        "g": "Nehaj",
-        "gk": "NEH"
-      },
-      {
-        "d": "Crikvenica",
-        "dk": "CRI",
-        "g": "Krk",
-        "gk": "KRK"
-      },
-      {
-        "d": "OŠK Omišalj",
-        "dk": "OMI",
-        "g": "Rudar",
-        "gk": "RUD"
-      },
-      {
-        "d": "Halubjan",
-        "dk": "HAL",
-        "g": "Banjole",
-        "gk": "BAN"
-      }
-    ]
-  },
-  {
-    "_napomena": "NK Novalja je 02.09.2026. napustila natjecanje, pa je njezina utakmica s Otočcem maknuta, a liga ima 13 klubova. Smoljanci Sloboda su domaćini Medulinu, kako stoji na rasporedu.",
-    "dat": "4-nl-ns-rijeka-kolo-1",
-    "kolo": "1",
-    "oznaka": "4. NL NS Rijeka · sezona 2026/27",
-    "podnaslov": "Šest utakmica otvara novu sezonu četvrtog ranga",
-    "datum": "PET 04.09. i SUB 05.09.2026.",
-    "sat": "Sve utakmice u 17:30",
-    "utakmice": [
-      {
-        "d": "Žminj",
-        "dk": "ŽMI",
-        "g": "Ližnjan",
-        "gk": "LIŽ"
-      },
-      {
-        "d": "Borac",
-        "dk": "BOR",
-        "g": "Klana",
-        "gk": "KLA"
-      },
-      {
-        "d": "Umag-CC Umago",
-        "dk": "UMA",
-        "g": "Štinjan",
-        "gk": "ŠTI"
-      },
-      {
-        "d": "Cres",
-        "dk": "CRE",
-        "g": "Rječina",
-        "gk": "RJE"
-      },
-      {
-        "d": "Mladost Fažana",
-        "dk": "FAŽ",
-        "g": "Funtana",
-        "gk": "FUN"
-      },
-      {
-        "d": "Smoljanci",
-        "dk": "SMO",
-        "g": "Medulin 1921",
-        "gk": "MED"
-      }
-    ]
-  },
-  {
-    "dat": "1-znl-pgz-kolo-1",
-    "kolo": "1",
-    "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
-    "podnaslov": "Sedam utakmica kroz pet dana otvara županijsku ligu",
-    "datum": "SUB 05.09. do SRI 09.09.2026.",
-    "sat": "Vikendom u 17:00, srijedom u 17:30",
-    "utakmice": [
-      {
-        "d": "Rab",
-        "dk": "RAB",
-        "g": "Vihor (B)",
-        "gk": "VIH"
-      },
-      {
-        "d": "Rikard Benčić",
-        "dk": "BEN",
-        "g": "Mune",
-        "gk": "MUN"
-      },
-      {
-        "d": "Turbina",
-        "dk": "TUR",
-        "g": "Zamet",
-        "gk": "ZAM"
-      },
-      {
-        "d": "Goranin",
-        "dk": "GOR",
-        "g": "Stari grad Rijeka",
-        "gk": "SGR"
-      },
-      {
-        "d": "Risnjak",
-        "dk": "RIS",
-        "g": "Lovran",
-        "gk": "LOV"
-      },
-      {
-        "d": "Lošinj",
-        "dk": "LOŠ",
-        "g": "Draga",
-        "gk": "DRA"
-      },
-      {
-        "d": "Omladinac Vrata",
-        "dk": "OML",
-        "g": "Vrbovsko",
-        "gk": "VRB"
-      }
-    ]
-  },
-  {
-    "dat": "2-znl-pgz-kolo-1",
-    "kolo": "1",
-    "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
-    "podnaslov": "Tri utakmice otvaraju sezonu u ligi sa šest klubova",
-    "datum": "NED 06.09.2026.",
-    "sat": "Sve utakmice u 17:00",
-    "utakmice": [
-      {
-        "d": "Gomirje",
-        "dk": "GOM",
-        "g": "Polet (Sk)",
-        "gk": "POL"
-      },
-      {
-        "d": "Željezničar (M)",
-        "dk": "ŽEL",
-        "g": "Goranka",
-        "gk": "GOR"
-      },
-      {
-        "d": "Snježnik",
-        "dk": "SNJ",
-        "g": "Mrkopalj",
-        "gk": "MRK"
-      }
-    ]
-  },
-  {
-    "dat": "3-nl-zapad-kolo-2",
-    "kolo": "2",
-    "oznaka": "3. NL Zapad · sezona 2026/27",
-    "podnaslov": "Kolo kroz dva dana, s dva derbija",
-    "datum": "PET 04.09. i SUB 05.09.2026.",
-    "sat": "Sve utakmice u 17:30",
-    "utakmice": [
-      {
-        "d": "Lokomotiva",
-        "dk": "LOK",
-        "g": "Crikvenica",
-        "gk": "CRI",
-        "derbi": true
-      },
-      {
-        "d": "Pomorac",
-        "dk": "POM",
-        "g": "Jadran-Poreč",
-        "gk": "JAD",
-        "derbi": true
-      },
-      {
-        "d": "Kraljevica",
-        "dk": "KRA",
-        "g": "OŠK Omišalj",
-        "gk": "OMI"
-      },
-      {
-        "d": "Rovinj",
-        "dk": "ROV",
-        "g": "Pazinka-Pazin",
-        "gk": "PAZ"
-      },
-      {
-        "d": "Nehaj",
-        "dk": "NEH",
-        "g": "Naprijed",
-        "gk": "NAP"
-      },
-      {
-        "d": "Vinodol",
-        "dk": "VIN",
-        "g": "Krk",
-        "gk": "KRK"
-      },
-      {
-        "d": "Rudar",
-        "dk": "RUD",
-        "g": "Halubjan",
-        "gk": "HAL"
-      },
-      {
-        "d": "Banjole",
-        "dk": "BAN",
-        "g": "Buje",
-        "gk": "BUJ"
-      }
-    ]
-  },
-  {
-    "dat": "3-nl-zapad-kolo-6",
-    "kolo": "6",
-    "stil": "redovi",
-    "oznaka": "3. NL Zapad · sezona 2026/27",
-    "datum": "SUB 26.09. i UTO 29.09.2026.",
-    "sat": "Satnica stoji uz svaki par",
-    "utakmice": [
-      {
-        "d": "Nehaj",
-        "g": "Crikvenica",
-        "termin": "SUB 16:00"
-      },
-      {
-        "d": "Rudar",
-        "g": "Lokomotiva",
-        "termin": "SUB 16:30"
-      },
-      {
-        "d": "Kraljevica",
-        "g": "Krk",
-        "termin": "SUB 16:30"
-      },
-      {
-        "d": "Pomorac",
-        "g": "Buje",
-        "termin": "SUB 16:30"
-      },
-      {
-        "d": "Rovinj",
-        "g": "Halubjan",
-        "termin": "SUB 16:30"
-      },
-      {
-        "d": "Pazinka-Pazin",
-        "g": "OŠK Omišalj",
-        "termin": "SUB 16:30"
-      },
-      {
-        "d": "Jadran-Poreč",
-        "g": "Naprijed",
-        "termin": "SUB 16:30"
-      },
-      {
-        "d": "Vinodol",
-        "g": "Banjole",
-        "termin": "UTO 16:30"
-      }
-    ],
-    "grbovi": false
-  },
-  {
-    "dat": "4-nl-ns-rijeka-kolo-4",
-    "kolo": "4",
-    "stil": "redovi",
-    "oznaka": "4. NL NS Rijeka · sezona 2026/27",
-    "datum": "SUB 26.09. i UTO 29.09.2026.",
-    "sat": "Satnica stoji uz svaki par",
-    "slobodan": "Borac (Ba)",
-    "utakmice": [
-      {
-        "d": "Cres",
-        "g": "Otočac",
-        "termin": "SUB 16:00"
-      },
-      {
-        "d": "Rječina",
-        "g": "Funtana",
-        "termin": "SUB 16:30"
-      },
-      {
-        "d": "Smoljanci",
-        "g": "Mladost Fažana",
-        "termin": "SUB 16:30"
-      },
-      {
-        "d": "Štinjan",
-        "g": "Žminj",
-        "termin": "SUB 16:30"
-      },
-      {
-        "d": "Umag-CC Umago",
-        "g": "Medulin 1921",
-        "termin": "SUB 16:30"
-      },
-      {
-        "d": "Ližnjan",
-        "g": "Klana",
-        "termin": "UTO 17:00"
-      }
-    ],
-    "grbovi": false
-  },
-  {
-    "dat": "1-znl-pgz-kolo-4",
-    "kolo": "4",
-    "stil": "redovi",
-    "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
-    "datum": "SUB 26.09. i NED 27.09.2026.",
-    "sat": "Satnica stoji uz svaki par",
-    "utakmice": [
-      {
-        "d": "Lovran",
-        "g": "Draga",
-        "termin": "SUB 15:00"
-      },
-      {
-        "d": "Zamet",
-        "g": "Risnjak",
-        "termin": "SUB 16:00"
-      },
-      {
-        "d": "Vihor (B)",
-        "g": "Mune",
-        "termin": "NED 16:00"
-      },
-      {
-        "d": "Stari grad Rijeka",
-        "g": "Lošinj",
-        "termin": "NED 16:00"
-      },
-      {
-        "d": "Vrbovsko",
-        "g": "Rikard Benčić",
-        "termin": "NED 16:00"
-      },
-      {
-        "d": "Turbina",
-        "g": "Omladinac Vrata",
-        "termin": "NED 16:00"
-      },
-      {
-        "d": "Rab",
-        "g": "Goranin",
-        "termin": "ODGOĐENO"
-      }
-    ],
-    "grbovi": false
-  },
-  {
-    "dat": "2-znl-pgz-kolo-4",
-    "kolo": "4",
-    "stil": "redovi",
-    "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
-    "datum": "NED 27.09.2026.",
-    "sat": "Sve utakmice u 16:00",
-    "utakmice": [
-      {
-        "d": "Polet (Sk)",
-        "g": "Goranka",
-        "termin": "NED 16:00"
-      },
-      {
-        "d": "Gomirje",
-        "g": "Mrkopalj",
-        "termin": "NED 16:00"
-      },
-      {
-        "d": "Željezničar (M)",
-        "g": "Snježnik",
-        "termin": "NED 16:00"
-      }
-    ],
-    "grbovi": false
-  },
-  {
-    "dat": "4-nl-ns-rijeka-kolo-4-pregled",
-    "ime": "pregled-4-nl-ns-rijeka-kolo-4",
-    "kolo": "4",
-    "stil": "redovi",
-    "naslov": "Pregled",
-    "oznaka": "4. NL NS Rijeka · sezona 2026/27",
-    "datum": "SUB 26.09. i UTO 29.09.2026.",
-    "sat": "Rezultati kola",
-    "slobodan": "Borac (Ba)",
-    "utakmice": [
-      {
-        "d": "Cres",
-        "g": "Otočac",
-        "termin": "SUB 16:00",
-        "rezultat": "3:1"
-      },
-      {
-        "d": "Rječina",
-        "g": "Funtana",
-        "termin": "SUB 16:30",
-        "rezultat": "1:2"
-      },
-      {
-        "d": "Smoljanci",
-        "g": "Mladost Fažana",
-        "termin": "SUB 16:30",
-        "rezultat": "4:1"
-      },
-      {
-        "d": "Štinjan",
-        "g": "Žminj",
-        "termin": "SUB 16:30",
-        "rezultat": "0:1"
-      },
-      {
-        "d": "Umag-CC Umago",
-        "g": "Medulin 1921",
-        "termin": "SUB 16:30",
-        "rezultat": "2:0"
-      },
-      {
-        "d": "Ližnjan",
-        "g": "Klana",
-        "termin": "UTO 17:00"
-      }
-    ],
-    "grbovi": false
-  },
-  {
-    "dat": "1-znl-pgz-kolo-4-pregled",
-    "ime": "pregled-1-znl-pgz-kolo-4",
-    "kolo": "4",
-    "stil": "redovi",
-    "naslov": "Pregled",
-    "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
-    "datum": "SUB 26.09. i NED 27.09.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "Lovran",
-        "g": "Draga",
-        "termin": "SUB 15:00",
-        "rezultat": "2:1"
-      },
-      {
-        "d": "Zamet",
-        "g": "Risnjak",
-        "termin": "SUB 16:00",
-        "rezultat": "1:2"
-      },
-      {
-        "d": "Vihor (B)",
-        "g": "Mune",
-        "termin": "NED 16:00"
-      },
-      {
-        "d": "Stari grad Rijeka",
-        "g": "Lošinj",
-        "termin": "NED 16:00"
-      },
-      {
-        "d": "Vrbovsko",
-        "g": "Rikard Benčić",
-        "termin": "NED 16:00"
-      },
-      {
-        "d": "Turbina",
-        "g": "Omladinac Vrata",
-        "termin": "NED 16:00"
-      },
-      {
-        "d": "Rab",
-        "g": "Goranin",
-        "termin": "ODGOĐENO"
-      }
-    ],
-    "grbovi": false
-  },
-  {
-    "dat": "2-znl-pgz-kolo-4-pregled",
-    "ime": "pregled-2-znl-pgz-kolo-4",
-    "kolo": "4",
-    "stil": "redovi",
-    "naslov": "Pregled",
-    "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
-    "datum": "NED 27.09.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "Polet (Sk)",
-        "g": "Goranka",
-        "termin": "NED 16:00",
-        "rezultat": "1:4"
-      },
-      {
-        "d": "Gomirje",
-        "g": "Mrkopalj",
-        "termin": "NED 16:00",
-        "rezultat": "2:1"
-      },
-      {
-        "d": "Željezničar (M)",
-        "g": "Snježnik",
-        "termin": "NED 16:00",
-        "rezultat": "7:0"
-      }
-    ],
-    "grbovi": false
-  },
-  {
-    "dat": "3-nl-zapad-kolo-6-znakovi",
-    "kolo": "6",
-    "stil": "redovi",
-    "oznaka": "3. NL Zapad · sezona 2026/27",
-    "datum": "SUB 26.09. i UTO 29.09.2026.",
-    "sat": "Satnica stoji uz svaki par",
-    "utakmice": [
-      {
-        "d": "Nehaj",
-        "g": "Crikvenica",
-        "termin": "SUB 16:00"
-      },
-      {
-        "d": "Rudar",
-        "g": "Lokomotiva",
-        "termin": "SUB 16:30"
-      },
-      {
-        "d": "Kraljevica",
-        "g": "Krk",
-        "termin": "SUB 16:30"
-      },
-      {
-        "d": "Pomorac",
-        "g": "Buje",
-        "termin": "SUB 16:30"
-      },
-      {
-        "d": "Rovinj",
-        "g": "Halubjan",
-        "termin": "SUB 16:30"
-      },
-      {
-        "d": "Pazinka-Pazin",
-        "g": "OŠK Omišalj",
-        "termin": "SUB 16:30"
-      },
-      {
-        "d": "Jadran-Poreč",
-        "g": "Naprijed",
-        "termin": "SUB 16:30"
-      },
-      {
-        "d": "Vinodol",
-        "g": "Banjole",
-        "termin": "UTO 16:30"
-      }
-    ],
-    "ime": "ogled-najava-s-grbovima",
-    "grbovi": true
-  },
-  {
-    "dat": "utakmice-29-09-2026",
-    "ime": "pregled-utakmica-29-09-2026",
-    "stil": "redovi",
-    "naslov": "Pregled utakmica",
-    "naslovKurziv": "29. rujna",
-    "oznaka": "Lokal-Arena · tri natjecanja",
-    "datum": "UTO 29.09.2026.",
-    "sat": "Rezultati dana",
-    "utakmice": [
-      {
-        "d": "Ližnjan",
-        "g": "Klana",
-        "rezultat": "1:0",
-        "natjecanje": "4. NL NS Rijeka"
-      },
-      {
-        "d": "Vinodol",
-        "g": "Banjole",
-        "rezultat": "2:2",
-        "natjecanje": "3. NL Zapad"
-      },
-      {
-        "d": "Rab",
-        "g": "Krk",
-        "rezultat": "1:3",
-        "natjecanje": "Kup 1/16 finala"
-      }
-    ]
-  },
-  {
-    "dat": "3-nl-zapad-kolo-7",
-    "kolo": "7",
-    "stil": "redovi",
-    "oznaka": "3. NL Zapad · sezona 2026/27",
-    "datum": "SUB 03.10.2026.",
-    "sat": "Sve utakmice u 15:00",
-    "utakmice": [
-      {
-        "d": "Naprijed",
-        "g": "Vinodol",
-        "termin": "SUB 15:00"
-      },
-      {
-        "d": "OŠK Omišalj",
-        "g": "Jadran-Poreč",
-        "termin": "SUB 15:00"
-      },
-      {
-        "d": "Halubjan",
-        "g": "Pazinka-Pazin",
-        "termin": "SUB 15:00"
-      },
-      {
-        "d": "Buje",
-        "g": "Rovinj",
-        "termin": "SUB 15:00"
-      },
-      {
-        "d": "Crikvenica",
-        "g": "Pomorac",
-        "termin": "SUB 15:00"
-      },
-      {
-        "d": "Krk",
-        "g": "Nehaj",
-        "termin": "SUB 15:00"
-      },
-      {
-        "d": "Lokomotiva",
-        "g": "Kraljevica",
-        "termin": "SUB 15:00"
-      },
-      {
-        "d": "Banjole",
-        "g": "Rudar",
-        "termin": "SUB 15:00"
-      }
-    ]
-  },
-  {
-    "dat": "4-nl-ns-rijeka-kolo-5",
-    "kolo": "5",
-    "stil": "redovi",
-    "oznaka": "4. NL NS Rijeka · sezona 2026/27",
-    "datum": "SUB 03.10.2026.",
-    "sat": "Sve utakmice u 15:00",
-    "slobodan": "Klana",
-    "utakmice": [
-      {
-        "d": "Medulin 1921",
-        "g": "Rječina",
-        "termin": "SUB 15:00"
-      },
-      {
-        "d": "Otočac",
-        "g": "Umag-CC Umago",
-        "termin": "SUB 15:00"
-      },
-      {
-        "d": "Žminj",
-        "g": "Cres",
-        "termin": "SUB 15:00"
-      },
-      {
-        "d": "Mladost Fažana",
-        "g": "Štinjan",
-        "termin": "SUB 15:00"
-      },
-      {
-        "d": "Borac (Ba)",
-        "g": "Smoljanci",
-        "termin": "SUB 15:00"
-      },
-      {
-        "d": "Funtana",
-        "g": "Ližnjan",
-        "termin": "SUB 15:00"
-      }
-    ]
-  },
-  {
-    "dat": "1-znl-pgz-kolo-5",
-    "kolo": "5",
-    "stil": "redovi",
-    "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
-    "datum": "SUB 03.10. i NED 04.10.2026.",
-    "sat": "Satnica stoji uz svaki par",
-    "utakmice": [
-      {
-        "d": "Omladinac Vrata",
-        "g": "Vihor (B)",
-        "termin": "SUB 16:00"
-      },
-      {
-        "d": "Draga",
-        "g": "Stari grad Rijeka",
-        "termin": "SUB 16:00"
-      },
-      {
-        "d": "Goranin",
-        "g": "Turbina",
-        "termin": "NED 14:00"
-      },
-      {
-        "d": "Lošinj",
-        "g": "Vrbovsko",
-        "termin": "NED 15:30"
-      },
-      {
-        "d": "Risnjak",
-        "g": "Rab",
-        "termin": "NED 16:00"
-      },
-      {
-        "d": "Rikard Benčić",
-        "g": "Zamet",
-        "termin": "NED 16:00"
-      },
-      {
-        "d": "Mune",
-        "g": "Lovran",
-        "termin": "NED 16:00"
-      }
-    ]
-  },
-  {
-    "dat": "2-znl-pgz-kolo-5",
-    "kolo": "5",
-    "stil": "redovi",
-    "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
-    "datum": "NED 04.10.2026.",
-    "sat": "Sve utakmice u 16:00",
-    "utakmice": [
-      {
-        "d": "Snježnik",
-        "g": "Polet (Sk)",
-        "termin": "NED 16:00"
-      },
-      {
-        "d": "Mrkopalj",
-        "g": "Željezničar (M)",
-        "termin": "NED 16:00"
-      },
-      {
-        "d": "Goranka",
-        "g": "Gomirje",
-        "termin": "NED 16:00"
-      }
-    ]
-  },
-  {
-    "dat": "3-nl-zapad-kolo-7-pregled",
-    "kolo": "7",
-    "stil": "redovi",
-    "oznaka": "3. NL Zapad · sezona 2026/27",
-    "datum": "SUB 03.10.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "Naprijed",
-        "g": "Vinodol",
-        "termin": "SUB 15:00",
-        "rezultat": "3:1"
-      },
-      {
-        "d": "OŠK Omišalj",
-        "g": "Jadran-Poreč",
-        "termin": "SUB 15:00",
-        "rezultat": "0:2"
-      },
-      {
-        "d": "Halubjan",
-        "g": "Pazinka-Pazin",
-        "termin": "SUB 15:00",
-        "rezultat": "1:0"
-      },
-      {
-        "d": "Buje",
-        "g": "Rovinj",
-        "termin": "SUB 15:00",
-        "rezultat": "0:0"
-      },
-      {
-        "d": "Crikvenica",
-        "g": "Pomorac",
-        "termin": "SUB 15:00",
-        "rezultat": "2:1"
-      },
-      {
-        "d": "Krk",
-        "g": "Nehaj",
-        "termin": "SUB 15:00",
-        "rezultat": "1:2"
-      },
-      {
-        "d": "Lokomotiva",
-        "g": "Kraljevica",
-        "termin": "SUB 15:00",
-        "rezultat": "1:0"
-      },
-      {
-        "d": "Banjole",
-        "g": "Rudar",
-        "termin": "SUB 15:00",
-        "rezultat": "3:0"
-      }
-    ],
-    "ime": "pregled-3-nl-zapad-kolo-7",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "4-nl-ns-rijeka-kolo-5-pregled",
-    "kolo": "5",
-    "stil": "redovi",
-    "oznaka": "4. NL NS Rijeka · sezona 2026/27",
-    "datum": "SUB 03.10.2026.",
-    "sat": "Rezultati kola",
-    "slobodan": "Klana",
-    "utakmice": [
-      {
-        "d": "Medulin 1921",
-        "g": "Rječina",
-        "termin": "SUB 15:00",
-        "rezultat": "2:0"
-      },
-      {
-        "d": "Otočac",
-        "g": "Umag-CC Umago",
-        "termin": "SUB 15:00",
-        "rezultat": "2:1"
-      },
-      {
-        "d": "Žminj",
-        "g": "Cres",
-        "termin": "SUB 15:00",
-        "rezultat": "1:2"
-      },
-      {
-        "d": "Mladost Fažana",
-        "g": "Štinjan",
-        "termin": "SUB 15:00",
-        "rezultat": "0:1"
-      },
-      {
-        "d": "Borac (Ba)",
-        "g": "Smoljanci",
-        "termin": "SUB 15:00",
-        "rezultat": "2:0"
-      },
-      {
-        "d": "Funtana",
-        "g": "Ližnjan",
-        "termin": "SUB 15:00",
-        "rezultat": "1:2"
-      }
-    ],
-    "ime": "pregled-4-nl-ns-rijeka-kolo-5",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "1-znl-pgz-kolo-5-pregled",
-    "kolo": "5",
-    "stil": "redovi",
-    "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
-    "datum": "SUB 03.10. i NED 04.10.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "Omladinac Vrata",
-        "g": "Vihor (B)",
-        "termin": "SUB 16:00",
-        "rezultat": "3:3"
-      },
-      {
-        "d": "Draga",
-        "g": "Stari grad Rijeka",
-        "termin": "SUB 16:00",
-        "rezultat": "2:3"
-      },
-      {
-        "d": "Goranin",
-        "g": "Turbina",
-        "termin": "NED 14:00",
-        "rezultat": "2:0"
-      },
-      {
-        "d": "Lošinj",
-        "g": "Vrbovsko",
-        "termin": "NED 15:30",
-        "rezultat": "3:3"
-      },
-      {
-        "d": "Risnjak",
-        "g": "Rab",
-        "termin": "NED 16:00",
-        "rezultat": "2:5"
-      },
-      {
-        "d": "Rikard Benčić",
-        "g": "Zamet",
-        "termin": "NED 16:00",
-        "rezultat": "1:5"
-      },
-      {
-        "d": "Mune",
-        "g": "Lovran",
-        "termin": "NED 16:00",
-        "rezultat": "3:1"
-      }
-    ],
-    "ime": "pregled-1-znl-pgz-kolo-5",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "2-znl-pgz-kolo-5-pregled",
-    "kolo": "5",
-    "stil": "redovi",
-    "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
-    "datum": "NED 04.10.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "Snježnik",
-        "g": "Polet (Sk)",
-        "termin": "NED 16:00",
-        "rezultat": "2:4"
-      },
-      {
-        "d": "Mrkopalj",
-        "g": "Željezničar (M)",
-        "termin": "NED 16:00",
-        "rezultat": "3:4"
-      },
-      {
-        "d": "Goranka",
-        "g": "Gomirje",
-        "termin": "NED 16:00",
-        "rezultat": "2:0"
-      }
-    ],
-    "ime": "pregled-2-znl-pgz-kolo-5",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "kup-1-8-finala-2627",
-    "ime": "kup-1-8-finala-2627",
-    "stil": "redovi",
-    "naslov": "Kup",
-    "naslovKurziv": "1/8 finala",
-    "oznaka": "Hrvatski nogometni kup · 2026/27",
-    "datum": "6. DO 14.10.2026.",
-    "sat": "Rezultati osmine finala",
-    "utakmice": [
-      {
-        "d": "Rječina",
-        "g": "Grobničan",
-        "termin": "UTO 06.10.",
-        "rezultat": "1:2"
-      },
-      {
-        "d": "Orijent",
-        "g": "Lokomotiva",
-        "termin": "SRI 07.10.",
-        "rezultat": "0:1"
-      },
-      {
-        "d": "Halubjan",
-        "g": "Opatija",
-        "termin": "ODGOĐENO"
-      },
-      {
-        "d": "OŠK Omišalj",
-        "g": "Krk",
-        "termin": "UTO 13.10.",
-        "rezultat": "1:0"
-      },
-      {
-        "d": "Crikvenica",
-        "g": "Vinodol",
-        "termin": "SRI 14.10.",
-        "rezultat": "4:0"
-      }
-    ]
-  },
-  {
-    "dat": "3-nl-zapad-kolo-8",
-    "kolo": "8",
-    "stil": "redovi",
-    "oznaka": "3. NL Zapad · sezona 2026/27",
-    "datum": "SUB 10.10.2026.",
-    "sat": "Sve utakmice u 16:00",
-    "utakmice": [
-      {
-        "d": "Nehaj",
-        "g": "Lokomotiva",
-        "termin": "SUB 16:00"
-      },
-      {
-        "d": "Pomorac",
-        "g": "Krk",
-        "termin": "SUB 16:00",
-        "derbi": true
-      },
-      {
-        "d": "Pazinka-Pazin",
-        "g": "Buje",
-        "termin": "SUB 16:00"
-      },
-      {
-        "d": "Kraljevica",
-        "g": "Banjole",
-        "termin": "SUB 16:00"
-      },
-      {
-        "d": "Jadran-Poreč",
-        "g": "Halubjan",
-        "termin": "SUB 16:00"
-      },
-      {
-        "d": "Rovinj",
-        "g": "Crikvenica",
-        "termin": "SUB 16:00"
-      },
-      {
-        "d": "Vinodol",
-        "g": "Rudar",
-        "termin": "SUB 16:00"
-      },
-      {
-        "d": "Naprijed",
-        "g": "OŠK Omišalj",
-        "termin": "SUB 16:00"
-      }
-    ]
-  },
-  {
-    "dat": "4-nl-ns-rijeka-kolo-6",
-    "kolo": "6",
-    "stil": "redovi",
-    "oznaka": "4. NL NS Rijeka · sezona 2026/27",
-    "datum": "SUB 10.10.2026.",
-    "sat": "Sve utakmice u 16:00",
-    "slobodan": "Funtana",
-    "utakmice": [
-      {
-        "d": "Rječina",
-        "g": "Ližnjan",
-        "termin": "SUB 16:00"
-      },
-      {
-        "d": "Smoljanci",
-        "g": "Klana",
-        "termin": "SUB 16:00"
-      },
-      {
-        "d": "Štinjan",
-        "g": "Borac (Ba)",
-        "termin": "SUB 16:00"
-      },
-      {
-        "d": "Umag-CC Umago",
-        "g": "Žminj",
-        "termin": "SUB 16:00"
-      },
-      {
-        "d": "Medulin 1921",
-        "g": "Otočac",
-        "termin": "SUB 16:00"
-      }
-    ]
-  },
-  {
-    "dat": "1-znl-pgz-kolo-6",
-    "kolo": "6",
-    "stil": "redovi",
-    "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
-    "datum": "SUB 10.10. do UTO 13.10.2026.",
-    "sat": "Vikendom u 15:30, utorak u 18:30",
-    "utakmice": [
-      {
-        "d": "Rab",
-        "g": "Rikard Benčić",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Omladinac Vrata",
-        "g": "Goranin",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Vihor (B)",
-        "g": "Lovran",
-        "termin": "NED 15:30"
-      },
-      {
-        "d": "Stari grad Rijeka",
-        "g": "Mune",
-        "termin": "NED 15:30",
-        "derbi": true
-      },
-      {
-        "d": "Vrbovsko",
-        "g": "Draga",
-        "termin": "NED 15:30"
-      },
-      {
-        "d": "Turbina",
-        "g": "Risnjak",
-        "termin": "NED 15:30"
-      },
-      {
-        "d": "Zamet",
-        "g": "Lošinj",
-        "termin": "UTO 18:30"
-      }
-    ]
-  },
-  {
-    "dat": "2-znl-pgz-kolo-6",
-    "kolo": "6",
-    "stil": "redovi",
-    "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
-    "datum": "NED 11.10.2026.",
-    "sat": "Sve utakmice u 15:30",
-    "utakmice": [
-      {
-        "d": "Polet (Sk)",
-        "g": "Gomirje",
-        "termin": "NED 15:30"
-      },
-      {
-        "d": "Goranka",
-        "g": "Željezničar (M)",
-        "termin": "NED 15:30"
-      },
-      {
-        "d": "Mrkopalj",
-        "g": "Snježnik",
-        "termin": "NED 15:30"
-      }
-    ]
-  },
-  {
-    "dat": "3-nl-zapad-kolo-8-pregled",
-    "kolo": "8",
-    "stil": "redovi",
-    "oznaka": "3. NL Zapad · sezona 2026/27",
-    "datum": "SUB 10.10.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "Nehaj",
-        "g": "Lokomotiva",
-        "termin": "SUB 16:00",
-        "rezultat": "2:1"
-      },
-      {
-        "d": "Pomorac",
-        "g": "Krk",
-        "termin": "SUB 16:00",
-        "derbi": true,
-        "rezultat": "2:1"
-      },
-      {
-        "d": "Pazinka-Pazin",
-        "g": "Buje",
-        "termin": "SUB 16:00",
-        "rezultat": "0:0"
-      },
-      {
-        "d": "Kraljevica",
-        "g": "Banjole",
-        "termin": "SUB 16:00",
-        "rezultat": "0:2"
-      },
-      {
-        "d": "Jadran-Poreč",
-        "g": "Halubjan",
-        "termin": "SUB 16:00",
-        "rezultat": "2:1"
-      },
-      {
-        "d": "Rovinj",
-        "g": "Crikvenica",
-        "termin": "SUB 16:00",
-        "rezultat": "4:0"
-      },
-      {
-        "d": "Vinodol",
-        "g": "Rudar",
-        "termin": "SUB 16:00",
-        "rezultat": "5:1"
-      },
-      {
-        "d": "Naprijed",
-        "g": "OŠK Omišalj",
-        "termin": "SUB 16:00",
-        "rezultat": "2:3"
-      }
-    ],
-    "ime": "pregled-3-nl-zapad-kolo-8",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "4-nl-ns-rijeka-kolo-6-pregled",
-    "kolo": "6",
-    "stil": "redovi",
-    "oznaka": "4. NL NS Rijeka · sezona 2026/27",
-    "datum": "SUB 10.10.2026.",
-    "sat": "Rezultati kola",
-    "slobodan": "Funtana",
-    "utakmice": [
-      {
-        "d": "Štinjan",
-        "g": "Borac (Ba)",
-        "termin": "SUB 16:00",
-        "rezultat": "4:0"
-      },
-      {
-        "d": "Rječina",
-        "g": "Ližnjan",
-        "termin": "SUB 16:00",
-        "rezultat": "1:0"
-      },
-      {
-        "d": "Medulin 1921",
-        "g": "Otočac",
-        "termin": "SUB 16:00",
-        "rezultat": "3:1"
-      },
-      {
-        "d": "Umag-CC Umago",
-        "g": "Žminj",
-        "termin": "SUB 16:00",
-        "rezultat": "1:0"
-      },
-      {
-        "d": "Smoljanci",
-        "g": "Klana",
-        "termin": "SUB 16:00",
-        "rezultat": "2:1"
-      },
-      {
-        "d": "Cres",
-        "g": "Mladost Fažana",
-        "termin": "SUB 05.12.",
-        "rezultat": "PREMJEŠTENO"
-      }
-    ],
-    "ime": "pregled-4-nl-ns-rijeka-kolo-6",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "1-znl-pgz-kolo-6-pregled",
-    "kolo": "6",
-    "stil": "redovi",
-    "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
-    "datum": "SUB 10.10. do UTO 13.10.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "Rab",
-        "g": "Rikard Benčić",
-        "termin": "SUB 15:30",
-        "rezultat": "0:0"
-      },
-      {
-        "d": "Omladinac Vrata",
-        "g": "Goranin",
-        "termin": "SUB 15:30",
-        "rezultat": "2:0"
-      },
-      {
-        "d": "Vihor (B)",
-        "g": "Lovran",
-        "termin": "NED 15:30",
-        "rezultat": "2:1"
-      },
-      {
-        "d": "Stari grad Rijeka",
-        "g": "Mune",
-        "termin": "NED 15:30",
-        "rezultat": "2:4",
-        "derbi": true
-      },
-      {
-        "d": "Vrbovsko",
-        "g": "Draga",
-        "termin": "NED 15:30",
-        "rezultat": "3:0"
-      },
-      {
-        "d": "Turbina",
-        "g": "Risnjak",
-        "termin": "NED 15:30",
-        "rezultat": "4:2"
-      },
-      {
-        "d": "Zamet",
-        "g": "Lošinj",
-        "termin": "UTO 18:30"
-      }
-    ],
-    "ime": "pregled-1-znl-pgz-kolo-6",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "2-znl-pgz-kolo-6-pregled",
-    "kolo": "6",
-    "stil": "redovi",
-    "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
-    "datum": "NED 11.10.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "Polet (Sk)",
-        "g": "Gomirje",
-        "termin": "NED 15:30",
-        "rezultat": "8:0"
-      },
-      {
-        "d": "Goranka",
-        "g": "Željezničar (M)",
-        "termin": "NED 15:30",
-        "rezultat": "0:2"
-      },
-      {
-        "d": "Mrkopalj",
-        "g": "Snježnik",
-        "termin": "NED 15:30",
-        "rezultat": "10:1"
-      }
-    ],
-    "ime": "pregled-2-znl-pgz-kolo-6",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "3-nl-zapad-kolo-9",
-    "kolo": "9",
-    "stil": "redovi",
-    "oznaka": "3. NL Zapad · sezona 2026/27",
-    "datum": "SUB 17.10.2026.",
-    "sat": "Subota u 14:00 i 15:30",
-    "utakmice": [
-      {
-        "d": "Crikvenica",
-        "g": "Pazinka-Pazin",
-        "termin": "SUB 14:00"
-      },
-      {
-        "d": "Lokomotiva",
-        "g": "Pomorac",
-        "termin": "SUB 15:30",
-        "derbi": true
-      },
-      {
-        "d": "Buje",
-        "g": "Jadran-Poreč",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Krk",
-        "g": "Rovinj",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Halubjan",
-        "g": "Naprijed",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Banjole",
-        "g": "Nehaj",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Rudar",
-        "g": "Kraljevica",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "OŠK Omišalj",
-        "g": "Vinodol",
-        "termin": "SUB 05.12."
-      }
-    ]
-  },
-  {
-    "dat": "4-nl-ns-rijeka-kolo-7",
-    "kolo": "7",
-    "stil": "redovi",
-    "oznaka": "4. NL NS Rijeka · sezona 2026/27",
-    "datum": "SUB 17.10.2026.",
-    "sat": "Subota u 15:30 i 16:00",
-    "slobodan": "Ližnjan",
-    "utakmice": [
-      {
-        "d": "Borac (Ba)",
-        "g": "Cres",
-        "termin": "SUB 16:00",
-        "derbi": true
-      },
-      {
-        "d": "Otočac",
-        "g": "Rječina",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Žminj",
-        "g": "Medulin 1921",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Mladost Fažana",
-        "g": "Umag-CC Umago",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Klana",
-        "g": "Štinjan",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Funtana",
-        "g": "Smoljanci",
-        "termin": "SUB 15:30"
-      }
-    ]
-  },
-  {
-    "dat": "1-znl-pgz-kolo-7",
-    "kolo": "7",
-    "stil": "redovi",
-    "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
-    "datum": "SUB 17.10. i NED 18.10.2026.",
-    "sat": "U 15:30, Lošinj - Rab u 16:00",
-    "utakmice": [
-      {
-        "d": "Rikard Benčić",
-        "g": "Turbina",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Draga",
-        "g": "Zamet",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Lovran",
-        "g": "Stari grad Rijeka",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Goranin",
-        "g": "Vihor (B)",
-        "termin": "NED 15:30"
-      },
-      {
-        "d": "Omladinac Vrata",
-        "g": "Risnjak",
-        "termin": "NED 15:30"
-      },
-      {
-        "d": "Mune",
-        "g": "Vrbovsko",
-        "termin": "NED 15:30"
-      },
-      {
-        "d": "Lošinj",
-        "g": "Rab",
-        "termin": "NED 16:00",
-        "derbi": true
-      }
-    ]
-  },
-  {
-    "dat": "2-znl-pgz-kolo-7",
-    "kolo": "7",
-    "stil": "redovi",
-    "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
-    "datum": "NED 18.10.2026.",
-    "sat": "Sve utakmice u 15:30",
-    "utakmice": [
-      {
-        "d": "Mrkopalj",
-        "g": "Polet (Sk)",
-        "termin": "NED 15:30"
-      },
-      {
-        "d": "Snježnik",
-        "g": "Goranka",
-        "termin": "NED 15:30"
-      },
-      {
-        "d": "Željezničar (M)",
-        "g": "Gomirje",
-        "termin": "NED 15:30"
-      }
-    ]
-  },
-  {
-    "dat": "3-nl-zapad-kolo-9-pregled",
-    "kolo": "9",
-    "stil": "redovi",
-    "oznaka": "3. NL Zapad · sezona 2026/27",
-    "datum": "SUB 17.10.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "Crikvenica",
-        "g": "Pazinka-Pazin",
-        "termin": "SUB 14:00",
-        "rezultat": "1:0"
-      },
-      {
-        "d": "Lokomotiva",
-        "g": "Pomorac",
-        "termin": "SUB 15:30",
-        "derbi": true,
-        "rezultat": "5:1"
-      },
-      {
-        "d": "Buje",
-        "g": "Jadran-Poreč",
-        "termin": "SUB 15:30",
-        "rezultat": "0:1"
-      },
-      {
-        "d": "Krk",
-        "g": "Rovinj",
-        "termin": "SUB 15:30",
-        "rezultat": "1:0"
-      },
-      {
-        "d": "Halubjan",
-        "g": "Naprijed",
-        "termin": "SUB 15:30",
-        "rezultat": "1:2"
-      },
-      {
-        "d": "Banjole",
-        "g": "Nehaj",
-        "termin": "SUB 15:30",
-        "rezultat": "1:1"
-      },
-      {
-        "d": "Rudar",
-        "g": "Kraljevica",
-        "termin": "SUB 15:30",
-        "rezultat": "0:0"
-      },
-      {
-        "d": "OŠK Omišalj",
-        "g": "Vinodol",
-        "termin": "SUB 05.12."
-      }
-    ],
-    "ime": "pregled-3-nl-zapad-kolo-9",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "4-nl-ns-rijeka-kolo-7-pregled",
-    "ime": "pregled-4-nl-ns-rijeka-kolo-7",
-    "kolo": "7",
-    "stil": "redovi",
-    "naslov": "Pregled",
-    "oznaka": "4. NL NS Rijeka · sezona 2026/27",
-    "datum": "SUB 17.10.2026.",
-    "sat": "Rezultati kola",
-    "slobodan": "Ližnjan",
-    "utakmice": [
-      {
-        "d": "Borac (Ba)",
-        "g": "Cres",
-        "termin": "SUB 16:00",
-        "rezultat": "1:2",
-        "derbi": true
-      },
-      {
-        "d": "Mladost Fažana",
-        "g": "Umag-CC Umago",
-        "termin": "SUB 15:30",
-        "rezultat": "5:1"
-      },
-      {
-        "d": "Žminj",
-        "g": "Medulin 1921",
-        "termin": "SUB 15:30",
-        "rezultat": "4:0"
-      },
-      {
-        "d": "Otočac",
-        "g": "Rječina",
-        "termin": "SUB 15:30",
-        "rezultat": "3:2"
-      },
-      {
-        "d": "Funtana",
-        "g": "Smoljanci",
-        "termin": "SUB 17:30",
-        "rezultat": "2:0"
-      },
-      {
-        "d": "Klana",
-        "g": "Štinjan",
-        "termin": "SUB 15:30",
-        "rezultat": "0:2"
-      }
-    ]
-  },
-  {
-    "dat": "1-znl-pgz-kolo-7-pregled",
-    "kolo": "7",
-    "stil": "redovi",
-    "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
-    "datum": "SUB 17.10. i NED 18.10.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "Rikard Benčić",
-        "g": "Turbina",
-        "termin": "SUB 15:30",
-        "rezultat": "0:3"
-      },
-      {
-        "d": "Draga",
-        "g": "Zamet",
-        "termin": "SUB 15:30",
-        "rezultat": "3:1"
-      },
-      {
-        "d": "Lovran",
-        "g": "Stari grad Rijeka",
-        "termin": "SUB 15:30",
-        "rezultat": "1:2"
-      },
-      {
-        "d": "Goranin",
-        "g": "Vihor (B)",
-        "termin": "NED 15:30",
-        "rezultat": "6:0"
-      },
-      {
-        "d": "Omladinac Vrata",
-        "g": "Risnjak",
-        "termin": "NED 15:30",
-        "rezultat": "1:1"
-      },
-      {
-        "d": "Mune",
-        "g": "Vrbovsko",
-        "termin": "NED 15:30",
-        "rezultat": "5:3"
-      },
-      {
-        "d": "Lošinj",
-        "g": "Rab",
-        "termin": "NED 16:00",
-        "derbi": true,
-        "rezultat": "2:1"
-      }
-    ],
-    "ime": "pregled-1-znl-pgz-kolo-7",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "2-znl-pgz-kolo-7-pregled",
-    "kolo": "7",
-    "stil": "redovi",
-    "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
-    "datum": "NED 18.10.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "Mrkopalj",
-        "g": "Polet (Sk)",
-        "termin": "NED 15:30",
-        "rezultat": "4:1"
-      },
-      {
-        "d": "Snježnik",
-        "g": "Goranka",
-        "termin": "NED 15:30",
-        "rezultat": "2:3"
-      },
-      {
-        "d": "Željezničar (M)",
-        "g": "Gomirje",
-        "termin": "NED 15:30",
-        "rezultat": "0:2"
-      }
-    ],
-    "ime": "pregled-2-znl-pgz-kolo-7",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "3-nl-zapad-kolo-10",
-    "kolo": "10",
-    "stil": "redovi",
-    "oznaka": "3. NL Zapad · sezona 2026/27",
-    "datum": "SUB 24.10.2026.",
-    "sat": "Sve utakmice u 15:30",
-    "utakmice": [
-      {
-        "d": "Vinodol",
-        "g": "Kraljevica",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Nehaj",
-        "g": "Rudar",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Pomorac",
-        "g": "Banjole",
-        "termin": "SUB 15:30",
-        "derbi": true
-      },
-      {
-        "d": "Rovinj",
-        "g": "Lokomotiva",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Pazinka-Pazin",
-        "g": "Krk",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Jadran-Poreč",
-        "g": "Crikvenica",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Naprijed",
-        "g": "Buje",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "OŠK Omišalj",
-        "g": "Halubjan",
-        "termin": "SUB 15:30"
-      }
-    ]
-  },
-  {
-    "dat": "4-nl-ns-rijeka-kolo-8",
-    "kolo": "8",
-    "stil": "redovi",
-    "oznaka": "4. NL NS Rijeka · sezona 2026/27",
-    "datum": "SUB 24.10.2026.",
-    "sat": "Sve utakmice u 15:30",
-    "slobodan": "Rječina",
-    "utakmice": [
-      {
-        "d": "Umag-CC Umago",
-        "g": "Borac (Ba)",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Otočac",
-        "g": "Žminj",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Smoljanci",
-        "g": "Ližnjan",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Cres",
-        "g": "Klana",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Štinjan",
-        "g": "Funtana",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Medulin 1921",
-        "g": "Mladost Fažana",
-        "termin": "SUB 15:30"
-      }
-    ]
-  },
-  {
-    "dat": "1-znl-pgz-kolo-8",
-    "kolo": "8",
-    "stil": "redovi",
-    "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
-    "datum": "SUB 24.10. i NED 25.10.2026.",
-    "sat": "Subota u 15:30, nedjelja u 14:00",
-    "utakmice": [
-      {
-        "d": "Zamet",
-        "g": "Mune",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Turbina",
-        "g": "Lošinj",
-        "termin": "NED 14:00",
-        "derbi": true
-      },
-      {
-        "d": "Vrbovsko",
-        "g": "Lovran",
-        "termin": "NED 14:00"
-      },
-      {
-        "d": "Vihor (B)",
-        "g": "Stari grad Rijeka",
-        "termin": "NED 14:00"
-      },
-      {
-        "d": "Goranin",
-        "g": "Risnjak",
-        "termin": "NED 14:00"
-      },
-      {
-        "d": "Rab",
-        "g": "Draga",
-        "termin": "ODGOĐENO"
-      },
-      {
-        "d": "Omladinac Vrata",
-        "g": "Rikard Benčić",
-        "termin": "ODGOĐENO"
-      }
-    ]
-  },
-  {
-    "dat": "2-znl-pgz-kolo-8",
-    "kolo": "8",
-    "stil": "redovi",
-    "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
-    "datum": "NED 25.10.2026.",
-    "sat": "Sve utakmice u 14:00",
-    "utakmice": [
-      {
-        "d": "Goranka",
-        "g": "Mrkopalj",
-        "termin": "NED 14:00"
-      },
-      {
-        "d": "Gomirje",
-        "g": "Snježnik",
-        "termin": "NED 14:00"
-      },
-      {
-        "d": "Polet (Sk)",
-        "g": "Željezničar (M)",
-        "termin": "NED 14:00"
-      }
-    ]
-  },
-  {
-    "dat": "3-nl-zapad-kolo-10-pregled",
-    "kolo": "10",
-    "stil": "redovi",
-    "oznaka": "3. NL Zapad · sezona 2026/27",
-    "datum": "SUB 24.10.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "Vinodol",
-        "g": "Kraljevica",
-        "termin": "SUB 15:30",
-        "rezultat": "1:2"
-      },
-      {
-        "d": "Nehaj",
-        "g": "Rudar",
-        "termin": "SUB 15:30",
-        "rezultat": "1:0"
-      },
-      {
-        "d": "Pomorac",
-        "g": "Banjole",
-        "termin": "SUB 15:30",
-        "derbi": true,
-        "rezultat": "2:1"
-      },
-      {
-        "d": "Rovinj",
-        "g": "Lokomotiva",
-        "termin": "SUB 15:30",
-        "rezultat": "3:1"
-      },
-      {
-        "d": "Pazinka-Pazin",
-        "g": "Krk",
-        "termin": "SUB 15:30",
-        "rezultat": "4:0"
-      },
-      {
-        "d": "Jadran-Poreč",
-        "g": "Crikvenica",
-        "termin": "SUB 15:30",
-        "rezultat": "1:1"
-      },
-      {
-        "d": "Naprijed",
-        "g": "Buje",
-        "termin": "SUB 15:30",
-        "rezultat": "2:1"
-      },
-      {
-        "d": "OŠK Omišalj",
-        "g": "Halubjan",
-        "termin": "SUB 15:30",
-        "rezultat": "4:1"
-      }
-    ],
-    "ime": "pregled-3-nl-zapad-kolo-10",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "4-nl-ns-rijeka-kolo-8-pregled",
-    "ime": "pregled-4-nl-ns-rijeka-kolo-8",
-    "kolo": "8",
-    "stil": "redovi",
-    "naslov": "Pregled",
-    "oznaka": "4. NL NS Rijeka · sezona 2026/27",
-    "datum": "SUB 24.10.2026.",
-    "sat": "Rezultati kola",
-    "slobodan": "Rječina",
-    "utakmice": [
-      {
-        "d": "Cres",
-        "g": "Klana",
-        "termin": "SUB 15:45",
-        "rezultat": "1:1"
-      },
-      {
-        "d": "Štinjan",
-        "g": "Funtana",
-        "termin": "SUB 15:30",
-        "rezultat": "3:4"
-      },
-      {
-        "d": "Umag-CC Umago",
-        "g": "Borac (Ba)",
-        "termin": "SUB 15:30",
-        "rezultat": "2:2"
-      },
-      {
-        "d": "Smoljanci",
-        "g": "Ližnjan",
-        "termin": "SUB 15:30",
-        "rezultat": "2:2"
-      },
-      {
-        "d": "Otočac",
-        "g": "Žminj",
-        "termin": "SUB 15:30",
-        "rezultat": "2:0"
-      },
-      {
-        "d": "Medulin 1921",
-        "g": "Mladost Fažana",
-        "termin": "SUB 15:30",
-        "rezultat": "PREKINUTO"
-      }
-    ]
-  },
-  {
-    "dat": "1-znl-pgz-kolo-8-pregled",
-    "kolo": "8",
-    "stil": "redovi",
-    "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
-    "datum": "SUB 24.10. i NED 25.10.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "Zamet",
-        "g": "Mune",
-        "termin": "SUB 15:30",
-        "rezultat": "2:4"
-      },
-      {
-        "d": "Turbina",
-        "g": "Lošinj",
-        "termin": "NED 14:00",
-        "derbi": true,
-        "rezultat": "2:2"
-      },
-      {
-        "d": "Vrbovsko",
-        "g": "Lovran",
-        "termin": "NED 14:00",
-        "rezultat": "4:0"
-      },
-      {
-        "d": "Vihor (B)",
-        "g": "Stari grad Rijeka",
-        "termin": "NED 14:00",
-        "rezultat": "1:0"
-      },
-      {
-        "d": "Goranin",
-        "g": "Risnjak",
-        "termin": "NED 14:00",
-        "rezultat": "2:0"
-      }
-    ],
-    "ime": "pregled-1-znl-pgz-kolo-8",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "2-znl-pgz-kolo-8-pregled",
-    "kolo": "8",
-    "stil": "redovi",
-    "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
-    "datum": "NED 25.10.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "Goranka",
-        "g": "Mrkopalj",
-        "termin": "NED 14:00",
-        "rezultat": "3:2"
-      },
-      {
-        "d": "Polet (Sk)",
-        "g": "Željezničar (M)",
-        "termin": "NED 14:00",
-        "rezultat": "1:1"
-      },
-      {
-        "d": "Gomirje",
-        "g": "Snježnik",
-        "termin": "NED 14:00",
-        "rezultat": "NIJE ODIGRANO"
-      }
-    ],
-    "ime": "pregled-2-znl-pgz-kolo-8",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "3-nl-zapad-kolo-11",
-    "kolo": "11",
-    "stil": "redovi",
-    "oznaka": "3. NL Zapad · sezona 2026/27",
-    "datum": "SUB 31.10.2026.",
-    "sat": "Subota u 14:00 i 14:30",
-    "utakmice": [
-      {
-        "d": "Lokomotiva (R)",
-        "g": "Pazinka-Pazin",
-        "termin": "SUB 14:00",
-        "derbi": true
-      },
-      {
-        "d": "Halubjan",
-        "g": "Vinodol",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Rudar (L)",
-        "g": "Pomorac",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Krk",
-        "g": "Jadran-Poreč",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Kraljevica",
-        "g": "Nehaj",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Buje",
-        "g": "OŠK Omišalj",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Crikvenica",
-        "g": "Naprijed (H)",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Banjole",
-        "g": "Rovinj",
-        "termin": "SUB 14:30"
-      }
-    ],
-    "ime": "najava-redovi-3-nl-zapad-kolo-11"
-  },
-  {
-    "dat": "4-nl-ns-rijeka-kolo-9",
-    "kolo": "9",
-    "stil": "redovi",
-    "oznaka": "4. NL NS Rijeka · sezona 2026/27",
-    "datum": "SUB 31.10.2026.",
-    "sat": "Utakmice od 14:30",
-    "slobodan": "Smoljanci Sloboda",
-    "utakmice": [
-      {
-        "d": "Žminj",
-        "g": "Rječina",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Mladost Fažana",
-        "g": "Otočac",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Borac (Ba)",
-        "g": "Medulin 1921",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Klana",
-        "g": "Umag-CC Umago",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Ližnjan",
-        "g": "Štinjan",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Funtana",
-        "g": "Cres",
-        "termin": "SUB 15:30"
-      }
-    ]
-  },
-  {
-    "dat": "1-znl-pgz-kolo-9",
-    "kolo": "9",
-    "stil": "redovi",
-    "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
-    "datum": "SUB 31.10. i SRI 04.11.2026.",
-    "sat": "Subota u 14:00, 15:30 i 17:30",
-    "utakmice": [
-      {
-        "d": "Mune",
-        "g": "Rab",
-        "termin": "SUB 14:00",
-        "derbi": true
-      },
-      {
-        "d": "Lošinj",
-        "g": "Omladinac Vrata",
-        "termin": "SUB 14:00"
-      },
-      {
-        "d": "Draga",
-        "g": "Turbina",
-        "termin": "SUB 14:00"
-      },
-      {
-        "d": "Stari grad Rijeka",
-        "g": "Vrbovsko",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Rikard Benčić",
-        "g": "Goranin",
-        "termin": "SUB 17:30"
-      },
-      {
-        "d": "Lovran",
-        "g": "Zamet",
-        "termin": "SRI 15:30"
-      },
-      {
-        "d": "Vihor (B)",
-        "g": "Risnjak",
-        "termin": "ODGOĐENO"
-      }
-    ],
-    "ime": "najava-redovi-1-znl-pgz-kolo-9"
-  },
-  {
-    "dat": "2-znl-pgz-kolo-1-zaostala",
-    "kolo": "1",
-    "stil": "redovi",
-    "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
-    "datum": "SUB 31.10.2026.",
-    "sat": "Zaostala utakmica, Pod Čelimbašom u Mrkoplju",
-    "utakmice": [
-      {
-        "d": "Snježnik",
-        "g": "Mrkopalj",
-        "termin": "SUB 14:00"
-      }
-    ],
-    "ime": "najava-2-znl-pgz-kolo-1-zaostala"
-  },
-  {
-    "dat": "2-znl-pgz-kolo-1-zaostala-pregled",
-    "kolo": "1",
-    "stil": "redovi",
-    "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
-    "datum": "SUB 31.10.2026.",
-    "sat": "Zaostala utakmica, Pod Čelimbašom u Mrkoplju",
-    "utakmice": [
-      {
-        "d": "Snježnik",
-        "g": "Mrkopalj",
-        "termin": "SUB 14:00",
-        "rezultat": "0:8"
-      }
-    ],
-    "ime": "pregled-2-znl-pgz-kolo-1-zaostala",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "3-nl-zapad-kolo-11-pregled",
-    "kolo": "11",
-    "stil": "redovi",
-    "oznaka": "3. NL Zapad · sezona 2026/27",
-    "datum": "SUB 31.10.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "Lokomotiva (R)",
-        "g": "Pazinka-Pazin",
-        "termin": "SUB 14:00",
-        "derbi": true,
-        "rezultat": "0:0"
-      },
-      {
-        "d": "Halubjan",
-        "g": "Vinodol",
-        "termin": "SUB 14:30",
-        "rezultat": "4:0"
-      },
-      {
-        "d": "Buje",
-        "g": "OŠK Omišalj",
-        "termin": "SUB 14:30",
-        "rezultat": "2:1"
-      },
-      {
-        "d": "Crikvenica",
-        "g": "Naprijed (H)",
-        "termin": "SUB 14:30",
-        "rezultat": "1:0"
-      },
-      {
-        "d": "Krk",
-        "g": "Jadran-Poreč",
-        "termin": "SUB 14:30",
-        "rezultat": "2:0"
-      },
-      {
-        "d": "Banjole",
-        "g": "Rovinj",
-        "termin": "SUB 14:30",
-        "rezultat": "4:1"
-      },
-      {
-        "d": "Rudar (L)",
-        "g": "Pomorac",
-        "termin": "SUB 14:30",
-        "rezultat": "1:1"
-      },
-      {
-        "d": "Kraljevica",
-        "g": "Nehaj",
-        "termin": "SUB 14:30",
-        "rezultat": "1:1"
-      }
-    ],
-    "ime": "pregled-3-nl-zapad-kolo-11",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "4-nl-ns-rijeka-kolo-9-pregled",
-    "ime": "pregled-4-nl-ns-rijeka-kolo-9",
-    "kolo": "9",
-    "stil": "redovi",
-    "naslov": "Pregled",
-    "oznaka": "4. NL NS Rijeka · sezona 2026/27",
-    "datum": "SUB 31.10.2026.",
-    "sat": "Rezultati kola",
-    "slobodan": "Smoljanci Sloboda",
-    "utakmice": [
-      {
-        "d": "Žminj",
-        "g": "Rječina",
-        "termin": "SUB 14:30",
-        "rezultat": "1:2"
-      },
-      {
-        "d": "Mladost Fažana",
-        "g": "Otočac",
-        "termin": "SUB 14:30",
-        "rezultat": "0:4"
-      },
-      {
-        "d": "Borac (Ba)",
-        "g": "Medulin 1921",
-        "termin": "SUB 14:30",
-        "rezultat": "1:0"
-      },
-      {
-        "d": "Klana",
-        "g": "Umag-CC Umago",
-        "termin": "SUB 14:30",
-        "rezultat": "2:1"
-      },
-      {
-        "d": "Ližnjan",
-        "g": "Štinjan",
-        "termin": "SUB 14:30",
-        "rezultat": "0:7"
-      },
-      {
-        "d": "Funtana",
-        "g": "Cres",
-        "termin": "SUB 15:30",
-        "rezultat": "1:0"
-      }
-    ]
-  },
-  {
-    "dat": "1-znl-pgz-kolo-9-pregled",
-    "kolo": "9",
-    "stil": "redovi",
-    "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
-    "datum": "SUB 31.10.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "Mune",
-        "g": "Rab",
-        "termin": "SUB 14:00",
-        "derbi": true,
-        "rezultat": "1:0"
-      },
-      {
-        "d": "Lošinj",
-        "g": "Omladinac Vrata",
-        "termin": "SUB 14:00",
-        "rezultat": "1:0"
-      },
-      {
-        "d": "Draga",
-        "g": "Turbina",
-        "termin": "SUB 14:00",
-        "rezultat": "1:1"
-      },
-      {
-        "d": "Stari grad Rijeka",
-        "g": "Vrbovsko",
-        "termin": "SUB 15:30",
-        "rezultat": "3:3"
-      },
-      {
-        "d": "Rikard Benčić",
-        "g": "Goranin",
-        "termin": "SUB 17:30",
-        "rezultat": "1:4"
-      }
-    ],
-    "ime": "pregled-1-znl-pgz-kolo-9",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "4-nl-ns-rijeka-kolo-10",
-    "kolo": "10",
-    "stil": "redovi",
-    "oznaka": "4. NL NS Rijeka · sezona 2026/27",
-    "datum": "SUB 07.11.2026.",
-    "sat": "Sve utakmice u 14:30",
-    "slobodan": "Štinjan",
-    "utakmice": [
-      {
-        "d": "Rječina",
-        "g": "Smoljanci",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Cres",
-        "g": "Ližnjan",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Umag-CC Umago",
-        "g": "Funtana",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Medulin 1921",
-        "g": "Klana",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Otočac",
-        "g": "Borac (Ba)",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Žminj",
-        "g": "Mladost Fažana",
-        "termin": "SUB 14:30"
-      }
-    ]
-  },
-  {
-    "dat": "1-znl-pgz-kolo-9-lovran-zamet",
-    "kolo": "9",
-    "stil": "redovi",
-    "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
-    "datum": "SRI 04.11.2026.",
-    "sat": "Posljednja utakmica 9. kola, na Lokvi",
-    "utakmice": [
-      {
-        "d": "Lovran",
-        "g": "Zamet",
-        "termin": "SRI 15:30",
-        "rezultat": "1:0"
-      }
-    ],
-    "ime": "pregled-1-znl-pgz-kolo-9-lovran-zamet",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "3-nl-zapad-kolo-12",
-    "kolo": "12",
-    "stil": "redovi",
-    "oznaka": "3. NL Zapad · sezona 2026/27",
-    "datum": "SUB 07.11.2026.",
-    "sat": "Sve utakmice u 14:30",
-    "utakmice": [
-      {
-        "d": "Jadran-Poreč",
-        "g": "Lokomotiva (R)",
-        "termin": "SUB 14:30",
-        "derbi": true
-      },
-      {
-        "d": "Pomorac",
-        "g": "Kraljevica",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Pazinka-Pazin",
-        "g": "Banjole",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Naprijed (H)",
-        "g": "Krk",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "OŠK Omišalj",
-        "g": "Crikvenica",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Halubjan",
-        "g": "Buje",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Rovinj",
-        "g": "Rudar (L)",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Vinodol",
-        "g": "Nehaj",
-        "termin": "SUB 14:30"
-      }
-    ],
-    "ime": "najava-redovi-3-nl-zapad-kolo-12"
-  },
-  {
-    "dat": "1-znl-pgz-kolo-10",
-    "kolo": "10",
-    "stil": "redovi",
-    "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
-    "datum": "SUB 07.11. i NED 08.11.2026.",
-    "sat": "Subota u 14:00, nedjelja u 14:00 i 14:30",
-    "utakmice": [
-      {
-        "d": "Zamet",
-        "g": "Stari grad Rijeka",
-        "termin": "SUB 14:00"
-      },
-      {
-        "d": "Rab",
-        "g": "Lovran",
-        "termin": "SUB 14:00"
-      },
-      {
-        "d": "Omladinac Vrata",
-        "g": "Draga",
-        "termin": "SUB 14:00"
-      },
-      {
-        "d": "Rikard Benčić",
-        "g": "Risnjak",
-        "termin": "SUB 14:00"
-      },
-      {
-        "d": "Goranin",
-        "g": "Lošinj",
-        "termin": "NED 14:00"
-      },
-      {
-        "d": "Vihor (B)",
-        "g": "Vrbovsko",
-        "termin": "NED 14:30"
-      },
-      {
-        "d": "Turbina",
-        "g": "Mune",
-        "termin": "NED 14:30",
-        "derbi": true
-      }
-    ],
-    "ime": "najava-redovi-1-znl-pgz-kolo-10"
-  },
-  {
-    "dat": "2-znl-pgz-kolo-9",
-    "kolo": "9",
-    "stil": "redovi",
-    "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
-    "datum": "NED 08.11.2026.",
-    "sat": "Sve utakmice u 14:30",
-    "utakmice": [
-      {
-        "d": "Mrkopalj",
-        "g": "Gomirje",
-        "termin": "NED 14:30",
-        "derbi": true
-      },
-      {
-        "d": "Goranka",
-        "g": "Polet (Sk)",
-        "termin": "NED 14:30"
-      },
-      {
-        "d": "Snježnik",
-        "g": "Željezničar (M)",
-        "termin": "NED 14:30"
-      }
-    ],
-    "ime": "najava-redovi-2-znl-pgz-kolo-9"
-  },
-  {
-    "dat": "3-nl-zapad-kolo-12-pregled",
-    "kolo": "12",
-    "stil": "redovi",
-    "oznaka": "3. NL Zapad · sezona 2026/27",
-    "datum": "SUB 07.11.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "Jadran-Poreč",
-        "g": "Lokomotiva (R)",
-        "termin": "SUB 14:30",
-        "derbi": true,
-        "rezultat": "1:4"
-      },
-      {
-        "d": "Pomorac",
-        "g": "Kraljevica",
-        "termin": "SUB 14:30",
-        "rezultat": "1:3"
-      },
-      {
-        "d": "Pazinka-Pazin",
-        "g": "Banjole",
-        "termin": "SUB 14:30",
-        "rezultat": "4:0"
-      },
-      {
-        "d": "Naprijed (H)",
-        "g": "Krk",
-        "termin": "SUB 14:30",
-        "rezultat": "4:1"
-      },
-      {
-        "d": "OŠK Omišalj",
-        "g": "Crikvenica",
-        "termin": "SUB 14:30",
-        "rezultat": "3:1"
-      },
-      {
-        "d": "Halubjan",
-        "g": "Buje",
-        "termin": "SUB 14:30",
-        "rezultat": "1:2"
-      },
-      {
-        "d": "Rovinj",
-        "g": "Rudar (L)",
-        "termin": "SUB 14:30",
-        "rezultat": "1:0"
-      },
-      {
-        "d": "Vinodol",
-        "g": "Nehaj",
-        "termin": "SUB 14:30",
-        "rezultat": "1:1"
-      }
-    ],
-    "ime": "pregled-3-nl-zapad-kolo-12",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "4-nl-ns-rijeka-kolo-10-pregled",
-    "ime": "pregled-4-nl-ns-rijeka-kolo-10",
-    "kolo": "10",
-    "stil": "redovi",
-    "naslov": "Pregled",
-    "oznaka": "4. NL NS Rijeka · sezona 2026/27",
-    "datum": "SUB 07.11.2026.",
-    "sat": "Rezultati kola",
-    "slobodan": "Štinjan",
-    "utakmice": [
-      {
-        "d": "Rječina",
-        "g": "Smoljanci",
-        "termin": "SUB 14:30",
-        "rezultat": "4:2"
-      },
-      {
-        "d": "Cres",
-        "g": "Ližnjan",
-        "termin": "SUB 14:30",
-        "rezultat": "6:2"
-      },
-      {
-        "d": "Umag-CC Umago",
-        "g": "Funtana",
-        "termin": "SUB 14:30",
-        "rezultat": "2:3"
-      },
-      {
-        "d": "Medulin 1921",
-        "g": "Klana",
-        "termin": "SUB 14:30",
-        "rezultat": "2:0"
-      },
-      {
-        "d": "Otočac",
-        "g": "Borac (Ba)",
-        "termin": "SUB 14:30",
-        "rezultat": "0:0"
-      },
-      {
-        "d": "Žminj",
-        "g": "Mladost Fažana",
-        "termin": "SUB 14:30",
-        "rezultat": "4:1"
-      }
-    ]
-  },
-  {
-    "dat": "1-znl-pgz-kolo-10-pregled",
-    "kolo": "10",
-    "stil": "redovi",
-    "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
-    "datum": "SUB 07.11. i NED 08.11.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "Turbina",
-        "g": "Mune",
-        "termin": "NED 14:30",
-        "derbi": true,
-        "rezultat": "2:2"
-      },
-      {
-        "d": "Goranin",
-        "g": "Lošinj",
-        "termin": "NED 14:00",
-        "rezultat": "2:0"
-      },
-      {
-        "d": "Vihor (B)",
-        "g": "Vrbovsko",
-        "termin": "NED 14:30",
-        "rezultat": "0:4"
-      },
-      {
-        "d": "Rab",
-        "g": "Lovran",
-        "termin": "SUB 14:00",
-        "rezultat": "4:2"
-      },
-      {
-        "d": "Zamet",
-        "g": "Stari grad Rijeka",
-        "termin": "SUB 14:00",
-        "rezultat": "4:2"
-      },
-      {
-        "d": "Omladinac Vrata",
-        "g": "Draga",
-        "termin": "SUB 14:00",
-        "rezultat": "7:1"
-      },
-      {
-        "d": "Rikard Benčić",
-        "g": "Risnjak",
-        "termin": "SUB 14:00",
-        "rezultat": "0:1"
-      }
-    ],
-    "ime": "pregled-1-znl-pgz-kolo-10",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "2-znl-pgz-kolo-9-pregled",
-    "kolo": "9",
-    "stil": "redovi",
-    "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
-    "datum": "NED 08.11.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "Mrkopalj",
-        "g": "Gomirje",
-        "termin": "NED 14:30",
-        "derbi": true,
-        "rezultat": "5:0"
-      },
-      {
-        "d": "Goranka",
-        "g": "Polet (Sk)",
-        "termin": "NED 14:30",
-        "rezultat": "2:2"
-      },
-      {
-        "d": "Snježnik",
-        "g": "Željezničar (M)",
-        "termin": "NED 14:30",
-        "rezultat": "1:1"
-      }
-    ],
-    "ime": "pregled-2-znl-pgz-kolo-9",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "3-nl-zapad-kolo-13",
-    "kolo": "13",
-    "stil": "redovi",
-    "oznaka": "3. NL Zapad · sezona 2026/27",
-    "datum": "SUB 14.11.2026.",
-    "sat": "Sve utakmice u 14:30",
-    "utakmice": [
-      {
-        "d": "Nehaj",
-        "g": "Pomorac",
-        "termin": "SUB 14:30",
-        "derbi": true
-      },
-      {
-        "d": "Naprijed (H)",
-        "g": "Lokomotiva (R)",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Rudar (L)",
-        "g": "Pazinka-Pazin",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Krk",
-        "g": "OŠK Omišalj",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Kraljevica",
-        "g": "Rovinj",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Banjole",
-        "g": "Jadran-Poreč",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Crikvenica",
-        "g": "Halubjan",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Buje",
-        "g": "Vinodol",
-        "termin": "SUB 14:30"
-      }
-    ],
-    "ime": "najava-redovi-3-nl-zapad-kolo-13"
-  },
-  {
-    "dat": "4-nl-ns-rijeka-kolo-11",
-    "kolo": "11",
-    "stil": "redovi",
-    "oznaka": "4. NL NS Rijeka · sezona 2026/27",
-    "datum": "SUB 14.11.2026.",
-    "sat": "Sve utakmice u 14:30",
-    "slobodan": "Cres",
-    "utakmice": [
-      {
-        "d": "Mladost Fažana",
-        "g": "Rječina",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Borac (Ba)",
-        "g": "Žminj",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Klana",
-        "g": "Otočac",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Funtana",
-        "g": "Medulin 1921",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Ližnjan",
-        "g": "Umag-CC Umago",
-        "termin": "SUB 14:30"
-      },
-      {
-        "d": "Štinjan",
-        "g": "Smoljanci",
-        "termin": "SUB 14:30"
-      }
-    ]
-  },
-  {
-    "dat": "1-znl-pgz-kolo-11",
-    "kolo": "11",
-    "stil": "redovi",
-    "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
-    "datum": "SUB 14.11. i NED 15.11.2026.",
-    "sat": "Subota u 13:30, nedjelja u 13:30 i 14:00",
-    "utakmice": [
-      {
-        "d": "Rikard Benčić",
-        "g": "Vihor (B)",
-        "termin": "SUB 13:30"
-      },
-      {
-        "d": "Draga",
-        "g": "Goranin",
-        "termin": "SUB 13:30"
-      },
-      {
-        "d": "Lošinj",
-        "g": "Risnjak",
-        "termin": "NED 13:30"
-      },
-      {
-        "d": "Mune",
-        "g": "Omladinac Vrata",
-        "termin": "NED 14:00"
-      },
-      {
-        "d": "Turbina",
-        "g": "Lovran",
-        "termin": "NED 14:00",
-        "derbi": true
-      },
-      {
-        "d": "Stari grad Rijeka",
-        "g": "Rab",
-        "termin": "NED 14:00"
-      },
-      {
-        "d": "Vrbovsko",
-        "g": "Zamet",
-        "termin": "NED 14:00"
-      }
-    ],
-    "ime": "najava-redovi-1-znl-pgz-kolo-11"
-  },
-  {
-    "dat": "2-znl-pgz-kolo-10",
-    "kolo": "10",
-    "stil": "redovi",
-    "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
-    "datum": "NED 15.11.2026.",
-    "sat": "Utakmice u 14:00, Gomirje - Goranka odgođena",
-    "utakmice": [
-      {
-        "d": "Željezničar (M)",
-        "g": "Mrkopalj",
-        "termin": "NED 14:00",
-        "derbi": true
-      },
-      {
-        "d": "Polet (Sk)",
-        "g": "Snježnik",
-        "termin": "NED 14:00"
-      },
-      {
-        "d": "Gomirje",
-        "g": "Goranka",
-        "termin": "ODGOĐENO"
-      }
-    ],
-    "ime": "najava-redovi-2-znl-pgz-kolo-10"
-  },
-  {
-    "dat": "3-nl-zapad-kolo-13-pregled",
-    "kolo": "13",
-    "stil": "redovi",
-    "oznaka": "3. NL Zapad · sezona 2026/27",
-    "datum": "SUB 14.11.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "Nehaj",
-        "g": "Pomorac",
-        "termin": "SUB 14:30",
-        "derbi": true,
-        "rezultat": "2:2"
-      },
-      {
-        "d": "Naprijed (H)",
-        "g": "Lokomotiva (R)",
-        "termin": "SUB 14:30",
-        "rezultat": "2:3"
-      },
-      {
-        "d": "Rudar (L)",
-        "g": "Pazinka-Pazin",
-        "termin": "SUB 14:30",
-        "rezultat": "0:0"
-      },
-      {
-        "d": "Krk",
-        "g": "OŠK Omišalj",
-        "termin": "SUB 14:30",
-        "rezultat": "2:3"
-      },
-      {
-        "d": "Kraljevica",
-        "g": "Rovinj",
-        "termin": "SUB 14:30",
-        "rezultat": "1:1"
-      },
-      {
-        "d": "Banjole",
-        "g": "Jadran-Poreč",
-        "termin": "SUB 14:30",
-        "rezultat": "2:0"
-      },
-      {
-        "d": "Crikvenica",
-        "g": "Halubjan",
-        "termin": "SUB 14:30",
-        "rezultat": "0:0"
-      },
-      {
-        "d": "Buje",
-        "g": "Vinodol",
-        "termin": "SUB 14:30",
-        "rezultat": "0:1"
-      }
-    ],
-    "ime": "pregled-3-nl-zapad-kolo-13",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "4-nl-ns-rijeka-kolo-11-pregled",
-    "ime": "pregled-4-nl-ns-rijeka-kolo-11",
-    "kolo": "11",
-    "stil": "redovi",
-    "naslov": "Pregled",
-    "oznaka": "4. NL NS Rijeka · sezona 2026/27",
-    "datum": "SUB 14.11.2026.",
-    "sat": "Rezultati kola",
-    "slobodan": "Cres",
-    "utakmice": [
-      {
-        "d": "Klana",
-        "g": "Otočac",
-        "termin": "SUB 14:30",
-        "rezultat": "3:4"
-      },
-      {
-        "d": "Funtana",
-        "g": "Medulin 1921",
-        "termin": "SUB 14:30",
-        "rezultat": "4:0"
-      },
-      {
-        "d": "Ližnjan",
-        "g": "Umag-CC Umago",
-        "termin": "SUB 14:30",
-        "rezultat": "1:0"
-      },
-      {
-        "d": "Mladost Fažana",
-        "g": "Rječina",
-        "termin": "NED 13:30"
-      },
-      {
-        "d": "Štinjan",
-        "g": "Smoljanci",
-        "termin": "UTO 19:00"
-      },
-      {
-        "d": "Borac (Ba)",
-        "g": "Žminj",
-        "termin": "ODGOĐENO"
-      }
-    ]
-  },
-  {
-    "dat": "1-znl-pgz-kolo-11-pregled",
-    "kolo": "11",
-    "stil": "redovi",
-    "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
-    "datum": "SUB 14.11. i NED 15.11.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "Rikard Benčić",
-        "g": "Vihor (B)",
-        "termin": "SUB 13:30",
-        "rezultat": "2:0"
-      },
-      {
-        "d": "Draga",
-        "g": "Goranin",
-        "termin": "SUB 13:30",
-        "rezultat": "2:3"
-      },
-      {
-        "d": "Lošinj",
-        "g": "Risnjak",
-        "termin": "NED 13:30",
-        "rezultat": "4:1"
-      },
-      {
-        "d": "Mune",
-        "g": "Omladinac Vrata",
-        "termin": "NED 14:00",
-        "rezultat": "0:3"
-      },
-      {
-        "d": "Turbina",
-        "g": "Lovran",
-        "termin": "NED 14:00",
-        "derbi": true,
-        "rezultat": "5:0"
-      },
-      {
-        "d": "Stari grad Rijeka",
-        "g": "Rab",
-        "termin": "NED 14:00",
-        "rezultat": "3:1"
-      },
-      {
-        "d": "Vrbovsko",
-        "g": "Zamet",
-        "termin": "NED 14:00",
-        "rezultat": "ODG."
-      }
-    ],
-    "ime": "pregled-1-znl-pgz-kolo-11",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "4-nl-ns-rijeka-kolo-11-nadoknade",
-    "ime": "nadoknade-4-nl-ns-rijeka-kolo-11",
-    "kolo": "11",
-    "stil": "redovi",
-    "naslov": "Nadoknade",
-    "oznaka": "4. NL NS Rijeka · sezona 2026/27",
-    "datum": "NED 15.11. i UTO 17.11.2026.",
-    "sat": "Odgođene utakmice 11. kola",
-    "utakmice": [
-      {
-        "d": "Mladost Fažana",
-        "g": "Rječina",
-        "termin": "NED 13:30",
-        "rezultat": "4:3"
-      },
-      {
-        "d": "Štinjan",
-        "g": "Smoljanci",
-        "termin": "UTO 19:00",
-        "rezultat": "7:3"
-      }
-    ]
-  },
-  {
-    "dat": "4-nl-ns-rijeka-kolo-8-nastavak",
-    "ime": "nastavak-4-nl-ns-rijeka-kolo-8",
-    "kolo": "8",
-    "stil": "redovi",
-    "naslov": "Nastavak",
-    "oznaka": "4. NL NS Rijeka · sezona 2026/27",
-    "datum": "SRI 18.11.2026.",
-    "sat": "Nastavak prekinute utakmice 8. kola",
-    "utakmice": [
-      {
-        "d": "Medulin 1921",
-        "g": "Mladost Fažana",
-        "termin": "SRI 14:30",
-        "rezultat": "1:1"
-      }
-    ]
-  },
-  {
-    "dat": "4-nl-ns-rijeka-kolo-12",
-    "kolo": "12",
-    "stil": "redovi",
-    "oznaka": "4. NL NS Rijeka · sezona 2026/27",
-    "datum": "SUB 21.11.2026.",
-    "sat": "Od 12:15 do 16:00",
-    "slobodan": "Umag-CC Umago",
-    "utakmice": [
-      {
-        "d": "Cres",
-        "g": "Smoljanci",
-        "termin": "SUB 12:15"
-      },
-      {
-        "d": "Rječina",
-        "g": "Štinjan",
-        "termin": "SUB 14:00"
-      },
-      {
-        "d": "Ližnjan",
-        "g": "Medulin 1921",
-        "termin": "SUB 14:00"
-      },
-      {
-        "d": "Žminj",
-        "g": "Klana",
-        "termin": "SUB 14:00"
-      },
-      {
-        "d": "Mladost Fažana",
-        "g": "Borac (Ba)",
-        "termin": "SUB 14:00"
-      },
-      {
-        "d": "Funtana",
-        "g": "Otočac",
-        "termin": "SUB 16:00"
-      }
-    ]
-  },
-  {
-    "dat": "3-nl-zapad-kolo-14",
-    "kolo": "14",
-    "stil": "redovi",
-    "oznaka": "3. NL Zapad · sezona 2026/27",
-    "datum": "SUB 21.11.2026.",
-    "sat": "Sve utakmice u 14:00",
-    "utakmice": [
-      {
-        "d": "OŠK Omišalj",
-        "g": "Lokomotiva (R)",
-        "termin": "SUB 14:00",
-        "derbi": true
-      },
-      {
-        "d": "Pazinka-Pazin",
-        "g": "Kraljevica",
-        "termin": "SUB 14:00"
-      },
-      {
-        "d": "Vinodol",
-        "g": "Pomorac",
-        "termin": "SUB 14:00"
-      },
-      {
-        "d": "Naprijed (H)",
-        "g": "Banjole",
-        "termin": "SUB 14:00"
-      },
-      {
-        "d": "Rovinj",
-        "g": "Nehaj",
-        "termin": "SUB 14:00"
-      },
-      {
-        "d": "Halubjan",
-        "g": "Krk",
-        "termin": "SUB 14:00"
-      },
-      {
-        "d": "Buje",
-        "g": "Crikvenica",
-        "termin": "SUB 14:00"
-      },
-      {
-        "d": "Jadran-Poreč",
-        "g": "Rudar (L)",
-        "termin": "SUB 14:00"
-      }
-    ],
-    "ime": "najava-redovi-3-nl-zapad-kolo-14"
-  },
-  {
-    "dat": "1-znl-pgz-kolo-12",
-    "kolo": "12",
-    "stil": "redovi",
-    "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
-    "datum": "SUB 21.11. i NED 22.11.2026.",
-    "sat": "Subota u 13:00, 13:30 i 14:00, nedjelja u 14:00",
-    "utakmice": [
-      {
-        "d": "Rab",
-        "g": "Vrbovsko",
-        "termin": "SUB 13:00"
-      },
-      {
-        "d": "Rikard Benčić",
-        "g": "Lošinj",
-        "termin": "SUB 13:30"
-      },
-      {
-        "d": "Omladinac Vrata",
-        "g": "Lovran",
-        "termin": "SUB 14:00"
-      },
-      {
-        "d": "Draga",
-        "g": "Risnjak",
-        "termin": "SUB 14:00"
-      },
-      {
-        "d": "Goranin",
-        "g": "Mune",
-        "termin": "NED 14:00",
-        "derbi": true
-      },
-      {
-        "d": "Turbina",
-        "g": "Stari grad Rijeka",
-        "termin": "NED 14:00"
-      },
-      {
-        "d": "Vihor (B)",
-        "g": "Zamet",
-        "termin": "NED 14:00"
-      }
-    ],
-    "ime": "najava-redovi-1-znl-pgz-kolo-12"
-  },
-  {
-    "dat": "2-znl-pgz-kolo-10-novi-termin",
-    "kolo": "10",
-    "stil": "redovi",
-    "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
-    "datum": "NED 22.11.2026.",
-    "sat": "Utakmice u 14:00, Gomirje - Goranka odgođena",
-    "utakmice": [
-      {
-        "d": "Željezničar (M)",
-        "g": "Mrkopalj",
-        "termin": "NED 14:00",
-        "derbi": true
-      },
-      {
-        "d": "Polet (Sk)",
-        "g": "Snježnik",
-        "termin": "NED 14:00"
-      },
-      {
-        "d": "Gomirje",
-        "g": "Goranka",
-        "termin": "ODGOĐENO"
-      }
-    ],
-    "ime": "najava-redovi-2-znl-pgz-kolo-10-novi-termin"
-  },
-  {
-    "dat": "3-nl-zapad-kolo-14-pregled",
-    "kolo": "14",
-    "stil": "redovi",
-    "oznaka": "3. NL Zapad · sezona 2026/27",
-    "datum": "SUB 21.11.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "OŠK Omišalj",
-        "g": "Lokomotiva (R)",
-        "termin": "SUB 14:00",
-        "derbi": true,
-        "rezultat": "1:2"
-      },
-      {
-        "d": "Pazinka-Pazin",
-        "g": "Kraljevica",
-        "termin": "SUB 14:00",
-        "rezultat": "3:2"
-      },
-      {
-        "d": "Vinodol",
-        "g": "Pomorac",
-        "termin": "SUB 14:00",
-        "rezultat": "0:1"
-      },
-      {
-        "d": "Naprijed (H)",
-        "g": "Banjole",
-        "termin": "SUB 14:00",
-        "rezultat": "2:2"
-      },
-      {
-        "d": "Rovinj",
-        "g": "Nehaj",
-        "termin": "SUB 14:00",
-        "rezultat": "4:3"
-      },
-      {
-        "d": "Halubjan",
-        "g": "Krk",
-        "termin": "SUB 14:00",
-        "rezultat": "2:3"
-      },
-      {
-        "d": "Buje",
-        "g": "Crikvenica",
-        "termin": "SUB 14:00",
-        "rezultat": "1:1"
-      },
-      {
-        "d": "Jadran-Poreč",
-        "g": "Rudar (L)",
-        "termin": "SUB 14:00",
-        "rezultat": "1:3"
-      }
-    ],
-    "ime": "pregled-3-nl-zapad-kolo-14",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "4-nl-ns-rijeka-kolo-12-pregled",
-    "ime": "pregled-4-nl-ns-rijeka-kolo-12",
-    "kolo": "12",
-    "stil": "redovi",
-    "naslov": "Pregled",
-    "oznaka": "4. NL NS Rijeka · sezona 2026/27",
-    "datum": "SUB 21.11.2026.",
-    "sat": "Rezultati kola",
-    "slobodan": "Umag-CC Umago",
-    "utakmice": [
-      {
-        "d": "Funtana",
-        "g": "Otočac",
-        "termin": "SUB 16:00",
-        "rezultat": "0:2"
-      },
-      {
-        "d": "Cres",
-        "g": "Smoljanci",
-        "termin": "SUB 12:15",
-        "rezultat": "4:1"
-      },
-      {
-        "d": "Rječina",
-        "g": "Štinjan",
-        "termin": "SUB 14:00",
-        "rezultat": "1:3"
-      },
-      {
-        "d": "Ližnjan",
-        "g": "Medulin 1921",
-        "termin": "SUB 14:00",
-        "rezultat": "2:1"
-      },
-      {
-        "d": "Žminj",
-        "g": "Klana",
-        "termin": "SUB 14:00",
-        "rezultat": "3:0"
-      },
-      {
-        "d": "Mladost Fažana",
-        "g": "Borac (Ba)",
-        "termin": "SUB 14:00",
-        "rezultat": "1:1"
-      }
-    ]
-  },
-  {
-    "dat": "1-znl-pgz-kolo-12-pregled",
-    "kolo": "12",
-    "stil": "redovi",
-    "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
-    "datum": "SUB 21.11. i NED 22.11.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "Rab",
-        "g": "Vrbovsko",
-        "termin": "SUB 13:00",
-        "rezultat": "1:2"
-      },
-      {
-        "d": "Rikard Benčić",
-        "g": "Lošinj",
-        "termin": "SUB 13:30",
-        "rezultat": "3:5"
-      },
-      {
-        "d": "Omladinac Vrata",
-        "g": "Lovran",
-        "termin": "SUB 14:00",
-        "rezultat": "2:1"
-      },
-      {
-        "d": "Draga",
-        "g": "Risnjak",
-        "termin": "SUB 14:00",
-        "rezultat": "6:2"
-      },
-      {
-        "d": "Goranin",
-        "g": "Mune",
-        "termin": "NED 14:00",
-        "derbi": true,
-        "rezultat": "3:1"
-      },
-      {
-        "d": "Turbina",
-        "g": "Stari grad Rijeka",
-        "termin": "NED 14:00",
-        "rezultat": "ODG."
-      },
-      {
-        "d": "Vihor (B)",
-        "g": "Zamet",
-        "termin": "NED 14:00",
-        "rezultat": "3:0"
-      }
-    ],
-    "ime": "pregled-1-znl-pgz-kolo-12",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "2-znl-pgz-kolo-10-pregled",
-    "kolo": "10",
-    "stil": "redovi",
-    "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
-    "datum": "NED 22.11.2026.",
-    "sat": "Rezultati kola",
-    "utakmice": [
-      {
-        "d": "Željezničar (M)",
-        "g": "Mrkopalj",
-        "termin": "NED 14:00",
-        "derbi": true,
-        "rezultat": "4:6"
-      },
-      {
-        "d": "Polet (Sk)",
-        "g": "Snježnik",
-        "termin": "NED 14:00",
-        "rezultat": "5:0"
-      },
-      {
-        "d": "Gomirje",
-        "g": "Goranka",
-        "termin": "ODGOĐENO",
-        "rezultat": "ODG."
-      }
-    ],
-    "ime": "pregled-2-znl-pgz-kolo-10",
-    "naslov": "Pregled"
-  },
-  {
-    "dat": "3-nl-zapad-kolo-15",
-    "kolo": "15",
-    "stil": "redovi",
-    "oznaka": "3. NL Zapad · sezona 2026/27",
-    "datum": "SUB 28.11.2026.",
-    "sat": "Posljednje kolo jesenskog dijela",
-    "utakmice": [
-      {
-        "d": "Lokomotiva (R)",
-        "g": "Halubjan",
-        "termin": "SUB 13:30"
-      },
-      {
-        "d": "Nehaj",
-        "g": "Pazinka-Pazin",
-        "termin": "SUB 13:30"
-      },
-      {
-        "d": "Pomorac",
-        "g": "Rovinj",
-        "termin": "SUB 16:00"
-      },
-      {
-        "d": "Banjole",
-        "g": "OŠK Omišalj",
-        "termin": "SUB 13:30"
-      },
-      {
-        "d": "Krk",
-        "g": "Buje",
-        "termin": "SUB 13:30"
-      },
-      {
-        "d": "Kraljevica",
-        "g": "Jadran-Poreč",
-        "termin": "SUB 13:30"
-      },
-      {
-        "d": "Crikvenica",
-        "g": "Vinodol",
-        "termin": "SUB 13:30"
-      },
-      {
-        "d": "Rudar (L)",
-        "g": "Naprijed (H)",
-        "termin": "SUB 13:30"
-      }
-    ],
-    "ime": "najava-redovi-3-nl-zapad-kolo-15"
-  },
-  {
-    "dat": "4-nl-ns-rijeka-kolo-13",
-    "kolo": "13",
-    "stil": "redovi",
-    "oznaka": "4. NL NS Rijeka · sezona 2026/27",
-    "datum": "SUB 28.11.2026.",
-    "sat": "Od 13:30 do 16:30",
-    "slobodan": "Medulin 1921",
-    "utakmice": [
-      {
-        "d": "Borac (Ba)",
-        "g": "Rječina",
-        "termin": "SUB 13:30"
-      },
-      {
-        "d": "Klana",
-        "g": "Mladost Fažana",
-        "termin": "SUB 13:30"
-      },
-      {
-        "d": "Ližnjan",
-        "g": "Otočac",
-        "termin": "SUB 13:30"
-      },
-      {
-        "d": "Umag-CC Umago",
-        "g": "Smoljanci",
-        "termin": "SUB 13:30"
-      },
-      {
-        "d": "Funtana",
-        "g": "Žminj",
-        "termin": "SUB 15:30"
-      },
-      {
-        "d": "Štinjan",
-        "g": "Cres",
-        "termin": "SUB 16:30"
-      }
-    ]
-  }
-]
+{
+  "_napomena": "Podaci za slike najava kola. Kratice su troslovne oznake klubova (nema pravih grbova, vidi PROCITAJ.md).",
+  "kola": [
+    {
+      "dat": "3-nl-zapad-kolo-1",
+      "kolo": "1",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "podnaslov": "Osam utakmica otvara novu sezonu trećeg ranga",
+      "datum": "SUB 29.08.2026.",
+      "sat": "Sve utakmice u 17:30",
+      "utakmice": [
+        {
+          "d": "Pazinka-Pazin",
+          "dk": "PAZ",
+          "g": "Pomorac",
+          "gk": "POM"
+        },
+        {
+          "d": "Buje",
+          "dk": "BUJ",
+          "g": "Lokomotiva",
+          "gk": "LOK"
+        },
+        {
+          "d": "Naprijed",
+          "dk": "NAP",
+          "g": "Kraljevica",
+          "gk": "KRA",
+          "derbi": true
+        },
+        {
+          "d": "Rovinj",
+          "dk": "ROV",
+          "g": "Vinodol",
+          "gk": "VIN"
+        },
+        {
+          "d": "Jadran-Poreč",
+          "dk": "JAD",
+          "g": "Nehaj",
+          "gk": "NEH"
+        },
+        {
+          "d": "Crikvenica",
+          "dk": "CRI",
+          "g": "Krk",
+          "gk": "KRK"
+        },
+        {
+          "d": "OŠK Omišalj",
+          "dk": "OMI",
+          "g": "Rudar",
+          "gk": "RUD"
+        },
+        {
+          "d": "Halubjan",
+          "dk": "HAL",
+          "g": "Banjole",
+          "gk": "BAN"
+        }
+      ]
+    },
+    {
+      "_napomena": "NK Novalja je 02.09.2026. napustila natjecanje, pa je njezina utakmica s Otočcem maknuta, a liga ima 13 klubova. Smoljanci Sloboda su domaćini Medulinu, kako stoji na rasporedu.",
+      "dat": "4-nl-ns-rijeka-kolo-1",
+      "kolo": "1",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "podnaslov": "Šest utakmica otvara novu sezonu četvrtog ranga",
+      "datum": "PET 04.09. i SUB 05.09.2026.",
+      "sat": "Sve utakmice u 17:30",
+      "utakmice": [
+        {
+          "d": "Žminj",
+          "dk": "ŽMI",
+          "g": "Ližnjan",
+          "gk": "LIŽ"
+        },
+        {
+          "d": "Borac",
+          "dk": "BOR",
+          "g": "Klana",
+          "gk": "KLA"
+        },
+        {
+          "d": "Umag-CC Umago",
+          "dk": "UMA",
+          "g": "Štinjan",
+          "gk": "ŠTI"
+        },
+        {
+          "d": "Cres",
+          "dk": "CRE",
+          "g": "Rječina",
+          "gk": "RJE"
+        },
+        {
+          "d": "Mladost Fažana",
+          "dk": "FAŽ",
+          "g": "Funtana",
+          "gk": "FUN"
+        },
+        {
+          "d": "Smoljanci",
+          "dk": "SMO",
+          "g": "Medulin 1921",
+          "gk": "MED"
+        }
+      ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-1",
+      "kolo": "1",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "podnaslov": "Sedam utakmica kroz pet dana otvara županijsku ligu",
+      "datum": "SUB 05.09. do SRI 09.09.2026.",
+      "sat": "Vikendom u 17:00, srijedom u 17:30",
+      "utakmice": [
+        {
+          "d": "Rab",
+          "dk": "RAB",
+          "g": "Vihor (B)",
+          "gk": "VIH"
+        },
+        {
+          "d": "Rikard Benčić",
+          "dk": "BEN",
+          "g": "Mune",
+          "gk": "MUN"
+        },
+        {
+          "d": "Turbina",
+          "dk": "TUR",
+          "g": "Zamet",
+          "gk": "ZAM"
+        },
+        {
+          "d": "Goranin",
+          "dk": "GOR",
+          "g": "Stari grad Rijeka",
+          "gk": "SGR"
+        },
+        {
+          "d": "Risnjak",
+          "dk": "RIS",
+          "g": "Lovran",
+          "gk": "LOV"
+        },
+        {
+          "d": "Lošinj",
+          "dk": "LOŠ",
+          "g": "Draga",
+          "gk": "DRA"
+        },
+        {
+          "d": "Omladinac Vrata",
+          "dk": "OML",
+          "g": "Vrbovsko",
+          "gk": "VRB"
+        }
+      ]
+    },
+    {
+      "dat": "2-znl-pgz-kolo-1",
+      "kolo": "1",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "podnaslov": "Tri utakmice otvaraju sezonu u ligi sa šest klubova",
+      "datum": "NED 06.09.2026.",
+      "sat": "Sve utakmice u 17:00",
+      "utakmice": [
+        {
+          "d": "Gomirje",
+          "dk": "GOM",
+          "g": "Polet (Sk)",
+          "gk": "POL"
+        },
+        {
+          "d": "Željezničar (M)",
+          "dk": "ŽEL",
+          "g": "Goranka",
+          "gk": "GOR"
+        },
+        {
+          "d": "Snježnik",
+          "dk": "SNJ",
+          "g": "Mrkopalj",
+          "gk": "MRK"
+        }
+      ]
+    },
+    {
+      "dat": "3-nl-zapad-kolo-2",
+      "kolo": "2",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "podnaslov": "Kolo kroz dva dana, s dva derbija",
+      "datum": "PET 04.09. i SUB 05.09.2026.",
+      "sat": "Sve utakmice u 17:30",
+      "utakmice": [
+        {
+          "d": "Lokomotiva",
+          "dk": "LOK",
+          "g": "Crikvenica",
+          "gk": "CRI",
+          "derbi": true
+        },
+        {
+          "d": "Pomorac",
+          "dk": "POM",
+          "g": "Jadran-Poreč",
+          "gk": "JAD",
+          "derbi": true
+        },
+        {
+          "d": "Kraljevica",
+          "dk": "KRA",
+          "g": "OŠK Omišalj",
+          "gk": "OMI"
+        },
+        {
+          "d": "Rovinj",
+          "dk": "ROV",
+          "g": "Pazinka-Pazin",
+          "gk": "PAZ"
+        },
+        {
+          "d": "Nehaj",
+          "dk": "NEH",
+          "g": "Naprijed",
+          "gk": "NAP"
+        },
+        {
+          "d": "Vinodol",
+          "dk": "VIN",
+          "g": "Krk",
+          "gk": "KRK"
+        },
+        {
+          "d": "Rudar",
+          "dk": "RUD",
+          "g": "Halubjan",
+          "gk": "HAL"
+        },
+        {
+          "d": "Banjole",
+          "dk": "BAN",
+          "g": "Buje",
+          "gk": "BUJ"
+        }
+      ]
+    },
+    {
+      "dat": "3-nl-zapad-kolo-6",
+      "kolo": "6",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 26.09. i UTO 29.09.2026.",
+      "sat": "Satnica stoji uz svaki par",
+      "utakmice": [
+        {
+          "d": "Nehaj",
+          "g": "Crikvenica",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Rudar",
+          "g": "Lokomotiva",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Kraljevica",
+          "g": "Krk",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Pomorac",
+          "g": "Buje",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Rovinj",
+          "g": "Halubjan",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Pazinka-Pazin",
+          "g": "OŠK Omišalj",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Jadran-Poreč",
+          "g": "Naprijed",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Vinodol",
+          "g": "Banjole",
+          "termin": "UTO 16:30"
+        }
+      ],
+      "grbovi": false
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-4",
+      "kolo": "4",
+      "stil": "redovi",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 26.09. i UTO 29.09.2026.",
+      "sat": "Satnica stoji uz svaki par",
+      "slobodan": "Borac (Ba)",
+      "utakmice": [
+        {
+          "d": "Cres",
+          "g": "Otočac",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Rječina",
+          "g": "Funtana",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Smoljanci",
+          "g": "Mladost Fažana",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Štinjan",
+          "g": "Žminj",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Umag-CC Umago",
+          "g": "Medulin 1921",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Ližnjan",
+          "g": "Klana",
+          "termin": "UTO 17:00"
+        }
+      ],
+      "grbovi": false
+    },
+    {
+      "dat": "1-znl-pgz-kolo-4",
+      "kolo": "4",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 26.09. i NED 27.09.2026.",
+      "sat": "Satnica stoji uz svaki par",
+      "utakmice": [
+        {
+          "d": "Lovran",
+          "g": "Draga",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "Zamet",
+          "g": "Risnjak",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Vihor (B)",
+          "g": "Mune",
+          "termin": "NED 16:00"
+        },
+        {
+          "d": "Stari grad Rijeka",
+          "g": "Lošinj",
+          "termin": "NED 16:00"
+        },
+        {
+          "d": "Vrbovsko",
+          "g": "Rikard Benčić",
+          "termin": "NED 16:00"
+        },
+        {
+          "d": "Turbina",
+          "g": "Omladinac Vrata",
+          "termin": "NED 16:00"
+        },
+        {
+          "d": "Rab",
+          "g": "Goranin",
+          "termin": "ODGOĐENO"
+        }
+      ],
+      "grbovi": false
+    },
+    {
+      "dat": "2-znl-pgz-kolo-4",
+      "kolo": "4",
+      "stil": "redovi",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "NED 27.09.2026.",
+      "sat": "Sve utakmice u 16:00",
+      "utakmice": [
+        {
+          "d": "Polet (Sk)",
+          "g": "Goranka",
+          "termin": "NED 16:00"
+        },
+        {
+          "d": "Gomirje",
+          "g": "Mrkopalj",
+          "termin": "NED 16:00"
+        },
+        {
+          "d": "Željezničar (M)",
+          "g": "Snježnik",
+          "termin": "NED 16:00"
+        }
+      ],
+      "grbovi": false
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-4-pregled",
+      "ime": "pregled-4-nl-ns-rijeka-kolo-4",
+      "kolo": "4",
+      "stil": "redovi",
+      "naslov": "Pregled",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 26.09. i UTO 29.09.2026.",
+      "sat": "Rezultati kola",
+      "slobodan": "Borac (Ba)",
+      "utakmice": [
+        {
+          "d": "Cres",
+          "g": "Otočac",
+          "termin": "SUB 16:00",
+          "rezultat": "3:1"
+        },
+        {
+          "d": "Rječina",
+          "g": "Funtana",
+          "termin": "SUB 16:30",
+          "rezultat": "1:2"
+        },
+        {
+          "d": "Smoljanci",
+          "g": "Mladost Fažana",
+          "termin": "SUB 16:30",
+          "rezultat": "4:1"
+        },
+        {
+          "d": "Štinjan",
+          "g": "Žminj",
+          "termin": "SUB 16:30",
+          "rezultat": "0:1"
+        },
+        {
+          "d": "Umag-CC Umago",
+          "g": "Medulin 1921",
+          "termin": "SUB 16:30",
+          "rezultat": "2:0"
+        },
+        {
+          "d": "Ližnjan",
+          "g": "Klana",
+          "termin": "UTO 17:00"
+        }
+      ],
+      "grbovi": false
+    },
+    {
+      "dat": "1-znl-pgz-kolo-4-pregled",
+      "ime": "pregled-1-znl-pgz-kolo-4",
+      "kolo": "4",
+      "stil": "redovi",
+      "naslov": "Pregled",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 26.09. i NED 27.09.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Lovran",
+          "g": "Draga",
+          "termin": "SUB 15:00",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Zamet",
+          "g": "Risnjak",
+          "termin": "SUB 16:00",
+          "rezultat": "1:2"
+        },
+        {
+          "d": "Vihor (B)",
+          "g": "Mune",
+          "termin": "NED 16:00"
+        },
+        {
+          "d": "Stari grad Rijeka",
+          "g": "Lošinj",
+          "termin": "NED 16:00"
+        },
+        {
+          "d": "Vrbovsko",
+          "g": "Rikard Benčić",
+          "termin": "NED 16:00"
+        },
+        {
+          "d": "Turbina",
+          "g": "Omladinac Vrata",
+          "termin": "NED 16:00"
+        },
+        {
+          "d": "Rab",
+          "g": "Goranin",
+          "termin": "ODGOĐENO"
+        }
+      ],
+      "grbovi": false
+    },
+    {
+      "dat": "2-znl-pgz-kolo-4-pregled",
+      "ime": "pregled-2-znl-pgz-kolo-4",
+      "kolo": "4",
+      "stil": "redovi",
+      "naslov": "Pregled",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "NED 27.09.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Polet (Sk)",
+          "g": "Goranka",
+          "termin": "NED 16:00",
+          "rezultat": "1:4"
+        },
+        {
+          "d": "Gomirje",
+          "g": "Mrkopalj",
+          "termin": "NED 16:00",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Željezničar (M)",
+          "g": "Snježnik",
+          "termin": "NED 16:00",
+          "rezultat": "7:0"
+        }
+      ],
+      "grbovi": false
+    },
+    {
+      "dat": "3-nl-zapad-kolo-6-znakovi",
+      "kolo": "6",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 26.09. i UTO 29.09.2026.",
+      "sat": "Satnica stoji uz svaki par",
+      "utakmice": [
+        {
+          "d": "Nehaj",
+          "g": "Crikvenica",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Rudar",
+          "g": "Lokomotiva",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Kraljevica",
+          "g": "Krk",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Pomorac",
+          "g": "Buje",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Rovinj",
+          "g": "Halubjan",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Pazinka-Pazin",
+          "g": "OŠK Omišalj",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Jadran-Poreč",
+          "g": "Naprijed",
+          "termin": "SUB 16:30"
+        },
+        {
+          "d": "Vinodol",
+          "g": "Banjole",
+          "termin": "UTO 16:30"
+        }
+      ],
+      "ime": "ogled-najava-s-grbovima",
+      "grbovi": true
+    },
+    {
+      "dat": "utakmice-29-09-2026",
+      "ime": "pregled-utakmica-29-09-2026",
+      "stil": "redovi",
+      "naslov": "Pregled utakmica",
+      "naslovKurziv": "29. rujna",
+      "oznaka": "Lokal-Arena · tri natjecanja",
+      "datum": "UTO 29.09.2026.",
+      "sat": "Rezultati dana",
+      "utakmice": [
+        {
+          "d": "Ližnjan",
+          "g": "Klana",
+          "rezultat": "1:0",
+          "natjecanje": "4. NL NS Rijeka"
+        },
+        {
+          "d": "Vinodol",
+          "g": "Banjole",
+          "rezultat": "2:2",
+          "natjecanje": "3. NL Zapad"
+        },
+        {
+          "d": "Rab",
+          "g": "Krk",
+          "rezultat": "1:3",
+          "natjecanje": "Kup 1/16 finala"
+        }
+      ]
+    },
+    {
+      "dat": "3-nl-zapad-kolo-7",
+      "kolo": "7",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 03.10.2026.",
+      "sat": "Sve utakmice u 15:00",
+      "utakmice": [
+        {
+          "d": "Naprijed",
+          "g": "Vinodol",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "OŠK Omišalj",
+          "g": "Jadran-Poreč",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "Halubjan",
+          "g": "Pazinka-Pazin",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "Buje",
+          "g": "Rovinj",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "Crikvenica",
+          "g": "Pomorac",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "Krk",
+          "g": "Nehaj",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "Lokomotiva",
+          "g": "Kraljevica",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "Banjole",
+          "g": "Rudar",
+          "termin": "SUB 15:00"
+        }
+      ]
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-5",
+      "kolo": "5",
+      "stil": "redovi",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 03.10.2026.",
+      "sat": "Sve utakmice u 15:00",
+      "slobodan": "Klana",
+      "utakmice": [
+        {
+          "d": "Medulin 1921",
+          "g": "Rječina",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "Otočac",
+          "g": "Umag-CC Umago",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "Žminj",
+          "g": "Cres",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "Mladost Fažana",
+          "g": "Štinjan",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "Borac (Ba)",
+          "g": "Smoljanci",
+          "termin": "SUB 15:00"
+        },
+        {
+          "d": "Funtana",
+          "g": "Ližnjan",
+          "termin": "SUB 15:00"
+        }
+      ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-5",
+      "kolo": "5",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 03.10. i NED 04.10.2026.",
+      "sat": "Satnica stoji uz svaki par",
+      "utakmice": [
+        {
+          "d": "Omladinac Vrata",
+          "g": "Vihor (B)",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Draga",
+          "g": "Stari grad Rijeka",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Goranin",
+          "g": "Turbina",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Lošinj",
+          "g": "Vrbovsko",
+          "termin": "NED 15:30"
+        },
+        {
+          "d": "Risnjak",
+          "g": "Rab",
+          "termin": "NED 16:00"
+        },
+        {
+          "d": "Rikard Benčić",
+          "g": "Zamet",
+          "termin": "NED 16:00"
+        },
+        {
+          "d": "Mune",
+          "g": "Lovran",
+          "termin": "NED 16:00"
+        }
+      ]
+    },
+    {
+      "dat": "2-znl-pgz-kolo-5",
+      "kolo": "5",
+      "stil": "redovi",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "NED 04.10.2026.",
+      "sat": "Sve utakmice u 16:00",
+      "utakmice": [
+        {
+          "d": "Snježnik",
+          "g": "Polet (Sk)",
+          "termin": "NED 16:00"
+        },
+        {
+          "d": "Mrkopalj",
+          "g": "Željezničar (M)",
+          "termin": "NED 16:00"
+        },
+        {
+          "d": "Goranka",
+          "g": "Gomirje",
+          "termin": "NED 16:00"
+        }
+      ]
+    },
+    {
+      "dat": "3-nl-zapad-kolo-7-pregled",
+      "kolo": "7",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 03.10.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Naprijed",
+          "g": "Vinodol",
+          "termin": "SUB 15:00",
+          "rezultat": "3:1"
+        },
+        {
+          "d": "OŠK Omišalj",
+          "g": "Jadran-Poreč",
+          "termin": "SUB 15:00",
+          "rezultat": "0:2"
+        },
+        {
+          "d": "Halubjan",
+          "g": "Pazinka-Pazin",
+          "termin": "SUB 15:00",
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Buje",
+          "g": "Rovinj",
+          "termin": "SUB 15:00",
+          "rezultat": "0:0"
+        },
+        {
+          "d": "Crikvenica",
+          "g": "Pomorac",
+          "termin": "SUB 15:00",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Krk",
+          "g": "Nehaj",
+          "termin": "SUB 15:00",
+          "rezultat": "1:2"
+        },
+        {
+          "d": "Lokomotiva",
+          "g": "Kraljevica",
+          "termin": "SUB 15:00",
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Banjole",
+          "g": "Rudar",
+          "termin": "SUB 15:00",
+          "rezultat": "3:0"
+        }
+      ],
+      "ime": "pregled-3-nl-zapad-kolo-7",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-5-pregled",
+      "kolo": "5",
+      "stil": "redovi",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 03.10.2026.",
+      "sat": "Rezultati kola",
+      "slobodan": "Klana",
+      "utakmice": [
+        {
+          "d": "Medulin 1921",
+          "g": "Rječina",
+          "termin": "SUB 15:00",
+          "rezultat": "2:0"
+        },
+        {
+          "d": "Otočac",
+          "g": "Umag-CC Umago",
+          "termin": "SUB 15:00",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Žminj",
+          "g": "Cres",
+          "termin": "SUB 15:00",
+          "rezultat": "1:2"
+        },
+        {
+          "d": "Mladost Fažana",
+          "g": "Štinjan",
+          "termin": "SUB 15:00",
+          "rezultat": "0:1"
+        },
+        {
+          "d": "Borac (Ba)",
+          "g": "Smoljanci",
+          "termin": "SUB 15:00",
+          "rezultat": "2:0"
+        },
+        {
+          "d": "Funtana",
+          "g": "Ližnjan",
+          "termin": "SUB 15:00",
+          "rezultat": "1:2"
+        }
+      ],
+      "ime": "pregled-4-nl-ns-rijeka-kolo-5",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "1-znl-pgz-kolo-5-pregled",
+      "kolo": "5",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 03.10. i NED 04.10.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Omladinac Vrata",
+          "g": "Vihor (B)",
+          "termin": "SUB 16:00",
+          "rezultat": "3:3"
+        },
+        {
+          "d": "Draga",
+          "g": "Stari grad Rijeka",
+          "termin": "SUB 16:00",
+          "rezultat": "2:3"
+        },
+        {
+          "d": "Goranin",
+          "g": "Turbina",
+          "termin": "NED 14:00",
+          "rezultat": "2:0"
+        },
+        {
+          "d": "Lošinj",
+          "g": "Vrbovsko",
+          "termin": "NED 15:30",
+          "rezultat": "3:3"
+        },
+        {
+          "d": "Risnjak",
+          "g": "Rab",
+          "termin": "NED 16:00",
+          "rezultat": "2:5"
+        },
+        {
+          "d": "Rikard Benčić",
+          "g": "Zamet",
+          "termin": "NED 16:00",
+          "rezultat": "1:5"
+        },
+        {
+          "d": "Mune",
+          "g": "Lovran",
+          "termin": "NED 16:00",
+          "rezultat": "3:1"
+        }
+      ],
+      "ime": "pregled-1-znl-pgz-kolo-5",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "2-znl-pgz-kolo-5-pregled",
+      "kolo": "5",
+      "stil": "redovi",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "NED 04.10.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Snježnik",
+          "g": "Polet (Sk)",
+          "termin": "NED 16:00",
+          "rezultat": "2:4"
+        },
+        {
+          "d": "Mrkopalj",
+          "g": "Željezničar (M)",
+          "termin": "NED 16:00",
+          "rezultat": "3:4"
+        },
+        {
+          "d": "Goranka",
+          "g": "Gomirje",
+          "termin": "NED 16:00",
+          "rezultat": "2:0"
+        }
+      ],
+      "ime": "pregled-2-znl-pgz-kolo-5",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "kup-1-8-finala-2627",
+      "ime": "kup-1-8-finala-2627",
+      "stil": "redovi",
+      "naslov": "Kup",
+      "naslovKurziv": "1/8 finala",
+      "oznaka": "Hrvatski nogometni kup · 2026/27",
+      "datum": "6. DO 14.10.2026.",
+      "sat": "Rezultati osmine finala",
+      "utakmice": [
+        {
+          "d": "Rječina",
+          "g": "Grobničan",
+          "termin": "UTO 06.10.",
+          "rezultat": "1:2"
+        },
+        {
+          "d": "Orijent",
+          "g": "Lokomotiva",
+          "termin": "SRI 07.10.",
+          "rezultat": "0:1"
+        },
+        {
+          "d": "Halubjan",
+          "g": "Opatija",
+          "termin": "ODGOĐENO"
+        },
+        {
+          "d": "OŠK Omišalj",
+          "g": "Krk",
+          "termin": "UTO 13.10.",
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Crikvenica",
+          "g": "Vinodol",
+          "termin": "SRI 14.10.",
+          "rezultat": "4:0"
+        }
+      ]
+    },
+    {
+      "dat": "3-nl-zapad-kolo-8",
+      "kolo": "8",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 10.10.2026.",
+      "sat": "Sve utakmice u 16:00",
+      "utakmice": [
+        {
+          "d": "Nehaj",
+          "g": "Lokomotiva",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Pomorac",
+          "g": "Krk",
+          "termin": "SUB 16:00",
+          "derbi": true
+        },
+        {
+          "d": "Pazinka-Pazin",
+          "g": "Buje",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Kraljevica",
+          "g": "Banjole",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Jadran-Poreč",
+          "g": "Halubjan",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Rovinj",
+          "g": "Crikvenica",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Vinodol",
+          "g": "Rudar",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Naprijed",
+          "g": "OŠK Omišalj",
+          "termin": "SUB 16:00"
+        }
+      ]
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-6",
+      "kolo": "6",
+      "stil": "redovi",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 10.10.2026.",
+      "sat": "Sve utakmice u 16:00",
+      "slobodan": "Funtana",
+      "utakmice": [
+        {
+          "d": "Rječina",
+          "g": "Ližnjan",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Smoljanci",
+          "g": "Klana",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Štinjan",
+          "g": "Borac (Ba)",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Umag-CC Umago",
+          "g": "Žminj",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Medulin 1921",
+          "g": "Otočac",
+          "termin": "SUB 16:00"
+        }
+      ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-6",
+      "kolo": "6",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 10.10. do UTO 13.10.2026.",
+      "sat": "Vikendom u 15:30, utorak u 18:30",
+      "utakmice": [
+        {
+          "d": "Rab",
+          "g": "Rikard Benčić",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Omladinac Vrata",
+          "g": "Goranin",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Vihor (B)",
+          "g": "Lovran",
+          "termin": "NED 15:30"
+        },
+        {
+          "d": "Stari grad Rijeka",
+          "g": "Mune",
+          "termin": "NED 15:30",
+          "derbi": true
+        },
+        {
+          "d": "Vrbovsko",
+          "g": "Draga",
+          "termin": "NED 15:30"
+        },
+        {
+          "d": "Turbina",
+          "g": "Risnjak",
+          "termin": "NED 15:30"
+        },
+        {
+          "d": "Zamet",
+          "g": "Lošinj",
+          "termin": "UTO 18:30"
+        }
+      ]
+    },
+    {
+      "dat": "2-znl-pgz-kolo-6",
+      "kolo": "6",
+      "stil": "redovi",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "NED 11.10.2026.",
+      "sat": "Sve utakmice u 15:30",
+      "utakmice": [
+        {
+          "d": "Polet (Sk)",
+          "g": "Gomirje",
+          "termin": "NED 15:30"
+        },
+        {
+          "d": "Goranka",
+          "g": "Željezničar (M)",
+          "termin": "NED 15:30"
+        },
+        {
+          "d": "Mrkopalj",
+          "g": "Snježnik",
+          "termin": "NED 15:30"
+        }
+      ]
+    },
+    {
+      "dat": "3-nl-zapad-kolo-8-pregled",
+      "kolo": "8",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 10.10.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Nehaj",
+          "g": "Lokomotiva",
+          "termin": "SUB 16:00",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Pomorac",
+          "g": "Krk",
+          "termin": "SUB 16:00",
+          "derbi": true,
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Pazinka-Pazin",
+          "g": "Buje",
+          "termin": "SUB 16:00",
+          "rezultat": "0:0"
+        },
+        {
+          "d": "Kraljevica",
+          "g": "Banjole",
+          "termin": "SUB 16:00",
+          "rezultat": "0:2"
+        },
+        {
+          "d": "Jadran-Poreč",
+          "g": "Halubjan",
+          "termin": "SUB 16:00",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Rovinj",
+          "g": "Crikvenica",
+          "termin": "SUB 16:00",
+          "rezultat": "4:0"
+        },
+        {
+          "d": "Vinodol",
+          "g": "Rudar",
+          "termin": "SUB 16:00",
+          "rezultat": "5:1"
+        },
+        {
+          "d": "Naprijed",
+          "g": "OŠK Omišalj",
+          "termin": "SUB 16:00",
+          "rezultat": "2:3"
+        }
+      ],
+      "ime": "pregled-3-nl-zapad-kolo-8",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-6-pregled",
+      "kolo": "6",
+      "stil": "redovi",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 10.10.2026.",
+      "sat": "Rezultati kola",
+      "slobodan": "Funtana",
+      "utakmice": [
+        {
+          "d": "Štinjan",
+          "g": "Borac (Ba)",
+          "termin": "SUB 16:00",
+          "rezultat": "4:0"
+        },
+        {
+          "d": "Rječina",
+          "g": "Ližnjan",
+          "termin": "SUB 16:00",
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Medulin 1921",
+          "g": "Otočac",
+          "termin": "SUB 16:00",
+          "rezultat": "3:1"
+        },
+        {
+          "d": "Umag-CC Umago",
+          "g": "Žminj",
+          "termin": "SUB 16:00",
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Smoljanci",
+          "g": "Klana",
+          "termin": "SUB 16:00",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Cres",
+          "g": "Mladost Fažana",
+          "termin": "SUB 05.12.",
+          "rezultat": "PREMJEŠTENO"
+        }
+      ],
+      "ime": "pregled-4-nl-ns-rijeka-kolo-6",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "1-znl-pgz-kolo-6-pregled",
+      "kolo": "6",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 10.10. do UTO 13.10.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Rab",
+          "g": "Rikard Benčić",
+          "termin": "SUB 15:30",
+          "rezultat": "0:0"
+        },
+        {
+          "d": "Omladinac Vrata",
+          "g": "Goranin",
+          "termin": "SUB 15:30",
+          "rezultat": "2:0"
+        },
+        {
+          "d": "Vihor (B)",
+          "g": "Lovran",
+          "termin": "NED 15:30",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Stari grad Rijeka",
+          "g": "Mune",
+          "termin": "NED 15:30",
+          "rezultat": "2:4",
+          "derbi": true
+        },
+        {
+          "d": "Vrbovsko",
+          "g": "Draga",
+          "termin": "NED 15:30",
+          "rezultat": "3:0"
+        },
+        {
+          "d": "Turbina",
+          "g": "Risnjak",
+          "termin": "NED 15:30",
+          "rezultat": "4:2"
+        },
+        {
+          "d": "Zamet",
+          "g": "Lošinj",
+          "termin": "UTO 18:30"
+        }
+      ],
+      "ime": "pregled-1-znl-pgz-kolo-6",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "2-znl-pgz-kolo-6-pregled",
+      "kolo": "6",
+      "stil": "redovi",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "NED 11.10.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Polet (Sk)",
+          "g": "Gomirje",
+          "termin": "NED 15:30",
+          "rezultat": "8:0"
+        },
+        {
+          "d": "Goranka",
+          "g": "Željezničar (M)",
+          "termin": "NED 15:30",
+          "rezultat": "0:2"
+        },
+        {
+          "d": "Mrkopalj",
+          "g": "Snježnik",
+          "termin": "NED 15:30",
+          "rezultat": "10:1"
+        }
+      ],
+      "ime": "pregled-2-znl-pgz-kolo-6",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "3-nl-zapad-kolo-9",
+      "kolo": "9",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 17.10.2026.",
+      "sat": "Subota u 14:00 i 15:30",
+      "utakmice": [
+        {
+          "d": "Crikvenica",
+          "g": "Pazinka-Pazin",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Lokomotiva",
+          "g": "Pomorac",
+          "termin": "SUB 15:30",
+          "derbi": true
+        },
+        {
+          "d": "Buje",
+          "g": "Jadran-Poreč",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Krk",
+          "g": "Rovinj",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Halubjan",
+          "g": "Naprijed",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Banjole",
+          "g": "Nehaj",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Rudar",
+          "g": "Kraljevica",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "OŠK Omišalj",
+          "g": "Vinodol",
+          "termin": "SUB 05.12."
+        }
+      ]
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-7",
+      "kolo": "7",
+      "stil": "redovi",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 17.10.2026.",
+      "sat": "Subota u 15:30 i 16:00",
+      "slobodan": "Ližnjan",
+      "utakmice": [
+        {
+          "d": "Borac (Ba)",
+          "g": "Cres",
+          "termin": "SUB 16:00",
+          "derbi": true
+        },
+        {
+          "d": "Otočac",
+          "g": "Rječina",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Žminj",
+          "g": "Medulin 1921",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Mladost Fažana",
+          "g": "Umag-CC Umago",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Klana",
+          "g": "Štinjan",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Funtana",
+          "g": "Smoljanci",
+          "termin": "SUB 15:30"
+        }
+      ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-7",
+      "kolo": "7",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 17.10. i NED 18.10.2026.",
+      "sat": "U 15:30, Lošinj - Rab u 16:00",
+      "utakmice": [
+        {
+          "d": "Rikard Benčić",
+          "g": "Turbina",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Draga",
+          "g": "Zamet",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Lovran",
+          "g": "Stari grad Rijeka",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Goranin",
+          "g": "Vihor (B)",
+          "termin": "NED 15:30"
+        },
+        {
+          "d": "Omladinac Vrata",
+          "g": "Risnjak",
+          "termin": "NED 15:30"
+        },
+        {
+          "d": "Mune",
+          "g": "Vrbovsko",
+          "termin": "NED 15:30"
+        },
+        {
+          "d": "Lošinj",
+          "g": "Rab",
+          "termin": "NED 16:00",
+          "derbi": true
+        }
+      ]
+    },
+    {
+      "dat": "2-znl-pgz-kolo-7",
+      "kolo": "7",
+      "stil": "redovi",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "NED 18.10.2026.",
+      "sat": "Sve utakmice u 15:30",
+      "utakmice": [
+        {
+          "d": "Mrkopalj",
+          "g": "Polet (Sk)",
+          "termin": "NED 15:30"
+        },
+        {
+          "d": "Snježnik",
+          "g": "Goranka",
+          "termin": "NED 15:30"
+        },
+        {
+          "d": "Željezničar (M)",
+          "g": "Gomirje",
+          "termin": "NED 15:30"
+        }
+      ]
+    },
+    {
+      "dat": "3-nl-zapad-kolo-9-pregled",
+      "kolo": "9",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 17.10.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Crikvenica",
+          "g": "Pazinka-Pazin",
+          "termin": "SUB 14:00",
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Lokomotiva",
+          "g": "Pomorac",
+          "termin": "SUB 15:30",
+          "derbi": true,
+          "rezultat": "5:1"
+        },
+        {
+          "d": "Buje",
+          "g": "Jadran-Poreč",
+          "termin": "SUB 15:30",
+          "rezultat": "0:1"
+        },
+        {
+          "d": "Krk",
+          "g": "Rovinj",
+          "termin": "SUB 15:30",
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Halubjan",
+          "g": "Naprijed",
+          "termin": "SUB 15:30",
+          "rezultat": "1:2"
+        },
+        {
+          "d": "Banjole",
+          "g": "Nehaj",
+          "termin": "SUB 15:30",
+          "rezultat": "1:1"
+        },
+        {
+          "d": "Rudar",
+          "g": "Kraljevica",
+          "termin": "SUB 15:30",
+          "rezultat": "0:0"
+        },
+        {
+          "d": "OŠK Omišalj",
+          "g": "Vinodol",
+          "termin": "SUB 05.12."
+        }
+      ],
+      "ime": "pregled-3-nl-zapad-kolo-9",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-7-pregled",
+      "ime": "pregled-4-nl-ns-rijeka-kolo-7",
+      "kolo": "7",
+      "stil": "redovi",
+      "naslov": "Pregled",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 17.10.2026.",
+      "sat": "Rezultati kola",
+      "slobodan": "Ližnjan",
+      "utakmice": [
+        {
+          "d": "Borac (Ba)",
+          "g": "Cres",
+          "termin": "SUB 16:00",
+          "rezultat": "1:2",
+          "derbi": true
+        },
+        {
+          "d": "Mladost Fažana",
+          "g": "Umag-CC Umago",
+          "termin": "SUB 15:30",
+          "rezultat": "5:1"
+        },
+        {
+          "d": "Žminj",
+          "g": "Medulin 1921",
+          "termin": "SUB 15:30",
+          "rezultat": "4:0"
+        },
+        {
+          "d": "Otočac",
+          "g": "Rječina",
+          "termin": "SUB 15:30",
+          "rezultat": "3:2"
+        },
+        {
+          "d": "Funtana",
+          "g": "Smoljanci",
+          "termin": "SUB 17:30",
+          "rezultat": "2:0"
+        },
+        {
+          "d": "Klana",
+          "g": "Štinjan",
+          "termin": "SUB 15:30",
+          "rezultat": "0:2"
+        }
+      ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-7-pregled",
+      "kolo": "7",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 17.10. i NED 18.10.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Rikard Benčić",
+          "g": "Turbina",
+          "termin": "SUB 15:30",
+          "rezultat": "0:3"
+        },
+        {
+          "d": "Draga",
+          "g": "Zamet",
+          "termin": "SUB 15:30",
+          "rezultat": "3:1"
+        },
+        {
+          "d": "Lovran",
+          "g": "Stari grad Rijeka",
+          "termin": "SUB 15:30",
+          "rezultat": "1:2"
+        },
+        {
+          "d": "Goranin",
+          "g": "Vihor (B)",
+          "termin": "NED 15:30",
+          "rezultat": "6:0"
+        },
+        {
+          "d": "Omladinac Vrata",
+          "g": "Risnjak",
+          "termin": "NED 15:30",
+          "rezultat": "1:1"
+        },
+        {
+          "d": "Mune",
+          "g": "Vrbovsko",
+          "termin": "NED 15:30",
+          "rezultat": "5:3"
+        },
+        {
+          "d": "Lošinj",
+          "g": "Rab",
+          "termin": "NED 16:00",
+          "derbi": true,
+          "rezultat": "2:1"
+        }
+      ],
+      "ime": "pregled-1-znl-pgz-kolo-7",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "2-znl-pgz-kolo-7-pregled",
+      "kolo": "7",
+      "stil": "redovi",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "NED 18.10.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Mrkopalj",
+          "g": "Polet (Sk)",
+          "termin": "NED 15:30",
+          "rezultat": "4:1"
+        },
+        {
+          "d": "Snježnik",
+          "g": "Goranka",
+          "termin": "NED 15:30",
+          "rezultat": "2:3"
+        },
+        {
+          "d": "Željezničar (M)",
+          "g": "Gomirje",
+          "termin": "NED 15:30",
+          "rezultat": "0:2"
+        }
+      ],
+      "ime": "pregled-2-znl-pgz-kolo-7",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "3-nl-zapad-kolo-10",
+      "kolo": "10",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 24.10.2026.",
+      "sat": "Sve utakmice u 15:30",
+      "utakmice": [
+        {
+          "d": "Vinodol",
+          "g": "Kraljevica",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Nehaj",
+          "g": "Rudar",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Pomorac",
+          "g": "Banjole",
+          "termin": "SUB 15:30",
+          "derbi": true
+        },
+        {
+          "d": "Rovinj",
+          "g": "Lokomotiva",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Pazinka-Pazin",
+          "g": "Krk",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Jadran-Poreč",
+          "g": "Crikvenica",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Naprijed",
+          "g": "Buje",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "OŠK Omišalj",
+          "g": "Halubjan",
+          "termin": "SUB 15:30"
+        }
+      ]
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-8",
+      "kolo": "8",
+      "stil": "redovi",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 24.10.2026.",
+      "sat": "Sve utakmice u 15:30",
+      "slobodan": "Rječina",
+      "utakmice": [
+        {
+          "d": "Umag-CC Umago",
+          "g": "Borac (Ba)",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Otočac",
+          "g": "Žminj",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Smoljanci",
+          "g": "Ližnjan",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Cres",
+          "g": "Klana",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Štinjan",
+          "g": "Funtana",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Medulin 1921",
+          "g": "Mladost Fažana",
+          "termin": "SUB 15:30"
+        }
+      ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-8",
+      "kolo": "8",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 24.10. i NED 25.10.2026.",
+      "sat": "Subota u 15:30, nedjelja u 14:00",
+      "utakmice": [
+        {
+          "d": "Zamet",
+          "g": "Mune",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Turbina",
+          "g": "Lošinj",
+          "termin": "NED 14:00",
+          "derbi": true
+        },
+        {
+          "d": "Vrbovsko",
+          "g": "Lovran",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Vihor (B)",
+          "g": "Stari grad Rijeka",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Goranin",
+          "g": "Risnjak",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Rab",
+          "g": "Draga",
+          "termin": "ODGOĐENO"
+        },
+        {
+          "d": "Omladinac Vrata",
+          "g": "Rikard Benčić",
+          "termin": "ODGOĐENO"
+        }
+      ]
+    },
+    {
+      "dat": "2-znl-pgz-kolo-8",
+      "kolo": "8",
+      "stil": "redovi",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "NED 25.10.2026.",
+      "sat": "Sve utakmice u 14:00",
+      "utakmice": [
+        {
+          "d": "Goranka",
+          "g": "Mrkopalj",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Gomirje",
+          "g": "Snježnik",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Polet (Sk)",
+          "g": "Željezničar (M)",
+          "termin": "NED 14:00"
+        }
+      ]
+    },
+    {
+      "dat": "3-nl-zapad-kolo-10-pregled",
+      "kolo": "10",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 24.10.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Vinodol",
+          "g": "Kraljevica",
+          "termin": "SUB 15:30",
+          "rezultat": "1:2"
+        },
+        {
+          "d": "Nehaj",
+          "g": "Rudar",
+          "termin": "SUB 15:30",
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Pomorac",
+          "g": "Banjole",
+          "termin": "SUB 15:30",
+          "derbi": true,
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Rovinj",
+          "g": "Lokomotiva",
+          "termin": "SUB 15:30",
+          "rezultat": "3:1"
+        },
+        {
+          "d": "Pazinka-Pazin",
+          "g": "Krk",
+          "termin": "SUB 15:30",
+          "rezultat": "4:0"
+        },
+        {
+          "d": "Jadran-Poreč",
+          "g": "Crikvenica",
+          "termin": "SUB 15:30",
+          "rezultat": "1:1"
+        },
+        {
+          "d": "Naprijed",
+          "g": "Buje",
+          "termin": "SUB 15:30",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "OŠK Omišalj",
+          "g": "Halubjan",
+          "termin": "SUB 15:30",
+          "rezultat": "4:1"
+        }
+      ],
+      "ime": "pregled-3-nl-zapad-kolo-10",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-8-pregled",
+      "ime": "pregled-4-nl-ns-rijeka-kolo-8",
+      "kolo": "8",
+      "stil": "redovi",
+      "naslov": "Pregled",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 24.10.2026.",
+      "sat": "Rezultati kola",
+      "slobodan": "Rječina",
+      "utakmice": [
+        {
+          "d": "Cres",
+          "g": "Klana",
+          "termin": "SUB 15:45",
+          "rezultat": "1:1"
+        },
+        {
+          "d": "Štinjan",
+          "g": "Funtana",
+          "termin": "SUB 15:30",
+          "rezultat": "3:4"
+        },
+        {
+          "d": "Umag-CC Umago",
+          "g": "Borac (Ba)",
+          "termin": "SUB 15:30",
+          "rezultat": "2:2"
+        },
+        {
+          "d": "Smoljanci",
+          "g": "Ližnjan",
+          "termin": "SUB 15:30",
+          "rezultat": "2:2"
+        },
+        {
+          "d": "Otočac",
+          "g": "Žminj",
+          "termin": "SUB 15:30",
+          "rezultat": "2:0"
+        },
+        {
+          "d": "Medulin 1921",
+          "g": "Mladost Fažana",
+          "termin": "SUB 15:30",
+          "rezultat": "PREKINUTO"
+        }
+      ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-8-pregled",
+      "kolo": "8",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 24.10. i NED 25.10.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Zamet",
+          "g": "Mune",
+          "termin": "SUB 15:30",
+          "rezultat": "2:4"
+        },
+        {
+          "d": "Turbina",
+          "g": "Lošinj",
+          "termin": "NED 14:00",
+          "derbi": true,
+          "rezultat": "2:2"
+        },
+        {
+          "d": "Vrbovsko",
+          "g": "Lovran",
+          "termin": "NED 14:00",
+          "rezultat": "4:0"
+        },
+        {
+          "d": "Vihor (B)",
+          "g": "Stari grad Rijeka",
+          "termin": "NED 14:00",
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Goranin",
+          "g": "Risnjak",
+          "termin": "NED 14:00",
+          "rezultat": "2:0"
+        }
+      ],
+      "ime": "pregled-1-znl-pgz-kolo-8",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "2-znl-pgz-kolo-8-pregled",
+      "kolo": "8",
+      "stil": "redovi",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "NED 25.10.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Goranka",
+          "g": "Mrkopalj",
+          "termin": "NED 14:00",
+          "rezultat": "3:2"
+        },
+        {
+          "d": "Polet (Sk)",
+          "g": "Željezničar (M)",
+          "termin": "NED 14:00",
+          "rezultat": "1:1"
+        },
+        {
+          "d": "Gomirje",
+          "g": "Snježnik",
+          "termin": "NED 14:00",
+          "rezultat": "NIJE ODIGRANO"
+        }
+      ],
+      "ime": "pregled-2-znl-pgz-kolo-8",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "3-nl-zapad-kolo-11",
+      "kolo": "11",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 31.10.2026.",
+      "sat": "Subota u 14:00 i 14:30",
+      "utakmice": [
+        {
+          "d": "Lokomotiva (R)",
+          "g": "Pazinka-Pazin",
+          "termin": "SUB 14:00",
+          "derbi": true
+        },
+        {
+          "d": "Halubjan",
+          "g": "Vinodol",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Rudar (L)",
+          "g": "Pomorac",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Krk",
+          "g": "Jadran-Poreč",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Kraljevica",
+          "g": "Nehaj",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Buje",
+          "g": "OŠK Omišalj",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Crikvenica",
+          "g": "Naprijed (H)",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Banjole",
+          "g": "Rovinj",
+          "termin": "SUB 14:30"
+        }
+      ],
+      "ime": "najava-redovi-3-nl-zapad-kolo-11"
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-9",
+      "kolo": "9",
+      "stil": "redovi",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 31.10.2026.",
+      "sat": "Utakmice od 14:30",
+      "slobodan": "Smoljanci Sloboda",
+      "utakmice": [
+        {
+          "d": "Žminj",
+          "g": "Rječina",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Mladost Fažana",
+          "g": "Otočac",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Borac (Ba)",
+          "g": "Medulin 1921",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Klana",
+          "g": "Umag-CC Umago",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Ližnjan",
+          "g": "Štinjan",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Funtana",
+          "g": "Cres",
+          "termin": "SUB 15:30"
+        }
+      ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-9",
+      "kolo": "9",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 31.10. i SRI 04.11.2026.",
+      "sat": "Subota u 14:00, 15:30 i 17:30",
+      "utakmice": [
+        {
+          "d": "Mune",
+          "g": "Rab",
+          "termin": "SUB 14:00",
+          "derbi": true
+        },
+        {
+          "d": "Lošinj",
+          "g": "Omladinac Vrata",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Draga",
+          "g": "Turbina",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Stari grad Rijeka",
+          "g": "Vrbovsko",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Rikard Benčić",
+          "g": "Goranin",
+          "termin": "SUB 17:30"
+        },
+        {
+          "d": "Lovran",
+          "g": "Zamet",
+          "termin": "SRI 15:30"
+        },
+        {
+          "d": "Vihor (B)",
+          "g": "Risnjak",
+          "termin": "ODGOĐENO"
+        }
+      ],
+      "ime": "najava-redovi-1-znl-pgz-kolo-9"
+    },
+    {
+      "dat": "2-znl-pgz-kolo-1-zaostala",
+      "kolo": "1",
+      "stil": "redovi",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 31.10.2026.",
+      "sat": "Zaostala utakmica, Pod Čelimbašom u Mrkoplju",
+      "utakmice": [
+        {
+          "d": "Snježnik",
+          "g": "Mrkopalj",
+          "termin": "SUB 14:00"
+        }
+      ],
+      "ime": "najava-2-znl-pgz-kolo-1-zaostala"
+    },
+    {
+      "dat": "2-znl-pgz-kolo-1-zaostala-pregled",
+      "kolo": "1",
+      "stil": "redovi",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 31.10.2026.",
+      "sat": "Zaostala utakmica, Pod Čelimbašom u Mrkoplju",
+      "utakmice": [
+        {
+          "d": "Snježnik",
+          "g": "Mrkopalj",
+          "termin": "SUB 14:00",
+          "rezultat": "0:8"
+        }
+      ],
+      "ime": "pregled-2-znl-pgz-kolo-1-zaostala",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "3-nl-zapad-kolo-11-pregled",
+      "kolo": "11",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 31.10.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Lokomotiva (R)",
+          "g": "Pazinka-Pazin",
+          "termin": "SUB 14:00",
+          "derbi": true,
+          "rezultat": "0:0"
+        },
+        {
+          "d": "Halubjan",
+          "g": "Vinodol",
+          "termin": "SUB 14:30",
+          "rezultat": "4:0"
+        },
+        {
+          "d": "Buje",
+          "g": "OŠK Omišalj",
+          "termin": "SUB 14:30",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Crikvenica",
+          "g": "Naprijed (H)",
+          "termin": "SUB 14:30",
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Krk",
+          "g": "Jadran-Poreč",
+          "termin": "SUB 14:30",
+          "rezultat": "2:0"
+        },
+        {
+          "d": "Banjole",
+          "g": "Rovinj",
+          "termin": "SUB 14:30",
+          "rezultat": "4:1"
+        },
+        {
+          "d": "Rudar (L)",
+          "g": "Pomorac",
+          "termin": "SUB 14:30",
+          "rezultat": "1:1"
+        },
+        {
+          "d": "Kraljevica",
+          "g": "Nehaj",
+          "termin": "SUB 14:30",
+          "rezultat": "1:1"
+        }
+      ],
+      "ime": "pregled-3-nl-zapad-kolo-11",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-9-pregled",
+      "ime": "pregled-4-nl-ns-rijeka-kolo-9",
+      "kolo": "9",
+      "stil": "redovi",
+      "naslov": "Pregled",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 31.10.2026.",
+      "sat": "Rezultati kola",
+      "slobodan": "Smoljanci Sloboda",
+      "utakmice": [
+        {
+          "d": "Žminj",
+          "g": "Rječina",
+          "termin": "SUB 14:30",
+          "rezultat": "1:2"
+        },
+        {
+          "d": "Mladost Fažana",
+          "g": "Otočac",
+          "termin": "SUB 14:30",
+          "rezultat": "0:4"
+        },
+        {
+          "d": "Borac (Ba)",
+          "g": "Medulin 1921",
+          "termin": "SUB 14:30",
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Klana",
+          "g": "Umag-CC Umago",
+          "termin": "SUB 14:30",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Ližnjan",
+          "g": "Štinjan",
+          "termin": "SUB 14:30",
+          "rezultat": "0:7"
+        },
+        {
+          "d": "Funtana",
+          "g": "Cres",
+          "termin": "SUB 15:30",
+          "rezultat": "1:0"
+        }
+      ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-9-pregled",
+      "kolo": "9",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 31.10.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Mune",
+          "g": "Rab",
+          "termin": "SUB 14:00",
+          "derbi": true,
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Lošinj",
+          "g": "Omladinac Vrata",
+          "termin": "SUB 14:00",
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Draga",
+          "g": "Turbina",
+          "termin": "SUB 14:00",
+          "rezultat": "1:1"
+        },
+        {
+          "d": "Stari grad Rijeka",
+          "g": "Vrbovsko",
+          "termin": "SUB 15:30",
+          "rezultat": "3:3"
+        },
+        {
+          "d": "Rikard Benčić",
+          "g": "Goranin",
+          "termin": "SUB 17:30",
+          "rezultat": "1:4"
+        }
+      ],
+      "ime": "pregled-1-znl-pgz-kolo-9",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-10",
+      "kolo": "10",
+      "stil": "redovi",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 07.11.2026.",
+      "sat": "Sve utakmice u 14:30",
+      "slobodan": "Štinjan",
+      "utakmice": [
+        {
+          "d": "Rječina",
+          "g": "Smoljanci",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Cres",
+          "g": "Ližnjan",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Umag-CC Umago",
+          "g": "Funtana",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Medulin 1921",
+          "g": "Klana",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Otočac",
+          "g": "Borac (Ba)",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Žminj",
+          "g": "Mladost Fažana",
+          "termin": "SUB 14:30"
+        }
+      ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-9-lovran-zamet",
+      "kolo": "9",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SRI 04.11.2026.",
+      "sat": "Posljednja utakmica 9. kola, na Lokvi",
+      "utakmice": [
+        {
+          "d": "Lovran",
+          "g": "Zamet",
+          "termin": "SRI 15:30",
+          "rezultat": "1:0"
+        }
+      ],
+      "ime": "pregled-1-znl-pgz-kolo-9-lovran-zamet",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "3-nl-zapad-kolo-12",
+      "kolo": "12",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 07.11.2026.",
+      "sat": "Sve utakmice u 14:30",
+      "utakmice": [
+        {
+          "d": "Jadran-Poreč",
+          "g": "Lokomotiva (R)",
+          "termin": "SUB 14:30",
+          "derbi": true
+        },
+        {
+          "d": "Pomorac",
+          "g": "Kraljevica",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Pazinka-Pazin",
+          "g": "Banjole",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Naprijed (H)",
+          "g": "Krk",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "OŠK Omišalj",
+          "g": "Crikvenica",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Halubjan",
+          "g": "Buje",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Rovinj",
+          "g": "Rudar (L)",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Vinodol",
+          "g": "Nehaj",
+          "termin": "SUB 14:30"
+        }
+      ],
+      "ime": "najava-redovi-3-nl-zapad-kolo-12"
+    },
+    {
+      "dat": "1-znl-pgz-kolo-10",
+      "kolo": "10",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 07.11. i NED 08.11.2026.",
+      "sat": "Subota u 14:00, nedjelja u 14:00 i 14:30",
+      "utakmice": [
+        {
+          "d": "Zamet",
+          "g": "Stari grad Rijeka",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Rab",
+          "g": "Lovran",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Omladinac Vrata",
+          "g": "Draga",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Rikard Benčić",
+          "g": "Risnjak",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Goranin",
+          "g": "Lošinj",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Vihor (B)",
+          "g": "Vrbovsko",
+          "termin": "NED 14:30"
+        },
+        {
+          "d": "Turbina",
+          "g": "Mune",
+          "termin": "NED 14:30",
+          "derbi": true
+        }
+      ],
+      "ime": "najava-redovi-1-znl-pgz-kolo-10"
+    },
+    {
+      "dat": "2-znl-pgz-kolo-9",
+      "kolo": "9",
+      "stil": "redovi",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "NED 08.11.2026.",
+      "sat": "Sve utakmice u 14:30",
+      "utakmice": [
+        {
+          "d": "Mrkopalj",
+          "g": "Gomirje",
+          "termin": "NED 14:30",
+          "derbi": true
+        },
+        {
+          "d": "Goranka",
+          "g": "Polet (Sk)",
+          "termin": "NED 14:30"
+        },
+        {
+          "d": "Snježnik",
+          "g": "Željezničar (M)",
+          "termin": "NED 14:30"
+        }
+      ],
+      "ime": "najava-redovi-2-znl-pgz-kolo-9"
+    },
+    {
+      "dat": "3-nl-zapad-kolo-12-pregled",
+      "kolo": "12",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 07.11.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Jadran-Poreč",
+          "g": "Lokomotiva (R)",
+          "termin": "SUB 14:30",
+          "derbi": true,
+          "rezultat": "1:4"
+        },
+        {
+          "d": "Pomorac",
+          "g": "Kraljevica",
+          "termin": "SUB 14:30",
+          "rezultat": "1:3"
+        },
+        {
+          "d": "Pazinka-Pazin",
+          "g": "Banjole",
+          "termin": "SUB 14:30",
+          "rezultat": "4:0"
+        },
+        {
+          "d": "Naprijed (H)",
+          "g": "Krk",
+          "termin": "SUB 14:30",
+          "rezultat": "4:1"
+        },
+        {
+          "d": "OŠK Omišalj",
+          "g": "Crikvenica",
+          "termin": "SUB 14:30",
+          "rezultat": "3:1"
+        },
+        {
+          "d": "Halubjan",
+          "g": "Buje",
+          "termin": "SUB 14:30",
+          "rezultat": "1:2"
+        },
+        {
+          "d": "Rovinj",
+          "g": "Rudar (L)",
+          "termin": "SUB 14:30",
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Vinodol",
+          "g": "Nehaj",
+          "termin": "SUB 14:30",
+          "rezultat": "1:1"
+        }
+      ],
+      "ime": "pregled-3-nl-zapad-kolo-12",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-10-pregled",
+      "ime": "pregled-4-nl-ns-rijeka-kolo-10",
+      "kolo": "10",
+      "stil": "redovi",
+      "naslov": "Pregled",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 07.11.2026.",
+      "sat": "Rezultati kola",
+      "slobodan": "Štinjan",
+      "utakmice": [
+        {
+          "d": "Rječina",
+          "g": "Smoljanci",
+          "termin": "SUB 14:30",
+          "rezultat": "4:2"
+        },
+        {
+          "d": "Cres",
+          "g": "Ližnjan",
+          "termin": "SUB 14:30",
+          "rezultat": "6:2"
+        },
+        {
+          "d": "Umag-CC Umago",
+          "g": "Funtana",
+          "termin": "SUB 14:30",
+          "rezultat": "2:3"
+        },
+        {
+          "d": "Medulin 1921",
+          "g": "Klana",
+          "termin": "SUB 14:30",
+          "rezultat": "2:0"
+        },
+        {
+          "d": "Otočac",
+          "g": "Borac (Ba)",
+          "termin": "SUB 14:30",
+          "rezultat": "0:0"
+        },
+        {
+          "d": "Žminj",
+          "g": "Mladost Fažana",
+          "termin": "SUB 14:30",
+          "rezultat": "4:1"
+        }
+      ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-10-pregled",
+      "kolo": "10",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 07.11. i NED 08.11.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Turbina",
+          "g": "Mune",
+          "termin": "NED 14:30",
+          "derbi": true,
+          "rezultat": "2:2"
+        },
+        {
+          "d": "Goranin",
+          "g": "Lošinj",
+          "termin": "NED 14:00",
+          "rezultat": "2:0"
+        },
+        {
+          "d": "Vihor (B)",
+          "g": "Vrbovsko",
+          "termin": "NED 14:30",
+          "rezultat": "0:4"
+        },
+        {
+          "d": "Rab",
+          "g": "Lovran",
+          "termin": "SUB 14:00",
+          "rezultat": "4:2"
+        },
+        {
+          "d": "Zamet",
+          "g": "Stari grad Rijeka",
+          "termin": "SUB 14:00",
+          "rezultat": "4:2"
+        },
+        {
+          "d": "Omladinac Vrata",
+          "g": "Draga",
+          "termin": "SUB 14:00",
+          "rezultat": "7:1"
+        },
+        {
+          "d": "Rikard Benčić",
+          "g": "Risnjak",
+          "termin": "SUB 14:00",
+          "rezultat": "0:1"
+        }
+      ],
+      "ime": "pregled-1-znl-pgz-kolo-10",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "2-znl-pgz-kolo-9-pregled",
+      "kolo": "9",
+      "stil": "redovi",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "NED 08.11.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Mrkopalj",
+          "g": "Gomirje",
+          "termin": "NED 14:30",
+          "derbi": true,
+          "rezultat": "5:0"
+        },
+        {
+          "d": "Goranka",
+          "g": "Polet (Sk)",
+          "termin": "NED 14:30",
+          "rezultat": "2:2"
+        },
+        {
+          "d": "Snježnik",
+          "g": "Željezničar (M)",
+          "termin": "NED 14:30",
+          "rezultat": "1:1"
+        }
+      ],
+      "ime": "pregled-2-znl-pgz-kolo-9",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "3-nl-zapad-kolo-13",
+      "kolo": "13",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 14.11.2026.",
+      "sat": "Sve utakmice u 14:30",
+      "utakmice": [
+        {
+          "d": "Nehaj",
+          "g": "Pomorac",
+          "termin": "SUB 14:30",
+          "derbi": true
+        },
+        {
+          "d": "Naprijed (H)",
+          "g": "Lokomotiva (R)",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Rudar (L)",
+          "g": "Pazinka-Pazin",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Krk",
+          "g": "OŠK Omišalj",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Kraljevica",
+          "g": "Rovinj",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Banjole",
+          "g": "Jadran-Poreč",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Crikvenica",
+          "g": "Halubjan",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Buje",
+          "g": "Vinodol",
+          "termin": "SUB 14:30"
+        }
+      ],
+      "ime": "najava-redovi-3-nl-zapad-kolo-13"
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-11",
+      "kolo": "11",
+      "stil": "redovi",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 14.11.2026.",
+      "sat": "Sve utakmice u 14:30",
+      "slobodan": "Cres",
+      "utakmice": [
+        {
+          "d": "Mladost Fažana",
+          "g": "Rječina",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Borac (Ba)",
+          "g": "Žminj",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Klana",
+          "g": "Otočac",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Funtana",
+          "g": "Medulin 1921",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Ližnjan",
+          "g": "Umag-CC Umago",
+          "termin": "SUB 14:30"
+        },
+        {
+          "d": "Štinjan",
+          "g": "Smoljanci",
+          "termin": "SUB 14:30"
+        }
+      ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-11",
+      "kolo": "11",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 14.11. i NED 15.11.2026.",
+      "sat": "Subota u 13:30, nedjelja u 13:30 i 14:00",
+      "utakmice": [
+        {
+          "d": "Rikard Benčić",
+          "g": "Vihor (B)",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Draga",
+          "g": "Goranin",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Lošinj",
+          "g": "Risnjak",
+          "termin": "NED 13:30"
+        },
+        {
+          "d": "Mune",
+          "g": "Omladinac Vrata",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Turbina",
+          "g": "Lovran",
+          "termin": "NED 14:00",
+          "derbi": true
+        },
+        {
+          "d": "Stari grad Rijeka",
+          "g": "Rab",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Vrbovsko",
+          "g": "Zamet",
+          "termin": "NED 14:00"
+        }
+      ],
+      "ime": "najava-redovi-1-znl-pgz-kolo-11"
+    },
+    {
+      "dat": "2-znl-pgz-kolo-10",
+      "kolo": "10",
+      "stil": "redovi",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "NED 15.11.2026.",
+      "sat": "Utakmice u 14:00, Gomirje - Goranka odgođena",
+      "utakmice": [
+        {
+          "d": "Željezničar (M)",
+          "g": "Mrkopalj",
+          "termin": "NED 14:00",
+          "derbi": true
+        },
+        {
+          "d": "Polet (Sk)",
+          "g": "Snježnik",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Gomirje",
+          "g": "Goranka",
+          "termin": "ODGOĐENO"
+        }
+      ],
+      "ime": "najava-redovi-2-znl-pgz-kolo-10"
+    },
+    {
+      "dat": "3-nl-zapad-kolo-13-pregled",
+      "kolo": "13",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 14.11.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Nehaj",
+          "g": "Pomorac",
+          "termin": "SUB 14:30",
+          "derbi": true,
+          "rezultat": "2:2"
+        },
+        {
+          "d": "Naprijed (H)",
+          "g": "Lokomotiva (R)",
+          "termin": "SUB 14:30",
+          "rezultat": "2:3"
+        },
+        {
+          "d": "Rudar (L)",
+          "g": "Pazinka-Pazin",
+          "termin": "SUB 14:30",
+          "rezultat": "0:0"
+        },
+        {
+          "d": "Krk",
+          "g": "OŠK Omišalj",
+          "termin": "SUB 14:30",
+          "rezultat": "2:3"
+        },
+        {
+          "d": "Kraljevica",
+          "g": "Rovinj",
+          "termin": "SUB 14:30",
+          "rezultat": "1:1"
+        },
+        {
+          "d": "Banjole",
+          "g": "Jadran-Poreč",
+          "termin": "SUB 14:30",
+          "rezultat": "2:0"
+        },
+        {
+          "d": "Crikvenica",
+          "g": "Halubjan",
+          "termin": "SUB 14:30",
+          "rezultat": "0:0"
+        },
+        {
+          "d": "Buje",
+          "g": "Vinodol",
+          "termin": "SUB 14:30",
+          "rezultat": "0:1"
+        }
+      ],
+      "ime": "pregled-3-nl-zapad-kolo-13",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-11-pregled",
+      "ime": "pregled-4-nl-ns-rijeka-kolo-11",
+      "kolo": "11",
+      "stil": "redovi",
+      "naslov": "Pregled",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 14.11.2026.",
+      "sat": "Rezultati kola",
+      "slobodan": "Cres",
+      "utakmice": [
+        {
+          "d": "Klana",
+          "g": "Otočac",
+          "termin": "SUB 14:30",
+          "rezultat": "3:4"
+        },
+        {
+          "d": "Funtana",
+          "g": "Medulin 1921",
+          "termin": "SUB 14:30",
+          "rezultat": "4:0"
+        },
+        {
+          "d": "Ližnjan",
+          "g": "Umag-CC Umago",
+          "termin": "SUB 14:30",
+          "rezultat": "1:0"
+        },
+        {
+          "d": "Mladost Fažana",
+          "g": "Rječina",
+          "termin": "NED 13:30"
+        },
+        {
+          "d": "Štinjan",
+          "g": "Smoljanci",
+          "termin": "UTO 19:00"
+        },
+        {
+          "d": "Borac (Ba)",
+          "g": "Žminj",
+          "termin": "ODGOĐENO"
+        }
+      ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-11-pregled",
+      "kolo": "11",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 14.11. i NED 15.11.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Rikard Benčić",
+          "g": "Vihor (B)",
+          "termin": "SUB 13:30",
+          "rezultat": "2:0"
+        },
+        {
+          "d": "Draga",
+          "g": "Goranin",
+          "termin": "SUB 13:30",
+          "rezultat": "2:3"
+        },
+        {
+          "d": "Lošinj",
+          "g": "Risnjak",
+          "termin": "NED 13:30",
+          "rezultat": "4:1"
+        },
+        {
+          "d": "Mune",
+          "g": "Omladinac Vrata",
+          "termin": "NED 14:00",
+          "rezultat": "0:3"
+        },
+        {
+          "d": "Turbina",
+          "g": "Lovran",
+          "termin": "NED 14:00",
+          "derbi": true,
+          "rezultat": "5:0"
+        },
+        {
+          "d": "Stari grad Rijeka",
+          "g": "Rab",
+          "termin": "NED 14:00",
+          "rezultat": "3:1"
+        },
+        {
+          "d": "Vrbovsko",
+          "g": "Zamet",
+          "termin": "NED 14:00",
+          "rezultat": "ODG."
+        }
+      ],
+      "ime": "pregled-1-znl-pgz-kolo-11",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-11-nadoknade",
+      "ime": "nadoknade-4-nl-ns-rijeka-kolo-11",
+      "kolo": "11",
+      "stil": "redovi",
+      "naslov": "Nadoknade",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "NED 15.11. i UTO 17.11.2026.",
+      "sat": "Odgođene utakmice 11. kola",
+      "utakmice": [
+        {
+          "d": "Mladost Fažana",
+          "g": "Rječina",
+          "termin": "NED 13:30",
+          "rezultat": "4:3"
+        },
+        {
+          "d": "Štinjan",
+          "g": "Smoljanci",
+          "termin": "UTO 19:00",
+          "rezultat": "7:3"
+        }
+      ]
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-8-nastavak",
+      "ime": "nastavak-4-nl-ns-rijeka-kolo-8",
+      "kolo": "8",
+      "stil": "redovi",
+      "naslov": "Nastavak",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SRI 18.11.2026.",
+      "sat": "Nastavak prekinute utakmice 8. kola",
+      "utakmice": [
+        {
+          "d": "Medulin 1921",
+          "g": "Mladost Fažana",
+          "termin": "SRI 14:30",
+          "rezultat": "1:1"
+        }
+      ]
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-12",
+      "kolo": "12",
+      "stil": "redovi",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 21.11.2026.",
+      "sat": "Od 12:15 do 16:00",
+      "slobodan": "Umag-CC Umago",
+      "utakmice": [
+        {
+          "d": "Cres",
+          "g": "Smoljanci",
+          "termin": "SUB 12:15"
+        },
+        {
+          "d": "Rječina",
+          "g": "Štinjan",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Ližnjan",
+          "g": "Medulin 1921",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Žminj",
+          "g": "Klana",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Mladost Fažana",
+          "g": "Borac (Ba)",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Funtana",
+          "g": "Otočac",
+          "termin": "SUB 16:00"
+        }
+      ]
+    },
+    {
+      "dat": "3-nl-zapad-kolo-14",
+      "kolo": "14",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 21.11.2026.",
+      "sat": "Sve utakmice u 14:00",
+      "utakmice": [
+        {
+          "d": "OŠK Omišalj",
+          "g": "Lokomotiva (R)",
+          "termin": "SUB 14:00",
+          "derbi": true
+        },
+        {
+          "d": "Pazinka-Pazin",
+          "g": "Kraljevica",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Vinodol",
+          "g": "Pomorac",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Naprijed (H)",
+          "g": "Banjole",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Rovinj",
+          "g": "Nehaj",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Halubjan",
+          "g": "Krk",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Buje",
+          "g": "Crikvenica",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Jadran-Poreč",
+          "g": "Rudar (L)",
+          "termin": "SUB 14:00"
+        }
+      ],
+      "ime": "najava-redovi-3-nl-zapad-kolo-14"
+    },
+    {
+      "dat": "1-znl-pgz-kolo-12",
+      "kolo": "12",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 21.11. i NED 22.11.2026.",
+      "sat": "Subota u 13:00, 13:30 i 14:00, nedjelja u 14:00",
+      "utakmice": [
+        {
+          "d": "Rab",
+          "g": "Vrbovsko",
+          "termin": "SUB 13:00"
+        },
+        {
+          "d": "Rikard Benčić",
+          "g": "Lošinj",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Omladinac Vrata",
+          "g": "Lovran",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Draga",
+          "g": "Risnjak",
+          "termin": "SUB 14:00"
+        },
+        {
+          "d": "Goranin",
+          "g": "Mune",
+          "termin": "NED 14:00",
+          "derbi": true
+        },
+        {
+          "d": "Turbina",
+          "g": "Stari grad Rijeka",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Vihor (B)",
+          "g": "Zamet",
+          "termin": "NED 14:00"
+        }
+      ],
+      "ime": "najava-redovi-1-znl-pgz-kolo-12"
+    },
+    {
+      "dat": "2-znl-pgz-kolo-10-novi-termin",
+      "kolo": "10",
+      "stil": "redovi",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "NED 22.11.2026.",
+      "sat": "Utakmice u 14:00, Gomirje - Goranka odgođena",
+      "utakmice": [
+        {
+          "d": "Željezničar (M)",
+          "g": "Mrkopalj",
+          "termin": "NED 14:00",
+          "derbi": true
+        },
+        {
+          "d": "Polet (Sk)",
+          "g": "Snježnik",
+          "termin": "NED 14:00"
+        },
+        {
+          "d": "Gomirje",
+          "g": "Goranka",
+          "termin": "ODGOĐENO"
+        }
+      ],
+      "ime": "najava-redovi-2-znl-pgz-kolo-10-novi-termin"
+    },
+    {
+      "dat": "3-nl-zapad-kolo-14-pregled",
+      "kolo": "14",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 21.11.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "OŠK Omišalj",
+          "g": "Lokomotiva (R)",
+          "termin": "SUB 14:00",
+          "derbi": true,
+          "rezultat": "1:2"
+        },
+        {
+          "d": "Pazinka-Pazin",
+          "g": "Kraljevica",
+          "termin": "SUB 14:00",
+          "rezultat": "3:2"
+        },
+        {
+          "d": "Vinodol",
+          "g": "Pomorac",
+          "termin": "SUB 14:00",
+          "rezultat": "0:1"
+        },
+        {
+          "d": "Naprijed (H)",
+          "g": "Banjole",
+          "termin": "SUB 14:00",
+          "rezultat": "2:2"
+        },
+        {
+          "d": "Rovinj",
+          "g": "Nehaj",
+          "termin": "SUB 14:00",
+          "rezultat": "4:3"
+        },
+        {
+          "d": "Halubjan",
+          "g": "Krk",
+          "termin": "SUB 14:00",
+          "rezultat": "2:3"
+        },
+        {
+          "d": "Buje",
+          "g": "Crikvenica",
+          "termin": "SUB 14:00",
+          "rezultat": "1:1"
+        },
+        {
+          "d": "Jadran-Poreč",
+          "g": "Rudar (L)",
+          "termin": "SUB 14:00",
+          "rezultat": "1:3"
+        }
+      ],
+      "ime": "pregled-3-nl-zapad-kolo-14",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-12-pregled",
+      "ime": "pregled-4-nl-ns-rijeka-kolo-12",
+      "kolo": "12",
+      "stil": "redovi",
+      "naslov": "Pregled",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 21.11.2026.",
+      "sat": "Rezultati kola",
+      "slobodan": "Umag-CC Umago",
+      "utakmice": [
+        {
+          "d": "Funtana",
+          "g": "Otočac",
+          "termin": "SUB 16:00",
+          "rezultat": "0:2"
+        },
+        {
+          "d": "Cres",
+          "g": "Smoljanci",
+          "termin": "SUB 12:15",
+          "rezultat": "4:1"
+        },
+        {
+          "d": "Rječina",
+          "g": "Štinjan",
+          "termin": "SUB 14:00",
+          "rezultat": "1:3"
+        },
+        {
+          "d": "Ližnjan",
+          "g": "Medulin 1921",
+          "termin": "SUB 14:00",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Žminj",
+          "g": "Klana",
+          "termin": "SUB 14:00",
+          "rezultat": "3:0"
+        },
+        {
+          "d": "Mladost Fažana",
+          "g": "Borac (Ba)",
+          "termin": "SUB 14:00",
+          "rezultat": "1:1"
+        }
+      ]
+    },
+    {
+      "dat": "1-znl-pgz-kolo-12-pregled",
+      "kolo": "12",
+      "stil": "redovi",
+      "oznaka": "1. ŽNL PGŽ · sezona 2026/27",
+      "datum": "SUB 21.11. i NED 22.11.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Rab",
+          "g": "Vrbovsko",
+          "termin": "SUB 13:00",
+          "rezultat": "1:2"
+        },
+        {
+          "d": "Rikard Benčić",
+          "g": "Lošinj",
+          "termin": "SUB 13:30",
+          "rezultat": "3:5"
+        },
+        {
+          "d": "Omladinac Vrata",
+          "g": "Lovran",
+          "termin": "SUB 14:00",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Draga",
+          "g": "Risnjak",
+          "termin": "SUB 14:00",
+          "rezultat": "6:2"
+        },
+        {
+          "d": "Goranin",
+          "g": "Mune",
+          "termin": "NED 14:00",
+          "derbi": true,
+          "rezultat": "3:1"
+        },
+        {
+          "d": "Turbina",
+          "g": "Stari grad Rijeka",
+          "termin": "NED 14:00",
+          "rezultat": "ODG."
+        },
+        {
+          "d": "Vihor (B)",
+          "g": "Zamet",
+          "termin": "NED 14:00",
+          "rezultat": "3:0"
+        }
+      ],
+      "ime": "pregled-1-znl-pgz-kolo-12",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "2-znl-pgz-kolo-10-pregled",
+      "kolo": "10",
+      "stil": "redovi",
+      "oznaka": "2. ŽNL PGŽ · sezona 2026/27",
+      "datum": "NED 22.11.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Željezničar (M)",
+          "g": "Mrkopalj",
+          "termin": "NED 14:00",
+          "derbi": true,
+          "rezultat": "4:6"
+        },
+        {
+          "d": "Polet (Sk)",
+          "g": "Snježnik",
+          "termin": "NED 14:00",
+          "rezultat": "5:0"
+        },
+        {
+          "d": "Gomirje",
+          "g": "Goranka",
+          "termin": "ODGOĐENO",
+          "rezultat": "ODG."
+        }
+      ],
+      "ime": "pregled-2-znl-pgz-kolo-10",
+      "naslov": "Pregled"
+    },
+    {
+      "dat": "3-nl-zapad-kolo-15",
+      "kolo": "15",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 28.11.2026.",
+      "sat": "Posljednje kolo jesenskog dijela",
+      "utakmice": [
+        {
+          "d": "Lokomotiva (R)",
+          "g": "Halubjan",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Nehaj",
+          "g": "Pazinka-Pazin",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Pomorac",
+          "g": "Rovinj",
+          "termin": "SUB 16:00"
+        },
+        {
+          "d": "Banjole",
+          "g": "OŠK Omišalj",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Krk",
+          "g": "Buje",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Kraljevica",
+          "g": "Jadran-Poreč",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Crikvenica",
+          "g": "Vinodol",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Rudar (L)",
+          "g": "Naprijed (H)",
+          "termin": "SUB 13:30"
+        }
+      ],
+      "ime": "najava-redovi-3-nl-zapad-kolo-15"
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-13",
+      "kolo": "13",
+      "stil": "redovi",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 28.11.2026.",
+      "sat": "Od 13:30 do 16:30",
+      "slobodan": "Medulin 1921",
+      "utakmice": [
+        {
+          "d": "Borac (Ba)",
+          "g": "Rječina",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Klana",
+          "g": "Mladost Fažana",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Ližnjan",
+          "g": "Otočac",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Umag-CC Umago",
+          "g": "Smoljanci",
+          "termin": "SUB 13:30"
+        },
+        {
+          "d": "Funtana",
+          "g": "Žminj",
+          "termin": "SUB 15:30"
+        },
+        {
+          "d": "Štinjan",
+          "g": "Cres",
+          "termin": "SUB 16:30"
+        }
+      ]
+    }
+  ]
+}
