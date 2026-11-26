@@ -11,6 +11,8 @@ suci: Karlo Terković, Sandi Skrletović, Branko Vukojević. Delegat: Toni Benč
 # Prepisano iz snimke zaslona od 21.11.2026.
 # Oba pogotka imaju ikonu obicne sive lopte.
 # Cargonja ima obican crveni karton, bez zutog prije njega.
+# Minuta je 55', prema glasniku br. 13 NS PGZ; Semafor je u zapisniku
+# pisao 72'. Andrej je 26.11.2026. odlucio da vrijedi glasnik.
 
 [domacin]
 12 | Luka Šteko | vratar
@@ -37,7 +39,7 @@ suci: Karlo Terković, Sandi Skrletović, Branko Vukojević. Delegat: Toni Benč
 [gost]
 1 | Marin Ždralović | vratar
 2 | Nikola Ružić
-5 | Roko Čargonja | 72' crveni
+5 | Roko Čargonja | 55' crveni
 9 | Ivano Ćumurdžić | 73' izlazak
 10 | Ivan Golić (C) | 72' zuti
 11 | David Golić | 45' zuti

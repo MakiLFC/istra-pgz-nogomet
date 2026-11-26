@@ -2256,11 +2256,13 @@ Glasnik 13 (25.11.2026.) potvrdio je i da se naša izračunata tablica
 nakon 12. kola poklapa sa službenom u svemu, klub po klub, uključujući
 Umagovih -3 i broj odigranih utakmica. Isto i lista strijelaca.
 
-JEDAN RAZLAZ OSTAJE OTVOREN: Semafor u zapisniku Mladost Fažana - Borac
-(12. kolo) crveni karton Roka Čargonje stavlja u 72. minutu, a glasnik
-kaže da je isključen u 55. minuti zbog vrijeđanja glavnog suca. U bazi
-stoji 72', kako piše na Semaforu, i nije dirano bez Andrejeve riječi.
-Kod Marka Krznarića se oba izvora slažu (50' i 55').
+KAD SE SEMAFOR I GLASNIK RAZIĐU, VRIJEDI GLASNIK. Andrejeva odluka od
+26.11.2026. Povod: crveni karton Roka Čargonje u Mladost Fažana - Borac
+(12. kolo). Semafor ga je u zapisniku stavio u 72. minutu, a glasnik
+kaže 55., uz obrazloženje da je isključen zbog vrijeđanja glavnog suca.
+Zapisnik u bazi i pregled 12. kola ispravljeni su na 55'. Kod Marka
+Krznarića se oba izvora slažu (50' i 55'), pa razlaz nije bio pomak
+cijelog zapisnika nego jedan podatak.
 
 **Isključenje zna trajati više od jednog kola.** Ante Žunić (Vihor),
 isključen u 5. kolu 1. ŽNL 2026/27, propustio je 6. i 7. kolo, a to je
