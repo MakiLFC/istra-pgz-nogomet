@@ -1,0 +1,58 @@
+natjecanje: 4. NL NS Rijeka
+sezona: 2026/27
+kolo: 13
+domacin: NK Funtana
+gost: NK Žminj
+rezultat: 7:1
+stadion_datum: KAMP NK JADRAN-POREČ, POREČ, 28.11.2026. 15:30
+gledatelja: 50
+suci: Sandi Skrletović, Branko Vukojević, Perica Nikolić. Delegat: Siniša Pavlović.
+---
+# Prepisano sa snimaka zaslona od 28.11.2026.
+# Vlizlov pogodak u 17' ima sivu loptu pred vratima, dakle gol iz
+# jedanaesterca, koji se upisuje kao obican gol. Svi ostali su obicna siva lopta.
+# Nijedan karton nije prikazan.
+
+[domacin]
+1 | Gianfranco Milocani (C) | vratar
+2 | Ljubomir Simić | 85' izlazak
+3 | Marko Vlahović
+4 | Roko Andričević | 85' izlazak
+7 | Emanuel Šegon | 82' gol, 87' gol
+8 | Noa Kodrnja | 67' izlazak
+10 | Robert Vlizlo | 17' gol, 50' gol, 85' izlazak
+11 | Rico Bencich | 29' izlazak
+17 | Abel Peteh | 75' gol, 90+1' gol
+18 | David Mršić | 44' gol
+27 | Ivan Al Tharwan
+
+[domacin pricuva]
+31 | Marin Martić | vratar
+6 | Šimun Ivković
+9 | Kerim Bajrić | 67' ulazak
+14 | Vigan Hoxha | 29' ulazak
+19 | Leon Marunica | 85' ulazak
+22 | Marko Šantor | 85' ulazak
+24 | Antonio Jelinić | 85' ulazak
+
+[gost]
+12 | Patrik Laganis | vratar
+3 | Luka Križanac (C) | 63' izlazak
+5 | Marin Lilić
+7 | Marin Križanac
+9 | Sandi Burić
+10 | Marko Lepinjica | 63' gol, 78' izlazak
+11 | Luka Matošević | 78' izlazak
+13 | Noa Žufić
+16 | Leonard Šverko
+18 | Filip Krnjus | 63' izlazak
+20 | Patrik Butući | 78' izlazak
+
+[gost pricuva]
+1 | Marko Horvat | vratar
+2 | Matias Šugar | 63' ulazak
+6 | Marko Orbanić | 63' ulazak
+8 | Arian Debeljuh | 78' ulazak
+14 | Toni Jelenić
+15 | Leonardo Žulić | 78' ulazak
+19 | Alen Damijanić | 78' ulazak
