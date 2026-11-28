@@ -2383,8 +2383,8 @@ POČETKA PROLJETNOG DIJELA PRVENSTVA. Kad se bude uvozio proljetni
 raspored, toj utakmici treba upisati termin poslom "Termin u bazu" uz
 odgoda "da" (datum je tjedan prije 16. kola), i to tek kad ga potvrdi
 Semafor ili glasnik. U bazi zasad stoji odgođena bez datuma (ODG.).
-Kraljevica - Jadran-Poreč iz istog kola također je odgođena, razlog i
-novi termin nisu poznati. Kad se koja odigra, ovu stavku ispravi.
+Kraljevica - Jadran-Poreč iz istog kola također je odgođena zbog
+orkanske bure (Andrej, 28.11.2026.), a novi termin nije poznat. Kad se koja odigra, ovu stavku ispravi.
 
 **GLASNIK 3. NL ZAPAD IZDAJE HNS SREDIŠTE RIJEKA, NE NS PGŽ.** Na nspgz.hr
 ga nema, pa ga posao "Glasnik saveza" s popisa ne nalazi. Objavljuje se
