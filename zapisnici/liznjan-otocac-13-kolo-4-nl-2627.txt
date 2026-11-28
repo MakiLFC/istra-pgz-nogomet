@@ -1,0 +1,56 @@
+natjecanje: 4. NL NS Rijeka
+sezona: 2026/27
+kolo: 13
+domacin: NK Ližnjan
+gost: NK Otočac
+rezultat: 0:2
+stadion_datum: ŠARAJA, LIŽNJAN, 28.11.2026. 13:30
+suci: Zvonko Radić, Luka Gržinčić, Ante Ritmajer. Delegat: Đani Mihočka.
+---
+# Prepisano iz snimke zaslona od 28.11.2026.
+# U zaglavlju zapisnika nema podatka o broju gledatelja.
+# Tin Zohil (Liznjan) ima CRVENU loptu u 75', dakle AUTOGOL.
+# Matija Ostovic ima sivu loptu pred vratima, dakle gol iz jedanaesterca,
+# koji se upisuje kao obican gol.
+# Dario Pajdakovic ima obican crveni karton, bez zutog prije njega.
+
+[domacin]
+12 | Manuel Matošević | vratar
+2 | Lorens Popović | 89' zuti
+4 | Luka Pavić | 58' zuti
+5 | Hisa Ramadani
+7 | Saša Urošević (C)
+8 | Mauro Čude | 64' izlazak
+11 | Slaven Sandić | 78' izlazak
+15 | Nikola Perković
+16 | Nikola Radović
+18 | Luka Privrat
+19 | Antonio Jovanović | 86' izlazak
+
+[domacin pricuva]
+1 | Luka Jukić | vratar
+3 | Tin Zohil | 64' ulazak, 75' autogol
+9 | Marko Kontošić | 78' ulazak
+10 | Dino Balde
+13 | Alessio Verbanac | 86' ulazak
+17 | Petar Zohil
+
+[gost]
+1 | Antonio Krznarić | vratar
+4 | Josip Smolčić
+5 | Luka Banić (C)
+6 | Ante Majetić
+10 | Matija Ostović | 59' gol, 90+1' izlazak
+14 | Dario Pajdaković | 54' crveni
+16 | Niko Tomaić | 66' izlazak
+18 | Antonijo Vujičić | 85' izlazak
+22 | Karlo Lončar
+24 | Danijel Matovina
+25 | Alen Vuković
+
+[gost pricuva]
+32 | Karlo Degoricija | vratar
+13 | Mateo Brajković
+15 | Josip Jergović | 90+1' ulazak
+21 | Filip Bogdanić | 85' ulazak
+23 | Ante Džaja | 66' ulazak
