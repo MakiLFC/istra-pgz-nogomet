@@ -1,0 +1,56 @@
+natjecanje: 4. NL NS Rijeka
+sezona: 2026/27
+kolo: 13
+domacin: NK Umag-CC Umago
+gost: NK Smoljanci Sloboda
+rezultat: 2:1
+stadion_datum: GRADSKI STADION, UMAG, 28.11.2026. 13:30
+gledatelja: 50
+suci: Alen Dokuš, Karlo Terković, Ivan Kuftić. Delegat: Mirko Spećina.
+---
+# Prepisano iz snimke zaslona od 28.11.2026.
+# Sva tri pogotka imaju ikonu obicne sive lopte.
+# Antonio Ivancic ima obican crveni karton, bez zutog prije njega.
+# Zuti kartoni Aleksandra Uzelca i Davida Tarcukija nemaju minutu,
+# ikona na Semaforu stoji bez broja (vidi CLAUDE.md, dogadjaj bez minute).
+
+[domacin]
+99 | Deni Višković | vratar
+4 | Andrea Manić
+5 | Antonio Bolčević | 60' zuti
+8 | Evan Kraljević
+10 | Dejan Đuričin (C) | 25' gol
+15 | Jamu Akou Arum Iluya | 74' zuti
+20 | Marko Režić
+26 | Andreas Marijanović | 80' zuti
+29 | Leon Miličević
+71 | Roko Sirotić | 16' gol, 85' izlazak
+80 | Gabriel Babič
+
+[domacin pricuva]
+9 | Luka Jašarević
+11 | Aleksandar Uzelac | zuti
+14 | Luka Čavarović
+16 | Filip Simić
+17 | Jan Manić | 85' ulazak
+21 | Ivan Babić
+
+[gost]
+12 | David Tarčuki | vratar, zuti
+6 | Antonio Ivančić | 22' crveni
+7 | Matija Mišan
+8 | Andreas Prgić
+9 | Mauro Mišan (C) | 60' zuti
+10 | Ivan Banović | 79' izlazak
+11 | Dante Begić | 46' izlazak
+17 | Mike Amachi Ezemonye | 49' gol, 56' zuti
+20 | Eduardo Doblanović | 63' izlazak
+24 | Ivan Andrijančić | 74' zuti
+92 | Filip Tiani | 62' zuti
+
+[gost pricuva]
+3 | Nino Radetić
+5 | Diego Vlacci | 46' ulazak, 89' izlazak
+13 | Abuchi Henry Okah | 63' ulazak
+18 | Andrea Žgomba | 89' ulazak
+43 | Petar Raić Sudar | 79' ulazak, 83' zuti

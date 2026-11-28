@@ -1,0 +1,51 @@
+natjecanje: 4. NL NS Rijeka
+sezona: 2026/27
+kolo: 13
+domacin: NK Klana
+gost: NK Mladost Fažana
+rezultat: 2:2
+stadion_datum: GRAŠĆINA, KLANA, 28.11.2026. 13:30
+suci: Bojan Blaškić, Dorian Klarić, Robert Barbić. Delegat: Ante Tonković.
+---
+# Prepisano iz snimke zaslona od 28.11.2026.
+# U zaglavlju zapisnika nema podatka o broju gledatelja.
+# Sva cetiri pogotka imaju ikonu obicne sive lopte.
+
+[domacin]
+32 | Matia Torbarina | vratar
+3 | Ivano Buk
+4 | Niko Hrmić
+8 | Matija Milković (C)
+9 | Vid Vlaše | 85' izlazak
+10 | Antonio Markanović
+14 | Đoša Lazarević | 79' izlazak
+15 | Patrik Ujčić | 46' izlazak
+17 | Tymur Merezhko
+19 | Dino Jeletić | 65' izlazak
+20 | Mario Jerbić | 14' gol, 52' gol
+
+[domacin pricuva]
+1 | Florian Crnković | vratar
+5 | Siniša Kuzmić | 79' ulazak
+6 | Roni Šnajdar | 65' ulazak
+7 | Emanuel Iskra
+11 | Ivan Laginja | 46' ulazak
+13 | David Pekar | 85' ulazak
+
+[gost]
+12 | Luka Šteko | vratar
+2 | Jan Lazarević
+4 | Toni Nišević (C) | 31' zuti
+7 | Filip Lazendić
+9 | Danial Adrović | 59' izlazak
+10 | Edi Butković | 71' gol, 88' zuti
+15 | Vanja Ruba | 38' zuti, 46' izlazak
+16 | Marin Sić | 90+2' izlazak
+21 | Teo Filipović
+22 | Rocco Rakovac
+23 | Goran Urošević
+
+[gost pricuva]
+6 | Duje Bravar | 90+2' ulazak
+19 | Luka Miškulin | 46' ulazak
+24 | Almir Halilović | 59' ulazak, 81' gol
