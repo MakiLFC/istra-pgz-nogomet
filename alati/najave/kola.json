@@ -3655,6 +3655,55 @@
         }
       ],
       "ime": "najava-redovi-1-znl-pgz-kolo-13"
+    },
+    {
+      "dat": "4-nl-ns-rijeka-kolo-13-pregled",
+      "ime": "pregled-4-nl-ns-rijeka-kolo-13",
+      "kolo": "13",
+      "stil": "redovi",
+      "naslov": "Pregled",
+      "oznaka": "4. NL NS Rijeka · sezona 2026/27",
+      "datum": "SUB 28.11.2026.",
+      "sat": "Rezultati kola",
+      "slobodan": "Medulin 1921",
+      "utakmice": [
+        {
+          "d": "Ližnjan",
+          "g": "Otočac",
+          "termin": "SUB 13:30",
+          "rezultat": "0:2"
+        },
+        {
+          "d": "Funtana",
+          "g": "Žminj",
+          "termin": "SUB 15:30",
+          "rezultat": "7:1"
+        },
+        {
+          "d": "Umag-CC Umago",
+          "g": "Smoljanci",
+          "termin": "SUB 13:30",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Klana",
+          "g": "Mladost Fažana",
+          "termin": "SUB 13:30",
+          "rezultat": "2:2"
+        },
+        {
+          "d": "Borac (Ba)",
+          "g": "Rječina",
+          "termin": "ODGOĐENO",
+          "rezultat": "- : -"
+        },
+        {
+          "d": "Štinjan",
+          "g": "Cres",
+          "termin": "ODGOĐENO",
+          "rezultat": "- : -"
+        }
+      ]
     }
   ]
 }
