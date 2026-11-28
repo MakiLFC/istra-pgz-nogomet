@@ -3704,6 +3704,66 @@
           "rezultat": "- : -"
         }
       ]
+    },
+    {
+      "dat": "3-nl-zapad-kolo-15-pregled",
+      "kolo": "15",
+      "stil": "redovi",
+      "oznaka": "3. NL Zapad · sezona 2026/27",
+      "datum": "SUB 28.11.2026.",
+      "sat": "Rezultati kola",
+      "utakmice": [
+        {
+          "d": "Lokomotiva (R)",
+          "g": "Halubjan",
+          "termin": "SUB 13:30",
+          "rezultat": "3:2"
+        },
+        {
+          "d": "Pomorac",
+          "g": "Rovinj",
+          "termin": "SUB 16:00",
+          "rezultat": "6:2"
+        },
+        {
+          "d": "Krk",
+          "g": "Buje",
+          "termin": "SUB 13:30",
+          "rezultat": "4:3"
+        },
+        {
+          "d": "Crikvenica",
+          "g": "Vinodol",
+          "termin": "SUB 13:30",
+          "rezultat": "2:1"
+        },
+        {
+          "d": "Banjole",
+          "g": "OŠK Omišalj",
+          "termin": "SUB 13:30",
+          "rezultat": "1:1"
+        },
+        {
+          "d": "Rudar (L)",
+          "g": "Naprijed (H)",
+          "termin": "SUB 13:30",
+          "rezultat": "3:1"
+        },
+        {
+          "d": "Kraljevica",
+          "g": "Jadran-Poreč",
+          "termin": "SUB 13:30",
+          "rezultat": "ODG."
+        },
+        {
+          "d": "Nehaj",
+          "g": "Pazinka-Pazin",
+          "termin": "SUB 13:30",
+          "rezultat": "ODG."
+        }
+      ],
+      "ime": "pregled-3-nl-zapad-kolo-15",
+      "naslov": "Pregled"
     }
   ]
 }
