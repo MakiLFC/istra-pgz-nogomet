@@ -1,0 +1,55 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 15
+domacin: NK Pomorac
+gost: NK Rovinj
+rezultat: 6:2
+stadion_datum: POMOĆNO ŽUKNICA, KOSTRENA, 28.11.2026. 16:00
+gledatelja: 30
+suci: Marin Rožman, Paolo Jakovašić, Marko Balen. Delegat: Marijan Tkalčević.
+---
+# Prepisano iz snimki zaslona od 28.11.2026.
+
+[domacin]
+12 | Matko Božičković | vratar
+4 | Antonio Kružić | 59' izlazak
+7 | Paolo Sobotinčić | (C), 36' zuti, 59' izlazak
+8 | Benjamin Lapić | 67' zuti, 80' izlazak
+10 | Leo Burul
+11 | Niko Lovrić | 73' izlazak
+17 | Matej Momčilovski | 3' gol, 29' gol, 38' gol
+19 | Jakob Šprem Veljavečki
+21 | Marino Matković | 72' gol, 82' gol
+22 | Artem Terletskyi | 61' gol, 80' izlazak
+24 | Ivan Rupčić
+
+[domacin pricuva]
+1 | Roberto Nicoletti | vratar
+2 | Leo Arbanas
+5 | Karlo Valjan | 59' ulazak
+6 | Arianit Ljušaj
+15 | Lucas Precetti | 73' ulazak
+16 | Rene Ende | 59' ulazak
+18 | Ante Bilen | 80' ulazak
+20 | Andrej Soldan | 80' ulazak
+25 | David Gjugjaj
+
+[gost]
+33 | Stefan Vasiljević | vratar
+2 | Dominik Žgomba | 19' gol
+4 | Matej Vladišković | 56' zuti
+6 | Matija Hek | 46' izlazak
+7 | Viktor Milošević
+8 | Andres Camilo De Armas Bracho | 39' zuti
+9 | Masimo Terlević | 27' zuti
+10 | Manuel Perković | (C), 76' izlazak
+23 | Lazar Peev | 29' zuti
+24 | Mateo Buljević | 76' izlazak
+27 | Dejan Kukić | 51' zuti, 76' izlazak
+
+[gost pricuva]
+1 | Andrej Kajfeš
+13 | Andi Bešić | 76' ulazak
+15 | Fran Bernobić | 76' ulazak
+19 | David Lazarić | 76' ulazak
+22 | Niko Šerifović | 46' ulazak, 65' gol
