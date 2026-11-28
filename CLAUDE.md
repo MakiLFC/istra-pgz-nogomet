@@ -2403,6 +2403,14 @@ proljeće. Glasnik 14 (19.11.2026.): Karlo Josipović (Lokomotiva),
 isključen u 13. kolu nakon dva žuta, kažnjen je jednom utakmicom, koju
 je odradio u 14. kolu na Pušći.
 
+**DVIJE ODGODE U 13. KOLU 4. NL, ZBOG ORKANSKE BURE.** Andrejeva uputa od
+28.11.2026., pa se smije napisati (pravilo 5, iznimka uz njegovu izričitu
+riječ). Borac (Ba) - Rječina odgođen je zbog orkanske bure na Krasici, a
+Štinjan - Cres zato što Cres nije mogao otputovati: trajektne linije su
+zbog iste bure bile obustavljene. Obje stoje u bazi kao odgođene bez
+novog termina (ODG.). Kad dobiju termin ili se odigraju, ovu stavku
+obriši.
+
 **Nakon objavljenog pregleda ide provjera promjena u ljestvicama.** Posao
 "Preračunaj ljestvice", radnja `promjene`, s upisanim brojem kola. Ispiše
 komu je u tom kolu narastao broj golova ili kartona i provjeri zbroj
