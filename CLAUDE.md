@@ -2376,6 +2376,16 @@ Rab - Draga, Omladinac - Rikard Benčić) Semafor 25.11. NEMA termina, pa
 u bazi stoje kao ODG. bez datuma. Za Turbinu i Stari grad vidi stavku
 iznad. Kad se koja odigra ili dobije termin, ispravi ovu stavku.
 
+**NEHAJ - PAZINKA-PAZIN, 15. KOLO 3. NL ZAPAD, ODGOĐENA.** Zakazana za
+subotu 28.11.2026. u 13:30 u Senju, odgođena zbog orkanske bure u Senju
+(Andrej, 28.11.2026.). Dogovorom klubova igra se TJEDAN DANA PRIJE
+POČETKA PROLJETNOG DIJELA PRVENSTVA. Kad se bude uvozio proljetni
+raspored, toj utakmici treba upisati termin poslom "Termin u bazu" uz
+odgoda "da" (datum je tjedan prije 16. kola), i to tek kad ga potvrdi
+Semafor ili glasnik. U bazi zasad stoji odgođena bez datuma (ODG.).
+Kraljevica - Jadran-Poreč iz istog kola također je odgođena, razlog i
+novi termin nisu poznati. Kad se koja odigra, ovu stavku ispravi.
+
 **GLASNIK 3. NL ZAPAD IZDAJE HNS SREDIŠTE RIJEKA, NE NS PGŽ.** Na nspgz.hr
 ga nema, pa ga posao "Glasnik saveza" s popisa ne nalazi. Objavljuje se
 na hns.family kao PDF ("Glasnik N.pdf", npr. broj 9 je
