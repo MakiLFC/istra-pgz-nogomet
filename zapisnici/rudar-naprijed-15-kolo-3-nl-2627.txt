@@ -1,0 +1,59 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 15
+domacin: NK Rudar (L)
+gost: NK Naprijed (H)
+rezultat: 3:1
+stadion_datum: GRADSKI STADION LABIN, LABIN, 28.11.2026. 13:30
+gledatelja: 100
+suci: Daniel Starčević, Dragan Kukić, Matej Bezelj. Delegat: Rajko Planinić.
+---
+# Prepisano iz snimke zaslona od 28.11.2026.
+# Vratar Gabriel Pehar izašao je u 75., a ušao Filip Mufić.
+
+[domacin]
+32 | Andrej Prskalo | vratar
+4 | Antonio Načinović | (C)
+6 | Petar Mitrović
+8 | Nino Lazarić | 65' gol
+10 | Paolo Juričić | 20' gol, 77' izlazak
+11 | Ševko Okić | 67' izlazak
+13 | Anton Bilić | 86' izlazak
+16 | Matija Ristić | 46' izlazak
+18 | Darian Živolić
+44 | Nikola Terković
+77 | Matteo Movrić | 43' gol, 67' izlazak
+
+[domacin pricuva]
+1 | Luka Verbanac | vratar
+5 | Matej Trajkovski | 86' ulazak
+7 | Amel Ibrahimović | 77' ulazak
+14 | Karlo Krnjus | 67' ulazak
+15 | Tino Licul | 46' ulazak
+19 | Timi Mohorović
+20 | Nicolas Golja
+21 | Kristijan Simić
+42 | Patrik Čenaj | 67' ulazak
+
+[gost]
+1 | Gabriel Pehar | vratar, 75' izlazak
+7 | Dino Dukađin
+8 | Ivan Babić
+10 | Matej Tobisch | 46' izlazak
+13 | Šime Stančić | 46' izlazak
+14 | Filip Cetina
+15 | Fran Vušković | 46' izlazak
+16 | Karlo Radošević | (C)
+17 | Lovro Tomljanović | 65' izlazak
+21 | Leon Petrović
+47 | Robert Jandrek
+
+[gost pricuva]
+12 | Filip Mufić | vratar, 75' ulazak
+5 | Mauro Milić
+6 | Luka Žeželić | 46' ulazak
+18 | Andri Kašovski | 46' ulazak
+19 | Armando Begić | 65' ulazak, 76' gol
+23 | Ivan Frigan
+24 | Luka Jakovljević | 46' ulazak
+27 | Dominik Topić

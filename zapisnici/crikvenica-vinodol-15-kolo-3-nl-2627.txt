@@ -1,0 +1,57 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 15
+domacin: NK Crikvenica
+gost: NK Vinodol
+rezultat: 2:1
+stadion_datum: GRADSKI STADION, CRIKVENICA, 28.11.2026. 13:30
+gledatelja: 100
+suci: Petar Pejkunović, Patrik Beniković, Antun Taranić. Delegat: Ivana Krivokuća Relić.
+---
+# Prepisano iz snimke zaslona od 28.11.2026.
+# Damjan Mendrila u 61. minuti: lopta pred vratima, gol iz jedanaesterca.
+# Antonio Mazzarolli u 52. minuti: lopta pred vratima, gol iz jedanaesterca.
+
+[domacin]
+23 | Breno Bonamigo Toseto | vratar
+3 | Alen Smolčić
+5 | Niko Daničić | 64' izlazak
+6 | Ivan Filipović
+7 | Petar Vidović
+8 | Luka Mađovski | 18' gol, 45' zuti
+10 | Damjan Mendrila | 61' gol
+14 | Ivan Lukarić | (C), 43' zuti
+15 | Jakov Mendrila | 79' izlazak
+17 | Vito Lukarić | 46' izlazak
+20 | Mario Smolčić
+
+[domacin pricuva]
+12 | Mladen Ćućić | vratar
+4 | Juraj Perićić
+9 | Antonio Buljat | 46' ulazak
+21 | Paolo Brnja | 79' ulazak
+77 | Luka Mikulica | 64' ulazak
+
+[gost]
+99 | Matija Ugrinović | vratar
+4 | Tin Lagumdžija | 81' zuti
+5 | Domagoj Barac
+8 | Antonio Mazzarolli | (C), 52' gol
+10 | Deni Rubčić
+18 | Marcelo Suden
+19 | Ennio Travaglia
+21 | Gabriel Proleta | 70' zuti, 74' izlazak
+23 | Din Pozderac | 63' izlazak
+36 | Sebastijan Antić
+77 | Noah Ugrinović
+
+[gost pricuva]
+1 | Philipp Franjo Chaoui | vratar
+9 | Adriano Šmit
+11 | David Butorac | 74' ulazak
+14 | Badara Seck
+17 | Sven Ratković
+20 | Ivo Humberto Kreusch Junior
+27 | Maro Brčić
+28 | Filip Škoro | 63' ulazak, 88' zuti
+50 | Duje Zrilić

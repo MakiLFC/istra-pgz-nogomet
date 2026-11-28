@@ -1,0 +1,56 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 15
+domacin: NK Banjole
+gost: NK OŠK Omišalj
+rezultat: 1:1
+stadion_datum: PREMATINKA, BANJOLE, 28.11.2026. 13:30
+gledatelja: 47
+suci: Goran Krneta, David Ružić, Florian Belavić. Delegat: Elvis Kubaj.
+---
+# Prepisano iz snimke zaslona od 28.11.2026.
+# Vice Miljanić (Banjole) u 74. minuti: crvena lopta pred vratima, PROMAŠEN
+# jedanaesterac. Ne upisuje se; u zapisniku stoji pod "Jedanaesterci". Andrej potvrdio.
+# Matija Brdar u 37. minuti: lopta pred vratima, gol iz jedanaesterca.
+# Vratar Damir Daić izašao je u 71., a ušao Marco Delfar.
+
+[domacin]
+12 | Damir Daić | vratar, 71' izlazak
+2 | Venas Džanić | 63' izlazak
+4 | Sandi Mofardin | 17' zuti
+5 | Martin Sivonjić | 46' izlazak
+6 | Marshal Mfon Johnson | 88' izlazak
+7 | Anel Salihović | (C)
+9 | Ahmed Durmo | 75' gol
+10 | Paolo Matteoni
+21 | Ivan Giljanović
+23 | Robert Raković
+98 | Vice Miljanić
+
+[domacin pricuva]
+1 | Marco Delfar | vratar, 71' ulazak
+3 | Muhamed Durmo
+11 | Stefan Stojanović | 46' ulazak
+16 | Benjamin Čoban Skoko
+18 | Luka Krznarić
+19 | Stefano Matteoni | 88' ulazak
+20 | Luka Radonić | 63' ulazak
+99 | Matija Paulović
+
+[gost]
+23 | Leo Margan | vratar
+5 | Sanin Muminović
+7 | Matija Brdar | 37' gol, 83' zuti
+10 | Mateo Ostović
+14 | Karlo Milinović
+15 | David Rožajac
+21 | Marko Mijatović | 62' zuti
+29 | Luka Mijić | 46' izlazak
+30 | Paolo Lenac
+34 | Marko Miculinić | (C)
+49 | Andrija Belina
+
+[gost pricuva]
+90 | Igor Herman | vratar
+9 | Matteo Pavković | 46' ulazak
+70 | Dino Tatarević

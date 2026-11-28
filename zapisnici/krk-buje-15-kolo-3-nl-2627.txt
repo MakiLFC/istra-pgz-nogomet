@@ -1,0 +1,57 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 15
+domacin: NK Krk
+gost: NK Buje
+rezultat: 4:3
+stadion_datum: JOSIP URAVIĆ-PEPI, KRK, 28.11.2026. 13:30
+gledatelja: 30
+suci: Milan Kukuljan, Hrvoje Perkov, Nenad Marušić. Delegat: Goran Kvalić.
+---
+# Prepisano iz snimke zaslona od 28.11.2026.
+# Trener Buja Ivan Brečević dobio je žuti karton u 43. minuti (ne upisuje se).
+
+[domacin]
+13 | Matej Brusić | vratar
+4 | Ivano Pranjić
+7 | Mirko Valenčić | 63' izlazak
+8 | Ivan Lucić
+9 | Marko Jelić | 23' gol, 80' izlazak
+17 | Jakov Delibegović | 63' izlazak
+20 | Dino Dvorničić
+22 | Mateo Jurešić | 63' izlazak
+23 | Ivan Golemac | 53' gol, 70' izlazak
+37 | Tin Jurica | (C), 42' gol
+95 | Emanuel Mrakovčić | 48' gol, 90+2' zuti
+
+[domacin pricuva]
+12 | Izak Hrelja | vratar
+2 | Tomislav Jukičić | 63' ulazak
+3 | Mathew Peter | 80' ulazak
+6 | Mateo Klenovšek | 70' ulazak
+10 | Dorijan Jurešić | 63' ulazak, 65' zuti
+14 | Luka Kuljiš | 63' ulazak
+18 | Alin Hadžić
+
+[gost]
+22 | Matteo Fabac | vratar
+4 | Matija Šusterajter | 41' zuti
+5 | Azariah Uriel Hines | 60' gol, 77' gol
+7 | Masimo Krizmanić | (C), 59' izlazak
+11 | Marko Cukon
+14 | Damir Bartulović | 68' gol
+16 | Dario Čakarun | 46' izlazak
+17 | Victor Kargbo
+19 | Matteo Fakin | 80' izlazak
+23 | Stefan Stefanovski
+33 | Ivan Iveljić | 59' izlazak
+
+[gost pricuva]
+12 | Josip Benjak | vratar
+2 | Erik Peroša | 46' ulazak
+6 | Dominik Jugovac
+8 | Leon Lakošeljac
+9 | Enis Šoškić | 59' ulazak
+18 | Matija Kalizan | 59' ulazak, 65' zuti
+27 | William Ayanda Maseko | 80' ulazak
+99 | Borna Švenda

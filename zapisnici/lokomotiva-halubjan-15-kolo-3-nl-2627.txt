@@ -1,0 +1,58 @@
+natjecanje: 3. NL Zapad
+sezona: 2026/27
+kolo: 15
+domacin: NK Lokomotiva (R)
+gost: NK Halubjan
+rezultat: 3:2
+stadion_datum: STADION KANTRIDA, RIJEKA, 28.11.2026. 13:30
+gledatelja: 60
+suci: Marko Tićak, Antonio Kranjac, Noa Perušić. Delegat: Aljoša Radolović.
+---
+# Prepisano iz snimke zaslona od 28.11.2026.
+# Marko Ivanković (Halubjan) u 58. minuti: crvena lopta, autogol. Andrej potvrdio.
+
+[domacin]
+30 | Giuliano Popović | vratar, (C)
+8 | Ivor Weitzer | 75' zuti, 82' izlazak
+9 | Karlo Josipović | 78' gol
+10 | Frano Ivančić | 14' izlazak
+15 | Lukas Ujčić | 69' izlazak
+16 | Loren Pichler
+17 | Mateo Monjac
+19 | Nino Mohorovičić | 17' gol
+20 | Vanja Malinić
+23 | Edin Junuzović | 89' zuti
+28 | Marin Grujević | 87' zuti
+
+[domacin pricuva]
+58 | Carlo Berković | vratar
+4 | Andre Franković
+5 | Ronan Hibšer
+7 | Roko Kuvač
+11 | Ermin Bašić | 14' ulazak
+14 | Antonio Pejanović
+18 | Dominik Fuštar | 69' ulazak
+22 | Dino Bradarić | 82' ulazak
+27 | Luka Tamarut
+
+[gost]
+32 | Ivan Puljić | vratar
+2 | Leonardo Milih | 89' izlazak
+4 | Štefan Vrhovac
+6 | Marko Ivanković | 58' autogol, 66' izlazak
+7 | Bruno Došen
+8 | Fran Knežević | 65' gol, 89' izlazak
+11 | Marko Tadić | 82' izlazak
+20 | Lovro Mikulica
+22 | Antonio Dedić | (C), 55' gol
+24 | Noel Jakac | 76' zuti
+41 | Simon Simonaj
+
+[gost pricuva]
+40 | Vito Sviličić Kraš | vratar
+5 | Erik Šafarek | 89' ulazak
+9 | Moreno Stanić | 82' ulazak
+14 | Mihovil Jeronim Klapan | 66' ulazak
+17 | Petar Vukajlović
+18 | Matej Šarlija
+25 | Niko Šimičević | 89' ulazak
